@@ -1,15 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://c223d84jnw2lw"]
+[gd_scene load_steps=5 format=3 uid="uid://c223d84jnw2lw"]
 
-[ext_resource type="Texture2D" uid="uid://0mriccrr1804" path="res://Assets/bg/menu.png" id="1_iwre6"]
+[ext_resource type="Texture2D" uid="uid://cdpd806yu8ood" path="res://Assets/bg/quests.png" id="1_7r2xj"]
+[ext_resource type="Texture2D" uid="uid://05l8sgif4un2" path="res://Assets/bg/quests_fg.png" id="2_5ggq1"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="3_y3u8k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y818d"]
+font = ExtResource("3_y3u8k")
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 1)
 
 [node name="QuestSelect" type="MarginContainer"]
 anchors_preset = -1
 anchor_right = 0.25
 anchor_bottom = 0.25
 grow_horizontal = 2
-grow_vertical = 2
 scale = Vector2(4, 4)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BackgroundTexture" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_iwre6")
+size_flags_vertical = 0
+texture = ExtResource("1_7r2xj")
+stretch_mode = 2
+
+[node name="ForegroundTexture" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_5ggq1")
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Quests"
+label_settings = SubResource("LabelSettings_y818d")
