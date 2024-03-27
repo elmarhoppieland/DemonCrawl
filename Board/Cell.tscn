@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://q4upubrbqsq"]
+
+[ext_resource type="Script" path="res://Board/Cell.gd" id="1_iaja1"]
+[ext_resource type="Material" uid="uid://cb7nep71fmj1r" path="res://Board/TextOutline.tres" id="2_ahmum"]
+[ext_resource type="FontFile" uid="uid://7ynms6dclfsi" path="res://Assets/fonts/04B_03__.TTF" id="3_s2rbs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htaq0"]
+resource_local_to_scene = true
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"static",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e266q"]
+font = ExtResource("3_s2rbs")
+font_size = 8
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Cell" type="Node2D"]
+script = ExtResource("1_iaja1")
+
+[node name="BackgroundSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_htaq0")
+animation = &"static"
+
+[node name="ValueLabel" type="Label" parent="."]
+unique_name_in_owner = true
+material = ExtResource("2_ahmum")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 2.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "6"
+label_settings = SubResource("LabelSettings_e266q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ObjectSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true

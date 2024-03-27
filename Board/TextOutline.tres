@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cb7nep71fmj1r"]
+
+[ext_resource type="Shader" path="res://Resources/CellNumber.gdshader" id="1_33yms"]
+
+[resource]
+shader = ExtResource("1_33yms")
+shader_parameter/default_color = Vector3(1, 1, 1)

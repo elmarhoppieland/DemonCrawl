@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://bho6th882qje0"]
+
+[ext_resource type="Script" path="res://Scenes/StageSelect/StagesOverview.gd" id="1_280tx"]
+[ext_resource type="Material" uid="uid://cb7nep71fmj1r" path="res://Board/TextOutline.tres" id="1_u8rmd"]
+[ext_resource type="FontFile" uid="uid://7ynms6dclfsi" path="res://Assets/fonts/04B_03__.TTF" id="2_h15rr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2eoss"]
+font = ExtResource("2_h15rr")
+font_size = 8
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[node name="StagesOverview" type="VBoxContainer"]
+custom_minimum_size = Vector2(178, 44)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 2
+script = ExtResource("1_280tx")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+
+[node name="Label" type="Label" parent="MarginContainer"]
+texture_repeat = 2
+material = ExtResource("1_u8rmd")
+layout_mode = 2
+size_flags_horizontal = 0
+text = "SELECT A STAGE:"
+label_settings = SubResource("LabelSettings_2eoss")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="IconFlowContainer" type="HFlowContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2

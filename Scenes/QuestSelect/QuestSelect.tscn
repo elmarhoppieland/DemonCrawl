@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c223d84jnw2lw"]
+
+[ext_resource type="Texture2D" uid="uid://0mriccrr1804" path="res://Assets/bg/menu.png" id="1_iwre6"]
+
+[node name="QuestSelect" type="MarginContainer"]
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 0.25
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_iwre6")

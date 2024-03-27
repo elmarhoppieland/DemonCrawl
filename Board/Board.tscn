@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj5mda5tinisp"]
+
+[ext_resource type="TileSet" uid="uid://b6y6ye4i5kqnh" path="res://Board/Board.tres" id="1_cjthf"]
+[ext_resource type="Script" path="res://Board/Board.gd" id="2_xl8ws"]
+[ext_resource type="Script" path="res://Board/StageCamera.gd" id="3_sdio1"]
+[ext_resource type="PackedScene" uid="uid://d3lv5svg7xhht" path="res://Resources/FinishButton.tscn" id="4_wnnrc"]
+[ext_resource type="PackedScene" uid="uid://bqgqlnp8nk2x2" path="res://Scenes/Statbar/Statbar.tscn" id="5_30svg"]
+
+[node name="Board" type="TileMap"]
+tile_set = ExtResource("1_cjthf")
+format = 2
+script = ExtResource("2_xl8ws")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+script = ExtResource("3_sdio1")
+move_speed = 300.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="FinishButton" parent="CanvasLayer" instance=ExtResource("4_wnnrc")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 20.0
+offset_right = 92.0
+offset_bottom = 76.0
+grow_horizontal = 2
+
+[node name="Statbar" parent="CanvasLayer" instance=ExtResource("5_30svg")]
+anchors_preset = 12
+anchor_right = 1.0
+offset_right = -960.0
+
+[connection signal="pressed" from="CanvasLayer/FinishButton" to="." method="_on_finish_button_pressed"]
