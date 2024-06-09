@@ -4,7 +4,7 @@
 	"items": [
 		{
 			"name": "MASTERY_NOVICE",
-			"icon": "masteries/novice",
+			"icon": ["mastery1/novice", "mastery2/novice", "mastery/novice"],
 			"cost": [1, 2, 3],
 			"description": [
 				"MASTERY_NOVICE_DESCRIPTION_1",

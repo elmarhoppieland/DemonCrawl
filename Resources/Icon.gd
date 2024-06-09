@@ -15,8 +15,14 @@ class_name Icon
 			"mastery":
 				source_dict = AssetManager.MASTERIES
 				atlas = preload("res://Assets/sprites/Masteries.png")
+			"mastery1":
+				source_dict = AssetManager.MASTERIES
+				atlas = preload("res://Assets/sprites/Masteries1.png")
+			"mastery2":
+				source_dict = AssetManager.MASTERIES
+				atlas = preload("res://Assets/sprites/Masteries2.png")
 		
-		region = source_dict.get(name, Rect2())
+		region = source_dict.get(name.get_file(), Rect2())
 # ==============================================================================
 
 func _init() -> void:
