@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://c7r2dm5t3audw"
+path="res://.godot/imported/monster.gif-f25eb69b83716a6a994d5c47609d9ae4.tres"
+
+[deps]
+
+source_file="res://Assets/skins/bloodway/monster.gif"
+dest_files=["res://.godot/imported/monster.gif-f25eb69b83716a6a994d5c47609d9ae4.tres"]
+
+[params]
+
+frames_per_second=30

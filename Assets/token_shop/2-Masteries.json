@@ -1,0 +1,17 @@
+{
+	"name": "TOKEN_SHOP_CATEGORY_MASTERIES",
+	"icon": "category_masteries",
+	"items": [
+		{
+			"name": "MASTERY_NOVICE",
+			"icon": "masteries/novice",
+			"cost": [1, 2, 3],
+			"description": [
+				"MASTERY_NOVICE_DESCRIPTION_1",
+				"MASTERY_NOVICE_DESCRIPTION_2",
+				"MASTERY_NOVICE_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["novice_condition_1", "novice_condition_2", "novice_condition_3"]]
+		},
+	]
+}

@@ -1,14 +1,62 @@
-[gd_scene load_steps=5 format=3 uid="uid://c223d84jnw2lw"]
+[gd_scene load_steps=24 format=3 uid="uid://c223d84jnw2lw"]
 
 [ext_resource type="Texture2D" uid="uid://cdpd806yu8ood" path="res://Assets/bg/quests.png" id="1_7r2xj"]
+[ext_resource type="Script" path="res://Scenes/QuestSelect/QuestSelect.gd" id="1_46gki"]
 [ext_resource type="Texture2D" uid="uid://05l8sgif4un2" path="res://Assets/bg/quests_fg.png" id="2_5ggq1"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="3_y3u8k"]
+[ext_resource type="PackedScene" uid="uid://cs4xjk311kxho" path="res://Scenes/QuestSelect/QuestsOverview.tscn" id="4_6l8m7"]
+[ext_resource type="Shader" path="res://Scenes/QuestSelect/BackgroundLine.gdshader" id="5_nkaui"]
+[ext_resource type="PackedScene" uid="uid://di6wvg6vsnpk6" path="res://Scenes/QuestSelect/QuestSelectStatbar.tscn" id="12_0mlav"]
+[ext_resource type="Script" path="res://Scenes/QuestSelect/BackButton.gd" id="13_2dxie"]
+[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="13_x2onb"]
+[ext_resource type="Texture2D" uid="uid://daxi3wapxviu6" path="res://Assets/sprites/finish_bg.png" id="20_002ai"]
+[ext_resource type="Material" uid="uid://dk24wtqiv26r5" path="res://Resources/MovingBg.tres" id="20_g7kal"]
+[ext_resource type="Texture2D" uid="uid://dhuxq7qahn13m" path="res://Assets/sprites/begin_fg.png" id="22_3ssya"]
+[ext_resource type="Texture2D" uid="uid://dvgv2iiin6yu4" path="res://Assets/sprites/begin_fg_pressed.png" id="23_1rhh3"]
+[ext_resource type="Texture2D" uid="uid://cmlyhspr021up" path="res://Assets/sprites/begin_fg_hover.png" id="23_05vpt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y818d"]
+font = ExtResource("3_y3u8k")
+font_color = Color(0.74902, 0.854902, 0.972549, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_thp31"]
+shader = ExtResource("5_nkaui")
+
+[sub_resource type="LabelSettings" id="LabelSettings_64wbd"]
 font = ExtResource("3_y3u8k")
 shadow_size = 0
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oq5d8"]
+line_spacing = 0.0
+font_size = 8
+outline_size = 3
+outline_color = Color(0.0862745, 0.145098, 0.258824, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmbu4"]
+atlas = ExtResource("13_x2onb")
+region = Rect2(22, 44, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a0vy"]
+atlas = ExtResource("13_x2onb")
+region = Rect2(34, 44, 12, 8)
+
+[sub_resource type="Animation" id="Animation_2dwr6"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_1ynkx"]
+resource_name = "equipment_edit_hover"
+length = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f4j6h"]
+_data = {
+"RESET": SubResource("Animation_2dwr6"),
+"equipment_edit_hover": SubResource("Animation_1ynkx")
+}
 
 [node name="QuestSelect" type="MarginContainer"]
 anchors_preset = -1
@@ -16,6 +64,7 @@ anchor_right = 0.25
 anchor_bottom = 0.25
 grow_horizontal = 2
 scale = Vector2(4, 4)
+script = ExtResource("1_46gki")
 
 [node name="BackgroundTexture" type="TextureRect" parent="."]
 layout_mode = 2
@@ -28,14 +77,138 @@ layout_mode = 2
 texture = ExtResource("2_5ggq1")
 stretch_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Quests"
 label_settings = SubResource("LabelSettings_y818d")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="QuestsOverview" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer" instance=ExtResource("4_6l8m7")]
+layout_mode = 2
+
+[node name="QuestDetails" type="VBoxContainer" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 7
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -10
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_thp31")
+custom_minimum_size = Vector2(215, 8)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
+
+[node name="QuestNameLabel" type="Label" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Glory Days"
+label_settings = SubResource("LabelSettings_64wbd")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+
+[node name="LoreLabel" type="Label" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "The king has tasked you with the delivery of an important message to a land across the great waters. Use your renowned tracking skills to avoid the monsters along the way!"
+label_settings = SubResource("LabelSettings_oq5d8")
+autowrap_mode = 3
+
+[node name="QuestSelectStatbar" parent="VBoxContainer/MarginContainer" instance=ExtResource("12_0mlav")]
+layout_mode = 2
+
+[node name="BeginButtonContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/BeginButtonContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 13
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/BeginButtonContainer/MarginContainer"]
+texture_repeat = 2
+material = ExtResource("20_g7kal")
+layout_mode = 2
+texture = ExtResource("20_002ai")
+
+[node name="BeginButton" type="TextureButton" parent="VBoxContainer/MarginContainer/BeginButtonContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("22_3ssya")
+texture_pressed = ExtResource("23_1rhh3")
+texture_hover = ExtResource("23_05vpt")
+stretch_mode = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 7
+
+[node name="BackButton" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer3"]
+layout_mode = 2
+script = ExtResource("13_2dxie")
+
+[node name="Normal" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer3/BackButton"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_nmbu4")
+
+[node name="Hovered" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer3/BackButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_6a0vy")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f4j6h")
+}
+
+[connection signal="quest_selected" from="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestsOverview" to="." method="_on_quests_overview_quest_selected"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/BeginButtonContainer/MarginContainer/BeginButton" to="." method="_on_begin_button_pressed"]

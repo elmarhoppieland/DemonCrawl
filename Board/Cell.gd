@@ -1,4 +1,4 @@
-extends Node2D
+extends MarginContainer
 class_name Cell
 
 ## A single cell in a [Board].
@@ -15,97 +15,237 @@ const _NEIGHBORS: Array[Vector2i] = [
 	Vector2i.LEFT
 ]
 # ==============================================================================
-static var _flag_sprite_frames: SpriteFrames
+static var _pressed_cell: Cell
 # ==============================================================================
 ## This cell's theme. Its sprites are pulled from this directory inside [code]res://Assets/skins[/code].
-var theme := ""
-var cell_value := 0 ## This cell's value, i.e. the number of adjacent monsters.
-var revealed := false ## Whether this cell has been revealed.
-var flagged := false : ## Whether this cell has been flagged. Always [code]false[/code] if this cell is visible.
-	get: return flagged and not revealed
+#var theme := ""
+@export var cell_value := 0 : ## This cell's value, i.e. the number of adjacent monsters.
+	set(value):
+		cell_value = value
+		if not _value_label:
+			await ready
+		_value_label.cell_value = value
+	get:
+		if not _value_label:
+			return cell_value
+		return _value_label.cell_value
+var revealed := false : ## Whether this cell has been revealed.
+	get:
+		return _background.state == CellBackground.State.OPEN
 var board_position := Vector2i.ZERO ## This cell's [Board] coordinates.
 
-var cell_object: CellObject ## This cell's [CellObject], e.g. loot or a monster.
+var cell_object: CellObject : ## This cell's [CellObject], e.g. loot or a monster.
+	set(value):
+		cell_object = value
+		if not _object_texture:
+			await ready
+		_object_texture.cell_object = value
+	get:
+		if not _object_texture:
+			return cell_object
+		return _object_texture.cell_object
 # ==============================================================================
-@onready var _background_sprite: AnimatedSprite2D = %BackgroundSprite
+var _hovered := false
+var _checking := false
+# ==============================================================================
+@onready var global_sprite: Sprite2D = %GlobalSprite
+
+@onready var _background: CellBackground = %Background
 @onready var _value_label: Label = %ValueLabel
-@onready var _object_sprite: AnimatedSprite2D = %ObjectSprite
+@onready var _object_texture: TextureRect = %ObjectTexture
+@onready var _text_particles: TextParticles = %TextParticles
 # ==============================================================================
-signal cell_opened() ## Emitted when this cell gets opened.
-signal cell_flagged() ## Emitted when this cell gets flagged (not unflagged).
+signal opened() ## Emitted when this cell gets opened.
 # ==============================================================================
 
-## Updates all of this cell's sprites. Call this after making many changes that
-## should cause a visual update.
-## [br][br]See also [method update_background_sprite], [method update_value_label] and
-## [method update_object_sprite].
-func update_sprites() -> void:
-	update_background_sprite()
+func _process(_delta: float) -> void:
+	if Input.is_action_just_released("cell_open") and _pressed_cell != null:
+		_process_cell_opening()
+		
+		set_deferred("_pressed_cell", null)
 	
-	update_value_label()
-	
-	update_object_sprite()
-
-
-## Updates this cell's background sprite.
-## [br][br]See also [method update_sprites].
-func update_background_sprite() -> void:
-	if not _background_sprite:
-		await ready
-	
-	var path := theme.path_join("empty.png" if revealed else "flag_bg.png" if flagged else "full.png")
-	_set_bg_texture(ResourceLoader.load(path))
-
-
-## Updates this cell's value visually. Call this after changing [member cell_value].
-## [br][br]See also [method update_sprites].
-func update_value_label() -> void:
-	if not _value_label:
-		await ready
-	
-	_value_label.visible = revealed and not cell_object
-	_value_label.text = str(cell_value) if cell_value > 0 else ""
-
-
-## Updates this cell's object sprite. This sets the foreground sprite's texture to
-## [method CellObject.get_texture].
-## [br][br]See also [method update_sprites].
-func update_object_sprite() -> void:
-	if not _object_sprite:
-		await ready
-	
-	if flagged:
-		_object_sprite.visible = true
-		_object_sprite.sprite_frames = _flag_sprite_frames
-		_object_sprite.play("main")
-		_object_sprite.scale = Vector2.ZERO
-		create_tween().tween_property(_object_sprite, "scale", Vector2.ONE, 0.1)
+	if not _hovered:
 		return
 	
-	_object_sprite.visible = revealed
+	if Input.is_action_just_pressed("cell_open") and not (revealed and cell_object):
+		_pressed_cell = self
+		if revealed:
+			check_chord()
+		elif not is_flagged():
+			check()
+	elif cell_object and revealed:
+		if Input.is_action_just_pressed("interact"):
+			cell_object.interact()
+		if Input.is_action_just_pressed("secondary_interact"):
+			cell_object.secondary_interact()
+	
+	if Board.mutable and Input.is_action_just_pressed("cell_flag"):
+		if revealed:
+			flag_chord()
+		elif is_flagged():
+			unflag()
+		else:
+			flag()
+
+
+func _process_cell_opening() -> void:
+	if not Cell._is_pressed_cell_hovered():
+		uncheck()
+		return
+	
+	if _pressed_cell.revealed:
+		_process_cell_chording()
+	elif _pressed_cell == self and is_checking():
+		_process_direct_cell_opening()
+
+
+func _process_cell_chording() -> void:
+	if not _pressed_cell.is_solved():
+		uncheck()
+		return
+	
+	if not _pressed_cell.is_solved():
+		return
+	
+	if is_checking():
+		open()
+	elif _pressed_cell == self and is_check_chording():
+		PlayerStats.process_chain(cell_value)
+
+
+func _process_direct_cell_opening() -> void:
+	open()
+	PlayerStats.process_chain(cell_value)
+
+
+func _on_mouse_entered() -> void:
+	_hovered = true
+	
+	if revealed and is_occupied():
+		cell_object.hover()
+
+
+func _on_mouse_exited() -> void:
+	_hovered = false
+	
+	if revealed and is_occupied():
+		cell_object.unhover()
+
+
+func check_chord() -> void:
+	for cell in get_nearby_cells():
+		if not cell.revealed and not cell.is_flagged():
+			cell.check()
+
+
+func check() -> void:
+	if is_checking():
+		return
+	_background.set_checking()
+	set_deferred("_checking", true)
+
+
+func uncheck() -> void:
+	if not is_checking():
+		return
+	_background.set_hidden()
+	set_deferred("_checking", false)
+
+
+func chord() -> void:
+	if cell_value == get_nearby_flags():
+		for cell in get_nearby_cells():
+			if not cell.revealed:
+				cell.open()
+		return
+	
+	for cell in get_nearby_cells():
+		if not cell.revealed:
+			cell.uncheck()
+
+
+func open() -> void:
+	if revealed:
+		return
+	
+	if not Board.started:
+		Board.start_board(self)
+	
+	_background.set_open()
+	
+	set_deferred("_checking", false)
+	
 	if cell_object:
-		_object_sprite.sprite_frames = cell_object.get_texture(theme)
-		_object_sprite.play("main")
+		_object_texture.texture = cell_object.get_texture()
+		_object_texture.play_anim()
+		
+		cell_object.reveal()
+		cell_object.reveal_active()
+	
+	if has_monster():
+		Board.update_monster_count()
+	
+	Board.check_completion()
+	
+	opened.emit()
+	
+	if cell_object and cell_object is CellMonster:
 		return
 	
-	if not flagged:
-		_object_sprite.sprite_frames = null
+	if cell_value == 0:
+		if not cell_object:
+			cell_object = CellCoin.new(self)
+		chord()
+
+
+func flag_chord() -> void:
+	var count := 0
+	for cell in get_nearby_cells():
+		if not cell.revealed or (cell.has_monster() and cell.revealed):
+			count += 1
+	
+	if count > cell_value:
 		return
+	
+	for cell in get_nearby_cells():
+		if not cell.revealed and not cell.is_flagged():
+			cell.flag()
 
 
-## Loads the [CellData] into this cell. Also calls [method update_sprites].
+func unflag() -> void:
+	if not is_flagged():
+		return
+	
+	_background.set_hidden()
+	_object_texture.texture = null
+	
+	Board.update_monster_count()
+
+
+func flag() -> void:
+	if is_flagged():
+		return
+	
+	_background.set_flag()
+	_object_texture.play_flag()
+	
+	Board.is_flagless = false
+	Board.update_monster_count()
+
+
+func add_text_particle(text: String, color_preset: TextParticles.ColorPreset) -> void:
+	_text_particles.text = text
+	_text_particles.text_color_preset = color_preset
+	_text_particles.emitting = true
+	_text_particles.restart()
+
+
+## Loads the [CellData] into this cell.
 func load_data(data: CellData) -> void:
-	theme = data.theme
+	#theme = data.theme
 	cell_value = data.cell_value
 	revealed = data.revealed
 	cell_object = data.cell_object
-	
-	if not _flag_sprite_frames:
-		_flag_sprite_frames = SpriteFrames.new()
-		_flag_sprite_frames.add_animation("main")
-		_flag_sprite_frames.add_frame("main", ResourceLoader.load(theme.path_join("flag.png")))
-	
-	update_sprites()
 
 
 ## Sets this cell's value to the number of adjacent monsters.
@@ -114,103 +254,6 @@ func reset_value() -> void:
 	for cell in get_nearby_cells():
 		if cell.cell_object:
 			cell_value += 1
-	
-	update_value_label()
-
-
-## If this cell is visible, visually presses this cell down. If this is a hidden cell, chords this cell,
-## pressing down all adjacent hidden cells.
-## [br][br]Does nothing if this cell is [member flagged].
-func press() -> void:
-	if flagged:
-		return
-	if revealed:
-		if is_occupied():
-			return
-		
-		for cell in get_nearby_cells():
-			if not cell.revealed and not cell.flagged:
-				cell.press()
-		return
-	
-	_set_bg_texture(ResourceLoader.load(theme.path_join("checking.png")))
-
-
-## If this cell is visible, visually unpresses this cell. If this is a hidden cell, unchords this cell,
-## unpressing all adjacent hidden cells.
-## [br][br]Does nothing if this cell is [member flagged].
-func unpress() -> void:
-	if flagged:
-		return
-	if revealed:
-		if is_occupied():
-			return
-		
-		for cell in get_nearby_cells():
-			if cell.revealed:
-				continue
-			cell.unpress()
-		return
-	
-	update_background_sprite()
-
-
-## If this cell is visible, opens the cell, revealing all adjacent cells if this is a 0.
-## If it is a hidden cell, chords this cell. This either opens all adjacent cells if this cell is solved
-## (see [method is_solved]), or unpresses all adjacent cells (see [method unpress]).
-## [br][br]Does nothing if this cell is [member flagged].
-func open() -> void:
-	if flagged:
-		return
-	if revealed:
-		if is_occupied():
-			return
-		
-		for cell in get_nearby_cells():
-			if cell.revealed:
-				continue
-			if cell.flagged:
-				continue
-			if is_solved():
-				cell.open()
-			else:
-				cell.unpress()
-		return
-	
-	revealed = true
-	update_sprites()
-	
-	cell_opened.emit()
-	
-	if cell_value == 0:
-		for cell in get_nearby_cells():
-			cell.open()
-
-
-## Flags or unflags this cell. If it is already visible and has exactly [member cell_value] monsters
-## in nearby cells, flags all nearby hidden cells instead.
-func flag() -> void:
-	if revealed:
-		if is_occupied():
-			return
-		
-		var cell_count := 0
-		for cell in get_nearby_cells():
-			if not cell.revealed or cell.has_monster():
-				cell_count += 1
-		
-		if cell_count == cell_value:
-			for cell in get_nearby_cells():
-				if not cell.revealed and not cell.flagged:
-					cell.flag()
-		
-		return
-	
-	flagged = not flagged
-	update_sprites()
-	
-	if flagged:
-		cell_flagged.emit()
 
 
 ## Returns all cells orthogonally or diagonally adjacent to this cell. See also [method Board.get_cell].
@@ -225,6 +268,14 @@ func get_nearby_cells() -> Array[Cell]:
 	return cells
 
 
+## Returns the number of nearby flags.
+func get_nearby_flags() -> int:
+	var count := 0
+	for cell in get_nearby_cells():
+		count += int(cell.is_flagged() or (cell.has_monster() and cell.revealed))
+	return count
+
+
 ## Returns whether this cell's object is a monster, even if this cell is hidden.
 func has_monster() -> bool:
 	if not cell_object:
@@ -233,23 +284,66 @@ func has_monster() -> bool:
 	return cell_object is CellMonster
 
 
+func get_sprite_material() -> ShaderMaterial:
+	return _object_texture.material
+
+
+func get_group() -> Array[Cell]:
+	var group: Array[Cell] = []
+	var to_explore: Array[Cell] = [self]
+	var visited: Array[Cell] = []
+	
+	while not to_explore.is_empty():
+		var current_cell: Cell = to_explore.pop_front()
+		if current_cell in visited:
+			continue
+		
+		visited.append(current_cell)
+		group.append(current_cell)
+		
+		for cell in current_cell.get_nearby_cells():
+			if not cell in visited and cell.cell_value == cell_value:
+				to_explore.append(cell)
+	
+	return group
+
+
 ## Returns whether the number of nearby identified monsters is equal to or greater than this cell's value.
-## [br][br]An identified monster is a flagged cell (even if it does not have a monster) or a visible monster.
+## [br][br]An identified monster is a is_flagged() cell (even if it does not have a monster) or a visible monster.
 func is_solved() -> bool:
 	var nearby_monsters := 0
 	for cell in get_nearby_cells():
 		if cell.revealed:
 			if cell.has_monster():
 				nearby_monsters += 1
-		elif cell.flagged:
+		elif cell.is_flagged():
 			nearby_monsters += 1
 	
 	return nearby_monsters >= cell_value
 
 
-## Returns whether is cell is occupied, i.e. whether it has an object.
+## Returns whether this cell is occupied, i.e. whether it has an object.
 func is_occupied() -> bool:
 	return cell_object != null
+
+
+## Returns whether this cell is flagged.
+func is_flagged() -> bool:
+	return _background.state == CellBackground.State.FLAG
+
+
+## Returns whether this cell is being checked, i.e. visually pressed down.
+func is_checking() -> bool:
+	return _checking
+
+
+## Returns whether any nearby cell is being checked. See also [method is_checked].
+func is_check_chording() -> bool:
+	for cell in get_nearby_cells():
+		if cell.is_checking():
+			return true
+	
+	return false
 
 
 ## Creates a new cell and returns it, after loading the given [code]data[/code] into it, if it is given.
@@ -264,10 +358,5 @@ static func create(data: CellData = null) -> Cell:
 	return cell
 
 
-func _set_bg_texture(texture: Texture2D) -> void:
-	if _background_sprite.sprite_frames.get_frame_count("static") < 1:
-		_background_sprite.sprite_frames.add_frame("static", texture)
-	else:
-		_background_sprite.sprite_frames.set_frame("static", 0, texture)
-	
-	_background_sprite.play("static")
+static func _is_pressed_cell_hovered() -> bool:
+	return _pressed_cell._hovered

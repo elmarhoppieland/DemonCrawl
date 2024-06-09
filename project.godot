@@ -11,24 +11,36 @@ config_version=5
 [application]
 
 config/name="DemonCrawl"
-run/main_scene="res://Scenes/StageSelect/StageSelect.tscn"
+run/main_scene="res://Scenes/MainMenu/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Focus="*res://Scenes/Focus.tscn"
+Foreground="*res://Scenes/Singletons/Foreground.tscn"
+Focus="*res://Scenes/Singletons/Focus.tscn"
+Tooltip="res://Scenes/Singletons/Tooltip.tscn"
+Debug="res://Resources/Debug/Debug.tscn"
+Translator="*res://Resources/Singletons/Translator.gd"
+Toasts="res://Scenes/Singletons/Toasts.tscn"
 
 [debug]
 
+gdscript/warnings/incompatible_ternary=0
 gdscript/warnings/integer_division=0
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/mode=3
+window/size/mode=4
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="res://Assets/sprites/cursor.png"
+
+[editor]
+
+naming/scene_name_casing=1
+export/convert_text_resources_to_binary=false
 
 [file_customization]
 
@@ -39,9 +51,23 @@ folder_colors={
 "res://Scenes/": "green"
 }
 
+[filesystem]
+
+import/blender/enabled=false
+
 [gui]
 
+theme/custom="res://Resources/default_theme.tres"
 theme/custom_font="res://Assets/fonts/04B_03__.TTF"
+
+[importer_defaults]
+
+font_data_dynamic={
+"antialiasing": 0
+}
+csv_translation={
+"delimiter": 1
+}
 
 [input]
 
@@ -83,6 +109,12 @@ interact={
 , Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(220, 7),"global_position":Vector2(224, 48),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+secondary_interact={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"echo":false,"script":null)
+, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(67, 22),"global_position":Vector2(71, 63),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
 cell_open={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":113,"echo":false,"script":null)
@@ -105,16 +137,30 @@ zoom_in={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":8,"position":Vector2(335, 26),"global_position":Vector2(339, 67),"factor":1.0,"button_index":4,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
-inventory_open={
+command_line_toggle={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194335,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+debug_overlay_toggle={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194334,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+back={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194308,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+inventory_toggle={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194306,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
-inventory_close={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194306,"key_label":0,"unicode":0,"echo":false,"script":null)
-]
-}
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://Assets/localization/localization.en.translation")
 
 [rendering]
 

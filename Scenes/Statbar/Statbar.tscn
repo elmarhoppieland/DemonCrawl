@@ -1,62 +1,111 @@
-[gd_scene load_steps=26 format=3 uid="uid://bqgqlnp8nk2x2"]
+[gd_scene load_steps=24 format=3 uid="uid://bqgqlnp8nk2x2"]
 
 [ext_resource type="Script" path="res://Scenes/Statbar/Statbar.gd" id="1_nycng"]
-[ext_resource type="Texture2D" uid="uid://b6vb6b2h5jag4" path="res://Assets/sprites/Masteries.png" id="1_xb1dy"]
-[ext_resource type="Texture2D" uid="uid://tw5ypgbsqgps" path="res://Assets/sprites/xpbar_over.png" id="2_vp0ax"]
-[ext_resource type="Material" uid="uid://cb7nep71fmj1r" path="res://Board/TextOutline.tres" id="3_oq00d"]
-[ext_resource type="Shader" path="res://Resources/CellNumber.gdshader" id="4_howci"]
-[ext_resource type="Texture2D" uid="uid://qq2ce58cf8y6" path="res://Assets/sprites/statbar_heart.png" id="5_hnrrt"]
-[ext_resource type="Texture2D" uid="uid://jo3w4483mhxv" path="res://Assets/sprites/statbar_shield.png" id="6_ilti0"]
-[ext_resource type="Texture2D" uid="uid://lkxs4i0wx5lg" path="res://Assets/sprites/statbar_coin.png" id="7_31abw"]
+[ext_resource type="Script" path="res://Resources/Avatar.gd" id="2_kk3qc"]
+[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Resources/Avatar_atlas.tres" id="2_kuo8t"]
+[ext_resource type="Texture2D" uid="uid://or06r6apdhlw" path="res://Resources/ProfileMastery_atlas.tres" id="4_ga4kb"]
+[ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="4_gcjxo"]
+[ext_resource type="Script" path="res://Resources/ProfileMastery.gd" id="5_beiwq"]
+[ext_resource type="Script" path="res://Resources/XPBar.gd" id="6_fmgjo"]
+[ext_resource type="Script" path="res://Resources/ProfileNameLabel.gd" id="7_8d5yt"]
+[ext_resource type="Script" path="res://Resources/ProfileLevelLabel.gd" id="8_flfi7"]
 [ext_resource type="Texture2D" uid="uid://bxd0vgt4xjnfc" path="res://Assets/sprites/heirloom_border.png" id="8_ihn7u"]
+[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="9_15a5f"]
 [ext_resource type="Texture2D" uid="uid://eg4xflix073" path="res://Assets/sprites/heirloom_fill_empty.png" id="9_b1nee"]
-[ext_resource type="Texture2D" uid="uid://bbvts0smjnnd" path="res://Assets/sprites/icon_dictionary.png" id="10_vw4tx"]
-[ext_resource type="Texture2D" uid="uid://ckoi8ux1sr6bj" path="res://Assets/sprites/icon_inventory.png" id="11_8cifx"]
-[ext_resource type="Texture2D" uid="uid://ckt04djwfcyd5" path="res://Assets/sprites/icon_inventory_hover.png" id="13_blui6"]
+[ext_resource type="PackedScene" uid="uid://db1krtggvj6tl" path="res://Scenes/Statbar/Stats.tscn" id="9_eg8cx"]
+[ext_resource type="Script" path="res://Resources/Icon.gd" id="10_0f8tq"]
 [ext_resource type="Texture2D" uid="uid://ca5kqj441ftyr" path="res://Assets/sprites/Inventory.png" id="14_7bs0x"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ay2dy"]
-size = Vector2(16, 16)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vebbj"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f4xef"]
-atlas = ExtResource("1_xb1dy")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="Gradient" id="Gradient_mg4xv"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_shdfp"]
-gradient = SubResource("Gradient_mg4xv")
-
-[sub_resource type="LabelSettings" id="LabelSettings_tggqi"]
+[sub_resource type="LabelSettings" id="LabelSettings_0hxu7"]
 font_size = 8
-outline_size = 1
+font_color = Color(0.745098, 0.745098, 0.745098, 1)
+outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bl5jj"]
-shader = ExtResource("4_howci")
-shader_parameter/default_color = Vector3(0.5, 0.5, 0.5)
+[sub_resource type="AtlasTexture" id="AtlasTexture_c68yy"]
+atlas = ExtResource("9_15a5f")
+region = Rect2(64, 86, 16, 16)
+script = ExtResource("10_0f8tq")
+name = "icon_locked_flat"
 
-[sub_resource type="LabelSettings" id="LabelSettings_6x0jy"]
-font_size = 8
-font_color = Color(0.5, 0.5, 0.5, 1)
-outline_size = 1
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_yimff"]
+atlas = ExtResource("9_15a5f")
+region = Rect2(32, 16, 16, 16)
+script = ExtResource("10_0f8tq")
+name = "dictionary"
 
-[sub_resource type="LabelSettings" id="LabelSettings_wbxxu"]
-font_size = 8
-font_color = Color(1, 0.784314, 0.784314, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2k4t"]
+atlas = ExtResource("9_15a5f")
+region = Rect2(0, 16, 16, 16)
+script = ExtResource("10_0f8tq")
+name = "inventory"
 
-[sub_resource type="LabelSettings" id="LabelSettings_67yyp"]
-font_size = 8
-font_color = Color(0.839216, 0.847059, 0.843137, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_sj3wt"]
+atlas = ExtResource("9_15a5f")
+region = Rect2(16, 16, 16, 16)
+script = ExtResource("10_0f8tq")
+name = "inventory_hover"
 
-[sub_resource type="LabelSettings" id="LabelSettings_lfiwm"]
-font_size = 8
-font_color = Color(0.972549, 0.898039, 0.529412, 1)
+[sub_resource type="Animation" id="Animation_gc0rt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Inventory:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(320, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Inventory:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tuys5"]
+resource_name = "inventory_show"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Inventory:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 0), Vector2(243, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Inventory:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sehu4"]
+_data = {
+"RESET": SubResource("Animation_gc0rt"),
+"inventory_show": SubResource("Animation_tuys5")
+}
 
 [node name="Statbar" type="MarginContainer"]
 anchors_preset = -1
@@ -79,51 +128,51 @@ color = Color(0, 0, 0, 0.8)
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/separation = 0
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="Avatar" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-texture = SubResource("PlaceholderTexture2D_ay2dy")
+texture = ExtResource("2_kuo8t")
+script = ExtResource("2_kk3qc")
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+[node name="StatsTooltipGrabber" type="Node" parent="MarginContainer/HBoxContainer/Avatar"]
+unique_name_in_owner = true
+script = ExtResource("4_gcjxo")
+max_line_length = 48
+main = null
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
-theme_override_constants/separation = 1
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vebbj")
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_f4xef")
-
-[node name="VSeparator2" type="VSeparator" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vebbj")
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(4, 14)
+[node name="ProfileMastery" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-max_value = 16.0
-rounded = true
+texture = ExtResource("4_ga4kb")
+script = ExtResource("5_beiwq")
+
+[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+
+[node name="XPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+value = 40.0
 fill_mode = 3
-nine_patch_stretch = true
-stretch_margin_left = 1
-stretch_margin_top = 1
-stretch_margin_right = 1
-stretch_margin_bottom = 1
-texture_over = ExtResource("2_vp0ax")
-texture_progress = SubResource("GradientTexture1D_shdfp")
+show_percentage = false
+script = ExtResource("6_fmgjo")
 
-[node name="VSeparator3" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+[node name="Control3" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
-theme_override_constants/separation = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vebbj")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -134,155 +183,131 @@ theme_override_constants/margin_bottom = 1
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
-material = ExtResource("3_oq00d")
+[node name="ProfileNameLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Bolghro151"
-label_settings = SubResource("LabelSettings_tggqi")
+script = ExtResource("7_8d5yt")
 
-[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
-material = SubResource("ShaderMaterial_bl5jj")
+[node name="ProfileLevelLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Lv684"
-label_settings = SubResource("LabelSettings_6x0jy")
+text = "Lv1"
+label_settings = SubResource("LabelSettings_0hxu7")
+script = ExtResource("8_flfi7")
 
-[node name="VSeparator4" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+[node name="Control4" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
-theme_override_constants/separation = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vebbj")
 
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="Stats" parent="MarginContainer/HBoxContainer" instance=ExtResource("9_eg8cx")]
 layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("5_hnrrt")
+size_flags_vertical = 0
+theme_override_constants/margin_top = 4
 
-[node name="VSeparator5" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 1
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vebbj")
+size_flags_horizontal = 8
+theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = " 3/3 "
-label_settings = SubResource("LabelSettings_wbxxu")
-
-[node name="VSeparator6" type="VSeparator" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 4
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vebbj")
-
-[node name="TextureRect4" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("6_ilti0")
-
-[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = " 0"
-label_settings = SubResource("LabelSettings_67yyp")
-
-[node name="VSeparator7" type="VSeparator" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 4
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vebbj")
-
-[node name="TextureRect5" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("7_31abw")
-
-[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = " 0"
-label_settings = SubResource("LabelSettings_lfiwm")
-
-[node name="Heirloom" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Heirloom" type="MarginContainer" parent="MarginContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Heirloom"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("8_ihn7u")
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer/Heirloom"]
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("9_b1nee")
 
-[node name="VSeparator8" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom"]
 layout_mode = 2
-theme_override_constants/separation = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vebbj")
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_c68yy")
 
-[node name="Heirloom2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Control7" type="Control" parent="MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Heirloom2"]
+[node name="Heirloom2" type="MarginContainer" parent="MarginContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom2"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("8_ihn7u")
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer/Heirloom2"]
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom2"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("9_b1nee")
 
-[node name="VSeparator9" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom2"]
 layout_mode = 2
-theme_override_constants/separation = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vebbj")
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_c68yy")
 
-[node name="Heirloom3" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Control8" type="Control" parent="MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Heirloom3"]
+[node name="Heirloom3" type="MarginContainer" parent="MarginContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom3"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("8_ihn7u")
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer/Heirloom3"]
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom3"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("9_b1nee")
 
-[node name="VSeparator10" type="VSeparator" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vebbj")
-
-[node name="TextureRect6" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom3"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-texture = ExtResource("10_vw4tx")
+texture = SubResource("AtlasTexture_c68yy")
 
-[node name="VSeparator11" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+[node name="Control9" type="Control" parent="MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
-theme_override_constants/separation = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vebbj")
 
-[node name="InventoryIcon" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="Normal" type="TextureRect" parent="MarginContainer/HBoxContainer/InventoryIcon"]
+[node name="TextureRect6" type="TextureRect" parent="MarginContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-texture = ExtResource("11_8cifx")
+texture = SubResource("AtlasTexture_yimff")
 
-[node name="Hover" type="TextureRect" parent="MarginContainer/HBoxContainer/InventoryIcon"]
+[node name="Control10" type="Control" parent="MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="InventoryIcon" type="MarginContainer" parent="MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Normal" type="TextureRect" parent="MarginContainer/HBoxContainer2/InventoryIcon"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_c2k4t")
+
+[node name="Hover" type="TextureRect" parent="MarginContainer/HBoxContainer2/InventoryIcon"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-texture = ExtResource("13_blui6")
+texture = SubResource("AtlasTexture_sj3wt")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 scale = Vector2(4, 4)
@@ -290,12 +315,13 @@ transform = Transform2D(4, 0, 0, 4, 0, 0)
 
 [node name="Inventory" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = -1
 anchor_left = 0.25
 anchor_right = 0.25
 anchor_bottom = 0.25
 offset_right = 77.0
-offset_bottom = -20.0
+offset_bottom = 880.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -322,5 +348,12 @@ theme_override_constants/h_separation = 3
 theme_override_constants/v_separation = 3
 columns = 4
 
-[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/InventoryIcon" to="." method="_on_inventory_icon_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/InventoryIcon" to="." method="_on_inventory_icon_mouse_exited"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_sehu4")
+}
+
+[connection signal="about_to_show" from="MarginContainer/HBoxContainer/Avatar/StatsTooltipGrabber" to="." method="_on_stats_tooltip_grabber_about_to_show"]
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer2/InventoryIcon" to="." method="_on_inventory_icon_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer2/InventoryIcon" to="." method="_on_inventory_icon_mouse_exited"]

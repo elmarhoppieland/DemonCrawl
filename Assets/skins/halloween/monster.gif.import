@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://m4txeuln76st"
+path="res://.godot/imported/monster.gif-d59ac92eff452c11ed0f0ba48b83599c.tres"
+
+[deps]
+
+source_file="res://Assets/skins/halloween/monster.gif"
+dest_files=["res://.godot/imported/monster.gif-d59ac92eff452c11ed0f0ba48b83599c.tres"]
+
+[params]
+
+frames_per_second=30

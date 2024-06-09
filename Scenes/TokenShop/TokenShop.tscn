@@ -1,0 +1,275 @@
+[gd_scene load_steps=27 format=3 uid="uid://52plnh26fjgo"]
+
+[ext_resource type="Script" path="res://Scenes/TokenShop/TokenShop.gd" id="1_x20b8"]
+[ext_resource type="Texture2D" uid="uid://b5rt77loesna7" path="res://Assets/bg/token_shop_sky.png" id="2_c6u0t"]
+[ext_resource type="Script" path="res://Scenes/QuestSelect/BackButton.gd" id="2_p5u17"]
+[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="3_i3xv6"]
+[ext_resource type="Texture2D" uid="uid://chamkmak0kl0t" path="res://Assets/bg/token_shop.png" id="3_j1oel"]
+[ext_resource type="Script" path="res://Resources/Icon.gd" id="4_nqp1b"]
+[ext_resource type="Shader" path="res://Scenes/MainMenu/ProfileSelect.gdshader" id="4_uy6s8"]
+[ext_resource type="Script" path="res://Resources/FocusGrabber.gd" id="5_4idhx"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/ChangePageButton.gd" id="5_52qn8"]
+[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Resources/Avatar_atlas.tres" id="10_hyis6"]
+[ext_resource type="Script" path="res://Resources/Avatar.gd" id="11_3wli1"]
+[ext_resource type="Script" path="res://Resources/XPBar.gd" id="12_qob23"]
+[ext_resource type="Script" path="res://Resources/ProfileNameLabel.gd" id="13_nipms"]
+[ext_resource type="Script" path="res://Resources/ProfileLevelLabel.gd" id="14_37g46"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahp6w"]
+atlas = ExtResource("3_i3xv6")
+region = Rect2(22, 44, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7xjk"]
+atlas = ExtResource("3_i3xv6")
+region = Rect2(34, 44, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sexuf"]
+atlas = ExtResource("3_i3xv6")
+region = Rect2(0, 102, 16, 16)
+script = ExtResource("4_nqp1b")
+name = "category_upgrades"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lypjk"]
+atlas = ExtResource("3_i3xv6")
+region = Rect2(16, 102, 16, 16)
+script = ExtResource("4_nqp1b")
+name = "category_masteries"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7wkw"]
+atlas = ExtResource("3_i3xv6")
+region = Rect2(32, 102, 16, 16)
+script = ExtResource("4_nqp1b")
+name = "category_items"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0y0a"]
+atlas = ExtResource("3_i3xv6")
+region = Rect2(48, 102, 16, 16)
+script = ExtResource("4_nqp1b")
+name = "category_avatars"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvbdw"]
+atlas = ExtResource("3_i3xv6")
+region = Rect2(64, 102, 16, 16)
+script = ExtResource("4_nqp1b")
+name = "category_inventories"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joog1"]
+atlas = ExtResource("3_i3xv6")
+region = Rect2(80, 102, 16, 16)
+script = ExtResource("4_nqp1b")
+name = "category_holographs"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2bg06"]
+shader = ExtResource("4_uy6s8")
+shader_parameter/inversion = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g63rs"]
+atlas = ExtResource("3_i3xv6")
+region = Rect2(80, 16, 16, 16)
+script = ExtResource("4_nqp1b")
+name = "button_arrow"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ecwdy"]
+shader = ExtResource("4_uy6s8")
+shader_parameter/inversion = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ts3ab"]
+font_size = 8
+font_color = Color(0.745098, 0.745098, 0.745098, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="TokenShop" type="Control"]
+layout_mode = 3
+anchor_right = 0.25
+anchor_bottom = 0.25
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+script = ExtResource("1_x20b8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_c6u0t")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_j1oel")
+
+[node name="BackButton" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 7.0
+script = ExtResource("2_p5u17")
+
+[node name="Normal" type="TextureRect" parent="BackButton"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ahp6w")
+
+[node name="Hovered" type="TextureRect" parent="BackButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_c7xjk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 24.0
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "SELECT_CATEGORY"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="CategoryTabButtons" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/CategoryTabButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_sexuf")
+
+[node name="FocusGrabber" type="Node" parent="VBoxContainer/HBoxContainer/CategoryTabButtons/TextureRect"]
+script = ExtResource("5_4idhx")
+main = true
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer/CategoryTabButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_lypjk")
+
+[node name="FocusGrabber" type="Node" parent="VBoxContainer/HBoxContainer/CategoryTabButtons/TextureRect2"]
+script = ExtResource("5_4idhx")
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer/CategoryTabButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_o7wkw")
+
+[node name="FocusGrabber" type="Node" parent="VBoxContainer/HBoxContainer/CategoryTabButtons/TextureRect3"]
+script = ExtResource("5_4idhx")
+
+[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/HBoxContainer/CategoryTabButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_w0y0a")
+
+[node name="FocusGrabber" type="Node" parent="VBoxContainer/HBoxContainer/CategoryTabButtons/TextureRect4"]
+script = ExtResource("5_4idhx")
+
+[node name="TextureRect5" type="TextureRect" parent="VBoxContainer/HBoxContainer/CategoryTabButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_wvbdw")
+
+[node name="FocusGrabber" type="Node" parent="VBoxContainer/HBoxContainer/CategoryTabButtons/TextureRect5"]
+script = ExtResource("5_4idhx")
+
+[node name="TextureRect6" type="TextureRect" parent="VBoxContainer/HBoxContainer/CategoryTabButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_joog1")
+
+[node name="FocusGrabber" type="Node" parent="VBoxContainer/HBoxContainer/CategoryTabButtons/TextureRect6"]
+script = ExtResource("5_4idhx")
+
+[node name="ChangePageButton" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_2bg06")
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_g63rs")
+script = ExtResource("5_52qn8")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "2/2"
+
+[node name="ChangePageButton2" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_ecwdy")
+layout_mode = 2
+texture = SubResource("AtlasTexture_g63rs")
+flip_h = true
+flip_v = true
+script = ExtResource("5_52qn8")
+direction = 1
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="CategoryScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="Categories" type="MarginContainer" parent="VBoxContainer/CategoryScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -8
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Avatar" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("10_hyis6")
+script = ExtResource("11_3wli1")
+
+[node name="XPBar" type="ProgressBar" parent="VBoxContainer/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+value = 40.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("12_qob23")
+
+[node name="Control" type="Control" parent="VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = -1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ProfileNameLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("13_nipms")
+
+[node name="ProfileLevelLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Lv1"
+label_settings = SubResource("LabelSettings_ts3ab")
+script = ExtResource("14_37g46")

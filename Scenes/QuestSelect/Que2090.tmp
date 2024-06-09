@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://cs4xjk311kxho"]
+
+[ext_resource type="Material" uid="uid://cb7nep71fmj1r" path="res://Board/TextOutline.tres" id="1_0xih4"]
+[ext_resource type="Script" path="res://Scenes/QuestSelect/QuestsOverview.gd" id="1_denfj"]
+[ext_resource type="Script" path="res://Resources/TextureSequence.gd" id="3_7ua0i"]
+[ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipPopup.gd" id="3_ldj2m"]
+[ext_resource type="Texture2D" uid="uid://dlabxk3krxtd6" path="res://Assets/sprites/icons_difficulty.png" id="3_n7cel"]
+[ext_resource type="Shader" path="res://Resources/CellNumber.gdshader" id="10_qaojx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dyfx5"]
+font_size = 8
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctspm"]
+atlas = ExtResource("3_n7cel")
+region = Rect2(0, 0, 16, 16)
+script = ExtResource("3_7ua0i")
+texture_size = Vector2i(16, 16)
+row_size = 4
+index = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x80tl"]
+shader = ExtResource("10_qaojx")
+shader_parameter/default_color = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ueuh6"]
+line_spacing = 1.0
+font_size = 8
+font_color = Color(0.8, 0.8, 0.8, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[node name="QuestsOverview" type="VBoxContainer"]
+theme_override_constants/separation = 2
+script = ExtResource("1_denfj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+
+[node name="Label" type="Label" parent="MarginContainer"]
+material = ExtResource("1_0xih4")
+layout_mode = 2
+text = "SELECT A QUEST:"
+label_settings = SubResource("LabelSettings_dyfx5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="QuestIconsContainer" type="HBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 2
+
+[node name="DifficultySelect" type="TextureRect" parent="HBoxContainer/QuestIconsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_ctspm")
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/QuestIconsContainer/DifficultySelect"]
+script = ExtResource("3_ldj2m")
+text = "NORMAL DIFFICULTY"
+
+[node name="Control" type="Control" parent="HBoxContainer/QuestIconsContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_x80tl")
+layout_mode = 2
+text = "COMPLETED: x13
+BEST: 1150"
+label_settings = SubResource("LabelSettings_ueuh6")
+
+[connection signal="interacted" from="HBoxContainer/QuestIconsContainer/DifficultySelect/TooltipGrabber" to="." method="_on_difficulty_select_interacted"]
+[connection signal="second_interacted" from="HBoxContainer/QuestIconsContainer/DifficultySelect/TooltipGrabber" to="." method="_on_difficulty_select_second_interacted"]

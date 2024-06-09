@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://na7oyge0vot4"]
+
+[ext_resource type="Script" path="res://Scenes/Singletons/Toasts.gd" id="1_l3kai"]
+
+[node name="Toasts" type="CanvasLayer"]
+layer = 20
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+script = ExtResource("1_l3kai")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_bottom = 157.0
+mouse_filter = 2
+
+[node name="ToastsContainer" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2

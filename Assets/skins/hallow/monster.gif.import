@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://dew1vileh2kh2"
+path="res://.godot/imported/monster.gif-8cd64129aa3f25d7e17cdafaf04fd0ca.tres"
+
+[deps]
+
+source_file="res://Assets/skins/hallow/monster.gif"
+dest_files=["res://.godot/imported/monster.gif-8cd64129aa3f25d7e17cdafaf04fd0ca.tres"]
+
+[params]
+
+frames_per_second=30

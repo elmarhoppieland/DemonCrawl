@@ -1,7 +1,23 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cb7nep71fmj1r"]
 
-[ext_resource type="Shader" path="res://Resources/CellNumber.gdshader" id="1_33yms"]
+[sub_resource type="Shader" id="Shader_obvhd"]
+code = "shader_type canvas_item;
+
+uniform vec3 outline_color = vec3(0);
+uniform vec3 text_color = vec3(1);
+
+void fragment() {
+	if (COLOR.rgb == text_color){
+		// do nothing
+	}
+	else if (COLOR != texture(TEXTURE, UV.xy)) {
+		COLOR.a = ceil(COLOR.a);
+		COLOR.rgb = vec3(outline_color) / 255.0;
+	}
+}
+"
 
 [resource]
-shader = ExtResource("1_33yms")
-shader_parameter/default_color = Vector3(1, 1, 1)
+shader = SubResource("Shader_obvhd")
+shader_parameter/outline_color = Vector3(0, 0, 0)
+shader_parameter/text_color = Vector3(1, 1, 1)

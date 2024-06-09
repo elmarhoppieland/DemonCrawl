@@ -1,0 +1,134 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0xuhqy23ofnt"]
+
+[ext_resource type="Texture2D" uid="uid://bao20jmr8fdr6" path="res://Assets/sprites/avatar.png" id="1_73b04"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/CreateProfile/CreateProfile.gd" id="1_wmvix"]
+[ext_resource type="Script" path="res://Resources/DCButton.gd" id="1_wpoxc"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/CreateProfile/CreateProfileLineEdit.gd" id="3_kf0gw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ardet"]
+atlas = ExtResource("1_73b04")
+region = Rect2(0, 0, 16, 16)
+
+[node name="CreateProfile" type="CanvasLayer"]
+offset = Vector2(0, 360)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 360)
+script = ExtResource("1_wmvix")
+
+[node name="BackgroundAnchor" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundAnchor"]
+custom_minimum_size = Vector2(320, 80)
+anchors_preset = -1
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundAnchor/MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ContentsAnchor" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentsAnchor"]
+anchors_preset = -1
+anchor_right = 0.5
+offset_top = -39.5
+offset_right = 320.0
+offset_bottom = 39.5
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 9
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentsAnchor/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="TextureRect" type="TextureRect" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_ardet")
+stretch_mode = 3
+
+[node name="Control" type="Control" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "PROFILE_CREATE_HEADER"
+
+[node name="Control2" type="Control" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+caret_blink = true
+script = ExtResource("3_kf0gw")
+
+[node name="Control3" type="Control" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="DCButton" type="BaseButton" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+editor_description = ""
+visible = true
+modulate = Color(0.0627451, 0.87451, 0.501961, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+size_flags_stretch_ratio = 1.0
+auto_translate = true
+localize_numeral_system = true
+tooltip_text = ""
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+mouse_filter = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("1_wpoxc")
+type = 1
+text = "PROFILE_CREATE_CONFIRM"

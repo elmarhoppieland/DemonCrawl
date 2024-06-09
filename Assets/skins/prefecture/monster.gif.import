@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://cvte48dij3uho"
+path="res://.godot/imported/monster.gif-6e7014aa3578ea4f4791fa1a425c7232.tres"
+
+[deps]
+
+source_file="res://Assets/skins/prefecture/monster.gif"
+dest_files=["res://.godot/imported/monster.gif-6e7014aa3578ea4f4791fa1a425c7232.tres"]
+
+[params]
+
+frames_per_second=30
