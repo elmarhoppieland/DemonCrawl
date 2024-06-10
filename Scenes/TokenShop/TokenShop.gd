@@ -129,7 +129,11 @@ class Category extends VFlowContainer:
 			var data := TokenShopItemData.new()
 			
 			data.item_name = Translator.tr(item_data.name)
-			data.icon = AssetManager.get_icon(item_data.icon)
+			
+			if item_data.icon is String:
+				data.icon = AssetManager.get_icon(item_data.icon)
+			elif item_data.icon is Array:
+				data.icon = AssetManager.get_icon(item_data.icon[TokenShop.get_purchased_level(item_data.name)])
 			
 			if item_data.cost is float:
 				data.cost = item_data.cost
@@ -184,7 +188,7 @@ class Category extends VFlowContainer:
 		
 		const KEY_TYPES := {
 			"name": TYPE_STRING,
-			"icon": TYPE_STRING,
+			"icon": [TYPE_STRING, TYPE_ARRAY],
 			"cost": [TYPE_INT, TYPE_FLOAT, TYPE_ARRAY],
 			"description": [TYPE_STRING, TYPE_ARRAY],
 			"?description_values": TYPE_ARRAY,
@@ -213,11 +217,6 @@ class Category extends VFlowContainer:
 						item_data.erase(key)
 					else:
 						error = true
-		
-		#if "description_values" in item_data and not item_data.description_values is Array:
-			## we send an error message but do not set 'error' to true and instead remove the key
-			#Debug.log_error("The TokenShopCategory file at path '%s' has an invalid item at index %s: Optional key 'description_values' should be an Array, but '%s' was given." % [file_path, json.items.find(item_data), type_string(typeof(item_data.description_values))] + ("" if error else " Ignoring the key and continuing..."))
-			#item_data.erase("description_values")
 		
 		return error
 

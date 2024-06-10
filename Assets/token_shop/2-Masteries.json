@@ -3,6 +3,237 @@
 	"icon": "category_masteries",
 	"items": [
 		{
+			"name": "MASTERY_AURAMANCER",
+			"icon": ["mastery1/auramancer", "mastery2/auramancer", "mastery/auramancer"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_AURAMANCER_DESCRIPTION_1",
+				"MASTERY_AURAMANCER_DESCRIPTION_2",
+				"MASTERY_AURAMANCER_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["auramancer_condition_1", "auramancer_condition_2", "auramancer_condition_3"]]
+		},
+		{
+			"name": "MASTERY_BANKER",
+			"icon": ["mastery1/banker", "mastery2/banker", "mastery/banker"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_BANKER_DESCRIPTION_1",
+				"MASTERY_BANKER_DESCRIPTION_2",
+				"MASTERY_BANKER_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["banker_condition_1", "banker_condition_2", "banker_condition_3"]]
+		},
+		{
+			"name": "MASTERY_BARBARIAN",
+			"icon": ["mastery1/barbarian", "mastery2/barbarian", "mastery/barbarian"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_BARBARIAN_DESCRIPTION_1",
+				"MASTERY_BARBARIAN_DESCRIPTION_2",
+				"MASTERY_BARBARIAN_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["barbarian_condition_1", "barbarian_condition_2", "barbarian_condition_3"]]
+		},
+		{
+			"name": "MASTERY_BOOKWORM",
+			"icon": ["mastery1/bookworm", "mastery2/bookworm", "mastery/bookworm"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_BOOKWORM_DESCRIPTION_1",
+				"MASTERY_BOOKWORM_DESCRIPTION_2",
+				"MASTERY_BOOKWORM_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["bookworm_condition_1", "bookworm_condition_2", "bookworm_condition_3"]]
+		},
+		{
+			"name": "MASTERY_BUBBLER",
+			"icon": ["mastery1/bubbler", "mastery2/bubbler", "mastery/bubbler"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_BUBBLER_DESCRIPTION_1",
+				"MASTERY_BUBBLER_DESCRIPTION_2",
+				"MASTERY_BUBBLER_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["bubbler_condition_1", "bubbler_condition_2", "bubbler_condition_3"]]
+		},
+		{
+			"name": "MASTERY_COMMANDER",
+			"icon": ["mastery1/commander", "mastery2/commander", "mastery/commander"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_COMMANDER_DESCRIPTION_1",
+				"MASTERY_COMMANDER_DESCRIPTION_2",
+				"MASTERY_COMMANDER_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["commander_condition_1", "commander_condition_2", "commander_condition_3"]]
+		},
+		{
+			"name": "MASTERY_DEMOLITIONIST",
+			"icon": ["mastery1/demolitionist", "mastery2/demolitionist", "mastery/demolitionist"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_DEMOLITIONIST_DESCRIPTION_1",
+				"MASTERY_DEMOLITIONIST_DESCRIPTION_2",
+				"MASTERY_DEMOLITIONIST_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["demolitionist_condition_1", "demolitionist_condition_2", "demolitionist_condition_3"]]
+		},
+		{
+			"name": "MASTERY_DETECTIVE",
+			"icon": ["mastery1/detective", "mastery2/detective", "mastery/detective"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_DETECTIVE_DESCRIPTION_1",
+				"MASTERY_DETECTIVE_DESCRIPTION_2",
+				"MASTERY_DETECTIVE_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["detective_condition_1", "detective_condition_2", "detective_condition_3"]]
+		},
+		{
+			"name": "MASTERY_EXORCIST",
+			"icon": ["mastery1/exorcist", "mastery2/exorcist", "mastery/exorcist"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_EXORCIST_DESCRIPTION_1",
+				"MASTERY_EXORCIST_DESCRIPTION_2",
+				"MASTERY_EXORCIST_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["exorcist_condition_1", "exorcist_condition_2", "exorcist_condition_3"]]
+		},
+		{
+			"name": "MASTERY_FIREFLY",
+			"icon": ["mastery1/firefly", "mastery2/firefly", "mastery/firefly"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_FIREFLY_DESCRIPTION_1",
+				"MASTERY_FIREFLY_DESCRIPTION_2",
+				"MASTERY_FIREFLY_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["firefly_condition_1", "firefly_condition_2", "firefly_condition_3"]]
+		},
+		{
+			"name": "MASTERY_GHOST",
+			"icon": ["mastery1/ghost", "mastery2/ghost", "mastery/ghost"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_GHOST_DESCRIPTION_1",
+				"MASTERY_GHOST_DESCRIPTION_2",
+				"MASTERY_GHOST_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["ghost_condition_1", "ghost_condition_2", "ghost_condition_3"]]
+		},
+		{
+			"name": "MASTERY_GUARDIAN",
+			"icon": ["mastery1/guardian", "mastery2/guardian", "mastery/guardian"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_GUARDIAN_DESCRIPTION_1",
+				"MASTERY_GUARDIAN_DESCRIPTION_2",
+				"MASTERY_GUARDIAN_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["guardian_condition_1", "guardian_condition_2", "guardian_condition_3"]]
+		},
+		{
+			"name": "MASTERY_HUMAN",
+			"icon": ["mastery1/human", "mastery2/human", "mastery/human"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_HUMAN_DESCRIPTION_1",
+				"MASTERY_HUMAN_DESCRIPTION_2",
+				"MASTERY_HUMAN_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["human_condition_1", "human_condition_2", "human_condition_3"]]
+		},
+		{
+			"name": "MASTERY_HUNTER",
+			"icon": ["mastery1/hunter", "mastery2/hunter", "mastery/hunter"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_HUNTER_DESCRIPTION_1",
+				"MASTERY_HUNTER_DESCRIPTION_2",
+				"MASTERY_HUNTER_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["hunter_condition_1", "hunter_condition_2", "hunter_condition_3"]]
+		},
+		{
+			"name": "MASTERY_HYPNOTIST",
+			"icon": ["mastery1/hypnotist", "mastery2/hypnotist", "mastery/hypnotist"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_HYPNOTIST_DESCRIPTION_1",
+				"MASTERY_HYPNOTIST_DESCRIPTION_2",
+				"MASTERY_HYPNOTIST_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["hypnotist_condition_1", "hypnotist_condition_2", "hypnotist_condition_3"]]
+		},
+		{
+			"name": "MASTERY_IMMORTAL",
+			"icon": ["mastery1/immortal", "mastery2/immortal", "mastery/immortal"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_IMMORTAL_DESCRIPTION_1",
+				"MASTERY_IMMORTAL_DESCRIPTION_2",
+				"MASTERY_IMMORTAL_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["immortal_condition_1", "immortal_condition_2", "immortal_condition_3"]]
+		},
+		{
+			"name": "MASTERY_KNIGHT",
+			"icon": ["mastery1/knight", "mastery2/knight", "mastery/knight"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_KNIGHT_DESCRIPTION_1",
+				"MASTERY_KNIGHT_DESCRIPTION_2",
+				"MASTERY_KNIGHT_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["knight_condition_1", "knight_condition_2", "knight_condition_3"]]
+		},
+		{
+			"name": "MASTERY_LUMBERJACK",
+			"icon": ["mastery1/lumberjack", "mastery2/lumberjack", "mastery/lumberjack"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_LUMBERJACK_DESCRIPTION_1",
+				"MASTERY_LUMBERJACK_DESCRIPTION_2",
+				"MASTERY_LUMBERJACK_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["lumberjack_condition_1", "lumberjack_condition_2", "lumberjack_condition_3"]]
+		},
+		{
+			"name": "MASTERY_MARKSMAN",
+			"icon": ["mastery1/marksman", "mastery2/marksman", "mastery/marksman"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_MARKSMAN_DESCRIPTION_1",
+				"MASTERY_MARKSMAN_DESCRIPTION_2",
+				"MASTERY_MARKSMAN_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["marksman_condition_1", "marksman_condition_2", "marksman_condition_3"]]
+		},
+		{
+			"name": "MASTERY_MUTANT",
+			"icon": ["mastery1/mutant", "mastery2/mutant", "mastery/mutant"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_MUTANT_DESCRIPTION_1",
+				"MASTERY_MUTANT_DESCRIPTION_2",
+				"MASTERY_MUTANT_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["mutant_condition_1", "mutant_condition_2", "mutant_condition_3"]]
+		},
+		{
+			"name": "MASTERY_NINJA",
+			"icon": ["mastery1/ninja", "mastery2/ninja", "mastery/ninja"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_NINJA_DESCRIPTION_1",
+				"MASTERY_NINJA_DESCRIPTION_2",
+				"MASTERY_NINJA_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["ninja_condition_1", "ninja_condition_2", "ninja_condition_3"]]
+		},
+		{
 			"name": "MASTERY_NOVICE",
 			"icon": ["mastery1/novice", "mastery2/novice", "mastery/novice"],
 			"cost": [1, 2, 3],
@@ -12,6 +243,149 @@
 				"MASTERY_NOVICE_DESCRIPTION_3"
 			],
 			"unlock_conditions": [["novice_condition_1", "novice_condition_2", "novice_condition_3"]]
+		},
+		{
+			"name": "MASTERY_POISONER",
+			"icon": ["mastery1/poisoner", "mastery2/poisoner", "mastery/poisoner"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_POISONER_DESCRIPTION_1",
+				"MASTERY_POISONER_DESCRIPTION_2",
+				"MASTERY_POISONER_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["poisoner_condition_1", "poisoner_condition_2", "poisoner_condition_3"]]
+		},
+		{
+			"name": "MASTERY_PROPHET",
+			"icon": ["mastery1/prophet", "mastery2/prophet", "mastery/prophet"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_PROPHET_DESCRIPTION_1",
+				"MASTERY_PROPHET_DESCRIPTION_2",
+				"MASTERY_PROPHET_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["prophet_condition_1", "prophet_condition_2", "prophet_condition_3"]]
+		},
+		{
+			"name": "MASTERY_PROTAGONIST",
+			"icon": ["mastery1/protagonist", "mastery2/protagonist", "mastery/protagonist"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_PROTAGONIST_DESCRIPTION_1",
+				"MASTERY_PROTAGONIST_DESCRIPTION_2",
+				"MASTERY_PROTAGONIST_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["protagonist_condition_1", "protagonist_condition_2", "protagonist_condition_3"]]
+		},
+		{
+			"name": "MASTERY_SCHOLAR",
+			"icon": ["mastery1/scholar", "mastery2/scholar", "mastery/scholar"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_SCHOLAR_DESCRIPTION_1",
+				"MASTERY_SCHOLAR_DESCRIPTION_2",
+				"MASTERY_SCHOLAR_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["scholar_condition_1", "scholar_condition_2", "scholar_condition_3"]]
+		},
+		{
+			"name": "MASTERY_SCOUT",
+			"icon": ["mastery1/scout", "mastery2/scout", "mastery/scout"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_SCOUT_DESCRIPTION_1",
+				"MASTERY_SCOUT_DESCRIPTION_2",
+				"MASTERY_SCOUT_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["scout_condition_1", "scout_condition_2", "scout_condition_3"]]
+		},
+		{
+			"name": "MASTERY_SNOWFLAKE",
+			"icon": ["mastery1/snowflake", "mastery2/snowflake", "mastery/snowflake"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_SNOWFLAKE_DESCRIPTION_1",
+				"MASTERY_SNOWFLAKE_DESCRIPTION_2",
+				"MASTERY_SNOWFLAKE_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["snowflake_condition_1", "snowflake_condition_2", "snowflake_condition_3"]]
+		},
+		{
+			"name": "MASTERY_SPARK",
+			"icon": ["mastery1/spark", "mastery2/spark", "mastery/spark"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_SPARK_DESCRIPTION_1",
+				"MASTERY_SPARK_DESCRIPTION_2",
+				"MASTERY_SPARK_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["spark_condition_1", "spark_condition_2", "spark_condition_3"]]
+		},
+		{
+			"name": "MASTERY_SPY",
+			"icon": ["mastery1/spy", "mastery2/spy", "mastery/spy"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_SPY_DESCRIPTION_1",
+				"MASTERY_SPY_DESCRIPTION_2",
+				"MASTERY_SPY_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["spy_condition_1", "spy_condition_2", "spy_condition_3"]]
+		},
+		{
+			"name": "MASTERY_SURVIVOR",
+			"icon": ["mastery1/survivor", "mastery2/survivor", "mastery/survivor"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_SURVIVOR_DESCRIPTION_1",
+				"MASTERY_SURVIVOR_DESCRIPTION_2",
+				"MASTERY_SURVIVOR_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["survivor_condition_1", "survivor_condition_2", "survivor_condition_3"]]
+		},
+		{
+			"name": "MASTERY_UNDERTAKER",
+			"icon": ["mastery1/undertaker", "mastery2/undertaker", "mastery/undertaker"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_UNDERTAKER_DESCRIPTION_1",
+				"MASTERY_UNDERTAKER_DESCRIPTION_2",
+				"MASTERY_UNDERTAKER_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["undertaker_condition_1", "undertaker_condition_2", "undertaker_condition_3"]]
+		},
+		{
+			"name": "MASTERY_WARLOCK",
+			"icon": ["mastery1/warlock", "mastery2/warlock", "mastery/warlock"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_WARLOCK_DESCRIPTION_1",
+				"MASTERY_WARLOCK_DESCRIPTION_2",
+				"MASTERY_WARLOCK_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["warlock_condition_1", "warlock_condition_2", "warlock_condition_3"]]
+		},
+		{
+			"name": "MASTERY_WITCH",
+			"icon": ["mastery1/witch", "mastery2/witch", "mastery/witch"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_WITCH_DESCRIPTION_1",
+				"MASTERY_WITCH_DESCRIPTION_2",
+				"MASTERY_WITCH_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["witch_condition_1", "witch_condition_2", "witch_condition_3"]]
+		},
+		{
+			"name": "MASTERY_WIZARD",
+			"icon": ["mastery1/wizard", "mastery2/wizard", "mastery/wizard"],
+			"cost": [10, 20, 30],
+			"description": [
+				"MASTERY_WIZARD_DESCRIPTION_1",
+				"MASTERY_WIZARD_DESCRIPTION_2",
+				"MASTERY_WIZARD_DESCRIPTION_3"
+			],
+			"unlock_conditions": [["wizard_condition_1", "wizard_condition_2", "wizard_condition_3"]]
 		},
 	]
 }
