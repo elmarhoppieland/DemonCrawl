@@ -1,174 +1,262 @@
-extends TileMap
+extends Control
 class_name Board
 
 ## The Minesweeper board.
 ## 
 ## The board that contains all cells. This singleton handles cell hovering, pressing, releasing, etc.
 ## [br][br][b]Note:[/b] All non-private properties and methods are static and should be called on
-## the class, e.g. [code]Board.get_cell(Vector2i(3, 8))[/code].
-## [br][br][b]Note:[/b] All [Signal]s that start with an underscore ([code]_[/code]) are private.
-## Instead, use their respective (static) properties without a leading underscore.
+## the class, for example:
+## [codeblock]
+## Board.get_cell(Vector2i(3, 8))
+## [/codeblock]
 
 # ==============================================================================
 const CELL_SIZE := Vector2i(16, 16)
 # ==============================================================================
-static var _cells := {}
-static var _cell_data := {}
 static var _instance: Board
-
-static var cell_hovered: Signal ## Emitted when a cell gets hovered.
-static var cell_pressed: Signal ## Emitted when a cell gets pressed.
-static var cell_released: Signal ## Emitted when a cell gets released.
-static var cell_flagged: Signal ## Emitted when a cell gets flagged or unflagged.
-static var cells_generated: Signal ## Emitted when all cells have been generated.
 
 static var rng := RandomNumberGenerator.new() ## The [RandomNumberGenerator] used to generate boards. Use [member RandomNumberGenerator.seed] to make boards generate consistently.
 
-static var started := false ## Whether the board has been started, i.e. whether the first cell has been pressed. Before this, the board has been generated, but monsters may be moved depending on the first click.
+static var started: bool = SavesManager.get_value("started", Board, false) ## Whether the board has been started, i.e. whether the first cell has been opened.
+static var mutable: bool = SavesManager.get_value("mutable", Board, false) : ## Whether the board is mutable, i.e. cells can be flagged or unflagged.
+	set(value):
+		mutable = value
+		if value:
+			Board.start_time = Time.get_ticks_usec()
+		else:
+			Board.saved_time = Board.get_timef()
+			Board.start_time = -1
 
-static var size := Vector2i.ZERO ## The number of cells in each row and column.
-# ==============================================================================
-var _previous_hovered_cell: Cell
-var _pressed_cell: Cell
+static var board_size: Vector2i = SavesManager.get_value("board_size", Board, Vector2i.ZERO) ## The number of cells in each row and column.
+
+static var start_time := -1 ## The amount of ticks (microseconds) since game launch when the timer started running.
+static var saved_time: float = SavesManager.get_value("saved_time", Board, 0.0) ## The timer when it was loaded.
+
+static var board_3bv: int = SavesManager.get_value("board_3bv", Board, -1)
+static var is_flagless: bool = SavesManager.get_value("is_flagless", Board, true)
 # ==============================================================================
 @onready var _finish_button: MarginContainer = %FinishButton
-@onready var _color_rect: ColorRect = %ColorRect
+@onready var _monsters_label: Label = %MonstersLabel
+@onready var _power_label: Label = %PowerLabel
+@onready var _cell_container: GridContainer = %CellContainer
+@onready var _finish_popup_contents: FinishPopupContents = %FinishPopupContents
+@onready var _tweener_canvas: CanvasLayer = %TweenerCanvas
+@onready var _animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
-signal _cell_hovered(cell: Cell)
-signal _cell_pressed(cell: Cell)
-signal _cell_released(cell: Cell)
-signal _cell_flagged(cell: Cell)
-
 signal _cells_generated()
 # ==============================================================================
 
 func _enter_tree() -> void:
-	cell_hovered = _cell_hovered
-	cell_pressed = _cell_pressed
-	cell_released = _cell_released
-	cell_flagged = _cell_flagged
-	cells_generated = _cells_generated
-	
 	_instance = self
 
 
 func _ready() -> void:
 	Statbar.add_item(preload("res://Assets/items/Apple.gd").new())
 	
-	_cell_data = Minesweeper.generate_board(Vector2i(10, 10), 20, Quest.current_stage.name, rng)
-	for map_pos in _cell_data:
-		set_cell(0, map_pos, 0, Vector2i.ZERO, 1)
+	AssetManager.theme = StagesOverview.selected_stage.name
+	theme = AssetManager.load_theme(Theme.new())
 	
-	_color_rect.color.a = 1
-	create_tween().tween_property(_color_rect, "color:a", 0, 1)
+	Board.board_size = StagesOverview.selected_stage.size
+	_cell_container.columns = Board.board_size.x
 	
-	child_entered_tree.connect(func(cell: Cell):
-		var map_pos := Vector2i(cell.position) / tile_set.tile_size
-		cell.board_position = map_pos
-		_cells[map_pos] = cell
-		cell.load_data(_cell_data[map_pos])
-		
-		if map_pos.x + 1 > size.x and map_pos.y + 1 > size.y:
-			Board.size = map_pos + Vector2i.ONE
-		
-		if _cells.size() == _cell_data.size():
-			cells_generated.emit()
-	)
+	Board.saved_time = 0.0
+	Board.started = false
+	Board.mutable = false
+	Board.board_3bv = -1
+	Board.is_flagless = true
 	
-	cell_pressed.connect(func(cell: Cell):
-		if _pressed_cell:
-			_pressed_cell.unpress()
-		_pressed_cell = cell
-		cell.press()
-	)
+	Stats.untouchable = true
 	
-	cell_released.connect(func(cell: Cell):
-		if not Board.started:
-			_start_board(cell)
-		
-		cell.open()
-		_pressed_cell = null
-		
-		Board.check_completion()
-	)
+	_monsters_label.text = str(StagesOverview.selected_stage.monsters)
+	_power_label.text = "%d-%d" % [StagesOverview.selected_stage.min_power, StagesOverview.selected_stage.max_power]
 	
-	cell_flagged.connect(func(cell: Cell):
-		cell.flag()
-	)
+	for i in board_size.x * board_size.y:
+		var cell := Cell.create()
+		cell.board_position = Vector2i(i % Board.board_size.x, i / Board.board_size.x)
+		_cell_container.add_child(cell)
 	
-	cells_generated.connect(func():
-		for cell: Cell in _cells.values():
-			cell.reset_value()
-	)
+	const FADE_DURATION := 1.0
+	Foreground.fade_in(FADE_DURATION)
 
 
-func _process(_delta: float) -> void:
-	_process_cells()
-
-
-func _process_cells() -> void:
-	var mouse_pos := get_local_mouse_position()
-	var map_pos := local_to_map(mouse_pos)
-	var cell := Board.get_cell(map_pos)
+## Starts the board on the given [code]cell[/code]. Moves all mines in or nearby the cell away if present.
+static func start_board(cell: Cell) -> void:
+	assert(not Board.started, "Board has already started.")
 	
-	if cell:
-		if cell != _previous_hovered_cell:
-			cell_hovered.emit(cell)
-			if Input.is_action_pressed("cell_open"):
-				cell_pressed.emit(cell)
-		
-		if Input.is_action_just_pressed("cell_flag"):
-			cell_flagged.emit(cell)
-		
-		if Input.is_action_just_pressed("cell_open"):
-			cell_pressed.emit(cell)
-		
-		if Input.is_action_just_released("cell_open"):
-			cell_released.emit(_pressed_cell)
+	for i in Minesweeper.generate_mines(board_size, StagesOverview.selected_stage.monsters, cell.board_position, rng):
+		var monster_cell := get_cell_at_index(i)
+		monster_cell.cell_object = CellMonster.new(monster_cell)
 	
-	_previous_hovered_cell = cell
-
-
-func _start_board(cell: Cell) -> void:
-	if cell.cell_value > 0 or cell.has_monster():
-		var nearby_cells := cell.get_nearby_cells()
-		nearby_cells.append(cell)
-		
-		var available_cells := _cells.values().filter(func(a: Cell): return not a.has_monster() and not a in nearby_cells)
-		
-		for nearby_cell in nearby_cells:
-			if nearby_cell.has_monster():
-				var random := rng.randi_range(0, available_cells.size())
-				var new_cell: Cell = available_cells.pop_at(random)
-				new_cell.cell_object = nearby_cell.cell_object
-				nearby_cell.cell_object = null
-		
-		for any_cell in _cells.values():
-			any_cell.reset_value()
+	for any_cell in Board.get_cells():
+		any_cell.reset_value()
+	
+	calculate_3bv()
+	
+	Board.start_time = Time.get_ticks_usec()
 	
 	Board.started = true
+	Board.mutable = true
+
+
+static func calculate_3bv() -> void:
+	var empty_groups: Array[Cell] = []
+	board_3bv = 0
+	
+	for cell in get_cells():
+		if cell.has_monster():
+			continue
+		if cell.cell_value == 0:
+			if cell in empty_groups:
+				continue
+			
+			board_3bv += 1
+			
+			empty_groups.append_array(cell.get_group())
+		else:
+			board_3bv += 1
 
 
 ## Checks for completion. If all cells without a monster have been revealed, shows the finish button and flags all hidden cells.
 static func check_completion() -> void:
-	if _cells.values().all(func(cell: Cell): return cell.revealed or cell.has_monster()):
+	var unsolved := 0
+	for cell in Board.get_cells():
+		if not cell.revealed and not cell.has_monster():
+			unsolved += 1
+	
+	if unsolved <= (Board.board_size.x * Board.board_size.y - StagesOverview.selected_stage.monsters) * PlayerStats.pathfinding / 100.0:
+		Board.mutable = false
+		
 		_instance._finish_button.show()
 		
-		for cell: Cell in _cells.values():
-			if not cell.revealed and not cell.flagged:
-				cell.flag()
+		for cell in Board.get_cells():
+			if not cell.revealed:
+				if cell.has_monster():
+					cell.flag()
+				else:
+					cell.unflag()
+					cell.open()
+
+
+static func get_reward_types() -> PackedStringArray:
+	var types := PackedStringArray(["victory"])
+	
+	if is_flagless:
+		types.append("flagless")
+	
+	if Stats.untouchable:
+		types.append("untouchable")
+	
+	var thrifty_count := 0
+	for stage in Quest.stages:
+		if stage == StagesOverview.selected_stage:
+			break
+		if stage is SpecialStage:
+			if thrifty_count > 1:
+				types.append("thrifty")
+			thrifty_count += 1
+	
+	for cell in get_cells():
+		if not "charitable" in types and cell.cell_object and cell.cell_object.is_charitable():
+			types.append("charitable")
+		if not "heartless" in types and cell.cell_object and cell.cell_object is CellHeart:
+			types.append("heartless")
+	
+	if Quest.stages.all(func(a: Stage): return a.completed or a is SpecialStage):
+		types.append("quest_complete")
+	
+	return types
+
+
+static func update_monster_count() -> void:
+	var monsters := 0
+	
+	for cell in get_cells():
+		if cell.has_monster() and not cell.revealed:
+			monsters += 1
+		if cell.is_flagged():
+			monsters -= 1
+	
+	_instance._monsters_label.text = str(monsters)
+
+
+static func tween_texture(texture: Texture2D, start_pos: Vector2, end_pos: Vector2, duration: float, sprite_material: ShaderMaterial = null) -> Sprite2D:
+	var sprite := Sprite2D.new()
+	sprite.scale = StageCamera.get_zoom_level()
+	
+	sprite.texture = texture
+	sprite.material = sprite_material
+	
+	_instance._tweener_canvas.add_child(sprite)
+	
+	var tween := sprite.create_tween()
+	tween.tween_property(sprite, "position", end_pos, duration).from(start_pos)
+	tween.tween_callback(sprite.queue_free)
+	return sprite
 
 
 ## Returns the cell at the given map position. Returns [code]null[/code] if the cell does not exist.
 static func get_cell(at: Vector2i) -> Cell:
-	return _cells.get(at)
+	if at.x < 0 or at.y < 0 or at.x >= Board.board_size.x or at.y >= Board.board_size.y:
+		return null
+	return get_cell_at_index(at.x + at.y * board_size.x)
+
+
+## Returns all cells in the current [Board].
+static func get_cells() -> Array[Cell]:
+	var cells: Array[Cell] = []
+	cells.assign(_instance._cell_container.get_children())
+	return cells
+
+
+## Returns the cell at the given [code]index[/code].
+static func get_cell_at_index(index: int) -> Cell:
+	return _instance._cell_container.get_child(index)
+
+
+## Returns the current stage time in seconds, as a [float]. The time shown to the player is an [int],
+## so using [method get_time] is usually preferred.
+static func get_timef() -> float:
+	if Board.start_time < 0:
+		return Board.saved_time
+	
+	return (Time.get_ticks_usec() - Board.start_time) / 1e6 + Board.saved_time
+
+
+## Returns the current stage time in seconds, as an [int]. Use [method get_timef] to get a more precise time.
+static func get_time() -> int:
+	return int(get_timef())
 
 
 func _on_finish_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")
+	_animation_player.play("finish_show")
+	_finish_button.hide()
+	
+	await _finish_popup_contents.finished
+	
+	_animation_player.play("finish_hide")
+	
+	await _animation_player.animation_finished
+	
+	for cell in Board.get_cells():
+		cell.hide()
+	
+	Quest.unlock_next_stage(StagesOverview.selected_stage, true)
+	StagesOverview.selected_stage.completed = true
+	
+	const FADE_DURATION := 1.0
+	Foreground.fade_out_in(FADE_DURATION)
+	_animation_player.play("board_exit")
+	await _animation_player.animation_finished
+	#await create_tween().tween_property(_background, "scale", Vector2.ONE * 4, FADE_DURATION).set_trans(Tween.TRANS_QUAD).finished
+	
+	if Quest.stages.all(func(stage: Stage): return stage.completed or stage is SpecialStage):
+		Quest.finish()
+		SavesManager.save()
+		get_tree().change_scene_to_file("res://Scenes/QuestSelect/QuestSelect.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")
 
 
 func _exit_tree() -> void:
-	_cells.clear()
-	_cell_data.clear()
-	started = false
+	Board.started = false
+	Board.saved_time = 0.0

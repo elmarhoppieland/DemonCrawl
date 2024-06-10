@@ -1,0 +1,120 @@
+[gd_scene load_steps=16 format=3 uid="uid://g1r4iletxch8"]
+
+[ext_resource type="Script" path="res://Scenes/MainMenu/ButtonBar.gd" id="1_0wbkr"]
+[ext_resource type="PackedScene" uid="uid://dpbvhpo6h1cog" path="res://Scenes/MainMenu/MainMenuButton.tscn" id="1_3rst5"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/QuestsButton.gd" id="2_xcxpo"]
+[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="3_5lyta"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/QuitButton.gd" id="4_lvhwf"]
+[ext_resource type="Script" path="res://Resources/Icon.gd" id="5_0dubs"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/TokenShopButton.gd" id="6_gahvg"]
+
+[sub_resource type="Gradient" id="Gradient_n6rig"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_47xwy"]
+gradient = SubResource("Gradient_n6rig")
+
+[sub_resource type="LabelSettings" id="LabelSettings_2x2n7"]
+font_size = 8
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mknlc"]
+atlas = ExtResource("3_5lyta")
+region = Rect2(0, 58, 12, 12)
+script = ExtResource("5_0dubs")
+name = "button_quests"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1jic"]
+atlas = ExtResource("3_5lyta")
+region = Rect2(12, 58, 10, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7yrn"]
+atlas = ExtResource("3_5lyta")
+region = Rect2(34, 59, 12, 11)
+script = ExtResource("5_0dubs")
+name = "button_token_shop"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmcqt"]
+atlas = ExtResource("3_5lyta")
+region = Rect2(46, 58, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7y26i"]
+atlas = ExtResource("3_5lyta")
+region = Rect2(58, 59, 11, 11)
+
+[node name="ButtonBar" type="MarginContainer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0wbkr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+texture = SubResource("GradientTexture1D_47xwy")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_bottom = -11
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 0
+
+[node name="Padding" type="Control" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "QUESTS"
+label_settings = SubResource("LabelSettings_2x2n7")
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="QuestsButton" parent="ButtonsContainer" instance=ExtResource("1_3rst5")]
+layout_mode = 2
+script = ExtResource("2_xcxpo")
+texture = SubResource("AtlasTexture_mknlc")
+text = "QUESTS"
+color = Color(0.0352941, 0.164706, 0.372549, 1)
+
+[node name="ClassicButton" parent="ButtonsContainer" instance=ExtResource("1_3rst5")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_c1jic")
+text = "CLASSIC"
+color = Color(0.796078, 0.0745098, 0.160784, 1)
+
+[node name="TokenShopButton" parent="ButtonsContainer" instance=ExtResource("1_3rst5")]
+layout_mode = 2
+script = ExtResource("6_gahvg")
+texture = SubResource("AtlasTexture_w7yrn")
+text = "TOKEN SHOP"
+color = Color(0, 0.588235, 0.301961, 1)
+
+[node name="CodexButton" parent="ButtonsContainer" instance=ExtResource("1_3rst5")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jmcqt")
+text = "CODEX"
+color = Color(0.717647, 0.352941, 0, 1)
+
+[node name="QuitButton" parent="ButtonsContainer" instance=ExtResource("1_3rst5")]
+layout_mode = 2
+script = ExtResource("4_lvhwf")
+texture = SubResource("AtlasTexture_7y26i")
+text = "QUIT"

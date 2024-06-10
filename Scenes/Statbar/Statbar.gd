@@ -13,9 +13,10 @@ static var items: Array[Item] = []
 var _inventory_button_hovered := false
 var _inventory_open := false
 # ==============================================================================
+@onready var _stats_tooltip_grabber: TooltipGrabber = %StatsTooltipGrabber
 @onready var _inventory_icon_hover: TextureRect = %Hover
-@onready var _inventory: MarginContainer = %Inventory
 @onready var _item_grid: GridContainer = %ItemGrid
+@onready var _animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
 
 func _enter_tree() -> void:
@@ -28,16 +29,19 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if _inventory_button_hovered and Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("inventory_close" if _inventory_open else "inventory_open"):
+	if Input.is_action_just_pressed("inventory_toggle"):
+		_inventory_toggle()
+	if _inventory_button_hovered and Input.is_action_just_pressed("interact"):
 		_inventory_toggle()
 
 
 func _inventory_toggle() -> void:
-	_inventory.show()
-	await create_tween().tween_property(_inventory, "position:x", 320 if _inventory_open else 243, _INVENTORY_OPEN_CLOSE_ANIM_DURATION)\
-		.set_trans(Tween.TRANS_QUAD).finished
+	if _inventory_open:
+		_animation_player.play_backwards("inventory_show")
+	else:
+		_animation_player.play("inventory_show")
+	
 	_inventory_open = not _inventory_open
-	_inventory.visible = _inventory_open
 
 
 func _add_item_node(item: Item) -> void:
@@ -62,3 +66,8 @@ func _on_inventory_icon_mouse_exited() -> void:
 	create_tween().tween_property(_inventory_icon_hover, "modulate:a", 0, _BUTTON_HOVER_ANIM_DURATION)
 	
 	_inventory_button_hovered = false
+
+
+func _on_stats_tooltip_grabber_about_to_show() -> void:
+	_stats_tooltip_grabber.text = tr("STATS_YOUR_OVERVIEW")
+	_stats_tooltip_grabber.subtext = PlayerStats.get_stats_tooltip_text()

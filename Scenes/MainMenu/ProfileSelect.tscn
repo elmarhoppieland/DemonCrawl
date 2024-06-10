@@ -1,0 +1,150 @@
+[gd_scene load_steps=17 format=3 uid="uid://b4tqham7nhwam"]
+
+[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Resources/Avatar_atlas.tres" id="1_1vjny"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/MainMenuAvatar.gd" id="2_7b5x2"]
+[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="3_7isr5"]
+[ext_resource type="Script" path="res://Resources/XPBar.gd" id="3_s4lan"]
+[ext_resource type="Script" path="res://Resources/ProfileNameLabel.gd" id="4_ggtkl"]
+[ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="4_vjit2"]
+[ext_resource type="Script" path="res://Resources/ProfileLevelLabel.gd" id="5_omnn8"]
+[ext_resource type="Shader" path="res://Scenes/MainMenu/ProfileSelect.gdshader" id="8_kc2e0"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/ProfileList.gd" id="8_vj2yj"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/ChangePageButton.gd" id="9_u54pt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3nds"]
+atlas = ExtResource("3_7isr5")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m84bi"]
+font_size = 8
+font_color = Color(0.745098, 0.745098, 0.745098, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_6ocda"]
+VBoxContainer/constants/separation = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vpbv7"]
+shader = ExtResource("8_kc2e0")
+shader_parameter/inversion = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t27co"]
+atlas = ExtResource("3_7isr5")
+region = Rect2(80, 17, 16, 14)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1keeg"]
+shader = ExtResource("8_kc2e0")
+shader_parameter/inversion = 0.0
+
+[node name="ProfileSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_bottom = -2.0
+grow_vertical = 0
+theme_override_constants/separation = 1
+
+[node name="Avatar" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_1vjny")
+script = ExtResource("2_7b5x2")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Avatar"]
+visible = false
+layout_mode = 1
+offset_right = 14.0
+offset_bottom = 14.0
+texture = SubResource("AtlasTexture_h3nds")
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/Avatar"]
+script = ExtResource("4_vjit2")
+text = "CLICK_TO_CHANGE_PROFILE"
+
+[node name="XPBar" type="ProgressBar" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 1
+value = 40.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("3_s4lan")
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = -1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="ProfileNameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("4_ggtkl")
+
+[node name="ProfileLevelLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Lv1"
+label_settings = SubResource("LabelSettings_m84bi")
+script = ExtResource("5_omnn8")
+
+[node name="ProfileListContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="Label" type="Label" parent="ProfileListContainer"]
+layout_mode = 2
+text = "SELECT_PROFILE"
+
+[node name="ProfileList" type="MarginContainer" parent="ProfileListContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_6ocda")
+theme_override_constants/margin_left = -1
+script = ExtResource("8_vj2yj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ProfileListContainer"]
+layout_mode = 2
+
+[node name="PrevPage" type="TextureRect" parent="ProfileListContainer/HBoxContainer" node_paths=PackedStringArray("target")]
+material = SubResource("ShaderMaterial_vpbv7")
+layout_mode = 2
+texture = SubResource("AtlasTexture_t27co")
+script = ExtResource("9_u54pt")
+target = NodePath("../../ProfileList")
+
+[node name="Label" type="Label" parent="ProfileListContainer/HBoxContainer"]
+layout_mode = 2
+text = "1 of 3"
+
+[node name="NextPage" type="TextureRect" parent="ProfileListContainer/HBoxContainer" node_paths=PackedStringArray("target")]
+material = SubResource("ShaderMaterial_1keeg")
+layout_mode = 2
+texture = SubResource("AtlasTexture_t27co")
+flip_h = true
+flip_v = true
+script = ExtResource("9_u54pt")
+direction = 1
+target = NodePath("../../ProfileList")

@@ -1,0 +1,194 @@
+[gd_scene load_steps=14 format=3 uid="uid://db1krtggvj6tl"]
+
+[ext_resource type="Script" path="res://Scenes/Statbar/Stats.gd" id="1_javti"]
+[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="1_q2c8v"]
+[ext_resource type="Script" path="res://Resources/Icon.gd" id="2_qx04j"]
+[ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="4_i7qnt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4dh1"]
+atlas = ExtResource("1_q2c8v")
+region = Rect2(67, 0, 8, 7)
+script = ExtResource("2_qx04j")
+name = "statbar_heart"
+
+[sub_resource type="LabelSettings" id="LabelSettings_wbxxu"]
+font_size = 8
+font_color = Color(1, 0.784314, 0.784314, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_701x1"]
+atlas = ExtResource("1_q2c8v")
+region = Rect2(75, 0, 8, 7)
+script = ExtResource("2_qx04j")
+name = "statbar_shield"
+
+[sub_resource type="LabelSettings" id="LabelSettings_67yyp"]
+font_size = 8
+font_color = Color(0.839216, 0.847059, 0.843137, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t37s"]
+atlas = ExtResource("1_q2c8v")
+region = Rect2(59, 0, 8, 7)
+script = ExtResource("2_qx04j")
+name = "statbar_coin"
+
+[sub_resource type="LabelSettings" id="LabelSettings_lfiwm"]
+font_size = 8
+font_color = Color(0.972549, 0.898039, 0.529412, 1)
+
+[sub_resource type="Animation" id="Animation_ofpkn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/MarginContainer4:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/MarginContainer4/HBoxContainer/CoinsLabel:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.972549, 0.898039, 0.529412, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_011nx"]
+resource_name = "coin_gain"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer/MarginContainer4:theme_override_constants/margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2, 4, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/MarginContainer4/HBoxContainer/CoinsLabel:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.972549, 0.898039, 0.529412, 1), Color(0.972549, 0.898039, 0.529412, 0), Color(0.972549, 0.898039, 0.529412, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gmjjv"]
+_data = {
+"RESET": SubResource("Animation_ofpkn"),
+"coin_gain": SubResource("Animation_011nx")
+}
+
+[node name="Stats" type="MarginContainer"]
+script = ExtResource("1_javti")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_top = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_m4dh1")
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/MarginContainer2/HBoxContainer/TextureRect3"]
+script = ExtResource("4_i7qnt")
+text = "LIVES_HOVER"
+subtext = "LIVES_HOVER_SUBTEXT"
+
+[node name="LifeLabel" type="Label" parent="HBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3/3"
+label_settings = SubResource("LabelSettings_wbxxu")
+
+[node name="Control5" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_top = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_701x1")
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/MarginContainer3/HBoxContainer/TextureRect3"]
+script = ExtResource("4_i7qnt")
+text = "DEFENSE_HOVER"
+subtext = "DEFENSE_HOVER_SUBTEXT"
+
+[node name="DefenseLabel" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_67yyp")
+
+[node name="Control6" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_top = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer4"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/MarginContainer4/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_1t37s")
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/MarginContainer4/HBoxContainer/TextureRect3"]
+script = ExtResource("4_i7qnt")
+text = "COINS_HOVER"
+subtext = "COINS_HOVER_SUBTEXT"
+
+[node name="CoinsLabel" type="Label" parent="HBoxContainer/MarginContainer4/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_lfiwm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_gmjjv")
+}

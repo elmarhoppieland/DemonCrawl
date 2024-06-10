@@ -1,15 +1,21 @@
-[gd_scene load_steps=18 format=3 uid="uid://c3vf0fdejs72s"]
+[gd_scene load_steps=23 format=3 uid="uid://c3vf0fdejs72s"]
 
 [ext_resource type="Script" path="res://Scenes/StageSelect/StageDetails.gd" id="1_fk3lx"]
 [ext_resource type="Texture2D" uid="uid://dc6bspeif1psv" path="res://Assets/skins/alcove/bg.png" id="2_24oak"]
 [ext_resource type="Material" uid="uid://cb7nep71fmj1r" path="res://Board/TextOutline.tres" id="2_75fbn"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="3_aemx4"]
+[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="3_fits4"]
 [ext_resource type="FontFile" uid="uid://7ynms6dclfsi" path="res://Assets/fonts/04B_03__.TTF" id="3_oyqtb"]
 [ext_resource type="Texture2D" uid="uid://k2c3eiau7he1" path="res://Assets/sprites/button_play_stage.png" id="3_r8wad"]
 [ext_resource type="Shader" path="res://Scenes/StageSelect/StageInfoBackground.gdshader" id="4_lwu6u"]
-[ext_resource type="Texture2D" uid="uid://bbkyuchql3kj6" path="res://Assets/sprites/icon_power.png" id="7_26b85"]
-[ext_resource type="Texture2D" uid="uid://xvf0ml1p3xk7" path="res://Assets/sprites/icon_monster.png" id="8_mxinh"]
-[ext_resource type="Texture2D" uid="uid://ijvv7fnviaek" path="res://Assets/sprites/icon_size.png" id="9_xc50x"]
+[ext_resource type="Script" path="res://Resources/Icon.gd" id="4_qkq4a"]
+[ext_resource type="Texture2D" uid="uid://cky43cmv2dlpf" path="res://Assets/sprites/stage_checkmark.png" id="5_7imam"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1or6"]
+atlas = ExtResource("3_fits4")
+region = Rect2(64, 86, 16, 16)
+script = ExtResource("4_qkq4a")
+name = "icon_locked_flat"
 
 [sub_resource type="LabelSettings" id="LabelSettings_6fp47"]
 font = ExtResource("3_aemx4")
@@ -25,11 +31,33 @@ font = ExtResource("3_oyqtb")
 font_size = 8
 font_color = Color(0.768627, 0.768627, 0.768627, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_hs1wg"]
+[sub_resource type="LabelSettings" id="LabelSettings_rq0jb"]
 font = ExtResource("3_oyqtb")
 font_size = 8
-outline_size = 1
-outline_color = Color(0, 0, 0, 1)
+font_color = Color(1, 0.843137, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y46n7"]
+font = ExtResource("3_oyqtb")
+font_size = 8
+font_color = Color(0.0627451, 0.87451, 0.501961, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quuqp"]
+atlas = ExtResource("3_fits4")
+region = Rect2(5, 0, 5, 5)
+script = ExtResource("4_qkq4a")
+name = "power5"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fx73u"]
+atlas = ExtResource("3_fits4")
+region = Rect2(0, 0, 5, 5)
+script = ExtResource("4_qkq4a")
+name = "monster5"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxdwf"]
+atlas = ExtResource("3_fits4")
+region = Rect2(10, 0, 5, 5)
+script = ExtResource("4_qkq4a")
+name = "size5"
 
 [sub_resource type="Animation" id="Animation_q84s8"]
 length = 0.001
@@ -150,6 +178,7 @@ layout_mode = 2
 color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureContainer/MarginContainer/MarginContainer2"]
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
@@ -158,11 +187,32 @@ theme_override_constants/margin_bottom = 1
 
 [node name="StageTexture" type="TextureRect" parent="TextureContainer/MarginContainer/MarginContainer2/MarginContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(58, 58)
 layout_mode = 2
 texture = ExtResource("2_24oak")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="Lock" type="TextureRect" parent="TextureContainer/MarginContainer/MarginContainer2/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_v1or6")
+stretch_mode = 3
+
+[node name="Checkmark" type="TextureRect" parent="TextureContainer/MarginContainer/MarginContainer2/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_7imam")
+stretch_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="TextureContainer/MarginContainer/MarginContainer2/MarginContainer/Checkmark"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
 
 [node name="ColorRect" type="ColorRect" parent="TextureContainer/MarginContainer/MarginContainer2/MarginContainer"]
 layout_mode = 2
@@ -212,7 +262,7 @@ visible = false
 layout_mode = 2
 
 [node name="Control" type="Control" parent="VBoxContainer/MarginContainer2/UnknownInfo"]
-custom_minimum_size = Vector2(7, 0)
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/UnknownInfo"]
@@ -222,19 +272,51 @@ text = "???"
 label_settings = SubResource("LabelSettings_2ybrx")
 vertical_alignment = 2
 
+[node name="SpecialInfo" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/MarginContainer2/SpecialInfo"]
+custom_minimum_size = Vector2(7, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/SpecialInfo"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "STAGE_PROPERTY_SPECIAL"
+label_settings = SubResource("LabelSettings_rq0jb")
+vertical_alignment = 2
+
+[node name="CompleteInfo" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/MarginContainer2/CompleteInfo"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/CompleteInfo"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "STAGE_PROPERTY_COMPLETE"
+label_settings = SubResource("LabelSettings_y46n7")
+vertical_alignment = 2
+
 [node name="InfoContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="Control" type="Control" parent="VBoxContainer/MarginContainer2/InfoContainer"]
-custom_minimum_size = Vector2(5, 0)
+custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer2/InfoContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("7_26b85")
+texture = SubResource("AtlasTexture_quuqp")
 
 [node name="Control2" type="Control" parent="VBoxContainer/MarginContainer2/InfoContainer"]
 custom_minimum_size = Vector2(2, 0)
@@ -255,7 +337,7 @@ layout_mode = 2
 [node name="TextureRect2" type="TextureRect" parent="VBoxContainer/MarginContainer2/InfoContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("8_mxinh")
+texture = SubResource("AtlasTexture_fx73u")
 
 [node name="Control4" type="Control" parent="VBoxContainer/MarginContainer2/InfoContainer"]
 custom_minimum_size = Vector2(3, 0)
@@ -276,7 +358,7 @@ layout_mode = 2
 [node name="TextureRect3" type="TextureRect" parent="VBoxContainer/MarginContainer2/InfoContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("9_xc50x")
+texture = SubResource("AtlasTexture_mxdwf")
 
 [node name="Control6" type="Control" parent="VBoxContainer/MarginContainer2/InfoContainer"]
 custom_minimum_size = Vector2(3, 0)
@@ -295,9 +377,9 @@ unique_name_in_owner = true
 material = ExtResource("2_75fbn")
 layout_mode = 2
 text = "Play more stages to reveal this stage."
-label_settings = SubResource("LabelSettings_hs1wg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_eovnk")
 }

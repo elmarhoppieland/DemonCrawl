@@ -10,6 +10,10 @@ var revealed := false ## Whether the cell is revealed. See [member Cell.revealed
 var cell_object: CellObject ## The cell's object, if any. See [member Cell.cell_object].
 # ==============================================================================
 
+func _init() -> void:
+	push_warning("CellData is deprecated.")
+
+
 func _to_string() -> String:
 	return str({
 		"theme": theme,

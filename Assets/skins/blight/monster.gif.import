@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://bx0sxx35i5n2j"
+path="res://.godot/imported/monster.gif-b080aa4b9d05daa82d272833927dca3c.tres"
+
+[deps]
+
+source_file="res://Assets/skins/blight/monster.gif"
+dest_files=["res://.godot/imported/monster.gif-b080aa4b9d05daa82d272833927dca3c.tres"]
+
+[params]
+
+frames_per_second=30

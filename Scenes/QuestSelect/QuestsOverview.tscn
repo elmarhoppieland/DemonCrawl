@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs4xjk311kxho"]
+
+[ext_resource type="Script" path="res://Scenes/QuestSelect/QuestsOverview.gd" id="1_denfj"]
+[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="2_a73kc"]
+[ext_resource type="Script" path="res://Resources/Icon.gd" id="3_bq56n"]
+[ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="3_ldj2m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dyfx5"]
+font_size = 8
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjkxq"]
+atlas = ExtResource("2_a73kc")
+region = Rect2(16, 166, 16, 16)
+script = ExtResource("3_bq56n")
+name = "difficulty_normal"
+
+[sub_resource type="LabelSettings" id="LabelSettings_ueuh6"]
+line_spacing = 1.0
+font_size = 8
+font_color = Color(0.8, 0.8, 0.8, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="QuestsOverview" type="VBoxContainer"]
+theme_override_constants/separation = 2
+script = ExtResource("1_denfj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "SELECT_QUEST"
+label_settings = SubResource("LabelSettings_dyfx5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="QuestIconsContainer" type="HBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 2
+
+[node name="DifficultySelect" type="TextureRect" parent="HBoxContainer/QuestIconsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_fjkxq")
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/QuestIconsContainer/DifficultySelect"]
+unique_name_in_owner = true
+script = ExtResource("3_ldj2m")
+text = "NORMAL DIFFICULTY"
+
+[node name="Control" type="Control" parent="HBoxContainer/QuestIconsContainer"]
+layout_mode = 2
+
+[node name="PlayerDataLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "COMPLETED: x13
+BEST: 1150"
+label_settings = SubResource("LabelSettings_ueuh6")
+
+[connection signal="interacted" from="HBoxContainer/QuestIconsContainer/DifficultySelect/TooltipGrabber" to="." method="_on_difficulty_select_interacted"]
+[connection signal="second_interacted" from="HBoxContainer/QuestIconsContainer/DifficultySelect/TooltipGrabber" to="." method="_on_difficulty_select_second_interacted"]

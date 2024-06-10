@@ -1,0 +1,107 @@
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dmddrgkl04gph"]
+
+[ext_resource type="StyleBox" uid="uid://cokg66aqb3ro1" path="res://Resources/xp_bar_fill.tres" id="1_0ok7g"]
+[ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://Assets/skins/default/bg.png" id="1_3w34f"]
+[ext_resource type="Texture2D" uid="uid://cogfcs7aaebfc" path="res://Assets/sprites/button.png" id="1_lrxcs"]
+[ext_resource type="Texture2D" uid="uid://tw5ypgbsqgps" path="res://Assets/sprites/xpbar_over.png" id="1_oyno8"]
+[ext_resource type="Texture2D" uid="uid://bw3aoktyols1b" path="res://Assets/sprites/coin_palette_default.png" id="3_7fqxt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m545e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsqjn"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rj56v"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+texture = ExtResource("1_lrxcs")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_brm33"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odxkr"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k78k5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_olyl8"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 1.0
+texture = ExtResource("1_lrxcs")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3yso8"]
+texture = ExtResource("1_lrxcs")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+modulate_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x0kds"]
+content_margin_left = 3.0
+content_margin_right = 3.0
+texture = ExtResource("1_oyno8")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[resource]
+default_font_size = 8
+Board/icons/board_bg = ExtResource("1_3w34f")
+Button/styles/focus = SubResource("StyleBoxEmpty_m545e")
+Button/styles/hover = SubResource("StyleBoxFlat_bsqjn")
+Button/styles/normal = SubResource("StyleBoxTexture_rj56v")
+Button/styles/pressed = SubResource("StyleBoxFlat_brm33")
+Cell/icons/coin_palette = ExtResource("3_7fqxt")
+CodeEdit/font_sizes/font_size = 8
+CodeEdit/styles/normal = SubResource("StyleBoxFlat_odxkr")
+DCButton/colors/cancel = Color(1, 0, 0, 1)
+DCButton/colors/confirm = Color(0.0627451, 0.87451, 0.501961, 1)
+DCButton/colors/general = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 3
+LineEdit/constants/caret_width = 0
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_k78k5")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_olyl8")
+LineEdit/styles/read_only = SubResource("StyleBoxTexture_3yso8")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_x0kds")
+ProgressBar/styles/fill = ExtResource("1_0ok7g")
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 3
+RichTextLabel/font_sizes/bold_font_size = 8
+RichTextLabel/font_sizes/bold_italics_font_size = 8
+RichTextLabel/font_sizes/italics_font_size = 8
+RichTextLabel/font_sizes/mono_font_size = 8
+RichTextLabel/font_sizes/normal_font_size = 8

@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://drbmuuekippet"
+path="res://.godot/imported/monster.gif-462ea863000178e5cba487d2b24ea420.tres"
+
+[deps]
+
+source_file="res://Assets/skins/cavern/monster.gif"
+dest_files=["res://.godot/imported/monster.gif-462ea863000178e5cba487d2b24ea420.tres"]
+
+[params]
+
+frames_per_second=30
