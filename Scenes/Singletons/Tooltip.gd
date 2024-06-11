@@ -25,6 +25,7 @@ static func show_text(text: String) -> void:
 		var line_length := 0
 		var last_space := -1
 		var inside_tag := false
+		var bullet := false
 		while i < text.length():
 			var c := text[i]
 			if not inside_tag:
@@ -34,6 +35,7 @@ static func show_text(text: String) -> void:
 				"\n":
 					line_length = 0
 					last_space = -1
+					bullet = false
 				" ":
 					last_space = i
 				"[":
@@ -41,13 +43,23 @@ static func show_text(text: String) -> void:
 				"]":
 					if text.substr(i - 4, 5) != "[img]":
 						inside_tag = false
+				"•":
+					bullet = true
+					line_length -= 2
 			
 			if line_length > max_length:
 				if last_space < 0:
-					text = text.insert(i + 1, "\n")
+					var added_sequence := "\n"
+					if bullet:
+						added_sequence += "  "
+					text = text.insert(i + 1, added_sequence)
+					i += added_sequence.length()
 				else:
 					text[last_space] = "\n"
 					i = last_space
+					if bullet:
+						text = text.insert(i + 1, "  ")
+						i += 2
 				
 				last_space = -1
 				line_length = 0

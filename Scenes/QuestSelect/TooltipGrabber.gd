@@ -17,14 +17,17 @@ func hover() -> void:
 	if text.is_empty():
 		return
 	
+	var formatted_text := text.replace("<bullet>", "[img]Assets/sprites/bullet.png[/img]")
+	var formatted_subtext := subtext.replace("<bullet>", "[img]Assets/sprites/bullet.png[/img]")
+	
 	if subtext.is_empty():
-		Tooltip.show_text(tr(text) if translate else text)
+		Tooltip.show_text(tr(formatted_text) if translate else formatted_text)
 		return
 	
 	Tooltip.max_length = max_line_length
 	Tooltip.show_text("%s\n[color=gray]%s[/color]" % [
-		(tr(text) if translate else text).c_unescape(),
-		tr(subtext) if translate else subtext
+		(tr(formatted_text) if translate else formatted_text).c_unescape(),
+		tr(formatted_subtext) if translate else formatted_subtext
 	])
 
 

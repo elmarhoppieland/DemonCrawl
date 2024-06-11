@@ -145,7 +145,6 @@ script = ExtResource("2_kk3qc")
 unique_name_in_owner = true
 script = ExtResource("4_gcjxo")
 max_line_length = 48
-main = null
 
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(1, 0)
@@ -320,8 +319,9 @@ anchors_preset = -1
 anchor_left = 0.25
 anchor_right = 0.25
 anchor_bottom = 0.25
-offset_right = 77.0
-offset_bottom = 880.0
+offset_left = 320.0
+offset_right = 397.0
+offset_bottom = 1240.0
 grow_horizontal = 0
 grow_vertical = 2
 

@@ -96,12 +96,6 @@ texture = SubResource("AtlasTexture_vrrtb")
 [node name="TooltipGrabber" type="Node" parent="Node2D/Icon"]
 unique_name_in_owner = true
 script = ExtResource("4_t24t8")
-text = null
-subtext = null
-translate = null
-c_unescape = null
-max_line_length = null
-main = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

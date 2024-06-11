@@ -30,6 +30,16 @@ class_name TokenShopItem
 		if not tooltip_grabber:
 			return description
 		return tooltip_grabber.text
+@export_multiline var description_subtext := "" :
+	set(value):
+		description_subtext = value
+		if not tooltip_grabber:
+			await ready
+		tooltip_grabber.subtext = value
+	get:
+		if not tooltip_grabber:
+			return description_subtext
+		return tooltip_grabber.subtext
 # ==============================================================================
 var locked := false
 var is_purchased := false

@@ -72,6 +72,7 @@ class Category extends VFlowContainer:
 		item.icon = data.icon
 		item.cost = data.cost
 		item.description = data.description
+		item.description_subtext = data.description_subtext
 		
 		for condition in data.unlock_conditions:
 			if condition.begins_with("!") == PlayerFlags.has_flag(condition):
@@ -145,6 +146,12 @@ class Category extends VFlowContainer:
 			elif item_data.description is Array:
 				data.description = Translator.tr(item_data.description[TokenShop.get_purchased_level(item_data.name)])
 			
+			if "description_subtext" in item_data:
+				if item_data.description_subtext is String:
+					data.description_subtext = Translator.tr(item_data.description_subtext)
+				elif item_data.description_subtext is Array:
+					data.description_subtext = Translator.tr(item_data.description_subtext[TokenShop.get_purchased_level(item_data.name)])
+			
 			if "description_values" in item_data:
 				data.description %= item_data.description_values[TokenShop.get_purchased_level(item_data.name)]
 			
@@ -191,6 +198,7 @@ class Category extends VFlowContainer:
 			"icon": [TYPE_STRING, TYPE_ARRAY],
 			"cost": [TYPE_INT, TYPE_FLOAT, TYPE_ARRAY],
 			"description": [TYPE_STRING, TYPE_ARRAY],
+			"?description_subtext": [TYPE_STRING, TYPE_ARRAY],
 			"?description_values": TYPE_ARRAY,
 			"?conditions": TYPE_ARRAY,
 			"?unlock_conditions": TYPE_ARRAY
@@ -223,13 +231,15 @@ class Category extends VFlowContainer:
 
 class TokenShopItemData:
 	enum Flags {
-		INFINITE = 1
+		INFINITE = 1,
+		DESCRIPTION_ADD_LEVEL = 2
 	}
 	
 	var item_name := ""
 	var icon: Texture2D
 	var cost := 0
 	var description := ""
+	var description_subtext := ""
 	var flags := 0
 	var conditions: PackedStringArray
 	var unlock_conditions: PackedStringArray
