@@ -3,14 +3,29 @@ extends TextureRect
 class_name ProfileMastery
 
 # ==============================================================================
-static var atlas := preload("res://Resources/ProfileMastery_atlas.tres")
-static var atlas_position: Vector2i = SavesManager.get_value("atlas_position", ProfileMastery, Vector2i.ZERO) :
-	set(value):
-		atlas.region.position = Vector2(value) * atlas.region.size
+static var icon: Icon :
 	get:
-		return atlas.region.position
+		if not Mastery.selected:
+			return AssetManager.get_icon("mastery/none")
+		return Mastery.selected.icon
 # ==============================================================================
 
 func _enter_tree() -> void:
-	if not texture:
-		texture = atlas
+	texture = icon
+
+
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	
+	var tooltip_grabber := TooltipGrabber.new()
+	if Mastery.selected:
+		var mastery_name := Mastery.get_mastery_name_from_script(Mastery.selected.get_script())
+		tooltip_grabber.text = tr(mastery_name)
+		tooltip_grabber.text += " " + RomanNumeral.convert_to_roman(TokenShop.get_purchased_level(mastery_name))
+		
+		tooltip_grabber.subtext = "• " + "\n• ".join(Mastery.selected.get_description())
+	else:
+		tooltip_grabber.text = tr("MASTERY_NONE")
+	
+	add_child(tooltip_grabber)

@@ -24,7 +24,7 @@ func get_animation_delta() -> float:
 
 
 func reveal_active() -> void:
-	Stats.damage(Board.rng.randi_range(StagesOverview.selected_stage.min_power, StagesOverview.selected_stage.max_power))
+	Stats.damage(Board.rng.randi_range(StagesOverview.selected_stage.min_power, StagesOverview.selected_stage.max_power), self)
 
 
 func get_tooltip_text() -> String:

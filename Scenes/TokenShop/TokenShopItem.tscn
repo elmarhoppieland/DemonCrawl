@@ -21,7 +21,7 @@ name = "icon_locked_flat"
 atlas = ExtResource("1_05fa6")
 region = Rect2(59, 7, 8, 9)
 script = ExtResource("2_nqj62")
-name = "stage_icon_checkmark"
+name = "checkmark"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mkuww"]
 atlas = ExtResource("1_05fa6")

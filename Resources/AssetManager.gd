@@ -10,7 +10,9 @@ const ICONS := {
 	"statbar_coin": Rect2(59, 0, 8, 7),
 	"statbar_heart": Rect2(67, 0, 8, 7),
 	"statbar_shield": Rect2(75, 0, 8, 7),
-	"stage_icon_checkmark": Rect2(59, 7, 8, 9),
+	"checkmark": Rect2(59, 7, 8, 9),
+	"scroll_grabber": Rect2(67, 7, 8, 8),
+	"scroll_grabber_highlight": Rect2(75, 7, 8, 8),
 	"time8": Rect2(0, 7, 8, 9),
 	"monster8": Rect2(8, 7, 8, 9),
 	"power8": Rect2(16, 7, 8, 9),
@@ -23,6 +25,9 @@ const ICONS := {
 	"none": Rect2(48, 16, 16, 16),
 	"change": Rect2(64, 16, 16, 16),
 	"button_arrow": Rect2(80, 16, 16, 16),
+	"button_masteries": Rect2(96, 16, 16, 16),
+	"button_chests": Rect2(112, 16, 16, 16),
+	"button_sigils": Rect2(128, 16, 16, 16),
 	"twitter": Rect2(0, 32, 12, 12),
 	"patreon": Rect2(12, 32, 12, 12),
 	"discord": Rect2(24, 32, 12, 12),
@@ -128,6 +133,11 @@ static func get_icon(name: String) -> Icon:
 		_preloaded_icons[name].name = name
 	
 	return _preloaded_icons[name]
+
+
+## Returns whether an icon with the given [code]name[/code] exists.
+static func has_icon(name: String) -> bool:
+	return Icon.has_icon(name)
 
 
 ## Returns the region of the icon with the given [code]name[/code].

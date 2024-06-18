@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c223d84jnw2lw"]
+[gd_scene load_steps=23 format=3 uid="uid://c223d84jnw2lw"]
 
 [ext_resource type="Texture2D" uid="uid://cdpd806yu8ood" path="res://Assets/bg/quests.png" id="1_7r2xj"]
 [ext_resource type="Script" path="res://Scenes/QuestSelect/QuestSelect.gd" id="1_46gki"]
@@ -6,9 +6,9 @@
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="3_y3u8k"]
 [ext_resource type="PackedScene" uid="uid://cs4xjk311kxho" path="res://Scenes/QuestSelect/QuestsOverview.tscn" id="4_6l8m7"]
 [ext_resource type="Shader" path="res://Scenes/QuestSelect/BackgroundLine.gdshader" id="5_nkaui"]
+[ext_resource type="PackedScene" uid="uid://hvvjdj6n7b1e" path="res://Resources/BackButton.tscn" id="6_qaovl"]
 [ext_resource type="PackedScene" uid="uid://di6wvg6vsnpk6" path="res://Scenes/QuestSelect/QuestSelectStatbar.tscn" id="12_0mlav"]
-[ext_resource type="Script" path="res://Scenes/QuestSelect/BackButton.gd" id="13_2dxie"]
-[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="13_x2onb"]
+[ext_resource type="PackedScene" uid="uid://ckftsugq2vfat" path="res://Scenes/QuestSelect/EditEquipment.tscn" id="15_e1val"]
 [ext_resource type="Texture2D" uid="uid://daxi3wapxviu6" path="res://Assets/sprites/finish_bg.png" id="20_002ai"]
 [ext_resource type="Material" uid="uid://dk24wtqiv26r5" path="res://Resources/MovingBg.tres" id="20_g7kal"]
 [ext_resource type="Texture2D" uid="uid://dhuxq7qahn13m" path="res://Assets/sprites/begin_fg.png" id="22_3ssya"]
@@ -37,29 +37,314 @@ font_size = 8
 outline_size = 3
 outline_color = Color(0.0862745, 0.145098, 0.258824, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nmbu4"]
-atlas = ExtResource("13_x2onb")
-region = Rect2(22, 44, 12, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6a0vy"]
-atlas = ExtResource("13_x2onb")
-region = Rect2(34, 44, 12, 8)
-
 [sub_resource type="Animation" id="Animation_2dwr6"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ForegroundTexture:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("QuestSelectStatbar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BeginButtonContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainContent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BackgroundTexture:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EditEquipment:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EditEquipment:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("EditEquipment:offset_right")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("EditEquipment:offset_bottom")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("EditEquipment:offset_left")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("EditEquipment:offset_top")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
 
-[sub_resource type="Animation" id="Animation_1ynkx"]
-resource_name = "equipment_edit_hover"
-length = 0.1
+[sub_resource type="Animation" id="Animation_mi1jm"]
+resource_name = "equipment_edit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ForegroundTexture:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -180)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("QuestSelectStatbar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BeginButtonContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainContent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BackgroundTexture:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EditEquipment:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 180), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EditEquipment:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ck28q"]
+resource_name = "equipment_edit_back"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundTexture:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainContent:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("QuestSelectStatbar:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BeginButtonContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ForegroundTexture:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, -180), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EditEquipment:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 180)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f4j6h"]
 _data = {
 "RESET": SubResource("Animation_2dwr6"),
-"equipment_edit_hover": SubResource("Animation_1ynkx")
+"equipment_edit": SubResource("Animation_mi1jm"),
+"equipment_edit_back": SubResource("Animation_ck28q")
 }
 
-[node name="QuestSelect" type="MarginContainer"]
-anchors_preset = -1
+[node name="QuestSelect" type="Control"]
+layout_mode = 3
 anchor_right = 0.25
 anchor_bottom = 0.25
 grow_horizontal = 2
@@ -68,108 +353,140 @@ script = ExtResource("1_46gki")
 
 [node name="BackgroundTexture" type="TextureRect" parent="."]
 layout_mode = 2
+offset_right = 320.0
+offset_bottom = 180.0
 size_flags_vertical = 0
 texture = ExtResource("1_7r2xj")
 stretch_mode = 2
 
-[node name="ForegroundTexture" type="TextureRect" parent="."]
-layout_mode = 2
-texture = ExtResource("2_5ggq1")
-stretch_mode = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
+[node name="MainContent" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContent"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContent/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/MarginContainer"]
+[node name="Label" type="Label" parent="MainContent/MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Quests"
 label_settings = SubResource("LabelSettings_y818d")
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="MainContent/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContent/MarginContainer/MarginContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 7
 
-[node name="QuestsOverview" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer" instance=ExtResource("4_6l8m7")]
+[node name="QuestsOverview" parent="MainContent/MarginContainer/MarginContainer2/VBoxContainer" instance=ExtResource("4_6l8m7")]
 layout_mode = 2
 
-[node name="QuestDetails" type="VBoxContainer" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer"]
+[node name="QuestDetails" type="VBoxContainer" parent="MainContent/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 7
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContent/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContent/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = -10
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="MainContent/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer/MarginContainer"]
 material = SubResource("ShaderMaterial_thp31")
 custom_minimum_size = Vector2(215, 8)
 layout_mode = 2
 size_flags_vertical = 4
 color = Color(0, 0, 0, 1)
 
-[node name="QuestNameLabel" type="Label" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer"]
+[node name="QuestNameLabel" type="Label" parent="MainContent/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Glory Days"
 label_settings = SubResource("LabelSettings_64wbd")
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails"]
+[node name="MarginContainer2" type="MarginContainer" parent="MainContent/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 
-[node name="LoreLabel" type="Label" parent="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer2"]
+[node name="LoreLabel" type="Label" parent="MainContent/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "The king has tasked you with the delivery of an important message to a land across the great waters. Use your renowned tracking skills to avoid the monsters along the way!"
 label_settings = SubResource("LabelSettings_oq5d8")
 autowrap_mode = 3
 
-[node name="QuestSelectStatbar" parent="VBoxContainer/MarginContainer" instance=ExtResource("12_0mlav")]
+[node name="MarginContainer3" type="MarginContainer" parent="MainContent/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 6
 
-[node name="BeginButtonContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+[node name="BackButton" parent="MainContent/MarginContainer/MarginContainer3" instance=ExtResource("6_qaovl")]
+layout_mode = 2
+hover_text = "RETURN_TO_MAIN_MENU"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainContent"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ForegroundTexture" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 320.0
+offset_bottom = 360.0
+mouse_filter = 2
+texture = ExtResource("2_5ggq1")
+stretch_mode = 3
+
+[node name="QuestSelectStatbar" parent="." instance=ExtResource("12_0mlav")]
+layout_mode = 2
+offset_top = 162.0
+offset_right = 142.0
+offset_bottom = 180.0
+
+[node name="BeginButtonContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+offset_left = 251.0
+offset_top = 161.0
+offset_right = 320.0
+offset_bottom = 180.0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/BeginButtonContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="BeginButtonContainer"]
 layout_mode = 2
 theme_override_constants/margin_right = 13
 theme_override_constants/margin_bottom = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/BeginButtonContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="BeginButtonContainer/MarginContainer"]
 texture_repeat = 2
 material = ExtResource("20_g7kal")
 layout_mode = 2
 texture = ExtResource("20_002ai")
 
-[node name="BeginButton" type="TextureButton" parent="VBoxContainer/MarginContainer/BeginButtonContainer/MarginContainer"]
+[node name="BeginButton" type="TextureButton" parent="BeginButtonContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -178,37 +495,21 @@ texture_pressed = ExtResource("23_1rhh3")
 texture_hover = ExtResource("23_05vpt")
 stretch_mode = 3
 
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 7
-
-[node name="BackButton" type="MarginContainer" parent="VBoxContainer/MarginContainer/MarginContainer3"]
-layout_mode = 2
-script = ExtResource("13_2dxie")
-
-[node name="Normal" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer3/BackButton"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_nmbu4")
-
-[node name="Hovered" type="TextureRect" parent="VBoxContainer/MarginContainer/MarginContainer3/BackButton"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-texture = SubResource("AtlasTexture_6a0vy")
-
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
+[node name="EditEquipment" parent="." instance=ExtResource("15_e1val")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+offset_right = 160.0
+offset_bottom = 70.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_f4j6h")
 }
 
-[connection signal="quest_selected" from="VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer/QuestsOverview" to="." method="_on_quests_overview_quest_selected"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/BeginButtonContainer/MarginContainer/BeginButton" to="." method="_on_begin_button_pressed"]
+[connection signal="quest_selected" from="MainContent/MarginContainer/MarginContainer2/VBoxContainer/QuestsOverview" to="." method="_on_quests_overview_quest_selected"]
+[connection signal="pressed" from="MainContent/MarginContainer/MarginContainer3/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="edit_equipment" from="QuestSelectStatbar" to="." method="_on_quest_select_statbar_edit_equipment"]
+[connection signal="pressed" from="BeginButtonContainer/MarginContainer/BeginButton" to="." method="_on_begin_button_pressed"]
+[connection signal="back_button_pressed" from="EditEquipment" to="." method="_on_edit_equipment_back_button_pressed"]

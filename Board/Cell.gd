@@ -123,6 +123,8 @@ func _on_mouse_entered() -> void:
 	
 	if revealed and is_occupied():
 		cell_object.hover()
+	
+	Debug.push_debug(Board._instance, "Hovered Cell Position", board_position)
 
 
 func _on_mouse_exited() -> void:
@@ -309,7 +311,7 @@ func get_group() -> Array[Cell]:
 
 
 ## Returns whether the number of nearby identified monsters is equal to or greater than this cell's value.
-## [br][br]An identified monster is a is_flagged() cell (even if it does not have a monster) or a visible monster.
+## [br][br]An identified monster is a flagged cell (even if it does not have a monster) or a visible monster.
 func is_solved() -> bool:
 	var nearby_monsters := 0
 	for cell in get_nearby_cells():
@@ -360,3 +362,7 @@ static func create(data: CellData = null) -> Cell:
 
 static func _is_pressed_cell_hovered() -> bool:
 	return _pressed_cell._hovered
+
+
+func _to_string() -> String:
+	return "<%d @ %s>" % [cell_value, board_position]

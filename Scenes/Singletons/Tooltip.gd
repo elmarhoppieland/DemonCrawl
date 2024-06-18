@@ -43,7 +43,7 @@ static func show_text(text: String) -> void:
 				"]":
 					if text.substr(i - 4, 5) != "[img]":
 						inside_tag = false
-				"•":
+				"•": # U+2022
 					bullet = true
 					line_length -= 2
 			

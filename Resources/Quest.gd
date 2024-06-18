@@ -25,5 +25,5 @@ static func finish() -> void:
 	
 	PlayerFlags.add_flag("%s/%s" % [
 		QuestsOverview.selected_difficulty.get_name(),
-		QuestSelect.selected_quest.get_name()
+		Quest.quest_name
 	])

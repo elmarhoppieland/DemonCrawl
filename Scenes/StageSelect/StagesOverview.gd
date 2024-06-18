@@ -12,6 +12,8 @@ signal icon_selected(icon: StageIcon) ## Emitted when a stage icon has been sele
 # ==============================================================================
 
 func _ready() -> void:
+	EffectManager.register_object(Mastery.selected)
+	
 	var rng := RandomNumberGenerator.new()
 	if Quest.stages.is_empty():
 		QuestSelect.selected_quest.pack().generate(rng)
@@ -20,6 +22,8 @@ func _ready() -> void:
 		Stats.life = Stats.max_life
 		Stats.defense = 0
 		Stats.coins = 0
+		
+		EffectManager.propagate_call("quest_start")
 		
 		Toasts.add_debug_toast("Quest started: %s on difficulty %s" % [tr(Quest.quest_name), QuestsOverview.selected_difficulty.get_name()])
 	

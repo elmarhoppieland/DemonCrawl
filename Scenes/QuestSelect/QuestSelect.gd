@@ -1,4 +1,4 @@
-extends MarginContainer
+extends Control
 class_name QuestSelect
 
 # ==============================================================================
@@ -12,6 +12,7 @@ static var selected_quest_index := -1 :
 @onready var quest_name_label: Label = %QuestNameLabel
 @onready var lore_label: Label = %LoreLabel
 @onready var begin_button_container: MarginContainer = %BeginButtonContainer
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
 
 func _on_quests_overview_quest_selected(quest: QuestFile, _difficulty: DifficultyFile) -> void:
@@ -33,3 +34,18 @@ func _on_quests_overview_quest_selected(quest: QuestFile, _difficulty: Difficult
 
 func _on_begin_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")
+
+
+func _on_quest_select_statbar_edit_equipment() -> void:
+	Focus.hide()
+	Focus.save_current()
+	animation_player.play("equipment_edit")
+
+
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/MainMenu/MainMenu.tscn")
+
+
+func _on_edit_equipment_back_button_pressed() -> void:
+	Focus.load_saved()
+	animation_player.play("equipment_edit_back")

@@ -24,9 +24,8 @@ name = "icon_locked_flat"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_74dbv"]
 atlas = ExtResource("3_acuxk")
-region = Rect2(59, 7, 8, 9)
 script = ExtResource("4_7x0h2")
-name = "stage_icon_checkmark"
+name = "checkmark"
 
 [node name="StageIcon" type="MarginContainer"]
 custom_minimum_size = Vector2(16, 16)

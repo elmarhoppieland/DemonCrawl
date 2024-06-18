@@ -68,7 +68,7 @@ class Category extends VFlowContainer:
 		
 		var item := TokenShopItem.create()
 		
-		item.item_name = data.item_name
+		item.item_name = tr(data.item_name)
 		item.icon = data.icon
 		item.cost = data.cost
 		item.description = data.description
@@ -129,7 +129,7 @@ class Category extends VFlowContainer:
 			
 			var data := TokenShopItemData.new()
 			
-			data.item_name = Translator.tr(item_data.name)
+			data.item_name = item_data.name
 			
 			if item_data.icon is String:
 				data.icon = AssetManager.get_icon(item_data.icon)
@@ -157,7 +157,13 @@ class Category extends VFlowContainer:
 			
 			data.set_flags(item_data.get("flags", []))
 			data.conditions = item_data.get("conditions", [])
-			data.unlock_conditions = item_data.get("unlock_conditions", [])
+			data.unlock_conditions = []
+			for condition in item_data.get("unlock_conditions", []):
+				match typeof(condition):
+					TYPE_STRING:
+						data.unlock_conditions.append(condition)
+					TYPE_ARRAY:
+						data.unlock_conditions.append(condition[TokenShop.get_purchased_level(item_data.name)])
 			
 			category.add_item(data)
 		

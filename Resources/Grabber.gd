@@ -2,6 +2,8 @@ extends Node
 class_name Grabber
 
 # ==============================================================================
+static var _main_grabber: Grabber
+# ==============================================================================
 @export var main := false
 # ==============================================================================
 var _mouse_inside := false
@@ -34,6 +36,7 @@ func _ready() -> void:
 	if main:
 		await get_tree().process_frame
 		interacted.emit()
+		_main_grabber = self
 
 
 func _process(_delta: float) -> void:
@@ -57,3 +60,8 @@ func hover() -> void:
 
 func unhover() -> void:
 	pass
+
+
+static func select_main() -> void:
+	if is_instance_valid(_main_grabber):
+		_main_grabber.interacted.emit()

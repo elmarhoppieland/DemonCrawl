@@ -194,6 +194,57 @@ static func tween_texture(texture: Texture2D, start_pos: Vector2, end_pos: Vecto
 	return sprite
 
 
+## [b]Not implemented.[/b] Returns whether the player must make a guess to proceed.
+static func needs_guess() -> bool:
+	return get_progress_cell() == null
+
+
+## [b]Partially implemented [i](only trivial progress is detected)[/i].[/b]
+## Returns a [Cell] where the player can make progress without guessing.
+## Returns [code]null[/code] if no such [Cell] could be found.
+static func get_progress_cell() -> Cell:
+	var real_flags: Array[Cell] = []
+	
+	for cell in get_cells():
+		if not cell.revealed or cell.cell_value == 0 or cell.cell_object:
+			continue
+		
+		var hidden_cells := 0
+		for neighbor in cell.get_nearby_cells():
+			if not neighbor.revealed or neighbor.has_monster():
+				hidden_cells += 1
+		if hidden_cells == cell.cell_value:
+			for neighbor in cell.get_nearby_cells():
+				if neighbor.revealed:
+					continue
+				if not neighbor.is_flagged():
+					return neighbor
+				if not neighbor in real_flags:
+					real_flags.append(neighbor)
+	
+	for cell in get_cells():
+		if not cell.revealed or cell.cell_value == 0:
+			continue
+		
+		var monsters := 0
+		for neighbor in cell.get_nearby_cells():
+			if neighbor in real_flags:
+				monsters += 1
+		if monsters == cell.cell_value:
+			for neighbor in cell.get_nearby_cells():
+				if neighbor.revealed:
+					continue
+				if not neighbor in real_flags:
+					return neighbor
+	
+	return null
+
+
+## [b]Not implemented[/b]. Solves a random cell, flagging it if it has a monster or unflagging it if not.
+static func solve_cell() -> void:
+	pass
+
+
 ## Returns the cell at the given map position. Returns [code]null[/code] if the cell does not exist.
 static func get_cell(at: Vector2i) -> Cell:
 	if at.x < 0 or at.y < 0 or at.x >= Board.board_size.x or at.y >= Board.board_size.y:

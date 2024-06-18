@@ -202,7 +202,7 @@ static func _import_value_from_reference(reference: Object, key: String, value: 
 			
 			var script := _get_custom_class_script(prop.class_name)
 			if not script:
-				Debug.log_error("The property on reference '%s' was found and has class name '%s', but this class was not found." % [reference, prop.class_name])
+				Debug.log_error("Property '%s' on reference '%s' was found and has class name '%s', but this class was not found." % [prop.name, reference, prop.class_name])
 				return ImportResult.new(false)
 			
 			if script.has_method("_import"):
