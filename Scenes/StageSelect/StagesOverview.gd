@@ -16,7 +16,7 @@ func _ready() -> void:
 	
 	var rng := RandomNumberGenerator.new()
 	if Quest.stages.is_empty():
-		QuestSelect.selected_quest.pack().generate(rng)
+		QuestsOverview.selected_quest.pack().generate(rng)
 		
 		Stats.max_life = QuestsOverview.selected_difficulty.get_starting_lives()
 		Stats.life = Stats.max_life

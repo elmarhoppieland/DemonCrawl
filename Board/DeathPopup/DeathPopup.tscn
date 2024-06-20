@@ -1,0 +1,512 @@
+[gd_scene load_steps=27 format=3 uid="uid://bor7lobhc6yrv"]
+
+[ext_resource type="Script" path="res://Board/DeathPopup/DeathPopup.gd" id="1_cfc0m"]
+[ext_resource type="Texture2D" uid="uid://2lq7o20vksda" path="res://Assets/sprites/death_popup_bg.png" id="1_cfy8m"]
+[ext_resource type="Texture2D" uid="uid://bnm1h5qoegbex" path="res://Assets/sprites/you_died.png" id="2_6yh2a"]
+[ext_resource type="Texture2D" uid="uid://cogfcs7aaebfc" path="res://Assets/sprites/button.png" id="3_1bxrx"]
+[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="4_6nkhu"]
+[ext_resource type="Texture2D" uid="uid://bm2v63milfwch" path="res://Assets/sprites/hxpbar_bg.png" id="5_yhei2"]
+[ext_resource type="Script" path="res://Resources/Icon.gd" id="5_yhnrq"]
+[ext_resource type="Script" path="res://Resources/DCButton2.gd" id="7_kw7wy"]
+[ext_resource type="Texture2D" uid="uid://sqv3cn8on7rd" path="res://Assets/sprites/death_menu_button_fg.png" id="9_2ahld"]
+[ext_resource type="Shader" path="res://Resources/FinishButton.gdshader" id="9_jke8s"]
+[ext_resource type="Texture2D" uid="uid://daxi3wapxviu6" path="res://Assets/sprites/finish_bg.png" id="10_0pu14"]
+[ext_resource type="Texture2D" uid="uid://c1c6cug4b4kci" path="res://Assets/sprites/death_menu_button_fg_hovered.png" id="12_cb15w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u1wdi"]
+line_spacing = 0.0
+font_size = 8
+font_color = Color(0.764706, 0.764706, 0.764706, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2lxre"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 3.0
+content_margin_bottom = 1.0
+texture = ExtResource("3_1bxrx")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+draw_center = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n81gp"]
+atlas = ExtResource("4_6nkhu")
+region = Rect2(47, 0, 6, 5)
+script = ExtResource("5_yhnrq")
+name = "arrow_left_small"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v7a8x"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 3.0
+content_margin_bottom = 1.0
+texture = ExtResource("3_1bxrx")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+draw_center = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83vho"]
+atlas = ExtResource("4_6nkhu")
+region = Rect2(26, 0, 7, 5)
+script = ExtResource("5_yhnrq")
+name = "restart_small"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8lixv"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 3.0
+content_margin_bottom = 1.0
+texture = ExtResource("3_1bxrx")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+draw_center = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quwxm"]
+atlas = ExtResource("4_6nkhu")
+region = Rect2(53, 0, 6, 5)
+script = ExtResource("5_yhnrq")
+name = "arrow_right_small"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4xkxe"]
+blend_mode = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ruhlp"]
+shader = ExtResource("9_jke8s")
+shader_parameter/color = Vector3(0, 0, 0)
+shader_parameter/speed = 0.667
+
+[sub_resource type="Animation" id="Animation_o8d6l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/BackgroundAnchor:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/ContentsAnchor:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/ContentsAnchor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 8)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../RedOverlay:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../MenuButtonCanvas:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../MenuButtonCanvas/Node2D:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_1ey1i"]
+resource_name = "hide"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/ContentsAnchor:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/BackgroundAnchor:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_714gw"]
+resource_name = "show"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/BackgroundAnchor:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/ContentsAnchor:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/ContentsAnchor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 8), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../RedOverlay:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fo77j"]
+resource_name = "show_menu_button"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MenuButtonCanvas:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MenuButtonCanvas/Node2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tsliw"]
+_data = {
+"RESET": SubResource("Animation_o8d6l"),
+"hide": SubResource("Animation_1ey1i"),
+"show": SubResource("Animation_714gw"),
+"show_menu_button": SubResource("Animation_fo77j")
+}
+
+[node name="DeathPopup" type="Node"]
+script = ExtResource("1_cfc0m")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 15
+visible = false
+offset = Vector2(0, 360)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 360)
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer"]
+position = Vector2(0, 4)
+
+[node name="BackgroundAnchor" type="Node2D" parent="CanvasLayer/Node2D"]
+scale = Vector2(1, 1e-05)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Node2D/BackgroundAnchor"]
+custom_minimum_size = Vector2(320, 80)
+anchors_preset = -1
+anchor_bottom = 0.5
+grow_vertical = 2
+theme_override_constants/margin_top = -26
+theme_override_constants/margin_bottom = -20
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Node2D/BackgroundAnchor/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_cfy8m")
+
+[node name="ContentsAnchor" type="Node2D" parent="CanvasLayer/Node2D"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 8)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Node2D/ContentsAnchor"]
+anchors_preset = -1
+anchor_right = 0.5
+offset_top = -40.0
+offset_right = 320.0
+offset_bottom = 40.0
+grow_vertical = 2
+theme_override_constants/margin_left = 55
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 55
+theme_override_constants/margin_bottom = 11
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_6yh2a")
+stretch_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="DeathMessageLabel" type="Label" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "We all feel the wrath of CROOKED NECRODARE THE CRAWLER eventually."
+label_settings = SubResource("LabelSettings_u1wdi")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 6
+
+[node name="ViewBoardButton" type="Button" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_2lxre")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2lxre")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2lxre")
+text = "VIEW_BOARD"
+icon = SubResource("AtlasTexture_n81gp")
+script = ExtResource("7_kw7wy")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/HBoxContainer/ViewBoardButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_yhei2")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_v7a8x")
+text = "RESTART"
+icon = SubResource("AtlasTexture_83vho")
+script = ExtResource("7_kw7wy")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/HBoxContainer/RestartButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_yhei2")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="ReturnToMenuButton" type="Button" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_8lixv")
+text = "RETURN_TO_MENU"
+icon = SubResource("AtlasTexture_quwxm")
+icon_alignment = 2
+script = ExtResource("7_kw7wy")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/HBoxContainer/ReturnToMenuButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_yhei2")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="RedOverlay" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_4xkxe")
+anchors_preset = -1
+anchor_left = -1.0
+anchor_top = -1.0
+anchor_right = 2.0
+anchor_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="MenuButtonCanvas" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 5
+visible = false
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+
+[node name="Node2D" type="Node2D" parent="MenuButtonCanvas"]
+position = Vector2(160, 20)
+scale = Vector2(1e-05, 1e-05)
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuButtonCanvas/Node2D"]
+anchors_preset = -1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuButtonCanvas/Node2D/MarginContainer"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ruhlp")
+layout_mode = 2
+texture = ExtResource("10_0pu14")
+
+[node name="TextureButton" type="TextureButton" parent="MenuButtonCanvas/Node2D/MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("9_2ahld")
+texture_hover = ExtResource("12_cb15w")
+stretch_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../CanvasLayer")
+libraries = {
+"": SubResource("AnimationLibrary_tsliw")
+}
+
+[connection signal="pressed" from="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/HBoxContainer/ViewBoardButton" to="." method="_on_view_board_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/HBoxContainer/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]
+[connection signal="pressed" from="MenuButtonCanvas/Node2D/MarginContainer/TextureButton" to="." method="_on_menu_button_pressed"]

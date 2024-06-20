@@ -13,7 +13,10 @@ class_name Board
 # ==============================================================================
 const CELL_SIZE := Vector2i(16, 16)
 # ==============================================================================
-static var _instance: Board
+static var _instance: Board :
+	get:
+		assert(_instance != null, "Attempted to use the Board instance when it has not been instantiated.")
+		return _instance
 
 static var rng := RandomNumberGenerator.new() ## The [RandomNumberGenerator] used to generate boards. Use [member RandomNumberGenerator.seed] to make boards generate consistently.
 
@@ -26,6 +29,7 @@ static var mutable: bool = SavesManager.get_value("mutable", Board, false) : ## 
 		else:
 			Board.saved_time = Board.get_timef()
 			Board.start_time = -1
+static var frozen := false ## Whether the board is frozen, i.e. cells can be opened.
 
 static var board_size: Vector2i = SavesManager.get_value("board_size", Board, Vector2i.ZERO) ## The number of cells in each row and column.
 
@@ -48,6 +52,8 @@ signal _cells_generated()
 
 func _enter_tree() -> void:
 	_instance = self
+	
+	EffectManager.register_object(self)
 
 
 func _ready() -> void:
@@ -62,6 +68,7 @@ func _ready() -> void:
 	Board.saved_time = 0.0
 	Board.started = false
 	Board.mutable = false
+	Board.frozen = false
 	Board.board_3bv = -1
 	Board.is_flagless = true
 	
@@ -77,6 +84,11 @@ func _ready() -> void:
 	
 	const FADE_DURATION := 1.0
 	Foreground.fade_in(FADE_DURATION)
+
+
+func lose(_source: Object) -> void:
+	Board.mutable = false
+	Board.frozen = true
 
 
 ## Starts the board on the given [code]cell[/code]. Moves all mines in or nearby the cell away if present.
@@ -98,6 +110,8 @@ static func start_board(cell: Cell) -> void:
 	Board.mutable = true
 
 
+## Calculates the Board's 3BV value. This is called at the start of a stage, when it has just been generated.
+## The value affects the amount of XP (and score) the player gets on completion.
 static func calculate_3bv() -> void:
 	var empty_groups: Array[Cell] = []
 	board_3bv = 0

@@ -7,7 +7,6 @@ static var _difficulty_paths_cache := PackedStringArray() :
 		if _difficulty_paths_cache.is_empty():
 			const DIR := "res://Assets/quests/difficulties/"
 			
-			_difficulty_paths_cache.clear()
 			for file in DirAccess.get_files_at(DIR):
 				_difficulty_paths_cache.append(DIR.path_join(file))
 		
@@ -27,6 +26,19 @@ static var selected_difficulty_path: String = SavesManager.get_value("selected_d
 			selected_difficulty = DifficultyFile.new()
 			selected_difficulty.load(value)
 
+static var selected_quest_idx: int = SavesManager.get_value("selected_quest_idx", QuestsOverview, 0) :
+	set(value):
+		var different := value != selected_quest_idx
+		selected_quest_idx = value
+		if different:
+			selected_quest = null
+static var selected_quest: QuestFile :
+	get:
+		if not selected_quest:
+			selected_quest = QuestFile.new()
+			selected_quest.load(selected_difficulty.get_quests()[selected_quest_idx])
+		return selected_quest
+
 static var player_data: Dictionary = SavesManager.get_value("player_data", QuestsOverview, {
 	"DIFFICULTY_CASUAL": [{"completions": 0, "best": 0}, {"completions": 0, "best": 0}],
 	"DIFFICULTY_NORMAL": [{"completions": 0, "best": 0}, {"completions": 0, "best": 0}]
@@ -45,6 +57,8 @@ signal quest_selected(quest: QuestFile, difficulty: DifficultyFile)
 
 func _ready() -> void:
 	redraw_quests()
+	
+	Debug.push_debug(get_tree().current_scene, "Selected Quest Index", selected_quest_idx)
 
 
 func redraw_quests() -> void:
@@ -56,10 +70,10 @@ func redraw_quests() -> void:
 	difficulty_select_icon.name = selected_difficulty.get_icon_path()
 	difficulty_select_tooltip_grabber.text = tr(selected_difficulty.get_name())
 	
-	var main := true
-	for quest in selected_difficulty.open_quests():
-		add_quest(quest, main)
-		main = false
+	for i in selected_difficulty.get_quests().size():
+		var quest := QuestFile.new()
+		quest.load(selected_difficulty.get_quests()[i])
+		add_quest(quest, i == selected_quest_idx)
 
 
 func add_quest(quest: QuestFile, main: bool = false) -> void:
@@ -69,7 +83,7 @@ func add_quest(quest: QuestFile, main: bool = false) -> void:
 	var index := quest_icons.size()
 	var locked := not QuestsOverview.is_quest_unlocked(index)
 	quest.set_meta("locked", locked)
-	quest.set_meta("index", index)
+	#quest.set_meta("index", index)
 	
 	if locked:
 		icon.texture = AssetManager.get_icon("icon_locked")
@@ -81,6 +95,9 @@ func add_quest(quest: QuestFile, main: bool = false) -> void:
 	icon.add_child(focus_grabber)
 	
 	focus_grabber.interacted.connect(func():
+		QuestsOverview.selected_quest_idx = index
+		Debug.push_debug(get_tree().current_scene, "Selected Quest Index", QuestsOverview.selected_quest_idx)
+		
 		var completions: int = 0 if locked else QuestsOverview.get_current_player_data()[index].completions
 		var best: int = 0 if locked else QuestsOverview.get_current_player_data()[index].best
 		player_data_label.text = ("%s: x%d\n%s: %s" % [
@@ -89,6 +106,7 @@ func add_quest(quest: QuestFile, main: bool = false) -> void:
 			tr("QUEST_BEST"),
 			best if completions > 0 else "-"
 		])
+		
 		quest_selected.emit(quest, QuestsOverview.selected_difficulty)
 	)
 	

@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://hhy78o5qolno"]
+[gd_scene load_steps=12 format=3 uid="uid://hhy78o5qolno"]
 
 [ext_resource type="Script" path="res://Scenes/StageSelect/StageSelect.gd" id="1_0kr35"]
 [ext_resource type="Texture2D" uid="uid://dqe6i8xvwotle" path="res://Assets/bg/stages0.png" id="1_6aai7"]
 [ext_resource type="PackedScene" uid="uid://bho6th882qje0" path="res://Scenes/StageSelect/StagesOverview.tscn" id="2_nrtxk"]
-[ext_resource type="Material" uid="uid://cb7nep71fmj1r" path="res://Board/TextOutline.tres" id="2_w6v05"]
 [ext_resource type="PackedScene" uid="uid://c3vf0fdejs72s" path="res://Scenes/StageSelect/StageDetails.tscn" id="4_26rrt"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="6_asf3s"]
 [ext_resource type="PackedScene" uid="uid://bqgqlnp8nk2x2" path="res://Scenes/Statbar/Statbar.tscn" id="7_8jogn"]
@@ -63,7 +62,6 @@ theme_override_constants/margin_right = 10
 
 [node name="QuestNameLabel" type="Label" parent="MarginContainer2"]
 unique_name_in_owner = true
-material = ExtResource("2_w6v05")
 layout_mode = 2
 size_flags_vertical = 1
 text = "Glory Days [h]"

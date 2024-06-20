@@ -37,7 +37,7 @@ func get_description() -> PackedStringArray:
 		if level < i:
 			return description
 		
-		description.append(Translator.tr("%s_DESCRIPTION_%d" % [Mastery.get_mastery_name_from_script(get_script()), i]))
+		description.append(TranslationServer.tr("%s_DESCRIPTION_%d" % [Mastery.get_mastery_name_from_script(get_script()), i]))
 		
 		i += 1
 	

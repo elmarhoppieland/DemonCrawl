@@ -2,6 +2,8 @@ extends CodeEdit
 class_name CommandLine
 
 # ==============================================================================
+const CLASS_COLOR := Color(0.741176, 0.94902, 0.882353, 1)
+# ==============================================================================
 static var added_vars := {}
 # ==============================================================================
 @onready var command_line_feedback: RichTextLabel = %CommandLineFeedback
@@ -13,6 +15,7 @@ func _ready() -> void:
 	
 	for class_data in ProjectSettings.get_global_class_list():
 		added_vars[class_data.class] = ResourceLoader.load(class_data.path)
+		syntax_highlighter.add_member_keyword_color(class_data.class, CLASS_COLOR)
 
 
 func _text_changed() -> void:

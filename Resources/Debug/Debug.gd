@@ -93,12 +93,14 @@ static func clear_overlay() -> void:
 
 static func get_text(object: Object, round_floats: bool = true) -> String:
 	if not object:
-		return "(No Object Bound)"
+		return "(No Object Selected)"
 	
 	var text = ""
 	
-	if "name" in object:
+	if "name" in object and (object.name is String or object.name is StringName):
 		text += object.name
+	elif object is Resource:
+		text += object.resource_path.get_file().get_basename()
 	else:
 		text += str(object)
 	
@@ -137,6 +139,18 @@ static func remove_debug(object: Object, key: String) -> void:
 	object.remove_meta(META_PREFIX + key.to_snake_case())
 	if object.get_meta_list().all(func(a: StringName): return not a.begins_with(META_PREFIX)):
 		all_objects.erase(object)
+
+
+static func select(object: Object) -> void:
+	left_object = object
+
+
+static func select_left(object: Object) -> void:
+	select(object)
+
+
+static func select_right(object: Object) -> void:
+	right_object = object
 
 
 func update() -> void:

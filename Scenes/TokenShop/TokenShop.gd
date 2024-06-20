@@ -142,15 +142,15 @@ class Category extends VFlowContainer:
 				data.cost = item_data.cost[TokenShop.get_purchased_level(item_data.name)]
 			
 			if item_data.description is String:
-				data.description = Translator.tr(item_data.description)
+				data.description = TranslationServer.tr(item_data.description)
 			elif item_data.description is Array:
-				data.description = Translator.tr(item_data.description[TokenShop.get_purchased_level(item_data.name)])
+				data.description = TranslationServer.tr(item_data.description[TokenShop.get_purchased_level(item_data.name)])
 			
 			if "description_subtext" in item_data:
 				if item_data.description_subtext is String:
-					data.description_subtext = Translator.tr(item_data.description_subtext)
+					data.description_subtext = TranslationServer.tr(item_data.description_subtext)
 				elif item_data.description_subtext is Array:
-					data.description_subtext = Translator.tr(item_data.description_subtext[TokenShop.get_purchased_level(item_data.name)])
+					data.description_subtext = TranslationServer.tr(item_data.description_subtext[TokenShop.get_purchased_level(item_data.name)])
 			
 			if "description_values" in item_data:
 				data.description %= item_data.description_values[TokenShop.get_purchased_level(item_data.name)]

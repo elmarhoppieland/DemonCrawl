@@ -22,7 +22,7 @@ static var _pressed_cell: Cell
 @export var cell_value := 0 : ## This cell's value, i.e. the number of adjacent monsters.
 	set(value):
 		cell_value = value
-		if not _value_label:
+		if not is_node_ready():
 			await ready
 		_value_label.cell_value = value
 	get:
@@ -37,7 +37,7 @@ var board_position := Vector2i.ZERO ## This cell's [Board] coordinates.
 var cell_object: CellObject : ## This cell's [CellObject], e.g. loot or a monster.
 	set(value):
 		cell_object = value
-		if not _object_texture:
+		if not is_node_ready():
 			await ready
 		_object_texture.cell_object = value
 	get:
@@ -48,18 +48,17 @@ var cell_object: CellObject : ## This cell's [CellObject], e.g. loot or a monste
 var _hovered := false
 var _checking := false
 # ==============================================================================
-@onready var global_sprite: Sprite2D = %GlobalSprite
-
 @onready var _background: CellBackground = %Background
 @onready var _value_label: Label = %ValueLabel
-@onready var _object_texture: TextureRect = %ObjectTexture
+@onready var _object_texture: CellObjectTexture = %ObjectTexture
+@onready var _flag_texture: TextureRect = %FlagTexture
 @onready var _text_particles: TextParticles = %TextParticles
 # ==============================================================================
 signal opened() ## Emitted when this cell gets opened.
 # ==============================================================================
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_released("cell_open") and _pressed_cell != null:
+	if not Board.frozen and Input.is_action_just_released("cell_open") and _pressed_cell != null:
 		_process_cell_opening()
 		
 		set_deferred("_pressed_cell", null)
@@ -67,17 +66,18 @@ func _process(_delta: float) -> void:
 	if not _hovered:
 		return
 	
-	if Input.is_action_just_pressed("cell_open") and not (revealed and cell_object):
-		_pressed_cell = self
-		if revealed:
-			check_chord()
-		elif not is_flagged():
-			check()
-	elif cell_object and revealed:
-		if Input.is_action_just_pressed("interact"):
-			cell_object.interact()
-		if Input.is_action_just_pressed("secondary_interact"):
-			cell_object.secondary_interact()
+	if not Board.frozen:
+		if Input.is_action_just_pressed("cell_open") and not (revealed and cell_object):
+			_pressed_cell = self
+			if revealed:
+				check_chord()
+			elif not is_flagged():
+				check()
+		elif cell_object and revealed:
+			if Input.is_action_just_pressed("interact"):
+				cell_object.interact()
+			if Input.is_action_just_pressed("secondary_interact"):
+				cell_object.secondary_interact()
 	
 	if Board.mutable and Input.is_action_just_pressed("cell_flag"):
 		if revealed:
@@ -219,7 +219,7 @@ func unflag() -> void:
 		return
 	
 	_background.set_hidden()
-	_object_texture.texture = null
+	_flag_texture.texture = null
 	
 	Board.update_monster_count()
 
@@ -229,7 +229,7 @@ func flag() -> void:
 		return
 	
 	_background.set_flag()
-	_object_texture.play_flag()
+	_flag_texture.play_flag()
 	
 	Board.is_flagless = false
 	Board.update_monster_count()
@@ -351,7 +351,7 @@ func is_check_chording() -> bool:
 ## Creates a new cell and returns it, after loading the given [code]data[/code] into it, if it is given.
 ## [br][br]See also [method load_data].
 static func create(data: CellData = null) -> Cell:
-	var scene: PackedScene = ResourceLoader.load("res://Board/Cell.tscn")
+	var scene: PackedScene = ResourceLoader.load("res://Board/Cell/Cell.tscn")
 	var cell: Cell = scene.instantiate()
 	
 	if data:

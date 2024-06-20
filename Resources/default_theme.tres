@@ -142,6 +142,8 @@ name = "scroll_grabber_highlight"
 [resource]
 default_font_size = 8
 Board/icons/board_bg = ExtResource("1_3w34f")
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 3
 Button/styles/focus = SubResource("StyleBoxEmpty_m545e")
 Button/styles/hover = SubResource("StyleBoxFlat_bsqjn")
 Button/styles/normal = SubResource("StyleBoxTexture_rj56v")

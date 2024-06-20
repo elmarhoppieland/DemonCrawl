@@ -6,7 +6,7 @@ func change_score(value: int) -> int:
 	if level < 1:
 		return value
 	
-	if value < PlayerStats.score:
+	if value <= PlayerStats.score:
 		return value
 	
 	# simplified version of: PlayerStats.score + (value - PlayerStats.score) / 2

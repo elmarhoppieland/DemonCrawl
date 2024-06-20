@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dpq1vnwdb6sb0"]
 
-[ext_resource type="Script" path="res://Board/StageClearReward.gd" id="1_ldqm5"]
+[ext_resource type="Script" path="res://Board/FinishPopup/StageClearReward.gd" id="1_ldqm5"]
 [ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="2_qhlw7"]
 [ext_resource type="Script" path="res://Resources/Icon.gd" id="3_bxsns"]
 [ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="4_t24t8"]

@@ -9,6 +9,11 @@ var cell: Cell ## The [Cell] this is the object of.
 
 func _init(_cell: Cell) -> void:
 	cell = _cell
+	
+	cell._object_texture.tooltip_grabber.about_to_show.connect(func():
+		cell._object_texture.tooltip_grabber.text = get_tooltip_text()
+		cell._object_texture.tooltip_grabber.subtext = get_tooltip_subtext()
+	)
 
 
 ## Clears this [CellObject], setting the cell's [member Cell.cell_object] to [code]null[/code].
@@ -42,27 +47,24 @@ func secondary_interact() -> void:
 
 
 ## Called when the player starts hovering over this object.
-## [br][br]The default behaviour shows a [Tooltip], if [method get_tooltip_text]
-## does not return an empty [String]. Call [code]super()[/code] when overriding
-## this method to keep this behaviour.
 func hover() -> void:
-	var text := get_tooltip_text()
-	if text.is_empty():
-		return
-	Tooltip.show_text(text)
+	pass
 
 
 ## Called when the player stops hovering over this object.
-## [br][br]The default behaviour hides the [Tooltip] shown when the player started
-## hovering, if [method get_tooltip_text] did not return an empty [String].
-## Call [code]super()[/code] when overriding this method to keep this behaviour.
 func unhover() -> void:
-	Tooltip.hide_text()
+	pass
 
 
 ## Returns the text that should be in the tooltip when the player hovers over this object.
 ## [br][br]When this returns an empty [String] ([code]""[/code]), does not show a tooltip (default behaviour).
 func get_tooltip_text() -> String:
+	return ""
+
+
+## Returns the text that should be in the tooltip subtext when the player hovers over this object.
+## [br][br]When this returns an empty [String] ([code]""[/code]), does not have any subtext (default behaviour).
+func get_tooltip_subtext() -> String:
 	return ""
 
 

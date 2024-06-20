@@ -9,43 +9,43 @@ static var score: int = SavesManager.get_value("score", PlayerStats, 0) :
 static var cells_opened_since_mistake: int = SavesManager.get_value("cells_opened_since_mistake", PlayerStats, 0) :
 	set(value):
 		value = EffectManager.change_stat("cells_opened_since_mistake", value)
-		score = value
+		cells_opened_since_mistake = value
 static var morality: int = SavesManager.get_value("morality", PlayerStats, 0) :
 	set(value):
 		value = EffectManager.change_stat("morality", value)
-		score = value
+		morality = value
 static var chain: ChainData = SavesManager.get_value("chain", PlayerStats, null)
 static var chests_opened: int = SavesManager.get_value("chests_opened", PlayerStats, 0) :
 	set(value):
 		value = EffectManager.change_stat("chests_opened", value)
-		score = value
+		chests_opened = value
 static var monsters_killed: int = SavesManager.get_value("monsters_killed", PlayerStats, 0) :
 	set(value):
 		value = EffectManager.change_stat("monsters_killed", value)
-		score = value
+		monsters_killed = value
 static var pathfinding: int = SavesManager.get_value("pathfinding", PlayerStats, 0) :
 	set(value):
 		value = EffectManager.change_stat("pathfinding", value)
-		score = value
+		pathfinding = value
 # ==============================================================================
 
 static func get_stats_tooltip_text() -> String:
 	var parts := PackedStringArray([
-		"%s: %d %s" % [Translator.tr("SCORE"), score, Translator.tr("POINTS_ABBR")],
-		"%s: %d" % [Translator.tr("CELLS_OPENED_SINCE_MISTAKE"), cells_opened_since_mistake],
-		"%s: %d" % [Translator.tr("MORALITY"), morality]
+		"%s: %d %s" % [TranslationServer.tr("SCORE"), score, TranslationServer.tr("POINTS_ABBR")],
+		"%s: %d" % [TranslationServer.tr("CELLS_OPENED_SINCE_MISTAKE"), cells_opened_since_mistake],
+		"%s: %d" % [TranslationServer.tr("MORALITY"), morality]
 	])
 	
 	if chain and chain.length > 1:
 		parts.append_array([
-			"%s: %d %s" % [Translator.tr("CHAIN_LENGTH"), chain.length, Translator.tr("TURNS")],
-			"%s: %d" % [Translator.tr("CHAIN_VALUE"), chain.value],
-			"%s: %d" % [Translator.tr("CHAIN_SUM"), chain.get_sum()]
+			"%s: %d %s" % [TranslationServer.tr("CHAIN_LENGTH"), chain.length, TranslationServer.tr("TURNS")],
+			"%s: %d" % [TranslationServer.tr("CHAIN_VALUE"), chain.value],
+			"%s: %d" % [TranslationServer.tr("CHAIN_SUM"), chain.get_sum()]
 		])
 	
 	parts.append_array([
-		"%s: %d" % [Translator.tr("CHESTS_OPENED"), chests_opened],
-		"%s: %d" % [Translator.tr("MONSTERS_KILLED"), monsters_killed]
+		"%s: %d" % [TranslationServer.tr("CHESTS_OPENED"), chests_opened],
+		"%s: %d" % [TranslationServer.tr("MONSTERS_KILLED"), monsters_killed]
 	])
 	
 	return "• " + "\n• ".join(parts)

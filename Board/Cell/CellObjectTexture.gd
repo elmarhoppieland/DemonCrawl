@@ -1,4 +1,5 @@
 extends TextureRect
+class_name CellObjectTexture
 
 # ==============================================================================
 @export var background: CellBackground
@@ -33,25 +34,15 @@ var cell_object: CellObject :
 
 var _animation_playing := false
 # ==============================================================================
+@onready var tooltip_grabber: TooltipGrabber = get_child(0)
+# ==============================================================================
 
-func play_flag() -> void:
-	const FLAG_ANIM_DURATION := 0.1
+func _ready() -> void:
+	hide()
 	
-	if background.state == CellBackground.State.OPEN:
-		return
+	await owner.opened
 	
-	texture = get_theme_icon("flag", "Cell")
-	stretch_mode = TextureRect.STRETCH_SCALE
-	
-	await create_tween().tween_method(func(value):
-		var margin_container: MarginContainer = get_parent_control()
-		margin_container.add_theme_constant_override("margin_left", value)
-		margin_container.add_theme_constant_override("margin_right", value)
-		margin_container.add_theme_constant_override("margin_bottom", value)
-		margin_container.add_theme_constant_override("margin_top", value)
-	, size.x / 2, 0.0, FLAG_ANIM_DURATION).finished
-	
-	stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
+	show()
 
 
 func play_anim() -> void:

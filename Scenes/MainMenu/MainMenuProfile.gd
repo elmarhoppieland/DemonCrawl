@@ -5,20 +5,20 @@ class_name MainMenuProfile
 @export var profile_name := "" :
 	set(value):
 		profile_name = value
-		if not name_label:
+		if not is_node_ready():
 			await ready
 		name_label.text = value
 @export var avatar_atlas_position := Vector2i.ZERO :
 	set(value):
 		avatar_atlas_position = value
-		if not avatar:
+		if not is_node_ready():
 			await ready
 		avatar.texture = Avatar.atlas.duplicate()
 		avatar.texture.region.position = Vector2(value) * Avatar.atlas.region.size
 @export var level := 0 :
 	set(value):
 		level = value
-		if not level_label:
+		if not is_node_ready():
 			await ready
 		if value < 0:
 			level_label.text = ""

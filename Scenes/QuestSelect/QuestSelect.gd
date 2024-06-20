@@ -2,13 +2,6 @@ extends Control
 class_name QuestSelect
 
 # ==============================================================================
-static var selected_quest: QuestFile
-static var selected_quest_index := -1 :
-	get:
-		if selected_quest:
-			return selected_quest_index
-		return -1
-# ==============================================================================
 @onready var quest_name_label: Label = %QuestNameLabel
 @onready var lore_label: Label = %LoreLabel
 @onready var begin_button_container: MarginContainer = %BeginButtonContainer
@@ -16,10 +9,7 @@ static var selected_quest_index := -1 :
 # ==============================================================================
 
 func _on_quests_overview_quest_selected(quest: QuestFile, _difficulty: DifficultyFile) -> void:
-	selected_quest = quest
-	selected_quest_index = quest.get_meta("index")
-	
-	if not quest_name_label:
+	if not is_node_ready():
 		await ready
 	
 	if quest.get_meta("locked"):

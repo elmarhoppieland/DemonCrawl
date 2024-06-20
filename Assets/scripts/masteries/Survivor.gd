@@ -20,4 +20,4 @@ func ability() -> void:
 	for i in Stats.max_life - Stats.life:
 		Board.solve_cell()
 	
-	Stats.life = Stats.max_life
+	Stats.set_life(Stats.max_life)

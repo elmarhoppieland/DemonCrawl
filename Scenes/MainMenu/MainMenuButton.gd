@@ -6,7 +6,7 @@ class_name MainMenuButton
 @export var texture: Texture2D :
 	set(value):
 		texture = value
-		if not sprite:
+		if not is_node_ready():
 			await ready
 		sprite.texture = value
 		if value:

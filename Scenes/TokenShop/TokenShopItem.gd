@@ -5,25 +5,25 @@ class_name TokenShopItem
 @export var icon: Texture2D :
 	set(value):
 		icon = value
-		if not icon_rect:
+		if not is_node_ready():
 			await ready
 		icon_rect.texture = value
 @export var item_name := "" :
 	set(value):
 		item_name = value
-		if not name_label:
+		if not is_node_ready():
 			await ready
 		name_label.text = value
 @export var cost := 0 :
 	set(value):
 		cost = value
-		if not cost_label:
+		if not is_node_ready():
 			await ready
 		cost_label.text = str(value)
 @export_multiline var description := "" :
 	set(value):
 		description = value
-		if not tooltip_grabber:
+		if not is_node_ready():
 			await ready
 		tooltip_grabber.text = value
 	get:
@@ -33,7 +33,7 @@ class_name TokenShopItem
 @export_multiline var description_subtext := "" :
 	set(value):
 		description_subtext = value
-		if not tooltip_grabber:
+		if not is_node_ready():
 			await ready
 		tooltip_grabber.subtext = value
 	get:
@@ -56,14 +56,14 @@ signal purchased()
 
 func lock() -> void:
 	locked = true
-	if not animation_player:
+	if not is_node_ready():
 		await ready
 	animation_player.play("lock")
 
 
 func unlock() -> void:
 	locked = false
-	if not animation_player:
+	if not is_node_ready():
 		await ready
 	animation_player.play("unlock")
 
@@ -72,7 +72,7 @@ func purchase() -> void:
 	is_purchased = true
 	purchased.emit()
 	
-	if not animation_player:
+	if not is_node_ready():
 		await ready
 	if hovered:
 		animation_player.play("hover", -1, -INF, true)

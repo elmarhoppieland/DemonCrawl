@@ -1,11 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://bqgqlnp8nk2x2"]
+[gd_scene load_steps=25 format=3 uid="uid://bqgqlnp8nk2x2"]
 
 [ext_resource type="Script" path="res://Scenes/Statbar/Statbar.gd" id="1_nycng"]
 [ext_resource type="Script" path="res://Resources/Avatar.gd" id="2_kk3qc"]
 [ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Resources/Avatar_atlas.tres" id="2_kuo8t"]
-[ext_resource type="Texture2D" uid="uid://or06r6apdhlw" path="res://Resources/ProfileMastery_atlas.tres" id="4_ga4kb"]
 [ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="4_gcjxo"]
 [ext_resource type="Script" path="res://Resources/ProfileMastery.gd" id="5_beiwq"]
+[ext_resource type="Texture2D" uid="uid://b6vb6b2h5jag4" path="res://Assets/sprites/Masteries.png" id="5_xups4"]
 [ext_resource type="Script" path="res://Resources/XPBar.gd" id="6_fmgjo"]
 [ext_resource type="Script" path="res://Resources/ProfileNameLabel.gd" id="7_8d5yt"]
 [ext_resource type="Script" path="res://Resources/ProfileLevelLabel.gd" id="8_flfi7"]
@@ -15,6 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://db1krtggvj6tl" path="res://Scenes/Statbar/Stats.tscn" id="9_eg8cx"]
 [ext_resource type="Script" path="res://Resources/Icon.gd" id="10_0f8tq"]
 [ext_resource type="Texture2D" uid="uid://ca5kqj441ftyr" path="res://Assets/sprites/Inventory.png" id="14_7bs0x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dv7i"]
+atlas = ExtResource("5_xups4")
+region = Rect2(80, 80, 16, 16)
+script = ExtResource("10_0f8tq")
+name = "mastery/none"
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hxu7"]
 font_size = 8
@@ -153,7 +159,7 @@ layout_mode = 2
 [node name="ProfileMastery" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("4_ga4kb")
+texture = SubResource("AtlasTexture_4dv7i")
 script = ExtResource("5_beiwq")
 
 [node name="Control2" type="Control" parent="MarginContainer/HBoxContainer"]
@@ -321,7 +327,7 @@ anchor_right = 0.25
 anchor_bottom = 0.25
 offset_left = 320.0
 offset_right = 397.0
-offset_bottom = 2500.0
+offset_bottom = 3040.0
 grow_horizontal = 0
 grow_vertical = 2
 

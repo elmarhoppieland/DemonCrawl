@@ -5,7 +5,7 @@ class_name StageClearReward
 @export var reward_name := "" :
 	set(value):
 		reward_name = value
-		if not icon:
+		if not is_node_ready():
 			await ready
 		
 		icon.texture.name = "stage_reward_" + value
@@ -31,17 +31,17 @@ func instant() -> void:
 
 
 static func create(_reward_name: String = "") -> StageClearReward:
-	var instance: StageClearReward = ResourceLoader.load("res://Board/StageClearReward.tscn").instantiate()
+	var instance: StageClearReward = ResourceLoader.load("res://Board/FinishPopup/StageClearReward.tscn").instantiate()
 	instance.reward_name = _reward_name
 	return instance
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == &"show":
-		tooltip_grabber.text = "%s +%d%s\n[color=gray]%s[/color]" % [
+		tooltip_grabber.text = "%s +%d%s" % [
 			tr("STAGE_REWARD_" + reward_name.to_upper()),
 			amount,
-			tr("XP"),
-			tr("STAGE_REWARD_" + reward_name.to_upper() + "_SUBTEXT")
+			tr("XP")
 		]
+		tooltip_grabber.subtext = tr("STAGE_REWARD_" + reward_name.to_upper() + "_SUBTEXT")
 		shown = true

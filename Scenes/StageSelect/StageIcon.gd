@@ -10,7 +10,7 @@ var stage: Stage :
 	set(value):
 		stage = value
 		
-		if null in [_icon, _lock, _checkmark]:
+		if not is_node_ready():
 			await ready
 		
 		_lock.visible = stage.locked
@@ -32,7 +32,7 @@ var show_icon := false :
 	set(value):
 		show_icon = value
 		
-		if null in [_icon, _lock, _shadow]:
+		if not is_node_ready():
 			await ready
 		
 		_shadow.visible = show_icon

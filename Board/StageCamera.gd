@@ -52,3 +52,7 @@ static func get_zoom_level() -> Vector2:
 
 static func focus_progress() -> void:
 	_instance.position = Board.get_progress_cell().board_position * Board.CELL_SIZE
+
+
+static func get_center() -> Vector2:
+	return _instance.position

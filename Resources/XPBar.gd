@@ -27,9 +27,12 @@ func _enter_tree() -> void:
 	custom_minimum_size.y = 16
 
 
-# TODO
+# TODO: not 100% accurate yet
 static func get_next_level_xp() -> int:
-	return 100
+	if level < 23:
+		return (level + 13) * level / 2 + 93
+	
+	return (level + 80) * 5
 
 
 static func _get_value(height: int) -> int:

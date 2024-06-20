@@ -1,8 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://c3vf0fdejs72s"]
+[gd_scene load_steps=22 format=3 uid="uid://c3vf0fdejs72s"]
 
 [ext_resource type="Script" path="res://Scenes/StageSelect/StageDetails.gd" id="1_fk3lx"]
 [ext_resource type="Texture2D" uid="uid://dc6bspeif1psv" path="res://Assets/skins/alcove/bg.png" id="2_24oak"]
-[ext_resource type="Material" uid="uid://cb7nep71fmj1r" path="res://Board/TextOutline.tres" id="2_75fbn"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="3_aemx4"]
 [ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="3_fits4"]
 [ext_resource type="FontFile" uid="uid://7ynms6dclfsi" path="res://Assets/fonts/04B_03__.TTF" id="3_oyqtb"]
@@ -240,7 +239,6 @@ theme_override_constants/margin_top = -2
 
 [node name="NameLabel" type="Label" parent="VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
-material = ExtResource("2_75fbn")
 layout_mode = 2
 text = "Forest"
 label_settings = SubResource("LabelSettings_6fp47")
@@ -374,7 +372,6 @@ vertical_alignment = 2
 
 [node name="LoreLabel" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
-material = ExtResource("2_75fbn")
 layout_mode = 2
 text = "Play more stages to reveal this stage."
 

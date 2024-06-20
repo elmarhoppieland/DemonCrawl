@@ -5,7 +5,7 @@ class_name Toast
 @export var icon: Texture2D :
 	set(value):
 		icon = value
-		if not icon_rect:
+		if not is_node_ready():
 			await ready
 		icon_rect.texture = icon
 	get:
@@ -15,7 +15,7 @@ class_name Toast
 @export_multiline var text := "" :
 	set(value):
 		text = value
-		if not label:
+		if not is_node_ready():
 			await ready
 		label.text = value
 	get:
@@ -58,6 +58,6 @@ static func create(_text: String = "", _icon: Texture2D = null) -> Toast:
 
 
 func _on_margin_container_resized() -> void:
-	if not base_container:
+	if not is_node_ready():
 		await ready
 	custom_minimum_size = base_container.size

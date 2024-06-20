@@ -6,7 +6,7 @@ var stage: Stage :
 	set(value):
 		stage = value
 		
-		if not _is_ready:
+		if not is_node_ready():
 			await ready
 		
 		_info_container.hide()
@@ -59,8 +59,6 @@ var hovered := false
 @onready var _monster_label: Label = %MonsterLabel
 @onready var _size_label: Label = %SizeLabel
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
-
-@onready var _is_ready := true
 # ==============================================================================
 signal interacted()
 # ==============================================================================

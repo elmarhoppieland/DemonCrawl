@@ -19,7 +19,7 @@ const PRESET_DATA := {
 	set(value):
 		text = value
 		
-		if null in [particle_label, particle_viewport]:
+		if not is_node_ready():
 			await ready
 		
 		particle_label.text = text
@@ -33,7 +33,7 @@ const PRESET_DATA := {
 	set(value):
 		text_color_preset = value
 		
-		if not particle_label:
+		if not is_node_ready():
 			await ready
 		
 		for key in PRESET_DATA[value]:

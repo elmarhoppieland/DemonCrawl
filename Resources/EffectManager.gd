@@ -8,6 +8,13 @@ static var objects: Array[Object] = []
 static func register_object(object: Object, allow_duplicates: bool = false) -> void:
 	if not object in objects or allow_duplicates:
 		objects.append(object)
+	
+	if object is Node:
+		object.tree_exited.connect(unregister_object.bind(object), CONNECT_ONE_SHOT)
+
+
+static func unregister_object(object: Object) -> void:
+	objects.erase(object)
 
 
 static func change_stat(stat: StringName, value: Variant) -> Variant:
@@ -23,7 +30,7 @@ static func propagate_call(method_name: StringName, args: Array = []) -> void:
 
 
 static func propagate_value(method_name: StringName, args: Array, initial_value: Variant, force_same_type: bool = true) -> Variant:
-	args.append(initial_value)
+	args.push_front(initial_value)
 	
 	for object in objects:
 		if not object.has_method(method_name):
@@ -36,9 +43,9 @@ static func propagate_value(method_name: StringName, args: Array, initial_value:
 			Debug.log_error("Method '%s' on object '%s' returned an incorrect value type. Should be '%s', but '%s' was returned." % [method_name, object, type_string(typeof(initial_value)), type_string(typeof(returned))])
 			continue
 		
-		args[-1] = returned
+		args[0] = returned
 	
-	return args.pop_back()
+	return args.pop_front()
 
 
 static func propagate_posnum(method_name: StringName, args: Array, initial_value: Variant, force_same_type: bool = true) -> Variant:

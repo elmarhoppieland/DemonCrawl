@@ -4,13 +4,13 @@ extends MarginContainer
 @export_multiline var hover_text := "" :
 	set(value):
 		hover_text = value
-		if not tooltip_grabber:
+		if not is_node_ready():
 			await ready
 		tooltip_grabber.text = value
 @export_multiline var hover_subtext := "" :
 	set(value):
 		hover_subtext = value
-		if not tooltip_grabber:
+		if not is_node_ready():
 			await ready
 		tooltip_grabber.subtext = value
 # ==============================================================================
