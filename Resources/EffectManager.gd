@@ -22,6 +22,8 @@ static func change_stat(stat: StringName, value: Variant) -> Variant:
 
 
 static func propagate_call(method_name: StringName, args: Array = []) -> void:
+	_Instance.called.emit(method_name, args)
+	
 	for object in objects:
 		if not object.has_method(method_name):
 			continue
@@ -68,3 +70,26 @@ static func propagate_posnum(method_name: StringName, args: Array, initial_value
 			break
 	
 	return maxi(args.pop_front(), 0)
+
+
+static func await_call(method_name: StringName) -> Array:
+	var args := [null, null]
+	
+	while true:
+		_Instance.called.connect(func(method: StringName, signal_args: Array):
+			args[0] = method
+			args[1] = signal_args
+		)
+		await _Instance.called
+		if args[0] == method_name:
+			break
+	
+	return args[1]
+
+
+class _Instance:
+	static var _instance := _Instance.new()
+	static var called: Signal :
+		get:
+			return _instance._called
+	signal _called(method_name: StringName, args: Array)

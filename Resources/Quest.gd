@@ -8,6 +8,19 @@ static var quest_name: String = SavesManager.get_value("quest_name", Quest, "") 
 static var stages: Array[Stage] = SavesManager.get_value("stages", Quest, [] as Array[Stage]) ## The stages in the quest.
 # ==============================================================================
 
+static func start_new(rng: RandomNumberGenerator) -> void:
+	QuestsOverview.selected_quest.pack().generate(rng)
+	
+	Stats.max_life = QuestsOverview.selected_difficulty.get_starting_lives()
+	Stats.life = Stats.max_life
+	Stats.defense = 0
+	Stats.coins = 0
+	
+	EffectManager.propagate_call("quest_start")
+	
+	Toasts.add_debug_toast("Quest started: %s on difficulty %s" % [TranslationServer.tr(Quest.quest_name), QuestsOverview.selected_difficulty.get_name()])
+
+
 static func unlock_next_stage(stage: Stage, skip_special_stages: bool) -> void:
 	var index := stages.find(stage) + 1
 	if index >= stages.size():
@@ -21,6 +34,8 @@ static func unlock_next_stage(stage: Stage, skip_special_stages: bool) -> void:
 
 
 static func finish() -> void:
+	EffectManager.propagate_call("quest_finish")
+	
 	stages.clear()
 	
 	PlayerFlags.add_flag("%s/%s" % [

@@ -155,6 +155,7 @@ DCButton/colors/cancel = Color(1, 0, 0, 1)
 DCButton/colors/confirm = Color(0.0627451, 0.87451, 0.501961, 1)
 DCButton/colors/general = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 0
 Label/constants/outline_size = 3
 LineEdit/constants/caret_width = 0
 LineEdit/styles/focus = SubResource("StyleBoxTexture_yxumr")

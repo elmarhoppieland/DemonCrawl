@@ -398,6 +398,7 @@ script = ExtResource("7_kw7wy")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/HBoxContainer/ViewBoardButton"]
 modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -415,12 +416,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/normal = SubResource("StyleBoxTexture_v7a8x")
+theme_override_styles/hover = SubResource("StyleBoxTexture_v7a8x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v7a8x")
 text = "RESTART"
 icon = SubResource("AtlasTexture_83vho")
 script = ExtResource("7_kw7wy")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/HBoxContainer/RestartButton"]
 modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -438,6 +442,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/normal = SubResource("StyleBoxTexture_8lixv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_v7a8x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v7a8x")
 text = "RETURN_TO_MENU"
 icon = SubResource("AtlasTexture_quwxm")
 icon_alignment = 2
@@ -445,6 +451,7 @@ script = ExtResource("7_kw7wy")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Node2D/ContentsAnchor/MarginContainer/VBoxContainer/HBoxContainer/ReturnToMenuButton"]
 modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

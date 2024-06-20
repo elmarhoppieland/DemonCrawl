@@ -24,6 +24,7 @@ Debug="res://Resources/Debug/Debug.tscn"
 Translator="res://Resources/Singletons/Translator.gd"
 Toasts="res://Scenes/Singletons/Toasts.tscn"
 DeathPopup="res://Board/DeathPopup/DeathPopup.tscn"
+MasteryUnlockPopup="res://Resources/MasteryUnlockPopup.tscn"
 
 [debug]
 

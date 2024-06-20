@@ -16,16 +16,7 @@ func _ready() -> void:
 	
 	var rng := RandomNumberGenerator.new()
 	if Quest.stages.is_empty():
-		QuestsOverview.selected_quest.pack().generate(rng)
-		
-		Stats.max_life = QuestsOverview.selected_difficulty.get_starting_lives()
-		Stats.life = Stats.max_life
-		Stats.defense = 0
-		Stats.coins = 0
-		
-		EffectManager.propagate_call("quest_start")
-		
-		Toasts.add_debug_toast("Quest started: %s on difficulty %s" % [tr(Quest.quest_name), QuestsOverview.selected_difficulty.get_name()])
+		Quest.start_new(rng)
 	
 	if not selected_stage in Quest.stages:
 		selected_stage = Quest.stages[0]
@@ -57,8 +48,3 @@ func _ready() -> void:
 		
 		if not stage is SpecialStage:
 			AssetManager.preload_skin_asset_pack(stage.name)
-	
-	#if owner:
-		#await owner.ready
-	#await get_tree().process_frame
-	#_icon_flow_container.get_child(0).select()

@@ -191,6 +191,8 @@ func open() -> void:
 	
 	opened.emit()
 	
+	EffectManager.propagate_call("cell_open", [self])
+	
 	if cell_object and cell_object is CellMonster:
 		return
 	
