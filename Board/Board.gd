@@ -57,7 +57,10 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	Statbar.add_item(preload("res://Assets/items/Apple.gd").new())
+	EffectManager.propagate_call("stage_enter")
+	
+	Inventory.gain_item(preload("res://Assets/items/Apple.gd").new())
+	Inventory.gain_item(preload("res://Assets/items/Minion.gd").new())
 	
 	AssetManager.theme = StagesOverview.selected_stage.name
 	theme = AssetManager.load_theme(Theme.new())
@@ -108,6 +111,8 @@ static func start_board(cell: Cell) -> void:
 	
 	Board.started = true
 	Board.mutable = true
+	
+	EffectManager.propagate_call("board_begin")
 
 
 ## Calculates the Board's 3BV value. This is called at the start of a stage, when it has just been generated.
@@ -165,9 +170,10 @@ static func get_reward_types() -> PackedStringArray:
 		if stage == StagesOverview.selected_stage:
 			break
 		if stage is SpecialStage:
-			if thrifty_count > 1:
-				types.append("thrifty")
 			thrifty_count += 1
+			if thrifty_count >= 3:
+				types.append("thrifty")
+				break
 	
 	for cell in get_cells():
 		if not "charitable" in types and cell.cell_object and cell.cell_object.is_charitable():
@@ -254,9 +260,21 @@ static func get_progress_cell() -> Cell:
 	return null
 
 
-## [b]Not implemented[/b]. Solves a random cell, flagging it if it has a monster or unflagging it if not.
+## Solves a random cell, flagging it if it has a monster or unflagging it if not.
 static func solve_cell() -> void:
-	pass
+	var cells := get_cells().filter(func(cell: Cell):
+		return not cell.revealed and cell.has_monster() != cell.is_flagged()
+	)
+	
+	if cells.is_empty():
+		return
+	
+	var cell_to_solve: Cell = cells[RNG.randi(rng) % cells.size()]
+	
+	if cell_to_solve.has_monster():
+		cell_to_solve.flag(false)
+	else:
+		cell_to_solve.unflag()
 
 
 ## Returns the cell at the given map position. Returns [code]null[/code] if the cell does not exist.

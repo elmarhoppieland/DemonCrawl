@@ -17,7 +17,7 @@ func damage(amount: int, source: Object) -> int:
 	if level < 1:
 		return amount
 	if amount < 1:
-		return 0
+		return amount
 	if not source is CellMonster:
 		return amount
 	

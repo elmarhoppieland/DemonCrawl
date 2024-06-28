@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://c3eqrgjt10xcv"]
+
+[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_hp0y0"]
+
+[resource]
+script = ExtResource("1_hp0y0")
+name = "ITEM_LIQUID_GOLD"
+description = "ITEM_LIQUID_GOLD_DESCRIPTION"
+type = 0
+cost = 5
+atlas_region = Rect2(208, 0, 16, 16)

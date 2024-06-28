@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://c68q4dbcp4cg"]
+
+[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_p3igw"]
+
+[resource]
+script = ExtResource("1_p3igw")
+name = "ITEM_APPLE"
+description = "ITEM_APPLE_DESCRIPTION"
+type = 1
+cost = 5
+atlas_region = Rect2(16, 0, 16, 16)

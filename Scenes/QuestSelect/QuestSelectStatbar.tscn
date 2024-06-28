@@ -1,11 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://di6wvg6vsnpk6"]
+[gd_scene load_steps=24 format=3 uid="uid://di6wvg6vsnpk6"]
 
 [ext_resource type="Script" path="res://Scenes/QuestSelect/QuestSelectStatbar.gd" id="1_nscr4"]
 [ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Resources/Avatar_atlas.tres" id="1_tyv50"]
 [ext_resource type="Texture2D" uid="uid://c70a7esij38nw" path="res://Assets/sprites/equipment_bg.png" id="2_71fui"]
 [ext_resource type="Script" path="res://Resources/Avatar.gd" id="2_jw1sc"]
 [ext_resource type="Script" path="res://Resources/XPBar.gd" id="3_hdwrk"]
-[ext_resource type="Texture2D" uid="uid://pjo2oft7iftn" path="res://Assets/sprites/chests/default.png" id="4_hq0h4"]
 [ext_resource type="Script" path="res://Resources/ProfileNameLabel.gd" id="4_itjbr"]
 [ext_resource type="Script" path="res://Resources/ProfileLevelLabel.gd" id="5_1gbmc"]
 [ext_resource type="Texture2D" uid="uid://dd3nj7kj6825s" path="res://Assets/sprites/equipment_edit.png" id="6_84hrg"]
@@ -13,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b6vb6b2h5jag4" path="res://Assets/sprites/Masteries.png" id="8_mxn6j"]
 [ext_resource type="Script" path="res://Resources/ProfileMastery.gd" id="8_y3cea"]
 [ext_resource type="Script" path="res://Resources/ProfileSpecialChest.gd" id="10_avyii"]
+[ext_resource type="Texture2D" uid="uid://v7rhhomjykkx" path="res://Assets/sprites/chests.png" id="11_lkdpv"]
 [ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="11_nvijv"]
 [ext_resource type="Script" path="res://Resources/Icon.gd" id="12_u62r3"]
 
@@ -27,11 +27,17 @@ font_color = Color(0.745098, 0.745098, 0.745098, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ay4o0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8f3t"]
 atlas = ExtResource("8_mxn6j")
 region = Rect2(80, 80, 16, 16)
 script = ExtResource("12_u62r3")
 name = "mastery/none"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvtrs"]
+atlas = ExtResource("11_lkdpv")
+region = Rect2(0, 0, 16, 16)
+script = ExtResource("12_u62r3")
+name = "chest/default"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_auwo4"]
 atlas = ExtResource("11_nvijv")
@@ -98,6 +104,7 @@ script = ExtResource("2_jw1sc")
 custom_minimum_size = Vector2(4, 16)
 layout_mode = 2
 size_flags_vertical = 1
+max_value = 93.0
 value = 40.0
 rounded = true
 fill_mode = 3
@@ -116,6 +123,7 @@ theme_override_constants/separation = 1
 
 [node name="ProfileNameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+text = "<profile-name>"
 label_settings = SubResource("LabelSettings_j7eoj")
 script = ExtResource("4_itjbr")
 
@@ -150,7 +158,7 @@ theme_override_constants/separation = 0
 
 [node name="ProfileMastery" type="TextureRect" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_ay4o0")
+texture = SubResource("AtlasTexture_n8f3t")
 script = ExtResource("8_y3cea")
 
 [node name="Control" type="Control" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
@@ -160,8 +168,9 @@ layout_mode = 2
 [node name="ProfileSpecialChest" type="TextureRect" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(16, 15)
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 4
-texture = ExtResource("4_hq0h4")
+texture = SubResource("AtlasTexture_gvtrs")
 stretch_mode = 3
 script = ExtResource("10_avyii")
 

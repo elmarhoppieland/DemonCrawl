@@ -41,6 +41,9 @@ func _process(delta: float) -> void:
 
 
 static func shake() -> void:
+	if not _instance:
+		return
+	
 	_instance.shake_enabled = true
 	await _instance.get_tree().create_timer(_instance.shake_duration).timeout
 	_instance.shake_enabled = false
@@ -55,4 +58,8 @@ static func focus_progress() -> void:
 
 
 static func get_center() -> Vector2:
-	return _instance.position
+	if _instance:
+		return _instance.position
+	
+	# we need any node to get the main viewport here, Focus works here but anything else also works
+	return Focus.get_viewport().size / 2

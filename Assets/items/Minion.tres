@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://dquw3e31p8cxd"]
+
+[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_qsstj"]
+
+[resource]
+script = ExtResource("1_qsstj")
+name = "ITEM_MINION"
+description = "ITEM_MINION_DESCRIPTION"
+type = 1
+cost = 0
+atlas_region = Rect2(32, 0, 16, 16)

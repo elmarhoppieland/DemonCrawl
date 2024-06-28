@@ -11,14 +11,19 @@ static var _request_blocker := RequestBlocker.new()
 @onready var tooltip_grabber: TooltipGrabber = %TooltipGrabber
 # ==============================================================================
 
+func _enter_tree() -> void:
+	_instance = self
+
+
 static func show_unlock(mastery: String, level: int) -> void:
 	await _request_blocker.wait()
 	
 	_request_blocker.block()
 	
-	mastery = "MASTERY_" + mastery.to_snake_case().to_upper()
+	mastery = mastery.trim_prefix("MASTERY_").to_snake_case().to_lower()
 	_instance.mastery_icon.texture.name = "mastery%d/%s" % [level, mastery]
-	_instance.tooltip_grabber.text = "MASTERY_" + mastery + " " + RomanNumeral.convert_to_roman(level)
+	mastery = "MASTERY_" + mastery.to_upper()
+	_instance.tooltip_grabber.text = _instance.tr(mastery) + " " + RomanNumeral.convert_to_roman(level)
 	
 	var description_bullets := PackedStringArray()
 	for i in level:

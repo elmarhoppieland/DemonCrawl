@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://trqmkx367t1j"]
+
+[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_flem5"]
+
+[resource]
+script = ExtResource("1_flem5")
+name = "ITEM_EXTRA_POCKET"
+description = "ITEM_EXTRA_POCKET_DESCRIPTION"
+type = 0
+cost = 4
+atlas_region = Rect2(160, 0, 16, 16)

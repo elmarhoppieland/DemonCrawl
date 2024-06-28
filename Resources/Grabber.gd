@@ -5,6 +5,16 @@ class_name Grabber
 static var _main_grabber: Grabber
 # ==============================================================================
 @export var main := false
+@export var enabled := true :
+	set(value):
+		enabled = value
+		
+		if not enabled:
+			if _mouse_inside:
+				_mouse_inside = false
+				unhover()
+			
+			disable()
 # ==============================================================================
 var _mouse_inside := false
 # ==============================================================================
@@ -22,7 +32,8 @@ func _init(_main: bool = false) -> void:
 
 func _ready() -> void:
 	hovered.connect(func():
-		_mouse_inside = true
+		if enabled:
+			_mouse_inside = true
 	)
 	unhovered.connect(func():
 		_mouse_inside = false
@@ -33,13 +44,16 @@ func _ready() -> void:
 	unhovered.connect(unhover)
 	second_interacted.connect(second_interact)
 	
-	if main:
+	if main and enabled:
 		await get_tree().process_frame
 		interacted.emit()
 		_main_grabber = self
 
 
 func _process(_delta: float) -> void:
+	if not enabled:
+		return
+	
 	if _mouse_inside and Input.is_action_just_pressed("interact"):
 		interacted.emit()
 	if _mouse_inside and Input.is_action_just_pressed("secondary_interact"):
@@ -59,6 +73,10 @@ func hover() -> void:
 
 
 func unhover() -> void:
+	pass
+
+
+func disable() -> void:
 	pass
 
 

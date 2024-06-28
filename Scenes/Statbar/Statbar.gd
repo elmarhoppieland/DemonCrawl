@@ -8,24 +8,17 @@ const _BUTTON_HOVER_ANIM_DURATION := 0.1
 const _INVENTORY_OPEN_CLOSE_ANIM_DURATION := 0.2
 # ==============================================================================
 static var _instance: Statbar
-static var items: Array[Item] = []
 # ==============================================================================
 var _inventory_button_hovered := false
 var _inventory_open := false
 # ==============================================================================
 @onready var _stats_tooltip_grabber: TooltipGrabber = %StatsTooltipGrabber
 @onready var _inventory_icon_hover: TextureRect = %Hover
-@onready var _item_grid: GridContainer = %ItemGrid
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
 
 func _enter_tree() -> void:
 	_instance = self
-
-
-func _ready() -> void:
-	for item in items:
-		_add_item_node(item)
 
 
 func _process(_delta: float) -> void:
@@ -44,14 +37,8 @@ func _inventory_toggle() -> void:
 	_inventory_open = not _inventory_open
 
 
-func _add_item_node(item: Item) -> void:
-	_instance._item_grid.add_child(item.create_node())
-
-
-## Adds an item to the player's inventory. Does [b]not[/b] call any methods on the item.
-static func add_item(item: Item) -> void:
-	items.append(item)
-	_instance._add_item_node(item)
+static func inventory_toggle() -> void:
+	_instance._inventory_toggle()
 
 
 func _on_inventory_icon_mouse_entered() -> void:

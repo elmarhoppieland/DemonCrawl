@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://cf7mv45jarf4u"]
+
+[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_d605q"]
+
+[resource]
+script = ExtResource("1_d605q")
+name = "ITEM_LOUPE"
+description = "ITEM_LOUPE_DESCRIPTION"
+type = 0
+cost = 4
+atlas_region = Rect2(176, 0, 16, 16)

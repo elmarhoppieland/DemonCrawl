@@ -80,7 +80,7 @@ static func change_life(amount: int, source: Object = null) -> void:
 	if signi(amount) != original_sign:
 		return
 	
-	life += amount
+	life = mini(life + amount, max_life)
 	
 	if life > 0:
 		return
@@ -99,6 +99,11 @@ static func change_life(amount: int, source: Object = null) -> void:
 
 static func set_life(value: int, source: Object = null) -> void:
 	change_life(value - life, source)
+
+
+static func spend_coins(amount: int, dest: Object = null) -> void:
+	amount = EffectManager.propagate_posnum("spend_coins", [dest], amount)
+	coins -= amount
 
 
 static func get_coin_position() -> Vector2:

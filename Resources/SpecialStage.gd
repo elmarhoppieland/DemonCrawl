@@ -25,6 +25,8 @@ var type := Type.ITEM_SHOP
 var bg: Texture2D
 var icon: Texture2D
 var icon_small: Texture2D
+
+var dest_scene: PackedScene
 # ==============================================================================
 
 func create_big_icon() -> ImageTexture:

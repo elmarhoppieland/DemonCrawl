@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://d3oedcj0gq75p"]
+
+[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_1nc6h"]
+
+[resource]
+script = ExtResource("1_1nc6h")
+name = "ITEM_BONES"
+description = "ITEM_BONES_DESCRIPTION"
+type = 1
+cost = 0
+atlas_region = Rect2(48, 0, 16, 16)

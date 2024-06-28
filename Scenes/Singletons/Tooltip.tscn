@@ -93,7 +93,7 @@ _data = {
 }
 
 [node name="Tooltip" type="CanvasLayer"]
-layer = 25
+layer = 100
 offset = Vector2(0, 16)
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 16)

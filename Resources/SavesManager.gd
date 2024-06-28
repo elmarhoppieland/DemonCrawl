@@ -10,6 +10,14 @@ static var save_path := "" :
 		save_path = value
 		if different:
 			_reload_file()
+			save_changed.emit()
+
+static var save_changed: Signal :
+	get:
+		return _Instance.save_changed
+static var saved: Signal :
+	get:
+		return _Instance.saved
 
 static var _save_cfg: ConfigFile
 static var _references := {} # [-->] {<reference_object>: {<prop_name>: <prop_default>}}
@@ -99,6 +107,8 @@ static func save() -> void:
 	_save_cfg.save(save_path)
 	
 	Debug.log_event("Saved the current data to disk (at path '%s')" % save_path, Color.DARK_SALMON)
+	
+	saved.emit()
 
 
 static func save_settings() -> void:
@@ -280,3 +290,16 @@ class ImportResult:
 	func _init(_found: bool, _value: Variant = null) -> void:
 		value = _value
 		found = _found
+
+
+class _Instance:
+	static var _instance := _Instance.new()
+	static var save_changed: Signal :
+		get:
+			return _instance._save_changed
+	static var saved: Signal :
+		get:
+			return _instance._saved
+	
+	signal _save_changed()
+	signal _saved()

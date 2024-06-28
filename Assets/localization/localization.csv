@@ -100,9 +100,13 @@ STAGE_REWARD_UNTOUCHABLE;UNTOUCHABLE
 STAGE_REWARD_UNTOUCHABLE_SUBTEXT;You took no damage.
 STAGE_REWARD_FAST;FAST
 STAGE_REWARD_THRIFTY;THRIFTY
+STAGE_REWARD_THRIFTY_SUBTEXT;You skipped three or more special stages.
 STAGE_REWARD_CHARITABLE;CHARITABLE
 STAGE_REWARD_CHARITABLE_SUBTEXT;You left some loot behind. How kind of you!
 STAGE_REWARD_HEARTLESS;HEARTLESS
+CHOOSE_ITEM;CHOOSE AN ITEM:
+BUY_ITEM;BUY NOW!
+LEAVE;LEAVE
 STATS_YOUR_OVERVIEW;YOUR OVERVIEW
 SCORE;Score
 POINTS_ABBR;pts
@@ -115,6 +119,8 @@ CHAIN_SUM;Chain sum
 CHESTS_OPENED;Chests opened
 MONSTERS_KILLED;Monsters killed
 XP;XP
+MASTERY_ACHIEVED;mastery achieved!
+TREASURE_FOUND;treasure found!
 LIVES_HOVER;LIVES
 LIVES_HOVER_SUBTEXT;Make sure you have at least 1.
 DEFENSE_HOVER;DEFENSE
@@ -165,3 +171,19 @@ STAGE_BRINK;Brink
 LORE_BRINK;In pursuit of the void.
 STAGE_ITEM_SHOP;Item Shop
 LORE_ITEM_SHOP;Spend coins to buy items.
+ITEM_BANANA_PEEL;BANANA PEEL
+ITEM_BANANA_PEEL_DESCRIPTION;Enchant target visible cell: each turn, kill any living object in this cell.
+ITEM_BONES;BONES
+ITEM_BONES_DESCRIPTION;Bury in a random cell to give it Sanctified, then restore lives equal to the cell's value.
+ITEM_APPLE;APPLE
+ITEM_APPLE_DESCRIPTION;Restore 1 life.
+ITEM_TRAPPER;TRAPPER
+ITEM_TRAPPER_DESCRIPTION;Flag a monster when you begin a stage.
+ITEM_EXTRA_POCKET;EXTRA POCKET
+ITEM_EXTRA_POCKET_DESCRIPTION;You may find duplicate items. When you enter a stage, reduce the minimum power by your highest number of duplicates.
+ITEM_LOUPE;LOUPE
+ITEM_LOUPE_DESCRIPTION;Diamonds are worth 1 more coin.
+ITEM_WALLET;WALLET
+ITEM_WALLET_DESCRIPTION;Item Shops have 1 extra item.
+ITEM_LIQUID_GOLD;LIQUID GOLD
+ITEM_LIQUID_GOLD_DESCRIPTION;When you spend coins, this transforms into an item worth the amount spent.

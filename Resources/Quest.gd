@@ -16,6 +16,8 @@ static func start_new(rng: RandomNumberGenerator) -> void:
 	Stats.defense = 0
 	Stats.coins = 0
 	
+	PlayerStats.reset()
+	
 	EffectManager.propagate_call("quest_start")
 	
 	Toasts.add_debug_toast("Quest started: %s on difficulty %s" % [TranslationServer.tr(Quest.quest_name), QuestsOverview.selected_difficulty.get_name()])

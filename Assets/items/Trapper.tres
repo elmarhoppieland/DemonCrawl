@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://duvcmkc55aogx"]
+
+[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_i7rl8"]
+
+[resource]
+script = ExtResource("1_i7rl8")
+name = "ITEM_TRAPPER"
+description = "ITEM_TRAPPER_DESCRIPTION"
+type = 0
+cost = 2
+atlas_region = Rect2(144, 0, 16, 16)

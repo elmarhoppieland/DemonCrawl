@@ -25,9 +25,12 @@ Translator="res://Resources/Singletons/Translator.gd"
 Toasts="res://Scenes/Singletons/Toasts.tscn"
 DeathPopup="res://Board/DeathPopup/DeathPopup.tscn"
 MasteryUnlockPopup="res://Resources/MasteryUnlockPopup.tscn"
+MouseCastSprite="res://Resources/MouseCastSprite.tscn"
+ChestPopup="res://Board/ChestPopup/ChestPopup.tscn"
 
 [debug]
 
+file_logging/log_path="user://.godot/logs/godot.log"
 gdscript/warnings/incompatible_ternary=0
 gdscript/warnings/integer_division=0
 

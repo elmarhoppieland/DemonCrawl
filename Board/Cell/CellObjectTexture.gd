@@ -32,7 +32,7 @@ var cell_object: CellObject :
 		texture = null
 		stop_anim()
 
-var _animation_playing := false
+var _tween: Tween
 # ==============================================================================
 @onready var tooltip_grabber: TooltipGrabber = get_child(0)
 # ==============================================================================
@@ -53,13 +53,12 @@ func play_anim() -> void:
 	if not texture or not texture is TextureSequence:
 		return
 	
-	_animation_playing = true
-	while true:
-		await get_tree().create_timer(anim_frame_duration).timeout
-		if not _animation_playing:
-			break
-		texture.next()
+	stop_anim()
+	_tween = create_tween().set_loops()
+	_tween.tween_interval(anim_frame_duration)
+	_tween.tween_callback(texture.next)
 
 
 func stop_anim() -> void:
-	_animation_playing = false
+	if _tween:
+		_tween.kill()

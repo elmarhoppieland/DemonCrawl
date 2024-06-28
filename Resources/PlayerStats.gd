@@ -62,6 +62,16 @@ static func process_chain(value: int) -> void:
 		chain.length = 1
 
 
+static func reset() -> void:
+	score = 0
+	cells_opened_since_mistake = 0
+	morality = 0
+	chain = null
+	chests_opened = 0
+	monsters_killed = 0
+	pathfinding = 0
+
+
 class ChainData:
 	var length := 0
 	var value := 0

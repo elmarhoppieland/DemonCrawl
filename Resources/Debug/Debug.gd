@@ -11,13 +11,20 @@ enum DebugSide {
 # ==============================================================================
 const META_PREFIX := "debug_"
 const DEBUG_FILE_PATH := "user://overlay.debug"
-# ==============================================================================
-static var all_objects: Array[Object] = []
 
-static var _instance: Debug
+const LOG_DIR := "user://logs"
+const LOG_FILE_PATH_BASE := LOG_DIR + "/log%d.txt"
 # ==============================================================================
+static var max_log_count: int = SavesManager.get_setting("max_log_count", Debug, 100)
+
+static var all_objects: Array[Object] = []
 static var left_object: Object
 static var right_object: Object
+
+static var _instance: Debug
+
+static var _log_queue := ""
+static var _log_file_idx := -1
 
 var _debug_lines_left: Array[Dictionary] = []
 var _debug_lines_right: Array[Dictionary] = []
@@ -40,6 +47,9 @@ func _ready() -> void:
 	
 	left_object = get_tree().current_scene
 	
+	Debug._init_log_file()
+	SavesManager.saved.connect(Debug._flush_log_file)
+	
 	update()
 
 
@@ -50,13 +60,21 @@ func _process(_delta: float) -> void:
 	_handle_toggle()
 
 
-## Logs [code]message[/code], adding a new line in the log file <NOT IMPLEMENTED>,
-## and, if [code]print_to_console[/code] is [code]true[/code], prints to the console.
-static func log_event(message: String, color: Color = Color.AQUA) -> void:
-	if OS.is_debug_build():
+func _exit_tree() -> void:
+	Debug.log_event("Closing DemonCrawl", Color.GRAY)
+	Debug._flush_log_file()
+
+
+## Logs [code]message[/code], adding a new line in the log file, and if
+## [code]print_to_console[/code] is [code]true[/code] and this is a debug build,
+## prints to the console.
+static func log_event(message: String, color: Color = Color.AQUA, print_to_console: bool = true) -> void:
+	if OS.is_debug_build() and print_to_console:
 		print_rich("[color=#%s]%s[/color]" % [color.to_html(),  message])
 	
-	# file logging will go here
+	if not _log_queue.is_empty():
+		_log_queue += "\n"
+	_log_queue += "[%s] %s" % [Time.get_datetime_string_from_system().replace("T", " @ "), message]
 
 
 ## Logs [code]error[/code], and prints an error message.
@@ -151,6 +169,38 @@ static func select_left(object: Object) -> void:
 
 static func select_right(object: Object) -> void:
 	right_object = object
+
+
+static func _init_log_file() -> void:
+	const DIR := "user://logs"
+	const FILE_PATH_BASE := DIR + "/log%d.txt"
+	
+	var log_count := DirAccess.get_files_at(DIR).size()
+	
+	if log_count >= max_log_count:
+		for i in (max_log_count - 1):
+			var old_file := FileAccess.open(FILE_PATH_BASE % (i + 1), FileAccess.READ)
+			var new_file := FileAccess.open(FILE_PATH_BASE % i, FileAccess.WRITE)
+			
+			new_file.store_string(old_file.get_as_text())
+		
+		_log_file_idx = log_count - 1
+	else:
+		_log_file_idx = log_count
+
+
+static func get_log_path() -> String:
+	return LOG_FILE_PATH_BASE % _log_file_idx
+
+
+static func _flush_log_file() -> void:
+	if not FileAccess.file_exists(get_log_path()):
+		FileAccess.open(get_log_path(), FileAccess.WRITE)
+	
+	var file := FileAccess.open(get_log_path(), FileAccess.READ_WRITE)
+	file.seek_end()
+	file.store_line(_log_queue)
+	file.close()
 
 
 func update() -> void:

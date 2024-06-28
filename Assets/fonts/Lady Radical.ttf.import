@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Lady Radical.ttf-0f61505e7ea8637ed83b97e6832c
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=0
 generate_mipmaps=false
 multichannel_signed_distance_field=false
 msdf_pixel_range=8

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://dsud2disyfnx3"]
+
+[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_eu4bp"]
+
+[resource]
+script = ExtResource("1_eu4bp")
+name = "ITEM_BIG_FISH"
+description = "ITEM_BIG_FISH_DESCRIPTION"
+type = 1
+cost = 0
+atlas_region = Rect2(32, 0, 16, 16)

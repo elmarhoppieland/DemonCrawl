@@ -14,4 +14,8 @@ func _exit_tree() -> void:
 
 
 func _on_visibility_changed() -> void:
+	if Engine.is_editor_hint():
+		text = "<profile-name>"
+		return
+	
 	text = SavesManager.get_save_name()

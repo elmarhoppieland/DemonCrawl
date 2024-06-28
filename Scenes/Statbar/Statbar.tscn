@@ -14,9 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://eg4xflix073" path="res://Assets/sprites/heirloom_fill_empty.png" id="9_b1nee"]
 [ext_resource type="PackedScene" uid="uid://db1krtggvj6tl" path="res://Scenes/Statbar/Stats.tscn" id="9_eg8cx"]
 [ext_resource type="Script" path="res://Resources/Icon.gd" id="10_0f8tq"]
-[ext_resource type="Texture2D" uid="uid://ca5kqj441ftyr" path="res://Assets/sprites/Inventory.png" id="14_7bs0x"]
+[ext_resource type="PackedScene" uid="uid://bl07eret4ujpn" path="res://Scenes/Statbar/Inventory.tscn" id="15_6x8ea"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4dv7i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8f3t"]
 atlas = ExtResource("5_xups4")
 region = Rect2(80, 80, 16, 16)
 script = ExtResource("10_0f8tq")
@@ -57,7 +57,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Inventory:position")
+tracks/0/path = NodePath("InventoryCanvas/Inventory:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -69,14 +69,38 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Inventory:visible")
+tracks/1/path = NodePath("InventoryCanvas:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("InventoryCanvas/Inventory:offset_bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-20.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("InventoryCanvas/Inventory:offset_right")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_tuys5"]
@@ -85,7 +109,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Inventory:position")
+tracks/0/path = NodePath("InventoryCanvas/Inventory:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -97,13 +121,13 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Inventory:visible")
+tracks/1/path = NodePath("InventoryCanvas:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.001),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
+"update": 0,
 "values": [false, true]
 }
 
@@ -159,7 +183,7 @@ layout_mode = 2
 [node name="ProfileMastery" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_4dv7i")
+texture = SubResource("AtlasTexture_n8f3t")
 script = ExtResource("5_beiwq")
 
 [node name="Control2" type="Control" parent="MarginContainer/HBoxContainer"]
@@ -170,6 +194,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 4
+max_value = 93.0
 value = 40.0
 fill_mode = 3
 show_percentage = false
@@ -190,6 +215,7 @@ theme_override_constants/separation = 1
 
 [node name="ProfileNameLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+text = "<profile-name>"
 script = ExtResource("7_8d5yt")
 
 [node name="ProfileLevelLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
@@ -314,51 +340,31 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = SubResource("AtlasTexture_sj3wt")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="InventoryCanvas" type="CanvasLayer" parent="."]
+visible = false
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 0)
 
-[node name="Inventory" type="MarginContainer" parent="CanvasLayer"]
-unique_name_in_owner = true
-visible = false
+[node name="ColorRect" type="ColorRect" parent="InventoryCanvas"]
 anchors_preset = -1
-anchor_left = 0.25
 anchor_right = 0.25
 anchor_bottom = 0.25
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Inventory" parent="InventoryCanvas" instance=ExtResource("15_6x8ea")]
 offset_left = 320.0
 offset_right = 397.0
-offset_bottom = 3040.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Inventory"]
-layout_mode = 2
-theme_override_constants/margin_left = -3
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("14_7bs0x")
-stretch_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Inventory"]
-layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 47
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="ItemGrid" type="GridContainer" parent="CanvasLayer/Inventory/MarginContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/h_separation = 3
-theme_override_constants/v_separation = 3
-columns = 4
+offset_bottom = 160.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_sehu4")
 }
+autoplay = "RESET"
 
 [connection signal="about_to_show" from="MarginContainer/HBoxContainer/Avatar/StatsTooltipGrabber" to="." method="_on_stats_tooltip_grabber_about_to_show"]
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer2/InventoryIcon" to="." method="_on_inventory_icon_mouse_entered"]

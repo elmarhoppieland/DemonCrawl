@@ -68,10 +68,16 @@ class Category extends VFlowContainer:
 		
 		var item := TokenShopItem.create()
 		
-		item.item_name = tr(data.item_name)
+		if data.flags & TokenShopItemData.Flags.DESCRIPTION_ADD_LEVEL:
+			item.item_name = tr(data.item_name) + " " + RomanNumeral.convert_to_roman(data.level + 1)
+		else:
+			item.item_name = tr(data.item_name)
+		
 		item.icon = data.icon
 		item.cost = data.cost
 		item.description = data.description
+		if data.flags & TokenShopItemData.Flags.DESCRIPTION_ADD_LEVEL:
+			item.description += " " + RomanNumeral.convert_to_roman(data.level + 1)
 		item.description_subtext = data.description_subtext
 		
 		for condition in data.unlock_conditions:
@@ -79,7 +85,7 @@ class Category extends VFlowContainer:
 				item.lock()
 				break
 		
-		if TokenShop.is_item_purchased(data.item_name):
+		if TokenShop.get_purchased_level(data.item_name) > data.level:
 			item.purchase()
 		
 		item.purchased.connect(func():
@@ -129,31 +135,41 @@ class Category extends VFlowContainer:
 			
 			var data := TokenShopItemData.new()
 			
+			var flags: PackedStringArray = item_data.get("flags", [])
+			
+			var level := TokenShop.get_purchased_level(item_data.name)
+			
 			data.item_name = item_data.name
 			
 			if item_data.icon is String:
 				data.icon = AssetManager.get_icon(item_data.icon)
 			elif item_data.icon is Array:
-				data.icon = AssetManager.get_icon(item_data.icon[TokenShop.get_purchased_level(item_data.name)])
+				data.icon = AssetManager.get_icon(item_data.icon[level])
 			
 			if item_data.cost is float:
 				data.cost = item_data.cost
 			elif item_data.cost is Array:
-				data.cost = item_data.cost[TokenShop.get_purchased_level(item_data.name)]
+				data.cost = item_data.cost[level]
 			
 			if item_data.description is String:
 				data.description = TranslationServer.tr(item_data.description)
 			elif item_data.description is Array:
-				data.description = TranslationServer.tr(item_data.description[TokenShop.get_purchased_level(item_data.name)])
+				data.description = TranslationServer.tr(item_data.description[level])
 			
 			if "description_subtext" in item_data:
-				if item_data.description_subtext is String:
-					data.description_subtext = TranslationServer.tr(item_data.description_subtext)
-				elif item_data.description_subtext is Array:
-					data.description_subtext = TranslationServer.tr(item_data.description_subtext[TokenShop.get_purchased_level(item_data.name)])
+				if "description_subtext_bullets" in flags and item_data.description_subtext is Array:
+					var bullets: PackedStringArray = item_data.description_subtext[level].map(func(a):
+						return "\n• " + TranslationServer.tr(a)
+					)
+					data.description_subtext = "".join(bullets).strip_edges()
+				else:
+					if item_data.description_subtext is String:
+						data.description_subtext = TranslationServer.tr(item_data.description_subtext)
+					elif item_data.description_subtext is Array:
+						data.description_subtext = TranslationServer.tr(item_data.description_subtext[level])
 			
 			if "description_values" in item_data:
-				data.description %= item_data.description_values[TokenShop.get_purchased_level(item_data.name)]
+				data.description %= item_data.description_values[level]
 			
 			data.set_flags(item_data.get("flags", []))
 			data.conditions = item_data.get("conditions", [])
@@ -163,7 +179,9 @@ class Category extends VFlowContainer:
 					TYPE_STRING:
 						data.unlock_conditions.append(condition)
 					TYPE_ARRAY:
-						data.unlock_conditions.append(condition[TokenShop.get_purchased_level(item_data.name)])
+						data.unlock_conditions.append(condition[level])
+			
+			data.level = level
 			
 			category.add_item(data)
 		
@@ -207,7 +225,8 @@ class Category extends VFlowContainer:
 			"?description_subtext": [TYPE_STRING, TYPE_ARRAY],
 			"?description_values": TYPE_ARRAY,
 			"?conditions": TYPE_ARRAY,
-			"?unlock_conditions": TYPE_ARRAY
+			"?unlock_conditions": TYPE_ARRAY,
+			"?flags": TYPE_ARRAY
 		}
 		for full_key: String in KEY_TYPES:
 			var optional := full_key.begins_with("?")
@@ -238,7 +257,8 @@ class Category extends VFlowContainer:
 class TokenShopItemData:
 	enum Flags {
 		INFINITE = 1,
-		DESCRIPTION_ADD_LEVEL = 2
+		DESCRIPTION_ADD_LEVEL = 2,
+		DESCRIPTION_SUBTEXT_BULLETS = 4
 	}
 	
 	var item_name := ""
@@ -249,6 +269,8 @@ class TokenShopItemData:
 	var flags := 0
 	var conditions: PackedStringArray
 	var unlock_conditions: PackedStringArray
+	
+	var level := 0
 	
 	func set_flags(flags_arr: PackedStringArray) -> void:
 		for flag in flags_arr:

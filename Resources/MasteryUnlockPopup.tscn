@@ -8,7 +8,6 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_3ik3a"]
 font = ExtResource("1_8vtnt")
-font_color = Color(0.0627451, 0.87451, 0.501961, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_gitm8"]
 line_spacing = 0.0
@@ -20,7 +19,7 @@ region = Rect2(48, 48, 16, 16)
 script = ExtResource("3_cu1de")
 name = "mastery1/novice"
 
-[sub_resource type="Animation" id="Animation_2bkcx"]
+[sub_resource type="Animation" id="Animation_jt3bo"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -83,9 +82,10 @@ tracks/4/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_4ng0r"]
+[sub_resource type="Animation" id="Animation_gks8s"]
 resource_name = "popup_hide"
 length = 0.5
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -93,7 +93,7 @@ tracks/0/path = NodePath("BackgroundAnchor:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.25, 0.5),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1e-05)]
@@ -105,7 +105,7 @@ tracks/1/path = NodePath("ContentsAnchor:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.001),
+"times": PackedFloat32Array(0.25),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -122,10 +122,22 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ContentsAnchor:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
-[sub_resource type="Animation" id="Animation_mpr8n"]
+[sub_resource type="Animation" id="Animation_7542p"]
 resource_name = "popup_show"
-length = 0.5
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -145,7 +157,7 @@ tracks/1/path = NodePath("ContentsAnchor:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.3, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 8), Vector2(0, 0)]
@@ -157,7 +169,7 @@ tracks/2/path = NodePath("ContentsAnchor:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.3, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -181,17 +193,17 @@ tracks/4/path = NodePath("ContentsAnchor:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.3),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_x74cr"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nckod"]
 _data = {
-"RESET": SubResource("Animation_2bkcx"),
-"popup_hide": SubResource("Animation_4ng0r"),
-"popup_show": SubResource("Animation_mpr8n")
+"RESET": SubResource("Animation_jt3bo"),
+"popup_hide": SubResource("Animation_gks8s"),
+"popup_show": SubResource("Animation_7542p")
 }
 
 [node name="MasteryUnlockPopup" type="CanvasLayer"]
@@ -320,5 +332,5 @@ script = ExtResource("5_a0q88")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_x74cr")
+"": SubResource("AnimationLibrary_nckod")
 }

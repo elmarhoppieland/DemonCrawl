@@ -6,7 +6,7 @@ class_name CellCoin
 func get_texture() -> TextureSequence:
 	var texture := TextureSequence.new()
 	texture.atlas = ResourceLoader.load("res://Assets/sprites/coin.png")
-	texture.texture_size = Vector2i(16, 16)
+	texture.texture_size = Board.CELL_SIZE
 	return texture
 
 
@@ -19,9 +19,10 @@ func get_animation_delta() -> float:
 
 
 func interact() -> void:
-	Stats.coins += 1
+	var value: int = EffectManager.propagate_posnum("get_coin_value", [], 1)
+	Stats.coins += value
 	
-	cell.add_text_particle("+1", TextParticles.ColorPreset.COINS)
+	cell.add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)
 	
 	var texture := get_texture()
 	var start_pos := cell.get_global_transform_with_canvas().origin + cell.size * cell.get_global_transform_with_canvas().get_scale() / 2

@@ -10,7 +10,6 @@ var saved_focus: Node ## A saved copy of the focused node. A focus can be saved 
 # ==============================================================================
 
 func _ready() -> void:
-	%AnimationPlayer.play("idle")
 	hide()
 
 
@@ -22,6 +21,10 @@ func _process(_delta: float) -> void:
 ## Moves the cursor to the given [code]node[/code]. If another node was selected,
 ## moves the cursor to the node as an animation.
 func move_to(node: Node, force_instant: bool = false) -> void:
+	assert(node is Node2D or node is Control, "Focus can only focus on Node2D or Control nodes.")
+	
+	_focus.size = node.size
+	
 	if not force_instant and is_instance_valid(focused_node) and visible:
 		create_tween().tween_property(_focus, "global_position", node.global_position, 0.2)\
 			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)

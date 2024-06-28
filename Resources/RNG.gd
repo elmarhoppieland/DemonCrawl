@@ -8,7 +8,7 @@ static var global_rng: RandomNumberGenerator
 # ==============================================================================
 
 ## Calls [method @GlobalScope.randf] on [code]rng[/code] if possible, or on [@GlobalScope] if not.
-static func getf(rng: RandomNumberGenerator = null) -> float:
+static func randf(rng: RandomNumberGenerator = null) -> float:
 	if rng:
 		return rng.randf()
 	if global_rng:
@@ -17,7 +17,7 @@ static func getf(rng: RandomNumberGenerator = null) -> float:
 
 
 ## Calls [method @GlobalScope.randf_range] on [code]rng[/code] if possible, or on [@GlobalScope] if not.
-static func getf_range(from: float, to: float, rng: RandomNumberGenerator = null) -> float:
+static func randf_range(from: float, to: float, rng: RandomNumberGenerator = null) -> float:
 	if rng:
 		return rng.randf_range(from, to)
 	if global_rng:
@@ -26,7 +26,7 @@ static func getf_range(from: float, to: float, rng: RandomNumberGenerator = null
 
 
 ## Calls [method @GlobalScope.randfn] on [code]rng[/code] if possible, or on [@GlobalScope] if not.
-static func getfn(mean: float = 0.0, deviation: float = 1.0, rng: RandomNumberGenerator = null) -> float:
+static func randfn(mean: float = 0.0, deviation: float = 1.0, rng: RandomNumberGenerator = null) -> float:
 	if rng:
 		return rng.randfn(mean, deviation)
 	if global_rng:
@@ -35,7 +35,7 @@ static func getfn(mean: float = 0.0, deviation: float = 1.0, rng: RandomNumberGe
 
 
 ## Calls [method @GlobalScope.randi] on [code]rng[/code] if possible, or on [@GlobalScope] if not.
-static func geti(rng: RandomNumberGenerator = null) -> int:
+static func randi(rng: RandomNumberGenerator = null) -> int:
 	if rng:
 		return rng.randi()
 	if global_rng:
@@ -44,7 +44,7 @@ static func geti(rng: RandomNumberGenerator = null) -> int:
 
 
 ## Calls [method @GlobalScope.randi_range] on [code]rng[/code] if possible, or on [@GlobalScope] if not.
-static func geti_range(from: int, to: int, rng: RandomNumberGenerator = null) -> int:
+static func randi_range(from: int, to: int, rng: RandomNumberGenerator = null) -> int:
 	if rng:
 		return rng.randi_range(from, to)
 	if global_rng:

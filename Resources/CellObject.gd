@@ -10,15 +10,20 @@ var cell: Cell ## The [Cell] this is the object of.
 func _init(_cell: Cell) -> void:
 	cell = _cell
 	
-	cell._object_texture.tooltip_grabber.about_to_show.connect(func():
-		cell._object_texture.tooltip_grabber.text = get_tooltip_text()
-		cell._object_texture.tooltip_grabber.subtext = get_tooltip_subtext()
-	)
+	cell._object_texture.tooltip_grabber.about_to_show.connect(_about_to_show_tooltip)
+
+
+func get_tree() -> SceneTree:
+	return cell.get_tree()
 
 
 ## Clears this [CellObject], setting the cell's [member Cell.cell_object] to [code]null[/code].
 func clear() -> void:
 	cell.cell_object = null
+	
+	cell._object_texture.tooltip_grabber.text = ""
+	cell._object_texture.tooltip_grabber.subtext = ""
+	cell._object_texture.tooltip_grabber.about_to_show.disconnect(_about_to_show_tooltip)
 
 
 ## Returns the object's texture.
@@ -54,6 +59,12 @@ func hover() -> void:
 ## Called when the player stops hovering over this object.
 func unhover() -> void:
 	pass
+
+
+## Kills this object.
+## [br][br]When overriding, make sure to add [code]super()[/code] to keep the default behaviour.
+func kill() -> void:
+	clear()
 
 
 ## Returns the text that should be in the tooltip when the player hovers over this object.
@@ -95,3 +106,8 @@ func get_charitable_amount() -> int:
 ## Should return [code]true[/code] if this object gives any charitable score, or [code]false[/code] if not.
 func is_charitable() -> bool:
 	return false
+
+
+func _about_to_show_tooltip() -> void:
+	cell._object_texture.tooltip_grabber.text = get_tooltip_text()
+	cell._object_texture.tooltip_grabber.subtext = get_tooltip_subtext()

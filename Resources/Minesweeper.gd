@@ -12,8 +12,8 @@ static func generate_mines(size: Vector2i, mines: int, open_position: Vector2i, 
 	var mine_positions: PackedInt32Array = []
 	
 	while mine_positions.size() < mines:
-		var x := RNG.geti_range(0, size.x - 1, rng)
-		var y := RNG.geti_range(0, size.y - 1, rng)
+		var x := RNG.randi_range(0, size.x - 1, rng)
+		var y := RNG.randi_range(0, size.y - 1, rng)
 		
 		if x >= open_position.x - 1 and x <= open_position.x + 1 and y >= open_position.y - 1 and y <= open_position.y + 1:
 			continue

@@ -16,6 +16,7 @@ const _NEIGHBORS: Array[Vector2i] = [
 ]
 # ==============================================================================
 static var _pressed_cell: Cell
+static var _hovered_cell: Cell
 # ==============================================================================
 ## This cell's theme. Its sprites are pulled from this directory inside [code]res://Assets/skins[/code].
 #var theme := ""
@@ -29,6 +30,33 @@ static var _pressed_cell: Cell
 		if not _value_label:
 			return cell_value
 		return _value_label.cell_value
+@export_enum("none", "burning", "frozen", "toxic", "cursed", "sanctified", "ethereal", "electric") var aura := "" :
+	set(value):
+		aura = value
+		if not is_node_ready():
+			await ready
+		
+		var color := Color.WHITE
+		match value:
+			"", "none":
+				color = Color.WHITE
+			"burning":
+				color = Color.RED
+			"frozen":
+				color = Color.AQUA
+			"toxic":
+				color = Color.DARK_GREEN
+			"cursed":
+				color = Color.DIM_GRAY
+			"sanctified":
+				color = Color.GOLD
+			"ethereal":
+				color = Color.BLUE
+			"electric":
+				color = Color.MEDIUM_AQUAMARINE
+		
+		_background.modulate = EffectManager.propagate_value("get_aura_color", [aura, self], color)
+# ==============================================================================
 var revealed := false : ## Whether this cell has been revealed.
 	get:
 		return _background.state == CellBackground.State.OPEN
@@ -39,11 +67,22 @@ var cell_object: CellObject : ## This cell's [CellObject], e.g. loot or a monste
 		cell_object = value
 		if not is_node_ready():
 			await ready
+		
+		if value == null and has_monster():
+			for cell in get_nearby_cells():
+				cell.cell_value -= 1
+				if cell.cell_value == 0:
+					cell.chord()
+			if cell_value == 0:
+				chord()
+		
 		_object_texture.cell_object = value
 	get:
 		if not _object_texture:
 			return cell_object
 		return _object_texture.cell_object
+
+var enchants: Array[CellEnchantment] = []
 # ==============================================================================
 var _hovered := false
 var _checking := false
@@ -97,6 +136,9 @@ func _process_cell_opening() -> void:
 		_process_cell_chording()
 	elif _pressed_cell == self and is_checking():
 		_process_direct_cell_opening()
+	
+	if _pressed_cell == self:
+		EffectManager.propagate_call.call_deferred("turn")
 
 
 func _process_cell_chording() -> void:
@@ -120,6 +162,7 @@ func _process_direct_cell_opening() -> void:
 
 func _on_mouse_entered() -> void:
 	_hovered = true
+	_hovered_cell = self
 	
 	if revealed and is_occupied():
 		cell_object.hover()
@@ -129,6 +172,8 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	_hovered = false
+	if _hovered_cell == self:
+		_hovered_cell = null
 	
 	if revealed and is_occupied():
 		cell_object.unhover()
@@ -157,8 +202,7 @@ func uncheck() -> void:
 func chord() -> void:
 	if cell_value == get_nearby_flags():
 		for cell in get_nearby_cells():
-			if not cell.revealed:
-				cell.open()
+			cell.open()
 		return
 	
 	for cell in get_nearby_cells():
@@ -197,8 +241,7 @@ func open() -> void:
 		return
 	
 	if cell_value == 0:
-		if not cell_object:
-			cell_object = CellCoin.new(self)
+		spawn_loot()
 		chord()
 
 
@@ -226,14 +269,15 @@ func unflag() -> void:
 	Board.update_monster_count()
 
 
-func flag() -> void:
+func flag(update_flagless: bool = true) -> void:
 	if is_flagged():
 		return
 	
 	_background.set_flag()
 	_flag_texture.play_flag()
 	
-	Board.is_flagless = false
+	if update_flagless:
+		Board.is_flagless = false
 	Board.update_monster_count()
 
 
@@ -258,6 +302,31 @@ func reset_value() -> void:
 	for cell in get_nearby_cells():
 		if cell.cell_object:
 			cell_value += 1
+
+
+## Enchants this cell with the given [CellEnchantment].
+func enchant(script: Script) -> CellEnchantment:
+	var enchantment: CellEnchantment = script.new(self)
+	enchants.append(enchantment)
+	return enchantment
+
+
+func spawn_loot() -> CellObject:
+	var i := RNG.randi() % 10
+	if i == 0:
+		return spawn(CellChest)
+	if i < 9:
+		return spawn(CellCoin)
+	
+	return null
+
+
+## Spawns a new object in this cell, if it is not occupied.
+func spawn(script: Script) -> CellObject:
+	if cell_object:
+		return null
+	cell_object = script.new(self)
+	return cell_object
 
 
 ## Returns all cells orthogonally or diagonally adjacent to this cell. See also [method Board.get_cell].
@@ -362,9 +431,18 @@ static func create(data: CellData = null) -> Cell:
 	return cell
 
 
+static func get_hovered_cell() -> Cell:
+	return _hovered_cell
+
+
 static func _is_pressed_cell_hovered() -> bool:
 	return _pressed_cell._hovered
 
 
 func _to_string() -> String:
 	return "<%d @ %s>" % [cell_value, board_position]
+
+
+func _exit_tree() -> void:
+	for enchantment in enchants:
+		EffectManager.unregister_object(enchantment)

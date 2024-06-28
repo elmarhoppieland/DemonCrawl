@@ -40,7 +40,7 @@ func lose(source: Object) -> void:
 static func get_death_message(source: Object) -> String:
 	if source.has_method("get_death_message"):
 		var messages: PackedStringArray = source.get_death_message()
-		return messages[RNG.geti() % messages.size()]
+		return messages[RNG.randi() % messages.size()]
 	
 	return TranslationServer.tr("DEATH_MESSAGE_GENERIC")
 

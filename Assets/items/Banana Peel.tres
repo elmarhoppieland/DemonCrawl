@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://qwegpkhg2b4i"]
+
+[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_mswmq"]
+
+[resource]
+script = ExtResource("1_mswmq")
+name = "ITEM_BANANA_PEEL"
+description = "ITEM_BANANA_PEEL_DESCRIPTION"
+type = 1
+cost = 0
+atlas_region = Rect2(16, 0, 16, 16)
