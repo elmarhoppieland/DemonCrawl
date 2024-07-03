@@ -74,7 +74,7 @@ static func _register_directory(dir: String, file: FileAccess) -> void:
 ## will be passed into the object once for each time it has been registered.
 ## This can be useful to allow objects to trigger an extra time.
 static func register_object(object: Object, allow_duplicates: bool = false) -> void:
-	if not object in _objects or allow_duplicates:
+	if allow_duplicates or _objects.all(func(o: WeakRef): return o.get_ref() != object):
 		_objects.append(weakref(object))
 
 
@@ -85,7 +85,10 @@ static func register_object(object: Object, allow_duplicates: bool = false) -> v
 ## once. Future propagations will only be passed one fewer time for each time
 ## the object gets unregistered.
 static func unregister_object(object: Object) -> void:
-	_objects = _objects.filter(func(r: WeakRef): return r.get_ref() != object)
+	for i in _objects.size():
+		if _objects[i].get_ref() == object:
+			_objects.remove_at(i)
+			break
 
 
 ## Connects a [Callable] to an effect. The effect the callable connects to is the
