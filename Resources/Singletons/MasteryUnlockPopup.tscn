@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cr4wqv56r4hf3"]
 
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="1_8vtnt"]
-[ext_resource type="Script" path="res://Resources/MasteryUnlockPopup.gd" id="1_52o07"]
+[ext_resource type="Script" path="res://Resources/Singletons/MasteryUnlockPopup.gd" id="1_52o07"]
 [ext_resource type="Texture2D" uid="uid://cg31xcdc0vrid" path="res://Assets/sprites/Masteries1.png" id="2_mq1ll"]
 [ext_resource type="Script" path="res://Resources/Icon.gd" id="3_cu1de"]
 [ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="5_a0q88"]

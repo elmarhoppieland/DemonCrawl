@@ -136,6 +136,10 @@ func target_cells(radius: int) -> Array[Cell]:
 	return []
 
 
+func create_status() -> StatusEffect.Initializer:
+	return StatusEffect.create(get_id())
+
+
 func get_atlas() -> CompressedTexture2D:
 	return preload("res://Assets/sprites/items.png")
 
@@ -150,3 +154,9 @@ func get_tooltip_text() -> String:
 
 func get_tooltip_subtext() -> String:
 	return data.description
+
+
+func get_id() -> String:
+	var suffix: int = get_script().get_meta("id_suffix", 0)
+	get_script().set_meta("id_suffix", suffix + 1)
+	return (get_script() as Script).resource_path + ":" + str(suffix)

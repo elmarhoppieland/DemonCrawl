@@ -46,6 +46,8 @@ func _ready() -> void:
 	Toasts.add_debug_toast("Profile Loaded: %s" % ProfileList.selected_profile)
 	
 	SavesManager.save_settings()
+	
+	print(UserClassDB.get_class_list())
 
 
 func _process(_delta: float) -> void:
