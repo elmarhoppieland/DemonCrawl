@@ -11,12 +11,19 @@ class_name Board
 ## [/codeblock]
 
 # ==============================================================================
+enum State {
+	READY,
+	STARTED,
+	FINISHED
+}
+# ==============================================================================
 const CELL_SIZE := Vector2i(16, 16)
 # ==============================================================================
 static var _instance: Board :
 	get:
-		assert(_instance != null, "Attempted to use the Board instance when it has not been instantiated.")
+		assert(_unsafe_access or is_instance_valid(_instance), "Attempted to use the Board instance when it has not been instantiated.")
 		return _instance
+static var _unsafe_access := false
 
 static var rng := RandomNumberGenerator.new() ## The [RandomNumberGenerator] used to generate boards. Use [member RandomNumberGenerator.seed] to make boards generate consistently.
 
@@ -27,11 +34,10 @@ static var mutable: bool = Eternal.create(false) : ## Whether the board is mutab
 	set(value):
 		mutable = value
 		if value:
-			Board.start_time = Time.get_ticks_usec()
+			Board.resume_timer()
 		else:
-			Board.saved_time = Board.get_timef()
-			Board.start_time = -1
-static var frozen := false ## Whether the board is frozen, i.e. cells can be opened.
+			Board.pause_timer()
+static var frozen := false ## Whether the board is frozen, i.e. cells cannot be opened.
 
 # SavesManager.get_value("board_size", Board, Vector2i.ZERO)
 static var board_size: Vector2i = Eternal.create(Vector2i.ZERO) ## The number of cells in each row and column.
@@ -45,6 +51,7 @@ static var board_3bv: int = Eternal.create(-1)
 # SavesManager.get_value("is_flagless", Board, true)
 static var is_flagless: bool = Eternal.create(true)
 
+static var state: State = Eternal.create(State.READY)
 # ==============================================================================
 @onready var _finish_button: MarginContainer = %FinishButton
 @onready var _monsters_label: Label = %MonstersLabel
@@ -85,6 +92,7 @@ func _ready() -> void:
 	Board.frozen = false
 	Board.board_3bv = -1
 	Board.is_flagless = true
+	Board.pause_timer()
 	
 	Stats.untouchable = true
 	
@@ -117,8 +125,10 @@ static func start_board(cell: Cell) -> void:
 	
 	Board.started = true
 	Board.mutable = true
+	Board.resume_timer()
 	
 	EffectManager.propagate_call("board_begin")
+	EffectManager.propagate_call("stage_load")
 
 
 ## Calculates the Board's 3BV value. This is called at the start of a stage, when it has just been generated.
@@ -150,6 +160,7 @@ static func check_completion() -> void:
 	
 	if unsolved <= (Board.board_size.x * Board.board_size.y - StagesOverview.selected_stage.monsters) * PlayerStats.pathfinding / 100.0:
 		Board.mutable = false
+		Board.pause_timer()
 		
 		_instance._finish_button.show()
 		
@@ -302,6 +313,26 @@ static func get_cell_at_index(index: int) -> Cell:
 	return _instance._cell_container.get_child(index)
 
 
+## Pauses the timer.
+static func pause_timer() -> void:
+	if Board.start_time < 0:
+		return
+	
+	Board.saved_time = Board.get_timef()
+	Board.start_time = -1
+
+
+## Resumes the timer.
+static func resume_timer() -> void:
+	if Board.start_time < 0:
+		Board.start_time = Time.get_ticks_usec()
+
+
+## Returns whether the timer is currently paused.
+static func is_timer_paused() -> bool:
+	return Board.start_time < 0
+
+
 ## Returns the current stage time in seconds, as a [float]. The time shown to the player is an [int],
 ## so using [method get_time] is usually preferred.
 static func get_timef() -> float:
@@ -314,6 +345,16 @@ static func get_timef() -> float:
 ## Returns the current stage time in seconds, as an [int]. Use [method get_timef] to get a more precise time.
 static func get_time() -> int:
 	return int(get_timef())
+
+
+## Returns whether the board exists. This should [b]always[/b] be called when accessing
+## the Board when it may not exist. Calling methods that need the instance when it
+## does not exist results in an error if running in the editor.
+static func exists() -> bool:
+	_unsafe_access = true
+	var instance_exists := is_instance_valid(_instance)
+	_unsafe_access = false
+	return instance_exists
 
 
 func _on_finish_button_pressed() -> void:

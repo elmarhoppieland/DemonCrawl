@@ -8,4 +8,4 @@ name = "ITEM_SLEEPING_POWDER"
 description = "ITEM_SLEEPING_POWDER_DESCRIPTION"
 type = 1
 cost = 4
-atlas_region = Rect2(48, 64, 16, 16)
+atlas_region = Rect2(192, 64, 16, 16)

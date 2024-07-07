@@ -8,94 +8,84 @@ enum Type {
 	SECONDS,
 }
 # ==============================================================================
-var item: Item :
+var source: Collectible :
 	set(value):
-		if item == value:
+		if source == value:
 			return
 		
-		item = value
+		source = value
 		
 		if not is_node_ready():
 			await ready
 		
 		var atlas := AtlasTexture.new()
-		atlas.atlas = item.get_atlas()
-		atlas.region = item.get_atlas_region()
+		atlas.atlas = source.get_atlas()
+		atlas.region = source.get_atlas_region()
 		
 		var image := atlas.get_image()
 		image.resize(8, 8, Image.INTERPOLATE_NEAREST)
 		
 		texture_rect.texture = ImageTexture.create_from_image(image)
-var origin_count := 0
-var count := 0 :
+var origin := 0
+var duration := 0 :
 	set(value):
-		count = value
+		duration = value
 		
 		if not is_node_ready():
 			await ready
 		
-		if count <= 0:
+		if duration <= 0:
 			queue_free()
 			return
 		
-		count_label.text = str(count)
+		count_label.text = str(duration)
 var type := Type.TURNS
 var reset_on_mistake := false
-var object: Object
+var attribute: Object
+var sort_order := -1
 # ==============================================================================
 @onready var texture_rect: TextureRect = %TextureRect
 @onready var count_label: Label = %CountLabel
 # ==============================================================================
 
-func _enter_tree() -> void:
-	EffectManager.register_object(object)
-
-
-func _exit_tree() -> void:
-	EffectManager.unregister_object(object)
-
-
 func _ready() -> void:
 	if reset_on_mistake:
-		EffectManager.connect_effect(func mistake(): count = origin_count)
+		EffectManager.connect_effect(func mistake(): duration = origin)
 	
 	match type:
 		Type.TURNS:
-			EffectManager.connect_effect(func turn(): count -= 1)
+			EffectManager.connect_effect(func turn(): duration -= 1)
 		Type.CELLS_OPENED:
-			EffectManager.connect_effect(func cell_open(_cell: Cell): count -= 1)
+			EffectManager.connect_effect(func cell_open(_cell: Cell): duration -= 1)
 		Type.SECONDS:
 			var tween := create_tween()
 			tween.set_loops()
 			tween.tween_interval(1)
-			tween.tween_callback(func(): count -= 1)
+			tween.tween_callback(func(): duration -= 1)
 
 
-static func create(id: String) -> Initializer:
+static func create(uid: String = "") -> Initializer:
 	var instance: StatusEffect = ResourceLoader.load("res://Board/StatusEffectsOverlay/StatusEffect.tscn").instantiate()
 	
-	return Initializer.new(instance, id)
+	return Initializer.new(instance, uid)
 
 
 class Initializer extends Object:
-	var _status_effect: StatusEffect :
-		get:
-			assert(get_stack()[1].function == start.get_method(), "The only way to obtain a reference to the StatusEffect is via finish().")
-			return _status_effect
-	var id := ""
+	var _status_effect: StatusEffect
+	var uid := ""
 	
-	func _init(object: StatusEffect, _id: String) -> void:
+	func _init(object: StatusEffect, _uid: String) -> void:
 		_status_effect = object
-		id = _id
+		uid = _uid
 	
-	func set_count(count: int, origin: bool = true) -> Initializer:
-		_status_effect.count = count
+	func set_duration(duration: int, origin: bool = true) -> Initializer:
+		_status_effect.duration = duration
 		if origin:
-			set_origin_count()
+			set_origin()
 		return self
 	
-	func set_origin_count(origin_count: int = _status_effect.count) -> Initializer:
-		_status_effect.origin_count = origin_count
+	func set_origin(origin: int = _status_effect.count) -> Initializer:
+		_status_effect.origin = origin
 		return self
 	
 	func set_type(type: StatusEffect.Type) -> Initializer:
@@ -111,18 +101,22 @@ class Initializer extends Object:
 		return set_type(Type.CELLS_OPENED)
 	
 	func set_seconds(seconds: int = _status_effect.count) -> Initializer:
-		_status_effect.count = seconds
+		_status_effect.duration = seconds
 		return set_type(Type.SECONDS)
 	
-	func set_object(object: Object) -> Initializer:
-		_status_effect.object = object
+	func set_attribute(attribute: Object) -> Initializer:
+		_status_effect.attribute = attribute
 		return self
 	
 	func set_reset_on_mistake(reset_on_mistake: bool = true) -> Initializer:
 		_status_effect.reset_on_mistake = reset_on_mistake
 		return self
 	
+	func set_source(source: Collectible) -> Initializer:
+		_status_effect.source = source
+		return self
+	
 	func start() -> StatusEffect:
 		(func(): free()).call_deferred() # free.call_deferred() creates errors for some reason
-		StatusEffectsOverlay.add_status_effect(_status_effect, id)
+		StatusEffectsOverlay.add_status_effect(_status_effect, uid)
 		return _status_effect

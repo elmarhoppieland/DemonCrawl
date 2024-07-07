@@ -118,3 +118,7 @@ func remove_node_from_tree(keep_node: bool = false) -> void:
 	
 	if not keep_node:
 		node.queue_free()
+
+
+func create_status(uid: String = "") -> StatusEffect.Initializer:
+	return StatusEffect.create(uid)

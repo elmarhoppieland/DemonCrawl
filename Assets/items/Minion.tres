@@ -8,4 +8,4 @@ name = "ITEM_MINION"
 description = "ITEM_MINION_DESCRIPTION"
 type = 1
 cost = 0
-atlas_region = Rect2(32, 0, 16, 16)
+atlas_region = Rect2(80, 32, 16, 16)

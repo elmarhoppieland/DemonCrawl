@@ -8,4 +8,4 @@ name = "ITEM_EXTRA_POCKET"
 description = "ITEM_EXTRA_POCKET_DESCRIPTION"
 type = 0
 cost = 4
-atlas_region = Rect2(160, 0, 16, 16)
+atlas_region = Rect2(224, 32, 16, 16)

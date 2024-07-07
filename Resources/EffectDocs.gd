@@ -74,6 +74,12 @@ func stage_enter() -> void:
 	pass
 
 
+## Called when the player loads or reloads a stage. This is called after [method board_begin],
+## if this is the first time the player loads this stage.
+func stage_load() -> void:
+	pass
+
+
 ## Called when the player begins the board (this is always after calling [method stage_enter]).
 func board_begin() -> void:
 	pass

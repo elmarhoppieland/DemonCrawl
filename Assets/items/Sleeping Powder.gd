@@ -3,28 +3,26 @@ extends Item
 # ==============================================================================
 const DURATION_SEC := 300
 # ==============================================================================
+static var uid := "" :
+	get:
+		if uid.is_empty():
+			uid = StatusEffectsOverlay.create_id()
+		return uid
+# ==============================================================================
 
 func use() -> void:
-	if StatusEffectsOverlay.has_status_effect(get_id()):
-		StatusEffectsOverlay.get_status_effect(get_id()).count += DURATION_SEC
+	if StatusEffectsOverlay.has_id(uid):
+		StatusEffectsOverlay.get_status_effect(uid).duration += DURATION_SEC
 	else:
-		create_status().set_seconds(DURATION_SEC).set_object(Status.new()).start()
+		create_status(uid).set_seconds(DURATION_SEC).set_attribute(Status.new()).set_source(self).start()
 	
 	clear()
 
 
-func recreate_status(duration: int) -> StatusEffect:
-	return create_status().set_seconds(duration).set_origin_count(DURATION_SEC).set_object(Status.new()).start()
-
-
-func get_id() -> String:
-	return (get_script() as Script).resource_path
-
-
 class Status:
-	func start() -> void:
-		Board.saved_time = Board.get_timef()
-		Board.start_time = -1
+	func _init() -> void:
+		Board.pause_timer()
+		EffectManager.connect_effect(func stage_load() -> void: Board.pause_timer())
 	
 	func end() -> void:
-		Board.start_time = Time.get_ticks_usec()
+		Board.resume_timer()

@@ -389,6 +389,8 @@ label_settings = SubResource("LabelSettings_8xeii")
 unique_name_in_owner = true
 layer = 20
 
+[node name="StatusEffectsOverlay" parent="." instance=ExtResource("11_ecybp")]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
