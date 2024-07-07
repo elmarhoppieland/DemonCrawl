@@ -20,8 +20,10 @@ static var _instance: Board :
 
 static var rng := RandomNumberGenerator.new() ## The [RandomNumberGenerator] used to generate boards. Use [member RandomNumberGenerator.seed] to make boards generate consistently.
 
-static var started: bool = SavesManager.get_value("started", Board, false) ## Whether the board has been started, i.e. whether the first cell has been opened.
-static var mutable: bool = SavesManager.get_value("mutable", Board, false) : ## Whether the board is mutable, i.e. cells can be flagged or unflagged.
+# SavesManager.get_value("started", Board, false)
+static var started: bool = Eternal.create(false) ## Whether the board has been started, i.e. whether the first cell has been opened.
+# SavesManager.get_value("mutable", Board, false)
+static var mutable: bool = Eternal.create(false) : ## Whether the board is mutable, i.e. cells can be flagged or unflagged.
 	set(value):
 		mutable = value
 		if value:
@@ -31,13 +33,18 @@ static var mutable: bool = SavesManager.get_value("mutable", Board, false) : ## 
 			Board.start_time = -1
 static var frozen := false ## Whether the board is frozen, i.e. cells can be opened.
 
-static var board_size: Vector2i = SavesManager.get_value("board_size", Board, Vector2i.ZERO) ## The number of cells in each row and column.
+# SavesManager.get_value("board_size", Board, Vector2i.ZERO)
+static var board_size: Vector2i = Eternal.create(Vector2i.ZERO) ## The number of cells in each row and column.
 
 static var start_time := -1 ## The amount of ticks (microseconds) since game launch when the timer started running.
-static var saved_time: float = SavesManager.get_value("saved_time", Board, 0.0) ## The timer when it was loaded.
+# SavesManager.get_value("saved_time", Board, 0.0)
+static var saved_time: float = Eternal.create(0.0) ## The timer when it was loaded.
 
-static var board_3bv: int = SavesManager.get_value("board_3bv", Board, -1)
-static var is_flagless: bool = SavesManager.get_value("is_flagless", Board, true)
+# SavesManager.get_value("board_3bv", Board, -1)
+static var board_3bv: int = Eternal.create(-1)
+# SavesManager.get_value("is_flagless", Board, true)
+static var is_flagless: bool = Eternal.create(true)
+
 # ==============================================================================
 @onready var _finish_button: MarginContainer = %FinishButton
 @onready var _monsters_label: Label = %MonstersLabel
@@ -53,7 +60,11 @@ signal _cells_generated()
 func _enter_tree() -> void:
 	_instance = self
 	
-	EffectManager.register_object(self)
+	EffectManager.connect_effect(func lose(_source: Object):
+		Board.mutable = false
+		Board.frozen = true
+		Board.pause_timer()
+	)
 
 
 func _ready() -> void:
@@ -87,11 +98,6 @@ func _ready() -> void:
 	
 	const FADE_DURATION := 1.0
 	Foreground.fade_in(FADE_DURATION)
-
-
-func lose(_source: Object) -> void:
-	Board.mutable = false
-	Board.frozen = true
 
 
 ## Starts the board on the given [code]cell[/code]. Moves all mines in or nearby the cell away if present.
@@ -334,7 +340,7 @@ func _on_finish_button_pressed() -> void:
 	
 	if Quest.stages.all(func(stage: Stage): return stage.completed or stage is SpecialStage):
 		Quest.finish()
-		SavesManager.save()
+		Eternity.save()
 		get_tree().change_scene_to_file("res://Scenes/QuestSelect/QuestSelect.tscn")
 	else:
 		get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")

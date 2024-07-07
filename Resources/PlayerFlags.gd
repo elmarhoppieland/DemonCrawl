@@ -2,7 +2,8 @@ extends Object
 class_name PlayerFlags
 
 # ==============================================================================
-static var flags: PackedStringArray = SavesManager.get_value("flags", PlayerFlags, PackedStringArray())
+# SavesManager.get_value("flags", PlayerFlags, PackedStringArray())
+static var flags: PackedStringArray = Eternal.create(PackedStringArray())
 # ==============================================================================
 
 static func has_flag(flag: String) -> bool:

@@ -2,28 +2,35 @@ extends StaticClass
 class_name PlayerStats
 
 # ==============================================================================
-static var score: int = SavesManager.get_value("score", PlayerStats, 0) :
+# SavesManager.get_value("score", PlayerStats, 0)
+static var score: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("score", value)
 		score = value
-static var cells_opened_since_mistake: int = SavesManager.get_value("cells_opened_since_mistake", PlayerStats, 0) :
+# SavesManager.get_value("cells_opened_since_mistake", PlayerStats, 0)
+static var cells_opened_since_mistake: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("cells_opened_since_mistake", value)
 		cells_opened_since_mistake = value
-static var morality: int = SavesManager.get_value("morality", PlayerStats, 0) :
+# SavesManager.get_value("morality", PlayerStats, 0)
+static var morality: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("morality", value)
 		morality = value
-static var chain: ChainData = SavesManager.get_value("chain", PlayerStats, null)
-static var chests_opened: int = SavesManager.get_value("chests_opened", PlayerStats, 0) :
+# SavesManager.get_value("chain", PlayerStats, null)
+static var chain: ChainData = Eternal.create(null)
+# SavesManager.get_value("chests_opened", PlayerStats, 0)
+static var chests_opened: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("chests_opened", value)
 		chests_opened = value
-static var monsters_killed: int = SavesManager.get_value("monsters_killed", PlayerStats, 0) :
+# SavesManager.get_value("monsters_killed", PlayerStats, 0)
+static var monsters_killed: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("monsters_killed", value)
 		monsters_killed = value
-static var pathfinding: int = SavesManager.get_value("pathfinding", PlayerStats, 0) :
+# SavesManager.get_value("pathfinding", PlayerStats, 0)
+static var pathfinding: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("pathfinding", value)
 		pathfinding = value

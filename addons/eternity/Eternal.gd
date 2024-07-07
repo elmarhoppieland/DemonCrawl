@@ -71,7 +71,4 @@ static func _register_eternal(default: Variant, stack: Array[Dictionary]) -> voi
 		push_error("Eternal '%s' (on class '%s') was not assigned to a static variable. Eternals must be assigned to a static variable." % [prop_name, class_string])
 		return
 	
-	if Eternity._defaults_cfg.has_section_key(class_string, prop_name) and Eternity._defaults_cfg.get_value(class_string, prop_name) == default:
-		return
-	
 	Eternity._defaults_cfg.set_value(class_string, prop_name, default)

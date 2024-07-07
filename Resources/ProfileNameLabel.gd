@@ -18,4 +18,4 @@ func _on_visibility_changed() -> void:
 		text = "<profile-name>"
 		return
 	
-	text = SavesManager.get_save_name()
+	text = Eternity.get_save_name()

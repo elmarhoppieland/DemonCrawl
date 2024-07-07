@@ -95,8 +95,16 @@ func load_encrypted_pass(path: String, password: String) -> Error:
 func parse(data: String) -> Error:
 	clear()
 	
+	data = data\
+		.replace("\r", "")\
+		.replace("{\n", "{")\
+		.replace("\n}", "}")\
+		.replace("[\n", "[")\
+		.replace("\n]", "]")\
+		.replace(",\n", ",")
+	
 	var section := ""
-	for line in data.replace("\r", "").split("\n"):
+	for line in data.split("\n"):
 		if line.is_empty():
 			continue
 		

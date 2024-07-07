@@ -48,7 +48,14 @@ func _ready() -> void:
 	left_object = get_tree().current_scene
 	
 	Debug._init_log_file()
-	SavesManager.saved.connect(Debug._flush_log_file)
+	Eternity.saved.connect(Debug._flush_log_file)
+	
+	Eternity.saved.connect(func():
+		Debug.log_event("Saved the current data to disk (to path '%s')" % Eternity.path, Color.DARK_SALMON)
+	)
+	Eternity.loaded.connect(func():
+		Debug.log_event("Loaded from the save at path '%s'" % Eternity.path, Color.CORAL)
+	)
 	
 	update()
 

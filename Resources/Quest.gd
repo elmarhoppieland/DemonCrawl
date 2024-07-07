@@ -4,8 +4,10 @@ class_name Quest
 ## A single quest with any amount of stages.
 
 # ==============================================================================
-static var quest_name: String = SavesManager.get_value("quest_name", Quest, "") ## The name of the quest.
-static var stages: Array[Stage] = SavesManager.get_value("stages", Quest, [] as Array[Stage]) ## The stages in the quest.
+# SavesManager.get_value("quest_name", Quest, "")
+static var quest_name: String = Eternal.create("") ## The name of the quest.
+# SavesManager.get_value("stages", Quest, [] as Array[Stage])
+static var stages: Array[Stage] = Eternal.create([] as Array[Stage]) ## The stages in the quest.
 # ==============================================================================
 
 static func start_new(rng: RandomNumberGenerator) -> void:

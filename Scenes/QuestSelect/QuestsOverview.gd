@@ -18,7 +18,8 @@ static var selected_difficulty: DifficultyFile :
 			selected_difficulty = DifficultyFile.new()
 			selected_difficulty.load(selected_difficulty_path)
 		return selected_difficulty
-static var selected_difficulty_path: String = SavesManager.get_value("selected_difficulty_path", QuestsOverview, _difficulty_paths_cache[0]) :
+# SavesManager.get_value("selected_difficulty_path", QuestsOverview, _difficulty_paths_cache[0])
+static var selected_difficulty_path: String = Eternal.create(_difficulty_paths_cache[0]) :
 	set(value):
 		var different := value != selected_difficulty_path
 		selected_difficulty_path = value
@@ -26,7 +27,8 @@ static var selected_difficulty_path: String = SavesManager.get_value("selected_d
 			selected_difficulty = DifficultyFile.new()
 			selected_difficulty.load(value)
 
-static var selected_quest_idx: int = SavesManager.get_value("selected_quest_idx", QuestsOverview, 0) :
+# SavesManager.get_value("selected_quest_idx", QuestsOverview, 0)
+static var selected_quest_idx: int = Eternal.create(0) :
 	set(value):
 		var different := value != selected_quest_idx
 		selected_quest_idx = value
@@ -39,7 +41,8 @@ static var selected_quest: QuestFile :
 			selected_quest.load(selected_difficulty.get_quests()[selected_quest_idx])
 		return selected_quest
 
-static var player_data: Dictionary = SavesManager.get_value("player_data", QuestsOverview, {
+# SavesManager.get_value("player_data", QuestsOverview, {...
+static var player_data: Dictionary = Eternal.create({
 	"DIFFICULTY_CASUAL": [{"completions": 0, "best": 0}, {"completions": 0, "best": 0}],
 	"DIFFICULTY_NORMAL": [{"completions": 0, "best": 0}, {"completions": 0, "best": 0}]
 })

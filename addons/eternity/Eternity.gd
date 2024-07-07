@@ -14,6 +14,13 @@ static var path := "" :
 		if different:
 			_reload_file()
 
+static var saved: Signal :
+	get:
+		return _Instance.saved
+static var loaded: Signal :
+	get:
+		return _Instance.loaded
+
 static var _save_cfg: EternalFile
 # ==============================================================================
 
@@ -34,9 +41,20 @@ static func save() -> void:
 	for section in _defaults_cfg.get_sections():
 		var script := UserClassDB.class_get_script(section)
 		for key in _defaults_cfg.get_section_keys(section):
-			_save_cfg.set_value(section, key, script[key])
+			var value = script.get(key)
+			
+			if script.has_method("_export_" + key):
+				value = script.call("_export_" + key, value)
+			
+			_save_cfg.set_value(section, key, value)
 	
 	_save_cfg.save(path)
+	
+	saved.emit()
+
+
+static func get_save_name() -> String:
+	return path.get_file().get_basename()
 
 
 static func _reload_file() -> void:
@@ -53,7 +71,13 @@ static func _reload_file() -> void:
 				push_error("Invalid key '%s' under section '%s': Could not find the key in the class." % [key, section])
 				continue
 			
-			script.set(key, _save_cfg.get_value(section, key, _defaults_cfg.get_value(section, key)))
+			var value = _save_cfg.get_value(section, key, _defaults_cfg.get_value(section, key))
+			if script.has_method("_import_" + key):
+				value = script.call("_import_" + key, value)
+			
+			script.set(key, value)
+	
+	loaded.emit()
 
 
 static func stringify(variable: Variant) -> String:
@@ -229,6 +253,9 @@ static func parse(string: String) -> Variant:
 	if string.match("&\"*\""):
 		return StringName(string.trim_prefix("&\"").trim_suffix("\""))
 	
+	if string == "{}":
+		return {}
+	
 	if string.match("{*}"):
 		var split := string.trim_prefix("{\n").trim_suffix("\n}").split(",\n")
 		var dict := {}
@@ -236,6 +263,10 @@ static func parse(string: String) -> Variant:
 		var i := 0
 		while i < split.size():
 			var slice := split[i]
+			
+			if not ":" in slice:
+				# the dictionary is empty
+				continue
 			
 			var slices := _split_values(slice, ":")
 			
@@ -269,6 +300,9 @@ static func parse(string: String) -> Variant:
 		var arr := Array([], type, class_string, script)
 		arr.assign(parse(string.trim_prefix("Array[%s](" % typed_string).trim_suffix(")")))
 		return arr
+	
+	if string == "[]":
+		return []
 	
 	if string.match("[*]"):
 		return Array(_split_values(string.trim_prefix("[").trim_suffix("]"), ",")).map(func(s: String): return parse(s))
@@ -325,3 +359,20 @@ static func _split_values(string: String, delimeter: String) -> PackedStringArra
 	slices.append(slice.strip_edges())
 	
 	return slices
+
+
+class _Instance:
+	static var _instance := _Instance.new()
+	static var path_changed: Signal :
+		get:
+			return _instance._path_changed
+	static var saved: Signal :
+		get:
+			return _instance._saved
+	static var loaded: Signal :
+		get:
+			return _instance._loaded
+	
+	signal _path_changed()
+	signal _saved()
+	signal _loaded()

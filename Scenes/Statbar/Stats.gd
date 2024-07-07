@@ -8,31 +8,36 @@ static var _instance: Stats :
 			_instance = null
 		return _instance
 
-static var max_life: int = SavesManager.get_value("max_life", Stats, 0) :
+# SavesManager.get_value("max_life", Stats, 0)
+static var max_life: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("max_life", value)
 		max_life = value
 		if _instance:
 			_instance._update_life_label()
-static var life: int = SavesManager.get_value("life", Stats, 0) :
+# SavesManager.get_value("life", Stats, 0)
+static var life: int = Eternal.create(0) :
 	set(value):
 		life = value
 		
 		if _instance:
 			_instance._update_life_label()
-static var revives: int = SavesManager.get_value("revives", Stats, 0) :
+# SavesManager.get_value("revives", Stats, 0)
+static var revives: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("revives", value)
 		revives = value
 		if _instance:
 			_instance._update_revives()
-static var defense: int = SavesManager.get_value("defense", Stats, 0) :
+# SavesManager.get_value("defense", Stats, 0)
+static var defense: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("defense", value)
 		defense = value
 		if _instance:
 			_instance._update_defense_label()
-static var coins: int = SavesManager.get_value("coins", Stats, 0) :
+# SavesManager.get_value("coins", Stats, 0)
+static var coins: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("coins", value)
 		var increased := value > coins
@@ -47,7 +52,8 @@ static var coins: int = SavesManager.get_value("coins", Stats, 0) :
 				await _instance.ready
 			_instance._animation_player.play("coin_gain")
 
-static var untouchable: bool = SavesManager.get_value("untouchable", Stats, true)
+# SavesManager.get_value("untouchable", Stats, true)
+static var untouchable: bool = Eternal.create(true)
 # ==============================================================================
 @onready var _life_label: Label = %LifeLabel
 @onready var _defense_label: Label = %DefenseLabel

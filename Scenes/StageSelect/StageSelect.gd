@@ -6,7 +6,7 @@ extends MarginContainer
 # ==============================================================================
 
 func _ready() -> void:
-	SavesManager.save()
+	Eternity.save()
 	
 	quest_name_label.text = Quest.quest_name
 

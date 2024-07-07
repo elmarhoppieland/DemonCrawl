@@ -3,14 +3,16 @@ extends ProgressBar
 class_name XPBar
 
 # ==============================================================================
-static var xp: int = SavesManager.get_value("xp", XPBar, 40) :
+# SavesManager.get_value("xp", XPBar, 40)
+static var xp: int = Eternal.create(0) :
 	set(new_xp):
 		xp = new_xp
 		
 		while xp > get_next_level_xp():
 			xp -= get_next_level_xp()
 			level += 1
-static var level: int = SavesManager.get_value("level", XPBar, 0)
+# SavesManager.get_value("level", XPBar, 0)
+static var level: int = Eternal.create(0)
 # ==============================================================================
 
 func _enter_tree() -> void:

@@ -2,7 +2,8 @@ extends Control
 class_name TokenShop
 
 # ==============================================================================
-static var purchased_items: Dictionary = SavesManager.get_value("purchased_items", TokenShop, {})
+# SavesManager.get_value("purchased_items", TokenShop, {})
+static var purchased_items: Dictionary = Eternal.create({})
 # ==============================================================================
 @onready var _category_tab_buttons: HBoxContainer = %CategoryTabButtons
 @onready var _categories_container: MarginContainer = %Categories

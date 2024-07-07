@@ -32,11 +32,7 @@ func create_node(texture: CollectibleTexture = null) -> MarginContainer:
 	var color_rect := ColorRect.new()
 	color_rect.color = data.get_color()
 	node.add_child(color_rect)
-	
-	get_texture_rect().move_to_front()
-	
-	if not in_inventory:
-		return node
+	node.move_child(color_rect, 0)
 	
 	node_init()
 	
@@ -45,7 +41,7 @@ func create_node(texture: CollectibleTexture = null) -> MarginContainer:
 
 func node_init() -> void:
 	get_tooltip_grabber().interacted.connect(func():
-		if can_use():
+		if is_active() and can_use():
 			use()
 			EffectManager.propagate_call("item_use", [self])
 	)
@@ -53,10 +49,12 @@ func node_init() -> void:
 	if data.get_color().a > 0:
 		const ANIM_DURATION := 0.1
 		node.mouse_entered.connect(func():
-			node.create_tween().tween_property(get_color_rect(), "color:a", 1.0, ANIM_DURATION)
+			if is_active():
+				node.create_tween().tween_property(get_color_rect(), "color:a", 1.0, ANIM_DURATION)
 		)
 		node.mouse_exited.connect(func():
-			node.create_tween().tween_property(get_color_rect(), "color:a", data.get_color().a, ANIM_DURATION)
+			if is_active():
+				node.create_tween().tween_property(get_color_rect(), "color:a", data.get_color().a, ANIM_DURATION)
 		)
 
 
@@ -88,8 +86,15 @@ func can_use() -> bool:
 	return data.type in [Type.CONSUMABLE, Type.MAGIC]
 
 
+func is_active() -> bool:
+	return in_inventory
+
+
 static func from_path(path: String) -> Item:
-	return ResourceLoader.load(path).new()
+	if path.is_relative_path():
+		path = "res://Assets/items/".path_join(path)
+	
+	return ResourceLoader.load(path.get_basename() + ".gd").new()
 
 
 func clear() -> void:
@@ -136,10 +141,6 @@ func target_cells(radius: int) -> Array[Cell]:
 	return []
 
 
-func create_status() -> StatusEffect.Initializer:
-	return StatusEffect.create(get_id())
-
-
 func get_atlas() -> CompressedTexture2D:
 	return preload("res://Assets/sprites/items.png")
 
@@ -154,9 +155,3 @@ func get_tooltip_text() -> String:
 
 func get_tooltip_subtext() -> String:
 	return data.description
-
-
-func get_id() -> String:
-	var suffix: int = get_script().get_meta("id_suffix", 0)
-	get_script().set_meta("id_suffix", suffix + 1)
-	return (get_script() as Script).resource_path + ":" + str(suffix)

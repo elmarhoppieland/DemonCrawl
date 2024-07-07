@@ -50,7 +50,7 @@ func _on_buy_button_pressed() -> void:
 	Stats.spend_coins(_selected_display.offer_price, self)
 	
 	_selected_display.detach_item_node()
-	Inventory.gain_item(selected_item, true)
+	Inventory.gain_item(selected_item)
 	
 	selected_item = null
 	_buy_button.modulate.a = 0

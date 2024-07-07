@@ -29,13 +29,13 @@ func _ready() -> void:
 	timer = null
 	
 	if not OS.is_debug_build() or not Input.is_key_pressed(KEY_ALT):
-		SavesManager.save()
+		Eternity.save()
 	
 	if ProfileList.selected_profile.is_empty():
 		create_profile.show()
 		await create_profile.confirmed
 	else:
-		SavesManager.save_path = "user://saves/".path_join(ProfileList.selected_profile + ".ini")
+		Eternity.path = "user://saves/".path_join(ProfileList.selected_profile + ".ini")
 	
 	button_bar.show()
 	#copyright.show()
@@ -46,8 +46,6 @@ func _ready() -> void:
 	Toasts.add_debug_toast("Profile Loaded: %s" % ProfileList.selected_profile)
 	
 	SavesManager.save_settings()
-	
-	print(UserClassDB.get_class_list())
 
 
 func _process(_delta: float) -> void:

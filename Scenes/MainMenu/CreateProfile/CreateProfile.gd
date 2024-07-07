@@ -34,6 +34,6 @@ func _on_confirm_button_pressed() -> void:
 	
 	ProfileList.selected_profile = input.text.trim_suffix("_")
 	var path := "user://saves/".path_join(ProfileList.selected_profile + ".ini")
-	SavesManager.save_path = path
-	SavesManager.save()
+	Eternity.path = path
+	Eternity.save()
 	confirmed.emit(ProfileList.selected_profile)

@@ -4,7 +4,13 @@ class_name Inventory
 # ==============================================================================
 static var _instance: Inventory
 
-static var items: Array[Item] = SavesManager.get_value("items", Inventory, [] as Array[Item])
+static var items: Array[Item] = []
+static var item_paths: PackedStringArray = Eternal.create(PackedStringArray()) :
+	set(value):
+		item_paths = value
+		items.assign(Array(value).map(func(path: String): return Item.from_path(path)))
+	get:
+		return items.map(func(item: Item): return item.data.resource_path.get_basename())
 # ==============================================================================
 @onready var _item_grid: GridContainer = %ItemGrid
 # ==============================================================================
@@ -23,16 +29,16 @@ func _ready() -> void:
 		_add_item_node(item)
 
 
-func _add_item_node(item: Item, use_item_node: bool = false) -> void:
-	var node := item.node if use_item_node and item.node else item.create_node()
-	if use_item_node and item.node:
-		item.node_init()
+func _add_item_node(item: Item) -> void:
+	item.in_inventory = true
+	
+	var node := item.get_node()
 	_instance._item_grid.add_child(node)
 
 
 ## Adds an item to the player's inventory and calls [method Item.gain] (in that order).
-static func gain_item(item: Item, use_item_node: bool = false) -> void:
-	add_item(item, use_item_node)
+static func gain_item(item: Item) -> void:
+	add_item(item)
 	
 	item.gain()
 	EffectManager.propagate_call("item_gain", [item])
@@ -43,11 +49,11 @@ static func gain_item(item: Item, use_item_node: bool = false) -> void:
 ## [method Item.inventory_add] initialization method, but does [b]not[/b] call [method Item.gain],
 ## so effects that occur when the player gains the item do not occur. To gain an item,
 ## see [method gain_item].
-static func add_item(item: Item, use_item_node: bool = false) -> void:
+static func add_item(item: Item) -> void:
 	EffectManager.register_object(item)
 	
 	items.append(item)
-	_instance._add_item_node(item, use_item_node)
+	_instance._add_item_node(item)
 	
 	item.inventory_add()
 	EffectManager.propagate_call("inventory_add_item", [item])
