@@ -110,7 +110,10 @@ static func unregister_object(object: Object) -> void:
 ## Anonymous lambdas will be connected, but will never be called.
 ## [br][br][b]Note:[/b] This will only connect a single method to a single effect.
 ## To connect to all effects, use [method register_object] on the callable's object.
-static func connect_effect(callable: Callable, influencing: bool = false, allow_duplicates: bool = false, effect: StringName = callable.get_method()) -> void:
+static func connect_effect(callable: Callable, influencing: bool = false, allow_duplicates: bool = false, effect: StringName = &"") -> void:
+	if effect.is_empty():
+		effect = callable.get_method()
+	
 	var dict := _connections_influencing if influencing else _connections_reactive
 	
 	if effect in dict:
@@ -265,35 +268,24 @@ static func _get_objects() -> Array[Object]:
 
 
 static func _get_reactive_connections(effect: StringName) -> Array[Callable]:
-	if not effect in _connections_reactive:
-		return []
-	
-	var callables: Array[Callable] = []
-	
-	for callable: Callable in _connections_reactive[effect]:
-		if not callable.is_valid():
-			continue
-		
-		callables.append(callable)
-	
-	_connections_reactive[effect] = callables
-	
-	return callables
+	return _get_connections_from_dict(effect, _connections_reactive)
 
 
 static func _get_influencing_connections(effect: StringName) -> Array[Callable]:
-	if not effect in _connections_influencing:
+	return _get_connections_from_dict(effect, _connections_influencing)
+
+
+static func _get_connections_from_dict(effect: StringName, dict: Dictionary) -> Array[Callable]:
+	if not effect in dict:
 		return []
 	
 	var callables: Array[Callable] = []
 	
-	for callable: Callable in _connections_influencing[effect]:
-		if not callable.is_valid():
-			continue
-		
-		callables.append(callable)
+	callables.assign(dict[effect].filter(func(callable: Callable):
+		return callable.is_valid()
+	))
 	
-	_connections_influencing[effect] = callables
+	dict[effect] = callables
 	
 	return callables
 

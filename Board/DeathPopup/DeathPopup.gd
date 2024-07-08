@@ -13,7 +13,10 @@ static var _instance: DeathPopup
 func _enter_tree() -> void:
 	_instance = self
 	
-	EffectManager.register_object(self)
+	EffectManager.connect_effect(func lose(source: Object):
+		_instance.death_message_label.text = DeathPopup.get_death_message(source)
+		_instance.animation_player.play("show")
+	)
 
 
 func _process(_delta: float) -> void:
@@ -30,11 +33,6 @@ func return_to_menu() -> void:
 	red_overlay.hide()
 	Quest.stages.clear()
 	get_tree().change_scene_to_file("res://Scenes/MainMenu/MainMenu.tscn")
-
-
-func lose(source: Object) -> void:
-	_instance.death_message_label.text = DeathPopup.get_death_message(source)
-	_instance.animation_player.play("show")
 
 
 static func get_death_message(source: Object) -> String:

@@ -4,8 +4,7 @@ class_name MouseCastSprite
 # ==============================================================================
 static var _instance: MouseCastSprite
 # ==============================================================================
-var _board_was_frozen := false
-var _board_was_mutable := true
+var _previous_board_state := Board.State.RUNNING
 # ==============================================================================
 @onready var anchor: Node2D = %Anchor
 @onready var foreground: Sprite2D = %Foreground
@@ -20,14 +19,11 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	visibility_changed.connect(func():
 		if visible:
-			_board_was_frozen = Board.frozen
-			_board_was_mutable = Board.mutable
+			_previous_board_state = Board.state
 			
-			Board.frozen = true
-			Board.mutable = false
+			Board.state = Board.State.FROZEN
 		else:
-			Board.frozen = _board_was_frozen
-			Board.mutable = _board_was_mutable
+			Board.state = _previous_board_state
 	, CONNECT_DEFERRED)
 	
 	hide()

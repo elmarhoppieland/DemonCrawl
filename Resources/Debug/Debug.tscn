@@ -1,14 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvk0crgtytdv1"]
+[gd_scene load_steps=4 format=3 uid="uid://bvk0crgtytdv1"]
 
 [ext_resource type="Script" path="res://Resources/Debug/Debug.gd" id="1_c7rdp"]
-[ext_resource type="FontFile" uid="uid://7ynms6dclfsi" path="res://Assets/fonts/04B_03__.TTF" id="2_c1h2s"]
 [ext_resource type="Script" path="res://Resources/Debug/CommandLine.gd" id="3_qqgcm"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_cgf3m"]
-font = ExtResource("2_c1h2s")
-font_size = 8
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_xj2h2"]
 number_color = Color(0.482353, 0.737255, 0.662745, 1)
@@ -41,21 +34,24 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="DebugLabelLeft" type="Label" parent="HBoxContainer"]
+[node name="DebugLabelLeft" type="RichTextLabel" parent="HBoxContainer"]
 unique_name_in_owner = true
+clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Test Value: 34"
-label_settings = SubResource("LabelSettings_cgf3m")
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "[url={\"dest\": \"_objects%5B0%5D\"}]<Object#-495783754>[/url]"
+fit_content = true
 
-[node name="DebugLabelRight" type="Label" parent="HBoxContainer"]
+[node name="DebugLabelRight" type="RichTextLabel" parent="HBoxContainer"]
 unique_name_in_owner = true
+clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-label_settings = SubResource("LabelSettings_cgf3m")
-horizontal_alignment = 2
+size_flags_vertical = 0
+bbcode_enabled = true
+fit_content = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = -1
@@ -93,3 +89,6 @@ code_completion_enabled = true
 auto_brace_completion_enabled = true
 auto_brace_completion_highlight_matching = true
 script = ExtResource("3_qqgcm")
+
+[connection signal="meta_clicked" from="HBoxContainer/DebugLabelLeft" to="." method="_on_left_meta_clicked"]
+[connection signal="meta_clicked" from="HBoxContainer/DebugLabelRight" to="." method="_on_right_meta_clicked"]

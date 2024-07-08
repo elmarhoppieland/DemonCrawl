@@ -61,13 +61,19 @@ func next() -> String:
 	return "Advanced the world by 1 physics frame."
 
 
-func overlay_select(path: String) -> String:
-	if not path.begins_with("/root/"):
-		path = "/root/" + path
-	
-	Debug.left_object = get_node(path)
-	
-	return "Set the left overlay to " + path + "."
+func overlay_select(target: Variant) -> String:
+	if target is String:
+		if not target.begins_with("/root/"):
+			target = "/root/" + target
+		
+		Debug.left_object = get_node(target)
+		
+		return "Set the left overlay to " + target + "."
+	elif target is Object:
+		Debug.left_object = target
+		return "Set the left overlay to " + str(target) + "."
+	else:
+		return "[color=red]Invalid type of parameter 'target' (1st param).[/color]"
 
 
 func overlay_select_left(path: String) -> String:

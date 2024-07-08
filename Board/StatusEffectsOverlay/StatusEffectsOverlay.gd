@@ -71,7 +71,10 @@ static func add_status_effect(status_effect: StatusEffect, uid: String = "") -> 
 
 
 static func get_status_effect(uid: String) -> StatusEffect:
-	return _status_effects.get(uid)
+	var status = _status_effects.get(uid)
+	if is_instance_valid(status):
+		return status
+	return null
 
 
 static func remove_status_effect(status_effect: StatusEffect, keep_instance: bool = false) -> void:

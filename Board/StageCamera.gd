@@ -9,6 +9,8 @@ static var _instance: StageCamera
 @export var shake_duration := 0.2
 # ==============================================================================
 var shake_enabled := false
+
+var _zoom_tween: Tween
 # ==============================================================================
 
 func _init() -> void:
@@ -28,7 +30,10 @@ func _process(delta: float) -> void:
 	
 	var scroll := int(Input.is_action_just_released("zoom_in")) - int(Input.is_action_just_released("zoom_out"))
 	if scroll != 0:
-		create_tween().tween_property(self, "zoom", (zoom * (1.5 ** scroll)).round(), 0.1)
+		if _zoom_tween:
+			_zoom_tween.kill()
+		_zoom_tween = create_tween()
+		_zoom_tween.tween_property(self, "zoom", (zoom * (1.5 ** scroll)).round(), 0.1)
 	
 	
 	if shake_enabled:

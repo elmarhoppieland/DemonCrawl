@@ -97,7 +97,7 @@ signal opened() ## Emitted when this cell gets opened.
 # ==============================================================================
 
 func _process(_delta: float) -> void:
-	if not Board.frozen and Input.is_action_just_released("cell_open") and _pressed_cell != null:
+	if Board.can_open_cells() and Input.is_action_just_released("cell_open") and _pressed_cell != null:
 		_process_cell_opening()
 		
 		set_deferred("_pressed_cell", null)
@@ -105,7 +105,7 @@ func _process(_delta: float) -> void:
 	if not _hovered:
 		return
 	
-	if not Board.frozen:
+	if Board.can_open_cells():
 		if Input.is_action_just_pressed("cell_open") and not (revealed and cell_object):
 			_pressed_cell = self
 			if revealed:
@@ -118,7 +118,7 @@ func _process(_delta: float) -> void:
 			if Input.is_action_just_pressed("secondary_interact"):
 				cell_object.secondary_interact()
 	
-	if Board.mutable and Input.is_action_just_pressed("cell_flag"):
+	if Board.can_flag_cells() and Input.is_action_just_pressed("cell_flag"):
 		if revealed:
 			flag_chord()
 		elif is_flagged():
@@ -214,7 +214,7 @@ func open() -> void:
 	if revealed:
 		return
 	
-	if not Board.started:
+	if Board.state == Board.State.UNINITIALIZED:
 		Board.start_board(self)
 	
 	_background.set_open()

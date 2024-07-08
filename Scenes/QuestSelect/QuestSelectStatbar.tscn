@@ -27,7 +27,7 @@ font_color = Color(0.745098, 0.745098, 0.745098, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b311"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hqcg"]
 atlas = ExtResource("8_mxn6j")
 region = Rect2(80, 80, 16, 16)
 script = ExtResource("12_u62r3")
@@ -157,7 +157,7 @@ theme_override_constants/separation = 0
 
 [node name="ProfileMastery" type="TextureRect" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_5b311")
+texture = SubResource("AtlasTexture_7hqcg")
 script = ExtResource("8_y3cea")
 
 [node name="Control" type="Control" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]

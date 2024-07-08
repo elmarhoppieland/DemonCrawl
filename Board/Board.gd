@@ -3,7 +3,7 @@ class_name Board
 
 ## The Minesweeper board.
 ## 
-## The board that contains all cells. This singleton handles cell hovering, pressing, releasing, etc.
+## The board that contains all cells.
 ## [br][br][b]Note:[/b] All non-private properties and methods are static and should be called on
 ## the class, for example:
 ## [codeblock]
@@ -12,9 +12,15 @@ class_name Board
 
 # ==============================================================================
 enum State {
-	READY,
-	STARTED,
+	UNINITIALIZED,
+	RUNNING,
+	FROZEN,
 	FINISHED
+}
+enum Permission {
+	OPEN_CELL = 0b001, ## Cells can be opened.
+	FLAG_CELL = 0b010, ## Cells can be flagged.
+	RUN_TIMER = 0b100, ## The timer can run. Can be overridden by [method pause_timer] or [method resume_timer]. Use [method is_timer_running] to check if the timer is running.
 }
 # ==============================================================================
 const CELL_SIZE := Vector2i(16, 16)
@@ -27,31 +33,27 @@ static var _unsafe_access := false
 
 static var rng := RandomNumberGenerator.new() ## The [RandomNumberGenerator] used to generate boards. Use [member RandomNumberGenerator.seed] to make boards generate consistently.
 
-# SavesManager.get_value("started", Board, false)
-static var started: bool = Eternal.create(false) ## Whether the board has been started, i.e. whether the first cell has been opened.
-# SavesManager.get_value("mutable", Board, false)
-static var mutable: bool = Eternal.create(false) : ## Whether the board is mutable, i.e. cells can be flagged or unflagged.
-	set(value):
-		mutable = value
-		if value:
-			Board.resume_timer()
-		else:
-			Board.pause_timer()
-static var frozen := false ## Whether the board is frozen, i.e. cells cannot be opened.
-
-# SavesManager.get_value("board_size", Board, Vector2i.ZERO)
 static var board_size: Vector2i = Eternal.create(Vector2i.ZERO) ## The number of cells in each row and column.
 
 static var start_time := -1 ## The amount of ticks (microseconds) since game launch when the timer started running.
-# SavesManager.get_value("saved_time", Board, 0.0)
 static var saved_time: float = Eternal.create(0.0) ## The timer when it was loaded.
 
-# SavesManager.get_value("board_3bv", Board, -1)
-static var board_3bv: int = Eternal.create(-1)
-# SavesManager.get_value("is_flagless", Board, true)
-static var is_flagless: bool = Eternal.create(true)
+static var board_3bv: int = Eternal.create(-1) ## The board's 3BV value.
+static var is_flagless: bool = Eternal.create(true) ## Whether the board is flagless up to this point.
 
-static var state: State = Eternal.create(State.READY)
+static var state: State = Eternal.create(State.UNINITIALIZED) :
+	set(value):
+		state = value
+		
+		_permissions = -1
+		
+		if get_permissions() & Permission.RUN_TIMER:
+			resume_timer()
+		else:
+			pause_timer()
+		
+		EffectManager.propagate_call("board_permissions_changed")
+static var _permissions := -1
 # ==============================================================================
 @onready var _finish_button: MarginContainer = %FinishButton
 @onready var _monsters_label: Label = %MonstersLabel
@@ -61,24 +63,19 @@ static var state: State = Eternal.create(State.READY)
 @onready var _tweener_canvas: CanvasLayer = %TweenerCanvas
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
-signal _cells_generated()
-# ==============================================================================
 
 func _enter_tree() -> void:
 	_instance = self
 	
-	EffectManager.connect_effect(func lose(_source: Object):
-		Board.mutable = false
-		Board.frozen = true
-		Board.pause_timer()
-	)
+	EffectManager.connect_effect(lose)
 
 
 func _ready() -> void:
 	EffectManager.propagate_call("stage_enter")
 	
-	Inventory.gain_item(preload("res://Assets/items/Apple.gd").new())
-	Inventory.gain_item(preload("res://Assets/items/Minion.gd").new())
+	Inventory.gain_item(Item.from_path("Apple"))
+	Inventory.gain_item(Item.from_path("Minion"))
+	Inventory.gain_item(Item.from_path("Sleeping Powder"))
 	
 	AssetManager.theme = StagesOverview.selected_stage.name
 	theme = AssetManager.load_theme(Theme.new())
@@ -87,12 +84,9 @@ func _ready() -> void:
 	_cell_container.columns = Board.board_size.x
 	
 	Board.saved_time = 0.0
-	Board.started = false
-	Board.mutable = false
-	Board.frozen = false
+	Board.state = State.UNINITIALIZED
 	Board.board_3bv = -1
 	Board.is_flagless = true
-	Board.pause_timer()
 	
 	Stats.untouchable = true
 	
@@ -108,9 +102,14 @@ func _ready() -> void:
 	Foreground.fade_in(FADE_DURATION)
 
 
+func lose(_source: Object) -> void:
+	Board.state = State.FROZEN
+	Board.pause_timer()
+
+
 ## Starts the board on the given [code]cell[/code]. Moves all mines in or nearby the cell away if present.
 static func start_board(cell: Cell) -> void:
-	assert(not Board.started, "Board has already started.")
+	assert(Board.state == State.UNINITIALIZED, "Board has already started.")
 	
 	for i in Minesweeper.generate_mines(board_size, StagesOverview.selected_stage.monsters, cell.board_position, rng):
 		var monster_cell := get_cell_at_index(i)
@@ -123,9 +122,7 @@ static func start_board(cell: Cell) -> void:
 	
 	Board.start_time = Time.get_ticks_usec()
 	
-	Board.started = true
-	Board.mutable = true
-	Board.resume_timer()
+	Board.state = State.RUNNING
 	
 	EffectManager.propagate_call("board_begin")
 	EffectManager.propagate_call("stage_load")
@@ -159,8 +156,7 @@ static func check_completion() -> void:
 			unsolved += 1
 	
 	if unsolved <= (Board.board_size.x * Board.board_size.y - StagesOverview.selected_stage.monsters) * PlayerStats.pathfinding / 100.0:
-		Board.mutable = false
-		Board.pause_timer()
+		Board.state = State.FINISHED
 		
 		_instance._finish_button.show()
 		
@@ -357,6 +353,46 @@ static func exists() -> bool:
 	return instance_exists
 
 
+## Returns the board's permissions as a bitfield of [enum Permission].
+static func get_permissions() -> int:
+	if _permissions >= 0:
+		return _permissions
+	
+	var default := 0
+	
+	match state:
+		State.UNINITIALIZED:
+			default = Permission.OPEN_CELL
+		State.RUNNING:
+			default = Permission.OPEN_CELL | Permission.FLAG_CELL | Permission.RUN_TIMER
+		State.FROZEN:
+			default = Permission.RUN_TIMER
+		State.FINISHED:
+			default = Permission.OPEN_CELL
+	
+	_permissions = EffectManager.propagate_posnum("get_board_permissions", [state], default)
+	return _permissions
+
+
+## Returns whether cells can be opened.
+static func can_open_cells() -> bool:
+	return get_permissions() & Permission.OPEN_CELL
+
+
+## Returns whether cells can be flagged.
+static func can_flag_cells() -> bool:
+	return get_permissions() & Permission.FLAG_CELL
+
+
+## Returns whether the timer can run. Can be overridden by [method pause_timer]
+## and/or [method resume_timer]. Use [method is_timer_running] to check if the
+## timer is running.
+## [br][br]Status effects also use this permission, so this can be used to check
+## if time-based status effects should advance.
+static func can_run_timer() -> bool:
+	return get_permissions() & Permission.RUN_TIMER
+
+
 func _on_finish_button_pressed() -> void:
 	_animation_player.play("finish_show")
 	_finish_button.hide()
@@ -388,5 +424,5 @@ func _on_finish_button_pressed() -> void:
 
 
 func _exit_tree() -> void:
-	Board.started = false
+	Board.state = State.UNINITIALIZED
 	Board.saved_time = 0.0

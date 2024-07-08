@@ -85,6 +85,11 @@ func board_begin() -> void:
 	pass
 
 
+## Called when the board's permissions change.
+func board_permissions_changed() -> void:
+	pass
+
+
 ## Called when the player starts a new quest.
 func quest_start() -> void:
 	pass

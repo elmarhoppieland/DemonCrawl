@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://Resources/Icon.gd" id="10_0f8tq"]
 [ext_resource type="PackedScene" uid="uid://bl07eret4ujpn" path="res://Scenes/Statbar/Inventory.tscn" id="15_6x8ea"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b311"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hqcg"]
 atlas = ExtResource("5_xups4")
 region = Rect2(80, 80, 16, 16)
 script = ExtResource("10_0f8tq")
@@ -183,7 +183,7 @@ layout_mode = 2
 [node name="ProfileMastery" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_5b311")
+texture = SubResource("AtlasTexture_7hqcg")
 script = ExtResource("5_beiwq")
 
 [node name="Control2" type="Control" parent="MarginContainer/HBoxContainer"]

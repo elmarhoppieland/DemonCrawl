@@ -22,7 +22,7 @@ func use() -> void:
 class Status:
 	func _init() -> void:
 		Board.pause_timer()
-		EffectManager.connect_effect(func stage_load() -> void: Board.pause_timer())
+		EffectManager.connect_effect(func board_permissions_changed() -> void: Board.pause_timer())
 	
 	func end() -> void:
 		Board.resume_timer()

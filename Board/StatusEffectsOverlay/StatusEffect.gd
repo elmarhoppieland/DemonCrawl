@@ -43,6 +43,8 @@ var type := Type.TURNS
 var reset_on_mistake := false
 var attribute: Object
 var sort_order := -1
+
+var _tween: Tween
 # ==============================================================================
 @onready var texture_rect: TextureRect = %TextureRect
 @onready var count_label: Label = %CountLabel
@@ -58,10 +60,27 @@ func _ready() -> void:
 		Type.CELLS_OPENED:
 			EffectManager.connect_effect(func cell_open(_cell: Cell): duration -= 1)
 		Type.SECONDS:
-			var tween := create_tween()
-			tween.set_loops()
-			tween.tween_interval(1)
-			tween.tween_callback(func(): duration -= 1)
+			if Board.can_run_timer():
+				_tween = create_tween()
+				_tween.set_loops()
+				_tween.tween_interval(1)
+				_tween.tween_callback(func(): duration -= 1)
+			
+			# bottom code is better but does not work in godot 4.2.2 due to bug (fixed in 4.3)
+			EffectManager.connect_effect(_restart_tween, false, false, &"board_permissions_changed")
+			#EffectManager.connect_effect(func board_permissions_changed():
+				#_restart_tween()
+			#)
+
+
+func _restart_tween() -> void:
+	if _tween:
+		_tween.kill()
+	
+	_tween = create_tween()
+	_tween.set_loops()
+	_tween.tween_interval(1)
+	_tween.tween_callback(func(): duration -= 1)
 
 
 static func create(uid: String = "") -> Initializer:
