@@ -7,7 +7,7 @@ const LOGO_BASE_ANIM_DURATION := 0.5
 const LOGO_TOP_ANIM_DURATION := 1.0
 const TOTAL_ANIM_DURATION := ANIM_WAIT + LOGO_BASE_ANIM_DURATION + LOGO_TOP_ANIM_DURATION
 # ==============================================================================
-var timer: SceneTreeTimer
+var tween: Tween
 # ==============================================================================
 @onready var button_bar: MarginContainer = %ButtonBar
 @onready var copyright: RichTextLabel = %Copyright
@@ -24,9 +24,9 @@ func _ready() -> void:
 	profile_select.hide()
 	bottom_right_buttons.hide()
 	
-	timer = get_tree().create_timer(TOTAL_ANIM_DURATION)
-	await timer.timeout
-	timer = null
+	tween = create_tween()
+	tween.tween_interval(TOTAL_ANIM_DURATION)
+	await tween.finished
 	
 	if not OS.is_debug_build() or not Input.is_key_pressed(KEY_ALT):
 		Eternity.save()
@@ -49,5 +49,5 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if timer and Input.is_action_just_pressed("interact"):
-		timer.time_left = 0
+	if tween and tween.is_running() and Input.is_action_just_pressed("interact"):
+		tween.set_speed_scale(INF)

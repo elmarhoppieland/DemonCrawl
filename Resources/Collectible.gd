@@ -23,9 +23,8 @@ func _notification(what: int) -> void:
 ## end of the frame (see [method Node.queue_free]).
 ## [br][br]Child scripts should override this method if a different node hierarchy
 ## is needed. [code]super()[/code] can be called to keep the default behaviour.
-func create_node(texture: CollectibleTexture = null) -> MarginContainer:
-	if not texture:
-		texture = CollectibleTexture.new()
+func create_node() -> MarginContainer:
+	var texture := CollectibleTexture.new()
 	texture.collectible = self
 	
 	node = MarginContainer.new()
@@ -52,9 +51,9 @@ func duplicate() -> Collectible:
 
 ## Returns this [Collectible]'s [member node]. Creates a new node if it does not have one,
 ## or if the current one has been freed.
-func get_node(texture: CollectibleTexture = null) -> MarginContainer:
+func get_node() -> MarginContainer:
 	if not is_instance_valid(node):
-		create_node(texture)
+		create_node()
 	
 	return node
 
@@ -120,5 +119,11 @@ func remove_node_from_tree(keep_node: bool = false) -> void:
 		node.queue_free()
 
 
+## Creates a new [StatusEffect]. Uses the given [code]uid[/code] if specified.
 func create_status(uid: String = "") -> StatusEffect.Initializer:
-	return StatusEffect.create(uid)
+	return StatusEffect.create(uid).set_source(self)
+
+
+## Returns the path where this [Collectible] is located in the filesystem.
+func get_path() -> String:
+	return get_script().resource_path.get_basename()

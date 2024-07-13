@@ -2,6 +2,9 @@ extends Item
 
 # ==============================================================================
 
+# the 'you may find duplicate items' effect is hardcoded
+# see the ItemDB.ItemFilter._ignore_items_in_inventory getter
+
 func stage_enter() -> void:
 	var highest_count := 0
 	var count := 0

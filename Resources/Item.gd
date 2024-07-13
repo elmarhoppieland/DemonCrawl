@@ -26,13 +26,8 @@ var data: ItemData :
 var in_inventory := false
 # ==============================================================================
 
-func create_node(texture: CollectibleTexture = null) -> MarginContainer:
-	super(texture)
-	
-	var color_rect := ColorRect.new()
-	color_rect.color = data.get_color()
-	node.add_child(color_rect)
-	node.move_child(color_rect, 0)
+func create_node() -> MarginContainer:
+	node = ItemIcon.create(data)
 	
 	node_init()
 	
@@ -40,7 +35,7 @@ func create_node(texture: CollectibleTexture = null) -> MarginContainer:
 
 
 func node_init() -> void:
-	get_tooltip_grabber().interacted.connect(func():
+	get_node().interacted.connect(func():
 		if is_active() and can_use():
 			use()
 			EffectManager.propagate_call("item_use", [self])
@@ -48,18 +43,18 @@ func node_init() -> void:
 	
 	if data.get_color().a > 0:
 		const ANIM_DURATION := 0.1
-		node.mouse_entered.connect(func():
+		get_node().mouse_entered.connect(func():
 			if is_active():
-				node.create_tween().tween_property(get_color_rect(), "color:a", 1.0, ANIM_DURATION)
+				get_node().create_tween().tween_property(get_color_rect(), "color:a", 1.0, ANIM_DURATION)
 		)
-		node.mouse_exited.connect(func():
+		get_node().mouse_exited.connect(func():
 			if is_active():
-				node.create_tween().tween_property(get_color_rect(), "color:a", data.get_color().a, ANIM_DURATION)
+				get_node().create_tween().tween_property(get_color_rect(), "color:a", data.get_color().a, ANIM_DURATION)
 		)
 
 
 func get_color_rect() -> ColorRect:
-	for child in node.get_children():
+	for child in get_node().get_children():
 		if child is ColorRect:
 			return child
 	
@@ -71,7 +66,8 @@ func inventory_add() -> void:
 
 
 func gain() -> void:
-	pass
+	if data.type == Type.MAGIC:
+		get_node().current_mana = data.mana
 
 
 func lose() -> void:
@@ -83,7 +79,12 @@ func use() -> void:
 
 
 func can_use() -> bool:
-	return data.type in [Type.CONSUMABLE, Type.MAGIC]
+	if data.type == Type.CONSUMABLE:
+		return true
+	if data.type == Type.MAGIC and get_node().current_mana >= data.mana:
+		return true
+	
+	return false
 
 
 func is_active() -> bool:
@@ -113,6 +114,9 @@ func target_cell() -> Cell:
 
 
 func target_cells(radius: int) -> Array[Cell]:
+	if not Board.exists():
+		return []
+	
 	MouseCastSprite.cast(self)
 	
 	while true:
@@ -141,6 +145,18 @@ func target_cells(radius: int) -> Array[Cell]:
 	return []
 
 
+func set_mana(mana: int) -> void:
+	get_node().current_mana = clampi(mana, 0, data.mana)
+
+
+func gain_mana(mana: int) -> void:
+	set_mana(get_node().current_mana + mana)
+
+
+func clear_mana() -> void:
+	set_mana(get_node().current_mana - data.mana)
+
+
 func get_atlas() -> CompressedTexture2D:
 	return preload("res://Assets/sprites/items.png")
 
@@ -155,3 +171,7 @@ func get_tooltip_text() -> String:
 
 func get_tooltip_subtext() -> String:
 	return data.description
+
+
+func get_node() -> ItemIcon:
+	return super() # for autocomplete

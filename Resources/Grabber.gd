@@ -4,8 +4,12 @@ class_name Grabber
 # ==============================================================================
 static var _main_grabber: Grabber
 # ==============================================================================
+## Whether this is the main grabber. The main grabber will be considered interacted
+## when it enters the tree (and [signal interacted] is emitted).
+## [br][br][b]Note:[/b] Only set this to [code]true[/code] on one grabber per scene.
+## If multiple grabbers are main, unexpected behaviour may occur.
 @export var main := false
-@export var enabled := true :
+@export var enabled := true : ## Whether this grabber is enabled.
 	set(value):
 		enabled = value
 		
@@ -18,12 +22,12 @@ static var _main_grabber: Grabber
 # ==============================================================================
 var _mouse_inside := false
 # ==============================================================================
-@onready var control: Control = get_parent()
-@onready var hovered := control.mouse_entered
-@onready var unhovered := control.mouse_exited
+@onready var control: Control = get_parent() ## The control this grabber acts on.
+@onready var hovered := control.mouse_entered ## Emitted when the [member control] is hovered.
+@onready var unhovered := control.mouse_exited ## Emitted when the [member control] is no longer hovered.
 # ==============================================================================
-signal interacted()
-signal second_interacted()
+signal interacted() ## Emitted when the [member control] gets interacted with (left click or Q).
+signal second_interacted() ## Emitted when the [member control] gets second interacted with (right click or E).
 # ==============================================================================
 
 func _init(_main: bool = false) -> void:

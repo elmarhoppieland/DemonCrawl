@@ -16,48 +16,148 @@ static func get_items_data() -> Array[ItemData]:
 	return items
 
 
-## Returns a random item with a maximum cost of [code]max_cost[/code].
-static func get_random_item(max_cost: int, min_cost: int = -1, types: int = (1 << Item.Type.MAX) - 1, rng: RandomNumberGenerator = null) -> Item:
-	var options := get_filtered_items(max_cost, min_cost, types)
-	
-	if options.is_empty():
-		return null
-	
-	return options[RNG.randi(rng) % options.size()].get_item_script().new()
+## Creates a new [ItemDB.ItemFilter]. Use it to generate random items based on certain filters.
+static func create_filter() -> ItemFilter:
+	return ItemFilter.new()
 
 
-## Returns [code]count[/code] random different items with a maximum cost of [code]max_cost[/code].
-static func get_random_item_set(max_cost: int, count: int, min_cost: int = -1, types: int = (1 << Item.Type.MAX) - 1, rng: RandomNumberGenerator = null) -> Array[Item]:
-	if max_cost < min_cost:
-		return []
+## Filters items in the database.
+class ItemFilter:
+	var _max_cost := (1 << 63) - 1 # maximum signed 64-bit int (allow any cost)
+	var _min_cost := -1 # all items have a minimum cost of -1  (allow any cost)
+	var _types: int = (1 << Item.Type.MAX) - 1
+	var _ignore_items_in_inventory := true :
+		get:
+			if Inventory.items.any(func(item: Item): return item.data == preload("res://Assets/items/Extra Pocket.tres")):
+				return false
+			return _ignore_items_in_inventory
+	var _rng: RandomNumberGenerator
 	
-	var options := get_filtered_items(max_cost, min_cost)
 	
-	var indexes := PackedInt32Array()
-	var items: Array[Item] = []
-	for i in count:
-		if options.size() == indexes.size():
-			Debug.log_error("Could not find more than %d items with a max_cost of %d, a min_cost of %d with types %d." % [items.size(), max_cost, min_cost, types])
-			return items
-		
-		var index := RNG.randi(rng) % (options.size() - indexes.size())
-		
-		for j in indexes:
-			if j <= index:
-				index += 1
-		
-		indexes.append(index)
-		indexes.sort()
-		
-		items.append(options[index].get_item_script().new())
+	## Only allow items with a cost of [code]max_cost[/code] or less.
+	func set_max_cost(max_cost: int) -> ItemFilter:
+		_max_cost = max_cost
+		return self
 	
-	return items
-
-
-## Returns all items with a maximum cost of [code]max_cost[/code] (inclusive).
-## If a [code]min_cost[/code] is specified, the returned items will also have a
-## minimum cost of [code]min_cost[/code] (inclusive).
-static func get_filtered_items(max_cost: int, min_cost: int = -1, types: int = (1 << Item.Type.MAX) - 1) -> Array[ItemData]:
-	return get_items_data().filter(func(a: ItemData):
-		return a.cost <= max_cost and (min_cost < 0 or a.cost >= min_cost) and (1 << a.type) & types
-	)
+	## Only allow items with a cost of [code]min_cost[/code] or higher.
+	func set_min_cost(min_cost: int) -> ItemFilter:
+		_min_cost = min_cost
+		return self
+	
+	## Only allow items with a cost of exactly [code]cost[/code].
+	func set_cost(cost: int) -> ItemFilter:
+		_max_cost = cost
+		_min_cost = cost
+		return self
+	
+	## Only allow items with a type in the given bitmask. Use [code]1 << type[/code]
+	## to get the bit for a specific type.
+	## [br][br]See also [method allow_type].
+	func set_types(types: int) -> ItemFilter:
+		_types = types
+		return self
+	
+	## Allow items with the given type, in addition to types already given.
+	func allow_type(type: Item.Type) -> ItemFilter:
+		_types |= type
+		return self
+	
+	## Do not allow items with the given type.
+	func disallow_type(type: Item.Type) -> ItemFilter:
+		if _types & type:
+			_types ^= type
+		return self
+	
+	## Do not allow any item types. Use this in combination with [method allow_type]
+	## to only allow a specific type.
+	func disallow_all_types() -> ItemFilter:
+		_types = 0
+		return self
+	
+	## Specify whether items in the player's inventory should be excluded. If
+	## no argument is given, sets it to ignore the player's items. This is the
+	## inverse of [method set_allow_items_in_inventory].
+	## [br][br][b]Note:[/b] The default behaviour has this set to [code]true[/code].
+	## This is the same as when [method set_ignore_items_in_inventory] is called
+	## without any arguments.
+	func set_ignore_items_in_inventory(ignore_items_in_inventory: bool = true) -> ItemFilter:
+		_ignore_items_in_inventory = ignore_items_in_inventory
+		return self
+	
+	## Specify whether items in the player's inventory should be allowed. If
+	## no argument is given, sets it to allow the player's items. This is the
+	## inverse of [method set_ignore_items_in_inventory].
+	func set_allow_items_in_inventory(allow_items_in_inventory: bool = true) -> ItemFilter:
+		_ignore_items_in_inventory = not allow_items_in_inventory
+		return self
+	
+	## Sets the [RandomNumberGenerator] used for randomizing.
+	func set_rng(rng: RandomNumberGenerator) -> ItemFilter:
+		_rng = rng
+		return self
+	
+	## Returns a random item that matches this filter.
+	func get_random_item() -> Item:
+		var options := get_items_data()
+		if options.is_empty():
+			Debug.log_error("Could not find any items with filter %s." % self)
+			return null
+		
+		return options[RNG.randi(_rng) % options.size()].get_item_script().new()
+	
+	## Returns [code]count[/code] random different items that match this filter.
+	func get_random_item_set(count: int) -> Array[Item]:
+		var options := get_items_data()
+		
+		if options.is_empty():
+			Debug.log_error("Could not find any items with filter %s." % self)
+			return []
+		
+		var indexes := PackedInt32Array()
+		var items: Array[Item] = []
+		for i in count:
+			if options.size() == indexes.size():
+				Debug.log_error("Could not find more than %d items with filter %s." % [indexes.size(), self])
+				return items
+			
+			var index := RNG.randi(_rng) % (options.size() - indexes.size())
+			
+			for j in indexes:
+				if j <= index:
+					index += 1
+			
+			indexes.append(index)
+			indexes.sort()
+			
+			items.append(options[index].get_item_script().new())
+		
+		return items
+	
+	## Returns all items that match this filter.
+	func get_items_data() -> Array[ItemData]:
+		return Array(ItemDB.get_items_data().filter(matches), TYPE_OBJECT, &"Resource", ItemData)
+	
+	## Returns [code]true[/code] if no items match this filter.
+	func is_empty() -> bool:
+		return not ItemDB.get_items_data().any(matches)
+	
+	## Returns whether the given [code]data[/code] matches this filter.
+	func matches(data: ItemData) -> bool:
+		if data.cost > _max_cost:
+			return false
+		if data.cost < _min_cost:
+			return false
+		if not (1 << data.type) & _types:
+			print(data.resource_path, " Does not have a correct type! Only ", _types, " are allowed, but it has ", data.type)
+			return false
+		if _ignore_items_in_inventory and data.type != Item.Type.CONSUMABLE and Inventory.items.any(func(item: Item): return item.data == data):
+			print(data.resource_path, " Already in inventory!")
+			return false
+		
+		return true
+	
+	func _to_string() -> String:
+		return "<ItemDB.ItemFilter(%s)>" % ", ".join(get_property_list()\
+			.filter(func(prop: Dictionary): return prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and prop.class_name.is_empty())\
+			.map(func(prop: Dictionary): return "%s: %s" % [prop.name.capitalize(), get(prop.name)])
+		)

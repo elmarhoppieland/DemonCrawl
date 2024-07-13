@@ -42,10 +42,10 @@ func _show_items() -> void:
 	var rewards: Array[Collectible] = []
 	for i in count:
 		if RNG.randi() % 9 == 0:
-			rewards.append(ItemDB.get_random_item(0, 0, 1 << Item.Type.OMEN))
+			rewards.append(ItemDB.create_filter().disallow_all_types().allow_type(Item.Type.OMEN).get_random_item())
 			has_omen = true
 		else:
-			rewards.append(ItemDB.get_random_item(max_cost, 1))
+			rewards.append(ItemDB.create_filter().disallow_type(Item.Type.OMEN).set_max_cost(max_cost).get_random_item())
 	
 	if has_omen:
 		string_table_label.table_name = "Chest-Omen"

@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+__UserClassDBInitializer="*res://addons/userclassdb/UserClassDBInitializer.gd"
 Foreground="*res://Scenes/Singletons/Foreground.tscn"
 Focus="*res://Scenes/Singletons/Focus.tscn"
 Tooltip="res://Scenes/Singletons/Tooltip.tscn"
@@ -27,7 +28,6 @@ DeathPopup="res://Board/DeathPopup/DeathPopup.tscn"
 MasteryUnlockPopup="res://Resources/Singletons/MasteryUnlockPopup.tscn"
 MouseCastSprite="res://Resources/Singletons/MouseCastSprite.tscn"
 ChestPopup="res://Board/ChestPopup/ChestPopup.tscn"
-__UserClassDBInitializer="*res://addons/userclassdb/UserClassDBInitializer.gd"
 __EternityInitializer="*res://addons/eternity/EternityInitializer.gd"
 
 [debug]

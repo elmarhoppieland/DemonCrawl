@@ -2,34 +2,27 @@ extends StaticClass
 class_name PlayerStats
 
 # ==============================================================================
-# SavesManager.get_value("score", PlayerStats, 0)
 static var score: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("score", value)
 		score = value
-# SavesManager.get_value("cells_opened_since_mistake", PlayerStats, 0)
 static var cells_opened_since_mistake: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("cells_opened_since_mistake", value)
 		cells_opened_since_mistake = value
-# SavesManager.get_value("morality", PlayerStats, 0)
 static var morality: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("morality", value)
 		morality = value
-# SavesManager.get_value("chain", PlayerStats, null)
 static var chain: ChainData = Eternal.create(null)
-# SavesManager.get_value("chests_opened", PlayerStats, 0)
 static var chests_opened: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("chests_opened", value)
 		chests_opened = value
-# SavesManager.get_value("monsters_killed", PlayerStats, 0)
 static var monsters_killed: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("monsters_killed", value)
 		monsters_killed = value
-# SavesManager.get_value("pathfinding", PlayerStats, 0)
 static var pathfinding: int = Eternal.create(0) :
 	set(value):
 		value = EffectManager.change_stat("pathfinding", value)
@@ -85,23 +78,3 @@ class ChainData:
 	
 	func get_sum() -> int:
 		return length * value
-
-
-static func _export_chain() -> Dictionary:
-	if not chain:
-		return {}
-	
-	return {
-		"length": chain.length,
-		"value": chain.value
-	}
-
-
-static func _import_chain(value: Dictionary) -> ChainData:
-	if value.is_empty():
-		return null
-	
-	var data := ChainData.new()
-	data.length = value.length
-	data.value = value.value
-	return data

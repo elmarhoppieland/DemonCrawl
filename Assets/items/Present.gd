@@ -3,5 +3,4 @@ extends Item
 # ==============================================================================
 
 func use() -> void:
-	Stats.change_life(+1, self)
-	clear()
+	transform(ItemDB.create_filter().disallow_type(Type.OMEN).get_random_item())

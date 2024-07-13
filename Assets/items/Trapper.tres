@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://duvcmkc55aogx"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://duvcmkc55aogx"]
 
 [ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_i7rl8"]
+[ext_resource type="Texture2D" uid="uid://ml6imv6yhgn4" path="res://Assets/sprites/items.png" id="1_odwvl"]
 
 [resource]
 script = ExtResource("1_i7rl8")
@@ -8,4 +9,5 @@ name = "ITEM_TRAPPER"
 description = "ITEM_TRAPPER_DESCRIPTION"
 type = 0
 cost = 2
-atlas_region = Rect2(144, 0, 16, 16)
+atlas_region = Rect2(32, 32, 16, 16)
+atlas = ExtResource("1_odwvl")

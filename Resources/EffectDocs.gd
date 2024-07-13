@@ -45,6 +45,13 @@ func cell_open(cell: Cell) -> void:
 	pass
 
 
+## Called when a cell gives mana, typically when opening the cell. Returns the amount
+## of mana the cell gives.
+@warning_ignore("unused_parameter")
+func cell_get_mana(mana: int, cell: Cell) -> int:
+	return mana
+
+
 ## Called when determining the number of rewards in an item chest. [code]count[/code]
 ## is the currently used value. Return this value to not change the number of rewards.
 func get_chest_reward_count(count: int) -> int:

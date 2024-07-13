@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://ckthip2v2bgu3"]
+
+[ext_resource type="Texture2D" uid="uid://ml6imv6yhgn4" path="res://Assets/sprites/items.png" id="1_u6cxl"]
+[ext_resource type="Script" path="res://Resources/ItemData.gd" id="2_yyyby"]
+
+[resource]
+script = ExtResource("2_yyyby")
+name = "ITEM_PRESENT"
+description = "ITEM_PRESENT_DESCRIPTION"
+type = 1
+cost = 10
+atlas_region = Rect2(192, 176, 16, 16)
+atlas = ExtResource("1_u6cxl")

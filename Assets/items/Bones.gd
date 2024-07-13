@@ -3,6 +3,9 @@ extends Item
 # ==============================================================================
 
 func use() -> void:
+	if not Board.exists():
+		return
+	
 	var cells := Board.get_cells().filter(func(c: Cell): return c.revealed and c.aura != "sanctified")
 	if cells.is_empty():
 		return

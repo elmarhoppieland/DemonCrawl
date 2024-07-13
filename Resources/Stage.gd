@@ -22,6 +22,10 @@ func _init(_name: String = "", _size: Vector2i = Vector2i.ZERO, _monsters: int =
 	monsters = _monsters
 
 
+func area() -> int:
+	return size.x * size.y
+
+
 func get_bg_texture() -> CompressedTexture2D:
 	return ResourceLoader.load(BG_TEXTURE_PATH % name)
 

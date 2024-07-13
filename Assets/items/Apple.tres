@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://c68q4dbcp4cg"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://c68q4dbcp4cg"]
 
+[ext_resource type="Texture2D" uid="uid://ml6imv6yhgn4" path="res://Assets/sprites/items.png" id="1_1868u"]
 [ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_p3igw"]
 
 [resource]
@@ -8,4 +9,5 @@ name = "ITEM_APPLE"
 description = "ITEM_APPLE_DESCRIPTION"
 type = 1
 cost = 5
-atlas_region = Rect2(16, 0, 16, 16)
+atlas_region = Rect2(224, 64, 16, 16)
+atlas = ExtResource("1_1868u")

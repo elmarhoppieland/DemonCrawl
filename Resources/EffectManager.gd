@@ -27,42 +27,8 @@ static var _initialized := false
 # ==============================================================================
 
 static func _initialize() -> void:
-	if OS.is_debug_build():
-		_register_directory("res://", FileAccess.open("res://.data/EffectManager.files", FileAccess.WRITE))
-	else:
-		var file := FileAccess.open("res://.data/EffectManager.files", FileAccess.READ)
-		while not file.eof_reached():
-			var path := file.get_line()
-			if path.is_empty():
-				continue
-			register_object(ResourceLoader.load(path).new())
-
-
-static func _register_directory(dir: String, file: FileAccess) -> void:
-	for file_name in DirAccess.get_files_at(dir):
-		if not file_name.get_extension() == "gd":
-			continue
-		
-		var path := dir.path_join(file_name)
-		var script := ResourceLoader.load(path)
-		if not script is Script:
-			continue
-		
-		var base := (script as Script).get_base_script()
-		while base != null and base != EffectScript:
-			base = base.get_base_script()
-		if base == null:
-			continue
-		
-		file.store_line(path)
-		register_object(script.new())
-	
-	for dir_name in DirAccess.get_directories_at(dir):
-		if dir_name.begins_with("."):
-			continue
-		
-		var path := dir.path_join(dir_name)
-		_register_directory(path, file)
+	for name in UserClassDB.get_inheriters_from_class(&"EffectScript"):
+		register_object(UserClassDB.instantiate(name))
 
 
 ## Registers [code]object[/code]. Future calls to [method propagate_call],
@@ -104,7 +70,7 @@ static func unregister_object(object: Object) -> void:
 ## will not be connected if it has already been connected. If [code]allow_duplicates[/code]
 ## is [code]true[/code] and the callable was already connected, the callable will
 ## be called once for each time it has been connected.
-## [br][br]If the parameter [code]effect[/code] overridden, connects to the given
+## [br][br]If the parameter [code]effect[/code] is overridden, connects to the given
 ## effect instead of the callable's name.
 ## [br][br][b]Note:[/b] All lambda functions passed into this method should be named.
 ## Anonymous lambdas will be connected, but will never be called.

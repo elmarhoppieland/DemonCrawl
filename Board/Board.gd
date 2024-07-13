@@ -413,7 +413,8 @@ func _on_finish_button_pressed() -> void:
 	Foreground.fade_out_in(FADE_DURATION)
 	_animation_player.play("board_exit")
 	await _animation_player.animation_finished
-	#await create_tween().tween_property(_background, "scale", Vector2.ONE * 4, FADE_DURATION).set_trans(Tween.TRANS_QUAD).finished
+	
+	EffectManager.propagate_call("stage_leave")
 	
 	if Quest.stages.all(func(stage: Stage): return stage.completed or stage is SpecialStage):
 		Quest.finish()

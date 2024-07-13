@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://dsud2disyfnx3"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dsud2disyfnx3"]
 
+[ext_resource type="Texture2D" uid="uid://ml6imv6yhgn4" path="res://Assets/sprites/items.png" id="1_8u2nd"]
 [ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_eu4bp"]
 
 [resource]
@@ -8,4 +9,5 @@ name = "ITEM_BIG_FISH"
 description = "ITEM_BIG_FISH_DESCRIPTION"
 type = 1
 cost = 0
-atlas_region = Rect2(32, 0, 16, 16)
+atlas_region = Rect2(160, 16, 16, 16)
+atlas = ExtResource("1_8u2nd")

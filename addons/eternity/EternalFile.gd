@@ -16,7 +16,7 @@ func encode_to_text() -> String:
 		text += "[" + section + "]\n\n"
 		
 		for key in get_section_keys(section):
-			text += key + "=" + Eternity.stringify(get_value(section, key)) + "\n"
+			text += key + "=" + Stringifier.stringify(get_value(section, key)) + "\n"
 		
 		text += "\n"
 	
@@ -95,16 +95,16 @@ func load_encrypted_pass(path: String, password: String) -> Error:
 func parse(data: String) -> Error:
 	clear()
 	
-	data = data\
-		.replace("\r", "")\
-		.replace("{\n", "{")\
-		.replace("\n}", "}")\
-		.replace("[\n", "[")\
-		.replace("\n]", "]")\
-		.replace(",\n", ",")
+	#data = data\
+		#.replace("\r", "")\
+		#.replace("{\n", "{")\
+		#.replace("\n}", "}")\
+		#.replace("[\n", "[")\
+		#.replace("\n]", "]")\
+		#.replace(",\n", ",")
 	
 	var section := ""
-	for line in data.split("\n"):
+	for line in Stringifier.split_ignoring_nested(data, "\n"):
 		if line.is_empty():
 			continue
 		
@@ -116,7 +116,7 @@ func parse(data: String) -> Error:
 		
 		if line.match("*=*"):
 			var key := line.get_slice("=", 0)
-			var value = Eternity.parse(line.trim_prefix(key + "="))
+			var value = Stringifier.parse(line.trim_prefix(key + "="))
 			
 			set_value(section, key, value)
 			continue

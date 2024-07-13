@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 # ==============================================================================
@@ -8,7 +9,11 @@ func _ready() -> void:
 	for class_data in ProjectSettings.get_global_class_list():
 		_class_map[class_data.path] = class_data.class
 	
+	UserClassDB._initialized = true
+	
 	_init_dir("res://")
+	
+	UserClassDB.ready.emit()
 
 
 func _init_dir(dir: String) -> void:

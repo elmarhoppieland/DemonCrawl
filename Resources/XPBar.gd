@@ -3,7 +3,6 @@ extends ProgressBar
 class_name XPBar
 
 # ==============================================================================
-# SavesManager.get_value("xp", XPBar, 40)
 static var xp: int = Eternal.create(0) :
 	set(new_xp):
 		xp = new_xp
@@ -11,7 +10,6 @@ static var xp: int = Eternal.create(0) :
 		while xp > get_next_level_xp():
 			xp -= get_next_level_xp()
 			level += 1
-# SavesManager.get_value("level", XPBar, 0)
 static var level: int = Eternal.create(0)
 # ==============================================================================
 

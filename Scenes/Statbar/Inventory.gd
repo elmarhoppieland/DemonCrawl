@@ -8,9 +8,16 @@ static var items: Array[Item] = []
 static var item_paths: PackedStringArray = Eternal.create(PackedStringArray()) :
 	set(value):
 		item_paths = value
-		items.assign(Array(value).map(func(path: String): return Item.from_path(path)))
+		
+		for item in items:
+			EffectManager.unregister_object(item)
+		
+		items.clear()
+		
+		for path in value:
+			add_item(Item.from_path(path))
 	get:
-		return items.map(func(item: Item): return item.data.resource_path.get_basename())
+		return items.map(func(item: Item): return item.get_path())
 # ==============================================================================
 @onready var _item_grid: GridContainer = %ItemGrid
 # ==============================================================================
@@ -33,7 +40,7 @@ func _add_item_node(item: Item) -> void:
 	item.in_inventory = true
 	
 	var node := item.get_node()
-	_instance._item_grid.add_child(node)
+	_item_grid.add_child(node)
 
 
 ## Adds an item to the player's inventory and calls [method Item.gain] (in that order).
@@ -53,7 +60,8 @@ static func add_item(item: Item) -> void:
 	EffectManager.register_object(item)
 	
 	items.append(item)
-	_instance._add_item_node(item)
+	if _instance:
+		_instance._add_item_node(item)
 	
 	item.inventory_add()
 	EffectManager.propagate_call("inventory_add_item", [item])
@@ -64,17 +72,24 @@ static func add_item(item: Item) -> void:
 ## [br][br][b]Note:[/b] Replacing an item not in the player's inventory results
 ## in undefined behaviour.
 static func transform_item(old_item: Item, new_item: Item) -> void:
-	items[items.find(old_item)] = new_item
+	var old_index := items.find(old_item)
+	items[old_index] = new_item
 	
-	old_item.node.replace_by(new_item.create_node())
+	if _instance:
+		_instance._item_grid.remove_child(old_item.node)
+		_instance._item_grid.add_child(new_item.get_node())
+		_instance._item_grid.move_child(new_item.get_node(), old_index)
+	
 	old_item.node.queue_free()
 	
 	old_item.lose()
 	EffectManager.propagate_call("item_lose", [old_item])
+	EffectManager.unregister_object(old_item)
 	
 	new_item.inventory_add()
 	EffectManager.propagate_call("inventory_add_item", [new_item])
 	
+	EffectManager.register_object(new_item)
 	new_item.gain()
 	EffectManager.propagate_call("item_gain", [new_item])
 

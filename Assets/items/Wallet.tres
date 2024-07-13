@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://dg4q4xvbl5ph5"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dg4q4xvbl5ph5"]
 
 [ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_2flkl"]
+[ext_resource type="Texture2D" uid="uid://ml6imv6yhgn4" path="res://Assets/sprites/items.png" id="1_r4ggt"]
 
 [resource]
 script = ExtResource("1_2flkl")
@@ -8,4 +9,5 @@ name = "ITEM_WALLET"
 description = "ITEM_WALLET_DESCRIPTION"
 type = 0
 cost = 4
-atlas_region = Rect2(192, 0, 16, 16)
+atlas_region = Rect2(80, 32, 16, 16)
+atlas = ExtResource("1_r4ggt")

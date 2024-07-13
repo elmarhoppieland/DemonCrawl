@@ -14,10 +14,13 @@ func _ready() -> void:
 	Foreground.fade_in(1.0)
 	
 	var items := _get_items()
+	if items.is_empty():
+		return
+	
 	selected_item = items[0]
 	for item in items:
 		var display := CollectibleDisplay.create(item)
-		display.offer_price = int(item.data.cost * RNG.randf_range(0.7, 1.3))
+		display.offer_price = maxi(int(item.data.cost * RNG.randf_range(0.7, 1.3)), 1)
 		_offers_container.add_child(display)
 		
 		if item == selected_item:
@@ -38,7 +41,7 @@ func _ready() -> void:
 
 
 func _get_items() -> Array[Item]:
-	return ItemDB.get_random_item_set(maxi(Stats.coins, 10), EffectManager.propagate_posnum("get_shop_item_count", [], 3), 1)
+	return ItemDB.create_filter().set_max_cost(maxi(Stats.coins, 10)).set_min_cost(1).get_random_item_set(EffectManager.propagate_posnum("get_shop_item_count", [], 3))
 
 
 func _on_buy_button_pressed() -> void:
@@ -49,7 +52,7 @@ func _on_buy_button_pressed() -> void:
 	
 	Stats.spend_coins(_selected_display.offer_price, self)
 	
-	_selected_display.detach_item_node()
+	_selected_display.detach_collectible_node()
 	Inventory.gain_item(selected_item)
 	
 	selected_item = null

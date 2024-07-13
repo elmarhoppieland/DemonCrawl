@@ -9,30 +9,21 @@ static var status_effect_data: Dictionary = Eternal.create({}) :
 	set(value):
 		status_effect_data = value
 		
+		for status in get_status_effects():
+			status.queue_free()
+		
 		_status_effects.clear()
 		
-		for uid in status_effect_data:
-			var data: StatusEffectData = status_effect_data[uid]
-			StatusEffect.create(uid)\
-				.set_type(data.type)\
-				.set_duration(data.duration, false)\
-				.set_origin(data.origin)\
-				.set_attribute(data.attribute)\
-				.set_source(Item.from_path(data.source))\
-			.start()
+		for uid: String in value:
+			_status_effects[uid] = null if value[uid].is_empty() else StatusEffect.from_dict(value[uid])
+			# we don't need to add it to the SceneTree because we load on the main menu
+			# it will be added in _ready()
 	get:
 		status_effect_data.clear()
 		
 		for uid in _status_effects:
-			var data := StatusEffectData.new()
 			var status := get_status_effect(uid)
-			data.attribute = status.attribute
-			data.origin = status.origin
-			data.duration = status.duration
-			data.type = status.type
-			data.item_path = status.source.get_script().resource_path.get_basename()
-			
-			status_effect_data[uid] = data
+			status_effect_data[uid] = status.to_dict() if status else {}
 		
 		return status_effect_data
 # ==============================================================================
@@ -49,13 +40,17 @@ func _exit_tree() -> void:
 
 
 func _ready() -> void:
-	var effects: Array[StatusEffect] = []
-	effects.assign(_status_effects.values())
-	
+	var effects := StatusEffectsOverlay.get_status_effects()
 	effects.sort_custom(func(a: StatusEffect, b: StatusEffect): return a.sort_order < b.sort_order)
 	
-	for effect in effects:
-		_status_effect_container.add_child(effect)
+	for status in effects:
+		_status_effect_container.add_child(status)
+	
+	# we don't want the status effects to be freed when we change scenes so we quickly remove them from the scene tree
+	EffectManager.connect_effect(func stage_leave() -> void:
+		for status in StatusEffectsOverlay.get_status_effects():
+			_status_effect_container.remove_child(status)
+	, false, false, &"stage_leave")
 
 
 static func add_status_effect(status_effect: StatusEffect, uid: String = "") -> void:
@@ -77,12 +72,19 @@ static func get_status_effect(uid: String) -> StatusEffect:
 	return null
 
 
-static func remove_status_effect(status_effect: StatusEffect, keep_instance: bool = false) -> void:
+static func get_status_effects() -> Array[StatusEffect]:
+	return Array(_status_effects.values().filter(func(s: StatusEffect): return is_instance_valid(s)), TYPE_OBJECT, (StatusEffect as Script).get_instance_base_type(), StatusEffect)
+
+
+static func remove_status_effect(status_effect: StatusEffect, keep_instance: bool = false, keep_uid: bool = false) -> void:
 	if _instance:
 		_instance._status_effect_container.remove_child(status_effect)
 	
 	if not keep_instance:
 		status_effect.queue_free()
+	
+	if not keep_uid:
+		_status_effects.erase(_status_effects.find_key(status_effect))
 
 
 static func get_status_count() -> int:

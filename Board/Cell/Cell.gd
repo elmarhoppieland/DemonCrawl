@@ -136,9 +136,6 @@ func _process_cell_opening() -> void:
 		_process_cell_chording()
 	elif _pressed_cell == self and is_checking():
 		_process_direct_cell_opening()
-	
-	if _pressed_cell == self:
-		EffectManager.propagate_call.call_deferred("turn")
 
 
 func _process_cell_chording() -> void:
@@ -153,11 +150,13 @@ func _process_cell_chording() -> void:
 		open()
 	elif _pressed_cell == self and is_check_chording():
 		PlayerStats.process_chain(cell_value)
+		EffectManager.propagate_call.call_deferred("turn")
 
 
 func _process_direct_cell_opening() -> void:
 	open()
 	PlayerStats.process_chain(cell_value)
+	EffectManager.propagate_call.call_deferred("turn")
 
 
 func _on_mouse_entered() -> void:
@@ -312,13 +311,18 @@ func enchant(script: Script) -> CellEnchantment:
 
 
 func spawn_loot() -> CellObject:
-	var i := RNG.randi() % 10
-	if i == 0:
-		return spawn(CellChest)
-	if i < 9:
+	var density := float(StagesOverview.selected_stage.monsters) / StagesOverview.selected_stage.area()
+	var i := RNG.randfn(density)
+	if i < 0.1:
+		return null
+	if i < 1:
 		return spawn(CellCoin)
+	if i < 1.5:
+		return spawn(CellDiamond)
+	if i < 2:
+		return spawn(CellChest)
 	
-	return null
+	return spawn(CellChest)
 
 
 ## Spawns a new object in this cell, if it is not occupied.
@@ -327,6 +331,13 @@ func spawn(script: Script) -> CellObject:
 		return null
 	cell_object = script.new(self)
 	return cell_object
+
+
+## Gives mana to all items in the player's inventory.
+func give_mana() -> void:
+	var mana: int = EffectManager.propagate_posnum("cell_get_mana", [self], cell_value)
+	for item in Inventory.items:
+		item.gain_mana(mana)
 
 
 ## Returns all cells orthogonally or diagonally adjacent to this cell. See also [method Board.get_cell].

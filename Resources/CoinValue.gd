@@ -29,10 +29,9 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 
-	while is_inside_tree():
-		update_font_color()
-		
-		await EffectManager.await_call("change_coins")
+	update_font_color()
+	
+	EffectManager.connect_effect(update_font_color, false, false, &"change_coins")
 
 
 func update_font_color() -> void:

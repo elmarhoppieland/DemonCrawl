@@ -4,9 +4,24 @@ class_name UserClassDB
 ## An information repository for user-defined classes.
 ##
 ## Provides access to metadata stored for every available user-defined class.
+## [br][br]
+## Classes that are defined using [code]class_name[/code] will be available under
+## their custom name. Other classes are available under their script path.
+## [br][br]
+## [b]Note:[/b] Only user-defined classes are available here. Built-in classes are
+## available in [ClassDB].
 
 # ==============================================================================
-static var _classes := {}
+static var _classes := {} :
+	get:
+		if not _initialized:
+			push_warning("Attempted to use the UserClassDB before it is ready.")
+		return _classes
+static var _initialized := false
+
+static var ready: Signal : ## Emitted when the database is ready to be read from.
+	get:
+		return _Instance.ready
 # ==============================================================================
 
 func _init() -> void:
@@ -380,3 +395,12 @@ static func get_class_from_script(script: Script) -> StringName:
 ## including the name of the base class, e.g. [code]BaseClass:SubClass[/code].
 static func class_get_subclasses(name: StringName) -> PackedStringArray:
 	return _classes.keys().filter(func(key: StringName): return key.begins_with(name + ":"))
+
+
+class _Instance:
+	static var _instance := _Instance.new()
+	static var ready: Signal :
+		get:
+			return _instance._ready
+	
+	signal _ready()
