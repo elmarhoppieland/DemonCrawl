@@ -35,8 +35,8 @@ func _show_items() -> void:
 	
 	animation_player.play("popup_show")
 	
-	var count: int = EffectManager.propagate_posnum("get_chest_reward_count", [], 1)
-	var max_cost: int = EffectManager.propagate_posnum("get_chest_item_max_cost", [], 4 * StagesOverview.selected_stage.max_power + 3)
+	var count: int = EffectManager.propagate_posnum("get_chest_reward_count", 1)
+	var max_cost: int = EffectManager.propagate_posnum("get_chest_item_max_cost", 4 * StagesOverview.selected_stage.max_power + 3)
 	
 	var has_omen := false
 	var rewards: Array[Collectible] = []
@@ -45,7 +45,7 @@ func _show_items() -> void:
 			rewards.append(ItemDB.create_filter().disallow_all_types().allow_type(Item.Type.OMEN).get_random_item())
 			has_omen = true
 		else:
-			rewards.append(ItemDB.create_filter().disallow_type(Item.Type.OMEN).set_max_cost(max_cost).get_random_item())
+			rewards.append(ItemDB.create_filter().disallow_type(Item.Type.OMEN).set_min_cost(1).set_max_cost(max_cost).get_random_item())
 	
 	if has_omen:
 		string_table_label.table_name = "Chest-Omen"
@@ -54,7 +54,7 @@ func _show_items() -> void:
 	
 	string_table_label.generate()
 	
-	rewards = EffectManager.propagate_value("get_chest_rewards", [], rewards)
+	rewards = EffectManager.propagate_value("get_chest_rewards", rewards)
 	
 	for reward in rewards:
 		var display := CollectibleDisplay.create(reward)

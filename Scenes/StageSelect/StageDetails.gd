@@ -4,46 +4,18 @@ class_name StageDetails
 # ==============================================================================
 var stage: Stage :
 	set(value):
+		if stage == value:
+			return
+		
+		if stage and stage.properties_changed.is_connected(update):
+			stage.properties_changed.disconnect(update)
+		
 		stage = value
 		
-		if not is_node_ready():
-			await ready
-		
-		_info_container.hide()
-		_complete_info.hide()
-		_stage_texture.show()
-		_unknown_info.hide()
-		_special_info.hide()
-		_checkmark.hide()
-		_lock.hide()
-		
-		if stage.locked:
-			_lore_label.text = "STAGE_LORE_LOCKED"
-			_name_label.text = "LOCKED"
-			_stage_texture.hide()
-			_unknown_info.show()
-			_lock.show()
-			return
-		
-		_name_label.text = "STAGE_" + stage.name.to_snake_case().to_upper()
-		_lore_label.text = "LORE_" + stage.name.to_snake_case().to_upper()
-		
-		_stage_texture.texture = stage.create_big_icon()
-		
-		if stage.completed:
-			_complete_info.show()
-			_checkmark.show()
-			return
-		
-		if stage is SpecialStage:
-			_special_info.show()
-			return
-		
-		_power_label.text = str(stage.min_power) + "-" + str(stage.max_power)
-		_monster_label.text = str(stage.monsters)
-		_size_label.text = str(stage.size.x * stage.size.y)
-		
-		_info_container.show()
+		if stage:
+			update()
+			
+			stage.properties_changed.connect(update)
 var hovered := false
 # ==============================================================================
 @onready var _stage_texture: TextureRect = %StageTexture
@@ -66,6 +38,47 @@ signal interacted()
 func _process(_delta: float) -> void:
 	if hovered and Input.is_action_just_pressed("interact"):
 		interacted.emit()
+
+
+func update() -> void:
+	if not is_node_ready():
+		await ready
+	
+	_info_container.hide()
+	_complete_info.hide()
+	_stage_texture.show()
+	_unknown_info.hide()
+	_special_info.hide()
+	_checkmark.hide()
+	_lock.hide()
+	
+	if stage.locked:
+		_lore_label.text = "STAGE_LORE_LOCKED"
+		_name_label.text = "LOCKED"
+		_stage_texture.hide()
+		_unknown_info.show()
+		_lock.show()
+		return
+	
+	_name_label.text = "STAGE_" + stage.name.to_snake_case().to_upper()
+	_lore_label.text = "LORE_" + stage.name.to_snake_case().to_upper()
+	
+	_stage_texture.texture = stage.create_big_icon()
+	
+	if stage.completed:
+		_complete_info.show()
+		_checkmark.show()
+		return
+	
+	if stage is SpecialStage:
+		_special_info.show()
+		return
+	
+	_power_label.text = str(stage.min_power) + "-" + str(stage.max_power)
+	_monster_label.text = str(stage.monsters)
+	_size_label.text = str(stage.size.x * stage.size.y)
+	
+	_info_container.show()
 
 
 func _on_texture_container_mouse_entered() -> void:

@@ -24,10 +24,12 @@ var data: ItemData :
 		return data
 
 var in_inventory := false
+var current_mana := 0 : set = set_mana
 # ==============================================================================
 
-func create_node() -> MarginContainer:
+func create_node() -> ItemIcon:
 	node = ItemIcon.create(data)
+	get_node().current_mana = current_mana
 	
 	node_init()
 	
@@ -67,7 +69,7 @@ func inventory_add() -> void:
 
 func gain() -> void:
 	if data.type == Type.MAGIC:
-		get_node().current_mana = data.mana
+		current_mana = data.mana
 
 
 func lose() -> void:
@@ -81,16 +83,35 @@ func use() -> void:
 func can_use() -> bool:
 	if data.type == Type.CONSUMABLE:
 		return true
-	if data.type == Type.MAGIC and get_node().current_mana >= data.mana:
+	if data.type == Type.MAGIC and current_mana >= data.mana:
 		return true
 	
 	return false
 
 
+## Returns whether this item can recieve mana (i.e. it uses mana and the maximum
+## mana is not yet reached).
+func can_recieve_mana() -> bool:
+	return has_mana() and current_mana < data.mana
+
+
+## Returns whether this item uses mana.
+func has_mana() -> bool:
+	return data.mana
+
+
+## Returns whether this item is charged, i.e. it uses mana and is at its maximum mana.
+func is_charged() -> bool:
+	return has_mana() and current_mana >= data.mana
+
+
+## Returns whether this item is active, i.e. its effects apply. This is usually
+## true if the item is in the player's inventory and false if not.
 func is_active() -> bool:
 	return in_inventory
 
 
+## Constructs a new item from the given path.
 static func from_path(path: String) -> Item:
 	if path.is_relative_path():
 		path = "res://Assets/items/".path_join(path)
@@ -146,15 +167,17 @@ func target_cells(radius: int) -> Array[Cell]:
 
 
 func set_mana(mana: int) -> void:
-	get_node().current_mana = clampi(mana, 0, data.mana)
+	mana = clampi(mana, 0, data.mana)
+	current_mana = mana
+	get_node().current_mana = mana
 
 
 func gain_mana(mana: int) -> void:
-	set_mana(get_node().current_mana + mana)
+	current_mana += mana
 
 
 func clear_mana() -> void:
-	set_mana(get_node().current_mana - data.mana)
+	current_mana -= data.mana
 
 
 func get_atlas() -> CompressedTexture2D:
@@ -175,3 +198,23 @@ func get_tooltip_subtext() -> String:
 
 func get_node() -> ItemIcon:
 	return super() # for autocomplete
+
+
+func _export() -> Dictionary:
+	var dict := {
+		"path": get_path()
+	}
+	
+	if data.mana:
+		dict.mana = current_mana
+	
+	return dict
+
+
+static func _import(value: Dictionary) -> Item:
+	assert("path" in value)
+	
+	var item := Item.from_path(value.path)
+	if "mana" in value:
+		item.current_mana = value.mana
+	return item

@@ -6,14 +6,65 @@ class_name Stage
 # ==============================================================================
 const BG_TEXTURE_PATH := "res://Assets/skins/%s/bg.png"
 # ==============================================================================
-var name := "" ## The name of the stage.
-var size := Vector2i.ZERO ## The size of the stage.
-var monsters := 0 ## The number of monsters in the stage.
-var min_power := 0 ## The stage's minimum power.
-var max_power := 0 ## The stage's maximum power.
+var name := "" : ## The name of the stage.
+	set(value):
+		if name == value:
+			return
+		
+		name = value
+		
+		properties_changed.emit()
+var size := Vector2i.ZERO : ## The size of the stage.
+	set(value):
+		if size == value:
+			return
+		
+		size = value
+		
+		properties_changed.emit()
+var monsters := 0 : ## The number of monsters in the stage.
+	set(value):
+		if monsters == value:
+			return
+		
+		monsters = value
+		
+		properties_changed.emit()
+var min_power := 0 : ## The stage's minimum power.
+	set(value):
+		if min_power == value:
+			return
+		
+		min_power = value
+		
+		properties_changed.emit()
+var max_power := 0 : ## The stage's maximum power.
+	set(value):
+		if max_power == value:
+			return
+		
+		max_power = value
+		
+		properties_changed.emit()
 
-var locked := false ## Whether the stage is locked.
-var completed := false ## Whether the stage is completed.
+var locked := false : ## Whether the stage is locked.
+	set(value):
+		if locked == value:
+			return
+		
+		locked = value
+		
+		properties_changed.emit()
+var completed := false : ## Whether the stage is completed.
+	set(value):
+		if completed == value:
+			return
+		
+		completed = value
+		
+		properties_changed.emit()
+# ==============================================================================
+signal properties_changed()
 # ==============================================================================
 
 func _init(_name: String = "", _size: Vector2i = Vector2i.ZERO, _monsters: int = 0) -> void:

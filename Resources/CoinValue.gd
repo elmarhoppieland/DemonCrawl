@@ -31,7 +31,7 @@ func _ready() -> void:
 
 	update_font_color()
 	
-	EffectManager.connect_effect(update_font_color, false, false, &"change_coins")
+	EffectManager.connect_effect(update_font_color, EffectManager.Priority.ENVIRONMENT, 0, false, false, &"change_coins") # TODO: determine subpriority
 
 
 func update_font_color() -> void:

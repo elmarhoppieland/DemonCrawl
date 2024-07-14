@@ -41,7 +41,7 @@ func _ready() -> void:
 
 
 func _get_items() -> Array[Item]:
-	return ItemDB.create_filter().set_max_cost(maxi(Stats.coins, 10)).set_min_cost(1).get_random_item_set(EffectManager.propagate_posnum("get_shop_item_count", [], 3))
+	return ItemDB.create_filter().set_max_cost(maxi(Stats.coins, 10)).set_min_cost(1).get_random_item_set(EffectManager.propagate_posnum("get_shop_item_count", 3))
 
 
 func _on_buy_button_pressed() -> void:

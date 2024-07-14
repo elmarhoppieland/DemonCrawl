@@ -50,7 +50,7 @@ func _ready() -> void:
 	EffectManager.connect_effect(func stage_leave() -> void:
 		for status in StatusEffectsOverlay.get_status_effects():
 			_status_effect_container.remove_child(status)
-	, false, false, &"stage_leave")
+	, EffectManager.Priority.ENVIRONMENT, 0, false, false, &"stage_leave") # TODO: determine subpriority
 
 
 static func add_status_effect(status_effect: StatusEffect, uid: String = "") -> void:

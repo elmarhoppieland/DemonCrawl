@@ -141,14 +141,14 @@ func change_life(amount: int, source: Object) -> int:
 ## the fatal life loss.
 ## [br][br]Call [method Stats.revive] to revive the player without using revives.
 @warning_ignore("unused_parameter")
-func death(source: Object) -> void:
+func player_death(source: Object) -> void:
 	pass
 
 
-## Called when the player loses the quest, after [method death] is called and
+## Called when the player loses the quest, after [method player_death] is called and
 ## the player cannot be revived.
 @warning_ignore("unused_parameter")
-func lose(source: Object) -> void:
+func player_lose(source: Object) -> void:
 	pass
 
 

@@ -68,14 +68,14 @@ class IconData:
 		name = _name
 	
 	func get_atlas() -> Texture2D:
-		var override = EffectManager.propagate_value("parse_icon_atlas", [name], null, TYPE_OBJECT)
+		var override = EffectManager.propagate_value("parse_icon_atlas", null, [name])
 		if override != null:
 			return override
 		
 		return source_atlas
 	
 	func get_region() -> Rect2i:
-		var override = EffectManager.propagate_value("parse_icon_rect", [name], Rect2i())
+		var override = EffectManager.propagate_value("parse_icon_rect", Rect2i(), [name])
 		if override != Rect2i():
 			return override
 		

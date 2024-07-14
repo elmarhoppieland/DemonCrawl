@@ -55,7 +55,7 @@ static var _hovered_cell: Cell
 			"electric":
 				color = Color.MEDIUM_AQUAMARINE
 		
-		_background.modulate = EffectManager.propagate_value("get_aura_color", [aura, self], color)
+		_background.modulate = EffectManager.propagate_value("get_aura_color", color, [aura, self])
 # ==============================================================================
 var revealed := false : ## Whether this cell has been revealed.
 	get:
@@ -236,11 +236,14 @@ func open() -> void:
 	
 	EffectManager.propagate_call("cell_open", [self])
 	
-	if cell_object and cell_object is CellMonster:
+	give_mana()
+	
+	if cell_value != 0:
 		return
 	
-	if cell_value == 0:
+	if not is_occupied():
 		spawn_loot()
+	if not has_monster():
 		chord()
 
 
@@ -335,9 +338,7 @@ func spawn(script: Script) -> CellObject:
 
 ## Gives mana to all items in the player's inventory.
 func give_mana() -> void:
-	var mana: int = EffectManager.propagate_posnum("cell_get_mana", [self], cell_value)
-	for item in Inventory.items:
-		item.gain_mana(mana)
+	Inventory.gain_mana(EffectManager.propagate_posnum("cell_get_mana", cell_value, [self]))
 
 
 ## Returns all cells orthogonally or diagonally adjacent to this cell. See also [method Board.get_cell].
@@ -362,10 +363,7 @@ func get_nearby_flags() -> int:
 
 ## Returns whether this cell's object is a monster, even if this cell is hidden.
 func has_monster() -> bool:
-	if not cell_object:
-		return false
-	
-	return cell_object is CellMonster
+	return cell_object and cell_object is CellMonster
 
 
 func get_sprite_material() -> ShaderMaterial:

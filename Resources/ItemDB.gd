@@ -24,7 +24,7 @@ static func create_filter() -> ItemFilter:
 ## Filters items in the database.
 class ItemFilter:
 	var _max_cost := (1 << 63) - 1 # maximum signed 64-bit int (allow any cost)
-	var _min_cost := -1 # all items have a minimum cost of -1  (allow any cost)
+	var _min_cost := -1 # all items have a cost of at least -1 (allow any cost)
 	var _types: int = (1 << Item.Type.MAX) - 1
 	var _ignore_items_in_inventory := true :
 		get:
@@ -59,13 +59,12 @@ class ItemFilter:
 	
 	## Allow items with the given type, in addition to types already given.
 	func allow_type(type: Item.Type) -> ItemFilter:
-		_types |= type
+		_types |= (1 << type)
 		return self
 	
 	## Do not allow items with the given type.
 	func disallow_type(type: Item.Type) -> ItemFilter:
-		if _types & type:
-			_types ^= type
+		_types &= ~(1 << type)
 		return self
 	
 	## Do not allow any item types. Use this in combination with [method allow_type]
@@ -148,10 +147,8 @@ class ItemFilter:
 		if data.cost < _min_cost:
 			return false
 		if not (1 << data.type) & _types:
-			print(data.resource_path, " Does not have a correct type! Only ", _types, " are allowed, but it has ", data.type)
 			return false
 		if _ignore_items_in_inventory and data.type != Item.Type.CONSUMABLE and Inventory.items.any(func(item: Item): return item.data == data):
-			print(data.resource_path, " Already in inventory!")
 			return false
 		
 		return true

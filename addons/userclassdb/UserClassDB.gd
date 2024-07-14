@@ -162,7 +162,7 @@ static func class_get_method_list(name: StringName, no_inheritance: bool = false
 	if parent.is_empty():
 		return methods
 	
-	return methods + class_get_method_list(name)
+	return methods + class_get_method_list(parent)
 
 
 ## Returns the value of [code]property[/code] of [code]object[/code] or its ancestry.
@@ -338,7 +338,7 @@ static func get_inheriters_from_class(name: StringName) -> PackedStringArray:
 		return []
 	
 	var script := class_get_script(name)
-	return _classes.values().filter(func(s: Script): return s.get_base_script() == script)
+	return _classes.keys().filter(func(c: StringName): return class_get_script(c).get_base_script() == script)
 
 
 ## Returns the parent class of the given class.
@@ -395,6 +395,11 @@ static func get_class_from_script(script: Script) -> StringName:
 ## including the name of the base class, e.g. [code]BaseClass:SubClass[/code].
 static func class_get_subclasses(name: StringName) -> PackedStringArray:
 	return _classes.keys().filter(func(key: StringName): return key.begins_with(name + ":"))
+
+
+## Returns whether the database has been initialized.
+static func is_ready() -> bool:
+	return _initialized
 
 
 class _Instance:

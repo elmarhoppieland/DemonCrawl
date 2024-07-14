@@ -13,10 +13,10 @@ static var _instance: DeathPopup
 func _enter_tree() -> void:
 	_instance = self
 	
-	EffectManager.connect_effect(func lose(source: Object):
+	EffectManager.connect_effect(func player_lose(source: Object):
 		_instance.death_message_label.text = DeathPopup.get_death_message(source)
 		_instance.animation_player.play("show")
-	)
+	, EffectManager.Priority.ENVIRONMENT, 0) # TODO: detemine subpriority
 
 
 func _process(_delta: float) -> void:

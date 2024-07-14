@@ -67,7 +67,7 @@ static func damage(amount: int, source: Object = null) -> void:
 	StageCamera.shake()
 	BoardBackground.flash_red()
 	
-	amount = EffectManager.propagate_posnum("damage", [source], amount)
+	amount = EffectManager.propagate_posnum("damage", amount, [source])
 	if amount <= 0:
 		return
 	
@@ -82,7 +82,7 @@ static func damage(amount: int, source: Object = null) -> void:
 ## If the call changes the sign of [code]amount[/code], does not change [member life].
 static func change_life(amount: int, source: Object = null) -> void:
 	var original_sign := signi(amount)
-	amount = EffectManager.propagate_value("change_life", [source], amount)
+	amount = EffectManager.propagate_value("change_life", amount, [source])
 	if signi(amount) != original_sign:
 		return
 	
@@ -100,7 +100,7 @@ static func change_life(amount: int, source: Object = null) -> void:
 		revive()
 		return
 	
-	EffectManager.propagate_call("lose", [source])
+	EffectManager.propagate_call("player_lose", [source])
 
 
 static func set_life(value: int, source: Object = null) -> void:
@@ -108,7 +108,7 @@ static func set_life(value: int, source: Object = null) -> void:
 
 
 static func spend_coins(amount: int, dest: Object = null) -> void:
-	amount = EffectManager.propagate_posnum("spend_coins", [dest], amount)
+	amount = EffectManager.propagate_posnum("spend_coins", amount, [dest])
 	coins -= amount
 
 

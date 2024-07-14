@@ -4,20 +4,20 @@ class_name Inventory
 # ==============================================================================
 static var _instance: Inventory
 
-static var items: Array[Item] = []
-static var item_paths: PackedStringArray = Eternal.create(PackedStringArray()) :
-	set(value):
-		item_paths = value
-		
-		for item in items:
-			EffectManager.unregister_object(item)
-		
-		items.clear()
-		
-		for path in value:
-			add_item(Item.from_path(path))
-	get:
-		return items.map(func(item: Item): return item.get_path())
+static var items: Array[Item] = Eternal.create([] as Array[Item])
+#static var item_paths: PackedStringArray = Eternal.create(PackedStringArray()) :
+	#set(value):
+		#item_paths = value
+		#
+		#for item in items:
+			#EffectManager.unregister_object(item)
+		#
+		#items.clear()
+		#
+		#for path in value:
+			#add_item(Item.from_path(path))
+	#get:
+		#return items.map(func(item: Item): return item.get_path())
 # ==============================================================================
 @onready var _item_grid: GridContainer = %ItemGrid
 # ==============================================================================
@@ -57,7 +57,7 @@ static func gain_item(item: Item) -> void:
 ## so effects that occur when the player gains the item do not occur. To gain an item,
 ## see [method gain_item].
 static func add_item(item: Item) -> void:
-	EffectManager.register_object(item)
+	EffectManager.register_object(item, EffectManager.Priority.ITEM, 0) # TODO: determine subpriority
 	
 	items.append(item)
 	if _instance:
@@ -89,7 +89,7 @@ static func transform_item(old_item: Item, new_item: Item) -> void:
 	new_item.inventory_add()
 	EffectManager.propagate_call("inventory_add_item", [new_item])
 	
-	EffectManager.register_object(new_item)
+	EffectManager.register_object(new_item, EffectManager.Priority.ITEM, 0) # TODO: determine subpriority
 	new_item.gain()
 	EffectManager.propagate_call("item_gain", [new_item])
 
@@ -103,3 +103,15 @@ static func remove_item(item: Item) -> void:
 	EffectManager.propagate_call("item_lose", [item])
 	
 	EffectManager.unregister_object(item)
+
+
+## Randomly distributes [code]mana[/code] mana across all items in the player's inventory.
+static func gain_mana(mana: int) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = RNG.randi()
+	
+	var mana_items: Array[Item] = []
+	mana_items.assign(items.filter(func(item: Item) -> bool: return item.data.mana))
+	
+	for i in mana:
+		mana_items[rng.randi() % mana_items.size()].gain_mana(1)

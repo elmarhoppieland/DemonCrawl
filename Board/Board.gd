@@ -12,6 +12,7 @@ class_name Board
 
 # ==============================================================================
 enum State {
+	VOID,
 	UNINITIALIZED,
 	RUNNING,
 	FROZEN,
@@ -41,7 +42,7 @@ static var saved_time: float = Eternal.create(0.0) ## The timer when it was load
 static var board_3bv: int = Eternal.create(-1) ## The board's 3BV value.
 static var is_flagless: bool = Eternal.create(true) ## Whether the board is flagless up to this point.
 
-static var state: State = Eternal.create(State.UNINITIALIZED) :
+static var state: State = Eternal.create(State.VOID) :
 	set(value):
 		state = value
 		
@@ -67,15 +68,18 @@ static var _permissions := -1
 func _enter_tree() -> void:
 	_instance = self
 	
-	EffectManager.connect_effect(lose)
+	EffectManager.connect_effect(player_lose, EffectManager.Priority.ENVIRONMENT, 0) # TODO: determine subpriority
 
 
 func _ready() -> void:
-	EffectManager.propagate_call("stage_enter")
-	
+	# DEBUG - should be removed once gaining items is more complete
 	Inventory.gain_item(Item.from_path("Apple"))
 	Inventory.gain_item(Item.from_path("Minion"))
 	Inventory.gain_item(Item.from_path("Sleeping Powder"))
+	
+	Board.state = State.UNINITIALIZED
+	
+	EffectManager.propagate_call("stage_enter")
 	
 	AssetManager.theme = StagesOverview.selected_stage.name
 	theme = AssetManager.load_theme(Theme.new())
@@ -84,7 +88,6 @@ func _ready() -> void:
 	_cell_container.columns = Board.board_size.x
 	
 	Board.saved_time = 0.0
-	Board.state = State.UNINITIALIZED
 	Board.board_3bv = -1
 	Board.is_flagless = true
 	
@@ -102,7 +105,7 @@ func _ready() -> void:
 	Foreground.fade_in(FADE_DURATION)
 
 
-func lose(_source: Object) -> void:
+func player_lose(_source: Object) -> void:
 	Board.state = State.FROZEN
 	Board.pause_timer()
 
@@ -347,10 +350,7 @@ static func get_time() -> int:
 ## the Board when it may not exist. Calling methods that need the instance when it
 ## does not exist results in an error if running in the editor.
 static func exists() -> bool:
-	_unsafe_access = true
-	var instance_exists := is_instance_valid(_instance)
-	_unsafe_access = false
-	return instance_exists
+	return Board.state != State.VOID
 
 
 ## Returns the board's permissions as a bitfield of [enum Permission].
@@ -361,6 +361,8 @@ static func get_permissions() -> int:
 	var default := 0
 	
 	match state:
+		State.VOID:
+			default = 0
 		State.UNINITIALIZED:
 			default = Permission.OPEN_CELL
 		State.RUNNING:
@@ -370,7 +372,7 @@ static func get_permissions() -> int:
 		State.FINISHED:
 			default = Permission.OPEN_CELL
 	
-	_permissions = EffectManager.propagate_posnum("get_board_permissions", [state], default)
+	_permissions = EffectManager.propagate_posnum("get_board_permissions", default, [state])
 	return _permissions
 
 
@@ -425,5 +427,5 @@ func _on_finish_button_pressed() -> void:
 
 
 func _exit_tree() -> void:
-	Board.state = State.UNINITIALIZED
+	Board.state = State.VOID
 	Board.saved_time = 0.0

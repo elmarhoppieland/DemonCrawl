@@ -39,7 +39,7 @@ class_name ItemIcon
 		if _tween:
 			_tween.kill()
 		
-		if data and value == data.mana:
+		if data and data.mana and value >= data.mana:
 			const GLOW_DURATION := 0.4
 			const GLOW_WAIT := 0.4
 			

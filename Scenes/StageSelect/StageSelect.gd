@@ -1,4 +1,5 @@
 extends MarginContainer
+class_name StageSelect
 
 # ==============================================================================
 @onready var stage_details: StageDetails = %StageDetails

@@ -121,6 +121,10 @@ static func stringify(variable: Variant) -> String:
 				return "null"
 			if variable.get_script():
 				var class_string := UserClassDB.get_class_from_script(variable.get_script())
+				
+				if variable.has_method("_export"):
+					return "(%s)%s" % [class_string, stringify(variable._export())]
+				
 				return "Object(%s,%s)" % [class_string, ",".join(variable.get_property_list().filter(func(prop: Dictionary):
 					return prop.name in variable and prop.name != "script" # we are assigning the script ourselves
 				).map(func(prop: Dictionary) -> String:
@@ -166,6 +170,8 @@ static func parse(string: String) -> Variant:
 		return _Helpers.parse_typed_array(string)
 	elif string.begins_with("Object("):
 		return _Helpers.parse_object(string)
+	elif string.match("(*)*"):
+		return _Helpers.parse_importer(string)
 	else:
 		return str_to_var(string)
 
@@ -266,3 +272,8 @@ class _Helpers:
 			obj.set(kv[0].trim_prefix("\"").trim_suffix("\""), Stringifier.parse(kv[1]))
 		
 		return obj
+	
+	static func parse_importer(s: String) -> Object:
+		var class_string := s.trim_prefix("(").get_slice(")", 0)
+		var script := UserClassDB.class_get_script(class_string)
+		return script._import(Stringifier.parse(s.trim_prefix("(" + class_string + ")")))

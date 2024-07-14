@@ -7,10 +7,12 @@
 [ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="4_2e3xg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hw7eq"]
+resource_local_to_scene = true
 shader = ExtResource("3_1wf42")
-shader_parameter/glow = 0.479077
+shader_parameter/glow = 0.560122
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t10h2"]
+resource_local_to_scene = true
 atlas = ExtResource("3_dv85j")
 region = Rect2(400, 16, 16, 16)
 
@@ -45,6 +47,8 @@ theme_override_styles/background = SubResource("StyleBoxFlat_a0gdq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_oj035")
 max_value = 300.0
 value = 300.0
+allow_greater = true
+allow_lesser = true
 show_percentage = false
 
 [node name="TooltipGrabber" type="Node" parent="."]

@@ -93,7 +93,7 @@ func get_strings() -> PackedStringArray:
 
 
 static func open(name: String) -> StringTable:
-	var override: StringTable = EffectManager.propagate_value("get_string_table", [name], null, TYPE_OBJECT)
+	var override: StringTable = EffectManager.propagate_value("get_string_table", null, [name])
 	if override:
 		return override
 	
