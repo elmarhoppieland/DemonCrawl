@@ -30,6 +30,7 @@ var hovered := false
 @onready var _lore_label: Label = %LoreLabel
 @onready var _monster_label: Label = %MonsterLabel
 @onready var _size_label: Label = %SizeLabel
+@onready var _stage_mods_container: HBoxContainer = %StageModsContainer
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
 signal interacted()
@@ -58,12 +59,21 @@ func update() -> void:
 		_stage_texture.hide()
 		_unknown_info.show()
 		_lock.show()
+		_stage_mods_container.hide()
 		return
 	
 	_name_label.text = "STAGE_" + stage.name.to_snake_case().to_upper()
 	_lore_label.text = "LORE_" + stage.name.to_snake_case().to_upper()
 	
 	_stage_texture.texture = stage.create_big_icon()
+	
+	for child in _stage_mods_container.get_children():
+		_stage_mods_container.remove_child(child)
+		child.queue_free()
+	
+	for mod in stage.mods:
+		var icon := StageModIcon.create(mod)
+		_stage_mods_container.add_child(icon)
 	
 	if stage.completed:
 		_complete_info.show()

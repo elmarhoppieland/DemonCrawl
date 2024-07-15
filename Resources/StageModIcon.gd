@@ -1,0 +1,41 @@
+@tool
+extends TextureRect
+class_name StageModIcon
+
+# ==============================================================================
+@export var data: StageModData :
+	set(value):
+		if data == value:
+			return
+		
+		data = value
+		
+		if Engine.is_editor_hint():
+			mod = value.get_mod_script().new()
+# ==============================================================================
+var mod: StageMod :
+	set(value):
+		mod = value
+		
+		if not value:
+			data = null
+			texture_rect.atlas = null
+		
+		data = value.data
+		
+		value.icon = texture_rect
+		
+		texture_rect.texture.atlas = value.data.atlas
+		texture_rect.texture.atlas_region = value.data.atlas_region
+	get:
+		if not mod:
+			mod = data.get_mod_script().new()
+		return mod
+# ==============================================================================
+@onready var texture_rect: TextureRect = $TextureRect
+# ==============================================================================
+
+static func create(_mod: StageMod) -> StageModIcon:
+	var instance: StageModIcon = ResourceLoader.load("res://Resources/StageModIcon.tscn").instantiate()
+	instance.mod = _mod
+	return instance

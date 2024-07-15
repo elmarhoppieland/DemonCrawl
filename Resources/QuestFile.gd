@@ -79,7 +79,7 @@ class StageBase extends RefCounted:
 	var max_power: Array[int] = []
 	var monsters: Array[int] = []
 	var size: Array[int] = []
-	
+	# there should be some info about stage mod difficulty
 	
 	func generate(rng: RandomNumberGenerator) -> Stage:
 		return Stage.generate(self, rng)

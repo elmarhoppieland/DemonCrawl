@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c3vf0fdejs72s"]
+[gd_scene load_steps=23 format=3 uid="uid://c3vf0fdejs72s"]
 
 [ext_resource type="Script" path="res://Scenes/StageSelect/StageDetails.gd" id="1_fk3lx"]
 [ext_resource type="Texture2D" uid="uid://dc6bspeif1psv" path="res://Assets/skins/alcove/bg.png" id="2_24oak"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" path="res://Scenes/StageSelect/StageInfoBackground.gdshader" id="4_lwu6u"]
 [ext_resource type="Script" path="res://Resources/Icon.gd" id="4_qkq4a"]
 [ext_resource type="Texture2D" uid="uid://cky43cmv2dlpf" path="res://Assets/sprites/stage_checkmark.png" id="5_7imam"]
+[ext_resource type="PackedScene" uid="uid://bbu4h1leyr1c6" path="res://Resources/StageModIcon.tscn" id="10_2co3g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1or6"]
 atlas = ExtResource("3_fits4")
@@ -228,99 +229,99 @@ layout_mode = 2
 texture = ExtResource("3_r8wad")
 stretch_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="DetailsContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="DetailsContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = -10
 theme_override_constants/margin_top = -2
 
-[node name="NameLabel" type="Label" parent="VBoxContainer/MarginContainer"]
+[node name="NameLabel" type="Label" parent="DetailsContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Forest"
 label_settings = SubResource("LabelSettings_6fp47")
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="DetailsContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = -4
 theme_override_constants/margin_top = -1
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer2"]
+[node name="ColorRect" type="ColorRect" parent="DetailsContainer/MarginContainer2"]
 material = SubResource("ShaderMaterial_a567b")
 custom_minimum_size = Vector2(108, 9)
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="UnknownInfo" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+[node name="UnknownInfo" type="HBoxContainer" parent="DetailsContainer/MarginContainer2"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Control" type="Control" parent="VBoxContainer/MarginContainer2/UnknownInfo"]
+[node name="Control" type="Control" parent="DetailsContainer/MarginContainer2/UnknownInfo"]
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/UnknownInfo"]
+[node name="Label" type="Label" parent="DetailsContainer/MarginContainer2/UnknownInfo"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "???"
 label_settings = SubResource("LabelSettings_2ybrx")
 vertical_alignment = 2
 
-[node name="SpecialInfo" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+[node name="SpecialInfo" type="HBoxContainer" parent="DetailsContainer/MarginContainer2"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Control" type="Control" parent="VBoxContainer/MarginContainer2/SpecialInfo"]
+[node name="Control" type="Control" parent="DetailsContainer/MarginContainer2/SpecialInfo"]
 custom_minimum_size = Vector2(7, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/SpecialInfo"]
+[node name="Label" type="Label" parent="DetailsContainer/MarginContainer2/SpecialInfo"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "STAGE_PROPERTY_SPECIAL"
 label_settings = SubResource("LabelSettings_rq0jb")
 vertical_alignment = 2
 
-[node name="CompleteInfo" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+[node name="CompleteInfo" type="HBoxContainer" parent="DetailsContainer/MarginContainer2"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Control" type="Control" parent="VBoxContainer/MarginContainer2/CompleteInfo"]
+[node name="Control" type="Control" parent="DetailsContainer/MarginContainer2/CompleteInfo"]
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/CompleteInfo"]
+[node name="Label" type="Label" parent="DetailsContainer/MarginContainer2/CompleteInfo"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "STAGE_PROPERTY_COMPLETE"
 label_settings = SubResource("LabelSettings_y46n7")
 vertical_alignment = 2
 
-[node name="InfoContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+[node name="InfoContainer" type="HBoxContainer" parent="DetailsContainer/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Control" type="Control" parent="VBoxContainer/MarginContainer2/InfoContainer"]
+[node name="Control" type="Control" parent="DetailsContainer/MarginContainer2/InfoContainer"]
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer2/InfoContainer"]
+[node name="TextureRect" type="TextureRect" parent="DetailsContainer/MarginContainer2/InfoContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_quuqp")
 
-[node name="Control2" type="Control" parent="VBoxContainer/MarginContainer2/InfoContainer"]
+[node name="Control2" type="Control" parent="DetailsContainer/MarginContainer2/InfoContainer"]
 custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 
-[node name="PowerLabel" type="Label" parent="VBoxContainer/MarginContainer2/InfoContainer"]
+[node name="PowerLabel" type="Label" parent="DetailsContainer/MarginContainer2/InfoContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
@@ -328,20 +329,20 @@ text = "1-1"
 label_settings = SubResource("LabelSettings_2ybrx")
 vertical_alignment = 2
 
-[node name="Control3" type="Control" parent="VBoxContainer/MarginContainer2/InfoContainer"]
+[node name="Control3" type="Control" parent="DetailsContainer/MarginContainer2/InfoContainer"]
 custom_minimum_size = Vector2(6, 0)
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/MarginContainer2/InfoContainer"]
+[node name="TextureRect2" type="TextureRect" parent="DetailsContainer/MarginContainer2/InfoContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_fx73u")
 
-[node name="Control4" type="Control" parent="VBoxContainer/MarginContainer2/InfoContainer"]
+[node name="Control4" type="Control" parent="DetailsContainer/MarginContainer2/InfoContainer"]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="MonsterLabel" type="Label" parent="VBoxContainer/MarginContainer2/InfoContainer"]
+[node name="MonsterLabel" type="Label" parent="DetailsContainer/MarginContainer2/InfoContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
@@ -349,20 +350,20 @@ text = "9"
 label_settings = SubResource("LabelSettings_2ybrx")
 vertical_alignment = 2
 
-[node name="Control5" type="Control" parent="VBoxContainer/MarginContainer2/InfoContainer"]
+[node name="Control5" type="Control" parent="DetailsContainer/MarginContainer2/InfoContainer"]
 custom_minimum_size = Vector2(7, 0)
 layout_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/MarginContainer2/InfoContainer"]
+[node name="TextureRect3" type="TextureRect" parent="DetailsContainer/MarginContainer2/InfoContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_mxdwf")
 
-[node name="Control6" type="Control" parent="VBoxContainer/MarginContainer2/InfoContainer"]
+[node name="Control6" type="Control" parent="DetailsContainer/MarginContainer2/InfoContainer"]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="SizeLabel" type="Label" parent="VBoxContainer/MarginContainer2/InfoContainer"]
+[node name="SizeLabel" type="Label" parent="DetailsContainer/MarginContainer2/InfoContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
@@ -370,10 +371,22 @@ text = "56"
 label_settings = SubResource("LabelSettings_2ybrx")
 vertical_alignment = 2
 
-[node name="LoreLabel" type="Label" parent="VBoxContainer"]
+[node name="LoreLabel" type="Label" parent="DetailsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Play more stages to reveal this stage."
+
+[node name="MarginContainer3" type="MarginContainer" parent="DetailsContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/margin_bottom = 1
+
+[node name="StageModsContainer" type="HBoxContainer" parent="DetailsContainer/MarginContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StageModIcon" parent="DetailsContainer/MarginContainer3/StageModsContainer" instance=ExtResource("10_2co3g")]
+layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
