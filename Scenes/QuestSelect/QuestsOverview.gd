@@ -145,7 +145,7 @@ func _on_difficulty_select_second_interacted() -> void:
 
 
 static func get_current_player_data() -> Array[Dictionary]:
-	var current_data: Array = player_data[selected_difficulty.get_name()]
+	var current_data: Array = player_data.get(selected_difficulty.get_name(), [])
 	if current_data.size() < selected_difficulty.get_quests().size():
 		for i in range(current_data.size(), selected_difficulty.get_quests().size()):
 			current_data.append({

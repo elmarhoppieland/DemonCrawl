@@ -17,16 +17,20 @@ var mod: StageMod :
 	set(value):
 		mod = value
 		
+		if not is_node_ready():
+			await ready
+		
 		if not value:
 			data = null
 			texture_rect.atlas = null
+			return
 		
 		data = value.data
 		
 		value.icon = texture_rect
 		
 		texture_rect.texture.atlas = value.data.atlas
-		texture_rect.texture.atlas_region = value.data.atlas_region
+		texture_rect.texture.region = value.data.atlas_region
 	get:
 		if not mod:
 			mod = data.get_mod_script().new()

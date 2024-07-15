@@ -72,12 +72,6 @@ var mods: Array[StageMod] = [] : ## The stage's mods.
 		mods = value
 		
 		properties_changed.emit()
-	get:
-		var current := mods
-		(func():
-			if mods != current:
-				properties_changed.emit()).call_deferred()
-		return mods
 # ==============================================================================
 signal properties_changed()
 # ==============================================================================

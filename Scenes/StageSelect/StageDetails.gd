@@ -75,6 +75,8 @@ func update() -> void:
 		var icon := StageModIcon.create(mod)
 		_stage_mods_container.add_child(icon)
 	
+	_stage_mods_container.show()
+	
 	if stage.completed:
 		_complete_info.show()
 		_checkmark.show()
