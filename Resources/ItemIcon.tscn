@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hw7eq"]
 resource_local_to_scene = true
 shader = ExtResource("3_1wf42")
-shader_parameter/glow = 0.560122
+shader_parameter/glow = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t10h2"]
 resource_local_to_scene = true
@@ -26,7 +26,6 @@ bg_color = Color(0.0627451, 0.87451, 0.501961, 1)
 [node name="ItemIcon" type="MarginContainer"]
 script = ExtResource("1_hf83v")
 data = ExtResource("2_8xrbs")
-current_mana = 300
 
 [node name="BGColorRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -46,7 +45,6 @@ size_flags_vertical = 8
 theme_override_styles/background = SubResource("StyleBoxFlat_a0gdq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_oj035")
 max_value = 300.0
-value = 300.0
 allow_greater = true
 allow_lesser = true
 show_percentage = false
