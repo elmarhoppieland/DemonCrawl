@@ -15,6 +15,7 @@ texture = ExtResource("1_bbrpv")
 script = ExtResource("2_ueymb")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,4 +31,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_nsahc")
 
 [node name="TooltipGrabber" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("3_qrwup")
+
+[connection signal="about_to_show" from="TooltipGrabber" to="." method="_on_tooltip_grabber_about_to_show"]

@@ -36,10 +36,16 @@ var mod: StageMod :
 			mod = data.get_mod_script().new()
 		return mod
 # ==============================================================================
-@onready var texture_rect: TextureRect = $TextureRect
+@onready var texture_rect: TextureRect = %TextureRect
+@onready var tooltip_grabber: TooltipGrabber = %TooltipGrabber
 # ==============================================================================
 
 static func create(_mod: StageMod) -> StageModIcon:
 	var instance: StageModIcon = ResourceLoader.load("res://Resources/StageModIcon.tscn").instantiate()
 	instance.mod = _mod
 	return instance
+
+
+func _on_tooltip_grabber_about_to_show() -> void:
+	tooltip_grabber.text = mod.data.name
+	tooltip_grabber.subtext = mod.data.description
