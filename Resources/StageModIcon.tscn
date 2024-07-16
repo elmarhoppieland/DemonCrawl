@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbu4h1leyr1c6"]
+[gd_scene load_steps=6 format=3 uid="uid://cax2hgw22uqos"]
 
-[ext_resource type="Texture2D" uid="uid://p71smuhu64pg" path="res://Assets/sprites/stage_mod_bg.png" id="1_bbrpv"]
-[ext_resource type="Texture2D" uid="uid://cr5goqa32lk3h" path="res://Assets/sprites/stage_mods.png" id="2_iv60g"]
+[ext_resource type="Texture2D" path="res://Assets/sprites/stage_mod_bg.png" id="1_bbrpv"]
+[ext_resource type="Texture2D" path="res://Assets/sprites/stage_mods.png" id="2_iv60g"]
 [ext_resource type="Script" path="res://Resources/StageModIcon.gd" id="2_ueymb"]
 [ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="3_qrwup"]
 

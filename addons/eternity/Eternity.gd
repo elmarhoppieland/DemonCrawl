@@ -32,6 +32,13 @@ func _exit_tree() -> void:
 	remove_autoload_singleton("__EternityInitializer")
 
 
+static func get_saved_value(save_path: String, script: Script, key: String) -> Variant:
+	var cfg := EternalFile.new()
+	cfg.load(save_path)
+	var section := UserClassDB.get_class_from_script(script)
+	return cfg.get_value(section, key, _defaults_cfg.get_value(section, key))
+
+
 static func save() -> void:
 	if path.is_empty():
 		return
