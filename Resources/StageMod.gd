@@ -19,12 +19,6 @@ var icon: TextureRect :
 		return icon
 # ==============================================================================
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		if is_instance_valid(icon):
-			icon.queue_free()
-
-
 func get_tree() -> SceneTree:
 	return icon.get_tree()
 

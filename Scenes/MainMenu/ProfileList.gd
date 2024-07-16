@@ -27,12 +27,11 @@ func _ready() -> void:
 		add_child(page)
 		selected_page = page
 		for file in DirAccess.get_files_at(DIR):
-			var cfg := ConfigFile.new()
-			cfg.load(DIR.path_join(file))
+			var path := DIR.path_join(file)
 			
+			var avatar_atlas_position: Vector2i = Eternity.get_saved_value(path, Avatar, "atlas_position")
+			var level: int = Eternity.get_saved_value(path, XPBar, "level")
 			var profile_name := file.get_basename()
-			var avatar_atlas_position: Vector2i = cfg.get_value("Avatar", "atlas_position")
-			var level: int = cfg.get_value("XPBar", "level")
 			
 			var profile := MainMenuProfile.create(profile_name, avatar_atlas_position, level)
 			
