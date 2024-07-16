@@ -16,6 +16,7 @@ enum State {
 	UNINITIALIZED,
 	RUNNING,
 	FROZEN,
+	LOST,
 	FINISHED
 }
 enum Permission {
@@ -59,6 +60,7 @@ static var _permissions := -1
 @onready var _finish_button: MarginContainer = %FinishButton
 @onready var _monsters_label: Label = %MonstersLabel
 @onready var _power_label: Label = %PowerLabel
+@onready var _stage_mods_container: HBoxContainer = %StageModsContainer
 @onready var _cell_container: GridContainer = %CellContainer
 @onready var _finish_popup_contents: FinishPopupContents = %FinishPopupContents
 @onready var _tweener_canvas: CanvasLayer = %TweenerCanvas
@@ -77,36 +79,57 @@ func _ready() -> void:
 	Inventory.gain_item(Item.from_path("Minion"))
 	Inventory.gain_item(Item.from_path("Sleeping Powder"))
 	
-	Board.state = State.UNINITIALIZED
-	
 	EffectManager.propagate_call("stage_enter")
 	
-	AssetManager.theme = StagesOverview.selected_stage.name
-	theme = AssetManager.load_theme(Theme.new())
+	_load_stage_mods()
 	
-	Board.board_size = StagesOverview.selected_stage.size
+	Board.state = State.UNINITIALIZED
+	
+	_reset_theme()
+	_reset_internals()
+	
 	_cell_container.columns = Board.board_size.x
-	
-	Board.saved_time = 0.0
-	Board.board_3bv = -1
-	Board.is_flagless = true
 	
 	Stats.untouchable = true
 	
 	_monsters_label.text = str(StagesOverview.selected_stage.monsters)
 	_power_label.text = "%d-%d" % [StagesOverview.selected_stage.min_power, StagesOverview.selected_stage.max_power]
 	
+	_init_cells()
+	
+	const FADE_DURATION := 1.0
+	Foreground.fade_in(FADE_DURATION)
+	
+	EffectManager.propagate_call("board_loaded")
+
+
+func _load_stage_mods() -> void:
+	for mod in StagesOverview.selected_stage.mods:
+		_stage_mods_container.add_child(mod.icon)
+		EffectManager.register_object(mod, EffectManager.Priority.STAGE_MOD, 0) # TODO: determine subpriority
+
+
+func _reset_theme() -> void:
+	AssetManager.theme = StagesOverview.selected_stage.name
+	theme = AssetManager.load_theme(Theme.new())
+
+
+func _reset_internals() -> void:
+	Board.board_size = StagesOverview.selected_stage.size
+	Board.saved_time = 0.0
+	Board.board_3bv = -1
+	Board.is_flagless = true
+
+
+func _init_cells() -> void:
 	for i in board_size.x * board_size.y:
 		var cell := Cell.create()
 		cell.board_position = Vector2i(i % Board.board_size.x, i / Board.board_size.x)
 		_cell_container.add_child(cell)
-	
-	const FADE_DURATION := 1.0
-	Foreground.fade_in(FADE_DURATION)
 
 
-func player_lose(_source: Object) -> void:
-	Board.state = State.FROZEN
+func player_lose() -> void:
+	Board.state = State.LOST
 	Board.pause_timer()
 
 
@@ -362,6 +385,8 @@ static func get_permissions() -> int:
 	
 	match state:
 		State.VOID:
+			default = 0
+		State.LOST:
 			default = 0
 		State.UNINITIALIZED:
 			default = Permission.OPEN_CELL

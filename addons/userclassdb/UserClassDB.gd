@@ -153,7 +153,7 @@ static func class_get_method_list(name: StringName, no_inheritance: bool = false
 		return []
 	
 	var script := class_get_script(name)
-	var methods: Array[Dictionary] = script.get_script_method_list()
+	var methods := script.get_script_method_list()
 	
 	if no_inheritance:
 		return methods
@@ -162,7 +162,8 @@ static func class_get_method_list(name: StringName, no_inheritance: bool = false
 	if parent.is_empty():
 		return methods
 	
-	return methods + class_get_method_list(parent)
+	var method_names := methods.map(func(method: Dictionary) -> String: return method.name)
+	return methods + class_get_method_list(parent).filter(func(method: Dictionary) -> bool: return not method.name in method_names)
 
 
 ## Returns the value of [code]property[/code] of [code]object[/code] or its ancestry.

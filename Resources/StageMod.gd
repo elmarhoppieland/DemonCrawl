@@ -10,11 +10,12 @@ var data: StageModData :
 
 var icon: TextureRect :
 	get:
-		if not icon:
+		if not is_instance_valid(icon):
 			icon = TextureRect.new()
 			icon.texture = AtlasTexture.new()
 			icon.texture.atlas = data.atlas
 			icon.texture.region = data.atlas_region
+		
 		return icon
 # ==============================================================================
 

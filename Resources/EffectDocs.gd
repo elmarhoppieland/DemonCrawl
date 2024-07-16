@@ -10,12 +10,18 @@ class_name EffectDocs
 ## [br]Influencing effects are called whenever determining a value, e.g. when determining the
 ## amount of rewards in a chest. The first parameter is the currently used value. When returning
 ## this value, the effect does not influence the value.
-## [br][br][b]2. [/b]The value passed into influencing effects (the first parameter) may not be the
+## [br][br][b]2.[/b] The value passed into influencing effects (the first parameter) may not be the
 ## final value being used. This is because other influencing effects may be called afterwards,
 ## changing the value.
-## [br][br][b]3. [/b]Influencing effects can be turned into reactive effects by making them return
+## [br][br][b]3.[/b] Influencing effects can be turned into reactive effects by making them return
 ## [code]void[/code]. This will make them be called after all influencing effects are called,
 ## so the value passed into the call (the first parameter) will be the final value being used.
+## [br][br][b]4.[/b] When connecting to an effect using [method EffectManager.register_object],
+## they may be defined using fewer arguments. If, for example, an effect takes in 2 arguments,
+## and the connection is defined with only 1 argument, then only the first argument will be
+## passed into the call. To make this work on connections with [method EffectManager.connect_effect],
+## use the return value of the connection and call [code]set_total_arg_count()[/code]
+## to specify the number of arguments in the function that is connected.
 
 # ==============================================================================
 
@@ -76,12 +82,21 @@ func get_coin_value(value: int) -> int:
 	return value
 
 
-## Called when the player enters a stage.
+## Called when the player enters a stage. This is called before [method board_loaded],
+## when the [Board]'s properties have not been initialized and can therefore be changed
+## by changing the current stage's properties.
 func stage_enter() -> void:
 	pass
 
 
-## Called when the player loads or reloads a stage. This is called after [method board_begin],
+## Called when the player loads or reloads a stage. This is called after [method stage_enter],
+## when the [Board]'s properties have been initialized. Changing the stage's properties
+## may not change the board's properties.
+func board_loaded() -> void:
+	pass
+
+
+## Called when the player loads a stage. This is called after [method board_begin],
 ## if this is the first time the player loads this stage.
 func stage_load() -> void:
 	pass
