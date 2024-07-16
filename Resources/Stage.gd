@@ -63,6 +63,15 @@ var completed := false : ## Whether the stage is completed.
 		completed = value
 		
 		properties_changed.emit()
+
+var mods: Array[StageMod] = [] : ## The stage's mods.
+	set(value):
+		if mods == value:
+			return
+		
+		mods = value
+		
+		properties_changed.emit()
 # ==============================================================================
 signal properties_changed()
 # ==============================================================================
@@ -111,6 +120,12 @@ static func generate(base: QuestFile.StageBase, rng: RandomNumberGenerator) -> S
 	stage.max_power = rng.randi_range(base.max_power[0], base.max_power[-1])
 	
 	stage.monsters = rng.randi_range(base.monsters[0], base.monsters[-1])
+	
+	var total_difficulty := rng.randi_range(0, 4)
+	while total_difficulty > 0:
+		var mod := StageModDB.create_filter().get_random_mod()
+		stage.mods.append(mod)
+		total_difficulty -= mod.data.difficulty
 	
 	return stage
 	

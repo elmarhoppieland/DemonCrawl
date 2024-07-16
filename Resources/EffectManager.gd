@@ -70,7 +70,9 @@ static func _initialize() -> void:
 ## To register only one specific [Callable], use [method connect_effect].
 static func register_object(object: Object, priority: Priority, subpriority: int, allow_duplicates: bool = false) -> void:
 	for method in UserClassDB.class_get_method_list(UserClassDB.get_class_from_script(object.get_script())):
-		connect_effect(object[method.name], priority, subpriority, method.return.type != TYPE_NIL, allow_duplicates, method.name)
+		var data := connect_effect(object[method.name], priority, subpriority, method.return.type != TYPE_NIL, allow_duplicates, method.name)
+		if data:
+			data.set_required_arg_count(method.args.size() - method.default_args.size()).set_total_arg_count(method.args.size())
 	
 	#if allow_duplicates or _objects.all(func(o: WeakRef): return o.get_ref() != object):
 		#_objects.append(weakref(object))
@@ -124,8 +126,8 @@ static func unregister_object(object: Object) -> void:
 ## work on lambda functions that reference any of the object's members (variables
 ## or functions). If the object's member are needed, either override the [code]effect[/code]
 ## argument or use a member function instead. This bug will be fixed in Godot 4.3.
-static func connect_effect(callable: Callable, priority: Priority, subpriority: int, influencing: bool = false, allow_duplicates: bool = false, effect: StringName = callable.get_method()) -> void:
-	if not allow_duplicates and effect in _connections and _connections[effect].any(func(data: ConnectionData): return data._callable == callable):
+static func connect_effect(callable: Callable, priority: Priority, subpriority: int, influencing: bool = false, allow_duplicates: bool = false, effect: StringName = callable.get_method()) -> ConnectionData:
+	if not allow_duplicates and effect in _connections and _connections[effect].any(func(d: ConnectionData): return d._callable == callable):
 		return
 	
 	var data_arr: Array[ConnectionData] = []
@@ -135,11 +137,13 @@ static func connect_effect(callable: Callable, priority: Priority, subpriority: 
 	else:
 		data_arr = _connections[effect]
 	
-	data_arr.append(ConnectionData.new(callable)\
+	var data := ConnectionData.new(callable)\
 		.set_influencing(influencing)\
 		.set_priority(priority)\
 		.set_subpriority(subpriority)
-	)
+	
+	data_arr.append(data)
+	return data
 	
 	#var dict := _connections_influencing if influencing else _connections_reactive
 	#
@@ -354,14 +358,16 @@ class ConnectionData:
 		_callable = callable
 	
 	func handle_value(args: Array = [], default: Variant = null) -> Variant:
-		var value = _callable.callv([default] + args)
+		var value = handle([default] + args)
 		if _influencing:
 			return value
 		
 		return default
 	
-	func handle(args: Array = []) -> void:
-		_callable.callv(args)
+	func handle(args: Array = []) -> Variant:
+		if _total_arg_count >= 0 and _total_arg_count < args.size():
+			args = args.slice(0, _total_arg_count)
+		return _callable.callv(args)
 	
 	func set_priority(priority: Priority) -> ConnectionData:
 		_priority = priority

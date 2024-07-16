@@ -23,8 +23,6 @@ class_name ItemIcon
 		
 		if data.mana:
 			mana_bar.max_value = data.mana
-			if Engine.is_editor_hint():
-				current_mana = data.mana
 		
 		bg_color_rect.color = data.get_color()
 @export var current_mana := 0 :

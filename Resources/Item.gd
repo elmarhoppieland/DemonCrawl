@@ -11,12 +11,6 @@ enum Type {
 	MAX
 }
 # ==============================================================================
-const COLOR_CONSUMABLE := Color("14a46480")
-const COLOR_PASSIVE := Color("00000000")
-const COLOR_MAGIC := Color("2a6eb080")
-const COLOR_OMEN := Color("bc383880")
-const COLOR_LEGENDARY := Color("b3871a80")
-# ==============================================================================
 var data: ItemData :
 	get:
 		if not data:
