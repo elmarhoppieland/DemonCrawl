@@ -7,10 +7,12 @@ class_name CellObject
 var cell: Cell ## The [Cell] this is the object of.
 # ==============================================================================
 
-func _init(_cell: Cell) -> void:
+func _init(_cell: Cell = null) -> void:
 	cell = _cell
 	
 	cell._object_texture.tooltip_grabber.about_to_show.connect(_about_to_show_tooltip)
+	
+	spawn()
 
 
 func get_tree() -> SceneTree:
@@ -65,6 +67,11 @@ func unhover() -> void:
 ## [br][br]When overriding, make sure to add [code]super()[/code] to keep the default behaviour.
 func kill() -> void:
 	clear()
+
+
+## Called when this object just got spawned.
+func spawn() -> void:
+	pass
 
 
 ## Returns the text that should be in the tooltip when the player hovers over this object.

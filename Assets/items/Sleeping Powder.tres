@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://dtcj5i5va55m7"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dtcj5i5va55m7"]
 
 [ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_h41l3"]
+[ext_resource type="Texture2D" uid="uid://ml6imv6yhgn4" path="res://Assets/sprites/items.png" id="1_spdas"]
 
 [resource]
 script = ExtResource("1_h41l3")
 name = "ITEM_SLEEPING_POWDER"
 description = "ITEM_SLEEPING_POWDER_DESCRIPTION"
 type = 1
+mana = 0
 cost = 4
 atlas_region = Rect2(192, 64, 16, 16)
+atlas = ExtResource("1_spdas")
+tags = PackedStringArray()

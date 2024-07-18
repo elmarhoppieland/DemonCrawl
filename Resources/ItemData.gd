@@ -25,9 +25,14 @@ const TYPE_COLORS := {
 @export var cost := 0
 @export var atlas_region := Rect2(0, 0, 16, 16)
 @export var atlas: Texture2D = preload("res://Assets/sprites/items.png")
+@export var tags := PackedStringArray()
 # ==============================================================================
 var _small_icon: Texture2D
 # ==============================================================================
+
+func create() -> Item:
+	return get_item_script().new()
+
 
 func get_color() -> Color:
 	return TYPE_COLORS[type]
@@ -72,5 +77,7 @@ func _property_get_revert(property: StringName) -> Variant:
 		return "ITEM_" + resource_path.get_file().get_basename().to_snake_case().to_upper()
 	if property == &"atlas":
 		return preload("res://Assets/sprites/items.png")
+	if property == &"tags":
+		return PackedStringArray()
 	
 	return get_script().get_property_default_value(property)

@@ -31,6 +31,7 @@ class ItemFilter:
 			if Inventory.items.any(func(item: Item): return item.data == preload("res://Assets/items/Extra Pocket.tres")):
 				return false
 			return _ignore_items_in_inventory
+	var _tag_filters := PackedStringArray()
 	var _rng: RandomNumberGenerator
 	
 	
@@ -90,22 +91,38 @@ class ItemFilter:
 		_ignore_items_in_inventory = not allow_items_in_inventory
 		return self
 	
+	## Only allow items of the given [code]category[/code]. If [code]inverted[/code]
+	## is [code]true[/code], only allows items [b]not[/b] of the given category.
+	func filter_tag(tag: String, invert: bool = false) -> ItemFilter:
+		if invert:
+			if not tag.begins_with("!"):
+				tag = "!" + tag
+			elif tag.begins_with("!"):
+				tag = tag.trim_prefix("!")
+		
+		_tag_filters.append(tag)
+		return self
+	
 	## Sets the [RandomNumberGenerator] used for randomizing.
 	func set_rng(rng: RandomNumberGenerator) -> ItemFilter:
 		_rng = rng
 		return self
 	
-	## Returns a random item that matches this filter.
-	func get_random_item() -> Item:
+	## Returns a random [ItemData] resource that matches this filter.
+	func get_random_item_data() -> ItemData:
 		var options := get_items_data()
 		if options.is_empty():
 			Debug.log_error("Could not find any items with filter %s." % self)
 			return null
 		
-		return options[RNG.randi(_rng) % options.size()].get_item_script().new()
+		return options[RNG.randi(_rng) % options.size()]
 	
-	## Returns [code]count[/code] random different items that match this filter.
-	func get_random_item_set(count: int) -> Array[Item]:
+	## Returns a random item that matches this filter.
+	func get_random_item() -> Item:
+		return get_random_item_data().get_item_script().new()
+	
+	## Returns [code]count[/code] random different [ItemData] resources that match this filter.
+	func get_random_item_data_set(count: int) -> Array[ItemData]:
 		var options := get_items_data()
 		
 		if options.is_empty():
@@ -113,7 +130,7 @@ class ItemFilter:
 			return []
 		
 		var indexes := PackedInt32Array()
-		var items: Array[Item] = []
+		var items: Array[ItemData] = []
 		for i in count:
 			if options.size() == indexes.size():
 				Debug.log_error("Could not find more than %d items with filter %s." % [indexes.size(), self])
@@ -128,9 +145,13 @@ class ItemFilter:
 			indexes.append(index)
 			indexes.sort()
 			
-			items.append(options[index].get_item_script().new())
+			items.append(options[index])
 		
 		return items
+	
+	## Returns [code]count[/code] random different items that match this filter.
+	func get_random_item_set(count: int) -> Array[Item]:
+		return get_random_item_data_set(count).map(func(data: ItemData): return data.get_item_script().new())
 	
 	## Returns all items that match this filter.
 	func get_items_data() -> Array[ItemData]:
@@ -150,6 +171,9 @@ class ItemFilter:
 			return false
 		if _ignore_items_in_inventory and data.type != Item.Type.CONSUMABLE and Inventory.items.any(func(item: Item): return item.data == data):
 			return false
+		for tag in _tag_filters:
+			if (tag in data.tags) != tag.begins_with("!"):
+				return false
 		
 		return true
 	

@@ -74,11 +74,14 @@ func _on_tooltip_grabber_about_to_show() -> void:
 		tooltip_grabber.text = ""
 		return
 	
-	tooltip_grabber.text = data.name
+	var text := TooltipText.new(tr(data.name).to_upper()).set_color(Color(data.get_color(), 1)).set_translate(false)
+	
 	if data.mana:
-		tooltip_grabber.subtext = "[%d/%d Mana]\n" % [current_mana, data.mana] + data.description
-	else:
-		tooltip_grabber.subtext = data.description
+		text = text.add_line("[%d/%d %s]" % [current_mana, data.mana, tr("MANA")])
+	
+	text = text.add_line(data.description).as_subtext()
+	
+	tooltip_grabber.text = text.to_string()
 
 
 func _on_tooltip_grabber_interacted() -> void:
