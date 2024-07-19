@@ -146,16 +146,18 @@ QUEST_AROUND_THE_BEND;Around the Bend
 QUEST_SHADOWMAN;Shadowman
 QUEST_ENDLESS_MULTIVERSE;Endless Multiverse
 QUEST_HERO_TRIALS;Hero Trials
-NOMAD;Nomad
-NOMAD_SELL;Selling {offer}!
-NOMAD_SELL_PRICE;Price: {price} coins
-NOMAD_SELL_WEAPONS;weapons
-NOMAD_SELL_TREASURE_CHESTS;treasure chests
-NOMAD_SELL_MAGIC_ITEMS;magic items
-NOMAD_SELL_DOLLS;mastery dolls
-NOMAD_BUY;Buying {offer}!
-NOMAD_BUY_PRICE;Price: {price} coins
-NOMAD_TRADE;Trading {offer} for your {price}!
+STRANGER_NOMAD;Nomad
+STRANGER_NOMAD_SELL;Selling {offer}!
+STRANGER_NOMAD_SELL_PRICE;Price: {price} coins
+STRANGER_NOMAD_SELL_WEAPONS;weapons
+STRANGER_NOMAD_SELL_TREASURE_CHESTS;treasure chests
+STRANGER_NOMAD_SELL_MAGIC_ITEMS;magic items
+STRANGER_NOMAD_SELL_DOLLS;mastery dolls
+STRANGER_NOMAD_BUY;Buying {offer}!
+STRANGER_NOMAD_BUY_PRICE;Price: {price} coins
+STRANGER_NOMAD_TRADE;Trading {offer} for your {price}!
+STRANGER_PRIEST;Priest
+STRANGER_PRIEST_MESSAGE;I will remove an omen and get rid of your negative morality for {price} coins!
 MANA;mana
 STAGE_PROPERTY_SPECIAL;SPECIAL STAGE!
 STAGE_PROPERTY_COMPLETE;STAGE COMPLETE!

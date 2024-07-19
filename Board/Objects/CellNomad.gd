@@ -26,6 +26,8 @@ func get_tooltip_text() -> String:
 
 func interact() -> void:
 	super()
+	if Stats.coins < offer.price:
+		return
 	offer.apply()
 
 
@@ -62,7 +64,7 @@ class Offer:
 		pass
 	
 	func _to_string() -> String:
-		return TooltipText.new("NOMAD").to_upper().add_line("NOMAD_NULL").as_subtext().to_string()
+		return TooltipText.new("STRANGER_NOMAD").to_upper().add_line("STRANGER_NOMAD_NULL").as_subtext().to_string()
 
 
 class SellOffer extends Offer:
@@ -73,12 +75,12 @@ class SellOffer extends Offer:
 		price += 1
 	
 	func _to_string() -> String:
-		return TooltipText.new("NOMAD").to_upper().add_line("NOMAD_SELL").as_subtext().add_line("NOMAD_SELL_PRICE").as_subtext().to_string()
+		return TooltipText.new("STRANGER_NOMAD").to_upper().add_line("STRANGER_NOMAD_SELL").as_subtext().add_line("STRANGER_NOMAD_SELL_PRICE").as_subtext().to_string()
 
 
 class TradeOffer extends Offer:
 	func _to_string() -> String:
-		return TooltipText.new("NOMAD").to_upper().add_line("NOMAD_TRADE").as_subtext().to_string()
+		return TooltipText.new("STRANGER_NOMAD").to_upper().add_line("STRANGER_NOMAD_TRADE").as_subtext().to_string()
 
 
 class BuyOffer extends Offer:
@@ -89,7 +91,7 @@ class BuyOffer extends Offer:
 		price -= 1
 	
 	func _to_string() -> String:
-		return TooltipText.new("NOMAD").add_line("NOMAD_BUY").as_subtext().add_line("NOMAD_BUY_PRICE").as_subtext().to_string()
+		return TooltipText.new("STRANGER_NOMAD").add_line("STRANGER_NOMAD_BUY").as_subtext().add_line("STRANGER_NOMAD_BUY_PRICE").as_subtext().to_string()
 
 
 class ItemTradeOffer extends TradeOffer:
@@ -164,7 +166,7 @@ class ChestSellOffer extends SellOffer:
 	
 	func _to_string() -> String:
 		return super().format({
-			"offer": tr("NOMAD_SELL_TREASURE_CHESTS"),
+			"offer": tr("STRANGER_NOMAD_SELL_TREASURE_CHESTS"),
 			"price": price
 		})
 
@@ -180,7 +182,7 @@ class DollSellOffer extends SellOffer:
 	
 	func _to_string() -> String:
 		return super().format({
-			"offer": tr("NOMAD_SELL_DOLLS"),
+			"offer": tr("STRANGER_NOMAD_SELL_DOLLS"),
 			"price": price
 		})
 
@@ -213,7 +215,7 @@ class MagicSellOffer extends SellOffer:
 	
 	func _to_string() -> String:
 		return super().format({
-			"offer": tr("NOMAD_SELL_MAGIC_ITEMS"),
+			"offer": tr("STRANGER_NOMAD_SELL_MAGIC_ITEMS"),
 			"price": price
 		})
 
@@ -228,7 +230,7 @@ class LegendarySellOffer extends SellOffer:
 	
 	func _to_string() -> String:
 		return super().format({
-			"offer": tr("NOMAD_SELL_LEGENDARY_ITEMS"),
+			"offer": tr("STRANGER_NOMAD_SELL_LEGENDARY_ITEMS"),
 			"price": price
 		})
 
@@ -243,7 +245,7 @@ class KeySellOffer extends SellOffer:
 	
 	func _to_string() -> String:
 		return super().format({
-			"offer": tr("NOMAD_SELL_KEYS"),
+			"offer": tr("STRANGER_NOMAD_SELL_KEYS"),
 			"price": price
 		})
 
@@ -258,7 +260,7 @@ class WeaponSellOffer extends SellOffer:
 	
 	func _to_string() -> String:
 		return super().format({
-			"offer": tr("NOMAD_SELL_WEAPONS"),
+			"offer": tr("STRANGER_NOMAD_SELL_WEAPONS"),
 			"price": price
 		})
 
@@ -281,7 +283,7 @@ class AppleSellOffer extends SellOffer:
 	
 	func _to_string() -> String:
 		return super().format({
-			"offer": tr("NOMAD_SELL_WEAPONS").format({
+			"offer": tr("STRANGER_NOMAD_SELL_WEAPONS").format({
 				"amount": amount
 			}),
 			"price": price
