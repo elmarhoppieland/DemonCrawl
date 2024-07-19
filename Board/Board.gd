@@ -139,7 +139,7 @@ static func start_board(cell: Cell) -> void:
 	
 	for i in Minesweeper.generate_mines(board_size, StagesOverview.selected_stage.monsters, cell.board_position, rng):
 		var monster_cell := get_cell_at_index(i)
-		monster_cell.cell_object = CellMonster.new(monster_cell)
+		monster_cell.spawn(CellMonster)
 	
 	for any_cell in Board.get_cells():
 		any_cell.reset_value()

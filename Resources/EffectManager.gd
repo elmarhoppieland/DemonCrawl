@@ -17,8 +17,8 @@ enum Priority {
 	SIGIL,
 	HERO_TRIAL,
 	STAGE_MOD,
-	MASTERY
-	# ...
+	MASTERY,
+	STAGE_OBJECT
 }
 # ==============================================================================
 # NOTE: whenever iterating over this array when unregistering objects may happen while iterating,

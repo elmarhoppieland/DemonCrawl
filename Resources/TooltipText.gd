@@ -85,10 +85,10 @@ func _to_string() -> String:
 	if _previous_line:
 		text = str(_previous_line) + "\n"
 	
-	var this_text := tr(_text)
+	var this_text := tr(_text) if _translate else _text
 	for transform in _transforms:
 		this_text = transform.call(this_text)
 	
-	text += "[color=#%s]%s[/color]" % [_color.to_html(), tr(_text) if _translate else _text]
+	text += "[color=#%s]%s[/color]" % [_color.to_html(), this_text]
 	
 	return text

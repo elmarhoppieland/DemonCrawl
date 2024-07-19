@@ -75,12 +75,12 @@ class SellOffer extends Offer:
 		price += 1
 	
 	func _to_string() -> String:
-		return TooltipText.new("STRANGER_NOMAD").to_upper().add_line("STRANGER_NOMAD_SELL").as_subtext().add_line("STRANGER_NOMAD_SELL_PRICE").as_subtext().to_string()
+		return TooltipText.new("STRANGER_NOMAD").to_upper().add_line("\"" + tr("STRANGER_NOMAD_SELL") + "\"").set_translate(false).as_subtext().add_line("STRANGER_NOMAD_SELL_PRICE").as_subtext().to_string()
 
 
 class TradeOffer extends Offer:
 	func _to_string() -> String:
-		return TooltipText.new("STRANGER_NOMAD").to_upper().add_line("STRANGER_NOMAD_TRADE").as_subtext().to_string()
+		return TooltipText.new("STRANGER_NOMAD").to_upper().add_line("\"" + tr("STRANGER_NOMAD_TRADE") + "\"").set_translate(false).as_subtext().to_string()
 
 
 class BuyOffer extends Offer:
@@ -91,7 +91,7 @@ class BuyOffer extends Offer:
 		price -= 1
 	
 	func _to_string() -> String:
-		return TooltipText.new("STRANGER_NOMAD").add_line("STRANGER_NOMAD_BUY").as_subtext().add_line("STRANGER_NOMAD_BUY_PRICE").as_subtext().to_string()
+		return TooltipText.new("STRANGER_NOMAD").to_upper().add_line("\"" + tr("STRANGER_NOMAD_BUY") + "\"").set_translate(false).as_subtext().to_string()
 
 
 class ItemTradeOffer extends TradeOffer:
