@@ -384,10 +384,16 @@ static func class_get_script(name: StringName) -> Script:
 
 
 ## Returns the class name of [code]script[/code].
-static func get_class_from_script(script: Script) -> StringName:
+## [br][br]If [code]subclass_only[/code] is [code]true[/code] and the script is
+## a subclass of another script, only returns the name of the subclass. [b]Warning:[/b]
+## This causes the name to be invalid for calls in [UserClassDB].
+static func get_class_from_script(script: Script, subclass_only: bool = false) -> StringName:
 	var key = _classes.find_key(script)
 	if key == null:
 		return &""
+	
+	if subclass_only:
+		return key.get_slice(":", key.count(":"))
 	return key
 
 

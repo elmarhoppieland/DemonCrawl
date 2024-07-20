@@ -161,6 +161,9 @@ STRANGER_BAGMAN;Bagman
 STRANGER_BAGMAN_MESSAGE;I empower monsters by {empowerment}! Pay me {price} coins to change my mind...
 STRANGER_BAGMAN_MESSAGE_NEUTRAL;Having trouble with those monsters? Pay me {price} coins and maybe I can help you out...
 STRANGER_BAGMAN_MESSAGE_GOOD;I weaken monsters by {empowerment}! Pay me {price} coins if you want a bit more help...
+STRANGER_HARBINGER;Harbinger
+STRANGER_HARBINGER_BRIBE_COST;Pay {cost} coins to bribe.
+STRANGER_HARBINGER_MAX_LIFE;You will lose {lives} max life at the end of the stage.
 MANA;mana
 STAGE_PROPERTY_SPECIAL;SPECIAL STAGE!
 STAGE_PROPERTY_COMPLETE;STAGE COMPLETE!
