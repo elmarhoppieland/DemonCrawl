@@ -20,7 +20,7 @@ func get_texture() -> Texture2D:
 
 
 func get_animation_delta() -> float:
-	return 0.52
+	return 0.5
 
 
 func reveal_active() -> void:

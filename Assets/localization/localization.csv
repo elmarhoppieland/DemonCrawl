@@ -164,6 +164,9 @@ STRANGER_BAGMAN_MESSAGE_GOOD;I weaken monsters by {empowerment}! Pay me {price} 
 STRANGER_HARBINGER;Harbinger
 STRANGER_HARBINGER_BRIBE_COST;Pay {cost} coins to bribe.
 STRANGER_HARBINGER_MAX_LIFE;You will lose {lives} max life at the end of the stage.
+STRANGER_BLACKSMITH;Blacksmith
+STRANGER_BLACKSMITH_MESSAGE;Got {cost} coins? I'll forge {type} armor for you in {turns} turns!
+STRANGER_BLACKSMITH_MESSAGE_BUSY;Still hammerin' away!
 MANA;mana
 STAGE_PROPERTY_SPECIAL;SPECIAL STAGE!
 STAGE_PROPERTY_COMPLETE;STAGE COMPLETE!

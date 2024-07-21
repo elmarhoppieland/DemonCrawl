@@ -17,7 +17,7 @@ func get_texture() -> TextureSequence:
 
 
 func get_animation_delta() -> float:
-	return 0.52
+	return 0.5
 
 
 func get_tooltip_text() -> String:

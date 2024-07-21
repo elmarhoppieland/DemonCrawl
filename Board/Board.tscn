@@ -261,17 +261,6 @@ grow_vertical = 2
 texture = ExtResource("4_mo6tx")
 script = ExtResource("5_cmoyn")
 
-[node name="ColorRect" type="ColorRect" parent="BackgroundCanvas"]
-visible = false
-anchors_preset = -1
-anchor_left = -0.125
-anchor_top = -0.125
-anchor_right = 0.125
-anchor_bottom = 0.125
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0, 0, 1)
-
 [node name="FinishPopup" type="CanvasLayer" parent="."]
 layer = 15
 visible = false
