@@ -12,7 +12,7 @@ func spawn() -> void:
 func get_texture() -> TextureSequence:
 	var texture := TextureSequence.new()
 	texture.texture_size = Board.CELL_SIZE
-	texture.atlas = preload("res://Assets/sprites/nomad.png")
+	texture.atlas = preload("res://Assets/sprites/strangers/nomad.png")
 	return texture
 
 

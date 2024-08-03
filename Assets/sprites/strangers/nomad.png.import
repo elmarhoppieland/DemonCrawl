@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgtfa3sq6bbu7"
-path="res://.godot/imported/blacksmith.png-da941e02679f0f77354738024157c645.ctex"
+uid="uid://cwq1hjhlpi5ua"
+path="res://.godot/imported/nomad.png-747e45018462368e6c7723a277fa71a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/blacksmith.png"
-dest_files=["res://.godot/imported/blacksmith.png-da941e02679f0f77354738024157c645.ctex"]
+source_file="res://Assets/sprites/strangers/nomad.png"
+dest_files=["res://.godot/imported/nomad.png-747e45018462368e6c7723a277fa71a0.ctex"]
 
 [params]
 

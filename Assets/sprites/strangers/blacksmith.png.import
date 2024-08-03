@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qa14i2qlf1p4"
-path="res://.godot/imported/harbinger.png-cb701a164d7e34303f3da70692481c0b.ctex"
+uid="uid://bgtfa3sq6bbu7"
+path="res://.godot/imported/blacksmith.png-755bfed74f0b23a27c8c1ee91896e0e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/harbinger.png"
-dest_files=["res://.godot/imported/harbinger.png-cb701a164d7e34303f3da70692481c0b.ctex"]
+source_file="res://Assets/sprites/strangers/blacksmith.png"
+dest_files=["res://.godot/imported/blacksmith.png-755bfed74f0b23a27c8c1ee91896e0e8.ctex"]
 
 [params]
 

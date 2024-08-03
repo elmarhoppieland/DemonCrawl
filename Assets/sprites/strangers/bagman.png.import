@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvelxkiimyidt"
-path="res://.godot/imported/priest.png-c0419caeb2a368e9a1ac834d180e1668.ctex"
+uid="uid://qky737l4b7sj"
+path="res://.godot/imported/bagman.png-a7b90c798674358e6e10566761564b07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/priest.png"
-dest_files=["res://.godot/imported/priest.png-c0419caeb2a368e9a1ac834d180e1668.ctex"]
+source_file="res://Assets/sprites/strangers/bagman.png"
+dest_files=["res://.godot/imported/bagman.png-a7b90c798674358e6e10566761564b07.ctex"]
 
 [params]
 

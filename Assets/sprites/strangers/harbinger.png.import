@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwq1hjhlpi5ua"
-path="res://.godot/imported/nomad.png-1aed7164b68228acc76c5f2b3109f14e.ctex"
+uid="uid://qa14i2qlf1p4"
+path="res://.godot/imported/harbinger.png-8183bbb89b730e5d3f78d717bdafdcb3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/nomad.png"
-dest_files=["res://.godot/imported/nomad.png-1aed7164b68228acc76c5f2b3109f14e.ctex"]
+source_file="res://Assets/sprites/strangers/harbinger.png"
+dest_files=["res://.godot/imported/harbinger.png-8183bbb89b730e5d3f78d717bdafdcb3.ctex"]
 
 [params]
 

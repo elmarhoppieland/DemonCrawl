@@ -37,7 +37,7 @@ func interact() -> void:
 func get_texture() -> TextureSequence:
 	var texture := TextureSequence.new()
 	texture.texture_size = Board.CELL_SIZE
-	texture.atlas = preload("res://Assets/sprites/harbinger.png")
+	texture.atlas = preload("res://Assets/sprites/strangers/harbinger.png")
 	return texture
 
 

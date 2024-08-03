@@ -25,7 +25,7 @@ func interact() -> void:
 func get_texture() -> TextureSequence:
 	var texture := TextureSequence.new()
 	texture.texture_size = Board.CELL_SIZE
-	texture.atlas = preload("res://Assets/sprites/priest.png")
+	texture.atlas = preload("res://Assets/sprites/strangers/priest.png")
 	return texture
 
 
