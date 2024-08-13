@@ -11,7 +11,7 @@ func get_texture() -> TextureSequence:
 
 
 func get_palette() -> CompressedTexture2D:
-	return cell.get_theme_icon("coin_palette", "Cell")
+	return get_cell().get_theme_icon("coin_palette", "Cell")
 
 
 func get_animation_delta() -> float:
@@ -22,11 +22,11 @@ func interact() -> void:
 	var value: int = EffectManager.propagate_posnum("get_coin_value", 1)
 	Stats.coins += value
 	
-	cell.add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)
+	get_cell().add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)
 	
 	var texture := get_texture()
-	var start_pos := cell.get_global_transform_with_canvas().origin + cell.size * cell.get_global_transform_with_canvas().get_scale() / 2
-	var sprite := Board.tween_texture(texture, start_pos, Stats.get_coin_position(), 0.4, cell.get_sprite_material())
+	var start_pos := get_cell().get_global_transform_with_canvas().origin + get_cell().size * get_cell().get_global_transform_with_canvas().get_scale() / 2
+	var sprite := Board.tween_texture(texture, start_pos, Stats.get_coin_position(), 0.4, get_cell().get_sprite_material())
 	var tween := sprite.create_tween().set_parallel()
 	tween.tween_method(func(delta: float):
 		texture.animate(get_animation_delta() * texture.get_tiles_area(), delta)

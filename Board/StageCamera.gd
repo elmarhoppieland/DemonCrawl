@@ -2,6 +2,8 @@ extends Camera2D
 class_name StageCamera
 
 # ==============================================================================
+const DEFAULT_ZOOM := Vector2(2, 2)
+# ==============================================================================
 static var _instance: StageCamera
 # ==============================================================================
 @export var move_speed := 0.0
@@ -19,9 +21,12 @@ func _init() -> void:
 
 func _ready() -> void:
 	await owner.ready
-	position = Board.board_size / 2 * Board.CELL_SIZE
+	position = Board.grid.get_size() * Board.CELL_SIZE / 2
 	
-	create_tween().tween_property(self, "zoom", Vector2.ONE * 2, 1).set_trans(Tween.TRANS_QUAD)
+	if Board.was_reloaded():
+		zoom = DEFAULT_ZOOM
+	else:
+		create_tween().tween_property(self, "zoom", DEFAULT_ZOOM, 1).set_trans(Tween.TRANS_QUAD).from(Vector2.ONE)
 
 
 func _process(delta: float) -> void:

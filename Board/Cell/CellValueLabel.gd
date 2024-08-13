@@ -1,5 +1,6 @@
 @tool
 extends Label
+class_name CellValueLabel
 
 # ==============================================================================
 @export var cell_value := 0 :
@@ -20,14 +21,14 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if _has_object():
+	if _has_object() or not owner.is_revealed():
 		hide()
 	else:
 		show()
 
 
 func _has_object() -> bool:
-	if not Engine.is_editor_hint() and not owner.revealed:
+	if not Engine.is_editor_hint() and not owner.is_revealed():
 		return true
 	
 	if not object_textue:

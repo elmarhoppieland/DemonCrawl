@@ -19,8 +19,8 @@ func _on_stage_details_interacted() -> void:
 	Foreground.fade_out(FADE_DURATION)
 	await tween.finished
 	
-	if StagesOverview.selected_stage is SpecialStage:
-		get_tree().change_scene_to_packed(StagesOverview.selected_stage.dest_scene)
+	if Quest.get_selected_stage() is SpecialStage:
+		get_tree().change_scene_to_packed(Quest.get_selected_stage().dest_scene)
 	else:
 		get_tree().change_scene_to_file("res://Board/Board.tscn")
 

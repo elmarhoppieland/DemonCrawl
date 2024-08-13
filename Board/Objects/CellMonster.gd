@@ -15,7 +15,7 @@ var name := "" :
 func get_texture() -> Texture2D:
 	var texture := TextureSequence.new()
 	texture.texture_size = Board.CELL_SIZE
-	texture.atlas = cell.get_theme_icon("monster_atlas", "Cell")
+	texture.atlas = get_cell().get_theme_icon("monster_atlas", "Cell")
 	return texture
 
 
@@ -24,7 +24,7 @@ func get_animation_delta() -> float:
 
 
 func reveal_active() -> void:
-	Stats.damage(Board.rng.randi_range(StagesOverview.selected_stage.min_power, StagesOverview.selected_stage.max_power), self)
+	Stats.damage(Board.roll_power(), self)
 
 
 func get_tooltip_text() -> String:

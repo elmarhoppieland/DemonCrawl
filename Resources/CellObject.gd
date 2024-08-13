@@ -4,26 +4,27 @@ class_name CellObject
 ## A [Cell]'s object.
 
 # ==============================================================================
-var cell: Cell ## The [Cell] this is the object of.
+var cell_position := Vector2i.ZERO ## The board position of the [Cell] this is the object of.
 # ==============================================================================
 
-func _init(_cell: Cell) -> void:
-	cell = _cell
-	
-	cell._object_texture.tooltip_grabber.about_to_show.connect(_about_to_show_tooltip)
+func _init(_cell_position: Vector2i = Vector2i.ZERO) -> void:
+	cell_position = _cell_position
+
+
+func get_cell() -> Cell:
+	return Board.get_cell(cell_position)
 
 
 func get_tree() -> SceneTree:
-	return cell.get_tree()
+	return get_cell().get_tree()
 
 
 ## Clears this [CellObject], setting the cell's [member Cell.cell_object] to [code]null[/code].
 func clear() -> void:
-	cell.cell_object = null
+	get_cell().cell_object = null
 	
-	cell._object_texture.tooltip_grabber.text = ""
-	cell._object_texture.tooltip_grabber.subtext = ""
-	cell._object_texture.tooltip_grabber.about_to_show.disconnect(_about_to_show_tooltip)
+	get_cell()._object_texture.tooltip_grabber.text = ""
+	get_cell()._object_texture.tooltip_grabber.subtext = ""
 
 
 ## Returns the object's texture.
@@ -106,8 +107,3 @@ func get_charitable_amount() -> int:
 ## Should return [code]true[/code] if this object gives any charitable score, or [code]false[/code] if not.
 func is_charitable() -> bool:
 	return false
-
-
-func _about_to_show_tooltip() -> void:
-	cell._object_texture.tooltip_grabber.text = get_tooltip_text()
-	cell._object_texture.tooltip_grabber.subtext = get_tooltip_subtext()

@@ -97,7 +97,7 @@ func get_score_reward(type: StringName) -> ScoreReward:
 			var specials := 0
 			
 			for i in Quest.stages.size():
-				if Quest.stages[i] == StagesOverview.selected_stage:
+				if i == Quest.selected_stage_idx:
 					break
 				if Quest.stages[i] is SpecialStage:
 					specials += 1

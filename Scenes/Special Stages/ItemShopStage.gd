@@ -60,5 +60,5 @@ func _on_buy_button_pressed() -> void:
 
 
 func _on_leave_button_pressed() -> void:
-	StagesOverview.selected_stage.completed = true
+	Quest.get_selected_stage().completed = true
 	get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")

@@ -1,11 +1,16 @@
-[gd_resource type="Theme" load_steps=25 format=3 uid="uid://dmddrgkl04gph"]
+[gd_resource type="Theme" load_steps=30 format=3 uid="uid://dmddrgkl04gph"]
 
 [ext_resource type="StyleBox" uid="uid://cokg66aqb3ro1" path="res://Resources/xp_bar_fill.tres" id="1_0ok7g"]
 [ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://Assets/skins/default/bg.png" id="1_3w34f"]
 [ext_resource type="Texture2D" uid="uid://cogfcs7aaebfc" path="res://Assets/sprites/button.png" id="1_lrxcs"]
 [ext_resource type="Texture2D" uid="uid://tw5ypgbsqgps" path="res://Assets/sprites/xpbar_over.png" id="1_oyno8"]
+[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://Assets/skins/default/empty.png" id="3_2f1tt"]
 [ext_resource type="Texture2D" uid="uid://bw3aoktyols1b" path="res://Assets/sprites/coin_palette_default.png" id="3_7fqxt"]
+[ext_resource type="Texture2D" uid="uid://cwud7hep7qi5b" path="res://Assets/skins/default/full.png" id="4_701jt"]
+[ext_resource type="Texture2D" uid="uid://cid1fd12q4fvd" path="res://Assets/skins/default/checking.png" id="4_ayrbf"]
+[ext_resource type="Texture2D" uid="uid://dwfec06v6p7h1" path="res://Assets/skins/default/flag_bg.png" id="6_2el4w"]
 [ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="6_bvbi3"]
+[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/skins/default/flag.png" id="6_xtqrh"]
 [ext_resource type="Script" path="res://Resources/Icon.gd" id="7_th4e0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m545e"]
@@ -148,7 +153,12 @@ Button/styles/focus = SubResource("StyleBoxEmpty_m545e")
 Button/styles/hover = SubResource("StyleBoxFlat_bsqjn")
 Button/styles/normal = SubResource("StyleBoxTexture_rj56v")
 Button/styles/pressed = SubResource("StyleBoxFlat_brm33")
+Cell/icons/background = ExtResource("3_2f1tt")
+Cell/icons/checking = ExtResource("4_ayrbf")
 Cell/icons/coin_palette = ExtResource("3_7fqxt")
+Cell/icons/flag = ExtResource("6_xtqrh")
+Cell/icons/flag_bg = ExtResource("6_2el4w")
+Cell/icons/hidden = ExtResource("4_701jt")
 CodeEdit/font_sizes/font_size = 8
 CodeEdit/styles/normal = SubResource("StyleBoxFlat_odxkr")
 DCButton/colors/cancel = Color(1, 0, 0, 1)

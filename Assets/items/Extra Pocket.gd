@@ -19,4 +19,4 @@ func stage_enter() -> void:
 		if count > highest_count:
 			highest_count = count
 	
-	StagesOverview.selected_stage.min_power -= highest_count
+	Quest.get_selected_stage().min_power -= highest_count

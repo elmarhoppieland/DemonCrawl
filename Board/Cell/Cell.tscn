@@ -1,26 +1,16 @@
 [gd_scene load_steps=18 format=3 uid="uid://q4upubrbqsq"]
 
 [ext_resource type="Script" path="res://Board/Cell/Cell.gd" id="1_iaja1"]
+[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://Assets/skins/default/empty.png" id="2_j6o8q"]
 [ext_resource type="FontFile" uid="uid://7ynms6dclfsi" path="res://Assets/fonts/04B_03__.TTF" id="3_s2rbs"]
 [ext_resource type="Shader" path="res://Board/Cell/CellObject.gdshader" id="5_k5bpx"]
 [ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="7_8udf5"]
 [ext_resource type="Script" path="res://Board/Cell/CellParticle.gd" id="7_47sm6"]
 [ext_resource type="Script" path="res://Board/Cell/FlagTexture.gd" id="8_e73ca"]
+[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/skins/default/flag.png" id="9_13f35"]
 [ext_resource type="Script" path="res://Board/Cell/CellBackground.gd" id="9_jq55f"]
 [ext_resource type="Script" path="res://Board/Cell/CellValueLabel.gd" id="10_71xkf"]
 [ext_resource type="Script" path="res://Board/Cell/CellObjectTexture.gd" id="13_g3kp0"]
-
-[sub_resource type="Image" id="Image_dlp5y"]
-data = {
-"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
-"format": "RGBA8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
-
-[sub_resource type="ImageTexture" id="ImageTexture_tf1w0"]
-image = SubResource("Image_dlp5y")
 
 [sub_resource type="LabelSettings" id="LabelSettings_e266q"]
 resource_local_to_scene = true
@@ -51,15 +41,21 @@ point_count = 3
 offsets = PackedFloat32Array(0.5, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Cell" type="MarginContainer"]
+[node name="Cell" type="MarginContainer" node_paths=PackedStringArray("_background", "_value_label", "_object_texture", "_flag_texture", "_text_particles")]
 script = ExtResource("1_iaja1")
+cell_value = 1
+_background = NodePath("Background")
+_value_label = NodePath("MarginContainer/ValueLabel")
+_object_texture = NodePath("MarginContainer2/ObjectTexture")
+_flag_texture = NodePath("Node2D/FlagTexture")
+_text_particles = NodePath("TextParticles")
+metadata/revealed = true
+metadata/flagged = false
 
 [node name="Background" type="TextureRect" parent="."]
-unique_name_in_owner = true
 layout_mode = 2
-texture = SubResource("ImageTexture_tf1w0")
+texture = ExtResource("2_j6o8q")
 script = ExtResource("9_jq55f")
-state = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -69,7 +65,7 @@ theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 2
 
 [node name="ValueLabel" type="Label" parent="MarginContainer" node_paths=PackedStringArray("object_textue")]
-unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "1"
 label_settings = SubResource("LabelSettings_e266q")
@@ -82,7 +78,6 @@ object_textue = NodePath("../../MarginContainer2/ObjectTexture")
 layout_mode = 2
 
 [node name="ObjectTexture" type="TextureRect" parent="MarginContainer2" node_paths=PackedStringArray("background")]
-unique_name_in_owner = true
 z_index = 5
 material = SubResource("ShaderMaterial_2krhp")
 layout_mode = 2
@@ -98,7 +93,7 @@ script = ExtResource("7_8udf5")
 position = Vector2(8, 8)
 
 [node name="FlagTexture" type="TextureRect" parent="Node2D"]
-unique_name_in_owner = true
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -111,6 +106,7 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("9_13f35")
 script = ExtResource("8_e73ca")
 
 [node name="ParticleViewport" type="SubViewport" parent="."]
@@ -125,7 +121,6 @@ text = "+2"
 label_settings = SubResource("LabelSettings_qxy3w")
 
 [node name="TextParticles" type="CPUParticles2D" parent="." node_paths=PackedStringArray("particle_viewport", "particle_label")]
-unique_name_in_owner = true
 position = Vector2(8, 8)
 emitting = false
 amount = 1

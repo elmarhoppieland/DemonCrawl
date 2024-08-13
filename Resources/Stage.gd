@@ -100,7 +100,7 @@ func create_big_icon() -> ImageTexture:
 
 
 ## Returns a property of the current stage.
-static func get_property(section: String, key: String, default: Variant = null, stage_name: String = StagesOverview.selected_stage.name) -> Variant:
+static func get_property(section: String, key: String, default: Variant = null, stage_name: String = Quest.get_selected_stage().name) -> Variant:
 	var cfg := ConfigFile.new()
 	cfg.load("res://Assets/skins/%s/properties.ini" % stage_name)
 	var value = cfg.get_value(section, key, default)

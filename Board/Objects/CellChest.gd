@@ -23,7 +23,7 @@ func interact() -> void:
 	const CHEST_ATLAS_WIDTH := 5
 	const CHEST_ATLAS_MAX_X := (CHEST_ATLAS_WIDTH - 1) * Board.CELL_SIZE.x
 	
-	tween = cell.create_tween()
+	tween = get_cell().create_tween()
 	
 	tween.tween_method(func(value: float):
 		texture.region.position.x = floorf(value / Board.CELL_SIZE.x) * Board.CELL_SIZE.x

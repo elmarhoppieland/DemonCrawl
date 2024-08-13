@@ -36,7 +36,7 @@ func _show_items() -> void:
 	animation_player.play("popup_show")
 	
 	var count: int = EffectManager.propagate_posnum("get_chest_reward_count", 1)
-	var max_cost: int = EffectManager.propagate_posnum("get_chest_item_max_cost", 4 * StagesOverview.selected_stage.max_power + 3)
+	var max_cost: int = EffectManager.propagate_posnum("get_chest_item_max_cost", 4 * Quest.get_selected_stage().max_power + 3)
 	
 	var has_omen := false
 	var rewards: Array[Collectible] = []
@@ -75,7 +75,7 @@ func _show_coins() -> void:
 	
 	string_table_label.generate()
 	
-	coin_value.coin_value = RNG.randi_range(0, 2 * StagesOverview.selected_stage.max_power + 6)
+	coin_value.coin_value = RNG.randi_range(0, 2 * Quest.get_selected_stage().max_power + 6)
 
 
 static func show_rewards() -> void:

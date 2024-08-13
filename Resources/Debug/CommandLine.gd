@@ -14,8 +14,9 @@ func _ready() -> void:
 	visibility_changed.connect(func(): command_line_feedback.visible = visible)
 	
 	for class_data in ProjectSettings.get_global_class_list():
-		added_vars[class_data.class] = ResourceLoader.load(class_data.path)
-		syntax_highlighter.add_member_keyword_color(class_data.class, CLASS_COLOR)
+		if ResourceLoader.exists(class_data.path):
+			added_vars[class_data.class] = ResourceLoader.load(class_data.path)
+			syntax_highlighter.add_member_keyword_color(class_data.class, CLASS_COLOR)
 
 
 func _text_changed() -> void:

@@ -133,6 +133,8 @@ static func stringify(variable: Variant) -> String:
 			else:
 				return var_to_str(variable)
 		TYPE_DICTIONARY:
+			if variable.is_empty():
+				return "{}"
 			return "{\n" + ",\n".join(variable.keys().map(func(key: Variant) -> String:
 				return stringify(key) + ": " + stringify(variable[key])
 			)) + "\n}"

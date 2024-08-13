@@ -51,7 +51,7 @@ static func save() -> void:
 			var value = script.get(key)
 			
 			if script.has_method("_export_" + key):
-				value = script.call("_export_" + key, value)
+				value = script.call("_export_" + key)
 			
 			_save_cfg.set_value(section, key, value)
 	

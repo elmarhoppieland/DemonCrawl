@@ -4,8 +4,6 @@ class_name StagesOverview
 ## An overview of the stages in the [Quest].
 
 # ==============================================================================
-static var selected_stage: Stage ## The currently selected [Stage].
-# ==============================================================================
 @onready var _icon_flow_container: HFlowContainer = %IconFlowContainer
 # ==============================================================================
 signal icon_selected(icon: StageIcon) ## Emitted when a stage icon has been selected.
@@ -19,17 +17,16 @@ func _ready() -> void:
 	if Quest.stages.is_empty():
 		Quest.start_new(rng)
 	
-	if not selected_stage in Quest.stages:
-		selected_stage = Quest.stages[0]
-	
 	var peek_counter := 2
-	for stage in Quest.stages:
+	for i in Quest.stages.size():
+		var stage := Quest.stages[i]
+		
 		var icon: StageIcon
 		icon = ResourceLoader.load("res://Scenes/StageSelect/StageIcon.tscn").instantiate()
 		icon.stage = stage
 		_icon_flow_container.add_child(icon)
 		
-		if stage == selected_stage:
+		if i == Quest.selected_stage_idx:
 			icon.select.call_deferred()
 		
 		if stage.locked:
@@ -43,7 +40,7 @@ func _ready() -> void:
 			icon.show_icon = true
 		
 		icon.selected.connect(func():
-			StagesOverview.selected_stage = stage
+			Quest.selected_stage_idx = i
 			icon_selected.emit(icon)
 		)
 		

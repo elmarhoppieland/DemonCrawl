@@ -145,14 +145,13 @@ func target_cells(radius: int) -> Array[Cell]:
 			var topleft := Cell.get_hovered_cell().board_position - (radius - 1) * Vector2i.ONE
 			for offset_y in radius * 2 - 1:
 				var y := topleft.y + offset_y
-				if y < 0 or y >= Board.board_size.y:
-					continue
 				for offset_x in radius * 2 - 1:
 					var x := topleft.x + offset_x
-					if x < 0 or x >= Board.board_size.x:
+					var pos := Vector2i(x, y)
+					if not Board.grid.has(pos):
 						continue
 					
-					cells.append(Board.get_cell(Vector2i(x, y)))
+					cells.append(Board.get_cell(pos))
 			
 			if Input.is_action_just_pressed("interact"):
 				return cells

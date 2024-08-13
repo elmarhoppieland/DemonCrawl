@@ -1,3 +1,4 @@
+@tool
 extends MarginContainer
 class_name Cell
 
@@ -14,6 +15,13 @@ const _NEIGHBORS: Array[Vector2i] = [
 	Vector2i.DOWN + Vector2i.LEFT,
 	Vector2i.LEFT
 ]
+# ==============================================================================
+enum State {
+	UNINITIALIZED,
+	HIDDEN,
+	FLAGGED,
+	REVEALED,
+}
 # ==============================================================================
 static var _pressed_cell: Cell
 static var _hovered_cell: Cell
@@ -57,9 +65,6 @@ static var _hovered_cell: Cell
 		
 		_background.modulate = EffectManager.propagate_value("get_aura_color", color, [aura, self])
 # ==============================================================================
-var revealed := false : ## Whether this cell has been revealed.
-	get:
-		return _background.state == CellBackground.State.OPEN
 var board_position := Vector2i.ZERO ## This cell's [Board] coordinates.
 
 var cell_object: CellObject : ## This cell's [CellObject], e.g. loot or a monster.
@@ -83,17 +88,21 @@ var cell_object: CellObject : ## This cell's [CellObject], e.g. loot or a monste
 		return _object_texture.cell_object
 
 var enchants: Array[CellEnchantment] = []
+
+var state := State.UNINITIALIZED
 # ==============================================================================
 var _hovered := false
 var _checking := false
 # ==============================================================================
-@onready var _background: CellBackground = %Background
-@onready var _value_label: Label = %ValueLabel
-@onready var _object_texture: CellObjectTexture = %ObjectTexture
-@onready var _flag_texture: TextureRect = %FlagTexture
-@onready var _text_particles: TextParticles = %TextParticles
+@export_group("Nodes", "_")
+@export var _background: CellBackground
+@export var _value_label: CellValueLabel
+@export var _object_texture: CellObjectTexture
+@export var _flag_texture: FlagCellTexture
+@export var _text_particles: TextParticles
 # ==============================================================================
 signal opened() ## Emitted when this cell gets opened.
+signal state_changed(new_state: State) ## Emitted when this cell's [member state] changes.
 # ==============================================================================
 
 func _process(_delta: float) -> void:
@@ -106,20 +115,20 @@ func _process(_delta: float) -> void:
 		return
 	
 	if Board.can_open_cells():
-		if Input.is_action_just_pressed("cell_open") and not (revealed and cell_object):
+		if Input.is_action_just_pressed("cell_open") and not (is_revealed() and cell_object):
 			_pressed_cell = self
-			if revealed:
+			if is_revealed():
 				check_chord()
 			elif not is_flagged():
 				check()
-		elif cell_object and revealed:
+		elif cell_object and is_revealed():
 			if Input.is_action_just_pressed("interact"):
 				cell_object.interact()
 			if Input.is_action_just_pressed("secondary_interact"):
 				cell_object.secondary_interact()
 	
 	if Board.can_flag_cells() and Input.is_action_just_pressed("cell_flag"):
-		if revealed:
+		if is_revealed():
 			flag_chord()
 		elif is_flagged():
 			unflag()
@@ -132,7 +141,7 @@ func _process_cell_opening() -> void:
 		uncheck()
 		return
 	
-	if _pressed_cell.revealed:
+	if _pressed_cell.is_revealed():
 		_process_cell_chording()
 	elif _pressed_cell == self and is_checking():
 		_process_direct_cell_opening()
@@ -163,7 +172,7 @@ func _on_mouse_entered() -> void:
 	_hovered = true
 	_hovered_cell = self
 	
-	if revealed and is_occupied():
+	if is_revealed() and is_occupied():
 		cell_object.hover()
 	
 	Debug.push_debug(Board._instance, "Hovered Cell Position", board_position)
@@ -174,13 +183,13 @@ func _on_mouse_exited() -> void:
 	if _hovered_cell == self:
 		_hovered_cell = null
 	
-	if revealed and is_occupied():
+	if is_revealed() and is_occupied():
 		cell_object.unhover()
 
 
 func check_chord() -> void:
 	for cell in get_nearby_cells():
-		if not cell.revealed and not cell.is_flagged():
+		if not cell.is_revealed() and not cell.is_flagged():
 			cell.check()
 
 
@@ -205,25 +214,22 @@ func chord() -> void:
 		return
 	
 	for cell in get_nearby_cells():
-		if not cell.revealed:
+		if not cell.is_revealed():
 			cell.uncheck()
 
 
 func open() -> void:
-	if revealed:
+	if is_revealed():
 		return
 	
 	if Board.state == Board.State.UNINITIALIZED:
 		Board.start_board(self)
 	
-	_background.set_open()
-	
 	set_deferred("_checking", false)
 	
+	set_open()
+	
 	if cell_object:
-		_object_texture.texture = cell_object.get_texture()
-		_object_texture.play_anim()
-		
 		cell_object.reveal()
 		cell_object.reveal_active()
 	
@@ -250,37 +256,90 @@ func open() -> void:
 func flag_chord() -> void:
 	var count := 0
 	for cell in get_nearby_cells():
-		if not cell.revealed or (cell.has_monster() and cell.revealed):
+		if not cell.is_revealed() or (cell.has_monster() and cell.is_revealed()):
 			count += 1
 	
 	if count > cell_value:
 		return
 	
 	for cell in get_nearby_cells():
-		if not cell.revealed and not cell.is_flagged():
+		if not cell.is_revealed() and not cell.is_flagged():
 			cell.flag()
 
 
 func unflag() -> void:
-	if not is_flagged():
+	if state != State.FLAGGED:
 		return
 	
-	_background.set_hidden()
-	_flag_texture.texture = null
+	set_hidden()
 	
 	Board.update_monster_count()
 
 
 func flag(update_flagless: bool = true) -> void:
-	if is_flagged():
+	if state == State.FLAGGED:
 		return
 	
-	_background.set_flag()
+	set_flagged()
+	
 	_flag_texture.play_flag()
 	
 	if update_flagless:
 		Board.is_flagless = false
+	
 	Board.update_monster_count()
+
+
+func set_open() -> void:
+	if state == State.REVEALED:
+		return
+	
+	state = State.REVEALED
+	
+	_background.set_open()
+	
+	if cell_object:
+		_object_texture.texture = cell_object.get_texture()
+		_object_texture.play_anim()
+	
+	state_changed.emit(state)
+
+
+func set_hidden() -> void:
+	if state == State.HIDDEN:
+		return
+	
+	state = State.HIDDEN
+	
+	_background.set_hidden()
+	
+	_object_texture.texture = null
+	
+	state_changed.emit(state)
+
+
+func set_flagged() -> void:
+	if state == State.FLAGGED:
+		return
+	
+	state = State.FLAGGED
+	
+	_background.set_flag()
+	
+	state_changed.emit(state)
+
+
+func set_state(new_state: State) -> void:
+	if state == new_state:
+		return
+	
+	match new_state:
+		State.HIDDEN:
+			set_hidden()
+		State.FLAGGED:
+			set_flagged()
+		State.REVEALED:
+			set_open()
 
 
 func add_text_particle(text: String, color_preset: TextParticles.ColorPreset) -> void:
@@ -290,19 +349,11 @@ func add_text_particle(text: String, color_preset: TextParticles.ColorPreset) ->
 	_text_particles.restart()
 
 
-## Loads the [CellData] into this cell.
-func load_data(data: CellData) -> void:
-	#theme = data.theme
-	cell_value = data.cell_value
-	revealed = data.revealed
-	cell_object = data.cell_object
-
-
 ## Sets this cell's value to the number of adjacent monsters.
 func reset_value() -> void:
 	cell_value = 0
 	for cell in get_nearby_cells():
-		if cell.cell_object:
+		if cell.has_monster():
 			cell_value += 1
 
 
@@ -314,7 +365,7 @@ func enchant(script: Script) -> CellEnchantment:
 
 
 func spawn_loot() -> CellObject:
-	var density := float(StagesOverview.selected_stage.monsters) / StagesOverview.selected_stage.area()
+	var density := float(Quest.get_selected_stage().monsters) / Board.grid.area()
 	var i := RNG.randfn(density)
 	if i < 0.1:
 		return null
@@ -329,10 +380,11 @@ func spawn_loot() -> CellObject:
 
 
 ## Spawns a new object in this cell, if it is not occupied.
+## [br][br][b]Note:[/b] The provided [code]script[/code] [b]must[/b] extend [CellObject].
 func spawn(script: Script) -> CellObject:
 	if cell_object:
 		return null
-	cell_object = script.new(self)
+	cell_object = script.new(board_position)
 	return cell_object
 
 
@@ -357,7 +409,7 @@ func get_nearby_cells() -> Array[Cell]:
 func get_nearby_flags() -> int:
 	var count := 0
 	for cell in get_nearby_cells():
-		count += int(cell.is_flagged() or (cell.has_monster() and cell.revealed))
+		count += int(cell.is_flagged() or (cell.has_monster() and cell.is_revealed()))
 	return count
 
 
@@ -395,7 +447,7 @@ func get_group() -> Array[Cell]:
 func is_solved() -> bool:
 	var nearby_monsters := 0
 	for cell in get_nearby_cells():
-		if cell.revealed:
+		if cell.is_revealed():
 			if cell.has_monster():
 				nearby_monsters += 1
 		elif cell.is_flagged():
@@ -411,7 +463,7 @@ func is_occupied() -> bool:
 
 ## Returns whether this cell is flagged.
 func is_flagged() -> bool:
-	return _background.state == CellBackground.State.FLAG
+	return state == State.FLAGGED
 
 
 ## Returns whether this cell is being checked, i.e. visually pressed down.
@@ -428,16 +480,18 @@ func is_check_chording() -> bool:
 	return false
 
 
-## Creates a new cell and returns it, after loading the given [code]data[/code] into it, if it is given.
-## [br][br]See also [method load_data].
-static func create(data: CellData = null) -> Cell:
-	var scene: PackedScene = ResourceLoader.load("res://Board/Cell/Cell.tscn")
-	var cell: Cell = scene.instantiate()
-	
-	if data:
-		cell.load_data(data)
-	
-	return cell
+## Returns whether this cell has an aura.
+func has_aura() -> bool:
+	return aura != "" and aura != "none"
+
+
+func is_revealed() -> bool:
+	return state == State.REVEALED
+
+
+## Creates a new cell and returns it.
+static func create() -> Cell:
+	return ResourceLoader.load("res://Board/Cell/Cell.tscn").instantiate()
 
 
 static func get_hovered_cell() -> Cell:
@@ -455,3 +509,59 @@ func _to_string() -> String:
 func _exit_tree() -> void:
 	for enchantment in enchants:
 		EffectManager.unregister_object(enchantment)
+
+
+func _get_property_list() -> Array[Dictionary]:
+	if not Engine.is_editor_hint():
+		return []
+	
+	return [{
+		"name": "revealed",
+		"type": TYPE_BOOL,
+		"usage": PROPERTY_USAGE_EDITOR
+	}, {
+		"name": "flagged",
+		"type": TYPE_BOOL,
+		"usage": PROPERTY_USAGE_EDITOR
+	}]
+
+
+func _set(property: StringName, value: Variant) -> bool:
+	if not Engine.is_editor_hint():
+		return false
+	
+	match property:
+		&"revealed":
+			if value:
+				set_open()
+			elif get_meta("flagged", false):
+				set_flagged()
+			else:
+				set_hidden()
+			
+			set_meta("revealed", value)
+		&"flagged":
+			if not is_revealed():
+				if value:
+					set_flagged()
+				else:
+					set_hidden()
+			
+			set_meta("flagged", value)
+		_:
+			return false
+	
+	return true
+
+
+func _get(property: StringName) -> Variant:
+	if not Engine.is_editor_hint():
+		return null
+	
+	match property:
+		&"revealed":
+			return get_meta("revealed", false)
+		&"flagged":
+			return get_meta("flagged", false)
+	
+	return null

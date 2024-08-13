@@ -357,9 +357,6 @@ static func instantiate(name: StringName) -> Object:
 	if not class_can_instantiate(name):
 		return null
 	
-	if not class_exists(name):
-		return null
-	
 	return class_get_script(name).new()
 
 

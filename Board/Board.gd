@@ -33,9 +33,9 @@ static var _instance: Board :
 		return _instance
 static var _unsafe_access := false
 
-static var rng := RandomNumberGenerator.new() ## The [RandomNumberGenerator] used to generate boards. Use [member RandomNumberGenerator.seed] to make boards generate consistently.
+static var _reloaded := false
 
-static var board_size: Vector2i = Eternal.create(Vector2i.ZERO) ## The number of cells in each row and column.
+static var rng := RandomNumberGenerator.new() ## The [RandomNumberGenerator] used to generate boards. Use [member RandomNumberGenerator.seed] to make boards generate consistently.
 
 static var start_time := -1 ## The amount of ticks (microseconds) since game launch when the timer started running.
 static var saved_time: float = Eternal.create(0.0) ## The timer when it was loaded.
@@ -56,6 +56,14 @@ static var state: State = Eternal.create(State.VOID) :
 		
 		EffectManager.propagate_call("board_permissions_changed")
 static var _permissions := -1
+
+#static var board: String = Eternal.create("")
+static var board_values: PackedInt32Array = Eternal.create(PackedInt32Array())
+static var board_cell_states: PackedByteArray = Eternal.create(PackedByteArray())
+static var board_objects: Array[CellObject] = Eternal.create([] as Array[CellObject])
+static var board_enchantments: Dictionary = Eternal.create({})
+
+static var grid := GDPlus.Grid.new()
 # ==============================================================================
 @onready var _finish_button: MarginContainer = %FinishButton
 @onready var _monsters_label: Label = %MonstersLabel
@@ -79,67 +87,90 @@ func _ready() -> void:
 	Inventory.gain_item(Item.from_path("Minion"))
 	Inventory.gain_item(Item.from_path("Sleeping Powder"))
 	
-	EffectManager.propagate_call("stage_enter")
-	
 	_load_stage_mods()
 	
-	Board.state = State.UNINITIALIZED
-	
-	_reset_theme()
-	_reset_internals()
-	
-	_cell_container.columns = Board.board_size.x
-	
-	Stats.untouchable = true
-	
-	_monsters_label.text = str(StagesOverview.selected_stage.monsters)
-	_power_label.text = "%d-%d" % [StagesOverview.selected_stage.min_power, StagesOverview.selected_stage.max_power]
-	
-	_init_cells()
-	
-	const FADE_DURATION := 1.0
-	Foreground.fade_in(FADE_DURATION)
+	if Board.state == State.VOID:
+		_reloaded = false
+		
+		EffectManager.propagate_call("stage_enter")
+		
+		Board.state = State.UNINITIALIZED
+		
+		_reset_internals()
+		
+		Stats.untouchable = true
+		
+		Board.notify_stage_changed()
+		
+		_init_cells()
+		
+		Foreground.fade_in()
+	else:
+		_reloaded = true
+		
+		Board.notify_stage_changed()
+		
+		_init_cells_from_saved()
+		
+		Foreground.fade_in(0.0)
 	
 	EffectManager.propagate_call("board_loaded")
 
 
 func _load_stage_mods() -> void:
-	for mod in StagesOverview.selected_stage.mods:
+	for mod in Quest.get_selected_stage().mods:
 		_stage_mods_container.add_child(mod.icon)
 		EffectManager.register_object(mod, EffectManager.Priority.STAGE_MOD, 0) # TODO: determine subpriority
 
 
 func _reset_theme() -> void:
-	AssetManager.theme = StagesOverview.selected_stage.name
+	AssetManager.theme = Quest.get_selected_stage().name
 	theme = AssetManager.load_theme(Theme.new())
 
 
 func _reset_internals() -> void:
-	Board.board_size = StagesOverview.selected_stage.size
 	Board.saved_time = 0.0
 	Board.board_3bv = -1
 	Board.is_flagless = true
 
 
 func _init_cells() -> void:
-	for i in board_size.x * board_size.y:
+	for i in grid.area():
 		var cell := Cell.create()
-		cell.board_position = Vector2i(i % Board.board_size.x, i / Board.board_size.x)
+		cell.board_position = grid.index_to_position(i)
+		cell.set_hidden()
+		_cell_container.add_child(cell)
+
+
+func _init_cells_from_saved() -> void:
+	for i in grid.area():
+		var cell := Cell.create()
+		cell.board_position = grid.index_to_position(i)
+		
+		cell.cell_value = board_values[i]
+		
+		var cell_state := board_cell_states[i] as Cell.State
+		cell.set_state(cell_state as Cell.State)
+		
+		cell.cell_object = board_objects[i]
+		
+		if cell.board_position in board_enchantments:
+			cell.enchants = board_enchantments[cell.board_position]
+		
 		_cell_container.add_child(cell)
 
 
 func player_lose() -> void:
 	Board.state = State.LOST
-	Board.pause_timer()
 
 
 ## Starts the board on the given [code]cell[/code]. Moves all mines in or nearby the cell away if present.
 static func start_board(cell: Cell) -> void:
 	assert(Board.state == State.UNINITIALIZED, "Board has already started.")
 	
-	for i in Minesweeper.generate_mines(board_size, StagesOverview.selected_stage.monsters, cell.board_position, rng):
+	for i in Minesweeper.generate_mines(grid.get_size(), Quest.get_selected_stage().monsters, cell.board_position, rng):
 		var monster_cell := get_cell_at_index(i)
-		monster_cell.cell_object = CellMonster.new(monster_cell)
+		monster_cell.cell_object = CellMonster.new(grid.index_to_position(i))
 	
 	for any_cell in Board.get_cells():
 		any_cell.reset_value()
@@ -178,16 +209,16 @@ static func calculate_3bv() -> void:
 static func check_completion() -> void:
 	var unsolved := 0
 	for cell in Board.get_cells():
-		if not cell.revealed and not cell.has_monster():
+		if not cell.is_revealed() and not cell.has_monster():
 			unsolved += 1
 	
-	if unsolved <= (Board.board_size.x * Board.board_size.y - StagesOverview.selected_stage.monsters) * PlayerStats.pathfinding / 100.0:
+	if unsolved <= (grid.area() - Quest.get_selected_stage().monsters) * PlayerStats.pathfinding / 100.0:
 		Board.state = State.FINISHED
 		
 		_instance._finish_button.show()
 		
 		for cell in Board.get_cells():
-			if not cell.revealed:
+			if not cell.is_revealed():
 				if cell.has_monster():
 					cell.flag()
 				else:
@@ -205,8 +236,9 @@ static func get_reward_types() -> PackedStringArray:
 		types.append("untouchable")
 	
 	var thrifty_count := 0
-	for stage in Quest.stages:
-		if stage == StagesOverview.selected_stage:
+	for i in Quest.stages.size():
+		var stage := Quest.stages[i]
+		if i == Quest.selected_stage_idx:
 			break
 		if stage is SpecialStage:
 			thrifty_count += 1
@@ -226,16 +258,31 @@ static func get_reward_types() -> PackedStringArray:
 	return types
 
 
+static func roll_power() -> int:
+	return rng.randi_range(Quest.get_selected_stage().min_power, Quest.get_selected_stage().max_power)
+
+
 static func update_monster_count() -> void:
 	var monsters := 0
 	
 	for cell in get_cells():
-		if cell.has_monster() and not cell.revealed:
+		if cell.has_monster() and not cell.is_revealed():
 			monsters += 1
 		if cell.is_flagged():
 			monsters -= 1
 	
 	_instance._monsters_label.text = str(monsters)
+
+
+static func notify_stage_changed() -> void:
+	_instance._monsters_label.text = str(Quest.get_selected_stage().monsters)
+	_instance._power_label.text = "%d-%d" % [Quest.get_selected_stage().min_power, Quest.get_selected_stage().max_power]
+	
+	grid.set_grid_size(Quest.get_selected_stage().size)
+	
+	_instance._reset_theme()
+	
+	_instance._cell_container.columns = grid.get_width()
 
 
 static func tween_texture(texture: Texture2D, start_pos: Vector2, end_pos: Vector2, duration: float, sprite_material: ShaderMaterial = null) -> Sprite2D:
@@ -265,16 +312,16 @@ static func get_progress_cell() -> Cell:
 	var real_flags: Array[Cell] = []
 	
 	for cell in get_cells():
-		if not cell.revealed or cell.cell_value == 0 or cell.cell_object:
+		if not cell.is_revealed() or cell.cell_value == 0 or cell.cell_object:
 			continue
 		
 		var hidden_cells := 0
 		for neighbor in cell.get_nearby_cells():
-			if not neighbor.revealed or neighbor.has_monster():
+			if not neighbor.is_revealed() or neighbor.has_monster():
 				hidden_cells += 1
 		if hidden_cells == cell.cell_value:
 			for neighbor in cell.get_nearby_cells():
-				if neighbor.revealed:
+				if neighbor.is_revealed():
 					continue
 				if not neighbor.is_flagged():
 					return neighbor
@@ -282,7 +329,7 @@ static func get_progress_cell() -> Cell:
 					real_flags.append(neighbor)
 	
 	for cell in get_cells():
-		if not cell.revealed or cell.cell_value == 0:
+		if not cell.is_revealed() or cell.cell_value == 0:
 			continue
 		
 		var monsters := 0
@@ -291,7 +338,7 @@ static func get_progress_cell() -> Cell:
 				monsters += 1
 		if monsters == cell.cell_value:
 			for neighbor in cell.get_nearby_cells():
-				if neighbor.revealed:
+				if neighbor.is_revealed():
 					continue
 				if not neighbor in real_flags:
 					return neighbor
@@ -302,7 +349,7 @@ static func get_progress_cell() -> Cell:
 ## Solves a random cell, flagging it if it has a monster or unflagging it if not.
 static func solve_cell() -> void:
 	var cells := get_cells().filter(func(cell: Cell):
-		return not cell.revealed and cell.has_monster() != cell.is_flagged()
+		return not cell.is_revealed() and cell.has_monster() != cell.is_flagged()
 	)
 	
 	if cells.is_empty():
@@ -318,13 +365,16 @@ static func solve_cell() -> void:
 
 ## Returns the cell at the given map position. Returns [code]null[/code] if the cell does not exist.
 static func get_cell(at: Vector2i) -> Cell:
-	if at.x < 0 or at.y < 0 or at.x >= Board.board_size.x or at.y >= Board.board_size.y:
+	if not grid.has(at):
 		return null
-	return get_cell_at_index(at.x + at.y * board_size.x)
+	return get_cell_at_index(grid.position_to_index(at))
 
 
 ## Returns all cells in the current [Board].
 static func get_cells() -> Array[Cell]:
+	if not exists():
+		return []
+	
 	var cells: Array[Cell] = []
 	cells.assign(_instance._cell_container.get_children())
 	return cells
@@ -332,6 +382,9 @@ static func get_cells() -> Array[Cell]:
 
 ## Returns the cell at the given [code]index[/code].
 static func get_cell_at_index(index: int) -> Cell:
+	if not grid.has_index(index):
+		return null
+	
 	return _instance._cell_container.get_child(index)
 
 
@@ -373,7 +426,18 @@ static func get_time() -> int:
 ## the Board when it may not exist. Calling methods that need the instance when it
 ## does not exist results in an error if running in the editor.
 static func exists() -> bool:
-	return Board.state != State.VOID
+	return has_instance() and Board.state != State.VOID
+
+
+static func has_instance() -> bool:
+	_unsafe_access = true
+	var value := _instance != null
+	_unsafe_access = false
+	return value
+
+
+static func was_reloaded() -> bool:
+	return _reloaded
 
 
 ## Returns the board's permissions as a bitfield of [enum Permission].
@@ -433,8 +497,8 @@ func _on_finish_button_pressed() -> void:
 	for cell in Board.get_cells():
 		cell.hide()
 	
-	Quest.unlock_next_stage(StagesOverview.selected_stage, true)
-	StagesOverview.selected_stage.completed = true
+	Quest.unlock_next_stage()
+	Quest.get_selected_stage().completed = true
 	
 	const FADE_DURATION := 1.0
 	Foreground.fade_out_in(FADE_DURATION)
@@ -454,3 +518,45 @@ func _on_finish_button_pressed() -> void:
 func _exit_tree() -> void:
 	Board.state = State.VOID
 	Board.saved_time = 0.0
+
+
+static func _export_board() -> String:
+	return ",".join(get_cells().map(func(cell: Cell) -> String:
+		return cell.serialize()
+	))
+
+
+static func _export_board_values() -> PackedInt32Array:
+	return get_cells().map(func(cell: Cell) -> int:
+		return cell.cell_value
+	)
+
+
+static func _export_board_cell_states() -> PackedByteArray:
+	return get_cells().map(func(cell: Cell) -> int:
+		return cell.state
+	)
+
+
+static func _export_board_objects() -> Array[CellObject]:
+	if not exists():
+		return []
+	
+	var value: Array[CellObject] = []
+	value.assign(get_cells().map(func(cell: Cell) -> CellObject:
+		return cell.cell_object
+	))
+	return value
+
+
+static func _export_board_enchantments() -> Dictionary:
+	if not exists():
+		return {}
+	
+	var value := {}
+	
+	for cell in get_cells():
+		if not cell.enchants.is_empty():
+			value[cell.board_position] = cell.enchants
+	
+	return value

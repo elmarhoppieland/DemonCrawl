@@ -1,3 +1,4 @@
+@tool
 extends TextureRect
 class_name CellObjectTexture
 
@@ -8,8 +9,8 @@ var cell_object: CellObject :
 	set(value):
 		cell_object = value
 		
-		if not owner:
-			await get_tree().process_frame
+		#if not owner:
+			#await get_tree().process_frame
 		
 		if not cell_object:
 			texture = null
@@ -38,11 +39,14 @@ var _tween: Tween
 # ==============================================================================
 
 func _ready() -> void:
-	hide()
+	tooltip_grabber.about_to_show.connect(func():
+		if cell_object:
+			tooltip_grabber.text = cell_object.get_tooltip_text()
+			tooltip_grabber.subtext = cell_object.get_tooltip_subtext()
+	)
 	
-	await owner.opened
-	
-	show()
+	_update_visibility()
+	owner.state_changed.connect(_update_visibility.unbind(1))
 
 
 func play_anim() -> void:
@@ -62,3 +66,7 @@ func play_anim() -> void:
 func stop_anim() -> void:
 	if _tween:
 		_tween.kill()
+
+
+func _update_visibility() -> void:
+	visible = owner.state == Cell.State.REVEALED
