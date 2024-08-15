@@ -1,2 +1,3 @@
 # Godot 4+ specific ignores
 .godot/
+godotgif/bin/~godotgif.windows.template_debug.x86_64.dll
