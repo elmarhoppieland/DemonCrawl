@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccri0pqhesf04"]
+[gd_scene load_steps=6 format=3 uid="uid://ccri0pqhesf04"]
 
 [ext_resource type="Script" path="res://Resources/DCPopup.gd" id="1_xb3ih"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="2_hrgcw"]
 [ext_resource type="AnimationLibrary" uid="uid://b0bketi7rqh3c" path="res://Resources/DCPopupAnimationLibrary.tres" id="2_uvykk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0701"]
+font = ExtResource("2_hrgcw")
+font_color = Color(0.972549, 0.705882, 0.0705882, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4eej8"]
+font_size = 8
+font_color = Color(0.764706, 0.764706, 0.764706, 1)
 
 [node name="PauseOverlay" type="CanvasLayer"]
 layer = 20
@@ -43,7 +52,34 @@ layout_mode = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ContentsAnchor" type="Node2D" parent="."]
-modulate = Color(1, 1, 1, 0)
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentsAnchor"]
+offset_left = -160.0
+offset_top = -40.0
+offset_right = 160.0
+offset_bottom = 40.0
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 21
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentsAnchor/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TitleLabel" type="Label" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "menu"
+label_settings = SubResource("LabelSettings_i0701")
+
+[node name="SubtextLabel" type="Label" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Choose an option below:"
+label_settings = SubResource("LabelSettings_4eej8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
