@@ -8,7 +8,7 @@ extends Item
 func stage_enter() -> void:
 	var highest_count := 0
 	var count := 0
-	var item_data: ItemData
+	var item_data: ItemData = null
 	for item in Inventory.items:
 		if item.data == item_data:
 			count += 1

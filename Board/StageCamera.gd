@@ -72,4 +72,5 @@ static func get_center() -> Vector2:
 		return _instance.position
 	
 	# we need any node to get the main viewport here, Focus works here but anything else also works
-	return Focus.get_viewport().size / 2
+	#return Focus.get_viewport().size / 2
+	return Vector2.ZERO

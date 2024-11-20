@@ -1,4 +1,5 @@
-extends RefCounted
-class_name EffectScript
+@tool
+extends Node
 
 # ==============================================================================
+

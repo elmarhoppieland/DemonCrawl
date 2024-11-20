@@ -19,7 +19,7 @@ func get_animation_delta() -> float:
 
 
 func interact() -> void:
-	var value: int = EffectManager.propagate_posnum("get_coin_value", 1)
+	var value: int = Effects.get_coin_value(1)
 	Stats.coins += value
 	
 	get_cell().add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)

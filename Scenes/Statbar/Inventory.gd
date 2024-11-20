@@ -48,7 +48,7 @@ static func gain_item(item: Item) -> void:
 	add_item(item)
 	
 	item.gain()
-	EffectManager.propagate_call("item_gain", [item])
+	Effects.item_gain(item)
 
 
 ## Adds an item to the player's inventory.
@@ -57,14 +57,14 @@ static func gain_item(item: Item) -> void:
 ## so effects that occur when the player gains the item do not occur. To gain an item,
 ## see [method gain_item].
 static func add_item(item: Item) -> void:
-	EffectManager.register_object(item, EffectManager.Priority.ITEM, 0) # TODO: determine subpriority
+	EffectManager.register_object(item)
 	
 	items.append(item)
 	if _instance:
 		_instance._add_item_node(item)
 	
 	item.inventory_add()
-	EffectManager.propagate_call("inventory_add_item", [item])
+	Effects.inventory_add_item(item)
 
 
 ## Transforms [code]old_item[/code] into [code]new_item[/code]. The new item will
@@ -83,15 +83,15 @@ static func transform_item(old_item: Item, new_item: Item) -> void:
 	old_item.node.queue_free()
 	
 	old_item.lose()
-	EffectManager.propagate_call("item_lose", [old_item])
+	Effects.item_lose(old_item)
 	EffectManager.unregister_object(old_item)
 	
 	new_item.inventory_add()
-	EffectManager.propagate_call("inventory_add_item", [new_item])
+	Effects.inventory_add_item(new_item)
 	
-	EffectManager.register_object(new_item, EffectManager.Priority.ITEM, 0) # TODO: determine subpriority
+	EffectManager.register_object(new_item)
 	new_item.gain()
-	EffectManager.propagate_call("item_gain", [new_item])
+	Effects.item_gain(new_item)
 
 
 ## Removes an item from the player's inventory.
@@ -100,7 +100,7 @@ static func remove_item(item: Item) -> void:
 	items.erase(item)
 	
 	item.lose()
-	EffectManager.propagate_call("item_lose", [item])
+	Effects.item_lose(item)
 	
 	EffectManager.unregister_object(item)
 

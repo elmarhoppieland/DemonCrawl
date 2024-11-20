@@ -4,28 +4,28 @@ class_name PlayerStats
 # ==============================================================================
 static var score: int = Eternal.create(0) :
 	set(value):
-		value = EffectManager.change_stat("score", value)
+		value = Effects.change_score(value)
 		score = value
 static var cells_opened_since_mistake: int = Eternal.create(0) :
 	set(value):
-		value = EffectManager.change_stat("cells_opened_since_mistake", value)
+		value = Effects.change_cells_opened_since_mistake(value)
 		cells_opened_since_mistake = value
 static var morality: int = Eternal.create(0) :
 	set(value):
-		value = EffectManager.change_stat("morality", value)
+		value = Effects.change_morality(value)
 		morality = value
 static var chain: ChainData = Eternal.create(null)
 static var chests_opened: int = Eternal.create(0) :
 	set(value):
-		value = EffectManager.change_stat("chests_opened", value)
+		value = Effects.change_chests_opened(value)
 		chests_opened = value
 static var monsters_killed: int = Eternal.create(0) :
 	set(value):
-		value = EffectManager.change_stat("monsters_killed", value)
+		value = Effects.change_monsters_killed(value)
 		monsters_killed = value
 static var pathfinding: int = Eternal.create(0) :
 	set(value):
-		value = EffectManager.change_stat("pathfinding", value)
+		value = Effects.change_pathfinding(value)
 		pathfinding = value
 # ==============================================================================
 

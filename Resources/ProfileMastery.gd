@@ -3,11 +3,11 @@ extends TextureRect
 class_name ProfileMastery
 
 # ==============================================================================
-static var icon: Icon :
-	get:
-		if not Mastery.selected:
-			return AssetManager.get_icon("mastery/none")
-		return Mastery.selected.icon
+static var icon: Icon
+	#get:
+		#if not Mastery.selected:
+			#return AssetManager.get_icon("mastery/none")
+		#return Mastery.selected.icon
 # ==============================================================================
 
 func _enter_tree() -> void:

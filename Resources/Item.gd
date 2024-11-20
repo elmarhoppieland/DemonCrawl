@@ -34,7 +34,7 @@ func node_init() -> void:
 	get_node().interacted.connect(func():
 		if is_active() and can_use():
 			use()
-			EffectManager.propagate_call("item_use", [self])
+			Effects.item_use(self)
 	)
 	
 	if data.get_color().a > 0:

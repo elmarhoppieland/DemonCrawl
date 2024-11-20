@@ -2,7 +2,6 @@ extends RefCounted
 class_name Mastery
 
 # ==============================================================================
-# SavesManager.get_value("selected_path", Mastery, "")
 static var selected_path: String = Eternal.create("") :
 	set(value):
 		selected_path = value

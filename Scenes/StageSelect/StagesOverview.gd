@@ -11,7 +11,7 @@ signal icon_selected(icon: StageIcon) ## Emitted when a stage icon has been sele
 
 func _ready() -> void:
 	if Mastery.selected:
-		EffectManager.register_object(Mastery.selected, EffectManager.Priority.MASTERY, 0) # TODO: determine subpriority
+		EffectManager.register_object(Mastery.selected)
 	
 	var rng := RandomNumberGenerator.new()
 	if Quest.stages.is_empty():

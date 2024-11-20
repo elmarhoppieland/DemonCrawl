@@ -9,9 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://cwud7hep7qi5b" path="res://Assets/skins/default/full.png" id="4_701jt"]
 [ext_resource type="Texture2D" uid="uid://cid1fd12q4fvd" path="res://Assets/skins/default/checking.png" id="4_ayrbf"]
 [ext_resource type="Texture2D" uid="uid://dwfec06v6p7h1" path="res://Assets/skins/default/flag_bg.png" id="6_2el4w"]
-[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="6_bvbi3"]
 [ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/skins/default/flag.png" id="6_xtqrh"]
 [ext_resource type="Script" path="res://Resources/Icon.gd" id="7_th4e0"]
+[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="11_010p6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m545e"]
 
@@ -95,7 +95,7 @@ texture_margin_right = 2.0
 texture_margin_bottom = 2.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gso4b"]
-atlas = ExtResource("6_bvbi3")
+atlas = ExtResource("11_010p6")
 region = Rect2(67, 7, 8, 8)
 script = ExtResource("7_th4e0")
 name = "scroll_grabber"
@@ -117,7 +117,7 @@ texture_margin_bottom = 3.0
 axis_stretch_vertical = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y68i0"]
-atlas = ExtResource("6_bvbi3")
+atlas = ExtResource("11_010p6")
 region = Rect2(75, 7, 8, 8)
 script = ExtResource("7_th4e0")
 name = "scroll_grabber_highlight"
@@ -131,13 +131,13 @@ texture_margin_bottom = 3.0
 axis_stretch_vertical = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g7hq2"]
-atlas = ExtResource("6_bvbi3")
+atlas = ExtResource("11_010p6")
 region = Rect2(67, 7, 8, 8)
 script = ExtResource("7_th4e0")
 name = "scroll_grabber"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4bhj"]
-atlas = ExtResource("6_bvbi3")
+atlas = ExtResource("11_010p6")
 region = Rect2(75, 7, 8, 8)
 script = ExtResource("7_th4e0")
 name = "scroll_grabber_highlight"

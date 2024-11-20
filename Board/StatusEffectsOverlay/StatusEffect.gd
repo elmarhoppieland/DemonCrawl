@@ -57,23 +57,29 @@ func _ready() -> void:
 	# after updating to 4.3 we can remove these
 	
 	if reset_on_mistake:
-		EffectManager.connect_effect(func mistake(): duration = origin, EffectManager.Priority.ITEM, 0, false, false, &"mistake") # TODO: determine subpriority
+		Effects.Signals.mistake.connect(func() -> void:
+			duration = origin
+		)
 	
 	match type:
 		Type.TURNS:
-			EffectManager.connect_effect(func turn(): duration -= 1, EffectManager.Priority.ITEM, 0, false, false, &"turn") # TODO: determine subpriority
+			Effects.Signals.turn.connect(func() -> void:
+				duration -= 1
+			)
 		Type.CELLS_OPENED:
-			EffectManager.connect_effect(func cell_open(_cell: Cell): duration -= 1, EffectManager.Priority.ITEM, 0, false, false, &"cell_open") # TODO: determine subpriority
+			Effects.Signals.cell_open.connect(func(_cell: Cell) -> void:
+				duration -= 1
+			)
 		Type.SECONDS:
 			if Board.can_run_timer():
 				_restart_tween()
 			
-			EffectManager.connect_effect(func board_permissions_changed():
+			Effects.Signals.board_permissions_changed.connect(func() -> void:
 				if Board.can_run_timer():
 					_restart_tween()
 				elif _tween:
 					_tween.kill()
-			, EffectManager.Priority.ITEM, 0, false, false, &"board_permissions_changed") # TODO: determine subpriority
+			)
 
 
 func get_uid() -> String:

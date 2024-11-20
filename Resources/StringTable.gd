@@ -93,9 +93,10 @@ func get_strings() -> PackedStringArray:
 
 
 static func open(name: String) -> StringTable:
-	var override: StringTable = EffectManager.propagate_value("get_string_table", null, [name])
-	if override:
-		return override
+	if Effects.Signals:
+		var override: StringTable = Effects.get_string_table(null, name)
+		if override:
+			return override
 	
 	var path := "res://Assets/string_tables/%s.tres" % name
 	

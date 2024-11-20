@@ -27,8 +27,8 @@ func _on_begin_button_pressed() -> void:
 
 
 func _on_quest_select_statbar_edit_equipment() -> void:
-	Focus.hide()
-	Focus.save_current()
+	#Focus.hide()
+	#Focus.save_current()
 	animation_player.play("equipment_edit")
 
 
@@ -37,5 +37,5 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_edit_equipment_back_button_pressed() -> void:
-	Focus.load_saved()
+	#Focus.load_saved()
 	animation_player.play("equipment_edit_back")

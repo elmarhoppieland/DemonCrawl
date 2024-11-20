@@ -14,6 +14,6 @@ func use() -> void:
 	
 	cell.aura = "sanctified"
 	Stats.change_life(+cell.cell_value, self)
-	EffectManager.propagate_call("bury_bones", [cell])
+	Effects.bury_bones(cell)
 	
 	clear()

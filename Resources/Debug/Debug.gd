@@ -128,7 +128,7 @@ static func get_text(object: Object, round_floats: bool = true) -> String:
 	if "name" in object and (object.name is String or object.name is StringName):
 		text += object.name
 	elif object is Script:
-		text += UserClassDB.get_class_from_script(object)
+		text += UserClassDB.script_get_class(object)
 	elif object is Resource:
 		text += object.resource_path.get_file().get_basename()
 	else:
@@ -218,7 +218,7 @@ static func stringify(variable: Variant, var_name: String = "") -> String:
 					var script := variable.get_typed_script() as Script
 					if script == null:
 						return "Array[lb]%s[rb] (size %d)" % [variable.get_typed_class_name(), variable.size()]
-					return "Array[lb]%s[rb] (size %d)" % [UserClassDB.get_class_from_script(script), variable.size()]
+					return "Array[lb]%s[rb] (size %d)" % [UserClassDB.script_get_class(script), variable.size()]
 				
 				return "Array[lb]%s[rb] (size %d)" % [type_string(builtin), variable.size()]
 			

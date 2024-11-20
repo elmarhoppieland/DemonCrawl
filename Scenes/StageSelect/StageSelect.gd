@@ -16,7 +16,7 @@ func _on_stage_details_interacted() -> void:
 	const FADE_DURATION := 1.0
 	var tween := create_tween().set_trans(Tween.TRANS_QUAD)
 	tween.tween_property($Camera2D, "zoom", 4 * Vector2.ONE, FADE_DURATION)
-	Foreground.fade_out(FADE_DURATION)
+	#Foreground.fade_out(FADE_DURATION)
 	await tween.finished
 	
 	if Quest.get_selected_stage() is SpecialStage:

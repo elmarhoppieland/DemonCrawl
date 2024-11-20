@@ -19,7 +19,7 @@ func use() -> void:
 class Status:
 	func _init() -> void:
 		Board.pause_timer()
-		EffectManager.connect_effect(board_permissions_changed, EffectManager.Priority.ITEM, 0) # TODO: determine subpriority
+		Effects.Signals.board_permissions_changed.connect(board_permissions_changed)
 	
 	func board_permissions_changed() -> void:
 		if Board.exists():

@@ -4,6 +4,8 @@ class_name Eternal
 # ==============================================================================
 
 static func create(default: Variant) -> Variant:
+	print("Creating eternal with default ", default)
+	
 	if not OS.is_debug_build():
 		return default
 	if Engine.is_editor_hint():

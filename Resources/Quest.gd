@@ -20,7 +20,7 @@ static func start_new(rng: RandomNumberGenerator) -> void:
 	
 	PlayerStats.reset()
 	
-	EffectManager.propagate_call("quest_start")
+	Effects.quest_start()
 	
 	Toasts.add_debug_toast("Quest started: %s on difficulty %s" % [TranslationServer.tr(Quest.quest_name), QuestsOverview.selected_difficulty.get_name()])
 
@@ -39,7 +39,7 @@ static func unlock_next_stage(skip_special_stages: bool = true, start_stage_inde
 
 ## Finishes this quest.
 static func finish() -> void:
-	EffectManager.propagate_call("quest_finish")
+	Effects.quest_finish()
 	
 	stages.clear()
 	

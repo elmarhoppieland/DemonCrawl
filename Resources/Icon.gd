@@ -7,13 +7,15 @@ class_name Icon
 	set(value):
 		name = value
 		
-		var data := Icon.get_icon_data(name)
-		if data:
-			atlas = data.get_atlas()
-			region = data.get_region()
-		else:
-			atlas = null
-			region = Rect2()
+		(func() -> void:
+			var data := Icon.get_icon_data(name)
+			if data:
+				atlas = data.get_atlas()
+				region = data.get_region()
+			else:
+				atlas = null
+				region = Rect2()
+		).call_deferred()
 # ==============================================================================
 
 func _validate_property(property: Dictionary) -> void:
@@ -68,16 +70,18 @@ class IconData:
 		name = _name
 	
 	func get_atlas() -> Texture2D:
-		var override = EffectManager.propagate_value("parse_icon_atlas", null, [name])
-		if override != null:
-			return override
+		if Effects.Signals:
+			var override = Effects.parse_icon_atlas(null, name)
+			if override != null:
+				return override
 		
 		return source_atlas
 	
 	func get_region() -> Rect2i:
-		var override = EffectManager.propagate_value("parse_icon_rect", Rect2i(), [name])
-		if override != Rect2i():
-			return override
+		if Effects.Signals:
+			var override = Effects.parse_icon_rect(Rect2i(), name)
+			if override != Rect2i():
+				return override
 		
 		if name.get_file() in source_dict:
 			return source_dict[name.get_file()]

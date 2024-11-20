@@ -8,7 +8,7 @@ func get_texture() -> CompressedTexture2D:
 
 
 func interact() -> void:
-	var value: int = EffectManager.propagate_posnum("get_diamond_value", 5)
+	var value: int = Effects.get_diamond_value(5)
 	Stats.coins += value
 	
 	get_cell().add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)

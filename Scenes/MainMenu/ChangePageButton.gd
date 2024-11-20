@@ -16,17 +16,17 @@ var mouse_is_inside := false
 func _ready() -> void:
 	var tween: Tween
 	mouse_entered.connect(func():
-		if tween:
-			tween.kill()
-		tween = create_tween()
-		tween.tween_method(set_inversion, 0.0, 1.0, 0.2)
+		if self.tween:
+			self.tween.kill()
+		self.tween = create_tween()
+		self.tween.tween_method(set_inversion, 0.0, 1.0, 0.2)
 		mouse_is_inside = true
 	)
 	mouse_exited.connect(func():
-		if tween:
-			tween.kill()
-		tween = create_tween()
-		tween.tween_method(set_inversion, 1.0, 0.0, 0.2)
+		if self.tween:
+			self.tween.kill()
+		self.tween = create_tween()
+		self.tween.tween_method(set_inversion, 1.0, 0.0, 0.2)
 		mouse_is_inside = false
 	)
 

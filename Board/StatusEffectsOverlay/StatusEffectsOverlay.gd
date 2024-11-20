@@ -46,11 +46,10 @@ func _ready() -> void:
 	for status in effects:
 		_status_effect_container.add_child(status)
 	
-	# we don't want the status effects to be freed when we change scenes so we quickly remove them from the scene tree
-	EffectManager.connect_effect(func stage_leave() -> void:
+	Effects.Signals.stage_leave.connect(func() -> void:
 		for status in StatusEffectsOverlay.get_status_effects():
 			_status_effect_container.remove_child(status)
-	, EffectManager.Priority.ENVIRONMENT, 0, false, false, &"stage_leave") # TODO: determine subpriority
+	)
 
 
 static func add_status_effect(status_effect: StatusEffect, uid: String = "") -> void:

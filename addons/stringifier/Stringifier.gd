@@ -120,7 +120,7 @@ static func stringify(variable: Variant) -> String:
 			if not is_instance_valid(variable):
 				return "null"
 			if variable.get_script():
-				var class_string := UserClassDB.get_class_from_script(variable.get_script())
+				var class_string := UserClassDB.script_get_identifier(variable.get_script())
 				
 				if variable.has_method("_export"):
 					return "(%s)%s" % [class_string, stringify(variable._export())]
@@ -145,7 +145,7 @@ static func stringify(variable: Variant) -> String:
 			)
 			if variable.is_typed():
 				var typed_builtin: int = variable.get_typed_builtin()
-				var type := String(UserClassDB.get_class_from_script(variable.get_typed_script())) if typed_builtin == TYPE_OBJECT else type_string(typed_builtin)
+				var type := String(UserClassDB.script_get_identifier(variable.get_typed_script())) if typed_builtin == TYPE_OBJECT else type_string(typed_builtin)
 				return "Array[%s]([%s])" % [type, ", ".join(stringified)]
 			else:
 				return "[%s]" % ", ".join(stringified)

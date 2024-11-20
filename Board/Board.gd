@@ -54,7 +54,7 @@ static var state: State = Eternal.create(State.VOID) :
 		else:
 			pause_timer()
 		
-		EffectManager.propagate_call("board_permissions_changed")
+		Effects.board_permissions_changed()
 static var _permissions := -1
 
 #static var board: String = Eternal.create("")
@@ -78,7 +78,7 @@ static var grid := GDPlus.Grid.new()
 func _enter_tree() -> void:
 	_instance = self
 	
-	EffectManager.connect_effect(player_lose, EffectManager.Priority.ENVIRONMENT, 0) # TODO: determine subpriority
+	Effects.Signals.player_lose.connect(player_lose)
 
 
 func _ready() -> void:
@@ -92,7 +92,7 @@ func _ready() -> void:
 	if Board.state == State.VOID:
 		_reloaded = false
 		
-		EffectManager.propagate_call("stage_enter")
+		Effects.stage_enter()
 		
 		Board.state = State.UNINITIALIZED
 		
@@ -104,7 +104,7 @@ func _ready() -> void:
 		
 		_init_cells()
 		
-		Foreground.fade_in()
+		#Foreground.fade_in()
 	else:
 		_reloaded = true
 		
@@ -112,15 +112,15 @@ func _ready() -> void:
 		
 		_init_cells_from_saved()
 		
-		Foreground.fade_in(0.0)
+		#Foreground.fade_in(0.0)
 	
-	EffectManager.propagate_call("board_loaded")
+	Effects.board_loaded()
 
 
 func _load_stage_mods() -> void:
 	for mod in Quest.get_selected_stage().mods:
 		_stage_mods_container.add_child(mod.icon)
-		EffectManager.register_object(mod, EffectManager.Priority.STAGE_MOD, 0) # TODO: determine subpriority
+		EffectManager.register_object(mod)
 
 
 func _reset_theme() -> void:
@@ -181,8 +181,8 @@ static func start_board(cell: Cell) -> void:
 	
 	Board.state = State.RUNNING
 	
-	EffectManager.propagate_call("board_begin")
-	EffectManager.propagate_call("stage_load")
+	Effects.board_begin()
+	Effects.stage_load()
 
 
 ## Calculates the Board's 3BV value. This is called at the start of a stage, when it has just been generated.
@@ -461,7 +461,7 @@ static func get_permissions() -> int:
 		State.FINISHED:
 			default = Permission.OPEN_CELL
 	
-	_permissions = EffectManager.propagate_posnum("get_board_permissions", default, [state])
+	_permissions = Effects.get_board_permissions(default, state)
 	return _permissions
 
 
@@ -505,9 +505,9 @@ func _on_finish_button_pressed() -> void:
 	_animation_player.play("board_exit")
 	await _animation_player.animation_finished
 	
-	EffectManager.propagate_call("stage_leave")
+	Effects.stage_leave()
 	
-	if Quest.stages.all(func(stage: Stage): return stage.completed or stage is SpecialStage):
+	if Quest.stages.all(func(stage: Stage) -> bool: return stage.completed or stage is SpecialStage):
 		Quest.finish()
 		Eternity.save()
 		get_tree().change_scene_to_file("res://Scenes/QuestSelect/QuestSelect.tscn")

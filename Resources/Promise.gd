@@ -1,5 +1,5 @@
 extends RefCounted
-class_name Promise
+class_name _Promise
 
 # ==============================================================================
 var signals: Array[Signal]

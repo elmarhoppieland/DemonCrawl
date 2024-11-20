@@ -35,7 +35,7 @@ func _exit_tree() -> void:
 static func get_saved_value(save_path: String, script: Script, key: String) -> Variant:
 	var cfg := EternalFile.new()
 	cfg.load(save_path)
-	var section := UserClassDB.get_class_from_script(script)
+	var section := UserClassDB.script_get_identifier(script)
 	return cfg.get_value(section, key, _defaults_cfg.get_value(section, key))
 
 

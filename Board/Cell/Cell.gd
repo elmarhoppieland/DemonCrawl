@@ -63,7 +63,7 @@ static var _hovered_cell: Cell
 			"electric":
 				color = Color.MEDIUM_AQUAMARINE
 		
-		_background.modulate = EffectManager.propagate_value("get_aura_color", color, [aura, self])
+		_background.modulate = Effects.get_aura_color(color, aura, self)
 # ==============================================================================
 var board_position := Vector2i.ZERO ## This cell's [Board] coordinates.
 
@@ -159,13 +159,13 @@ func _process_cell_chording() -> void:
 		open()
 	elif _pressed_cell == self and is_check_chording():
 		PlayerStats.process_chain(cell_value)
-		EffectManager.propagate_call.call_deferred("turn")
+		Effects.turn.call_deferred()
 
 
 func _process_direct_cell_opening() -> void:
 	open()
 	PlayerStats.process_chain(cell_value)
-	EffectManager.propagate_call.call_deferred("turn")
+	Effects.turn.call_deferred()
 
 
 func _on_mouse_entered() -> void:
@@ -240,7 +240,7 @@ func open() -> void:
 	
 	opened.emit()
 	
-	EffectManager.propagate_call("cell_open", [self])
+	Effects.cell_open(self)
 	
 	give_mana()
 	
@@ -390,7 +390,7 @@ func spawn(script: Script) -> CellObject:
 
 ## Gives mana to all items in the player's inventory.
 func give_mana() -> void:
-	Inventory.gain_mana(EffectManager.propagate_posnum("cell_get_mana", cell_value, [self]))
+	Inventory.gain_mana(Effects.cell_get_mana(cell_value, self))
 
 
 ## Returns all cells orthogonally or diagonally adjacent to this cell. See also [method Board.get_cell].

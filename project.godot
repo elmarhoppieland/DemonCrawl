@@ -17,7 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-__UserClassDBInitializer="*res://addons/userclassdb/UserClassDBInitializer.gd"
 Foreground="*res://Scenes/Singletons/Foreground.tscn"
 Focus="*res://Scenes/Singletons/Focus.tscn"
 Tooltip="res://Scenes/Singletons/Tooltip.tscn"
@@ -29,10 +28,12 @@ MasteryUnlockPopup="res://Resources/Singletons/MasteryUnlockPopup.tscn"
 MouseCastSprite="res://Resources/Singletons/MouseCastSprite.tscn"
 ChestPopup="res://Board/ChestPopup/ChestPopup.tscn"
 __EternityInitializer="*res://addons/eternity/EternityInitializer.gd"
+__AutoThreadAccessor="*res://addons/AutoThread/AutoTheadAccessor.gd"
 
 [debug]
 
 file_logging/log_path="user://.godot/logs/godot.log"
+gdscript/warnings/exclude_addons=false
 gdscript/warnings/incompatible_ternary=0
 gdscript/warnings/integer_division=0
 
@@ -51,7 +52,7 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GDPlus/plugin.cfg", "res://addons/eternity/plugin.cfg", "res://addons/stringifier/plugin.cfg", "res://addons/userclassdb/plugin.cfg")
+enabled=PackedStringArray("res://addons/AutoThread/plugin.cfg", "res://addons/EffectManager/plugin.cfg", "res://addons/GDPlus/plugin.cfg", "res://addons/Promise/plugin.cfg", "res://addons/UserClassDB/plugin.cfg", "res://addons/eternity/plugin.cfg", "res://addons/stringifier/plugin.cfg", "res://addons/userclassdb/plugin.cfg")
 
 [file_customization]
 

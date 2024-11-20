@@ -11,7 +11,7 @@ static var _instance: Stats :
 # SavesManager.get_value("max_life", Stats, 0)
 static var max_life: int = Eternal.create(0) :
 	set(value):
-		value = EffectManager.change_stat("max_life", value)
+		value = Effects.change_max_life(value)
 		max_life = value
 		if _instance:
 			_instance._update_life_label()
@@ -25,21 +25,21 @@ static var life: int = Eternal.create(0) :
 # SavesManager.get_value("revives", Stats, 0)
 static var revives: int = Eternal.create(0) :
 	set(value):
-		value = EffectManager.change_stat("revives", value)
+		value = Effects.change_revives(value)
 		revives = value
 		if _instance:
 			_instance._update_revives()
 # SavesManager.get_value("defense", Stats, 0)
 static var defense: int = Eternal.create(0) :
 	set(value):
-		value = EffectManager.change_stat("defense", value)
+		value = Effects.change_defense(value)
 		defense = value
 		if _instance:
 			_instance._update_defense_label()
 # SavesManager.get_value("coins", Stats, 0)
 static var coins: int = Eternal.create(0) :
 	set(value):
-		value = EffectManager.change_stat("coins", value)
+		value = Effects.change_coins(value)
 		var increased := value > coins
 		coins = value
 		
@@ -67,7 +67,7 @@ static func damage(amount: int, source: Object = null) -> void:
 	StageCamera.shake()
 	BoardBackground.flash_red()
 	
-	amount = EffectManager.propagate_posnum("damage", amount, [source])
+	amount = Effects.damage(amount, source)
 	if amount <= 0:
 		return
 	
@@ -82,7 +82,7 @@ static func damage(amount: int, source: Object = null) -> void:
 ## If the call changes the sign of [code]amount[/code], does not change [member life].
 static func change_life(amount: int, source: Object = null) -> void:
 	var original_sign := signi(amount)
-	amount = EffectManager.propagate_value("change_life", amount, [source])
+	amount = Effects.change_life(amount, source)
 	if signi(amount) != original_sign:
 		return
 	
@@ -91,7 +91,7 @@ static func change_life(amount: int, source: Object = null) -> void:
 	if life > 0:
 		return
 	
-	EffectManager.propagate_call("death", [source])
+	Effects.death(source)
 	if life > 0:
 		return
 	
@@ -100,7 +100,7 @@ static func change_life(amount: int, source: Object = null) -> void:
 		revive()
 		return
 	
-	EffectManager.propagate_call("player_lose", [source])
+	Effects.player_lose(source)
 
 
 static func set_life(value: int, source: Object = null) -> void:
@@ -108,7 +108,7 @@ static func set_life(value: int, source: Object = null) -> void:
 
 
 static func spend_coins(amount: int, dest: Object = null) -> void:
-	amount = EffectManager.propagate_posnum("spend_coins", amount, [dest])
+	amount = Effects.spend_coins(amount, dest)
 	coins -= amount
 
 
