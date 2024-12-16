@@ -262,9 +262,13 @@ static func _flush_log_file() -> void:
 		FileAccess.open(get_log_path(), FileAccess.WRITE)
 	
 	var file := FileAccess.open(get_log_path(), FileAccess.READ_WRITE)
-	file.seek_end()
-	file.store_line(_log_queue)
-	file.close()
+	if file != null:
+		file.seek_end()
+		file.store_line(_log_queue)
+		file.close()
+	else:
+		var error = FileAccess.get_open_error()
+		Toasts.add_debug_toast('Failed to open log file, errno: %d' % error)
 
 
 func update() -> void:

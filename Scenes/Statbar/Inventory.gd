@@ -113,5 +113,6 @@ static func gain_mana(mana: int) -> void:
 	var mana_items: Array[Item] = []
 	mana_items.assign(items.filter(func(item: Item) -> bool: return item.data.mana))
 	
-	for i in mana:
-		mana_items[rng.randi() % mana_items.size()].gain_mana(1)
+	if mana_items.size():
+		for i in mana:
+			mana_items[rng.randi() % mana_items.size()].gain_mana(1)
