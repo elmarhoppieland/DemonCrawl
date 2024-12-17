@@ -40,13 +40,11 @@ func _ready() -> void:
 
 
 func _init_effect_list() -> void:
-	const EFFECT_MANAGER_EFFECT_EDITOR := preload("res://addons/EffectManager/EffectManagerEffectEditor.tscn")
-	
 	for function_name in __EffectsFileManager.get_function_list():
 		var function := __EffectsFileManager.get_function(function_name)
 		assert(function != null, "__EffectsFileManager.get_function_list() returned an invalid value: " + function_name + ".")
 		
-		var editor: __EffectManagerEffectEditor = EFFECT_MANAGER_EFFECT_EDITOR.instantiate()
+		var editor: __EffectManagerEffectEditor = load("res://addons/EffectManager/EffectManagerEffectEditor.tscn").instantiate()
 		editor.function = function
 		
 		effects_container.add_child(editor)
@@ -157,12 +155,10 @@ func reload_classes() -> void:
 
 
 func _on_add_effect_button_pressed() -> void:
-	const EFFECT_MANAGER_EFFECT_EDITOR := preload("res://addons/EffectManager/EffectManagerEffectEditor.tscn")
-	
 	var function := __EffectsFileManager.get_function("new_effect", true)
 	function.save()
 	
-	var editor: __EffectManagerEffectEditor = EFFECT_MANAGER_EFFECT_EDITOR.instantiate()
+	var editor: __EffectManagerEffectEditor = load("res://addons/EffectManager/EffectManagerEffectEditor.tscn").instantiate()
 	editor.function = function
 	effects_container.add_child(editor)
 

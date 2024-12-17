@@ -53,15 +53,6 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var items: Array[TreeItem] = []
 	items.assign(data)
 	
-	#if drop_section == -1:
-		##group_moved.emit(sprite_groups, other_item.get_index())
-		#print("Group Moved:")
-		#print("\tIndex: ", other_item.get_index())
-	#else:
-		##group_moved.emit(sprite_groups, other_item.get_index() + 1)
-		#print("Group Moved:")
-		#print("\tIndex: ", other_item.get_index() + 1)
-	
 	for i in data.size():
 		var item := items[i]
 		var node := item.get_metadata(0) as EffectManager.PriorityNode

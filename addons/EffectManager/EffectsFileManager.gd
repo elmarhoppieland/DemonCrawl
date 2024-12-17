@@ -133,12 +133,12 @@ class Function:
 		
 		if signal_line < 0:
 			signal_line = signals.source_code.count("\n")
-			signals.source_code += "signal %s(%s)\n" % [
+			signals.source_code += "@warning_ignore(\"unused_signal\") signal %s(%s)\n" % [
 				name,
 				", ".join(arguments.map(func(a: Argument) -> String: return a.to_string_no_default()))
 			]
 		else:
-			signals.source_code = signals.source_code.replace(signals.source_code.get_slice("\n", signal_line), "signal %s(%s)" % [
+			signals.source_code = signals.source_code.replace(signals.source_code.get_slice("\n", signal_line), "@warning_ignore(\"unused_signal\") signal %s(%s)" % [
 				name,
 				", ".join(arguments.map(func(a: Argument) -> String: return a.to_string_no_default()))
 			])

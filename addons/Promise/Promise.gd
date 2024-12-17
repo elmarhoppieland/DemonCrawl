@@ -16,10 +16,10 @@ signal _completed()
 # ==============================================================================
 
 func _init(_signals: Variant) -> void:
-	assert(_signals is Array[Signal] or _signals is Dictionary)
+	assert((_signals is Array and _signals.all(func(a) -> bool: return a is Signal)) or _signals is Dictionary, "Promise only works on an Array of Signals or a Dictionary.")
 	
-	if _signals is Array[Signal]:
-		signals = _signals
+	if _signals is Array:
+		signals.assign(_signals)
 		mode = Mode.LIST
 	else:
 		signal_map = _signals
@@ -131,3 +131,12 @@ static func capture(s: Signal) -> Variant:
 	s.connect(func(arg: Variant = null): value[0] = arg, CONNECT_ONE_SHOT)
 	await s
 	return value[0]
+
+
+static func defer() -> void:
+	var obj := RefCounted.new()
+	obj.add_user_signal("_tmp")
+	(func():
+		obj.emit_signal("_tmp")
+	).call_deferred()
+	await Signal(obj, "_tmp")

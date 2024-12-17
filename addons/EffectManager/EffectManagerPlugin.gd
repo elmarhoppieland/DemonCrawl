@@ -50,12 +50,11 @@ func _get_plugin_name() -> String:
 
 
 func _make_visible(visible: bool) -> void:
-	if visible:
+	if not main_screen:
 		main_screen = preload("res://addons/EffectManager/EffectManagerMainScreen.tscn").instantiate()
 		EditorInterface.get_editor_main_screen().add_child(main_screen)
-	else:
-		main_screen.queue_free()
-		main_screen = null
+	
+	main_screen.visible = visible
 
 
 static func get_type_color(color_name: String) -> Color:

@@ -104,10 +104,6 @@ static func class_exists(name: StringName) -> bool:
 ## Returns [code]true[/code] if objects can be instantiated from the specified class,
 ## otherwise returns [code]false[/code].
 static func class_can_instantiate(name: StringName) -> bool:
-	print(name)
-	print("Exists: ", class_exists(name))
-	print("Can instantiate: ", class_get_script(name).can_instantiate())
-	print("Instance: ", class_get_script(name).new())
 	return class_exists(name) and class_get_script(name).can_instantiate()
 
 
@@ -254,16 +250,23 @@ static func class_get_property_list(name: StringName, no_inheritance: bool = fal
 		return []
 	
 	var script := class_get_script(name)
+	return script_get_property_list(script, no_inheritance)
+
+
+## Returns an array with all the properties of the provided [code]script[/code] or its ancestry
+## if [code]no_inheritance[/code] is [code]false[/code].
+static func script_get_property_list(script: Script, no_inheritance: bool = false) -> Array[Dictionary]:
 	var property_list := script.get_script_property_list()
 	
 	if no_inheritance:
 		return property_list
 	
-	var parent := get_parent_class(name)
-	if parent.is_empty():
-		return property_list
+	var base := script.get_base_script()
+	while base != null:
+		property_list.append_array(base.get_script_property_list())
+		base = base.get_base_script()
 	
-	return property_list + class_get_property_list(parent)
+	return property_list
 
 
 ## Returns the signal data of class [code]name[/code] or its ancestry. The returned
@@ -416,10 +419,10 @@ static func class_set_property(object: Object, property: StringName, value: Vari
 ## as long as no scripts are created during runtime.
 static func get_class_list() -> PackedStringArray:
 	if not _initialized:
-		_reload_classes()
+		reload_classes()
 		
 		if Engine.is_editor_hint():
-			(func(): UserClassDB._initialized = false).call_deferred()
+			(func() -> void: UserClassDB._initialized = false).call_deferred()
 	
 	if OS.get_thread_caller_id() in _frozen_classes:
 		return _frozen_classes[OS.get_thread_caller_id()].keys()
@@ -427,7 +430,7 @@ static func get_class_list() -> PackedStringArray:
 	return _classes.keys()
 
 
-static func _reload_classes() -> void:
+static func reload_classes() -> void:
 	if OS.get_thread_caller_id() in _frozen_classes:
 		return
 	
@@ -504,8 +507,8 @@ static func is_parent_class(name: StringName, inherits: StringName) -> bool:
 	if not class_exists(name):
 		return false
 	if not class_exists(inherits):
-		return class_get_script(name).get_instance_base_type() == inherits
-	
+		return ClassDB.is_parent_class(class_get_script(name).get_instance_base_type(), inherits)
+	assert(ClassDB.is_parent_class("Texture2D", "Resource"))
 	var script := class_get_script(name)
 	var base := class_get_script(inherits)
 	while base != null:
@@ -527,7 +530,7 @@ static func class_get_script(name: StringName) -> Script:
 	if ":" in name.trim_prefix("res://"):
 		return class_get_script(name.substr(0, name.rfind(":")))[name.get_slice(":", name.count(":"))]
 	
-	return load(String(name))
+	return ResourceLoader.load(String(name))
 	
 	#return _classes.get(class_get_path(name))
 
@@ -568,8 +571,8 @@ static func script_get_identifier(script: Script, use_class_if_available: bool =
 	
 	if use_class_if_available:
 		for class_data in ProjectSettings.get_global_class_list():
-			if class_data.path == id.get_slice(":", 0):
-				return class_data.class + id.substr(id.find(":"))
+			if class_data.path == id.substr(0, id.find(":", 6)):
+				return class_data.class + id.substr(id.find(":", 6))
 	
 	return id
 
@@ -609,7 +612,7 @@ static func class_get_subclasses(name: StringName, recursive: bool = false) -> P
 
 
 static func freeze_class_list_on_thread(thread_id: int = OS.get_thread_caller_id()) -> void:
-	_reload_classes()
+	reload_classes()
 	_frozen_classes[thread_id] = _classes.duplicate()
 
 

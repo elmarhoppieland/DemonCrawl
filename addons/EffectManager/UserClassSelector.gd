@@ -189,3 +189,8 @@ class Progress:
 	
 	func _init(bar: ProgressBar) -> void:
 		progress_bar = bar
+
+
+func _on_reload_user_classes_button_pressed() -> void:
+	classes_tree.clear()
+	reload_classes()
