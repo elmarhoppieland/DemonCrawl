@@ -28,8 +28,8 @@ func _ready() -> void:
 	tween.tween_interval(TOTAL_ANIM_DURATION)
 	await tween.finished
 	
-	if not OS.is_debug_build() or not Input.is_key_pressed(KEY_ALT):
-		Eternity.save()
+	#if not OS.is_debug_build() or not Input.is_key_pressed(KEY_ALT):
+		#Eternity.save()
 	
 	if ProfileList.selected_profile.is_empty():
 		create_profile.show()
@@ -45,7 +45,7 @@ func _ready() -> void:
 	
 	Toasts.add_debug_toast("Profile Loaded: %s" % ProfileList.selected_profile)
 	
-	SavesManager.save_settings()
+	Eternity.save("settings")
 
 
 func _process(_delta: float) -> void:

@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://hvvjdj6n7b1e"]
 
-[ext_resource type="Script" path="res://Scenes/QuestSelect/BackToQuestsButton.gd" id="1_w5nf1"]
-[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="2_iqmwq"]
-[ext_resource type="Script" path="res://Resources/HoverGrabber.gd" id="3_0bs02"]
-[ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="4_6ac5e"]
+[ext_resource type="Script" path="res://Resources/BackToQuestsButton.gd" id="1_w5nf1"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="2_iqmwq"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/HoverGrabber.gd" id="3_0bs02"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/TooltipGrabber.gd" id="4_6ac5e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6u6t"]
 atlas = ExtResource("2_iqmwq")

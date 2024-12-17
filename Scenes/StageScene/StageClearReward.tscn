@@ -1,0 +1,106 @@
+[gd_scene load_steps=9 format=3 uid="uid://dpq1vnwdb6sb0"]
+
+[ext_resource type="Script" path="res://Scenes/StageScene/StageClearReward.gd" id="1_ldqm5"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="2_qhlw7"]
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="3_bxsns"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/TooltipGrabber.gd" id="4_t24t8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrrtb"]
+resource_local_to_scene = true
+atlas = ExtResource("2_qhlw7")
+region = Rect2(0, 118, 16, 16)
+script = ExtResource("3_bxsns")
+name = "stage_reward_victory"
+
+[sub_resource type="Animation" id="Animation_66hrd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6ynwr"]
+resource_name = "show"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_78xsv"]
+_data = {
+"RESET": SubResource("Animation_66hrd"),
+"show": SubResource("Animation_6ynwr")
+}
+
+[node name="StageClearReward" type="Control"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+script = ExtResource("1_ldqm5")
+
+[node name="Node2D" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(8, 8)
+
+[node name="Icon" type="TextureRect" parent="Node2D"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_vrrtb")
+
+[node name="TooltipGrabber" type="Node" parent="Node2D/Icon"]
+unique_name_in_owner = true
+script = ExtResource("4_t24t8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_78xsv")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

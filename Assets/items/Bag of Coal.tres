@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://d0h01nrq7jwv5"]
+[gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://cf4t5gi8mnxur"]
 
-[ext_resource type="Texture2D" uid="uid://ml6imv6yhgn4" path="res://Assets/sprites/items.png" id="1_pu0av"]
-[ext_resource type="Script" path="res://Resources/ItemData.gd" id="2_cldp5"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_pu0av"]
+[ext_resource type="Script" path="res://Assets/items/Bag of Coal.gd" id="2_mhdai"]
 
 [resource]
-script = ExtResource("2_cldp5")
-name = "ITEM_BAG_OF_COAL"
-description = "ITEM_BAG_OF_COAL_DESCRIPTION"
-type = 2
-mana = 100
-cost = 0
-atlas_region = Rect2(304, 16, 16, 16)
-atlas = ExtResource("1_pu0av")
+resource_local_to_scene = false
+resource_name = "ITEM_BAG_OF_COAL"
+script = ExtResource("2_mhdai")
+_name = "ITEM_BAG_OF_COAL"
+_description = "ITEM_BAG_OF_COAL_DESCRIPTION"
+_type = 2
+_mana = 100
+_cost = 0
+_atlas_region = Rect2(304, 16, 16, 16)
+_atlas = ExtResource("1_pu0av")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2ncs4bm0ytrj"
-path="res://.godot/imported/Masteries0.png-1f34ae77e352d46ca4888164d3344352.ctex"
+uid="uid://lblpstu4on57"
+path="res://.godot/imported/masteries0.png-05b44886dc92c63b140e629ed209f27f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/Masteries0.png"
-dest_files=["res://.godot/imported/Masteries0.png-1f34ae77e352d46ca4888164d3344352.ctex"]
+source_file="res://Assets/sprites/masteries0.png"
+dest_files=["res://.godot/imported/masteries0.png-05b44886dc92c63b140e629ed209f27f.ctex"]
 
 [params]
 

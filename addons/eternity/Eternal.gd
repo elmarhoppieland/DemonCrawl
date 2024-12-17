@@ -1,25 +1,52 @@
-extends RefCounted
+extends StaticClass
 class_name Eternal
 
 # ==============================================================================
 
-static func create(default: Variant) -> Variant:
-	if not OS.is_debug_build():
-		return default
+static func create(default: Variant, path_name: String = "") -> Variant:
 	if Engine.is_editor_hint():
 		return default
 	
-	_register_eternal.call_deferred(default, get_stack())
+	if not OS.is_debug_build():
+		Eternity._queue_named_path_load(path_name)
+		return default
 	
+	_register_eternal(default, get_stack(), path_name)
+	
+	Eternity._queue_named_path_load(path_name)
 	return default
 
 
-static func _register_eternal(default: Variant, stack: Array[Dictionary]) -> void:
+static func _register_eternal(default: Variant, stack: Array[Dictionary], path_name: String = "") -> void:
 	if stack.is_empty():
 		return
 	
+	var script := _get_calling_script_class(stack, "create")
+	var prop_name := _get_calling_var_key(stack, "create")
+	
+	if path_name.is_empty():
+		Eternity.get_defaults_cfg().set_eternal(script, prop_name, default)
+	else:
+		Eternity.get_defaults_cfg().set_eternal(script, path_name + "::" + prop_name, default)
+
+
+static func _get_calling_script_class(stack: Array[Dictionary], before_function: String) -> String:
+	assert(not stack.is_empty(), "_get_class_script() can only be used in a debug build.")
+	
 	var idx := 0
-	while stack[idx].function != "create":
+	while stack[idx].function != before_function:
+		idx += 1
+	idx += 1
+	
+	var source: String = stack[idx].source
+	return UserClassDB.class_get_name(source)
+
+
+static func _get_calling_var_key(stack: Array[Dictionary], before_function: String) -> String:
+	assert(not stack.is_empty(), "_get_calling_var_key() can only be used in a debug build.")
+	
+	var idx := 0
+	while stack[idx].function != before_function:
 		idx += 1
 	idx += 1
 	
@@ -27,7 +54,7 @@ static func _register_eternal(default: Variant, stack: Array[Dictionary]) -> voi
 	var file := FileAccess.open(source, FileAccess.READ)
 	if not file:
 		push_error("Could not open source '%s': %s." % [source, FileAccess.get_open_error()])
-		return
+		return ""
 	
 	var text := file.get_as_text(true).replace("\\\n", " ")
 	while "  " in text:
@@ -42,33 +69,8 @@ static func _register_eternal(default: Variant, stack: Array[Dictionary]) -> voi
 		prop_name = prop_name.get_slice(":", 0)
 	prop_name = prop_name.replace(" ", "").replace("\t", "")
 	
-	var class_string := ""
-	for class_data in ProjectSettings.get_global_class_list():
-		if class_data.path == source:
-			class_string = class_data.class
-			break
-	
-	var subclasses := UserClassDB.class_get_subclasses(class_string)
-	var new_class_string := ""
-	for i in range(0, stack[idx].line):
-		var l := lines[i]
-		if not l.match("class *:"):
-			continue
-		if not l.begins_with("\t"):
-			new_class_string = ""
-		
-		for subclass in subclasses:
-			var base_type := UserClassDB.class_get_script(subclass).get_instance_base_type()
-			var subclass_name := subclass.get_slice(":", subclass.get_slice_count(":") - 1)
-			if l.begins_with("class %s:" % subclass_name) or l.begins_with("class %s extends %s:" % [subclass_name, base_type]):
-				new_class_string = subclass
-				break
-	
-	if not new_class_string.is_empty():
-		class_string = new_class_string
-	
 	if not line.lstrip("\t").begins_with("static var"):
-		push_error("Eternal '%s' (on class '%s') was not assigned to a static variable. Eternals must be assigned to a static variable." % [prop_name, class_string])
-		return
+		push_error("Eternal '%s' (on class '%s') was not assigned to a static variable. Eternals must be assigned to a static variable." % [prop_name, _get_calling_script_class(stack, before_function)])
+		return ""
 	
-	Eternity._defaults_cfg.set_value(class_string, prop_name, default)
+	return prop_name

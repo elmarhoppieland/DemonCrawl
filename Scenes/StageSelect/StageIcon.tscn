@@ -1,36 +1,62 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1cpngw5lupxi"]
+[gd_scene load_steps=12 format=3 uid="uid://b1cpngw5lupxi"]
 
 [ext_resource type="Script" path="res://Scenes/StageSelect/StageIcon.gd" id="1_g5r4x"]
-[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="3_acuxk"]
-[ext_resource type="Script" path="res://Resources/Icon.gd" id="4_7x0h2"]
+[ext_resource type="Script" path="res://Resources/DataContainers/StageMod.gd" id="2_40404"]
+[ext_resource type="Script" path="res://Resources/DataContainers/Stage.gd" id="3_malp5"]
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="4_7x0h2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_udqu8"]
-atlas = ExtResource("3_acuxk")
-region = Rect2(0, 70, 16, 16)
-script = ExtResource("4_7x0h2")
-name = "icon_blank"
+[sub_resource type="Resource" id="Resource_5wiua"]
+script = ExtResource("3_malp5")
+name = "minefield"
+size = Vector2i(0, 0)
+monsters = 0
+min_power = 0
+max_power = 0
+locked = false
+completed = false
+mods = Array[ExtResource("2_40404")]([])
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p1h5i"]
-atlas = ExtResource("3_acuxk")
-region = Rect2(0, 70, 16, 16)
+[sub_resource type="Texture2D" id="Texture2D_75phc"]
+resource_local_to_scene = false
+resource_name = ""
 script = ExtResource("4_7x0h2")
-name = "icon_blank"
+name = "quest/blank"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_48wrs"]
-atlas = ExtResource("3_acuxk")
-region = Rect2(64, 86, 16, 16)
+[sub_resource type="Texture2D" id="Texture2D_blk40"]
+resource_local_to_scene = false
+resource_name = ""
 script = ExtResource("4_7x0h2")
-name = "icon_locked_flat"
+name = "quest/blank"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_74dbv"]
-atlas = ExtResource("3_acuxk")
+[sub_resource type="Image" id="Image_xbosr"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 99, 46, 41, 255, 123, 59, 46, 255, 123, 59, 46, 255, 123, 59, 46, 255, 123, 59, 47, 255, 49, 25, 38, 255, 84, 39, 37, 255, 75, 35, 37, 255, 65, 31, 38, 255, 123, 59, 46, 255, 123, 59, 48, 255, 79, 37, 37, 255, 69, 33, 37, 255, 77, 36, 37, 255, 255, 255, 255, 0, 85, 39, 38, 255, 112, 53, 44, 255, 123, 59, 48, 255, 108, 51, 43, 255, 123, 59, 47, 255, 75, 35, 38, 255, 79, 37, 37, 255, 80, 37, 39, 255, 82, 38, 37, 255, 112, 54, 44, 255, 90, 42, 40, 255, 51, 25, 37, 255, 49, 25, 38, 255, 80, 37, 37, 255, 80, 37, 37, 255, 123, 59, 46, 255, 123, 59, 46, 255, 96, 45, 40, 255, 123, 59, 46, 255, 85, 39, 40, 255, 80, 37, 37, 255, 72, 34, 37, 255, 49, 25, 38, 255, 123, 59, 46, 255, 123, 59, 46, 255, 123, 59, 46, 255, 60, 29, 37, 255, 65, 31, 38, 255, 79, 37, 37, 255, 123, 59, 48, 255, 96, 45, 40, 255, 149, 125, 116, 255, 49, 25, 38, 255, 69, 33, 37, 255, 80, 37, 37, 255, 49, 25, 38, 255, 56, 27, 37, 255, 112, 56, 46, 255, 123, 59, 46, 255, 76, 35, 37, 255, 90, 43, 41, 255, 106, 50, 42, 255, 49, 25, 38, 255, 165, 113, 88, 255, 171, 120, 96, 255, 205, 196, 180, 255, 177, 137, 116, 255, 226, 217, 204, 255, 27, 12, 30, 255, 34, 16, 32, 255, 49, 25, 38, 255, 30, 14, 31, 255, 43, 22, 36, 255, 80, 37, 38, 255, 106, 50, 43, 255, 49, 25, 38, 255, 80, 37, 37, 255, 171, 121, 95, 255, 25, 12, 30, 255, 27, 13, 30, 255, 178, 137, 115, 255, 183, 145, 122, 255, 183, 149, 127, 255, 196, 179, 160, 255, 26, 12, 30, 255, 28, 13, 31, 255, 67, 32, 37, 255, 76, 35, 38, 255, 123, 59, 46, 255, 79, 37, 37, 255, 72, 34, 37, 255, 49, 25, 38, 255, 97, 45, 40, 255, 200, 185, 168, 255, 205, 196, 180, 255, 172, 123, 99, 255, 119, 57, 46, 255, 112, 54, 45, 255, 116, 56, 45, 255, 123, 59, 46, 255, 197, 181, 165, 255, 72, 34, 37, 255, 72, 34, 37, 255, 60, 29, 37, 255, 123, 59, 48, 255, 96, 45, 40, 255, 184, 149, 127, 255, 80, 37, 37, 255, 50, 25, 37, 255, 49, 25, 38, 255, 106, 51, 43, 255, 123, 59, 46, 255, 123, 59, 47, 255, 123, 59, 47, 255, 145, 87, 70, 255, 205, 196, 180, 255, 52, 26, 37, 255, 47, 24, 37, 255, 54, 27, 38, 255, 59, 30, 40, 255, 204, 196, 180, 255, 204, 196, 180, 255, 204, 196, 180, 255, 206, 196, 180, 255, 84, 39, 37, 255, 146, 90, 72, 255, 205, 196, 180, 255, 200, 188, 170, 255, 161, 111, 89, 255, 105, 50, 42, 255, 62, 34, 42, 255, 49, 25, 38, 255, 49, 25, 38, 255, 139, 79, 62, 255, 204, 196, 180, 255, 123, 59, 46, 255, 170, 119, 94, 255, 155, 99, 79, 255, 106, 50, 43, 255, 206, 196, 180, 255, 9, 1, 16, 255, 44, 22, 35, 255, 21, 8, 25, 255, 47, 23, 37, 255, 9, 1, 16, 255, 173, 145, 129, 255, 113, 65, 57, 255, 174, 127, 105, 255, 99, 47, 42, 255, 114, 69, 62, 255, 206, 196, 180, 255, 99, 46, 41, 255, 101, 49, 44, 255, 205, 196, 180, 255, 212, 206, 190, 255, 71, 41, 45, 255, 9, 1, 16, 255, 108, 21, 17, 255, 15, 5, 21, 255, 11, 2, 17, 255, 22, 8, 25, 255, 32, 14, 27, 255, 15, 4, 19, 255, 144, 86, 68, 255, 18, 7, 24, 255, 39, 19, 34, 255, 171, 119, 95, 255, 151, 96, 76, 255, 206, 196, 180, 255, 218, 211, 197, 255, 90, 49, 47, 255, 25, 12, 30, 255, 23, 11, 28, 255, 19, 7, 22, 255, 54, 25, 34, 255, 45, 20, 33, 255, 9, 1, 16, 255, 37, 18, 33, 255, 26, 12, 30, 255, 25, 11, 30, 255, 28, 13, 31, 255, 22, 9, 25, 255, 35, 9, 22, 255, 57, 28, 38, 255, 77, 35, 36, 255, 62, 29, 35, 255, 20, 8, 25, 255, 21, 9, 26, 255, 9, 1, 16, 255, 17, 5, 22, 255, 18, 7, 23, 255, 242, 73, 0, 255, 9, 1, 16, 255, 40, 19, 34, 255, 9, 1, 16, 255, 9, 1, 16, 255, 13, 4, 19, 255, 60, 29, 37, 255, 47, 23, 37, 255, 156, 25, 3, 255, 15, 4, 18, 255, 19, 8, 24, 255, 9, 1, 16, 255, 107, 39, 30, 255, 9, 1, 16, 255, 18, 7, 23, 255, 123, 45, 16, 255, 253, 187, 0, 255, 11, 3, 17, 255, 31, 15, 31, 255, 9, 1, 16, 255, 9, 1, 16, 255, 86, 54, 54, 255, 56, 27, 37, 255, 101, 15, 14, 255, 226, 104, 3, 255, 253, 187, 0, 255, 222, 138, 5, 255, 231, 124, 6, 255, 247, 124, 0, 255, 249, 144, 0, 255, 251, 161, 0, 255, 23, 10, 28, 255, 19, 8, 24, 255, 11, 2, 17, 255, 15, 5, 21, 255, 9, 1, 16, 255, 14, 5, 20, 255, 19, 7, 24, 255, 12, 3, 19, 255, 29, 13, 29, 255, 40, 20, 35, 255, 25, 12, 30, 255, 19, 8, 24, 255, 11, 3, 17, 255, 25, 12, 30, 255, 23, 11, 28, 255, 39, 18, 33, 255, 20, 7, 24, 255, 32, 15, 29, 255, 34, 16, 32, 255, 9, 1, 16, 255, 25, 12, 30, 255, 9, 1, 16, 255, 255, 255, 255, 0, 21, 9, 25, 255, 11, 2, 17, 255, 9, 1, 16, 255, 23, 10, 28, 255, 9, 1, 16, 255, 9, 1, 16, 255, 9, 1, 16, 255, 9, 1, 16, 255, 10, 2, 16, 255, 10, 1, 16, 255, 25, 12, 29, 255, 9, 1, 16, 255, 10, 1, 16, 255, 9, 1, 16, 255, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_6q8qh"]
+image = SubResource("Image_xbosr")
+
+[sub_resource type="Texture2D" id="Texture2D_wfgai"]
+resource_local_to_scene = false
+resource_name = ""
 script = ExtResource("4_7x0h2")
-name = "checkmark"
+name = "quest/lock_flat"
+
+[sub_resource type="Texture2D" id="Texture2D_5erce"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("4_7x0h2")
+name = "icons/checkmark"
 
 [node name="StageIcon" type="MarginContainer"]
 custom_minimum_size = Vector2(16, 16)
 focus_mode = 1
 script = ExtResource("1_g5r4x")
+stage = SubResource("Resource_5wiua")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -42,29 +68,32 @@ theme_override_constants/margin_bottom = -1
 [node name="Shadow" type="TextureRect" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-texture = SubResource("AtlasTexture_udqu8")
+texture = SubResource("Texture2D_75phc")
 
 [node name="LockBG" type="TextureRect" parent="."]
 layout_mode = 2
 mouse_filter = 2
-texture = SubResource("AtlasTexture_p1h5i")
+texture = SubResource("Texture2D_blk40")
 
 [node name="Icon" type="TextureRect" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
+texture = SubResource("ImageTexture_6q8qh")
 
 [node name="Lock" type="TextureRect" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 mouse_filter = 2
-texture = SubResource("AtlasTexture_48wrs")
+texture = SubResource("Texture2D_wfgai")
 
 [node name="Checkmark" type="TextureRect" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74dbv")
+texture = SubResource("Texture2D_5erce")
 stretch_mode = 3
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

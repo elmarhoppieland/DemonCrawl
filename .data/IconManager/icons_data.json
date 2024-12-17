@@ -1,0 +1,275 @@
+{
+	"arrow_small": {
+		"atlas": "res://Assets/sprites/icons.png",
+		"icons": [
+			{
+				"h": 5,
+				"name": "left",
+				"w": 6,
+				"x": 47,
+				"y": 0
+			},
+			{
+				"h": 5,
+				"name": "right",
+				"w": 6,
+				"x": 53,
+				"y": 0
+			}
+		]
+	},
+	"chests": {
+		"atlas": "res://Assets/sprites/chests.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "default",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			}
+		]
+	},
+	"icons": {
+		"atlas": "res://Assets/sprites/icons.png",
+		"icons": [
+			{
+				"h": 5,
+				"name": "monster5",
+				"w": 5,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 5,
+				"name": "power5",
+				"w": 5,
+				"x": 5,
+				"y": 0
+			},
+			{
+				"h": 5,
+				"name": "size5",
+				"w": 5,
+				"x": 10,
+				"y": 0
+			},
+			{
+				"h": 5,
+				"name": "copyright",
+				"w": 5,
+				"x": 15,
+				"y": 0
+			},
+			{
+				"h": 5,
+				"name": "restart_small",
+				"w": 7,
+				"x": 26,
+				"y": 0
+			},
+			{
+				"h": 8,
+				"name": "clock8",
+				"w": 8,
+				"x": 0,
+				"y": 7
+			},
+			{
+				"h": 8,
+				"name": "monster8",
+				"w": 8,
+				"x": 8,
+				"y": 7
+			},
+			{
+				"h": 8,
+				"name": "power8",
+				"w": 8,
+				"x": 16,
+				"y": 7
+			},
+			{
+				"h": 9,
+				"name": "mailbox",
+				"w": 12,
+				"x": 24,
+				"y": 7
+			},
+			{
+				"h": 12,
+				"name": "customize",
+				"w": 10,
+				"x": 36,
+				"y": 4
+			},
+			{
+				"h": 10,
+				"name": "achievements",
+				"w": 13,
+				"x": 46,
+				"y": 6
+			},
+			{
+				"h": 9,
+				"name": "checkmark",
+				"w": 8,
+				"x": 59,
+				"y": 7
+			}
+		]
+	},
+	"mastery": {
+		"atlas": "res://Assets/sprites/masteries.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "none",
+				"w": 16,
+				"x": 80,
+				"y": 80
+			}
+		]
+	},
+	"quest": {
+		"atlas": "res://Assets/sprites/icons.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "questionmark",
+				"w": 16,
+				"x": 32,
+				"y": 70
+			},
+			{
+				"h": 16,
+				"name": "1",
+				"w": 16,
+				"x": 48,
+				"y": 70
+			},
+			{
+				"h": 16,
+				"name": "2",
+				"w": 16,
+				"x": 64,
+				"y": 70
+			},
+			{
+				"h": 16,
+				"name": "3",
+				"w": 16,
+				"x": 80,
+				"y": 70
+			},
+			{
+				"h": 16,
+				"name": "4",
+				"w": 16,
+				"x": 0,
+				"y": 86
+			},
+			{
+				"h": 16,
+				"name": "5",
+				"w": 16,
+				"x": 16,
+				"y": 86
+			},
+			{
+				"h": 16,
+				"name": "em",
+				"w": 16,
+				"x": 32,
+				"y": 86
+			},
+			{
+				"h": 16,
+				"name": "ht",
+				"w": 16,
+				"x": 48,
+				"y": 86
+			},
+			{
+				"h": 16,
+				"name": "locked",
+				"w": 16,
+				"x": 16,
+				"y": 70
+			},
+			{
+				"h": 16,
+				"name": "blank",
+				"w": 16,
+				"x": 0,
+				"y": 70
+			},
+			{
+				"h": 16,
+				"name": "lock_flat",
+				"w": 16,
+				"x": 64,
+				"y": 86
+			}
+		]
+	},
+	"statbar": {
+		"atlas": "res://Assets/sprites/icons.png",
+		"icons": [
+			{
+				"h": 7,
+				"name": "coin",
+				"w": 8,
+				"x": 59,
+				"y": 0
+			},
+			{
+				"h": 7,
+				"name": "heart",
+				"w": 8,
+				"x": 67,
+				"y": 0
+			},
+			{
+				"h": 7,
+				"name": "shield",
+				"w": 8,
+				"x": 75,
+				"y": 0
+			}
+		]
+	},
+	"tokenshop": {
+		"atlas": "res://Assets/sprites/icons.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "category_upgrades",
+				"w": 16,
+				"x": 0,
+				"y": 102
+			},
+			{
+				"h": 16,
+				"name": "hover_plus",
+				"w": 16,
+				"x": 0,
+				"y": 150
+			},
+			{
+				"h": 16,
+				"name": "upgrade_quest",
+				"w": 16,
+				"x": 80,
+				"y": 134
+			},
+			{
+				"h": 6,
+				"name": "token_small",
+				"w": 6,
+				"x": 20,
+				"y": 0
+			}
+		]
+	}
+}

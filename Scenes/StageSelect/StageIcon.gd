@@ -1,3 +1,4 @@
+@tool
 extends MarginContainer
 class_name StageIcon
 
@@ -6,28 +7,15 @@ class_name StageIcon
 # ==============================================================================
 const IMAGE_PATH := "res://Assets/skins/%s/bg.png"
 # ==============================================================================
-var stage: Stage :
+@export var stage: Stage :
 	set(value):
 		stage = value
 		
-		if not is_node_ready():
-			await ready
+		_update()
 		
-		_lock.visible = stage.locked
-		_checkmark.visible = stage.completed
-		if stage.locked or stage.completed:
-			_icon.modulate = Color.WHITE * 0.7
-		else:
-			_icon.modulate = Color.WHITE
-		
-		if "icon_small" in stage and stage.icon_small != null:
-			_icon.texture = stage.icon_small
-		elif "icon" in stage and stage.icon != null:
-			_icon.texture = StageIcon.shrink_image(stage.icon.get_image())
-		elif FileAccess.file_exists(IMAGE_PATH % stage.name):
-			_icon.texture = StageIcon.create_texture(stage.name)
-		else:
-			_icon.texture = StageIcon.shrink_image(AssetManager.get_icon("icon_questionmark").get_image())
+		if value and not value.changed.is_connected(_update):
+			value.changed.connect(_update)
+# ==============================================================================
 var show_icon := false :
 	set(value):
 		show_icon = value
@@ -35,8 +23,8 @@ var show_icon := false :
 		if not is_node_ready():
 			await ready
 		
-		_shadow.visible = show_icon
-		_icon.visible = show_icon
+		_shadow.visible = value
+		_icon.visible = value
 
 var _hovered := false
 # ==============================================================================
@@ -53,9 +41,33 @@ func _process(_delta: float) -> void:
 		select()
 
 
-func select() -> void:
+func select(instant_focus: bool = false) -> void:
 	selected.emit()
-	Focus.move_to(self)
+	Focus.move_to(self, instant_focus)
+
+
+func _update() -> void:
+	if not is_node_ready():
+		await ready
+	
+	if not stage:
+		return
+	
+	_lock.visible = stage.locked
+	_checkmark.visible = stage.completed
+	if stage.locked or stage.completed:
+		_icon.modulate = Color.WHITE * 0.7
+	else:
+		_icon.modulate = Color.WHITE
+	
+	if "icon_small" in stage and stage.icon_small != null:
+		_icon.texture = stage.icon_small
+	elif "icon" in stage and stage.icon != null:
+		_icon.texture = StageIcon.shrink_image(stage.icon.get_image())
+	elif FileAccess.file_exists(IMAGE_PATH % stage.name):
+		_icon.texture = StageIcon.create_texture(stage.name)
+	else:
+		_icon.texture = StageIcon.shrink_image(IconManager.get_icon_data("quest/questionmark").create_texture().get_image())
 
 
 func _on_mouse_entered() -> void:

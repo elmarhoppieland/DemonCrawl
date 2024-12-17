@@ -1,0 +1,15 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://8hbipsnh0lgk"
+path="res://.godot/imported/Hack-Regular.ttf-c4e6d5e26385d1d0e44c1c31327f075e.fontdata"
+
+[deps]
+
+source_file="res://addons/EffectManager/Hack-Regular.ttf"
+dest_files=["res://.godot/imported/Hack-Regular.ttf-c4e6d5e26385d1d0e44c1c31327f075e.fontdata"]
+
+[params]
+
+dummy_value_ignore_me=0

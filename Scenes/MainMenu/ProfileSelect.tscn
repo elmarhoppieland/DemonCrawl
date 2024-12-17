@@ -1,12 +1,12 @@
 [gd_scene load_steps=17 format=3 uid="uid://b4tqham7nhwam"]
 
-[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Resources/Avatar_atlas.tres" id="1_1vjny"]
+[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Resources/UtilityNode/Avatar_atlas.tres" id="1_1vjny"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/MainMenuAvatar.gd" id="2_7b5x2"]
-[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="3_7isr5"]
-[ext_resource type="Script" path="res://Resources/XPBar.gd" id="3_s4lan"]
-[ext_resource type="Script" path="res://Resources/ProfileNameLabel.gd" id="4_ggtkl"]
-[ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="4_vjit2"]
-[ext_resource type="Script" path="res://Resources/ProfileLevelLabel.gd" id="5_omnn8"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="3_7isr5"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/XPBar.gd" id="3_s4lan"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/ProfileNameLabel.gd" id="4_ggtkl"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/TooltipGrabber.gd" id="4_vjit2"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/ProfileLevelLabel.gd" id="5_omnn8"]
 [ext_resource type="Shader" path="res://Scenes/MainMenu/ProfileSelect.gdshader" id="8_kc2e0"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/ProfileList.gd" id="8_vj2yj"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/ChangePageButton.gd" id="9_u54pt"]
@@ -75,7 +75,7 @@ text = "CLICK_TO_CHANGE_PROFILE"
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 1
-value = 40.0
+max_value = 93.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("3_s4lan")
@@ -93,6 +93,7 @@ theme_override_constants/separation = 1
 
 [node name="ProfileNameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+text = "<profile-name>"
 script = ExtResource("4_ggtkl")
 
 [node name="ProfileLevelLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]

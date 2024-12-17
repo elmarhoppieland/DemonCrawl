@@ -89,7 +89,7 @@ func add_quest(quest: QuestFile, main: bool = false) -> void:
 	#quest.set_meta("index", index)
 	
 	if locked:
-		icon.texture = AssetManager.get_icon("icon_locked")
+		icon.texture = IconManager.get_icon_data("quest/locked").create_texture()
 	else:
 		icon.texture = quest.create_icon()
 	
@@ -97,7 +97,7 @@ func add_quest(quest: QuestFile, main: bool = false) -> void:
 	focus_grabber.main = main
 	icon.add_child(focus_grabber)
 	
-	focus_grabber.interacted.connect(func():
+	focus_grabber.interacted.connect(func() -> void:
 		QuestsOverview.selected_quest_idx = index
 		Debug.push_debug(get_tree().current_scene, "Selected Quest Index", QuestsOverview.selected_quest_idx)
 		
@@ -107,7 +107,7 @@ func add_quest(quest: QuestFile, main: bool = false) -> void:
 			tr("QUEST_COMPLETIONS"),
 			completions,
 			tr("QUEST_BEST"),
-			best if completions > 0 else "-"
+			str(best) if completions > 0 else "-"
 		])
 		
 		quest_selected.emit(quest, QuestsOverview.selected_difficulty)

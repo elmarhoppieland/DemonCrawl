@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://qwegpkhg2b4i"]
+[gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://mgep25t27noe"]
 
-[ext_resource type="Texture2D" uid="uid://ml6imv6yhgn4" path="res://Assets/sprites/items.png" id="1_ha2he"]
-[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_mswmq"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_ha2he"]
+[ext_resource type="Script" path="res://Assets/items/Banana Peel.gd" id="2_a4blg"]
 
 [resource]
-script = ExtResource("1_mswmq")
-name = "ITEM_BANANA_PEEL"
-description = "ITEM_BANANA_PEEL_DESCRIPTION"
-type = 1
-mana = null
-cost = 0
-atlas_region = Rect2(144, 16, 16, 16)
-atlas = ExtResource("1_ha2he")
+resource_local_to_scene = false
+resource_name = "ITEM_BANANA_PEEL"
+script = ExtResource("2_a4blg")
+_name = "ITEM_BANANA_PEEL"
+_description = "ITEM_BANANA_PEEL_DESCRIPTION"
+_type = 1
+_mana = 0
+_cost = 0
+_atlas_region = Rect2(144, 16, 16, 16)
+_atlas = ExtResource("1_ha2he")

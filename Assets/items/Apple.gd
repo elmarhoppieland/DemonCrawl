@@ -1,7 +1,8 @@
+@tool
 extends Item
 
 # ==============================================================================
 
-func use() -> void:
-	Stats.change_life(+1, self)
+func _use() -> void:
+	life_restore(1)
 	clear()

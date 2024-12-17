@@ -1,0 +1,137 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://addons/EffectManager/EffectManagerMainScreen.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://v6uyjxbw6hiu" path="res://addons/EffectManager/UserClassSelector.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cadd7y2jnlnwm" path="res://addons/EffectManager/PriorityGroupsManager.tscn" id="3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4f1kh"]
+content_margin_left = 6.0
+content_margin_top = 4.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0.1152940019965172, 0.1317649930715561, 0.1619610041379929, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4399999976158142, 0.7300000190734863, 0.9800000190734863, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6spp"]
+content_margin_left = 6.0
+content_margin_top = 4.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0.1152940019965172, 0.1317649930715561, 0.1619610041379929, 1)
+border_width_bottom = 2
+border_color = Color(0.09058830142021179, 0.1035289987921715, 0.127254992723465, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_detail = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_222tq"]
+content_margin_left = 6.0
+content_margin_top = 4.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0.1482349932193756, 0.1694110035896301, 0.2082359939813614, 1)
+border_width_bottom = 2
+border_color = Color(0.1152940019965172, 0.1317649930715561, 0.1619610041379929, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_detail = 3
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_up1yp"]
+CodeEdit/styles/focus = SubResource("StyleBoxFlat_4f1kh")
+CodeEdit/styles/normal = SubResource("StyleBoxFlat_p6spp")
+CodeEdit/styles/read_only = SubResource("StyleBoxFlat_p6spp")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_4f1kh")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_p6spp")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_222tq")
+
+[sub_resource type="Image" id="Image_0fren"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_fyvsd"]
+image = SubResource("Image_0fren")
+
+[node name="EffectManagerMainScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_up1yp")
+script = ExtResource("1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="EditPriorityGroupsButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Edit Priority Groups"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EffectsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AddEffectButton" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Add new effect"
+icon = SubResource("ImageTexture_fyvsd")
+
+[node name="UserClassSelector" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+visible = false
+
+[node name="PriorityGroupsEditor" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+size = Vector2i(750, 400)
+visible = false
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/EditPriorityGroupsButton" to="." method="_on_edit_priority_groups_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AddEffectButton" to="." method="_on_add_effect_button_pressed"]

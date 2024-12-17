@@ -11,6 +11,6 @@ func use() -> void:
 		return
 	
 	target.aura = ""
-	Stats.change_life(+3, self)
+	life_restore(3, self)
 	
 	clear()

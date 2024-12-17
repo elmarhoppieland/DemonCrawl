@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://hvvjdj6n7b1e" path="res://Resources/BackButton.tscn" id="6_qaovl"]
 [ext_resource type="PackedScene" uid="uid://di6wvg6vsnpk6" path="res://Scenes/QuestSelect/QuestSelectStatbar.tscn" id="12_0mlav"]
 [ext_resource type="PackedScene" uid="uid://ckftsugq2vfat" path="res://Scenes/QuestSelect/EditEquipment.tscn" id="15_e1val"]
-[ext_resource type="Texture2D" uid="uid://daxi3wapxviu6" path="res://Assets/sprites/finish_bg.png" id="20_002ai"]
-[ext_resource type="Material" uid="uid://dk24wtqiv26r5" path="res://Resources/MovingBg.tres" id="20_g7kal"]
-[ext_resource type="Texture2D" uid="uid://dhuxq7qahn13m" path="res://Assets/sprites/begin_fg.png" id="22_3ssya"]
-[ext_resource type="Texture2D" uid="uid://dvgv2iiin6yu4" path="res://Assets/sprites/begin_fg_pressed.png" id="23_1rhh3"]
-[ext_resource type="Texture2D" uid="uid://cmlyhspr021up" path="res://Assets/sprites/begin_fg_hover.png" id="23_05vpt"]
+[ext_resource type="Texture2D" uid="uid://co7maglvq1akc" path="res://Assets/sprites/finish_bg.png" id="20_002ai"]
+[ext_resource type="Material" uid="uid://dk24wtqiv26r5" path="res://Resources/moving_bg.tres" id="20_g7kal"]
+[ext_resource type="Texture2D" uid="uid://cokabceyaajw6" path="res://Assets/sprites/begin_fg.png" id="22_3ssya"]
+[ext_resource type="Texture2D" uid="uid://cb841dg7jgt5x" path="res://Assets/sprites/begin_fg_pressed.png" id="23_1rhh3"]
+[ext_resource type="Texture2D" uid="uid://bh4ddbqxe12na" path="res://Assets/sprites/begin_fg_hover.png" id="23_05vpt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y818d"]
 font = ExtResource("3_y3u8k")
@@ -499,8 +499,6 @@ stretch_mode = 3
 visible = false
 layout_mode = 1
 anchors_preset = -1
-offset_right = 160.0
-offset_bottom = 70.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

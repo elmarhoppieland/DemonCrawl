@@ -1,28 +1,23 @@
-[gd_resource type="Theme" load_steps=25 format=3 uid="uid://dmddrgkl04gph"]
+[gd_resource type="Theme" load_steps=32 format=3 uid="uid://dmddrgkl04gph"]
 
 [ext_resource type="StyleBox" uid="uid://cokg66aqb3ro1" path="res://Resources/xp_bar_fill.tres" id="1_0ok7g"]
 [ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://Assets/skins/default/bg.png" id="1_3w34f"]
-[ext_resource type="Texture2D" uid="uid://cogfcs7aaebfc" path="res://Assets/sprites/button.png" id="1_lrxcs"]
-[ext_resource type="Texture2D" uid="uid://tw5ypgbsqgps" path="res://Assets/sprites/xpbar_over.png" id="1_oyno8"]
-[ext_resource type="Texture2D" uid="uid://bw3aoktyols1b" path="res://Assets/sprites/coin_palette_default.png" id="3_7fqxt"]
-[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="6_bvbi3"]
-[ext_resource type="Script" path="res://Resources/Icon.gd" id="7_th4e0"]
+[ext_resource type="Texture2D" uid="uid://c7bnfk2x7amtj" path="res://Assets/sprites/button.png" id="1_lrxcs"]
+[ext_resource type="Texture2D" uid="uid://bb1u8ca4glirc" path="res://Assets/sprites/xpbar_over.png" id="1_oyno8"]
+[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://Assets/skins/default/empty.png" id="3_2f1tt"]
+[ext_resource type="Texture2D" uid="uid://djbhum3kfwy52" path="res://Assets/sprites/coin_palette_default.png" id="3_7fqxt"]
+[ext_resource type="Texture2D" uid="uid://cwud7hep7qi5b" path="res://Assets/skins/default/full.png" id="4_701jt"]
+[ext_resource type="Texture2D" uid="uid://cid1fd12q4fvd" path="res://Assets/skins/default/checking.png" id="4_ayrbf"]
+[ext_resource type="Texture2D" uid="uid://dwfec06v6p7h1" path="res://Assets/skins/default/flag_bg.png" id="6_2el4w"]
+[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/skins/default/flag.png" id="6_xtqrh"]
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="7_th4e0"]
+[ext_resource type="Texture2D" uid="uid://dfwsoi1dna1xn" path="res://Assets/skins/forest/monster.png" id="8_tvptk"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="11_010p6"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m545e"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsqjn"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rj56v"]
-content_margin_left = 1.0
-content_margin_top = 1.0
-content_margin_right = 1.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qp4ky"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 4.0
 content_margin_bottom = 1.0
 texture = ExtResource("1_lrxcs")
 texture_margin_left = 1.0
@@ -31,14 +26,43 @@ texture_margin_right = 1.0
 texture_margin_bottom = 1.0
 draw_center = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_brm33"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-corner_detail = 1
-anti_aliasing = false
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m545e"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ry2g1"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 1.0
+texture = ExtResource("1_lrxcs")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5hgp"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 1.0
+texture = ExtResource("1_lrxcs")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t8bve"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 1.0
+texture = ExtResource("1_lrxcs")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+draw_center = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odxkr"]
 bg_color = Color(0, 0, 0, 1)
@@ -90,7 +114,7 @@ texture_margin_right = 2.0
 texture_margin_bottom = 2.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gso4b"]
-atlas = ExtResource("6_bvbi3")
+atlas = ExtResource("11_010p6")
 region = Rect2(67, 7, 8, 8)
 script = ExtResource("7_th4e0")
 name = "scroll_grabber"
@@ -112,7 +136,7 @@ texture_margin_bottom = 3.0
 axis_stretch_vertical = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y68i0"]
-atlas = ExtResource("6_bvbi3")
+atlas = ExtResource("11_010p6")
 region = Rect2(75, 7, 8, 8)
 script = ExtResource("7_th4e0")
 name = "scroll_grabber_highlight"
@@ -126,13 +150,13 @@ texture_margin_bottom = 3.0
 axis_stretch_vertical = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g7hq2"]
-atlas = ExtResource("6_bvbi3")
+atlas = ExtResource("11_010p6")
 region = Rect2(67, 7, 8, 8)
 script = ExtResource("7_th4e0")
 name = "scroll_grabber"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4bhj"]
-atlas = ExtResource("6_bvbi3")
+atlas = ExtResource("11_010p6")
 region = Rect2(75, 7, 8, 8)
 script = ExtResource("7_th4e0")
 name = "scroll_grabber_highlight"
@@ -141,14 +165,20 @@ name = "scroll_grabber_highlight"
 
 [resource]
 default_font_size = 8
-Board/icons/board_bg = ExtResource("1_3w34f")
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 3
+Button/styles/disabled = SubResource("StyleBoxTexture_qp4ky")
 Button/styles/focus = SubResource("StyleBoxEmpty_m545e")
-Button/styles/hover = SubResource("StyleBoxFlat_bsqjn")
-Button/styles/normal = SubResource("StyleBoxTexture_rj56v")
-Button/styles/pressed = SubResource("StyleBoxFlat_brm33")
+Button/styles/hover = SubResource("StyleBoxTexture_ry2g1")
+Button/styles/normal = SubResource("StyleBoxTexture_a5hgp")
+Button/styles/pressed = SubResource("StyleBoxTexture_t8bve")
+Cell/icons/bg = ExtResource("3_2f1tt")
+Cell/icons/checking = ExtResource("4_ayrbf")
 Cell/icons/coin_palette = ExtResource("3_7fqxt")
+Cell/icons/flag = ExtResource("6_xtqrh")
+Cell/icons/flag_bg = ExtResource("6_2el4w")
+Cell/icons/hidden = ExtResource("4_701jt")
+Cell/icons/monster_atlas = ExtResource("8_tvptk")
 CodeEdit/font_sizes/font_size = 8
 CodeEdit/styles/normal = SubResource("StyleBoxFlat_odxkr")
 DCButton/colors/cancel = Color(1, 0, 0, 1)
@@ -170,6 +200,7 @@ RichTextLabel/font_sizes/bold_italics_font_size = 8
 RichTextLabel/font_sizes/italics_font_size = 8
 RichTextLabel/font_sizes/mono_font_size = 8
 RichTextLabel/font_sizes/normal_font_size = 8
+StageScene/icons/bg = ExtResource("1_3w34f")
 VScrollBar/styles/grabber = SubResource("StyleBoxTexture_tsonw")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_7jy4q")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_d235a")

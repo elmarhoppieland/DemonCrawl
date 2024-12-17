@@ -1,0 +1,12 @@
+[Debug]
+
+max_log_count=0
+
+[ProfileList]
+
+selected_profile=""
+
+[Toasts]
+
+debug_alerts=false
+

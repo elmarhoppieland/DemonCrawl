@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://q4g4w6o11hls"]
+[gd_scene load_steps=5 format=3 uid="uid://bqpukafo2v0vv"]
 
-[ext_resource type="Texture2D" uid="uid://bao20jmr8fdr6" path="res://Assets/sprites/avatar.png" id="1_m4tbc"]
+[ext_resource type="Texture2D" uid="uid://t6f814mrrtwh" path="res://Assets/sprites/avatar.png" id="1_m4tbc"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/MainMenuProfile.gd" id="1_p4qr1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1hhb"]

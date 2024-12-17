@@ -2,13 +2,18 @@ extends Control
 class_name QuestSelect
 
 # ==============================================================================
+var _focused_node: CanvasItem
+# ==============================================================================
 @onready var quest_name_label: Label = %QuestNameLabel
 @onready var lore_label: Label = %LoreLabel
 @onready var begin_button_container: MarginContainer = %BeginButtonContainer
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
 
-func _on_quests_overview_quest_selected(quest: QuestFile, _difficulty: DifficultyFile) -> void:
+func _on_quests_overview_quest_selected(quest: QuestFile, difficulty: DifficultyFile) -> void:
+	QuestsManager.selected_quest = quest
+	QuestsManager.selected_difficulty = difficulty
+	
 	if not is_node_ready():
 		await ready
 	
@@ -23,12 +28,21 @@ func _on_quests_overview_quest_selected(quest: QuestFile, _difficulty: Difficult
 
 
 func _on_begin_button_pressed() -> void:
+	var rng := RandomNumberGenerator.new()
+	QuestsManager.selected_quest.pack().generate(rng).set_as_current()
+	
+	QuestsManager.selected_difficulty.apply_starting_values()
+	
 	get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")
+	
+	Eternity.save()
+	
+	Effects.quest_start()
 
 
 func _on_quest_select_statbar_edit_equipment() -> void:
 	Focus.hide()
-	Focus.save_current()
+	_focused_node = Focus.get_focused_node()
 	animation_player.play("equipment_edit")
 
 
@@ -37,5 +51,5 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_edit_equipment_back_button_pressed() -> void:
-	Focus.load_saved()
+	Focus.move_to(_focused_node, true)
 	animation_player.play("equipment_edit_back")

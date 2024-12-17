@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dppdeqskdv8hc"]
+
+[ext_resource type="Script" path="res://Resources/Scenes/CollectibleDisplay.gd" id="1_mhrok"]
+[ext_resource type="Texture2D" uid="uid://8db7utolqq7s" path="res://Assets/items/Apple.tres" id="2_lpns0"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/TooltipGrabber.gd" id="4_qke8a"]
+
+[node name="CollectibleDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_mhrok")
+_collectible = ExtResource("2_lpns0")
+
+[node name="BGRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0784314, 0.643137, 0.392157, 0.5)
+
+[node name="CollectibleTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lpns0")
+
+[node name="TooltipGrabber" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_qke8a")
+text = "[color=#14a464]ITEM_APPLE[/color]
+[color=gray]ITEM_APPLE_DESCRIPTION[/color]"
+
+[connection signal="interacted" from="TooltipGrabber" to="." method="_on_interacted"]

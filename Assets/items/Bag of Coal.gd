@@ -1,17 +1,18 @@
+@tool
 extends Item
 
 # ==============================================================================
 
 func change_morality(morality: int) -> void:
-	if morality >= PlayerStats.morality:
+	if morality >= Quest.get_current().get_instance().morality:
 		return
 	if not is_charged():
 		return
 	
-	Inventory.gain_item(Item.from_path("res://Assets/items/Coal"))
+	gain_item(Item.from_path("res://Assets/items/Coal"))
 	
-	for coal in Inventory.items.filter(func(item: Item) -> bool: return item.data == ItemData.from_path("res://Assets/items/Coal")):
-		var cells := Board.get_cells().filter(func(cell: Cell) -> bool: return cell.aura != "burning")
-		cells[RNG.randi() % cells.size()].aura = "burning"
+	for coal in get_items().filter(func(item: Item) -> bool: return item.data == ItemData.from_path("res://Assets/items/Coal")):
+		var cells := Stage.get_current().get_instance().get_cells().filter(func(cell: CellData) -> bool: return cell.get_aura() != "burning")
+		cells[randi() % cells.size()].aura = "burning"
 	
 	clear_mana()

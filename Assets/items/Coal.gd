@@ -3,8 +3,8 @@ extends Item
 # ==============================================================================
 
 func change_morality(morality: int) -> int:
-	if morality >= PlayerStats.morality:
-		return PlayerStats.morality
+	if morality >= get_quest_instance().morality:
+		return get_quest_instance().morality
 	
-	Stats.change_life(-1, self)
+	life_lose(1)
 	return morality

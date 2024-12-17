@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://c68q4dbcp4cg"]
+[gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://8db7utolqq7s"]
 
-[ext_resource type="Texture2D" uid="uid://ml6imv6yhgn4" path="res://Assets/sprites/items.png" id="1_1868u"]
-[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_p3igw"]
+[ext_resource type="Script" path="res://Assets/items/Apple.gd" id="1_4wbc2"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_na8ie"]
 
 [resource]
-script = ExtResource("1_p3igw")
-name = "ITEM_APPLE"
-description = "ITEM_APPLE_DESCRIPTION"
-type = 1
-cost = 5
-atlas_region = Rect2(224, 64, 16, 16)
-atlas = ExtResource("1_1868u")
+resource_local_to_scene = false
+resource_name = "ITEM_APPLE"
+script = ExtResource("1_4wbc2")
+_name = "ITEM_APPLE"
+_description = "ITEM_APPLE_DESCRIPTION"
+_type = 1
+_mana = 0
+_cost = 0
+_atlas_region = Rect2(224, 64, 16, 16)
+_atlas = ExtResource("1_na8ie")

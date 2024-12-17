@@ -2,7 +2,7 @@ extends MarginContainer
 class_name ProfileList
 
 # ==============================================================================
-static var selected_profile: String = SavesManager.get_setting("selected_profile", ProfileList, "DEBUG")
+static var selected_profile: String = Eternal.create("", "settings")
 # ==============================================================================
 var selected_page: Page
 # ==============================================================================

@@ -3,10 +3,10 @@ extends Item
 # ==============================================================================
 
 func use() -> void:
-	if not Board.exists():
+	if not Stage.has_current():
 		return
 	
-	Board.solve_cell()
+	Stage.get_current().get_instance().solve_cell()
 	
 	clear()
 

@@ -1,21 +1,22 @@
+@tool
 extends HBoxContainer
 class_name StageDetails
 
 # ==============================================================================
-var stage: Stage :
+@export var stage: Stage :
 	set(value):
 		if stage == value:
 			return
 		
-		if stage and stage.properties_changed.is_connected(update):
-			stage.properties_changed.disconnect(update)
+		if stage and stage.changed.is_connected(update):
+			stage.changed.disconnect(update)
 		
 		stage = value
 		
 		if stage:
 			update()
 			
-			stage.properties_changed.connect(update)
+			stage.changed.connect(update)
 var hovered := false
 # ==============================================================================
 @onready var _stage_texture: TextureRect = %StageTexture

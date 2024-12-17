@@ -43,7 +43,7 @@ func _on_masteries_button_interacted() -> void:
 
 
 func add_none_mastery() -> void:
-	add_mastery("MASTERY_NONE", AssetManager.get_icon("mastery/none"), "")
+	add_mastery("MASTERY_NONE", IconManager.get_icon_data("mastery/none").create_texture(), "")
 
 
 func add_mastery_from_script(script_path: String) -> void:
@@ -100,7 +100,7 @@ func add_mastery(mastery_name: String, icon: Texture2D, identifier: String, desc
 	margin.add_child(color)
 	
 	var lock := TextureRect.new()
-	lock.texture = AssetManager.get_icon("icon_locked_flat")
+	lock.texture = IconManager.get_icon_data("icons/icon_locked_flat").create_texture()
 	margin.add_child(lock)
 	
 	flow_container.add_child(margin)

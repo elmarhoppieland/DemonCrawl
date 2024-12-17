@@ -3,17 +3,17 @@ extends Item
 # ==============================================================================
 
 func use() -> void:
-	if not Board.exists():
+	if not Stage.has_current():
 		return
 	
-	var cells := Board.get_cells().filter(func(c: Cell): return c.revealed and c.aura != "sanctified")
+	var cells := Stage.get_current().get_instance().get_cells().filter(func(c: CellData): return c.is_revealed() and c.aura != "sanctified")
 	if cells.is_empty():
 		return
 	
-	var cell: Cell = cells[RNG.randi() % cells.size()]
+	var cell: Cell = cells[randi() % cells.size()]
 	
 	cell.aura = "sanctified"
-	Stats.change_life(+cell.cell_value, self)
-	EffectManager.propagate_call("bury_bones", [cell])
+	life_restore(cell.cell_value)
+	Effects.bury_bones(cell)
 	
 	clear()

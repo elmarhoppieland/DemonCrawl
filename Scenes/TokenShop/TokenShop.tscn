@@ -2,18 +2,18 @@
 
 [ext_resource type="Script" path="res://Scenes/TokenShop/TokenShop.gd" id="1_x20b8"]
 [ext_resource type="Texture2D" uid="uid://b5rt77loesna7" path="res://Assets/bg/token_shop_sky.png" id="2_c6u0t"]
-[ext_resource type="Script" path="res://Scenes/QuestSelect/BackButton.gd" id="2_p5u17"]
-[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="3_i3xv6"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/BackButton.gd" id="2_p5u17"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="3_i3xv6"]
 [ext_resource type="Texture2D" uid="uid://chamkmak0kl0t" path="res://Assets/bg/token_shop.png" id="3_j1oel"]
-[ext_resource type="Script" path="res://Resources/Icon.gd" id="4_nqp1b"]
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="4_nqp1b"]
 [ext_resource type="Shader" path="res://Scenes/MainMenu/ProfileSelect.gdshader" id="4_uy6s8"]
-[ext_resource type="Script" path="res://Resources/FocusGrabber.gd" id="5_4idhx"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/FocusGrabber.gd" id="5_4idhx"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/ChangePageButton.gd" id="5_52qn8"]
-[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Resources/Avatar_atlas.tres" id="10_hyis6"]
-[ext_resource type="Script" path="res://Resources/Avatar.gd" id="11_3wli1"]
-[ext_resource type="Script" path="res://Resources/XPBar.gd" id="12_qob23"]
-[ext_resource type="Script" path="res://Resources/ProfileNameLabel.gd" id="13_nipms"]
-[ext_resource type="Script" path="res://Resources/ProfileLevelLabel.gd" id="14_37g46"]
+[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Resources/UtilityNode/Avatar_atlas.tres" id="10_hyis6"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/Avatar.gd" id="11_3wli1"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/XPBar.gd" id="12_qob23"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/ProfileNameLabel.gd" id="13_nipms"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/ProfileLevelLabel.gd" id="14_37g46"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahp6w"]
 atlas = ExtResource("3_i3xv6")
@@ -23,11 +23,11 @@ region = Rect2(22, 44, 12, 8)
 atlas = ExtResource("3_i3xv6")
 region = Rect2(34, 44, 12, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sexuf"]
-atlas = ExtResource("3_i3xv6")
-region = Rect2(0, 102, 16, 16)
+[sub_resource type="Texture2D" id="Texture2D_jdcby"]
+resource_local_to_scene = false
+resource_name = ""
 script = ExtResource("4_nqp1b")
-name = "category_upgrades"
+name = "tokenshop/category_upgrades"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lypjk"]
 atlas = ExtResource("3_i3xv6")
@@ -147,7 +147,7 @@ theme_override_constants/separation = 2
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/CategoryTabButtons"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = SubResource("AtlasTexture_sexuf")
+texture = SubResource("Texture2D_jdcby")
 
 [node name="FocusGrabber" type="Node" parent="VBoxContainer/HBoxContainer/CategoryTabButtons/TextureRect"]
 script = ExtResource("5_4idhx")
@@ -247,7 +247,7 @@ script = ExtResource("11_3wli1")
 [node name="XPBar" type="ProgressBar" parent="VBoxContainer/MarginContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
-value = 40.0
+max_value = 93.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("12_qob23")
@@ -265,6 +265,7 @@ theme_override_constants/separation = 0
 
 [node name="ProfileNameLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+text = "<profile-name>"
 script = ExtResource("13_nipms")
 
 [node name="ProfileLevelLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer/VBoxContainer"]

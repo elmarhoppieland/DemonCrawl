@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://Scenes/MainMenu/ButtonBar.gd" id="1_0wbkr"]
 [ext_resource type="PackedScene" uid="uid://dpbvhpo6h1cog" path="res://Scenes/MainMenu/MainMenuButton.tscn" id="1_3rst5"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/QuestsButton.gd" id="2_xcxpo"]
-[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="3_5lyta"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="3_5lyta"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/QuitButton.gd" id="4_lvhwf"]
-[ext_resource type="Script" path="res://Resources/Icon.gd" id="5_0dubs"]
-[ext_resource type="Script" path="res://Scenes/MainMenu/TokenShopButton.gd" id="6_gahvg"]
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="5_0dubs"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/TokenShopButton.gd" id="6_gahvg"]
 
 [sub_resource type="Gradient" id="Gradient_n6rig"]
 offsets = PackedFloat32Array(0, 0.5, 1)

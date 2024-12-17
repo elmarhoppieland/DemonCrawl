@@ -1,21 +1,21 @@
 [gd_scene load_steps=19 format=3 uid="uid://dml1nvpclhf7"]
 
-[ext_resource type="Texture2D" uid="uid://bejgmt5gipy1l" path="res://Assets/sprites/icons.png" id="1_05fa6"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="1_05fa6"]
 [ext_resource type="Script" path="res://Scenes/TokenShop/TokenShopItem.gd" id="1_h3mth"]
-[ext_resource type="Script" path="res://Resources/Icon.gd" id="2_nqj62"]
-[ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="4_ebpj2"]
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="2_nqj62"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/TooltipGrabber.gd" id="4_ebpj2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p00rm"]
-atlas = ExtResource("1_05fa6")
-region = Rect2(80, 134, 16, 16)
+[sub_resource type="Texture2D" id="Texture2D_ch1wy"]
+resource_local_to_scene = false
+resource_name = ""
 script = ExtResource("2_nqj62")
-name = "token_shop_upgrade_quest"
+name = "tokenshop/upgrade_quest"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f72in"]
-atlas = ExtResource("1_05fa6")
-region = Rect2(64, 86, 16, 16)
+[sub_resource type="Texture2D" id="Texture2D_r7k7g"]
+resource_local_to_scene = false
+resource_name = ""
 script = ExtResource("2_nqj62")
-name = "icon_locked_flat"
+name = "icons/locked_flat"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5p4qq"]
 atlas = ExtResource("1_05fa6")
@@ -23,11 +23,11 @@ region = Rect2(59, 7, 8, 9)
 script = ExtResource("2_nqj62")
 name = "checkmark"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mkuww"]
-atlas = ExtResource("1_05fa6")
-region = Rect2(0, 150, 16, 16)
+[sub_resource type="Texture2D" id="Texture2D_urhtn"]
+resource_local_to_scene = false
+resource_name = ""
 script = ExtResource("2_nqj62")
-name = "token_shop_hover_plus"
+name = "tokenshop/hover_plus"
 
 [sub_resource type="Gradient" id="Gradient_2wa0h"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -329,13 +329,13 @@ theme_override_constants/margin_bottom = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-texture = SubResource("AtlasTexture_p00rm")
+texture = SubResource("Texture2D_ch1wy")
 stretch_mode = 3
 
 [node name="Lock" type="TextureRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer/MarginContainer"]
 visible = false
 layout_mode = 2
-texture = SubResource("AtlasTexture_f72in")
+texture = SubResource("Texture2D_r7k7g")
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer/MarginContainer"]
 visible = false
@@ -355,7 +355,7 @@ position = Vector2(3, 6)
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/Icon/Node2D"]
 offset_right = 16.0
 offset_bottom = 16.0
-texture = SubResource("AtlasTexture_mkuww")
+texture = SubResource("Texture2D_urhtn")
 stretch_mode = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]

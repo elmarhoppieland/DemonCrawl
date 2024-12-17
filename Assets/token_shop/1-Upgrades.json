@@ -58,7 +58,7 @@
 		},
 		{
 			"name": "TOKEN_SHOP_UPGRADE_QUEST_2",
-			"icon": "token_shop_upgrade_quest",
+			"icon": "tokenshop/upgrade_quest",
 			"cost": 1,
 			"description": "TOKEN_SHOP_UPGRADE_QUEST_2_DESCRIPTION",
 			"conditions": ["!hard"],

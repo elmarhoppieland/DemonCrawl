@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://addons/EffectManager/EffectManagerEffectEditor.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://dn2yji28tv84h" path="res://addons/EffectManager/JetBrainsMono-Regular.ttf" id="2"]
+
+[sub_resource type="Theme" id="Theme_wbgrc"]
+HBoxContainer/constants/separation = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_s1tsh"]
+font = ExtResource("2")
+
+[sub_resource type="Image" id="Image_vs2kv"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_jfvuw"]
+image = SubResource("Image_vs2kv")
+
+[sub_resource type="Theme" id="Theme_vecyd"]
+EditorIcons/icons/Add = SubResource("ImageTexture_jfvuw")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ilwyh"]
+font = ExtResource("2")
+
+[node name="EffectManagerEffectEditor" type="MarginContainer"]
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.1019610017538071, 0.1176469996571541, 0.1450980007648468, 1)
+
+[node name="DataContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme = SubResource("Theme_wbgrc")
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="DataContainer"]
+visible = false
+layout_mode = 2
+text = "global_init()"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DataContainer"]
+layout_mode = 2
+
+[node name="ReturnTypeButton" type="MenuButton" parent="DataContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2")
+text = "void"
+
+[node name="NameEditor" type="LineEdit" parent="DataContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4000000059604645, 0.8999999761581421, 1, 1)
+theme_override_fonts/font = ExtResource("2")
+text = "global_init"
+expand_to_text_length = true
+
+[node name="Label" type="Label" parent="DataContainer/HBoxContainer"]
+layout_mode = 2
+text = "("
+label_settings = SubResource("LabelSettings_s1tsh")
+
+[node name="NameLabel" type="RichTextLabel" parent="DataContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("2")
+bbcode_enabled = true
+text = "[color=#66e6ff]global_init[/color]("
+fit_content = true
+autowrap_mode = 0
+
+[node name="ArgEditorsContainer" type="VBoxContainer" parent="DataContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AddArgButton" type="Button" parent="DataContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = SubResource("Theme_vecyd")
+text = "Add new argument"
+icon = SubResource("ImageTexture_jfvuw")
+
+[node name="Label2" type="Label" parent="DataContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = ")"
+label_settings = SubResource("LabelSettings_ilwyh")
+
+[node name="DescriptionEdit" type="TextEdit" parent="DataContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Click here to add a description."
+scroll_fit_content_height = true
+caret_blink = true
+caret_blink_interval = 0.5
+
+[connection signal="about_to_popup" from="DataContainer/HBoxContainer/ReturnTypeButton" to="." method="_on_return_type_button_about_to_popup"]
+[connection signal="text_submitted" from="DataContainer/HBoxContainer/NameEditor" to="." method="_on_name_editor_text_submitted"]
+[connection signal="pressed" from="DataContainer/AddArgButton" to="." method="_on_add_arg_button_pressed"]
+[connection signal="text_changed" from="DataContainer/DescriptionEdit" to="." method="_on_description_edit_text_changed"]

@@ -82,7 +82,7 @@ func purchase() -> void:
 
 
 static func create() -> TokenShopItem:
-	return ResourceLoader.load("res://Scenes/TokenShop/TokenShopItem.tscn").instantiate()
+	return preload("res://Scenes/TokenShop/TokenShopItem.tscn").instantiate()
 
 
 func _on_icon_mouse_entered() -> void:

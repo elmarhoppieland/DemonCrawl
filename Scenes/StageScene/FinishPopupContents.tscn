@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjx67qhbqro41"]
+
+[ext_resource type="Script" path="res://Scenes/StageScene/FinishPopupContents.gd" id="1_o1mly"]
+[ext_resource type="Texture2D" uid="uid://w0eac00tgi4" path="res://Assets/sprites/text_stage_clear.png" id="1_t7kn7"]
+[ext_resource type="Texture2D" uid="uid://crx85kipjfvqw" path="res://Assets/sprites/hxpbar_bg.png" id="5_ox33d"]
+
+[node name="FinishPopupContents" type="VBoxContainer"]
+theme_override_constants/separation = 0
+script = ExtResource("1_o1mly")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_t7kn7")
+stretch_mode = 3
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="StageClearRewardsContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Control3" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 11)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/separation = 1
+
+[node name="XPLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "2520/2720"
+
+[node name="XPProgressBar" type="TextureProgressBar" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 4)
+layout_mode = 2
+size_flags_horizontal = 4
+value = 40.0
+nine_patch_stretch = true
+stretch_margin_left = 1
+stretch_margin_top = 1
+stretch_margin_right = 1
+stretch_margin_bottom = 1
+texture_under = ExtResource("5_ox33d")
+texture_progress = ExtResource("5_ox33d")
+tint_progress = Color(0.0627451, 0.87451, 0.501961, 1)

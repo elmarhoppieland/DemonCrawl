@@ -10,7 +10,7 @@ func _init() -> void:
 	icon = preload("res://Assets/sprites/special_icon/Item Shop.png")
 	icon_small = preload("res://Assets/sprites/special_icon/Item Shop_small.png")
 	
-	dest_scene = preload("res://Scenes/Special Stages/Item Shop.tscn")
+	dest_scene = preload("res://Scenes/SpecialStages/Item Shop.tscn")
 
 
 static func _import(value: Dictionary) -> ItemShop:

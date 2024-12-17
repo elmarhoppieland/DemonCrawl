@@ -1,3 +1,4 @@
+@tool
 extends Item
 
 # ==============================================================================
@@ -7,12 +8,12 @@ func use() -> void:
 	if not target:
 		return
 	
-	target.enchant(BananaPeelEnchant)
+	#target.enchant(BananaPeelEnchant)
 	
 	clear()
 
 
-class BananaPeelEnchant extends CellEnchantment:
-	func turn() -> void:
-		if cell.cell_object:
-			cell.cell_object.kill()
+#class BananaPeelEnchant extends CellEnchantment:
+	#func turn() -> void:
+		#if cell.cell_object:
+			#cell.cell_object.kill()
