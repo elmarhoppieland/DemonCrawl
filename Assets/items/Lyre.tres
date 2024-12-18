@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cfevdrefpiq4l"]
+[gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://cfevdrefpiq4l"]
 
-[ext_resource type="Texture2D" uid="uid://ml6imv6yhgn4" path="res://Assets/sprites/items.png" id="1_ykit7"]
-[ext_resource type="Script" path="res://Resources/ItemData.gd" id="2_gynep"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_ykit7"]
+[ext_resource type="Script" path="res://Assets/items/Lyre.gd" id="2_gynep"]
 
 [resource]
+resource_local_to_scene = false
+resource_name = "ITEM_LYRE"
 script = ExtResource("2_gynep")
-name = "ITEM_LYRE"
-description = "ITEM_LYRE_DESCRIPTION"
-type = 2
-mana = 300
-cost = 7
-atlas_region = Rect2(400, 16, 16, 16)
-atlas = ExtResource("1_ykit7")
+_name = "ITEM_LYRE"
+_description = "ITEM_LYRE_DESCRIPTION"
+_type = 2
+_mana = 300
+_cost = 7
+_atlas_region = Rect2(400, 16, 16, 16)
+_atlas = ExtResource("1_ykit7")

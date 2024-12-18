@@ -7,6 +7,10 @@ class_name QuestInstance
 		selected_stage_idx = value
 		emit_changed()
 
+@export var _items: Array[Item] = []
+
+@export var _quest: Quest : set = set_quest, get = get_quest
+
 @export_group("Statbar")
 @export var max_life := 0 :
 	set(value):
@@ -59,10 +63,6 @@ class_name QuestInstance
 	set(value):
 		chain_length = value
 		emit_changed()
-
-@export var _items: Array[Item] = []
-
-@export var _quest: Quest : set = set_quest, get = get_quest
 # ==============================================================================
 signal inventory_changed()
 signal inventory_item_added(item: Item)
@@ -192,3 +192,8 @@ func item_has(item: Item, exact: bool = false) -> bool:
 			return true
 	
 	return false
+
+
+@warning_ignore("shadowed_variable")
+func spend_coins(coins: int, destination: Object) -> void:
+	self.coins -= Effects.spend_coins(coins, destination)

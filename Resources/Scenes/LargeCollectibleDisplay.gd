@@ -11,55 +11,41 @@ class_name LargeCollectibleDisplay
 			await ready
 		
 		if offer_price < 0:
-			coin_value.hide()
+			_coin_value.hide()
 			return
-		coin_value.show()
+		_coin_value.show()
 		
-		coin_value.coin_value = offer_price
-@export var show_focus := true :
-	set(value):
-		show_focus = value
-		
-		if not is_node_ready():
-			await ready
-		
-		focus_grabber.enabled = value
+		_coin_value.coin_value = offer_price
+@export var show_focus := true
 # ==============================================================================
-var collectible: Collectible :
+@export var collectible: Collectible :
 	set(value):
-		if collectible == value:
-			return
-		
-		var previous := collectible
-		
 		collectible = value
 		
-		if not collectible:
-			return
-		
 		if not is_node_ready():
 			await ready
 		
-		if previous:
-			previous.remove_node_from_tree()
-		
-		if collectible:
-			collectible_node_parent.add_child(collectible.get_node())
+		_collectible_display.set_collectible(value)
 # ==============================================================================
-@onready var collectible_node_parent: MarginContainer = %CollectibleNodeParent
-@onready var focus_grabber: FocusGrabber = %FocusGrabber
-@onready var coin_value: CoinValue = %CoinValue
+@onready var _collectible_container: MarginContainer = %CollectibleContainer
+@onready var _collectible_display: CollectibleDisplay = %CollectibleDisplay
+@onready var _coin_value: CoinValue = %CoinValue
+# ==============================================================================
+signal interacted()
 # ==============================================================================
 
-## Removes the collectible node (created via [method Collectible.create_node])
-## from the scene tree and returns the node. Does [b]not[/b] free the node.
-func detach_collectible_node() -> MarginContainer:
-	collectible.remove_node_from_tree(true)
-	return collectible.node
+func interact() -> void:
+	Focus.move_to(_collectible_container)
+	interacted.emit()
 
 
 ## Creates a new instance of the scene.
-static func create(_collectible: Collectible) -> CollectibleDisplay:
-	var instance: CollectibleDisplay = load("res://Resources/LargeCollectibleDisplay.tscn").instantiate()
+static func create(_collectible: Collectible) -> LargeCollectibleDisplay:
+	var instance: LargeCollectibleDisplay = load("res://Resources/Scenes/LargeCollectibleDisplay.tscn").instantiate()
 	instance.collectible = _collectible
 	return instance
+
+
+func _on_collectible_display_interacted() -> void:
+	if show_focus:
+		interact()

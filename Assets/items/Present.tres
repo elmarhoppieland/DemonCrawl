@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://ckthip2v2bgu3"]
+[gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://ckthip2v2bgu3"]
 
-[ext_resource type="Texture2D" uid="uid://ml6imv6yhgn4" path="res://Assets/sprites/items.png" id="1_u6cxl"]
-[ext_resource type="Script" path="res://Resources/ItemData.gd" id="2_yyyby"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_u6cxl"]
+[ext_resource type="Script" path="res://Assets/items/Present.gd" id="2_yyyby"]
 
 [resource]
+resource_local_to_scene = false
+resource_name = ""
 script = ExtResource("2_yyyby")
-name = "ITEM_PRESENT"
-description = "ITEM_PRESENT_DESCRIPTION"
-type = 1
-cost = 10
-atlas_region = Rect2(192, 176, 16, 16)
-atlas = ExtResource("1_u6cxl")
+_name = "ITEM_PRESENT"
+_description = "ITEM_PRESENT_DESCRIPTION"
+_type = 1
+_mana = 0
+_cost = 10
+_atlas_region = Rect2(192, 176, 16, 16)
+_atlas = ExtResource("1_u6cxl")

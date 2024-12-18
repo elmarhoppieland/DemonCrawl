@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dg4q4xvbl5ph5"]
+[gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://dg4q4xvbl5ph5"]
 
-[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_2flkl"]
-[ext_resource type="Texture2D" uid="uid://ml6imv6yhgn4" path="res://Assets/sprites/items.png" id="1_r4ggt"]
+[ext_resource type="Script" path="res://Assets/items/Wallet.gd" id="1_2flkl"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_r4ggt"]
 
 [resource]
+resource_local_to_scene = false
+resource_name = "ITEM_WALLET"
 script = ExtResource("1_2flkl")
-name = "ITEM_WALLET"
-description = "ITEM_WALLET_DESCRIPTION"
-type = 0
-cost = 4
-atlas_region = Rect2(80, 32, 16, 16)
-atlas = ExtResource("1_r4ggt")
+_name = "ITEM_WALLET"
+_description = "ITEM_WALLET_DESCRIPTION"
+_type = 0
+_mana = 0
+_cost = 4
+_atlas_region = Rect2(80, 32, 16, 16)
+_atlas = ExtResource("1_r4ggt")

@@ -42,11 +42,13 @@ static func _initialize() -> void:
 ## [br][br][b]Note:[/b] This method registers all methods on the given object.
 ## To register only one specific [Callable], use [method connect_effect].
 static func register_object(object: Object, connect_flags: int = 0) -> void:
-	for method in UserClassDB.class_get_method_list(UserClassDB.script_get_class(object.get_script())):
-		if method.return_type == TYPE_NIL:
-			Effects.Signals[method.name].connect(object[method.name], connect_flags)
+	for method in UserClassDB.class_get_method_list(UserClassDB.script_get_identifier(object.get_script())):
+		if method.return.type == TYPE_NIL:
+			if method.name in Effects.Signals:
+				Effects.Signals[method.name].connect(object[method.name], connect_flags)
 		else:
-			Effects.MutableSignals[method.name].connect(object[method.name], connect_flags)
+			if method.name in Effects.MutableSignals:
+				Effects.MutableSignals[method.name].connect(object[method.name], connect_flags)
 
 
 ## Unregisters [code]object[/code]. Future calls to [method propagate_call],

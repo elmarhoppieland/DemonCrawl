@@ -1,25 +1,26 @@
 [gd_scene load_steps=4 format=3 uid="uid://kwco715ga5g0"]
 
 [ext_resource type="Script" path="res://Resources/Scenes/LargeCollectibleDisplay.gd" id="1_mhrok"]
-[ext_resource type="Script" path="res://Resources/UtilityNode/FocusGrabber.gd" id="2_o17f6"]
+[ext_resource type="PackedScene" uid="uid://dppdeqskdv8hc" path="res://Resources/Scenes/CollectibleDisplay.tscn" id="2_iebip"]
 [ext_resource type="PackedScene" uid="uid://d3fpf8gbjxsbx" path="res://Resources/Scenes/CoinValue.tscn" id="3_milrp"]
 
-[node name="CollectibleDisplay" type="MarginContainer"]
+[node name="LargeCollectibleDisplay" type="MarginContainer"]
 script = ExtResource("1_mhrok")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = -3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="CollectibleContainer" type="MarginContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(22, 22)
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/CollectibleContainer"]
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer/ColorRect"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/CollectibleContainer/ColorRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -32,7 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.545098, 0.545098, 0.545098, 1)
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer/ColorRect/ColorRect"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/CollectibleContainer/ColorRect/ColorRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -45,19 +46,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="CollectibleNodeParent" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+[node name="CollectibleDisplay" parent="VBoxContainer/CollectibleContainer" instance=ExtResource("2_iebip")]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
-
-[node name="FocusGrabber" type="Node" parent="VBoxContainer/MarginContainer"]
-unique_name_in_owner = true
-script = ExtResource("2_o17f6")
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="CoinValue" parent="VBoxContainer" instance=ExtResource("3_milrp")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+coin_value = 10
+
+[connection signal="interacted" from="VBoxContainer/CollectibleContainer/CollectibleDisplay" to="." method="_on_collectible_display_interacted"]

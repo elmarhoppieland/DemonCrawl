@@ -11,27 +11,29 @@ var _hovered := false
 @onready var _collectible_texture: TextureRect = %CollectibleTexture
 @onready var _tooltip_grabber: TooltipGrabber = %TooltipGrabber
 # ==============================================================================
+signal interacted()
+# ==============================================================================
 
 func _enter_tree() -> void:
 	mouse_entered.connect(func() -> void:
 		_hovered = true
 		
-		if not _collectible:
+		if not _collectible or not _collectible.can_use():
 			return
 		if not is_node_ready():
 			await ready
 		
-		create_tween().tween_property(_bg_rect, "color:a", _collectible.get_texture_bg_color().a, 0.1).from(_collectible.get_texture_bg_color().a / 2)
+		create_tween().tween_property(_bg_rect, "color:a", _collectible.get_texture_bg_color().a, 0.1).from(_collectible.get_texture_bg_color().a * 0.5)
 	)
 	mouse_exited.connect(func() -> void:
 		_hovered = false
 		
-		if not _collectible:
+		if not _collectible or is_equal_approx(_bg_rect.color.a, _collectible.get_texture_bg_color().a * 0.5):
 			return
 		if not is_node_ready():
 			await ready
 		
-		create_tween().tween_property(_bg_rect, "color:a", _collectible.get_texture_bg_color().a / 2, 0.1).from(_collectible.get_texture_bg_color().a)
+		create_tween().tween_property(_bg_rect, "color:a", _collectible.get_texture_bg_color().a * 0.5, 0.1).from(_collectible.get_texture_bg_color().a)
 	)
 
 
@@ -68,3 +70,4 @@ static func create(collectible: Collectible) -> CollectibleDisplay:
 func _on_interacted() -> void:
 	if _collectible.can_use():
 		_collectible._use()
+	interacted.emit()

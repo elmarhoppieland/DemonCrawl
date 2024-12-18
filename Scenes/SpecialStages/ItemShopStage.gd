@@ -2,9 +2,7 @@ extends Control
 class_name ItemShopStage
 
 # ==============================================================================
-static var selected_item: Item ## The currently selected item.
-# ==============================================================================
-var _selected_display: CollectibleDisplay
+var _selected_display: LargeCollectibleDisplay
 # ==============================================================================
 @onready var _offers_container: HBoxContainer = %OffersContainer
 @onready var _buy_button: DCButton = %BuyButton
@@ -17,27 +15,22 @@ func _ready() -> void:
 	if items.is_empty():
 		return
 	
-	selected_item = items[0]
 	for item in items:
 		var display := LargeCollectibleDisplay.create(item)
-		display.offer_price = maxi(int(item.data.cost * randf_range(0.7, 1.3)), 1)
+		display.offer_price = maxi(int(item.get_cost() * randf_range(0.7, 1.3)), 1)
 		_offers_container.add_child(display)
 		
-		if item == selected_item:
-			(func(): display.focus_grabber.interacted.emit()).call_deferred()
-		
-		display.focus_grabber.interacted.connect(func():
+		display.interacted.connect(func() -> void:
 			_selected_display = display
 			
 			if display.collectible == null:
-				ItemShopStage.selected_item = null
 				_buy_button.modulate.a = 0
 				return
 			
-			ItemShopStage.selected_item = item
-			
 			_buy_button.modulate.a = float(display.offer_price <= Quest.get_current().get_instance().coins)
 		)
+	
+	_offers_container.get_child(0).interact.call_deferred()
 
 
 func _get_items() -> Array[Item]:
@@ -45,20 +38,22 @@ func _get_items() -> Array[Item]:
 
 
 func _on_buy_button_pressed() -> void:
-	if not selected_item:
+	if not _selected_display.collectible:
 		return
 	if _selected_display.offer_price > Quest.get_current().get_instance().coins:
 		return
 	
 	Quest.get_current().get_instance().spend_coins(_selected_display.offer_price, self)
 	
-	_selected_display.detach_collectible_node()
-	Quest.get_current().get_instance().item_gain(selected_item)
+	var item := _selected_display.collectible
+	_selected_display.collectible = null
+	Quest.get_current().get_instance().item_gain(item)
 	
-	selected_item = null
+	#selected_item = null
 	_buy_button.modulate.a = 0
 
 
 func _on_leave_button_pressed() -> void:
-	Quest.get_current().get_selected_stage().completed = true
+	Stage.get_current().finish()
+	Stage.clear_current()
 	get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")

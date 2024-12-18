@@ -82,6 +82,8 @@ static func log_event(message: String, color: Color = Color.AQUA, print_to_conso
 	if not _log_queue.is_empty():
 		_log_queue += "\n"
 	_log_queue += "[%s] %s" % [Time.get_datetime_string_from_system().replace("T", " @ "), message]
+	
+	Toasts.add_debug_toast(message)
 
 
 ## Logs [code]error[/code], and prints an error message.
@@ -259,9 +261,15 @@ static func _flush_log_file() -> void:
 		FileAccess.open(get_log_path(), FileAccess.WRITE)
 	
 	var file := FileAccess.open(get_log_path(), FileAccess.READ_WRITE)
+	if not file:
+		log_error("Unable to load the log file at path '%s': %s" % [get_log_path(), error_string(FileAccess.get_open_error())])
+		return
+	
 	file.seek_end()
 	file.store_line(_log_queue)
 	file.close()
+	
+	_log_queue = ""
 
 
 func update() -> void:

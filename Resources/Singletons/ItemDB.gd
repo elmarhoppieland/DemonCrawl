@@ -5,14 +5,13 @@ class_name ItemDB
 const BASE_DIR := "res://Assets/items/"
 # ==============================================================================
 
-## Returns an [ItemData] [Resource] for all items in the database.
-static func get_items_data() -> Array[ItemData]:
-	var items: Array[ItemData] = []
+## Returns an [Item] [Resource] for all items in the database.
+static func get_items() -> Array[Item]:
+	var items: Array[Item] = []
 	for file in DirAccess.get_files_at(BASE_DIR):
 		file = file.trim_suffix(".remap") # for exported builds
-		if file.get_extension() != "tres":
-			continue
-		items.append(ResourceLoader.load(BASE_DIR.path_join(file)))
+		if file.get_extension() == "tres":
+			items.append(ResourceLoader.load(BASE_DIR.path_join(file)))
 	return items
 
 
@@ -31,7 +30,7 @@ class ItemFilter:
 			#if Inventory.items.any(func(item: Item) -> bool: return item.data == preload("res://Assets/items/Extra Pocket.tres")):
 				#return false
 			#return _ignore_items_in_inventory
-	var _rng: RandomNumberGenerator
+	#var _rng: RandomNumberGenerator
 	
 	
 	## Only allow items with a cost of [code]max_cost[/code] or less.
@@ -91,22 +90,22 @@ class ItemFilter:
 		return self
 	
 	## Sets the [RandomNumberGenerator] used for randomizing.
-	func set_rng(rng: RandomNumberGenerator) -> ItemFilter:
-		_rng = rng
-		return self
+	#func set_rng(rng: RandomNumberGenerator) -> ItemFilter:
+		#_rng = rng
+		#return self
 	
 	## Returns a random item that matches this filter.
 	func get_random_item() -> Item:
-		var options := get_items_data()
+		var options := get_items()
 		if options.is_empty():
 			Debug.log_error("Could not find any items with filter %s." % self)
 			return null
 		
-		return options[_rng.randi() % options.size()].get_item_script().new()
+		return options[randi() % options.size()].duplicate()
 	
 	## Returns [code]count[/code] random different items that match this filter.
 	func get_random_item_set(count: int) -> Array[Item]:
-		var options := get_items_data()
+		var options := get_items()
 		
 		if options.is_empty():
 			Debug.log_error("Could not find any items with filter %s." % self)
@@ -119,7 +118,7 @@ class ItemFilter:
 				Debug.log_error("Could not find more than %d items with filter %s." % [indexes.size(), self])
 				return items
 			
-			var index := _rng.randi() % (options.size() - indexes.size())
+			var index := randi() % (options.size() - indexes.size())
 			
 			for j in indexes:
 				if j <= index:
@@ -128,17 +127,17 @@ class ItemFilter:
 			indexes.append(index)
 			indexes.sort()
 			
-			items.append(options[index].get_item_script().new())
+			items.append(options[index].duplicate())
 		
 		return items
 	
 	## Returns all items that match this filter.
-	func get_items_data() -> Array[ItemData]:
-		return Array(ItemDB.get_items_data().filter(matches), TYPE_OBJECT, &"Resource", ItemData)
+	func get_items() -> Array[Item]:
+		return Array(ItemDB.get_items().filter(matches), TYPE_OBJECT, &"Texture2D", Item)
 	
 	## Returns [code]true[/code] if no items match this filter.
 	func is_empty() -> bool:
-		return not ItemDB.get_items_data().any(matches)
+		return not ItemDB.get_items().any(matches)
 	
 	## Returns whether the given [code]data[/code] matches this filter.
 	func matches(item: Item) -> bool:

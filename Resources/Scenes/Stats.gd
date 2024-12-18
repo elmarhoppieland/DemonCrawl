@@ -168,6 +168,9 @@ class_name Stats
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	_update_life_label()
 	_update_defense_label()
 	_update_coins_label()

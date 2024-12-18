@@ -30,6 +30,11 @@ static var _current: Quest = Eternal.create(null) : set = _set_current, get = ge
 @export var _instance: QuestInstance : get = get_instance
 # ==============================================================================
 
+func _validate_property(property: Dictionary) -> void:
+	if property.name == "_instance":
+		property.usage &= ~PROPERTY_USAGE_EDITOR
+
+
 static func _set_current(value: Quest) -> void:
 	_current = value
 

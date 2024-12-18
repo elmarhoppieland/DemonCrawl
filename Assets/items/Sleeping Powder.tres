@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://dtcj5i5va55m7"]
+[gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://dtcj5i5va55m7"]
 
-[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_h41l3"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_csv0w"]
+[ext_resource type="Script" path="res://Assets/items/Sleeping Powder.gd" id="1_h41l3"]
 
 [resource]
+resource_local_to_scene = false
+resource_name = ""
 script = ExtResource("1_h41l3")
-name = "ITEM_SLEEPING_POWDER"
-description = "ITEM_SLEEPING_POWDER_DESCRIPTION"
-type = 1
-cost = 4
-atlas_region = Rect2(192, 64, 16, 16)
+_name = "ITEM_SLEEPING_POWDER"
+_description = "ITEM_SLEEPING_POWDER_DESCRIPTION"
+_type = 1
+_mana = 0
+_cost = 4
+_atlas_region = Rect2(192, 64, 16, 16)
+_atlas = ExtResource("1_csv0w")
