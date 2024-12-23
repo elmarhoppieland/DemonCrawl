@@ -122,3 +122,44 @@ func is_active() -> bool:
 ## Virtual method to override the return value of [method is_active].
 func _is_active() -> bool:
 	return false
+
+
+## Returns whether this [Collectible] is currently blinking.
+func is_blinking() -> bool:
+	return _is_blinking()
+
+
+## Virtual method to override the return value of [method is_blinking].
+func _is_blinking() -> bool:
+	return false
+
+
+## Returns whether this [Collectible] has a progress bar.
+func has_progress_bar() -> bool:
+	return _has_progress_bar()
+
+
+## Virtual method to override the return value of [method has_progress_bar].
+func _has_progress_bar() -> bool:
+	return false
+
+
+## Returns this [Collectible]'s progress bar's progress value. [method has_progress_bar]
+## must return true for this to be called, and [method get_max_progress] should return
+## a non-zero value.
+func get_progress() -> int:
+	return _get_progress()
+
+
+## Virtual method to override the return value of [method get_progress].
+func _get_progress() -> int:
+	return 0
+
+## Returns this [Collectible]'s progress bar's maximum progress value. [method has_progress_bar]
+## must return true for this to be called.
+func get_max_progress() -> int:
+	return _get_max_progress()
+
+
+func _get_max_progress() -> int:
+	return 0

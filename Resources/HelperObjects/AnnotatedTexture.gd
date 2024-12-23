@@ -7,7 +7,18 @@ class_name AnnotatedTexture
 
 ## Returns this texture's annotation text.
 func get_annotation_text() -> String:
+	var override := _get_annotation_text()
+	if not override.is_empty():
+		return override
 	return get_annotation_title() + "\n[color=gray]" + get_annotation_subtext() + "[/color]"
+
+
+## Virtual method to override the return value of [method get_annotation_text].
+## Return an empty [String] to fallback to the default (joining [method get_annotation_title]
+## and [method get_annotation_subtext]). If a non-empty [String] is returned,
+## [method get_annotation_title] and [method get_annotation_subtext] are not called.
+func _get_annotation_text() -> String:
+	return ""
 
 
 ## Returns this texture's annotation title, to be displayed on top in the annotation text.

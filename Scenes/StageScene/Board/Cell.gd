@@ -42,6 +42,8 @@ func open(force: bool = false) -> void:
 	
 	set_mode(Mode.VISIBLE)
 	
+	Quest.get_current().get_instance().mana_gain(get_value(), self)
+	
 	if is_occupied():
 		get_object().reveal()
 		if force:

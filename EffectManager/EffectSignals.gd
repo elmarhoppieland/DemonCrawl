@@ -31,3 +31,4 @@ class_name __EffectSignals
 @warning_ignore("unused_signal") signal get_shop_item_count(item_count: int)
 @warning_ignore("unused_signal") signal restore_life(life: int, source: Object)
 @warning_ignore("unused_signal") signal lose_life(life: int, source: Object)
+@warning_ignore("unused_signal") signal gain_mana(mana: int, source: Object)

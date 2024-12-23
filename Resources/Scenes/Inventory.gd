@@ -19,7 +19,7 @@ func _ready() -> void:
 	)
 	Quest.get_current().get_instance().inventory_item_transformed.connect(func(old_item: Item, new_item: Item) -> void:
 		_item_displays[new_item] = _item_displays[old_item]
-		_item_displays[old_item].set_collectible(new_item)
+		_item_displays[old_item].collectible = new_item
 		_item_displays.erase(old_item)
 	)
 

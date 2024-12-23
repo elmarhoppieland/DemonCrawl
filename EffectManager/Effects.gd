@@ -181,3 +181,9 @@ static func lose_life(life: int, source: Object) -> int:
 	life = EffectManager.propagate(MutableSignals.lose_life, [life, source], 0)
 	EffectManager.propagate(Signals.lose_life, [life, source])
 	return life
+
+
+static func gain_mana(mana: int, source: Object) -> int:
+	mana = EffectManager.propagate(MutableSignals.gain_mana, [mana, source], 0)
+	EffectManager.propagate(Signals.gain_mana, [mana, source])
+	return mana

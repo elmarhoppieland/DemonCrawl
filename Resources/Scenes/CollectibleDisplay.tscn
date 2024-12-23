@@ -1,7 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dppdeqskdv8hc"]
+[gd_scene load_steps=7 format=3 uid="uid://dppdeqskdv8hc"]
 
 [ext_resource type="Script" path="res://Resources/Scenes/CollectibleDisplay.gd" id="1_mhrok"]
+[ext_resource type="Shader" path="res://Resources/Scenes/CollectibleTexture.gdshader" id="3_g7q54"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/TooltipGrabber.gd" id="4_qke8a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0nv3h"]
+resource_local_to_scene = true
+shader = ExtResource("3_g7q54")
+shader_parameter/glow = 0.0868106
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sncxu"]
+content_margin_top = 1.0
+bg_color = Color(0, 0, 0, 1)
+expand_margin_top = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kwqat"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="CollectibleDisplay" type="Control"]
 layout_mode = 3
@@ -22,12 +36,31 @@ color = Color(1, 1, 1, 0)
 
 [node name="CollectibleTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_0nv3h")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.0627451, 0.87451, 0.501961, 1)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_sncxu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kwqat")
+max_value = 300.0
+value = 300.0
+show_percentage = false
 
 [node name="TooltipGrabber" type="Node" parent="."]
 unique_name_in_owner = true

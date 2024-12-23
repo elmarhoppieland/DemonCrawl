@@ -25,7 +25,7 @@ class_name LargeCollectibleDisplay
 		if not is_node_ready():
 			await ready
 		
-		_collectible_display.set_collectible(value)
+		_collectible_display.collectible = value
 # ==============================================================================
 @onready var _collectible_container: MarginContainer = %CollectibleContainer
 @onready var _collectible_display: CollectibleDisplay = %CollectibleDisplay

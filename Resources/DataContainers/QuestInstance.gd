@@ -197,3 +197,19 @@ func item_has(item: Item, exact: bool = false) -> bool:
 @warning_ignore("shadowed_variable")
 func spend_coins(coins: int, destination: Object) -> void:
 	self.coins -= Effects.spend_coins(coins, destination)
+
+
+func mana_gain(mana: int, source: Object) -> void:
+	mana = Effects.gain_mana(mana, source)
+	
+	var rng := RandomNumberGenerator.new()
+	rng.seed = rng.randi()
+	
+	var mana_items: Array[Item] = []
+	mana_items.assign(_items.filter(func(item: Item) -> bool: return item.can_recieve_mana()))
+	
+	if mana_items.is_empty():
+		return
+	
+	for i in mana:
+		mana_items[rng.randi() % mana_items.size()].gain_mana(1)

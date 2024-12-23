@@ -14,3 +14,4 @@ _mana = 300
 _cost = 7
 _atlas_region = Rect2(400, 16, 16, 16)
 _atlas = ExtResource("1_ykit7")
+_current_mana = 0

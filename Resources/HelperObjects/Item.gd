@@ -26,7 +26,7 @@ const TYPE_COLORS := {
 @export var _name := "" : set = _set_name
 @export_multiline var _description := ""
 @export var _type := Type.PASSIVE : set = _set_type, get = get_type
-@export var _mana := 0 : get = get_max_mana
+@export var _mana := 0 : set = _set_max_mana, get = get_max_mana
 @export var _cost := 0 : get = get_cost
 @export var _atlas_region := Rect2(0, 0, 16, 16) :
 	set(value):
@@ -36,9 +36,9 @@ const TYPE_COLORS := {
 	set(value):
 		_atlas = value
 		emit_changed()
+@export var _current_mana := 0 : set = set_mana, get = get_mana
 # ==============================================================================
 var _in_inventory := false
-var _current_mana := 0 : set = set_mana, get = get_mana
 # ==============================================================================
 
 #region internals
@@ -60,6 +60,19 @@ func _get_atlas_region() -> Rect2:
 	return _atlas_region
 
 
+func _get_annotation_text() -> String:
+	if not has_mana():
+		return ""
+	
+	return "%s\n[%d/%d %s]\n[color=gray]%s[/color]" % [
+		get_annotation_title(),
+		get_mana(),
+		get_max_mana(),
+		tr("MANA"),
+		get_annotation_subtext()
+	]
+
+
 func _get_annotation_title() -> String:
 	return "[color=#" + get_texture_bg_color().to_html(false) + "]" + tr(_name) + "[/color]"
 
@@ -70,6 +83,22 @@ func _get_annotation_subtext() -> String:
 
 func _get_texture_bg_color() -> Color:
 	return TYPE_COLORS.get(get_type(), Color.TRANSPARENT)
+
+
+func _is_blinking() -> bool:
+	return is_charged()
+
+
+func _has_progress_bar() -> bool:
+	return has_mana()
+
+
+func _get_progress() -> int:
+	return get_mana()
+
+
+func _get_max_progress() -> int:
+	return get_max_mana()
 
 
 func _export() -> Dictionary:
@@ -93,7 +122,7 @@ static func _import(value: Dictionary) -> Item:
 
 
 func _property_can_revert(property: StringName) -> bool:
-	return property in get_script().get_script_property_list().map(func(prop: Dictionary): return prop.name)
+	return get_script().get_script_property_list().any(func(prop: Dictionary): return prop.name == property)
 
 
 func _property_get_revert(property: StringName) -> Variant:
@@ -110,9 +139,10 @@ func _property_get_revert(property: StringName) -> Variant:
 
 
 func _validate_property(property: Dictionary) -> void:
-	if not Engine.is_editor_hint():
-		if property.name == "_in_inventory":
-			property.usage |= PROPERTY_USAGE_STORAGE
+	match property.name:
+		"_in_inventory":
+			if not Engine.is_editor_hint():
+				property.usage |= PROPERTY_USAGE_STORAGE
 
 
 func _set_name(name: String) -> void:
@@ -128,6 +158,11 @@ func _set_name(name: String) -> void:
 
 func _set_type(type: Type) -> void:
 	_type = type
+	emit_changed()
+
+
+func _set_max_mana(mana: int) -> void:
+	_mana = mana
 	emit_changed()
 
 #endregion
@@ -226,10 +261,10 @@ func _is_active() -> bool:
 	return _in_inventory
 
 
-## Sets this items current mana to [code]mana[/code].
+## Sets this item's current mana to [code]mana[/code].
 func set_mana(mana: int) -> void:
 	mana = clampi(mana, 0, get_max_mana())
-	_current_mana = _mana
+	_current_mana = mana
 	emit_changed()
 
 

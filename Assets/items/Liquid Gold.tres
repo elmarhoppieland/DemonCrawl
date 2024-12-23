@@ -14,3 +14,4 @@ _mana = 0
 _cost = 5
 _atlas_region = Rect2(96, 32, 16, 16)
 _atlas = ExtResource("1_truwv")
+_current_mana = 0

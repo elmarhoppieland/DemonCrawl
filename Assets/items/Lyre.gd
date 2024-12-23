@@ -3,7 +3,7 @@ extends Item
 
 # ==============================================================================
 
-func use() -> void:
+func _use() -> void:
 	if not get_tree().current_scene is StageSelect:
 		return
 	
