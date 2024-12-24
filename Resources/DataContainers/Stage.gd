@@ -210,6 +210,10 @@ func get_scene() -> StageScene:
 	return _scene
 
 
+func has_scene() -> bool:
+	return get_scene() != null
+
+
 func get_board() -> Board:
 	return get_scene().get_board()
 

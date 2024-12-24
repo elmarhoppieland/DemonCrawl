@@ -213,3 +213,10 @@ func mana_gain(mana: int, source: Object) -> void:
 	
 	for i in mana:
 		mana_items[rng.randi() % mana_items.size()].gain_mana(1)
+
+
+func damage(amount: int, source: Object) -> void:
+	amount = Effects.damage(amount, source)
+	life_lose(amount, source)
+	if Stage.has_current() and Stage.get_current().has_scene():
+		Stage.get_current().get_board().get_camera().shake()
