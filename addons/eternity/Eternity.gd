@@ -60,6 +60,8 @@ static func get_saved_value(save_path: String, script: Script, key: String) -> V
 
 
 static func save(path_name: String = "") -> void:
+	var partial_time := 0
+	
 	if Engine.is_editor_hint():
 		return
 	
@@ -67,6 +69,8 @@ static func save(path_name: String = "") -> void:
 	
 	if file_path.is_empty():
 		return
+	
+	var time := Time.get_ticks_usec()
 	
 	var file := _save_cfg if path_name.is_empty() else EternalFile.new()
 	
@@ -94,13 +98,18 @@ static func save(path_name: String = "") -> void:
 			#elif key in _named_values[section] and _named_values[section][key] == path_name:
 				#file.set_value(section, key, value)
 	
+	var parital_begin_time := Time.get_ticks_usec()
 	file.save(file_path)
+	partial_time += Time.get_ticks_usec() - parital_begin_time
 	
 	#for named_path in named_cfgs:
 		#var cfg: EternalFile = named_cfgs[named_path]
 		#cfg.save(_named_paths[named_path])
 	
 	saved.emit(file_path)
+	
+	print("Saving took %d ms." % ((Time.get_ticks_usec() - time) / 1e3))
+	print("Partial time is %d ms." % (partial_time / 1e3))
 
 
 static func get_save_name(path_name: String = "") -> String:

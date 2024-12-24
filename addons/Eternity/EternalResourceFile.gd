@@ -35,7 +35,8 @@ func save(path: String) -> void:
 	if not file:
 		push_error("Could not open file '%s': %s" % [path, error_string(FileAccess.get_open_error())])
 		return
-	file.store_line(encode_to_text())
+	#file.store_line(encode_to_text())
+	encode_to_file(file)
 	file.close()
 
 
@@ -351,6 +352,132 @@ func _parse_value(value: String) -> Variant:
 ## Encodes all saved data into a [String].
 func encode_to_text() -> String:
 	var result := ""
+	var stream := encode_to_stream()
+	while true:
+		var value = stream.get_next()
+		if stream.is_finished():
+			return result
+		result += value
+	return result
+
+
+#func encode_to_text() -> String:
+	#var result := ""
+	#var ext_resources: Array[Resource] = []
+	#var sub_resources: Array[Resource] = []
+	#
+	#_prepare_resource_list()
+	#
+	#for id in _resources:
+		#var resource: Resource = _resources[id]
+		#if resource.resource_path.is_empty():
+			#sub_resources.append(resource)
+		#else:
+			#ext_resources.append(resource)
+	#
+	#for ext_resource in ext_resources:
+		#result += "[ext_resource path=\"%s\" id=\"%s\"]\n\n" % [
+			#ext_resource.resource_path,
+			#_stringify_uid(_resource_get_uid(ext_resource)),
+		#]
+	#for sub_resource in sub_resources:
+		#var script := sub_resource.get_script() as Script
+		#if script:
+			#result += "[sub_resource script=\"%s\" id=\"%s\"]\n" % [
+				#UserClassDB.script_get_identifier(script),
+				#_stringify_uid(_resource_get_uid(sub_resource))
+			#]
+		#else:
+			#result += "[sub_resource class=\"%s\" id=\"%s\"]\n" % [
+				#sub_resource.get_class(),
+				#_stringify_uid(_resource_get_uid(sub_resource))
+			#]
+		#
+		#for property in sub_resource.get_property_list():
+			#if property.name == "script":
+				#continue
+			#if property.usage & PROPERTY_USAGE_STORAGE:
+				#var value: Variant = sub_resource[property.name]
+				#result += "%s = %s\n" % [property.name, _serialize_value(value)]
+		#
+		#result += "\n"
+	#
+	#for script in get_scripts():
+		#result += "[%s]\n" % script
+		#for key in get_eternals(script):
+			#var value := _serialize_value(get_eternal(script, key))
+			#result += "%s = %s\n" % [key, value]
+		#result += "\n"
+	#return result.strip_edges()
+
+
+#func encode_to_file(file: FileAccess) -> void:
+	#var ext_resources: Array[Resource] = []
+	#var sub_resources: Array[Resource] = []
+	#
+	#_prepare_resource_list()
+	#
+	#for id in _resources:
+		#var resource: Resource = _resources[id]
+		#if resource.resource_path.is_empty():
+			#sub_resources.append(resource)
+		#else:
+			#ext_resources.append(resource)
+	#
+	#for ext_resource in ext_resources:
+		#file.store_line("[ext_resource path=\"%s\" id=\"%s\"]\n" % [
+			#ext_resource.resource_path,
+			#_stringify_uid(_resource_get_uid(ext_resource)),
+		#])
+	#for sub_resource in sub_resources:
+		#var script := sub_resource.get_script() as Script
+		#if script:
+			#file.store_line("[sub_resource script=\"%s\" id=\"%s\"]" % [
+				#UserClassDB.script_get_identifier(script),
+				#_stringify_uid(_resource_get_uid(sub_resource))
+			#])
+		#else:
+			#file.store_line("[sub_resource class=\"%s\" id=\"%s\"]" % [
+				#sub_resource.get_class(),
+				#_stringify_uid(_resource_get_uid(sub_resource))
+			#])
+		#
+		#for property in sub_resource.get_property_list():
+			#if property.name == "script":
+				#continue
+			#if property.usage & PROPERTY_USAGE_STORAGE:
+				#var value: Variant = sub_resource[property.name]
+				#file.store_line("%s = %s" % [property.name, _serialize_value(value)])
+		#
+		#file.store_line("")
+	#
+	#for script in get_scripts():
+		#file.store_line("[%s]" % script)
+		#for key in get_eternals(script):
+			#var value := _serialize_value(get_eternal(script, key))
+			#file.store_line("%s = %s" % [key, value])
+		#
+		#file.store_line("")
+
+
+func encode_to_file(file: FileAccess) -> void:
+	var stream := encode_to_stream()
+	while true:
+		var value = stream.get_next()
+		if stream.is_finished():
+			return
+		file.store_string(value)
+
+
+func encode_to_stream() -> ValueStream:
+	var stream := ValueStream.new()
+	_stream_encode(stream)
+	return stream
+
+
+func _stream_encode(stream: ValueStream) -> void:
+	await stream.start()
+	
 	var ext_resources: Array[Resource] = []
 	var sub_resources: Array[Resource] = []
 	
@@ -364,39 +491,41 @@ func encode_to_text() -> String:
 			ext_resources.append(resource)
 	
 	for ext_resource in ext_resources:
-		result += "[ext_resource path=\"%s\" id=\"%s\"]\n\n" % [
+		await stream.step("[ext_resource path=\"%s\" id=\"%s\"]\n\n" % [
 			ext_resource.resource_path,
 			_stringify_uid(_resource_get_uid(ext_resource)),
-		]
+		])
 	for sub_resource in sub_resources:
 		var script := sub_resource.get_script() as Script
 		if script:
-			result += "[sub_resource script=\"%s\" id=\"%s\"]\n" % [
+			await stream.step("[sub_resource script=\"%s\" id=\"%s\"]\n" % [
 				UserClassDB.script_get_identifier(script),
 				_stringify_uid(_resource_get_uid(sub_resource))
-			]
+			])
 		else:
-			result += "[sub_resource class=\"%s\" id=\"%s\"]\n" % [
+			await stream.step("[sub_resource class=\"%s\" id=\"%s\"]\n" % [
 				sub_resource.get_class(),
 				_stringify_uid(_resource_get_uid(sub_resource))
-			]
+			])
 		
 		for property in sub_resource.get_property_list():
 			if property.name == "script":
 				continue
 			if property.usage & PROPERTY_USAGE_STORAGE:
 				var value: Variant = sub_resource[property.name]
-				result += "%s = %s\n" % [property.name, _serialize_value(value)]
+				await stream.step("%s = %s\n" % [property.name, _serialize_value(value)])
 		
-		result += "\n"
+		await stream.step("\n")
 	
 	for script in get_scripts():
-		result += "[%s]\n" % script
+		await stream.step("[%s]\n" % script)
 		for key in get_eternals(script):
 			var value := _serialize_value(get_eternal(script, key))
-			result += "%s = %s\n" % [key, value]
-		result += "\n"
-	return result.strip_edges()
+			await stream.step("%s = %s\n" % [key, value])
+		
+		await stream.step("\n")
+	
+	stream.finish()
 
 
 func _serialize_value(value: Variant) -> String:
@@ -532,3 +661,29 @@ class PendingResourceDictionary extends PendingResourceBase:
 				dict[key.create(resources)] = dict[key]
 				dict.erase(key)
 		return dict
+
+
+class ValueStream:
+	var _value: Variant = null
+	var _finished := false : get = is_finished
+	signal _queried()
+	
+	func get_next() -> Variant:
+		_queried.emit()
+		if _finished:
+			return null
+		return _value
+	
+	func step(next: Variant) -> void:
+		_value = next
+		await _queried
+	
+	func start() -> void:
+		_finished = false
+		await _queried
+	
+	func finish() -> void:
+		_finished = true
+	
+	func is_finished() -> bool:
+		return _finished

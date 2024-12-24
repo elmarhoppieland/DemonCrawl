@@ -51,13 +51,16 @@ func _ready() -> void:
 	
 	Eternity.saved.connect(func(path: String) -> void:
 		Debug._flush_log_file()
-		Debug.log_event("Saved the current data to disk (to path '%s')" % path, Color.DARK_SALMON)
+		Debug.log_event("Saved the current data to disk (to path '%s')" % path, Color.DARK_SALMON, true, false)
 	)
 	Eternity.loaded.connect(func(path: String):
-		Debug.log_event("Loaded from the save at path '%s'" % path, Color.CORAL)
+		Debug.log_event("Loaded data from disk (from path '%s')" % path, Color.CORAL, true, false)
 	)
 	
 	update()
+	
+	var thread := AutoThread.new()
+	thread.start(UserClassDB.reload_classes)
 
 
 func _process(_delta: float) -> void:
@@ -75,7 +78,7 @@ func _exit_tree() -> void:
 ## Logs [code]message[/code], adding a new line in the log file, and if
 ## [code]print_to_console[/code] is [code]true[/code] and this is a debug build,
 ## prints to the console.
-static func log_event(message: String, color: Color = Color.AQUA, print_to_console: bool = true) -> void:
+static func log_event(message: String, color: Color = Color.AQUA, print_to_console: bool = true, show_toast: bool = true) -> void:
 	if OS.is_debug_build() and print_to_console:
 		print_rich("[color=#%s]%s[/color]" % [color.to_html(),  message])
 	
@@ -83,7 +86,8 @@ static func log_event(message: String, color: Color = Color.AQUA, print_to_conso
 		_log_queue += "\n"
 	_log_queue += "[%s] %s" % [Time.get_datetime_string_from_system().replace("T", " @ "), message]
 	
-	Toasts.add_debug_toast(message)
+	if show_toast:
+		Toasts.add_debug_toast(message)
 
 
 ## Logs [code]error[/code], and prints an error message.

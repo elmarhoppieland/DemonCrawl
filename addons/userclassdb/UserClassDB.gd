@@ -43,6 +43,8 @@ static var _classes := {}
 static var _initialized := false
 
 static var _frozen_classes := {}
+
+static var _script_id_cache := {}
 # ==============================================================================
 
 func _init() -> void:
@@ -556,6 +558,9 @@ static func script_get_class(script: Script) -> StringName:
 ## this method needs to fetch all classes, while [method script_get_class] can use
 ## [ProjectSettings]'s global class list.
 static func script_get_identifier(script: Script, use_class_if_available: bool = true) -> StringName:
+	if script in _script_id_cache and not Engine.is_editor_hint():
+		return _script_id_cache[script]
+	
 	var id := &""
 	
 	for name in get_class_list():
@@ -566,8 +571,11 @@ static func script_get_identifier(script: Script, use_class_if_available: bool =
 	if use_class_if_available:
 		for class_data in ProjectSettings.get_global_class_list():
 			if class_data.path == id.substr(0, id.find(":", 6)):
-				return class_data.class + id.substr(id.find(":", 6))
+				id = class_data.class + id.substr(id.find(":", 6))
+				_script_id_cache[script] = id
+				return id
 	
+	_script_id_cache[script] = id
 	return id
 
 

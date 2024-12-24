@@ -81,4 +81,6 @@ func _on_finish_button_pressed() -> void:
 	
 	Quest.get_current().unlock_next_stage()
 	
+	Eternity.save()
+	
 	get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")
