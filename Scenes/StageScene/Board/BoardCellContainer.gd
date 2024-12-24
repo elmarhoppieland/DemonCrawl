@@ -44,13 +44,15 @@ func _process(_delta: float) -> void:
 		return
 	
 	if _hovered_cell and not _pressed_cell and Input.is_action_just_pressed("cell_open"):
-		if _hovered_cell.is_revealed():
+		_pressed_cell = _hovered_cell
+		
+		if not _hovered_cell.is_revealed():
+			_hovered_cell.check()
+		elif not _hovered_cell.is_occupied():
 			for cell in _hovered_cell.get_nearby_cells():
 				cell.check()
 		else:
-			_hovered_cell.check()
-		
-		_pressed_cell = _hovered_cell
+			_pressed_cell = null
 	
 	if _pressed_cell and Input.is_action_just_released("cell_open"):
 		if _pressed_cell == _hovered_cell:
