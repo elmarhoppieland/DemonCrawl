@@ -7,6 +7,8 @@ class_name CellObjectTextureRect
 # ==============================================================================
 var _delta_sum := 0.0
 # ==============================================================================
+@onready var _tooltip_grabber: TooltipGrabber = $TooltipGrabber
+# ==============================================================================
 
 func _ready() -> void:
 	var cell := owner as Cell
@@ -20,8 +22,13 @@ func _ready() -> void:
 			var palette := object.get_palette()
 			(material as ShaderMaterial).set_shader_parameter("palette_enabled", palette != null)
 			(material as ShaderMaterial).set_shader_parameter("palette", palette)
+			
+			_tooltip_grabber.enabled = object.has_annotation_text()
+			_tooltip_grabber.text = object.get_annotation_text()
 		else:
 			(material as ShaderMaterial).set_shader_parameter("palette_enabled", false)
+			
+			_tooltip_grabber.enabled = false
 		
 		_update()
 	)

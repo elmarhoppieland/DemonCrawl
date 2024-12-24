@@ -34,7 +34,7 @@ func reveal_active() -> void:
 	Quest.get_current().get_instance().damage(Stage.get_current().roll_power(), self)
 
 
-func get_tooltip_text() -> String:
+func _get_annotation_title() -> String:
 	return name
 
 

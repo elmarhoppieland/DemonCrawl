@@ -1,5 +1,5 @@
 @tool
-extends Texture2D
+extends AnnotatedTexture
 class_name CellObject
 
 ## A [Cell]'s object.
@@ -12,6 +12,7 @@ var _texture: Texture2D : get = get_texture
 # ==============================================================================
 
 #region internals
+
 func _init(cell_position: Vector2i = Vector2i.ZERO, stage: Stage = null) -> void:
 	_cell_position = cell_position
 	_stage = stage
@@ -48,6 +49,7 @@ func _is_pixel_opaque(x: int, y: int) -> bool:
 	if x > get_width() or y > get_width():
 		return true
 	return _texture.get_image().get_pixel(x, y).a8 != 0
+
 #endregion
 
 func get_cell() -> Cell:
@@ -124,18 +126,6 @@ func unhover() -> void:
 ## [br][br]When overriding, make sure to add [code]super()[/code] to keep the default behaviour.
 func kill() -> void:
 	clear()
-
-
-## Returns the text that should be in the tooltip when the player hovers over this object.
-## [br][br]When this returns an empty [String] ([code]""[/code]), does not show a tooltip (default behaviour).
-func get_tooltip_text() -> String:
-	return ""
-
-
-## Returns the text that should be in the tooltip subtext when the player hovers over this object.
-## [br][br]When this returns an empty [String] ([code]""[/code]), does not have any subtext (default behaviour).
-func get_tooltip_subtext() -> String:
-	return ""
 
 
 ## Called when this object is revealed by any means.
