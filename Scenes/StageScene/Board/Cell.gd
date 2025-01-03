@@ -45,11 +45,7 @@ func open(force: bool = false) -> void:
 	Quest.get_current().get_instance().mana_gain(get_value(), self)
 	
 	if is_occupied():
-		get_object().reveal()
-		if force:
-			get_object().reveal_passive()
-		else:
-			get_object().reveal_active()
+		get_object().reveal(force)
 	
 	Effects.cell_open(self)
 

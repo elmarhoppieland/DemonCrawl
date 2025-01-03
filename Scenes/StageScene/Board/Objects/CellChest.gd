@@ -10,7 +10,7 @@ func _get_texture() -> Icon:
 	return IconManager.get_icon_data("chests/default").create_texture()
 
 
-func interact() -> void:
+func _interact() -> void:
 	if tween:
 		return
 	
@@ -31,5 +31,5 @@ func interact() -> void:
 	tween.tween_callback(clear)
 
 
-func get_charitable_amount() -> int:
+func _get_charitable_amount() -> int:
 	return 5

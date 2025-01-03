@@ -8,7 +8,7 @@ func _get_texture() -> CompressedTexture2D:
 	return ResourceLoader.load("res://Assets/sprites/diamond.png")
 
 
-func interact() -> void:
+func _interact() -> void:
 	var value: int = Effects.get_diamond_value(5, get_cell())
 	get_quest_instance().coins += value
 	
@@ -22,9 +22,9 @@ func interact() -> void:
 	clear()
 
 
-func get_charitable_amount() -> int:
+func _get_charitable_amount() -> int:
 	return 5
 
 
-func is_charitable() -> bool:
+func _is_charitable() -> bool:
 	return true

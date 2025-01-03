@@ -26,11 +26,11 @@ func _get_texture() -> Texture2D:
 	return texture
 
 
-func get_animation_delta() -> float:
+func _get_animation_delta() -> float:
 	return 0.5
 
 
-func reveal_active() -> void:
+func _reveal_active() -> void:
 	Quest.get_current().get_instance().damage(Stage.get_current().roll_power(), self)
 
 
@@ -38,5 +38,5 @@ func _get_annotation_title() -> String:
 	return name
 
 
-func animate(time: float) -> void:
+func _animate(time: float) -> void:
 	get_texture().animate(1.0, time)

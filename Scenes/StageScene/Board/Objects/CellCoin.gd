@@ -11,15 +11,15 @@ func _get_texture() -> TextureSequence:
 	return texture
 
 
-func get_palette() -> CompressedTexture2D:
+func _get_palette() -> CompressedTexture2D:
 	return get_cell().get_theme_icon("coin_palette", "Cell")
 
 
-func get_animation_delta() -> float:
+func _get_animation_delta() -> float:
 	return 0.1
 
 
-func interact() -> void:
+func _interact() -> void:
 	var value: int = Effects.get_coin_value(1, get_cell())
 	get_quest_instance().coins += value
 	
@@ -47,13 +47,13 @@ func interact() -> void:
 	clear()
 
 
-func get_charitable_amount() -> int:
+func _get_charitable_amount() -> int:
 	return 1
 
 
-func is_charitable() -> bool:
+func _is_charitable() -> bool:
 	return true
 
 
-func animate(time: float) -> void:
+func _animate(time: float) -> void:
 	get_texture().animate(0.5, time)

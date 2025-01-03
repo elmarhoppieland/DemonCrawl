@@ -32,3 +32,4 @@ class_name __EffectSignals
 @warning_ignore("unused_signal") signal restore_life(life: int, source: Object)
 @warning_ignore("unused_signal") signal lose_life(life: int, source: Object)
 @warning_ignore("unused_signal") signal gain_mana(mana: int, source: Object)
+@warning_ignore("unused_signal") signal object_revealed(object: CellObject)

@@ -187,3 +187,8 @@ static func gain_mana(mana: int, source: Object) -> int:
 	mana = EffectManager.propagate(MutableSignals.gain_mana, [mana, source], 0)
 	EffectManager.propagate(Signals.gain_mana, [mana, source])
 	return mana
+
+
+static func object_revealed(object: CellObject, active: bool) -> void:
+	EffectManager.propagate(MutableSignals.object_revealed, [object, active])
+	EffectManager.propagate(Signals.object_revealed, [object, active])

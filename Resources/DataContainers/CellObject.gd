@@ -94,17 +94,35 @@ func _get_texture() -> Texture2D:
 
 ## Returns the object's color palette, to be inserted into the cell's shader.
 func get_palette() -> Texture2D:
+	return _get_palette()
+
+
+## Virtual method to override the object's color palette, to be inserted into the cell's shader.
+func _get_palette() -> Texture2D:
 	return null
 
 
 ## Returns the texture's animation frame duration, or [code]NAN[/code] if it does not have an animation.
 func get_animation_delta() -> float:
+	return _get_animation_delta()
+
+
+## Virtual method. Should return the texture's animation frame duration, or [code]NAN[/code]
+## if it does not have an animation.
+func _get_animation_delta() -> float:
 	return NAN
 
 
 ## Called when the player interacts (left-click or Q) with this object.
 func interact() -> void:
-	hover()
+	_interact()
+	
+	_hover()
+
+
+## Virtual method to react to this object being interacted with.
+func _interact() -> void:
+	pass
 
 
 ## Called when the player uses secondary interact (right-click or E) on this object.
@@ -112,8 +130,14 @@ func secondary_interact() -> void:
 	pass
 
 
-## Called when the player starts hovering over this object.
+## Trigger effects that occur when this object is hovered.
 func hover() -> void:
+	_hover()
+
+
+## Virtual method to react to being hovered. Called when the player starts hovering
+## over this object. Also called when the player interacts with this object.
+func _hover() -> void:
 	pass
 
 
@@ -128,45 +152,90 @@ func kill() -> void:
 	clear()
 
 
-## Called when this object is revealed by any means.
-func reveal() -> void:
+## Trigger any effects that occur when this object is revealed. If the player actively
+## opened the cell, typically by directly opening this cell or chording an adjacent
+## cell, [code]active[/code] should be [code]true[/code]. Otherwise, [code]active[/code]
+## should be [code]false[/code].
+func reveal(active: bool) -> void:
+	_reveal()
+	
+	if active:
+		reveal_active()
+	else:
+		reveal_passive()
+
+
+## Virtual method to react to this object being revealed by any means. This is called
+## [b]before[/b] [method _reveal_active] or [method _reveal_passive].
+func _reveal() -> void:
 	pass
 
 
-## Called when the player actively reveals this object, typically by directly
-## opening this cell or chording an adjacent cell.
+## Trigger any effects that occur when this object is actively revealed, typically
+## by directly opening this cell or chording an adjacent cell.
 func reveal_active() -> void:
+	_reveal_active()
+	
+	Effects.object_revealed(self, true)
+
+
+## Virtual method to react to this object being revealed. Called when the player
+## actively reveals this object, typically by directly opening this cell or chording
+## an adjacent cell.
+func _reveal_active() -> void:
 	pass
 
 
 ## Called when the player passively reveals this object, typically by using
 ## items or other abilities.
 func reveal_passive() -> void:
+	_reveal_passive()
+	
+	Effects.object_revealed(self, false)
+
+
+## Virtual method to react to being passively revealed. Called when the player passively
+## reveals this object, typically by using items or other abilities.
+func _reveal_passive() -> void:
 	pass
 
 
-## Called at the end of a stage when determining the charitable score.
-## Should return the amount of points this object gives.
+## Returns this object's score value for the charitable reward.
 func get_charitable_amount() -> int:
+	return _get_charitable_amount()
+
+
+## Virtual method. Called at the end of a stage when determining the charitable score.
+## Should return the amount of points this object gives.
+func _get_charitable_amount() -> int:
 	return 0
 
 
-## Called at the end of a stage when determining the charitable score.
+## Returns whether this object is charitable, i.e. whether this object's charitable
+## value should be considered when determining the player's charitable score.
+func is_charitable() -> bool:
+	return _is_charitable()
+
+
+## Virtual method. Called at the end of a stage when determining the charitable score.
 ## Should return [code]true[/code] if this object gives any charitable score,
 ## or [code]false[/code] if not.
-func is_charitable() -> bool:
+func _is_charitable() -> bool:
 	return false
 
 
-## Called when this object's texture (see [method get_texture]) is used somewhere.
+## Animates this object's texture.
+@warning_ignore("unused_parameter")
+func animate(time: float) -> void:
+	pass
+
+
+## Virtual method. Called when this object's texture (see [method get_texture]) is used somewhere.
 ## This method should be overridden to animate the texture.
 ## [br][br]If this method is not overridden, nothing happens and the texture does not
 ## animate.
-## [br][br][b]Note:[/b] This method is only called once, when the texture is created.
-## As such, it usually should either use [code]await[/code] or [method Signal.connect]
-## somewhere to keep animating the texture.
 @warning_ignore("unused_parameter")
-func animate(time: float) -> void:
+func _animate(time: float) -> void:
 	pass
 
 #region utilities
