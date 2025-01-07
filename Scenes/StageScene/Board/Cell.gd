@@ -44,6 +44,9 @@ func open(force: bool = false) -> void:
 	
 	Quest.get_current().get_instance().mana_gain(get_value(), self)
 	
+	if not is_occupied() and get_value() == 0 and randf() > 0.8:
+		_set_object(preload("res://Assets/loot_tables/Loot.tres").generate().new(get_board_position(), Stage.get_current()))
+	
 	if is_occupied():
 		get_object().reveal(force)
 	

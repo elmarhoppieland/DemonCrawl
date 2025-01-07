@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=2 format=3 uid="uid://s3q6chy65iag"]
+
+[ext_resource type="Script" path="res://Resources/DataContainers/LootTable.gd" id="1_gciuk"]
+
+[resource]
+script = ExtResource("1_gciuk")
+type = 0
+items_class = "Object"
+item_count = 8
+item_0/value = "CellCoin"
+item_0/weight = 1.0
+item_1/value = "CellDiamond"
+item_1/weight = 1.0
+item_2/value = "Object"
+item_2/weight = 0.0
+item_3/value = "Object"
+item_3/weight = 0.0
+item_4/value = "Object"
+item_4/weight = 0.0
+item_5/value = "Object"
+item_5/weight = 0.0
+item_6/value = "Object"
+item_6/weight = 0.0
+item_7/value = "Object"
+item_7/weight = 0.0

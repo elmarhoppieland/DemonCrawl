@@ -225,9 +225,8 @@ func _is_charitable() -> bool:
 
 
 ## Animates this object's texture.
-@warning_ignore("unused_parameter")
 func animate(time: float) -> void:
-	pass
+	_animate(time)
 
 
 ## Virtual method. Called when this object's texture (see [method get_texture]) is used somewhere.
