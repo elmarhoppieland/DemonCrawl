@@ -47,3 +47,7 @@ func _process(delta: float) -> void:
 
 func _update() -> void:
 	visible = _mode == Cell.Mode.VISIBLE
+
+
+func get_2d_anchor() -> Node2D:
+	return get_parent()

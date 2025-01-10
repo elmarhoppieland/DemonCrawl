@@ -44,19 +44,18 @@ func open(force: bool = false) -> void:
 	
 	Quest.get_current().get_instance().mana_gain(get_value(), self)
 	
-	if not is_occupied() and get_value() == 0 and randf() > 0.8:
-		_set_object(preload("res://Assets/loot_tables/Loot.tres").generate().new(get_board_position(), Stage.get_current()))
+	if not is_occupied() and get_value() == 0 and randf() > 0.8 * (1 - get_stage().get_density()):
+		spawn(preload("res://Assets/loot_tables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
 	
 	if is_occupied():
-		get_object().reveal(force)
+		get_object().notify_revealed(force)
 	
 	Effects.cell_open(self)
 
 
 ## Spawns an instance of the provided [CellObject] script in this [Cell].
-func spawn(object_script: Script) -> CellObject:
-	var instance = object_script.new()
-	assert(instance is CellObject, "A cell can only spawn a CellObject instance, but a %s was given." % UserClassDB.script_get_identifier(object_script))
+func spawn(base: CellObjectBase) -> CellObject:
+	var instance := base.create(self, get_stage())
 	_set_object(instance)
 	return instance
 
@@ -92,6 +91,11 @@ func unflag() -> void:
 		set_mode(Cell.Mode.HIDDEN)
 
 
+## Returns this [Cell]'s object's [TextureRect].
+func get_object_texture_rect() -> CellObjectTextureRect:
+	return %CellObjectTextureRect
+
+
 ## Returns all [Cell]s horizontally or diagonally adjacent to this [Cell].
 func get_nearby_cells() -> Array[Cell]:
 	const DIRECTIONS: Array[Vector2i] = [
@@ -113,21 +117,21 @@ func get_nearby_cells() -> Array[Cell]:
 	return cells
 
 
+## Returns an [Array] of all [Cell]s with the same value as this [Cell] that are directly
+## or indirectly connected to this [Cell] via other [Cell]s in the same group.
 func get_group() -> Array[Cell]:
 	var group: Array[Cell] = []
 	var to_explore: Array[Cell] = [self]
 	var visited: Array[Cell] = []
 	
 	while not to_explore.is_empty():
-		var current_cell: Cell = to_explore.pop_front()
-		if current_cell in visited:
-			continue
+		var current_cell := to_explore.pop_back() as Cell
 		
 		visited.append(current_cell)
 		group.append(current_cell)
 		
 		for cell in current_cell.get_nearby_cells():
-			if not cell in visited and cell.get_value() == get_value():
+			if cell not in visited and cell.get_value() == get_value() and cell not in to_explore:
 				to_explore.append(cell)
 	
 	return group
@@ -264,6 +268,13 @@ func get_value() -> int:
 ## Returns this [Cell]'s position on the [Board].
 func get_board_position() -> Vector2i:
 	return _board_position
+
+
+## Returns this [Cell]'s [Stage].
+## [br][br][b]Note:[/b] Currently, this method always returns the current [Stage].
+## However, this may change in the future.
+func get_stage() -> Stage:
+	return Stage.get_current()
 
 
 func _get_minimum_size() -> Vector2:

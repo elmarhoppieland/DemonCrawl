@@ -113,8 +113,8 @@ func _get_animation_delta() -> float:
 	return NAN
 
 
-## Called when the player interacts (left-click or Q) with this object.
-func interact() -> void:
+## Notifies this object that the player has interacted (left-click or Q) with it.
+func notify_interacted() -> void:
 	_interact()
 	
 	_hover()
@@ -125,13 +125,18 @@ func _interact() -> void:
 	pass
 
 
-## Called when the player uses secondary interact (right-click or E) on this object.
-func secondary_interact() -> void:
+## Notifies this object aht the player used secondary interact (right-click or E) on this object.
+func notify_secondary_interacted() -> void:
+	_secondary_interact()
+
+
+## Virtual method to react to this object being secondary interacted with.
+func _secondary_interact() -> void:
 	pass
 
 
-## Trigger effects that occur when this object is hovered.
-func hover() -> void:
+## Notifies this object that the player started hovering over this object.
+func notify_hovered() -> void:
 	_hover()
 
 
@@ -141,28 +146,39 @@ func _hover() -> void:
 	pass
 
 
-## Called when the player stops hovering over this object.
-func unhover() -> void:
+## Notifies this object that the player stopped hovering over this object.
+func notify_unhovered() -> void:
+	_unhover()
+
+
+## Virtual method to react to the player stopping hovering over this object.
+func _unhover() -> void:
 	pass
 
 
 ## Kills this object.
-## [br][br]When overriding, make sure to add [code]super()[/code] to keep the default behaviour.
 func kill() -> void:
 	clear()
+	
+	_kill()
+
+
+## Virtual method to react to being killed.
+func _kill() -> void:
+	pass
 
 
 ## Trigger any effects that occur when this object is revealed. If the player actively
 ## opened the cell, typically by directly opening this cell or chording an adjacent
 ## cell, [code]active[/code] should be [code]true[/code]. Otherwise, [code]active[/code]
 ## should be [code]false[/code].
-func reveal(active: bool) -> void:
+func notify_revealed(active: bool) -> void:
 	_reveal()
 	
 	if active:
-		reveal_active()
+		notify_revealed_active()
 	else:
-		reveal_passive()
+		notify_revealed_passive()
 
 
 ## Virtual method to react to this object being revealed by any means. This is called
@@ -173,7 +189,7 @@ func _reveal() -> void:
 
 ## Trigger any effects that occur when this object is actively revealed, typically
 ## by directly opening this cell or chording an adjacent cell.
-func reveal_active() -> void:
+func notify_revealed_active() -> void:
 	_reveal_active()
 	
 	Effects.object_revealed(self, true)
@@ -188,7 +204,7 @@ func _reveal_active() -> void:
 
 ## Called when the player passively reveals this object, typically by using
 ## items or other abilities.
-func reveal_passive() -> void:
+func notify_revealed_passive() -> void:
 	_reveal_passive()
 	
 	Effects.object_revealed(self, false)

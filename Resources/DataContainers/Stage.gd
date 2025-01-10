@@ -210,6 +210,11 @@ func get_scene() -> StageScene:
 	return _scene
 
 
+## Returns this [Stage]'s density, i.e. [code]monsters / area[/code].
+func get_density() -> float:
+	return float(monsters) / area()
+
+
 func has_scene() -> bool:
 	return get_scene() != null
 
