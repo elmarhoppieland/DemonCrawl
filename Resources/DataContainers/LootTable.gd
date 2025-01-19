@@ -11,9 +11,17 @@ class_name LootTable
 	set(value):
 		items_class = value
 		notify_property_list_changed()
+@export var auto_sort := true
 # ==============================================================================
 var items: Array[Dictionary] = []
 # ==============================================================================
+
+func _init() -> void:
+	if auto_sort and not Engine.is_editor_hint():
+		items.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+			return a.weight > b.weight
+		)
+
 
 func generate(modifier: float = 1.0) -> Variant:
 	var cumulative := PackedFloat32Array([items[0].weight])

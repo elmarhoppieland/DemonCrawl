@@ -31,6 +31,7 @@ base_script = ExtResource("5_46f8x")
 script = ExtResource("1_gciuk")
 type = 24
 items_class = "CellObjectBase"
+auto_sort = true
 item_count = 4
 item_0/value = SubResource("Resource_051o3")
 item_0/weight = 10.0
