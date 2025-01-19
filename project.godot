@@ -17,11 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-__EternityInitializer="*res://addons/Eternity/EternityInitializer.gd"
 Tooltip="res://Resources/Singletons/Tooltip.tscn"
 Focus="*res://Resources/Singletons/Focus.tscn"
 Debug="res://Resources/Singletons/Debug.tscn"
 Toasts="res://Resources/Singletons/Toasts.tscn"
+ChestPopup="res://Resources/Singletons/ChestPopup.tscn"
 
 [debug]
 

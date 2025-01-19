@@ -20,6 +20,8 @@ const CELL_SIZE := Vector2i(16, 16) ## The size of a [Cell] in pixels.
 # ==============================================================================
 var _board_position := Vector2i.ZERO : get = get_board_position
 # ==============================================================================
+@onready var _text_particles: TextParticles = %TextParticles
+# ==============================================================================
 signal mode_changed(mode: Mode) ## Emitted when the mode (see [method get_mode]) of this [Cell] changes.
 signal value_changed(value: int) ## Emitted when the value (see [method get_value]) of this [Cell] changes.
 signal object_changed(object: CellObject) ## Emitted when the object (see [method get_object]) of this [Cell] changes.
@@ -48,7 +50,7 @@ func open(force: bool = false) -> void:
 		spawn(preload("res://Assets/loot_tables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
 	
 	if is_occupied():
-		get_object().notify_revealed(force)
+		get_object().notify_revealed(not force)
 	
 	Effects.cell_open(self)
 
@@ -91,6 +93,13 @@ func unflag() -> void:
 		set_mode(Cell.Mode.HIDDEN)
 
 
+## Adds a particle on this [Cell] showing the given text in the given color preset.
+func add_text_particle(text: String, color: TextParticles.ColorPreset) -> void:
+	_text_particles.text_color_preset = color
+	_text_particles.text = text
+	_text_particles.emitting = true
+
+
 ## Returns this [Cell]'s object's [TextureRect].
 func get_object_texture_rect() -> CellObjectTextureRect:
 	return %CellObjectTextureRect
@@ -106,7 +115,7 @@ func get_nearby_cells() -> Array[Cell]:
 		Vector2i.DOWN + Vector2i.RIGHT,
 		Vector2i.DOWN,
 		Vector2i.DOWN + Vector2i.LEFT,
-		Vector2.LEFT
+		Vector2i.LEFT
 	]
 	
 	var cells: Array[Cell] = []
@@ -220,7 +229,8 @@ func get_data() -> CellData:
 
 func _set_object(value: CellObject) -> void:
 	_data.object = value
-	value._cell_position = _board_position
+	if value:
+		value._cell_position = _board_position
 	object_changed.emit(value)
 
 
@@ -233,6 +243,7 @@ func get_object() -> CellObject:
 
 ## Removes this [Cell]'s [CellObject], if it has one.
 func clear_object() -> void:
+	get_object().reset()
 	_set_object(null)
 
 
@@ -279,3 +290,8 @@ func get_stage() -> Stage:
 
 func _get_minimum_size() -> Vector2:
 	return CELL_SIZE
+
+
+func _on_interacted() -> void:
+	if is_occupied() and is_revealed():
+		get_object().notify_interacted()

@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://eodgm14e1fya"]
 
-[ext_resource type="Script" path="res://Board/ChestPopup/ChestPopup.gd" id="1_tf4w1"]
+[ext_resource type="Script" path="res://Resources/Singletons/ChestPopup.gd" id="1_tf4w1"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="2_skkm3"]
-[ext_resource type="PackedScene" uid="uid://d3fpf8gbjxsbx" path="res://Resources/CoinValue.tscn" id="4_jcs48"]
-[ext_resource type="Script" path="res://Board/ChestPopup/StringTableLabel.gd" id="5_rfrj4"]
-[ext_resource type="AnimationLibrary" uid="uid://b0bketi7rqh3c" path="res://Resources/DCPopupAnimationLibrary.tres" id="5_sbuu8"]
+[ext_resource type="PackedScene" uid="uid://d3fpf8gbjxsbx" path="res://Resources/Scenes/CoinValue.tscn" id="4_jcs48"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/StringTableLabel.gd" id="5_rfrj4"]
+[ext_resource type="AnimationLibrary" uid="uid://cgc18ruj3xe6x" path="res://Resources/DCPopupAnimationLibrary.tres" id="5_sbuu8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3ik3a"]
 font = ExtResource("2_skkm3")
@@ -56,6 +56,7 @@ color = Color(0, 0, 0, 1)
 [node name="ContentsAnchor" type="Node2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 8)
 
 [node name="MarginContainer" type="MarginContainer" parent="ContentsAnchor"]
 anchors_preset = 8

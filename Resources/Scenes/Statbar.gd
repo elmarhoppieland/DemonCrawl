@@ -7,28 +7,23 @@ class_name Statbar
 const _BUTTON_HOVER_ANIM_DURATION := 0.1
 const _INVENTORY_OPEN_CLOSE_ANIM_DURATION := 0.2
 # ==============================================================================
-static var _instance: Statbar
-# ==============================================================================
 var _inventory_button_hovered := false
 var _inventory_open := false
 # ==============================================================================
-@onready var _stats_tooltip_grabber: TooltipGrabber = %StatsTooltipGrabber
+#@onready var _stats_tooltip_grabber: TooltipGrabber = %StatsTooltipGrabber
+@onready var _stats: Stats = %Stats
 @onready var _inventory_icon_hover: TextureRect = %Hover
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
 
-func _enter_tree() -> void:
-	_instance = self
-
-
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory_toggle"):
-		_inventory_toggle()
+		inventory_toggle()
 	if _inventory_button_hovered and Input.is_action_just_pressed("interact"):
-		_inventory_toggle()
+		inventory_toggle()
 
 
-func _inventory_toggle() -> void:
+func inventory_toggle() -> void:
 	if _inventory_open:
 		_animation_player.play_backwards("inventory_show")
 	else:
@@ -37,8 +32,12 @@ func _inventory_toggle() -> void:
 	_inventory_open = not _inventory_open
 
 
-static func inventory_toggle() -> void:
-	_instance._inventory_toggle()
+func get_coin_position() -> Vector2:
+	return _stats.get_coin_position()
+
+
+func get_heart_position() -> Vector2:
+	return _stats.get_heart_position()
 
 
 func _on_inventory_icon_mouse_entered() -> void:
@@ -54,5 +53,5 @@ func _on_inventory_icon_mouse_exited() -> void:
 
 
 func _on_stats_tooltip_grabber_about_to_show() -> void:
-	_stats_tooltip_grabber.text = tr("STATS_YOUR_OVERVIEW")
+	pass
 	#_stats_tooltip_grabber.subtext = Stats.get_stats_tooltip_text()

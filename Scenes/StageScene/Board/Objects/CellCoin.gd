@@ -25,6 +25,8 @@ func _interact() -> void:
 	
 	get_cell().add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)
 	
+	tween_texture_to(get_stage().get_statbar().get_coin_position())
+	
 	#var texture := get_texture()
 	#var start_pos := get_cell().get_global_transform_with_canvas().origin + get_cell().size * get_cell().get_global_transform_with_canvas().get_scale() / 2
 	#var sprite := Stage.get_current().get_scene().tween_texture(texture, start_pos, Stats.get_coin_position(), 0.4, get_cell().get_sprite_material())

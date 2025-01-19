@@ -137,6 +137,8 @@ func get_theme() -> Theme:
 	_theme.set_icon("checking", "Cell", load(dir + "checking.png"))
 	if ResourceLoader.exists(dir + "coin.png"):
 		_theme.set_icon("coin_palette", "Cell", load(dir + "coin.png"))
+	if ResourceLoader.exists(dir + "heart.png"):
+		_theme.set_icon("heart_palette", "Cell", load(dir + "heart.png"))
 	_theme.set_icon("flag", "Cell", load(dir + "flag.png"))
 	_theme.set_icon("flag_bg", "Cell", load(dir + "flag_bg.png"))
 	_theme.set_icon("hidden", "Cell", load(dir + "full.png"))
@@ -208,6 +210,12 @@ func get_scene() -> StageScene:
 		_scene = current_scene
 	
 	return _scene
+
+
+func get_statbar() -> Statbar:
+	if has_scene():
+		return get_scene().get_statbar()
+	return null
 
 
 ## Returns this [Stage]'s density, i.e. [code]monsters / area[/code].

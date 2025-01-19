@@ -167,6 +167,7 @@ script = ExtResource("2_kk3qc")
 [node name="StatsTooltipGrabber" type="Node" parent="MarginContainer/HBoxContainer/Avatar"]
 unique_name_in_owner = true
 script = ExtResource("4_gcjxo")
+text = "STATS_YOUR_OVERVIEW"
 max_line_length = 48
 
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
@@ -220,6 +221,7 @@ custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
 [node name="Stats" parent="MarginContainer/HBoxContainer" instance=ExtResource("9_eg8cx")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_top = 4
