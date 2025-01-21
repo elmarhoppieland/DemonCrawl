@@ -58,7 +58,7 @@ static func register_object(object: Object, connect_flags: int = 0) -> void:
 ## once. Future propagations will only be passed one fewer time for each time
 ## the object gets unregistered.
 static func unregister_object(object: Object) -> void:
-	for method in UserClassDB.class_get_method_list(UserClassDB.script_get_class(object.get_script())):
+	for method in UserClassDB.class_get_method_list(UserClassDB.script_get_identifier(object.get_script())):
 		if method.return_type == TYPE_NIL:
 			Effects.Signals[method.name].disconnect(object[method.name])
 		else:

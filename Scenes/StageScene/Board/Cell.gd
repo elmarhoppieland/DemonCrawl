@@ -20,6 +20,8 @@ const CELL_SIZE := Vector2i(16, 16) ## The size of a [Cell] in pixels.
 # ==============================================================================
 var _board_position := Vector2i.ZERO : get = get_board_position
 # ==============================================================================
+@onready var _text_particles: TextParticles = %TextParticles
+# ==============================================================================
 signal mode_changed(mode: Mode) ## Emitted when the mode (see [method get_mode]) of this [Cell] changes.
 signal value_changed(value: int) ## Emitted when the value (see [method get_value]) of this [Cell] changes.
 signal object_changed(object: CellObject) ## Emitted when the object (see [method get_object]) of this [Cell] changes.
@@ -44,16 +46,18 @@ func open(force: bool = false) -> void:
 	
 	Quest.get_current().get_instance().mana_gain(get_value(), self)
 	
+	if not is_occupied() and get_value() == 0 and randf() > 0.8 * (1 - get_stage().get_density()):
+		spawn(preload("res://Assets/loot_tables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
+	
 	if is_occupied():
-		get_object().reveal(force)
+		get_object().notify_revealed(not force)
 	
 	Effects.cell_open(self)
 
 
 ## Spawns an instance of the provided [CellObject] script in this [Cell].
-func spawn(object_script: Script) -> CellObject:
-	var instance = object_script.new()
-	assert(instance is CellObject, "A cell can only spawn a CellObject instance, but a %s was given." % UserClassDB.script_get_identifier(object_script))
+func spawn(base: CellObjectBase) -> CellObject:
+	var instance := base.create(self, get_stage())
 	_set_object(instance)
 	return instance
 
@@ -89,6 +93,18 @@ func unflag() -> void:
 		set_mode(Cell.Mode.HIDDEN)
 
 
+## Adds a particle on this [Cell] showing the given text in the given color preset.
+func add_text_particle(text: String, color: TextParticles.ColorPreset) -> void:
+	_text_particles.text_color_preset = color
+	_text_particles.text = text
+	_text_particles.emitting = true
+
+
+## Returns this [Cell]'s object's [TextureRect].
+func get_object_texture_rect() -> CellObjectTextureRect:
+	return %CellObjectTextureRect
+
+
 ## Returns all [Cell]s horizontally or diagonally adjacent to this [Cell].
 func get_nearby_cells() -> Array[Cell]:
 	const DIRECTIONS: Array[Vector2i] = [
@@ -99,7 +115,7 @@ func get_nearby_cells() -> Array[Cell]:
 		Vector2i.DOWN + Vector2i.RIGHT,
 		Vector2i.DOWN,
 		Vector2i.DOWN + Vector2i.LEFT,
-		Vector2.LEFT
+		Vector2i.LEFT
 	]
 	
 	var cells: Array[Cell] = []
@@ -110,21 +126,21 @@ func get_nearby_cells() -> Array[Cell]:
 	return cells
 
 
+## Returns an [Array] of all [Cell]s with the same value as this [Cell] that are directly
+## or indirectly connected to this [Cell] via other [Cell]s in the same group.
 func get_group() -> Array[Cell]:
 	var group: Array[Cell] = []
 	var to_explore: Array[Cell] = [self]
 	var visited: Array[Cell] = []
 	
 	while not to_explore.is_empty():
-		var current_cell: Cell = to_explore.pop_front()
-		if current_cell in visited:
-			continue
+		var current_cell := to_explore.pop_back() as Cell
 		
 		visited.append(current_cell)
 		group.append(current_cell)
 		
 		for cell in current_cell.get_nearby_cells():
-			if not cell in visited and cell.get_value() == get_value():
+			if cell not in visited and cell.get_value() == get_value() and cell not in to_explore:
 				to_explore.append(cell)
 	
 	return group
@@ -213,7 +229,8 @@ func get_data() -> CellData:
 
 func _set_object(value: CellObject) -> void:
 	_data.object = value
-	value._cell_position = _board_position
+	if value:
+		value._cell_position = _board_position
 	object_changed.emit(value)
 
 
@@ -226,6 +243,7 @@ func get_object() -> CellObject:
 
 ## Removes this [Cell]'s [CellObject], if it has one.
 func clear_object() -> void:
+	get_object().reset()
 	_set_object(null)
 
 
@@ -263,5 +281,17 @@ func get_board_position() -> Vector2i:
 	return _board_position
 
 
+## Returns this [Cell]'s [Stage].
+## [br][br][b]Note:[/b] Currently, this method always returns the current [Stage].
+## However, this may change in the future.
+func get_stage() -> Stage:
+	return Stage.get_current()
+
+
 func _get_minimum_size() -> Vector2:
 	return CELL_SIZE
+
+
+func _on_interacted() -> void:
+	if is_occupied() and is_revealed():
+		get_object().notify_interacted()

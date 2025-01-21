@@ -132,8 +132,12 @@ class_name Stats
 	#coins -= amount
 
 
-#static func get_coin_position() -> Vector2:
-	#return _instance._coins_label.global_position
+func get_coin_position() -> Vector2:
+	return _coins_label.global_position
+
+
+func get_heart_position() -> Vector2:
+	return _life_label.global_position
 
 
 # TODO: should revive the player when called in the death() propagation without using any revives

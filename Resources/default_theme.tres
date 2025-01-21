@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=32 format=3 uid="uid://dmddrgkl04gph"]
+[gd_resource type="Theme" load_steps=33 format=3 uid="uid://dmddrgkl04gph"]
 
 [ext_resource type="StyleBox" uid="uid://cokg66aqb3ro1" path="res://Resources/xp_bar_fill.tres" id="1_0ok7g"]
 [ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://Assets/skins/default/bg.png" id="1_3w34f"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cid1fd12q4fvd" path="res://Assets/skins/default/checking.png" id="4_ayrbf"]
 [ext_resource type="Texture2D" uid="uid://dwfec06v6p7h1" path="res://Assets/skins/default/flag_bg.png" id="6_2el4w"]
 [ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/skins/default/flag.png" id="6_xtqrh"]
+[ext_resource type="Texture2D" uid="uid://bvlvfq854wx7v" path="res://Assets/sprites/heart_palette_default.png" id="7_jnxwc"]
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="7_th4e0"]
 [ext_resource type="Texture2D" uid="uid://dfwsoi1dna1xn" path="res://Assets/skins/forest/monster.png" id="8_tvptk"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="11_010p6"]
@@ -177,6 +178,7 @@ Cell/icons/checking = ExtResource("4_ayrbf")
 Cell/icons/coin_palette = ExtResource("3_7fqxt")
 Cell/icons/flag = ExtResource("6_xtqrh")
 Cell/icons/flag_bg = ExtResource("6_2el4w")
+Cell/icons/heart_palette = ExtResource("7_jnxwc")
 Cell/icons/hidden = ExtResource("4_701jt")
 Cell/icons/monster_atlas = ExtResource("8_tvptk")
 CodeEdit/font_sizes/font_size = 8

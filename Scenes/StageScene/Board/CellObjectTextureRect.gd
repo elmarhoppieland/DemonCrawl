@@ -19,14 +19,16 @@ func _ready() -> void:
 		texture = object
 		
 		if object:
-			var palette := object.get_palette()
-			(material as ShaderMaterial).set_shader_parameter("palette_enabled", palette != null)
-			(material as ShaderMaterial).set_shader_parameter("palette", palette)
+			material = object.get_material()
+			#var palette := object.get_palette()
+			#(material as ShaderMaterial).set_shader_parameter("palette_enabled", palette != null)
+			#(material as ShaderMaterial).set_shader_parameter("palette", palette)
 			
 			_tooltip_grabber.enabled = object.has_annotation_text()
 			_tooltip_grabber.text = object.get_annotation_text()
 		else:
-			(material as ShaderMaterial).set_shader_parameter("palette_enabled", false)
+			#(material as ShaderMaterial).set_shader_parameter("palette_enabled", false)
+			material = null
 			
 			_tooltip_grabber.enabled = false
 		
@@ -42,8 +44,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if texture and texture is CellObject:
 		_delta_sum += delta
-		texture.animate(_delta_sum)
+		#texture.animate(_delta_sum)
 
 
 func _update() -> void:
 	visible = _mode == Cell.Mode.VISIBLE
+
+
+func get_2d_anchor() -> Node2D:
+	return get_parent()

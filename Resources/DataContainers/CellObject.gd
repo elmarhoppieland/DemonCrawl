@@ -9,6 +9,7 @@ class_name CellObject
 @export var _stage: Stage : get = get_stage
 # ==============================================================================
 var _texture: Texture2D : get = get_texture
+var _material: Material : get = get_material
 # ==============================================================================
 
 #region internals
@@ -17,6 +18,13 @@ func _init(cell_position: Vector2i = Vector2i.ZERO, stage: Stage = null) -> void
 	_cell_position = cell_position
 	_stage = stage
 	assert(stage != null)
+	
+	var delta_sum := [0.0]
+	get_tree().process_frame.connect(func() -> void:
+		var delta := get_tree().root.get_process_delta_time()
+		delta_sum[0] += delta
+		animate(delta_sum[0])
+	)
 
 
 func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:
@@ -56,7 +64,9 @@ func get_cell() -> Cell:
 	if Engine.is_editor_hint():
 		var root := EditorInterface.get_edited_scene_root()
 		return root if root is Cell else null
-	return get_stage().get_board().get_cell(_cell_position)
+	if get_stage() and get_stage().has_scene():
+		return get_stage().get_board().get_cell(_cell_position)
+	return null
 
 
 func get_tree() -> SceneTree:
@@ -67,13 +77,11 @@ func get_stage() -> Stage:
 	return _stage
 
 
-## Clears this [CellObject], setting the cell's [member Cell.cell_object] to [code]null[/code].
+## Clears this [CellObject], setting the cell's object to [code]null[/code].
 func clear() -> void:
 	get_cell().clear_object()
-	
-	get_cell()._object_texture.tooltip_grabber.text = ""
-	get_cell()._object_texture.tooltip_grabber.subtext = ""
 
+#region virtuals
 
 ## Returns the object's texture.
 ## [br][br][b]Note:[/b] This object is a [Texture2D] by itself, so if can be used as
@@ -89,6 +97,37 @@ func get_texture() -> Texture2D:
 ## [br][br]After this is called, the texture is cached and this method is not called
 ## anymore on this object.
 func _get_texture() -> Texture2D:
+	return null
+
+
+## Returns this object's [Material], to be applied whenever its texture is used.
+func get_material() -> Material:
+	if _material:
+		return _material
+	
+	var override := _get_material()
+	if override:
+		_material = override
+		return override
+	
+	var palette := get_palette()
+	if palette:
+		var shader := ShaderMaterial.new()
+		shader.shader = preload("res://Scenes/StageScene/Board/CellObject.gdshader")
+		shader.set_shader_parameter("palette", palette)
+		shader.set_shader_parameter("palette_enabled", true)
+		_material = shader
+		return shader
+	
+	return null
+
+
+## Virtual method to override this object's material. If a value other than [code]null[/code]
+## is returned, any other [Material] will be overridden by the returned one.
+## [br][br][b]Note:[/b] If [method _get_palette] does not return [code]null[/code],
+## that value will be used by default. However, this method will override that [Material]
+## if it does not return [code]null[/code].
+func _get_material() -> Material:
 	return null
 
 
@@ -113,8 +152,8 @@ func _get_animation_delta() -> float:
 	return NAN
 
 
-## Called when the player interacts (left-click or Q) with this object.
-func interact() -> void:
+## Notifies this object that the player has interacted (left-click or Q) with it.
+func notify_interacted() -> void:
 	_interact()
 	
 	_hover()
@@ -125,13 +164,18 @@ func _interact() -> void:
 	pass
 
 
-## Called when the player uses secondary interact (right-click or E) on this object.
-func secondary_interact() -> void:
+## Notifies this object aht the player used secondary interact (right-click or E) on this object.
+func notify_secondary_interacted() -> void:
+	_secondary_interact()
+
+
+## Virtual method to react to this object being secondary interacted with.
+func _secondary_interact() -> void:
 	pass
 
 
-## Trigger effects that occur when this object is hovered.
-func hover() -> void:
+## Notifies this object that the player started hovering over this object.
+func notify_hovered() -> void:
 	_hover()
 
 
@@ -141,28 +185,39 @@ func _hover() -> void:
 	pass
 
 
-## Called when the player stops hovering over this object.
-func unhover() -> void:
+## Notifies this object that the player stopped hovering over this object.
+func notify_unhovered() -> void:
+	_unhover()
+
+
+## Virtual method to react to the player stopping hovering over this object.
+func _unhover() -> void:
 	pass
 
 
 ## Kills this object.
-## [br][br]When overriding, make sure to add [code]super()[/code] to keep the default behaviour.
 func kill() -> void:
 	clear()
+	
+	_kill()
+
+
+## Virtual method to react to being killed.
+func _kill() -> void:
+	pass
 
 
 ## Trigger any effects that occur when this object is revealed. If the player actively
 ## opened the cell, typically by directly opening this cell or chording an adjacent
 ## cell, [code]active[/code] should be [code]true[/code]. Otherwise, [code]active[/code]
 ## should be [code]false[/code].
-func reveal(active: bool) -> void:
+func notify_revealed(active: bool) -> void:
 	_reveal()
 	
 	if active:
-		reveal_active()
+		notify_revealed_active()
 	else:
-		reveal_passive()
+		notify_revealed_passive()
 
 
 ## Virtual method to react to this object being revealed by any means. This is called
@@ -173,7 +228,7 @@ func _reveal() -> void:
 
 ## Trigger any effects that occur when this object is actively revealed, typically
 ## by directly opening this cell or chording an adjacent cell.
-func reveal_active() -> void:
+func notify_revealed_active() -> void:
 	_reveal_active()
 	
 	Effects.object_revealed(self, true)
@@ -188,7 +243,7 @@ func _reveal_active() -> void:
 
 ## Called when the player passively reveals this object, typically by using
 ## items or other abilities.
-func reveal_passive() -> void:
+func notify_revealed_passive() -> void:
 	_reveal_passive()
 	
 	Effects.object_revealed(self, false)
@@ -225,9 +280,8 @@ func _is_charitable() -> bool:
 
 
 ## Animates this object's texture.
-@warning_ignore("unused_parameter")
 func animate(time: float) -> void:
-	pass
+	_animate(time)
 
 
 ## Virtual method. Called when this object's texture (see [method get_texture]) is used somewhere.
@@ -237,6 +291,20 @@ func animate(time: float) -> void:
 @warning_ignore("unused_parameter")
 func _animate(time: float) -> void:
 	pass
+
+
+## Resets all properties modified by this object. This should be called when the object
+## is removed from its [Cell].
+func reset() -> void:
+	_reset()
+
+
+## Virtual method. Called when this object is removed from its [Cell]. Should
+## reset all properties modified by this object that should not persist.
+func _reset() -> void:
+	pass
+
+#endregion
 
 #region utilities
 
@@ -261,5 +329,14 @@ func life_restore(life: int, source: Object = self) -> void:
 
 func life_lose(life: int, source: Object = self) -> void:
 	get_quest_instance().life_lose(life, source)
+
+
+func tween_texture_to(position: Vector2, duration: float = 0.4) -> Tween:
+	var start_pos := get_cell().get_global_transform_with_canvas().origin + get_cell().size * get_cell().get_global_transform_with_canvas().get_scale() / 2
+	var sprite := Stage.get_current().get_scene().tween_texture(self, start_pos, position, duration, get_cell().get_object_texture_rect().material)
+	sprite.material = get_material()
+	var tween := sprite.create_tween()
+	tween.tween_property(sprite, "scale", Vector2.ZERO, 0.4).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	return tween
 
 #endregion

@@ -192,3 +192,9 @@ static func gain_mana(mana: int, source: Object) -> int:
 static func object_revealed(object: CellObject, active: bool) -> void:
 	EffectManager.propagate(MutableSignals.object_revealed, [object, active])
 	EffectManager.propagate(Signals.object_revealed, [object, active])
+
+
+static func get_heart_value(value: int = 1) -> int:
+	value = EffectManager.propagate(MutableSignals.get_heart_value, [value], 0)
+	EffectManager.propagate(Signals.get_heart_value, [value])
+	return value

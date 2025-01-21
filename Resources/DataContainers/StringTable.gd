@@ -8,6 +8,11 @@ static var _selected_locale := "en"
 var data := {}
 # ==============================================================================
 
+func _validate_property(property: Dictionary) -> void:
+	if property.name == "data":
+		property.usage |= PROPERTY_USAGE_STORAGE
+
+
 func _get_property_list() -> Array[Dictionary]:
 	var property_list: Array[Dictionary] = [{
 		"name": "locale",
@@ -17,11 +22,8 @@ func _get_property_list() -> Array[Dictionary]:
 	}, {
 		"name": "string_count",
 		"type": TYPE_INT,
-		"usage": PROPERTY_USAGE_EDITOR
-	}, {
-		"name": "data",
-		"type": TYPE_DICTIONARY,
-		"usage": PROPERTY_USAGE_NO_EDITOR
+		"usage": PROPERTY_USAGE_EDITOR | PROPERTY_USAGE_ARRAY,
+		"class_name": "Strings,string_"
 	}]
 	
 	for i in get_strings().size():
