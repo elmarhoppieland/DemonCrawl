@@ -6,8 +6,14 @@ class_name Stage
 
 # ==============================================================================
 const BG_TEXTURE_PATH := "res://Assets/skins/%s/bg.png"
+const MUSIC_PATH := "res://Assets/skins/%s/music.ogg"
+const AMBIENCE_A_PATH := "res://Assets/skins/%s/ambience_a.ogg"
+const AMBIENCE_B_PATH := "res://Assets/skins/%s/ambience_b.ogg"
+
 # ==============================================================================
 static var _current: Stage = Eternal.create(null) : get = get_current
+static var _audio_streams: Array[AudioStreamOggVorbis] = []
+static var _audio_players: Array[AudioStreamPlayer] = []
 # ==============================================================================
 @export var name := "" : ## The name of the stage.
 	set(value):
@@ -154,6 +160,40 @@ func create_icon() -> StageIcon:
 	icon.stage = self
 	return icon
 
+## Loads music and ambience into _audio_streams
+func load_music():
+	for music_path in [MUSIC_PATH, AMBIENCE_A_PATH, AMBIENCE_B_PATH]:
+		var full_music_path = music_path % name
+		if FileAccess.file_exists(full_music_path):
+			var audio_stream = load(full_music_path)
+			if audio_stream is AudioStreamOggVorbis:
+				audio_stream.loop = true
+				_audio_streams.append(audio_stream)
+			else:
+				Toasts.add_debug_toast("Failed to load music at %s" % full_music_path)
+
+## Creates _audio_players and adds them to the [Scene]
+func create_audio_players():
+	for stream in _audio_streams:
+		var audio_player = AudioStreamPlayer.new()
+		audio_player.stream = stream
+		get_scene().add_child(audio_player)
+		_audio_players.append(audio_player)
+
+func start_audio_players():
+	for player in _audio_players:
+		player.play()
+
+func play_music():
+	load_music()
+	create_audio_players()
+	start_audio_players()
+
+func stop_music():
+	for player in _audio_players:
+		player.stop()
+	_audio_players.clear()
+	_audio_streams.clear()
 
 ## Returns a [StageInstance] for this [Stage]. Reuses the same one if one was already created.
 func get_instance() -> StageInstance:

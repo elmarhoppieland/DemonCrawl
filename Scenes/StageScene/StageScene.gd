@@ -15,6 +15,7 @@ func _enter_tree() -> void:
 	#_stage_instance = Stage.get_current().get_instance()
 	if Stage.has_current():
 		theme = Stage.get_current().get_theme()
+		Stage.get_current().play_music()
 
 
 #func get_stage() -> Stage:
@@ -68,6 +69,7 @@ func cast(item: Item) -> Cell:
 
 func _on_board_stage_finished() -> void:
 	Stage.get_current().get_instance().set_timer_paused(true)
+	Stage.get_current().stop_music()
 	_finish_button.show()
 
 
