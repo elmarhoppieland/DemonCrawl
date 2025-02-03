@@ -12,8 +12,8 @@ const AMBIENCE_B_PATH := "res://Assets/skins/%s/ambience_b.ogg"
 
 # ==============================================================================
 static var _current: Stage = Eternal.create(null) : get = get_current
-static var _audio_streams: Array[AudioStreamOggVorbis] = []
-static var _audio_players: Array[AudioStreamPlayer] = []
+var _audio_streams: Array[AudioStreamOggVorbis] = []
+var _audio_players: Array[AudioStreamPlayer] = []
 # ==============================================================================
 @export var name := "" : ## The name of the stage.
 	set(value):
