@@ -14,3 +14,4 @@ _mana = 0
 _cost = 4
 _atlas_region = Rect2(48, 32, 16, 16)
 _atlas = ExtResource("1_k2ei0")
+_current_mana = 0

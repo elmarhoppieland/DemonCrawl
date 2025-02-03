@@ -66,7 +66,7 @@ func show_rewards() -> void:
 		
 		await get_tree().process_frame
 	
-	Quest.get_current().get_instance().score += total_score
+	Quest.get_current().get_attributes().score += total_score
 	
 	rewards_showing = false
 	rewards_shown = true
@@ -97,7 +97,7 @@ func get_score_reward(type: StringName) -> ScoreReward:
 			var specials := 0
 			
 			for i in Quest.get_current().stages.size():
-				if i == Quest.get_current().get_instance().selected_stage_idx:
+				if i == Quest.get_current().selected_stage_idx:
 					break
 				if Quest.get_current().stages[i] is SpecialStage:
 					specials += 1
@@ -106,14 +106,14 @@ func get_score_reward(type: StringName) -> ScoreReward:
 		"charitable":
 			var reward := ScoreReward.new(0)
 			for cell in Stage.get_current().get_instance().get_cells():
-				if cell.cell_object:
-					reward.add(cell.cell_object.get_charitable_amount())
+				if cell.object:
+					reward.add(cell.object.get_charitable_amount())
 			
 			reward.cap(ceili(Stage.get_current().get_instance().get_3bv() * 0.7))
 			return reward
 		"heartless":
 			var reward := ScoreReward.new(0)
-			if Quest.get_current().get_instance().life < Quest.get_current().get_instance().max_life:
+			if Quest.get_current().get_stats().life < Quest.get_current().get_stats().max_life:
 				for cell in Stage.get_current().get_instance().get_cells():
 					if cell.object is CellHeart:
 						reward.add(5)

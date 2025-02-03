@@ -147,7 +147,7 @@ class ItemFilter:
 			return false
 		if not (1 << item.get_type()) & _types:
 			return false
-		if _ignore_items_in_inventory and item.get_type() != Item.Type.CONSUMABLE and Quest.get_current().get_instance().item_has(item):
+		if _ignore_items_in_inventory and item.get_type() != Item.Type.CONSUMABLE and Quest.get_current().get_inventory().item_has(item):
 			return false
 		
 		return true

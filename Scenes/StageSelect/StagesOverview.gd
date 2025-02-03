@@ -53,12 +53,12 @@ func _on_quest_changed() -> void:
 			icon.show_icon = false
 		
 		if not Engine.is_editor_hint():
-			if i == get_quest().get_instance().selected_stage_idx:
+			if i == get_quest().selected_stage_idx:
 				get_tree().process_frame.connect(icon.select.bind(true), CONNECT_ONE_SHOT)
 				icon_selected.emit(icon)
 			
 			icon.selected.connect(func() -> void:
-				get_quest().get_instance().selected_stage_idx = i
+				get_quest().selected_stage_idx = i
 				icon_selected.emit(icon)
 			)
 

@@ -21,7 +21,7 @@ func _get_animation_delta() -> float:
 
 func _interact() -> void:
 	var value: int = Effects.get_coin_value(1, get_cell())
-	get_quest_instance().coins += value
+	get_stats().coins += value
 	
 	get_cell().add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)
 	

@@ -10,8 +10,8 @@ func stage_enter() -> void:
 	var highest_count := 0
 	var count := 0
 	var item_match: Item = null
-	for i in Quest.get_current().get_instance().get_item_count():
-		var item := Quest.get_current().get_instance().get_item(i)
+	for i in Quest.get_current().get_inventory().get_item_count():
+		var item := Quest.get_current().get_inventory().get_item(i)
 		if item == item_match:
 			count += 1
 		else:

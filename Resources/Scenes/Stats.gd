@@ -179,7 +179,7 @@ func _ready() -> void:
 	_update_defense_label()
 	_update_coins_label()
 	
-	Quest.get_current().get_instance().changed.connect(func() -> void:
+	Quest.get_current().get_stats().changed.connect(func() -> void:
 		_update_life_label()
 		_update_defense_label()
 		_update_coins_label()
@@ -190,7 +190,7 @@ func _update_life_label() -> void:
 	if not is_node_ready():
 		await ready
 	
-	_life_label.text = "%d/%d" % [Quest.get_current().get_instance().life, Quest.get_current().get_instance().max_life]
+	_life_label.text = "%d/%d" % [Quest.get_current().get_stats().life, Quest.get_current().get_stats().max_life]
 
 
 func _update_revives() -> void:
@@ -204,14 +204,14 @@ func _update_defense_label() -> void:
 	if not is_node_ready():
 		await ready
 	
-	_defense_label.text = str(Quest.get_current().get_instance().defense)
+	_defense_label.text = str(Quest.get_current().get_stats().defense)
 
 
 func _update_coins_label() -> void:
 	if not is_node_ready():
 		await ready
 	
-	_coins_label.text = str(Quest.get_current().get_instance().coins)
+	_coins_label.text = str(Quest.get_current().get_stats().coins)
 
 
 #class ChainData:

@@ -10,17 +10,16 @@ func apply_starting_values() -> void:
 		return
 	
 	for key in get_section_keys("Values"):
-		Quest.get_current().get_instance().set(key, get_value("Values", key))
-	
-	#for section in get_sections():
-		#if section in ["General"]:
-			#continue
-		#if not UserClassDB.class_exists(section):
-			#continue
-		#
-		#var script := UserClassDB.class_get_script(section)
-		#for key in get_section_keys(section):
-			#script.set(key, get_value(section, key))
+		var origin := Quest.get_current()
+		while "/" in key:
+			if key.get_slice("/", 0) not in origin:
+				Debug.log_error("Property '%s' not found in base '%s'." % [key.get_slice("/", 0), UserClassDB.script_get_identifier(origin.get_script())])
+				break
+			
+			origin = origin[key.get_slice("/", 0)]
+			key = key.substr(key.find("/") + 1)
+		
+		origin.set(key, get_value("Values", key))
 
 
 func open_quests() -> Array[QuestFile]:

@@ -10,7 +10,7 @@ func _get_texture() -> CompressedTexture2D:
 
 func _interact() -> void:
 	var value: int = Effects.get_diamond_value(5, get_cell())
-	get_quest_instance().coins += value
+	get_stats().coins += value
 	
 	get_cell().add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)
 	

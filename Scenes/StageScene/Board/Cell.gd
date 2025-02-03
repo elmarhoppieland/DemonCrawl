@@ -44,7 +44,7 @@ func open(force: bool = false) -> void:
 	
 	set_mode(Mode.VISIBLE)
 	
-	Quest.get_current().get_instance().mana_gain(get_value(), self)
+	Quest.get_current().get_inventory().mana_gain(get_value(), self)
 	
 	if not is_occupied() and get_value() == 0 and randf() > 0.8 * (1 - get_stage().get_density()):
 		spawn(preload("res://Assets/loot_tables/Loot.tres").generate(1 / (1 - get_stage().get_density())))

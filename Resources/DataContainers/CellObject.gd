@@ -312,23 +312,27 @@ func get_quest() -> Quest:
 	return Quest.get_current()
 
 
-func get_quest_instance() -> QuestInstance:
-	return get_quest().get_instance()
+func get_inventory() -> QuestInventory:
+	return get_quest().get_inventory()
+
+
+func get_stats() -> QuestStats:
+	return get_quest().get_stats()
 
 
 func get_items() -> Array[Item]:
 	var items: Array[Item] = []
-	for i in get_quest_instance().get_item_count():
-		items.append(get_quest_instance().get_item(i))
+	for i in get_inventory().get_item_count():
+		items.append(get_inventory().get_item(i))
 	return items
 
 
 func life_restore(life: int, source: Object = self) -> void:
-	get_quest_instance().life_restore(life, source)
+	get_stats().life_restore(life, source)
 
 
 func life_lose(life: int, source: Object = self) -> void:
-	get_quest_instance().life_lose(life, source)
+	get_stats().life_lose(life, source)
 
 
 func tween_texture_to(position: Vector2, duration: float = 0.4) -> Tween:

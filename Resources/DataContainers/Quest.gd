@@ -26,14 +26,17 @@ static var _current: Quest = Eternal.create(null) : set = _set_current, get = ge
 		emit_changed()
 	get:
 		return stages
+@export var selected_stage_idx := 0 :
+	set(value):
+		selected_stage_idx = value
+		emit_changed()
 
-@export var _instance: QuestInstance : get = get_instance
+@export var _inventory := QuestInventory.new() : get = get_inventory
+@export var _stats := QuestStats.new() : get = get_stats
+@export var _player_attributes := QuestPlayerAttributes.new() : get = get_attributes
 # ==============================================================================
 
-func _validate_property(property: Dictionary) -> void:
-	if property.name == "_instance":
-		property.usage &= ~PROPERTY_USAGE_EDITOR
-
+#region current
 
 static func _set_current(value: Quest) -> void:
 	_current = value
@@ -54,6 +57,9 @@ static func has_current() -> bool:
 func set_as_current() -> void:
 	_current = self
 
+#endregion
+
+#region static utils
 
 ## Starts a new [Quest], using the given [RandomNumberGenerator], and sets the current
 ## quest to the new quest.
@@ -67,9 +73,12 @@ static func start_new(rng: RandomNumberGenerator) -> void:
 	
 	Effects.quest_start()
 
+#endregion
+
+#region global utils
 
 ## Unlocks the next stage of the quest, starting at [code]stage[/code].
-func unlock_next_stage(skip_special_stages: bool = true, start_stage_index: int = get_instance().selected_stage_idx) -> void:
+func unlock_next_stage(skip_special_stages: bool = true, start_stage_index: int = selected_stage_idx) -> void:
 	if start_stage_index + 1 >= stages.size():
 		return
 	
@@ -91,21 +100,24 @@ func finish() -> void:
 		name
 	])
 
+#endregion
+
+#region getters
 
 ## Returns the currently selected [Stage].
 func get_selected_stage() -> Stage:
-	return get_instance().get_selected_stage()
+	return stages[selected_stage_idx]
 
 
-## Returns a [QuestInstance] for this [Quest]. Reuses the same one if one was already created.
-func get_instance() -> QuestInstance:
-	if not _instance:
-		_instance = QuestInstance.new()
-		_instance.set_quest(self)
-	return _instance
+func get_inventory() -> QuestInventory:
+	return _inventory
 
 
-## Clears this [Quest]'s [QuestInstance]. The next call to [method get_instance] will
-## create a new instance.
-func clear_instance() -> void:
-	_instance = null
+func get_stats() -> QuestStats:
+	return _stats
+
+
+func get_attributes() -> QuestPlayerAttributes:
+	return _player_attributes
+
+#endregion
