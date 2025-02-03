@@ -161,7 +161,7 @@ func create_icon() -> StageIcon:
 	return icon
 
 ## Loads music and ambience into _audio_streams
-func load_music():
+func load_music() -> void:
 	for music_path in [MUSIC_PATH, AMBIENCE_A_PATH, AMBIENCE_B_PATH]:
 		var full_music_path = music_path % name
 		if FileAccess.file_exists(full_music_path):
@@ -173,23 +173,23 @@ func load_music():
 				Toasts.add_debug_toast("Failed to load music at %s" % full_music_path)
 
 ## Creates _audio_players and adds them to the [Scene]
-func create_audio_players():
+func create_audio_players() -> void:
 	for stream in _audio_streams:
 		var audio_player = AudioStreamPlayer.new()
 		audio_player.stream = stream
 		get_scene().add_child(audio_player)
 		_audio_players.append(audio_player)
 
-func start_audio_players():
+func start_audio_players() -> void:
 	for player in _audio_players:
 		player.play()
 
-func play_music():
+func play_music() -> void:
 	load_music()
 	create_audio_players()
 	start_audio_players()
 
-func stop_music():
+func stop_music() -> void:
 	for player in _audio_players:
 		player.stop()
 	_audio_players.clear()
