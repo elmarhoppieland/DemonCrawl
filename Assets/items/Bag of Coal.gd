@@ -4,7 +4,7 @@ extends Item
 # ==============================================================================
 
 func change_morality(morality: int) -> void:
-	if morality >= Quest.get_current().get_instance().morality:
+	if morality >= Quest.get_current().get_attributes().morality:
 		return
 	if not is_charged():
 		return

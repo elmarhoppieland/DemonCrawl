@@ -5,7 +5,7 @@
 
 [resource]
 resource_local_to_scene = false
-resource_name = ""
+resource_name = "ITEM_MINION"
 script = ExtResource("1_qsstj")
 _name = "ITEM_MINION"
 _description = "ITEM_MINION_DESCRIPTION"
@@ -14,3 +14,4 @@ _mana = 0
 _cost = 0
 _atlas_region = Rect2(224, 32, 16, 16)
 _atlas = ExtResource("1_sag85")
+_current_mana = 0

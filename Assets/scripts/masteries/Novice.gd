@@ -6,11 +6,10 @@ func change_score(value: int) -> int:
 	if level < 1:
 		return value
 	
-	if value <= get_quest_instance().score:
+	if value <= get_attributes().score:
 		return value
 	
-	# simplified version of: PlayerStats.score + (value - PlayerStats.score) / 2
-	return (get_quest_instance().score + value) / 2
+	return (get_attributes().score + value) / 2
 
 
 func damage(amount: int, source: Object) -> int:
@@ -32,9 +31,9 @@ func death(_source: Object) -> void:
 	if level < 2:
 		return
 	
-	if get_quest_instance().score >= 300:
-		get_quest_instance().score = 0
-		get_quest_instance().revive()
+	if get_attributes().score >= 300:
+		get_attributes().score = 0
+		get_stats().revive()
 
 
 func _ability() -> void:

@@ -27,27 +27,27 @@ func _ready() -> void:
 				_buy_button.modulate.a = 0
 				return
 			
-			_buy_button.modulate.a = float(display.offer_price <= Quest.get_current().get_instance().coins)
+			_buy_button.modulate.a = float(display.offer_price <= Quest.get_current().get_stats().coins)
 		)
 	
 	_offers_container.get_child(0).interact.call_deferred()
 
 
 func _get_items() -> Array[Item]:
-	return ItemDB.create_filter().set_max_cost(maxi(Quest.get_current().get_instance().coins, 10)).set_min_cost(1).get_random_item_set(Effects.get_shop_item_count(3))
+	return ItemDB.create_filter().set_max_cost(maxi(Quest.get_current().get_stats().coins, 10)).set_min_cost(1).get_random_item_set(Effects.get_shop_item_count(3))
 
 
 func _on_buy_button_pressed() -> void:
 	if not _selected_display.collectible:
 		return
-	if _selected_display.offer_price > Quest.get_current().get_instance().coins:
+	if _selected_display.offer_price > Quest.get_current().get_stats().coins:
 		return
 	
-	Quest.get_current().get_instance().spend_coins(_selected_display.offer_price, self)
+	Quest.get_current().get_stats().spend_coins(_selected_display.offer_price, self)
 	
 	var item := _selected_display.collectible
 	_selected_display.collectible = null
-	Quest.get_current().get_instance().item_gain(item)
+	Quest.get_current().get_inventory().item_gain(item)
 	
 	#selected_item = null
 	_buy_button.modulate.a = 0

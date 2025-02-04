@@ -64,7 +64,7 @@ func _show_items() -> void:
 		rewards_container.add_child(display)
 		
 		if reward is Item:
-			Quest.get_current().get_instance().item_gain(reward.duplicate())
+			Quest.get_current().get_inventory().item_gain(reward.duplicate())
 
 
 func _show_coins() -> void:

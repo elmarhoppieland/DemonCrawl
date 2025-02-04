@@ -5,7 +5,7 @@
 
 [resource]
 resource_local_to_scene = false
-resource_name = ""
+resource_name = "ITEM_SLEEPING_POWDER"
 script = ExtResource("1_h41l3")
 _name = "ITEM_SLEEPING_POWDER"
 _description = "ITEM_SLEEPING_POWDER_DESCRIPTION"
@@ -14,3 +14,4 @@ _mana = 0
 _cost = 4
 _atlas_region = Rect2(192, 64, 16, 16)
 _atlas = ExtResource("1_csv0w")
+_current_mana = 0

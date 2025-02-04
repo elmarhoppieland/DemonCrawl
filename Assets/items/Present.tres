@@ -5,7 +5,7 @@
 
 [resource]
 resource_local_to_scene = false
-resource_name = ""
+resource_name = "ITEM_PRESENT"
 script = ExtResource("2_yyyby")
 _name = "ITEM_PRESENT"
 _description = "ITEM_PRESENT_DESCRIPTION"
@@ -14,3 +14,4 @@ _mana = 0
 _cost = 10
 _atlas_region = Rect2(192, 176, 16, 16)
 _atlas = ExtResource("1_u6cxl")
+_current_mana = 0

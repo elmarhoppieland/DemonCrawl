@@ -29,13 +29,13 @@ func _reset() -> void:
 
 
 func _interact() -> void:
-	if get_quest_instance().life >= get_quest_instance().max_life:
+	if get_stats().life >= get_stats().max_life:
 		Toasts.add_toast("You're already at max life!", null)
 		return
 	
 	var life := Effects.get_heart_value()
 	
-	get_quest_instance().life_restore(life, self)
+	get_stats().life_restore(life, self)
 	get_cell().add_text_particle("+" + str(life), TextParticles.ColorPreset.LIFE)
 	tween_texture_to(get_stage().get_statbar().get_heart_position())
 	clear()

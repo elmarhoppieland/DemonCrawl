@@ -284,9 +284,25 @@ static func from_path(path: String) -> Item:
 
 #region utilities
 
+func get_quest() -> Quest:
+	return Quest.get_current()
+
+
+func get_inventory() -> QuestInventory:
+	return get_quest().get_inventory()
+
+
+func get_stats() -> QuestStats:
+	return get_quest().get_stats()
+
+
+func get_attributes() -> QuestPlayerAttributes:
+	return get_quest().get_attributes()
+
+
 ## Removes this item from the inventory.
 func clear() -> void:
-	Quest.get_current().get_instance().item_lose(self)
+	get_inventory().item_lose(self)
 
 
 ## Resets this item's current mana to zero.
@@ -332,39 +348,31 @@ func target_cells(radius: int) -> Array[Cell]:
 	return cells
 
 
-func get_quest() -> Quest:
-	return Quest.get_current()
-
-
-func get_quest_instance() -> QuestInstance:
-	return get_quest().get_instance()
-
-
 func gain_item(item: Item) -> void:
-	get_quest_instance().item_gain(item)
+	get_inventory().item_gain(item)
 
 
 func lose_item(item: Item) -> void:
-	get_quest_instance().item_lose(item)
+	get_inventory().item_lose(item)
 
 
 func transform_item(old_item: Item, new_item: Item) -> void:
-	get_quest_instance().item_transform(old_item, new_item)
+	get_inventory().item_transform(old_item, new_item)
 
 
 func get_items() -> Array[Item]:
 	var items: Array[Item] = []
-	for i in get_quest_instance().get_item_count():
-		items.append(get_quest_instance().get_item(i))
+	for i in get_inventory().get_item_count():
+		items.append(get_inventory().get_item(i))
 	return items
 
 
 func life_restore(life: int, source: Object = self) -> void:
-	get_quest_instance().life_restore(life, source)
+	get_inventory().life_restore(life, source)
 
 
 func life_lose(life: int, source: Object = self) -> void:
-	get_quest_instance().life_lose(life, source)
+	get_inventory().life_lose(life, source)
 
 #endregion
 

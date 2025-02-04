@@ -11,7 +11,7 @@ var _inventory_button_hovered := false
 var _inventory_open := false
 # ==============================================================================
 #@onready var _stats_tooltip_grabber: TooltipGrabber = %StatsTooltipGrabber
-@onready var _stats: Stats = %Stats
+@onready var _stats: StatsDisplay = %StatsDisplay
 @onready var _inventory_icon_hover: TextureRect = %Hover
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
@@ -54,4 +54,3 @@ func _on_inventory_icon_mouse_exited() -> void:
 
 func _on_stats_tooltip_grabber_about_to_show() -> void:
 	pass
-	#_stats_tooltip_grabber.subtext = Stats.get_stats_tooltip_text()
