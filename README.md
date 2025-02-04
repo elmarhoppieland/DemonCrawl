@@ -9,6 +9,7 @@ Welcome to the official GitHub repository for the fanmade Godot recreation of De
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Contact](#contact)
+- [Important Note](#important-note)
 
 ## About the Project
 
@@ -18,7 +19,7 @@ This DemonCrawl recreation tries to replicate the original DemonCrawl. Using the
 
 When the game is released, there will be a download in the `releases` secion on this page. Until then, you will have to compile the game yourself by installing Godot.
 
-1. Install Godot on the [official website](https://godotengine.org/).
+1. Install Godot on the [official website](https://godotengine.org/download/archive/4.2.2-stable/). *Note:* We use the `4.2.2` version of Godot.
 2. If you plan on contributing, you should also [install GitHub Desktop](https://desktop.github.com/download/).
 3. Get the source code. You can do this by cloning the repository or by downloading the source code directly from GitHub.
    To clone the repo: On GitHub Desktop, go to File -> Clone Repository -> URL and paste in this page's URL, then click `clone`.
@@ -44,4 +45,8 @@ Contributions are what make an open-source project work. Any contributions you m
 
 ## Contact
 
-You can contact me on Discord. My username is @elmarhoppieland.
+You can contact me on Discord. My username is `@elmarhoppieland`. You can either contact me on the official DemonCrawl Discord server or in my DMs.
+
+## Important Note
+
+Because of a bug that occurred when working on the `main` branch, I rewrote most of the code on the `[dc-redo](https://github.com/elmarhoppieland/DemonCrawl/tree/dc-redo)` branch. Any changes you make should be made on that branch. When the rewrite has all the features of the `main` branch, I will merge it into the `main` branch.
