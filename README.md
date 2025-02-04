@@ -49,4 +49,4 @@ You can contact me on Discord. My username is `@elmarhoppieland`. You can either
 
 ## Important Note
 
-Because of a bug that occurred when working on the `main` branch, I rewrote most of the code on the `[dc-redo](https://github.com/elmarhoppieland/DemonCrawl/tree/dc-redo)` branch. Any changes you make should be made on that branch. When the rewrite has all the features of the `main` branch, I will merge it into the `main` branch.
+Because of a bug that occurred when working on the `main` branch, I rewrote most of the code on the [dc-redo](https://github.com/elmarhoppieland/DemonCrawl/tree/dc-redo) branch. Any changes you make should be made on that branch. When the rewrite has all the features of the `main` branch, I will merge it into the `main` branch.
