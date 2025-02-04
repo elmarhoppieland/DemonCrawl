@@ -220,7 +220,7 @@ script = ExtResource("8_flfi7")
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
-[node name="Stats" parent="MarginContainer/HBoxContainer" instance=ExtResource("9_eg8cx")]
+[node name="StatsDisplay" parent="MarginContainer/HBoxContainer" instance=ExtResource("9_eg8cx")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
@@ -348,9 +348,8 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
 [node name="Inventory" parent="InventoryCanvas" instance=ExtResource("15_6x8ea")]
-offset_left = 320.0
-offset_right = 397.0
-offset_bottom = 160.0
+offset_left = 0.0
+offset_right = 77.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
