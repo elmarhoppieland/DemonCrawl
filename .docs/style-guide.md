@@ -1,7 +1,8 @@
-
 # DemonCrawl Style Guide
 
 This page will guide new contributors write code in a way similar to existing code in this project. If you plan on contributing, you should read this file before writing any code.
+
+Most contributors likely only need to edit files, in which case only reading the [Summary](#summary) is probably enough to understand the project's conventions.
 
 ## Table of Contents
 
@@ -14,11 +15,12 @@ This page will guide new contributors write code in a way similar to existing co
 
 ## Summary
 
-If you don't want to read through the entire file, but instead want to quickly write some code, here are the most important conventions to know:
-- File names are in `PascalCase`, variable and function names in `snake_case` and constant names in `SNAKE_CASE`.
+If you're just starting out, there's a good chance you only need to edit scripts and don't need to create any new ones. If that is the case, you probably don't need to read through this entire file, but can instead just mimic the rest of the script. Here are some general conventions that you should know about:
+- File names are in `PascalCase`, variable and function names in `snake_case` and constant names in `UPPER_SNAKE_CASE`.
 - The project has some script templates to quickly get you started. When creating a script, use `Full Example Template` to see how your file should be structured.
 - Simply look at existing files and mimic their structure and conventions and you're probably doing things right.
-- Everything should **always** be statically typed, either by using `var my_variable := MyClass.new()` or `var my_variable: Array[Dictionary] = []`. This should also be done in a `for` loop if Godot can't figure out the type by itself (such as in an untyped `Array` or in a `Dictionary`).
+- Everything should **always** be statically typed, either by using `var my_variable := 0` (note the `:=`) or `var my_variable: Array[Dictionary] = []`. This should also be done in a `for` loop if Godot can't figure out the type by itself (such as when iterating over an untyped `Array` or over `Dictionary` keys).
+This is probably enough to be able to start writing code. If you're ever confused about any conventions, feel free to read the rest of this style guide then.
 
 ## Filesystem
 
@@ -52,7 +54,7 @@ This directory contains the project's addons (also known as plugins). Each addon
 This is a directory created by the `EffectManager` plugin to handle various effects. The 2 files here usually don't need to be edited and should instead be edited via the `EffectManager` tab in the top bar in the editor.
 
 ### Other Directories
-The other directories (`.data`, `.docs`, `.git` and `.godot`) are used for internal features and can almost always be ignored.
+The other directories (`script_templates`, `.data`, `.docs`, `.git` and `.godot`) are used for internal features and can almost always be ignored. They are also invisible in the editor.
 
 ### Miscellaneous Files
 Some files are not placed in a specific directory. In the root directory, all files need to be here. In the `Resources` directory, the miscellaneous files should be moved in a fitting subdirectory. This is still a work-in-progress.
@@ -66,11 +68,12 @@ Casing should be done in the following way:
 
 ||Casing|Notes|
 |--|--|--|
-|File|`PascalCase.extension`|For scripts, should be the same as the class|
-|Class|`PascalCase`|Should be the same as the file name|
-|Constant|`SNAKE_CASE`||
+|File|`PascalCase.extension`|For scripts, should be the same as the class.|
+|Class|`PascalCase`|Should be the same as the file name.|
+|Constant|`UPPPER_SNAKE_CASE`||
 |Variable|`snake_case`||
 |Method|`snake_case()`||
+|Signal|`snake_case()`|The `()` is technically optional if the signal doesn't have arguments, but should be added anyway.|
 
 **Note:** This casing convention differs slightly from the global Godot style guide, since files are recommended to be cased in `snake_case`. We use `PascalCase` because that makes the script's file name the same as the class name.
 
