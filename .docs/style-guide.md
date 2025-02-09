@@ -20,6 +20,7 @@ If you're just starting out, there's a good chance you only need to edit scripts
 - The project has some script templates to quickly get you started. When creating a script, use `Full Example Template` to see how your file should be structured.
 - Simply look at existing files and mimic their structure and conventions and you're probably doing things right.
 - Everything should **always** be statically typed, either by using `var my_variable := 0` (note the `:=`) or `var my_variable: Array[Dictionary] = []`. This should also be done in a `for` loop if Godot can't figure out the type by itself (such as when iterating over an untyped `Array` or over `Dictionary` keys).
+
 This is probably enough to be able to start writing code. If you're ever confused about any conventions, feel free to read the rest of this style guide then.
 
 ## Filesystem
