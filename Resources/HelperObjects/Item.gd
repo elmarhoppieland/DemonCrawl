@@ -74,7 +74,7 @@ func _get_annotation_text() -> String:
 
 
 func _get_annotation_title() -> String:
-	return "[color=#" + get_texture_bg_color().to_html(false) + "]" + tr(_name) + "[/color]"
+	return "[color=#" + get_texture_bg_color().to_html(false) + "]" + tr(_name).to_upper() + "[/color]"
 
 
 func _get_annotation_subtext() -> String:
@@ -119,6 +119,10 @@ static func _import(value: Dictionary) -> Item:
 	if "_mana" in value:
 		item._current_mana = value._mana
 	return item
+
+
+func _to_string() -> String:
+	return get_name()
 
 
 func _property_can_revert(property: StringName) -> bool:

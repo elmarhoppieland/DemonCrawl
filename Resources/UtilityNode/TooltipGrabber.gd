@@ -36,4 +36,4 @@ func unhover() -> void:
 
 
 func interact() -> void:
-	hover()
+	hover.call_deferred()

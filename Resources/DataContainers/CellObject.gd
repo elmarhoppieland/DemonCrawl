@@ -17,7 +17,6 @@ var _material: Material : get = get_material
 func _init(cell_position: Vector2i = Vector2i.ZERO, stage: Stage = null) -> void:
 	_cell_position = cell_position
 	_stage = stage
-	assert(stage != null)
 	
 	var delta_sum := [0.0]
 	get_tree().process_frame.connect(func() -> void:
@@ -304,6 +303,17 @@ func reset() -> void:
 func _reset() -> void:
 	pass
 
+
+## Virtual method. Called (once) when this object is first spawned into the [Stage].
+## Is not called when reloading the [Stage].
+func _spawn() -> void:
+	pass
+
+
+## Notifies the object that is has just been spawned.
+func notify_spawned() -> void:
+	_spawn()
+
 #endregion
 
 #region utilities
@@ -342,5 +352,11 @@ func tween_texture_to(position: Vector2, duration: float = 0.4) -> Tween:
 	var tween := sprite.create_tween()
 	tween.tween_property(sprite, "scale", Vector2.ZERO, 0.4).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	return tween
+
+
+func get_theme_icon(name: StringName, theme_type: StringName = "Cell") -> Texture2D:
+	if not get_cell():
+		return null
+	return get_cell().get_theme_icon(name, theme_type)
 
 #endregion

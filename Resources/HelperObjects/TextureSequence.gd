@@ -38,6 +38,8 @@ func previous() -> void:
 
 
 func animate(duration: float, delta: float) -> void:
+	if not atlas:
+		return
 	index = int(delta / duration * get_tiles_area()) % get_tiles_area()
 
 
@@ -54,4 +56,6 @@ func get_tile_count() -> Vector2i:
 
 
 func get_tiles_area() -> int:
+	if not atlas:
+		return 0
 	return (atlas.get_width() / size.x) * (atlas.get_height() / size.y)

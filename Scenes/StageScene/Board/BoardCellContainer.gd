@@ -19,7 +19,6 @@ func _validate_property(property: Dictionary) -> void:
 
 func _ready() -> void:
 	if not get_stage():
-		push_error("BoardCellContainer initialized without a Stage object.")
 		return
 	
 	columns = get_stage().size.x

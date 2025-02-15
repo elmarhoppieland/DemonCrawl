@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=5 format=3 uid="uid://dpgfvuaiurqu4"]
+
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/CellNomad.gd" id="1_0l6dw"]
+[ext_resource type="Script" path="res://Resources/DataContainers/LootTable.gd" id="1_vb474"]
+[ext_resource type="Script" path="res://Resources/DataContainers/CellObjectBase.gd" id="2_qut8x"]
+
+[sub_resource type="Resource" id="Resource_q4qr1"]
+resource_name = "Nomad"
+script = ExtResource("2_qut8x")
+base_script = ExtResource("1_0l6dw")
+
+[resource]
+script = ExtResource("1_vb474")
+type = 24
+items_class = "CellObjectBase"
+auto_sort = true
+use_modifier = true
+item_count = 1
+item_0/value = SubResource("Resource_q4qr1")
+item_0/weight = 1.0

@@ -7,22 +7,22 @@ class_name CellMonster
 # ==============================================================================
 var name := "" :
 	get:
-		if name.is_empty():
+		if name.is_empty() and Stage.has_current():
 			var names: PackedStringArray = Stage.get_current().get_property("monsters", "names", ["???"])
 			name = names[randi() % names.size()]
 		return name
 # ==============================================================================
 
 func _get_texture() -> Texture2D:
-	if Engine.is_editor_hint():
-		var texture := TextureSequence.new()
-		texture.atlas = preload("res://Assets/skins/forest/monster.png")
-		texture.size = Cell.CELL_SIZE
-		return texture
+	#if Engine.is_editor_hint():
+		#var texture := TextureSequence.new()
+		#texture.atlas = preload("res://Assets/skins/forest/monster.png")
+		#texture.size = Cell.CELL_SIZE
+		#return texture
 	
 	var texture := TextureSequence.new()
 	texture.size = Cell.CELL_SIZE
-	texture.atlas = get_cell().get_theme_icon("monster_atlas", "Cell")
+	texture.atlas = get_theme_icon("monster_atlas", "Cell")
 	return texture
 
 

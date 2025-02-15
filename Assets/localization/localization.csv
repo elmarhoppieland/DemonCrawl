@@ -127,6 +127,17 @@ DEFENSE_HOVER;DEFENSE
 DEFENSE_HOVER_SUBTEXT;Reduces incoming damage to a minimum of 1.
 COINS_HOVER;COINS
 COINS_HOVER_SUBTEXT;Spend money at shops.
+OBJECT_OFF_WORLD;Oops, your {object} fell off the world!
+OBJECT_TYPE_CELL_CHEST;chest
+STRANGER_NOMAD;Nomad
+STRANGER_NOMAD_SELL_CONSUMABLE;Selling {item} for {cost} coins!
+STRANGER_NOMAD_SELL_MAGIC;Selling magic items!\nPrice: {cost} coins
+STRANGER_NOMAD_SELL_LEGENDARY;Selling legendary items!\nPrice: {cost} coins
+STRANGER_NOMAD_SELL_MANA;Selling {mana} mana for {cost} coins!
+STRANGER_NOMAD_SELL_TREASURE;Selling treasure chests for {cost} coins!
+STRANGER_NOMAD_BUY_ITEM;Buying {item} for {price} coins!
+STRANGER_NOMAD_TOO_EXPENSIVE;You don't have enough coins!
+STRANGER_NOMAD_FAIL_BUY_ITEM;Right, you don't have {item}!
 LORE_LOCKED;You may purchase this quest from the Token Shop.
 LORE_LOCKED_CASUAL;You must complete the previous quest to unlock this one.
 LORE_TUTORIAL;Learn the basics of DemonCrawl!
@@ -171,19 +182,19 @@ STAGE_BRINK;Brink
 LORE_BRINK;In pursuit of the void.
 STAGE_ITEM_SHOP;Item Shop
 LORE_ITEM_SHOP;Spend coins to buy items.
-ITEM_BANANA_PEEL;BANANA PEEL
+ITEM_BANANA_PEEL;Banana Peel
 ITEM_BANANA_PEEL_DESCRIPTION;Enchant target visible cell: each turn, kill any living object in this cell.
-ITEM_BONES;BONES
+ITEM_BONES;Bones
 ITEM_BONES_DESCRIPTION;Bury in a random cell to give it Sanctified, then restore lives equal to the cell's value.
-ITEM_APPLE;APPLE
+ITEM_APPLE;Apple
 ITEM_APPLE_DESCRIPTION;Restore 1 life.
-ITEM_TRAPPER;TRAPPER
+ITEM_TRAPPER;Trapper
 ITEM_TRAPPER_DESCRIPTION;Flag a monster when you begin a stage.
-ITEM_EXTRA_POCKET;EXTRA POCKET
+ITEM_EXTRA_POCKET;Extra Pocket
 ITEM_EXTRA_POCKET_DESCRIPTION;You may find duplicate items. When you enter a stage, reduce the minimum power by your highest number of duplicates.
-ITEM_LOUPE;LOUPE
+ITEM_LOUPE;Loupe
 ITEM_LOUPE_DESCRIPTION;Diamonds are worth 1 more coin.
-ITEM_WALLET;WALLET
+ITEM_WALLET;Wallet
 ITEM_WALLET_DESCRIPTION;Item Shops have 1 extra item.
-ITEM_LIQUID_GOLD;LIQUID GOLD
+ITEM_LIQUID_GOLD;Liquid Gold
 ITEM_LIQUID_GOLD_DESCRIPTION;When you spend coins, this transforms into an item worth the amount spent.

@@ -4,8 +4,9 @@ class_name CellObjectTextureRect
 
 # ==============================================================================
 @export var _mode := Cell.Mode.HIDDEN
+@export var _object: CellObject
 # ==============================================================================
-var _delta_sum := 0.0
+#var _delta_sum := 0.0
 # ==============================================================================
 @onready var _tooltip_grabber: TooltipGrabber = $TooltipGrabber
 # ==============================================================================
@@ -14,8 +15,11 @@ func _ready() -> void:
 	var cell := owner as Cell
 	
 	texture = cell.get_object()
+	_object = cell.get_object()
+	_tooltip_grabber.enabled = _object != null and _object.has_annotation_text()
 	_mode = cell.get_mode()
 	cell.object_changed.connect(func(object: CellObject) -> void:
+		_object = object
 		texture = object
 		
 		if object:
@@ -41,9 +45,9 @@ func _ready() -> void:
 	_update()
 
 
-func _process(delta: float) -> void:
-	if texture and texture is CellObject:
-		_delta_sum += delta
+#func _process(delta: float) -> void:
+	#if texture and texture is CellObject:
+		#_delta_sum += delta
 		#texture.animate(_delta_sum)
 
 
@@ -53,3 +57,7 @@ func _update() -> void:
 
 func get_2d_anchor() -> Node2D:
 	return get_parent()
+
+
+func _on_tooltip_grabber_about_to_show() -> void:
+	_tooltip_grabber.text = _object.get_annotation_text()

@@ -97,8 +97,7 @@ static func class_exists(name: StringName) -> bool:
 		return true
 	
 	if ":" in name.trim_prefix("res://"):
-		var base_script := class_get_script(name.substr(0, name.rfind(":")))
-		return base_script and name.substr(name.find(":", 6) + 1) in base_script
+		return class_exists(name.substr(0, name.rfind(":")))
 	
 	return false
 
@@ -444,7 +443,11 @@ static func reload_classes() -> void:
 static func _get_files_in_dir_recursive(dir: String, pattern: String = "*") -> PackedStringArray:
 	var files := PackedStringArray()
 	
-	for file in DirAccess.get_files_at(dir):
+	var dir_files := DirAccess.get_files_at(dir)
+	if ".gdignore" in dir_files:
+		return []
+	
+	for file in dir_files:
 		if not file.match(pattern):
 			continue
 		
@@ -504,9 +507,9 @@ static func is_parent_class(name: StringName, inherits: StringName) -> bool:
 		return false
 	if not class_exists(inherits):
 		return ClassDB.is_parent_class(class_get_script(name).get_instance_base_type(), inherits)
-	assert(ClassDB.is_parent_class("Texture2D", "Resource"))
-	var script := class_get_script(name)
-	var base := class_get_script(inherits)
+	
+	var script := class_get_script(inherits)
+	var base := class_get_script(name)
 	while base != null:
 		base = base.get_base_script()
 		if base == script:

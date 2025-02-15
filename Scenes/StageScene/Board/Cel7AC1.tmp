@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bl8bwoewf0m57"]
+[gd_scene load_steps=17 format=3 uid="uid://bl8bwoewf0m57"]
 
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Cell.gd" id="1_e3wqt"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/CellNomad.gd" id="2_ue0ox"]
 [ext_resource type="Script" path="res://Resources/DataContainers/CellData.gd" id="3_685kk"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/CellTextureRect.gd" id="3_te1nx"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/CellValueLabel.gd" id="4_3k5be"]
@@ -12,9 +13,17 @@
 [ext_resource type="Script" path="res://Resources/UtilityNode/TextParticles.gd" id="12_4ov3c"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/Grabber.gd" id="13_tuktl"]
 
+[sub_resource type="Texture2D" id="Texture2D_lbhep"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_ue0ox")
+offer = ""
+_cell_position = Vector2i(0, 0)
+
 [sub_resource type="Resource" id="Resource_aggif"]
 script = ExtResource("3_685kk")
 mode = 1
+object = SubResource("Texture2D_lbhep")
 value = 2
 
 [sub_resource type="Curve" id="Curve_0u5ry"]
@@ -69,15 +78,17 @@ offset_right = 5.0
 offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("Texture2D_lbhep")
 stretch_mode = 3
 script = ExtResource("7_3xaxv")
 _mode = 1
 
 [node name="TooltipGrabber" type="Node" parent="Control/Anchor/CellObjectTextureRect"]
 script = ExtResource("7_ggwll")
-enabled = false
+text = "STRANGER_NOMAD"
 
 [node name="CellValueLabel" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -133,5 +144,4 @@ label_settings = SubResource("LabelSettings_rm8r2")
 [node name="Grabber" type="Node" parent="."]
 script = ExtResource("13_tuktl")
 
-[connection signal="about_to_show" from="Control/Anchor/CellObjectTextureRect/TooltipGrabber" to="Control/Anchor/CellObjectTextureRect" method="_on_tooltip_grabber_about_to_show"]
 [connection signal="interacted" from="Grabber" to="." method="_on_interacted"]

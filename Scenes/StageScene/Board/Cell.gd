@@ -47,7 +47,8 @@ func open(force: bool = false) -> void:
 	Quest.get_current().get_inventory().mana_gain(get_value(), self)
 	
 	if not is_occupied() and get_value() == 0 and randf() > 0.8 * (1 - get_stage().get_density()):
-		spawn(preload("res://Assets/loot_tables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
+		_generate_content()
+		#spawn(preload("res://Assets/loot_tables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
 	
 	if is_occupied():
 		get_object().notify_revealed(not force)
@@ -55,11 +56,49 @@ func open(force: bool = false) -> void:
 	Effects.cell_open(self)
 
 
-## Spawns an instance of the provided [CellObject] script in this [Cell].
-func spawn(base: CellObjectBase) -> CellObject:
-	var instance := base.create(self, get_stage())
-	_set_object(instance)
-	return instance
+func _generate_content() -> void:
+	var table := preload("res://Assets/loot_tables/CellContent.tres").generate() as LootTable
+	if not table:
+		return
+	
+	var content := table.generate(1 / (1 - get_stage().get_density())) as CellObjectBase
+	if not content:
+		return
+	
+	spawn(content)
+
+
+## Spawns an instance of the provided [CellObject] script in this [Cell], or the nearest
+## empty cell if this cell is occupied.
+func spawn(base: CellObjectBase, visible_only: bool = false) -> CellObject:
+	if not is_occupied():
+		var instance := base.create(self, get_stage())
+		_set_object(instance)
+		return instance
+	
+	var radius := 1
+	while radius <= max(get_stage().size.x - get_board_position().x - 1, get_board_position().x, get_stage().size.y - get_board_position().y - 1, get_board_position().y):
+		var available_cells: Array[Cell] = []
+		for x in range(get_board_position().x - radius, get_board_position().x + radius + 1):
+			for y in [get_board_position().y - radius, get_board_position().y + radius]:
+				var cell := get_stage().get_board().get_cell(Vector2i(x, y))
+				if cell and not cell.is_occupied() and not visible_only or cell.is_revealed():
+					available_cells.append(cell)
+		for x in [get_board_position().x - radius, get_board_position().x + radius]:
+			for y in range(get_board_position().y - radius + 1, get_board_position().y + radius):
+				var cell := get_stage().get_board().get_cell(Vector2i(x, y))
+				if cell and not cell.is_occupied() and not visible_only or cell.is_revealed():
+					available_cells.append(cell)
+		
+		if not available_cells.is_empty():
+			var cell := available_cells.pick_random() as Cell
+			cell.spawn(base)
+			return
+		
+		radius += 1
+	
+	Toasts.add_toast(tr("OBJECT_OFF_WORLD").format({"object": tr("OBJECT_TYPE_" + UserClassDB.script_get_class(base.base_script).to_snake_case().to_upper())}), IconManager.get_icon_data("mastery/none").create_texture())
+	return
 
 
 ## Spawns an existing [CellObject] in this [Cell].
@@ -228,9 +267,10 @@ func get_data() -> CellData:
 
 
 func _set_object(value: CellObject) -> void:
-	_data.object = value
 	if value:
 		value._cell_position = _board_position
+		value.notify_spawned()
+	_data.object = value
 	object_changed.emit(value)
 
 
