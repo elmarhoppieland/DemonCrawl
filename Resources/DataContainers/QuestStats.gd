@@ -78,3 +78,12 @@ func damage(amount: int, source: Object) -> void:
 		life_lose(amount, source)
 	if Stage.has_current() and Stage.get_current().has_scene():
 		Stage.get_current().get_board().get_camera().shake()
+
+
+func gain_souls(souls: int, source: Object) -> void:
+	if life == max_life:
+		max_life += souls
+		life = max_life
+	else:
+		max_life += souls
+		life_restore(souls, source)

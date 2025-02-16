@@ -33,14 +33,14 @@ var cells: Array[CellData] = [] :
 				cell.value *= 10
 				cell.value += c.to_int()
 			elif c == "m":
-				(func() -> void: cell.object = CellMonster.new(cell.get_position(self), get_stage())).call_deferred()
+				(func() -> void: cell.object = Monster.new(cell.get_position(self), get_stage())).call_deferred()
 			elif c in CELL_MODE_IDS.values():
 				cell.mode = CELL_MODE_IDS.find_key(c)
 				cell = null
 	get:
 		return "".join(cells.map(func(cell: CellData) -> String:
 			var string := str(cell.value)
-			if cell.object is CellMonster:
+			if cell.object is Monster:
 				string += "m"
 			string += CELL_MODE_IDS[cell.get_mode()]
 			return string
@@ -85,7 +85,7 @@ func _stage_changed() -> void:
 	emit_changed()
 
 
-## Generates this [StageInstance], spawning [CellMonster]s at random [Cell]s.
+## Generates this [StageInstance], spawning [Monster]s at random [Cell]s.
 ## [br][br]Cells horizontally or diagonally adjacent to [code]start_cell[/code] will
 ## not contain a monster.
 func generate(start_cell: Vector2i) -> void:
@@ -114,7 +114,7 @@ func generate(start_cell: Vector2i) -> void:
 		
 		var coord := Vector2i(idx % get_stage().size.x, idx / get_stage().size.x)
 		
-		cells[idx].object = CellMonster.new(coord, get_stage())
+		cells[idx].object = Monster.new(coord, get_stage())
 		
 		for dx in COORD_OFFSETS:
 			for dy in COORD_OFFSETS:
@@ -168,7 +168,7 @@ func get_reward_types() -> PackedStringArray:
 	for cell in get_stage().get_board().get_cells():
 		if not "charitable" in types and cell.get_object() and cell.get_object().is_charitable():
 			types.append("charitable")
-		if not "heartless" in types and cell.get_object() and cell.get_object() is CellHeart:
+		if not "heartless" in types and cell.get_object() and cell.get_object() is Heart:
 			types.append("heartless")
 	
 	if Quest.get_current().stages.all(func(a: Stage) -> bool: return a.completed or a is SpecialStage):
@@ -231,7 +231,7 @@ func get_mode(idx: int) -> Cell.Mode:
 ## Returns whether the get_stage() is finished, i.e. all non-monster [Cell]s are revealed.
 func is_finished() -> bool:
 	for data in cells:
-		if data.mode != Cell.Mode.VISIBLE and not data.object is CellMonster:
+		if data.mode != Cell.Mode.VISIBLE and not data.object is Monster:
 			return false
 	
 	return true
@@ -249,7 +249,7 @@ func get_3bv() -> int:
 	var empty_groups: Array[CellData] = []
 	
 	for cell in get_cells():
-		if cell.object is CellMonster:
+		if cell.object is Monster:
 			continue
 		if cell.value == 0:
 			if cell in empty_groups:
@@ -296,7 +296,7 @@ func get_remaining_monster_count() -> int:
 	var monsters := 0
 	
 	for cell in get_cells():
-		if cell.object is CellMonster and cell.is_hidden():
+		if cell.object is Monster and cell.is_hidden():
 			monsters += 1
 		if cell.is_flagged():
 			monsters -= 1

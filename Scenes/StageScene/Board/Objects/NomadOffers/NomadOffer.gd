@@ -2,10 +2,10 @@ extends Resource
 class_name NomadOffer
 
 # ==============================================================================
-var _nomad: CellNomad
+var _nomad: Nomad
 # ==============================================================================
 
-func _init(nomad: CellNomad = null) -> void:
+func _init(nomad: Nomad = null) -> void:
 	_nomad = nomad
 
 

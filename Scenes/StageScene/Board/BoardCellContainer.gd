@@ -118,7 +118,7 @@ func _open_cell(cell: Cell) -> void:
 		visited.append(current_cell)
 		current_cell.open()
 		
-		if current_cell.get_value() != 0 or current_cell.get_object() is CellMonster:
+		if current_cell.get_value() != 0 or current_cell.get_object() is Monster:
 			continue
 		
 		for c in current_cell.get_nearby_cells():

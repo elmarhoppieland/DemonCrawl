@@ -1,6 +1,6 @@
 @tool
 extends CellObject
-class_name CellStranger
+class_name Stranger
 
 # ==============================================================================
 

@@ -1,6 +1,6 @@
 @tool
 extends CellObject
-class_name CellDiamond
+class_name Diamond
 
 # ==============================================================================
 

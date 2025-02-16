@@ -28,6 +28,7 @@ const TYPE_COLORS := {
 @export var _type := Type.PASSIVE : set = _set_type, get = get_type
 @export var _mana := 0 : set = _set_max_mana, get = get_max_mana
 @export var _cost := 0 : get = get_cost
+@export var _tags: PackedStringArray : get = get_tags
 @export var _atlas_region := Rect2(0, 0, 16, 16) :
 	set(value):
 		_atlas_region = value
@@ -36,8 +37,8 @@ const TYPE_COLORS := {
 	set(value):
 		_atlas = value
 		emit_changed()
-@export var _current_mana := 0 : set = set_mana, get = get_mana
 # ==============================================================================
+var _current_mana := 0 : set = set_mana, get = get_mana
 var _in_inventory := false
 # ==============================================================================
 
@@ -144,9 +145,8 @@ func _property_get_revert(property: StringName) -> Variant:
 
 func _validate_property(property: Dictionary) -> void:
 	match property.name:
-		"_in_inventory":
-			if not Engine.is_editor_hint():
-				property.usage |= PROPERTY_USAGE_STORAGE
+		"_in_inventory", "_current_mana" when not Engine.is_editor_hint():
+			property.usage |= PROPERTY_USAGE_STORAGE
 
 
 func _set_name(name: String) -> void:
@@ -400,5 +400,13 @@ func get_mana() -> int:
 
 func get_cost() -> int:
 	return _cost
+
+
+func get_tags() -> PackedStringArray:
+	return _tags
+
+
+func has_tag(tag: String) -> bool:
+	return tag in _tags
 
 #endregion

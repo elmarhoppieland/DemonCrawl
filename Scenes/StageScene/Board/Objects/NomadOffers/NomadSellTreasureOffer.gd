@@ -10,4 +10,4 @@ func _spawn() -> void:
 func _perform() -> void:
 	super()
 	
-	_nomad.get_cell().spawn(CellObjectBase.new(CellChest), true)
+	_nomad.get_cell().spawn(CellObjectBase.new(TreasureChest), true)

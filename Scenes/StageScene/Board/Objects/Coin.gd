@@ -1,6 +1,6 @@
 @tool
 extends CellObject
-class_name CellCoin
+class_name Coin
 
 # ==============================================================================
 

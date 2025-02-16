@@ -24,6 +24,8 @@ func _init(cell_position: Vector2i = Vector2i.ZERO, stage: Stage = null) -> void
 		delta_sum[0] += delta
 		animate(delta_sum[0])
 	)
+	
+	_ready()
 
 
 func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:
@@ -81,6 +83,14 @@ func clear() -> void:
 	get_cell().clear_object()
 
 #region virtuals
+
+## Virtual method. Called immediately after initializing. Can be overridden to run
+## code every time this object is created, e.g. to connect to effects.
+## [br][br][b]Note:[/b] Is called every time this object is initialized, even when
+## reloading the stage.
+func _ready() -> void:
+	pass
+
 
 ## Returns the object's texture.
 ## [br][br][b]Note:[/b] This object is a [Texture2D] by itself, so if can be used as

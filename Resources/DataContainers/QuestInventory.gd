@@ -86,3 +86,18 @@ func mana_gain(mana: int, source: Object) -> void:
 	
 	for i in mana:
 		mana_items[rng.randi() % mana_items.size()].gain_mana(1)
+
+
+func get_random_item() -> Item:
+	return items.pick_random()
+
+
+func item_lose_random() -> void:
+	if items.is_empty():
+		return
+	
+	item_lose(get_random_item())
+
+
+func is_empty() -> bool:
+	return items.is_empty()

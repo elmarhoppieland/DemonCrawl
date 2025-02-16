@@ -198,3 +198,8 @@ static func get_heart_value(value: int = 1) -> int:
 	value = EffectManager.propagate(MutableSignals.get_heart_value, [value], 0)
 	EffectManager.propagate(Signals.get_heart_value, [value])
 	return value
+
+
+static func turn() -> void:
+	EffectManager.propagate(MutableSignals.turn, [])
+	EffectManager.propagate(Signals.turn, [])

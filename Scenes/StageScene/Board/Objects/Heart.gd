@@ -1,6 +1,6 @@
 @tool
 extends CellObject
-class_name CellHeart
+class_name Heart
 
 # ==============================================================================
 const ANIM_DURATION := 0.7

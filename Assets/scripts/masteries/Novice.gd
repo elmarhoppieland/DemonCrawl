@@ -17,7 +17,7 @@ func damage(amount: int, source: Object) -> int:
 		return amount
 	if amount < 1:
 		return amount
-	if not source is CellMonster:
+	if not source is Monster:
 		return amount
 	
 	if Stage.get_current().get_instance().needs_guess():

@@ -1,6 +1,6 @@
 @tool
 extends CellObject
-class_name CellMonster
+class_name Monster
 
 ## A monster that attacks the player when revealed.
 

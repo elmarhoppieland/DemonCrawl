@@ -1,6 +1,6 @@
 @tool
-extends CellStranger
-class_name CellNomad
+extends Stranger
+class_name Nomad
 
 # ==============================================================================
 @export var offer: NomadOffer :

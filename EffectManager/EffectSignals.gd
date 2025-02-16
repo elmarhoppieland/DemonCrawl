@@ -34,3 +34,4 @@ class_name __EffectSignals
 @warning_ignore("unused_signal") signal gain_mana(mana: int, source: Object)
 @warning_ignore("unused_signal") signal object_revealed(object: CellObject)
 @warning_ignore("unused_signal") signal get_heart_value(value: int)
+@warning_ignore("unused_signal") signal turn()

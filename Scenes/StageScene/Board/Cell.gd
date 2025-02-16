@@ -221,11 +221,11 @@ func is_occupied() -> bool:
 ## the number of nearby flags + monsters.
 func is_solved() -> bool:
 	if is_hidden():
-		return is_flagged() == get_object() is CellMonster
+		return is_flagged() == get_object() is Monster
 	
 	var count := 0
 	for cell in get_nearby_cells():
-		if cell.is_flagged() or (cell.is_revealed() and cell.get_object() is CellMonster):
+		if cell.is_flagged() or (cell.is_revealed() and cell.get_object() is Monster):
 			count += 1
 	
 	return count >= get_value()
@@ -236,9 +236,7 @@ func is_solved() -> bool:
 func is_flag_solved() -> bool:
 	var count := 0
 	for cell in get_nearby_cells():
-		if cell.is_hidden():
-			count += 1
-		elif cell.get_object() is CellMonster:
+		if cell.is_hidden() or cell.get_object() is Monster:
 			count += 1
 	
 	return count == get_value()
