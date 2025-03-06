@@ -6,7 +6,7 @@
 font_size = 8
 
 [node name="Toast" type="Control"]
-modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(15, 20)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 15.0
@@ -18,6 +18,8 @@ script = ExtResource("1_jsfq5")
 
 [node name="BaseContainer" type="MarginContainer" parent="Node2D"]
 unique_name_in_owner = true
+offset_right = 15.0
+offset_bottom = 20.0
 mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="Node2D/BaseContainer"]

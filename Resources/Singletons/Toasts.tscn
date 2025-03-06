@@ -9,7 +9,11 @@ transform = Transform2D(4, 0, 0, 4, 0, 0)
 script = ExtResource("1_l3kai")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_bottom = 157.0
+anchors_preset = -1
+anchor_top = 0.25
+anchor_bottom = 0.25
+offset_bottom = -24.0
+grow_vertical = 0
 mouse_filter = 2
 
 [node name="ToastsContainer" type="VBoxContainer" parent="MarginContainer"]

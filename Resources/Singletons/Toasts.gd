@@ -38,4 +38,6 @@ static func add_toast(text: String, icon: Texture2D, debug_toast: bool = false) 
 	
 	_instance._toasts_container.add_child(toast)
 	
+	toast.finished.connect(toast.queue_free)
+	
 	return toast
