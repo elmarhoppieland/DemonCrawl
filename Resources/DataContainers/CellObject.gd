@@ -92,6 +92,17 @@ func _ready() -> void:
 	pass
 
 
+## Returns whether an object of this type can spawn. If this returns [code]false[/code],
+## a [Cell] that attempts to spawn this object will try again.
+static func can_spawn() -> bool:
+	return _can_spawn()
+
+
+## Virtual method to override the return value of [method can_spawn].
+static func _can_spawn() -> bool:
+	return true
+
+
 ## Returns the object's texture.
 ## [br][br][b]Note:[/b] This object is a [Texture2D] by itself, so if can be used as
 ## a texture. This method simply returns the underlying [Texture2D] instance.

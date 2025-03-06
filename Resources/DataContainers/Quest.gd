@@ -34,6 +34,8 @@ static var _current: Quest = Eternal.create(null) : set = _set_current, get = ge
 @export var _inventory := QuestInventory.new() : get = get_inventory
 @export var _stats := QuestStats.new() : get = get_stats
 @export var _player_attributes := QuestPlayerAttributes.new() : get = get_attributes
+
+@export var _mastery: Mastery : get = get_mastery
 # ==============================================================================
 
 #region current
@@ -119,5 +121,9 @@ func get_stats() -> QuestStats:
 
 func get_attributes() -> QuestPlayerAttributes:
 	return _player_attributes
+
+
+func get_mastery() -> Mastery:
+	return _mastery
 
 #endregion

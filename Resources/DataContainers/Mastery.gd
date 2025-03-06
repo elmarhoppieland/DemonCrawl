@@ -1,59 +1,44 @@
-extends RefCounted
+extends Resource
 class_name Mastery
 
 # ==============================================================================
-static var selected_path: String = Eternal.create("") :
-	set(value):
-		selected_path = value
-		if value.is_empty():
-			return
-		selected = ResourceLoader.load(value).new()
-static var selected: Mastery
-# ==============================================================================
-var icon: Texture2D :
-	get:
-		if not icon:
-			var identifier: String = get_script().resource_path.get_file().get_basename().to_snake_case()
-			var icon_name := "mastery" + str(level) + "/" + identifier
-			if not IconManager.icon_exists(icon_name):
-				icon_name = "mastery/" + identifier
-			icon = IconManager.get_icon_data(icon_name).create_texture()
-		return icon
-var level := 0 :
-	set(value):
-		level = value
-		icon = null
+@export var level := 0
 # ==============================================================================
 
 func _init() -> void:
-	level = TokenShop.get_purchased_level(Mastery.get_mastery_name_from_script(get_script()))
+	level = TokenShop.get_purchased_level(_get_identifier())
 
+#region decription & visualization
 
+## Returns this [Mastery]'s full description. Each level is one element in the returned array.
 func get_description() -> PackedStringArray:
 	var description := PackedStringArray()
 	
-	var i := 1
-	while true:
-		if level < i:
-			return description
-		
-		description.append(TranslationServer.tr("%s_DESCRIPTION_%d" % [Mastery.get_mastery_name_from_script(get_script()), i]))
-		
-		i += 1
+	for i in range(1, level + 1):
+		description.append(_get_description(i))
 	
 	return description
 
 
-func reload_icon() -> void:
-	icon = null
+## Virtual method to override the given [code]level[/code] of this [Mastery]'s description.
+## [br][br]If this method is not overridden, uses this [Mastery]'s identifier (see
+## [method _get_identifier]) to generate a translatable string:
+## [br][code]MASTERY_{id}_DESCRIPTION_{level}[/code].
+@warning_ignore("shadowed_variable")
+func _get_description(level: int) -> String:
+	return tr("MASTERY_%s_DESCRIPTION_%d" % [_get_identifier(), level])
 
 
-static func get_mastery_name_from_script(script: Script) -> String:
-	return "MASTERY_" + script.resource_path.get_file().get_basename().to_snake_case().to_upper()
+## Creates and returns a new icon for this [Mastery].
+func create_icon() -> Texture2D:
+	return IconManager.get_icon_data("mastery%d/%s" % [level, UserClassDB.script_get_class(get_script())]).create_texture()
 
 
-static func get_unlock_text_from_script(script: Script) -> String:
-	return get_mastery_name_from_script(script) + "_UNLOCK"
+## Virtual method to override this [Mastery]'s identifier. If not overridden, converts
+## the [Mastery]'s class name into an identifier.
+func _get_identifier() -> String:
+	return UserClassDB.script_get_class(get_script()).to_snake_case().to_upper()
+#endregion
 
 #region utilities
 
@@ -88,3 +73,25 @@ func life_lose(life: int, source: Object = self) -> void:
 	get_stats().life_lose(life, source)
 
 #endregion
+
+## Activates this [Mastery]'s ability. This does [b]not[/b] reset its charges,
+## or check the [Mastery]'s level.
+func activate_ability() -> void:
+	_ability()
+
+
+## Virtual method. Called when the [Mastery]'s ability is activated (see [method activate_ability]).
+## Should perform its effects without checking the [Mastery]'s level. Also should not
+## reset the ability's charges.
+func _ability() -> void:
+	pass
+
+
+## Returns the description of this [Mastery]'s ability.
+func get_ability_description() -> String:
+	return _get_ability_description()
+
+
+## Virtual method to override the return value of [method get_ability_description].
+func _get_ability_description() -> String:
+	return tr("MASTERY_%s_ABILITY" % _get_identifier())

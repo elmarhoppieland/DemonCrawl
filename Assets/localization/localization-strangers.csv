@@ -38,3 +38,6 @@ STRANGER_BAGMAN_DESCRIPTION_WEAKEN;I weaken monsters by {power}!
 STRANGER_BAGMAN_DESCRIPTION_NEUTRAL;Having trouble with those monsters?
 STRANGER_BAGMAN_DESCRIPTION_PROMPT;Give me {cost} coins and I'll help you out...
 STRANGER_BAGMAN_INTERACT;You got it...
+
+STRANGER_ELDER;Elder
+STRANGER_ELDER_DESCRIPTION;I will activate your ultimate mastery ability for {cost} coins!

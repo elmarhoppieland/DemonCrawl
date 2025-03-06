@@ -62,8 +62,8 @@ func _generate_content() -> void:
 		return
 	
 	var content := table.generate(1 / (1 - get_stage().get_density())) as CellObjectBase
-	if not content:
-		return
+	while content and not content.can_spawn():
+		content = table.generate(1 / (1 - get_stage().get_density()))
 	
 	spawn(content)
 
@@ -71,6 +71,9 @@ func _generate_content() -> void:
 ## Spawns an instance of the provided [CellObject] script in this [Cell], or the nearest
 ## empty cell if this cell is occupied.
 func spawn(base: CellObjectBase, visible_only: bool = false) -> CellObject:
+	if not base:
+		return null
+	
 	if not is_occupied():
 		var instance := base.create(self, get_stage())
 		_set_object(instance)

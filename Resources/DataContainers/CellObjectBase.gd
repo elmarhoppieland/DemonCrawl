@@ -34,6 +34,10 @@ func create(cell: Cell, stage: Stage = Stage.get_current()) -> CellObject:
 	return instance
 
 
+func can_spawn() -> bool:
+	return base_script.can_spawn()
+
+
 func _get_property_list() -> Array[Dictionary]:
 	if not base_script:
 		return []
