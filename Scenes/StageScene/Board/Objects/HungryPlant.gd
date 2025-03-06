@@ -1,5 +1,5 @@
 @tool
-extends CellObject
+extends Stranger
 class_name HungryPlant
 
 # ==============================================================================
@@ -68,10 +68,10 @@ func _get_annotation_title() -> String:
 
 
 func _get_annotation_subtext() -> String:
-	return tr("STRANGER_PLANT_DESCRIPTION").format({
+	return "\"" + tr("STRANGER_PLANT_DESCRIPTION") + "\"\n" + tr("STRANGER_PLANT_REWARD").format({
 		"v": current,
 		"max": maximum,
-		"reward": tr_n("STRANGER_PLANT_REWARD_" + RewardType.find_key(type), "STRANGER_PLANT_REWARD_" + RewardType.find_key(type) + "_p", reward_amount).format({
+		"reward": tr_n("STRANGER_PLANT_REWARD_" + RewardType.find_key(type), "STRANGER_PLANT_REWARD_" + RewardType.find_key(type) + "_PLURAL", reward_amount).format({
 			"amount": reward_amount
 		})
 	})

@@ -57,6 +57,12 @@ theme/custom="res://Resources/default_theme.tres"
 theme/custom_font="res://Assets/fonts/04B_03__.TTF"
 theme/default_font_antialiasing=0
 
+[importer_defaults]
+
+csv_translation={
+"delimiter": 1
+}
+
 [input]
 
 interact={
@@ -143,7 +149,7 @@ debug_overlay_toggle={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Assets/localization/localization.en.translation")
+locale/translations=PackedStringArray("res://Assets/localization/localization.en.translation", "res://Assets/localization/localization-strangers.en.translation")
 
 [rendering]
 

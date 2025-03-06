@@ -1,5 +1,5 @@
 @tool
-extends CellObject
+extends Stranger
 class_name Bagman
 
 # ==============================================================================
@@ -59,7 +59,7 @@ func _get_annotation_subtext() -> String:
 		}) + "\n"
 	
 	if power > -3:
-		msg += tr("STRANGER_BAGMAN_DESCRIPTION_PROMPT_INTERACTION").format({
+		msg += tr("STRANGER_BAGMAN_DESCRIPTION_PROMPT").format({
 			"cost": cost
 		})
 	

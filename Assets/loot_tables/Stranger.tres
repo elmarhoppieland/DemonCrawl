@@ -60,4 +60,4 @@ item_2/weight = 1.0
 item_3/value = SubResource("Resource_qpra0")
 item_3/weight = 1.0
 item_4/value = SubResource("Resource_d84uu")
-item_4/weight = 100.0
+item_4/weight = 1.0

@@ -1,5 +1,5 @@
 @tool
-extends CellObject
+extends Stranger
 class_name Blacksmith
 
 # ==============================================================================
@@ -55,13 +55,13 @@ func _get_annotation_title() -> String:
 
 func _get_annotation_subtext() -> String:
 	if passed_turns < 0:
-		return tr("STRANGER_BLACKSMITH_DESCRIPTION").format({
+		return "\"" + tr("STRANGER_BLACKSMITH_DESCRIPTION").format({
 			"type": tr("ARMOR_TYPE_" + Type.find_key(type)),
 			"cost": cost,
 			"turns": turns
-		})
+		}) + "\""
 	
-	return tr("STRANGER_BLACKSMITH_BUSY").format({
+	return "\"" + tr("STRANGER_BLACKSMITH_BUSY") + "\"\n" + tr("STRANGER_BLACKSMITH_PROGRESS").format({
 		"passed_turns": passed_turns,
 		"turns": turns
 	})

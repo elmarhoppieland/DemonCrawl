@@ -1,5 +1,5 @@
 @tool
-extends CellObject
+extends Stranger
 class_name Priest
 
 # ==============================================================================
@@ -36,9 +36,9 @@ func _get_annotation_title() -> String:
 
 
 func _get_annotation_subtext() -> String:
-	return tr("STRANGER_PRIEST_DESCRIPTION").format({
+	return "\"" + tr("STRANGER_PRIEST_DESCRIPTION").format({
 		"cost": cost
-	})
+	}) + "\""
 
 
 func _animate(time: float) -> void:

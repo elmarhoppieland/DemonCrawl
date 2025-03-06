@@ -129,35 +129,6 @@ COINS_HOVER;COINS
 COINS_HOVER_SUBTEXT;Spend money at shops.
 OBJECT_OFF_WORLD;Oops, your {object} fell off the world!
 OBJECT_TYPE_CELL_CHEST;chest
-STRANGER_NOMAD;Nomad
-STRANGER_NOMAD_SELL_CONSUMABLE;"""Selling {item}!""\nPrice: {cost} coins"
-STRANGER_NOMAD_SELL_MAGIC;"""Selling magic items!""\nPrice: {cost} coins"
-STRANGER_NOMAD_SELL_LEGENDARY;"""Selling legendary items!""\nPrice: {cost} coins"
-STRANGER_NOMAD_SELL_MANA;"""Selling {mana} mana!""\nPrice: {cost} coins"
-STRANGER_NOMAD_SELL_TREASURE;"""Selling treasure chests!""\nPrice: {cost} coins"
-STRANGER_NOMAD_BUY_ITEM;"""Buying {item}!""\nPrice: {price} coins"
-STRANGER_NOMAD_TOO_EXPENSIVE;You don't have enough coins!
-STRANGER_NOMAD_FAIL_BUY_ITEM;Right, you don't have {item}!
-STRANGER_PLANT;Hungry Plant
-STRANGER_PLANT_DESCRIPTION;"""Feed me your items!""\n[{v}/{max}] Reward: {reward}"
-STRANGER_PLANT_REWARD_COINS;{amount} coin
-STRANGER_PLANT_REWARD_COINS_p;{amount} coins
-STRANGER_PLANT_REWARD_SOULS;{amount} soul
-STRANGER_PLANT_REWARD_SOULS_p;{amount} souls
-STRANGER_PLANT_REWARD_MANA;{amount} mana
-STRANGER_PLANT_REWARD_MANA_p;{amount} mana
-STRANGER_PLANT_REWARD_PRESENT;a Present
-STRANGER_BLACKSMITH;Blacksmith
-STRANGER_BLACKSMITH_DESCRIPTION;"""Got {cost} coins? I'll forge you some {type} armor in {turns} turns!"""
-STRANGER_BLACKSMITH_BUSY;"""Still hammerin' away!""\n[{passed_turns}/{turns}]"
-STRANGER_PRIEST;Priest
-STRANGER_PRIEST_DESCRIPTION;"""I can remove an Omen and get rid of your negative morality for {cost} coins!"""
-STRANGER_PRIEST_FAIL;Even soldiers of God need to eat!
-STRANGER_BAGMAN;Bagman
-STRANGER_BAGMAN_DESCRIPTION_EMPOWER;I empower monsters by {power}!
-STRANGER_BAGMAN_DESCRIPTION_WEAKEN;I weaken monsters by {power}!
-STRANGER_BAGMAN_DESCRIPTION_NEUTRAL;Having trouble with those monsters?
-STRANGER_BAGMAN_DESCRIPTION_PROMPT_INTERACTION;Give me {cost} coins and I'll help you out...
 ARMOR_TYPE_HEAD;head
 ARMOR_TYPE_BODY;body
 ARMOR_TYPE_LEG;leg

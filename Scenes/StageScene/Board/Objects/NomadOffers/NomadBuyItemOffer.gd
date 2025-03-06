@@ -26,9 +26,10 @@ func _get_fail_message() -> String:
 
 
 func _get_description() -> String:
-	return tr("NOMAD_BUY_ITEM").format({
-		"item": tr(item.get_name()),
-		"price": price
+	return "\"" + tr("STRANGER_NOMAD_BUY_ITEM").format({
+		"item": tr(item.get_name())
+	}) + "\"\n" + tr("STRANGER_NOMAD_PRICE").format({
+		"cost": price
 	})
 
 
