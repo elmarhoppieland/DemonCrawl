@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootTable" load_steps=11 format=3 uid="uid://dpgfvuaiurqu4"]
+[gd_resource type="Resource" script_class="LootTable" load_steps=13 format=3 uid="uid://dpgfvuaiurqu4"]
 
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Nomad.gd" id="1_kyyba"]
 [ext_resource type="Script" path="res://Resources/DataContainers/LootTable.gd" id="1_vb474"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/HungryPlant.gd" id="3_naukx"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Blacksmith.gd" id="4_gm6vj"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Priest.gd" id="5_iduay"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Bagman.gd" id="6_2d1q4"]
 
 [sub_resource type="Resource" id="Resource_q4qr1"]
 resource_name = "Nomad"
@@ -36,13 +37,20 @@ script = ExtResource("2_qut8x")
 base_script = ExtResource("5_iduay")
 cost = null
 
+[sub_resource type="Resource" id="Resource_d84uu"]
+resource_name = "Bagman"
+script = ExtResource("2_qut8x")
+base_script = ExtResource("6_2d1q4")
+cost = null
+power = null
+
 [resource]
 script = ExtResource("1_vb474")
 type = 24
 items_class = "CellObjectBase"
 auto_sort = false
 use_modifier = false
-item_count = 4
+item_count = 5
 item_0/value = SubResource("Resource_q4qr1")
 item_0/weight = 1.0
 item_1/value = SubResource("Resource_w7fud")
@@ -51,3 +59,5 @@ item_2/value = SubResource("Resource_sjg7g")
 item_2/weight = 1.0
 item_3/value = SubResource("Resource_qpra0")
 item_3/weight = 1.0
+item_4/value = SubResource("Resource_d84uu")
+item_4/weight = 100.0

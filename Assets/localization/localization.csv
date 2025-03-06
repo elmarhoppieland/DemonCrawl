@@ -153,6 +153,11 @@ STRANGER_BLACKSMITH_BUSY;"""Still hammerin' away!""\n[{passed_turns}/{turns}]"
 STRANGER_PRIEST;Priest
 STRANGER_PRIEST_DESCRIPTION;"""I can remove an Omen and get rid of your negative morality for {cost} coins!"""
 STRANGER_PRIEST_FAIL;Even soldiers of God need to eat!
+STRANGER_BAGMAN;Bagman
+STRANGER_BAGMAN_DESCRIPTION_EMPOWER;I empower monsters by {power}!
+STRANGER_BAGMAN_DESCRIPTION_WEAKEN;I weaken monsters by {power}!
+STRANGER_BAGMAN_DESCRIPTION_NEUTRAL;Having trouble with those monsters?
+STRANGER_BAGMAN_DESCRIPTION_PROMPT_INTERACTION;Give me {cost} coins and I'll help you out...
 ARMOR_TYPE_HEAD;head
 ARMOR_TYPE_BODY;body
 ARMOR_TYPE_LEG;leg
