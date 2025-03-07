@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=39 format=3 uid="uid://dmddrgkl04gph"]
+[gd_resource type="Theme" load_steps=40 format=3 uid="uid://dmddrgkl04gph"]
 
 [ext_resource type="StyleBox" uid="uid://cokg66aqb3ro1" path="res://Resources/xp_bar_fill.tres" id="1_0ok7g"]
 [ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://Assets/skins/default/bg.png" id="1_3w34f"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bh8p6aw2syxn" path="res://Assets/sprites/strangers/HungryPlant.png" id="11_nlc7e"]
 [ext_resource type="Texture2D" uid="uid://bj1151lup0syu" path="res://Assets/sprites/strangers/Elder.png" id="12_ufe7c"]
 [ext_resource type="Texture2D" uid="uid://wvsgea66jqib" path="res://Assets/sprites/strangers/Priest.png" id="13_d1vkh"]
+[ext_resource type="Texture2D" uid="uid://bb54bvukgat5i" path="res://Assets/sprites/strangers/Gambler.png" id="13_p3b2n"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qp4ky"]
 content_margin_left = 5.0
@@ -190,6 +191,7 @@ Cell/icons/monster_atlas = ExtResource("8_tvptk")
 Cell/icons/stranger_bagman = ExtResource("10_dh8jx")
 Cell/icons/stranger_blacksmith = ExtResource("10_1o0v6")
 Cell/icons/stranger_elder = ExtResource("12_ufe7c")
+Cell/icons/stranger_gambler = ExtResource("13_p3b2n")
 Cell/icons/stranger_nomad = ExtResource("10_obq7b")
 Cell/icons/stranger_plant = ExtResource("11_nlc7e")
 Cell/icons/stranger_priest = ExtResource("13_d1vkh")

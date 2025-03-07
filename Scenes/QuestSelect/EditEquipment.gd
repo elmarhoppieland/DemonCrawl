@@ -58,6 +58,7 @@ func add_mastery_from_script(script_path: String) -> void:
 	add_mastery("MASTERY_" + mastery._get_identifier(), mastery.icon, script_path, mastery.get_description())
 
 
+@warning_ignore("unused_parameter")
 func add_mastery(mastery_name: String, icon: Texture2D, identifier: String, description: PackedStringArray = [], unlock_text: String = "") -> void:
 	const LOCK_ALPHA := 0.5
 	

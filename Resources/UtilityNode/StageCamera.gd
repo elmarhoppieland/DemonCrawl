@@ -61,9 +61,3 @@ func focus_progress() -> void:
 
 func get_center() -> Vector2:
 	return position
-	
-	# TODO: investigate the intention here
-	# (was static, if we have an instance we return its position, if not we return the center of the viewport)
-	
-	# we need any node to get the main viewport here, Focus works here but anything else also works
-	#return Focus.get_viewport().size / 2

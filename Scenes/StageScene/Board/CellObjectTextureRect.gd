@@ -60,4 +60,8 @@ func get_2d_anchor() -> Node2D:
 
 
 func _on_tooltip_grabber_about_to_show() -> void:
+	if not _object:
+		_tooltip_grabber.text = ""
+		return
+	
 	_tooltip_grabber.text = _object.get_annotation_text()

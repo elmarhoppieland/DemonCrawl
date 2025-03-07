@@ -37,6 +37,44 @@
 			}
 		]
 	},
+	"Elder": {
+		"atlas": "res://Assets/sprites/strangers/Elder.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"Gambler": {
+		"atlas": "res://Assets/sprites/strangers/Gambler.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
 	"HungryPlant": {
 		"atlas": "res://Assets/sprites/strangers/HungryPlant.png",
 		"icons": [

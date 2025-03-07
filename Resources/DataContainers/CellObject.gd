@@ -77,11 +77,6 @@ func get_tree() -> SceneTree:
 func get_stage() -> Stage:
 	return _stage
 
-
-## Clears this [CellObject], setting the cell's object to [code]null[/code].
-func clear() -> void:
-	get_cell().clear_object()
-
 #region virtuals
 
 ## Virtual method. Called immediately after initializing. Can be overridden to run
@@ -338,6 +333,17 @@ func notify_spawned() -> void:
 #endregion
 
 #region utilities
+
+## Clears this [CellObject], setting the cell's object to [code]null[/code].
+func clear() -> void:
+	get_cell().clear_object()
+
+
+func move_to_cell(cell: Cell) -> void:
+	# TODO: this should animate the texture from the old cell to the new one
+	get_cell().spawn_instance(null)
+	cell.spawn_instance(self)
+
 
 func get_quest() -> Quest:
 	return Quest.get_current()

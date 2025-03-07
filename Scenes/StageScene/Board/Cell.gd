@@ -36,7 +36,7 @@ static func create(board_position: Vector2i = Vector2i.ZERO) -> Cell:
 
 ## Opens this [Cell], showing its contents.
 ## [br][br]Calls [method Effects.cell_open] immediately after opening the [Cell].
-func open(force: bool = false) -> void:
+func open(force: bool = false, allow_loot: bool = true) -> void:
 	if get_mode() == Mode.VISIBLE:
 		return
 	if not force and get_mode() == Mode.FLAGGED:
@@ -46,7 +46,7 @@ func open(force: bool = false) -> void:
 	
 	Quest.get_current().get_inventory().mana_gain(get_value(), self)
 	
-	if not is_occupied() and get_value() == 0 and randf() > 0.8 * (1 - get_stage().get_density()):
+	if allow_loot and not is_occupied() and get_value() == 0 and randf() > 0.8 * (1 - get_stage().get_density()):
 		_generate_content()
 		#spawn(preload("res://Assets/loot_tables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
 	
@@ -104,7 +104,10 @@ func spawn(base: CellObjectBase, visible_only: bool = false) -> CellObject:
 	return
 
 
-## Spawns an existing [CellObject] in this [Cell].
+## Spawns an existing [CellObject] in this [Cell]. If this cell is already occupied,
+## the new object will silently replace the old one. This does [b]not[/b] call cleanup
+## methods, so it is advised to call [method clear_object] before calling this if
+## the cell is occupied.
 ## [br][br][br]Note:[/b] Though this method will not prevent it, using the same object
 ## for multiple [Cell]s may behave unexpectedly.
 func spawn_instance(instance: CellObject) -> void:
