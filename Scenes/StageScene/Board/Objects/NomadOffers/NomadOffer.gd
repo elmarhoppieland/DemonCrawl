@@ -36,18 +36,42 @@ func get_description() -> String:
 	return _get_description()
 
 
+## Virtual method. Override to specify whether the player can afford this offer.
+## This is not called when the player activates the [Nomad] for free.
+func _can_afford() -> bool:
+	return true
+
+
+## Returns whether the player can afford this offer. This usually means that the player has enough coins.
+func can_afford() -> bool:
+	return _can_afford()
+
+
 ## Virtual method. Override to specify whether the player can perform this offer
-## (e.g. whether the player has enough coins).
+## (e.g. whether the player has the item that the [Nomad] is asking for). This is
+## always called, even when the offer is made for free.
 func _can_perform() -> bool:
-	return false
+	return true
 
 
-## Returns whether the player can perform this offer.
+## Returns whether the player can perform this offer. The player may not be able
+## to afford it, see [method can_afford].
 func can_perform() -> bool:
 	return _can_perform()
 
 
-## Virtual method. Called when the player interacts with the Nomad, after checking
+## Virtual method. Called when the player activates this [Nomad], before calling [method _perform].
+func _pay() -> void:
+	pass
+
+
+## Pays for this offer. This usually means the player spends coins equal to its cost.
+## Should only be called if the player can afford this offer, see [method can_afford].
+func pay() -> void:
+	_pay()
+
+
+## Virtual method. Called when the player interacts with the [Nomad], after checking
 ## whether this offer can be performed. See also [method _can_perform].
 func _perform() -> void:
 	pass

@@ -372,11 +372,11 @@ func get_items() -> Array[Item]:
 
 
 func life_restore(life: int, source: Object = self) -> void:
-	get_inventory().life_restore(life, source)
+	get_stats().life_restore(life, source)
 
 
 func life_lose(life: int, source: Object = self) -> void:
-	get_inventory().life_lose(life, source)
+	get_stats().life_lose(life, source)
 
 #endregion
 

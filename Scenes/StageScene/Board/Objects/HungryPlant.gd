@@ -36,6 +36,10 @@ func _interact() -> void:
 		Toasts.add_toast(tr("STRANGER_PLANT_FAIL"), IconManager.get_icon_data("HungryPlant/Frame0").create_texture())
 		return
 	
+	activate()
+
+
+func _activate() -> void:
 	Quest.get_current().get_inventory().item_lose_random()
 	current += 1
 	if current >= maximum:

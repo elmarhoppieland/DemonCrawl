@@ -28,8 +28,12 @@ func _interact() -> void:
 		Toasts.add_toast(tr("STRANGER_BAGMAN_FAIL"), IconManager.get_icon_data("Bagman/Frame0").create_texture())
 		return
 	
-	power -= 1
 	Quest.get_current().get_stats().spend_coins(cost, self)
+	activate()
+
+
+func _activate() -> void:
+	power -= 1
 	Toasts.add_toast(tr("STRANGER_BAGMAN_INTERACT"), IconManager.get_icon_data("Bagman/Frame0").create_texture())
 
 

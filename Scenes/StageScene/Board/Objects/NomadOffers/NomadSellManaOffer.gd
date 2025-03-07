@@ -13,4 +13,4 @@ func _spawn() -> void:
 func _perform() -> void:
 	super()
 	
-	Quest.get_current().get_inventory().mana_gain(mana, self) # TODO: maybe have the source be the Nomad?
+	Quest.get_current().get_inventory().mana_gain(mana, _nomad)

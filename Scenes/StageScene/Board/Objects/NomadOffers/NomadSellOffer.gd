@@ -5,12 +5,15 @@ class_name NomadSellOffer
 @export var cost := -1
 # ==============================================================================
 
-func _can_perform() -> bool:
+func _can_afford() -> bool:
 	return Quest.get_current().get_stats().coins >= cost
 
 
+func _pay() -> void:
+	Quest.get_current().get_stats().spend_coins(cost, _nomad)
+
+
 func _perform() -> void:
-	Quest.get_current().get_stats().spend_coins(cost, self) # TODO: maybe have the destination be the Nomad?
 	cost += 1
 
 

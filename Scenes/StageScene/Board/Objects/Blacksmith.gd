@@ -18,7 +18,7 @@ const TAGS := {
 @export var type := Type.HEAD
 @export var cost := -1
 @export var turns := -1
-@export var passed_turns := -1
+@export var passed_turns := -1 # this is -1 if the blacksmith isn't busy
 # ==============================================================================
 
 func _ready() -> void:
@@ -35,8 +35,19 @@ func _spawn() -> void:
 
 
 func _interact() -> void:
+	if passed_turns < 0:
+		return
+	
 	if Quest.get_current().get_stats().coins < cost:
 		Toasts.add_toast(tr("STRANGER_BLACKSMITH_FAIL"), IconManager.get_icon_data("Blacksmith/Frame0").create_texture())
+		return
+	
+	Quest.get_current().get_stats().spend_coins(cost, self)
+	activate()
+
+
+func _activate() -> void:
+	if passed_turns < 0:
 		return
 	
 	passed_turns = 0

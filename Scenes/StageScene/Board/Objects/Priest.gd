@@ -15,6 +15,12 @@ func _interact() -> void:
 		Toasts.add_toast(tr("STRANGER_PRIEST_FAIL"), IconManager.get_icon_data("Priest/Frame0").create_texture())
 		return
 	
+	Quest.get_current().get_stats().spend_coins(cost, self)
+	
+	activate()
+
+
+func _activate() -> void:
 	var omens: Array[Item] = []
 	omens.assign(Quest.get_current().get_inventory().items.filter(func(item: Item) -> bool: return item.get_type() == Item.Type.OMEN))
 	if not omens.is_empty():

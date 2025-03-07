@@ -43,7 +43,7 @@ func _get_annotation_title() -> String:
 func _get_annotation_subtext() -> String:
 	return "\"" + tr("STRANGER_ELDER_DESCRIPTION").format({
 		"cost": cost
-	}) + "\"\n[i](" + Quest.get_current().get_mastery().get_ability_description() + ")[/i]"
+	}) + "\"\n(" + Quest.get_current().get_mastery().get_ability_description() + ")"
 
 
 func _animate(time: float) -> void:
