@@ -45,3 +45,8 @@ STRANGER_ELDER_DESCRIPTION;I will activate your ultimate mastery ability for {co
 STRANGER_GAMBLER;Gambler
 STRANGER_GAMBLER_DESCRIPTION;I'll bet you {cost} coins that I can move to a hidden cell without getting hurt! If I'm wrong, well, you can have whatever I've got.
 STRANGER_GAMBLER_BALANCE;Currently has: {coins} coins
+
+STRANGER_DOCTOR;Doctor
+STRANGER_DOCTOR_DESCRIPTION;I will restore {lives} <1:life|lives> for {cost} coins, but you'll owe me {fee} more when you leave.
+STRANGER_DOCTOR_DESCRIPTION_EXTRA;Don't forget, you still owe me {fee} coins! Need another heal? I will restore {lives} <1:life|lives> for {cost} coins, but then you'll owe a total of {new_fee} coins later.
+STRANGER_DOCTOR_BALANCE;Currently has: {coins} coins

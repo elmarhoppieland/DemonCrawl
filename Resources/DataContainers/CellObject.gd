@@ -345,6 +345,11 @@ func move_to_cell(cell: Cell) -> void:
 	cell.spawn_instance(self)
 
 
+func flee() -> void:
+	# TODO: show animation
+	clear()
+
+
 func get_quest() -> Quest:
 	return Quest.get_current()
 

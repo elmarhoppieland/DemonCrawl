@@ -69,7 +69,12 @@ func lose() -> void:
 
 @warning_ignore("shadowed_variable")
 func spend_coins(coins: int, destination: Object) -> void:
-	self.coins -= Effects.spend_coins(coins, destination)
+	lose_coins(Effects.spend_coins(coins, destination), destination)
+
+
+@warning_ignore("shadowed_variable")
+func lose_coins(coins: int, destination: Object) -> void:
+	self.coins -= mini(Effects.lose_coins(coins, destination), self.coins)
 
 
 func damage(amount: int, source: Object) -> void:

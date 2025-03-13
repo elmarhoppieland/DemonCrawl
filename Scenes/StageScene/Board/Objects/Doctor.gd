@@ -1,0 +1,76 @@
+@tool
+extends Stranger
+class_name Doctor
+
+# ==============================================================================
+const Apple := preload("res://Assets/items/Apple.gd")
+# ==============================================================================
+@export var cost := -1
+@export var extra_fee := -1
+@export var lives := -1
+
+@export var purchase_count := 0
+# ==============================================================================
+
+func _ready() -> void:
+	Effects.Signals.stage_leave.connect(func() -> void:
+		Quest.get_current().get_stats().lose_coins(extra_fee * purchase_count, self)
+	)
+	Effects.Signals.item_use.connect(func(item: Item) -> void:
+		if item is Apple:
+			flee()
+	)
+
+
+func _spawn() -> void:
+	cost = randi_range(5, 15)
+	extra_fee = randi_range(10, 20)
+	lives = randi_range(1, 3)
+
+
+func _interact() -> void:
+	if Quest.get_current().get_stats().coins < cost:
+		Toasts.add_toast(tr("STRANGER_DOCTOR_FAIL"), IconManager.get_icon_data("Doctor/Frame0").create_texture())
+		return
+	
+	Quest.get_current().get_stats().spend_coins(cost, self)
+	
+	activate()
+
+
+func _activate() -> void:
+	Toasts.add_toast(tr("STRANGER_DOCTOR_INTERACT"), IconManager.get_icon_data("Doctor/Frame0").create_texture())
+	
+	purchase_count += 1
+	Quest.get_current().get_stats().life_restore(lives, self)
+
+
+func _get_texture() -> TextureSequence:
+	var texture := TextureSequence.new()
+	texture.atlas = get_theme_icon("stranger_doctor")
+	texture.size = Cell.CELL_SIZE
+	return texture
+
+
+func _get_annotation_title() -> String:
+	return tr("STRANGER_DOCTOR").to_upper()
+
+
+func _get_annotation_subtext() -> String:
+	if purchase_count == 0:
+		return "\"" + Translator.translate("STRANGER_DOCTOR_DESCRIPTION", lives).format({
+			"cost": cost,
+			"fee": extra_fee,
+			"lives": lives
+		}) + "\""
+	
+	return "\"" + Translator.translate("STRANGER_DOCTOR_DESCRIPTION_EXTRA", lives).format({
+		"cost": cost,
+		"fee": extra_fee * purchase_count,
+		"lives": lives,
+		"new_fee": extra_fee * (purchase_count + 1)
+	}) + "\""
+
+
+func _animate(time: float) -> void:
+	get_texture().animate(1.0, time)

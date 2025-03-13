@@ -203,3 +203,14 @@ static func get_heart_value(value: int = 1) -> int:
 static func turn() -> void:
 	EffectManager.propagate(MutableSignals.turn, [])
 	EffectManager.propagate(Signals.turn, [])
+
+
+static func lose_coins(amount: int, destination: Object) -> int:
+	amount = EffectManager.propagate(MutableSignals.lose_coins, [amount, destination], 0)
+	EffectManager.propagate(Signals.lose_coins, [amount, destination])
+	return amount
+
+
+static func stage_leave() -> void:
+	EffectManager.propagate(MutableSignals.stage_leave, [])
+	EffectManager.propagate(Signals.stage_leave, [])
