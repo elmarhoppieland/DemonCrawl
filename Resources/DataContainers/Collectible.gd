@@ -130,8 +130,7 @@ func _post() -> void:
 ## without player input, often by randomly selecting a player's choice, e.g. picking
 ## the targeted [Cell] randomly.
 func invoke() -> void:
-	if can_use():
-		_invoke()
+	_invoke()
 
 
 ## Virtual method. Usually called when the [Collectible] is used by a game effect that is not the player.

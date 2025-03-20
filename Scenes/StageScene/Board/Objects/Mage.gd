@@ -17,6 +17,7 @@ func _spawn() -> void:
 	cost = randi_range(COST_MIN, COST_MAX)
 	item = ItemDB.create_filter().filter_tag("_targeted").disallow_all_types().allow_type(Item.Type.MAGIC).get_random_item()
 	item.set_max_mana(int(item.get_max_mana() * randf_range(MANA_MODIFIER_MIN, MANA_MODIFIER_MAX)))
+	item.charge()
 	
 	item.cleared.connect(func() -> void:
 		Toasts.add_toast(tr("STRANGER_MAGE_LOST_ITEM").format({

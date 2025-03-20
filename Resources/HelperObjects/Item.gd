@@ -276,6 +276,11 @@ func _is_active() -> bool:
 	return _in_inventory
 
 
+## Fully charges this [Item]'s mana. Does nothing if the item does not have mana.
+func charge() -> void:
+	set_mana(get_max_mana())
+
+
 ## Sets this item's current mana to [code]mana[/code].
 func set_mana(mana: int) -> void:
 	mana = clampi(mana, 0, get_max_mana())
