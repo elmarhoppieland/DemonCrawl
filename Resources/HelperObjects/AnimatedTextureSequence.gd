@@ -21,7 +21,7 @@ func _notification(what: int) -> void:
 
 func _validate_property(property: Dictionary) -> void:
 	if property.name == &"index":
-		property.usage &= ~PROPERTY_USAGE_EDITOR
+		property.usage &= ~(PROPERTY_USAGE_EDITOR | PROPERTY_USAGE_STORAGE)
 
 
 func _init() -> void:
