@@ -50,6 +50,8 @@ func play() -> void:
 	const SLIDE_DURATION := 0.4
 	const TOAST_DURATION := 2.0
 	
+	show()
+	
 	base_container.reset_size()
 	
 	await Promise.defer()
