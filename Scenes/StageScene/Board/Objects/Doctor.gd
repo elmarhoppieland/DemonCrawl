@@ -45,13 +45,6 @@ func _activate() -> void:
 	Quest.get_current().get_stats().life_restore(lives, self)
 
 
-func _get_texture() -> TextureSequence:
-	var texture := TextureSequence.new()
-	texture.atlas = get_theme_icon("stranger_doctor")
-	texture.size = Cell.CELL_SIZE
-	return texture
-
-
 func _get_annotation_title() -> String:
 	return tr("STRANGER_DOCTOR").to_upper()
 
@@ -70,7 +63,3 @@ func _get_annotation_subtext() -> String:
 		"lives": lives,
 		"new_fee": extra_fee * (purchase_count + 1)
 	}) + "\""
-
-
-func _animate(time: float) -> void:
-	get_texture().animate(1.0, time)

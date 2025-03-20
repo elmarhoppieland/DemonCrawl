@@ -12,6 +12,9 @@ class_name QuestInventory
 				item_removed.emit(items[i])
 			elif items[i].get_script() != value[i].get_script():
 				item_transformed.emit(items[i], value[i])
+			
+			if i < value.size():
+				value[i].cleared.connect(item_lose.bind(value[i]))
 		
 		items = value
 		emit_changed()
@@ -35,6 +38,8 @@ func item_gain(item: Item) -> void:
 	item_added.emit(item)
 	emit_changed()
 	item.notify_gained()
+	
+	item.cleared.connect(item_lose.bind(item))
 
 
 func item_lose(item: Item) -> void:
@@ -59,6 +64,8 @@ func item_transform(old_item: Item, new_item: Item) -> void:
 	item_transformed.emit(old_item, new_item)
 	old_item.notify_lost()
 	new_item.notify_gained()
+	
+	new_item.cleared.connect(item_lose.bind(new_item))
 
 
 func item_has(item: Item, exact: bool = false) -> bool:

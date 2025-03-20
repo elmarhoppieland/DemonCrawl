@@ -53,13 +53,6 @@ func _activate() -> void:
 	passed_turns = 0
 
 
-func _get_texture() -> TextureSequence:
-	var texture := TextureSequence.new()
-	texture.atlas = get_theme_icon("stranger_blacksmith")
-	texture.size = Cell.CELL_SIZE
-	return texture
-
-
 func _get_annotation_title() -> String:
 	return tr("STRANGER_BLACKSMITH").to_upper()
 
@@ -76,10 +69,6 @@ func _get_annotation_subtext() -> String:
 		"passed_turns": passed_turns,
 		"turns": turns
 	})
-
-
-func _animate(time: float) -> void:
-	get_texture().animate(1.0, time)
 
 
 func _turn() -> void:

@@ -26,7 +26,7 @@ const TYPE_COLORS := {
 @export var _name := "" : set = _set_name
 @export_multiline var _description := ""
 @export var _type := Type.PASSIVE : set = _set_type, get = get_type
-@export var _mana := 0 : set = _set_max_mana, get = get_max_mana
+@export var _mana := 0 : set = set_max_mana, get = get_max_mana
 @export var _cost := 0 : get = get_cost
 @export var _tags: PackedStringArray : get = get_tags
 @export var _atlas_region := Rect2(0, 0, 16, 16) :
@@ -40,6 +40,8 @@ const TYPE_COLORS := {
 # ==============================================================================
 var _current_mana := 0 : set = set_mana, get = get_mana
 var _in_inventory := false
+# ==============================================================================
+signal cleared()
 # ==============================================================================
 
 #region internals
@@ -100,6 +102,15 @@ func _get_progress() -> int:
 
 func _get_max_progress() -> int:
 	return get_max_mana()
+
+
+func _post() -> void:
+	if get_type() == Type.CONSUMABLE:
+		clear()
+		return
+	
+	if has_mana():
+		clear_mana()
 
 
 func _export() -> Dictionary:
@@ -165,7 +176,7 @@ func _set_type(type: Type) -> void:
 	emit_changed()
 
 
-func _set_max_mana(mana: int) -> void:
+func set_max_mana(mana: int) -> void:
 	_mana = mana
 	emit_changed()
 
@@ -304,9 +315,17 @@ func get_attributes() -> QuestPlayerAttributes:
 	return get_quest().get_attributes()
 
 
+func get_stage() -> Stage:
+	return Stage.get_current()
+
+
+func get_board() -> Board:
+	return get_stage().get_board()
+
+
 ## Removes this item from the inventory.
 func clear() -> void:
-	get_inventory().item_lose(self)
+	cleared.emit()
 
 
 ## Resets this item's current mana to zero.

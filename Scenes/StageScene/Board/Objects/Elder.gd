@@ -29,13 +29,6 @@ func _activate() -> void:
 	cost *= 2
 
 
-func _get_texture() -> TextureSequence:
-	var texture := TextureSequence.new()
-	texture.atlas = get_theme_icon("stranger_elder")
-	texture.size = Cell.CELL_SIZE
-	return texture
-
-
 func _get_annotation_title() -> String:
 	return tr("STRANGER_ELDER").to_upper()
 
@@ -44,7 +37,3 @@ func _get_annotation_subtext() -> String:
 	return "\"" + tr("STRANGER_ELDER_DESCRIPTION").format({
 		"cost": cost
 	}) + "\"\n(" + Quest.get_current().get_mastery().get_ability_description() + ")"
-
-
-func _animate(time: float) -> void:
-	get_texture().animate(1.0, time)

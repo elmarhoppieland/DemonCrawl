@@ -41,7 +41,7 @@ func _on_begin_button_pressed() -> void:
 
 
 func _on_quest_select_statbar_edit_equipment() -> void:
-	Focus.hide()
+	Focus.get_instance().hide()
 	_focused_node = Focus.get_focused_node()
 	animation_player.play("equipment_edit")
 

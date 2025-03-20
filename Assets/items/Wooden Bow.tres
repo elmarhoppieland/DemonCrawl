@@ -1,0 +1,17 @@
+[gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://csmtq4s2licjx"]
+
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_oyfek"]
+[ext_resource type="Script" path="res://Assets/items/Wooden Bow.gd" id="2_v60xu"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = "ITEM_WOODEN_BOW"
+script = ExtResource("2_v60xu")
+_name = "ITEM_WOODEN_BOW"
+_description = "ITEM_WOODEN_BOW_DESCRIPTION"
+_type = 2
+_mana = 80
+_cost = 13
+_tags = PackedStringArray("_targeted")
+_atlas_region = Rect2(320, 64, 16, 16)
+_atlas = ExtResource("1_oyfek")

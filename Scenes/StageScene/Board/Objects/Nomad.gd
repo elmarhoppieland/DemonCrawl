@@ -36,20 +36,9 @@ func _activate() -> void:
 	offer.perform()
 
 
-func _get_texture() -> TextureSequence:
-	var texture := TextureSequence.new()
-	texture.atlas = get_theme_icon("stranger_nomad")
-	texture.size = Cell.CELL_SIZE
-	return texture
-
-
 func _get_annotation_title() -> String:
 	return tr("STRANGER_NOMAD").to_upper()
 
 
 func _get_annotation_subtext() -> String:
 	return offer.get_description()
-
-
-func _animate(time: float) -> void:
-	get_texture().animate(1.0, time)

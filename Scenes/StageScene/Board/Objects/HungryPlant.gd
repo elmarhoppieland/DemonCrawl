@@ -60,13 +60,6 @@ func _activate() -> void:
 	Toasts.add_toast(tr("STRANGER_PLANT_USE"), IconManager.get_icon_data("HungryPlant/Frame0").create_texture())
 
 
-func _get_texture() -> TextureSequence:
-	var texture := TextureSequence.new()
-	texture.atlas = get_theme_icon("stranger_plant")
-	texture.size = Cell.CELL_SIZE
-	return texture
-
-
 func _get_annotation_title() -> String:
 	return tr("STRANGER_PLANT").to_upper()
 
@@ -79,8 +72,3 @@ func _get_annotation_subtext() -> String:
 			"amount": reward_amount
 		})
 	})
-
-
-func _animate(time: float) -> void:
-	get_texture().animate(1.0, time)
-

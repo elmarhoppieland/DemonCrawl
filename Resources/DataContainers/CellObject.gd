@@ -389,6 +389,9 @@ func tween_texture_to(position: Vector2, duration: float = 0.4) -> Tween:
 func get_theme_icon(name: StringName, theme_type: StringName = "Cell") -> Texture2D:
 	if not get_cell():
 		return null
-	return get_cell().get_theme_icon(name, theme_type)
+	var icon := get_cell().get_theme_icon(name, theme_type)
+	if icon is CustomTextureBase:
+		return icon.create()
+	return icon
 
 #endregion

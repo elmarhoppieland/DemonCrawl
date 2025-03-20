@@ -36,7 +36,7 @@ var _audio_players: Array[AudioStreamPlayer] = []
 		if monsters == value:
 			return
 		
-		monsters = value
+		monsters = maxi(1, value)
 		
 		emit_changed()
 @export var min_power := 0 : ## The stage's minimum power.
@@ -149,7 +149,9 @@ func get_theme() -> Theme:
 	_theme.set_icon("flag_bg", "Cell", load(dir + "flag_bg.png"))
 	_theme.set_icon("hidden", "Cell", load(dir + "full.png"))
 	if ResourceLoader.exists(dir + "monster.png"):
-		_theme.set_icon("monster_atlas", "Cell", load(dir + "monster.png"))
+		var texture := AnimatedTextureSequence.new()
+		texture.atlas = load(dir + "monster.png")
+		_theme.set_icon("monster", "Cell", texture)
 	
 	_theme.set_icon("bg", "StageScene", load(dir + "bg.png"))
 	

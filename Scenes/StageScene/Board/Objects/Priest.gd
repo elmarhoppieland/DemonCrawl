@@ -30,13 +30,6 @@ func _activate() -> void:
 		Quest.get_current().get_attributes().morality = 0
 
 
-func _get_texture() -> TextureSequence:
-	var texture := TextureSequence.new()
-	texture.atlas = get_theme_icon("stranger_priest")
-	texture.size = Cell.CELL_SIZE
-	return texture
-
-
 func _get_annotation_title() -> String:
 	return tr("STRANGER_PRIEST").to_upper()
 
@@ -45,7 +38,3 @@ func _get_annotation_subtext() -> String:
 	return "\"" + tr("STRANGER_PRIEST_DESCRIPTION").format({
 		"cost": cost
 	}) + "\""
-
-
-func _animate(time: float) -> void:
-	get_texture().animate(1.0, time)

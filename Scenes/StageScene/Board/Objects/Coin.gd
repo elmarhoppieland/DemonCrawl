@@ -3,11 +3,13 @@ extends CellObject
 class_name Coin
 
 # ==============================================================================
+const ANIM_DURATION := 0.4
+# ==============================================================================
 
-func _get_texture() -> TextureSequence:
-	var texture := TextureSequence.new()
+func _get_texture() -> AnimatedTextureSequence:
+	var texture := AnimatedTextureSequence.new()
 	texture.atlas = preload("res://Assets/sprites/coin.png")
-	texture.size = Cell.CELL_SIZE
+	texture.duration = ANIM_DURATION
 	return texture
 
 
@@ -36,7 +38,3 @@ func _get_charitable_amount() -> int:
 
 func _is_charitable() -> bool:
 	return true
-
-
-func _animate(time: float) -> void:
-	get_texture().animate(0.5, time)

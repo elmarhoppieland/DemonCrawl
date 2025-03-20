@@ -6,6 +6,7 @@
 font_size = 8
 
 [node name="Toast" type="Control"]
+visible = false
 custom_minimum_size = Vector2(15, 20)
 layout_mode = 3
 anchors_preset = 0
@@ -15,6 +16,7 @@ mouse_filter = 2
 script = ExtResource("1_jsfq5")
 
 [node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-15, 0)
 
 [node name="BaseContainer" type="MarginContainer" parent="Node2D"]
 unique_name_in_owner = true

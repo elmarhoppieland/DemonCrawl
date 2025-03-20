@@ -37,13 +37,6 @@ func _activate() -> void:
 	Toasts.add_toast(tr("STRANGER_BAGMAN_INTERACT"), IconManager.get_icon_data("Bagman/Frame0").create_texture())
 
 
-func _get_texture() -> TextureSequence:
-	var texture := TextureSequence.new()
-	texture.atlas = get_theme_icon("stranger_bagman")
-	texture.size = Cell.CELL_SIZE
-	return texture
-
-
 func _get_annotation_title() -> String:
 	return tr("STRANGER_BAGMAN").to_upper()
 
@@ -68,7 +61,3 @@ func _get_annotation_subtext() -> String:
 		})
 	
 	return "\"" + msg.strip_edges() + "\""
-
-
-func _animate(time: float) -> void:
-	get_texture().animate(1.0, time)

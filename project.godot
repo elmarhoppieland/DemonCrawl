@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Tooltip="res://Resources/Singletons/Tooltip.tscn"
-Focus="*res://Resources/Singletons/Focus.tscn"
+Focus="res://Resources/Singletons/Focus.tscn"
 Debug="res://Resources/Singletons/Debug.tscn"
 Toasts="res://Resources/Singletons/Toasts.tscn"
 ChestPopup="res://Resources/Singletons/ChestPopup.tscn"
@@ -43,13 +43,17 @@ naming/script_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AutoThread/plugin.cfg", "res://addons/EffectManager/plugin.cfg", "res://addons/Eternity/plugin.cfg", "res://addons/IconManager/plugin.cfg", "res://addons/Promise/plugin.cfg", "res://addons/StaticClass/plugin.cfg", "res://addons/Stringifier/plugin.cfg", "res://addons/UserClassDB/plugin.cfg")
+enabled=PackedStringArray("res://addons/AutoThread/plugin.cfg", "res://addons/CustomTexturePreview/plugin.cfg", "res://addons/EffectManager/plugin.cfg", "res://addons/Eternity/plugin.cfg", "res://addons/IconManager/plugin.cfg", "res://addons/Promise/plugin.cfg", "res://addons/StaticClass/plugin.cfg", "res://addons/Stringifier/plugin.cfg", "res://addons/UserClassDB/plugin.cfg")
 
 [eternity]
 
 named_paths/defaults={
 "settings": "user://settings.ini"
 }
+
+[filesystem]
+
+import/blender/enabled=false
 
 [gui]
 

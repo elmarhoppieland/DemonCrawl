@@ -45,13 +45,6 @@ func _activate() -> void:
 	move_to_cell(cell)
 
 
-func _get_texture() -> TextureSequence:
-	var texture := TextureSequence.new()
-	texture.atlas = get_theme_icon("stranger_gambler")
-	texture.size = Cell.CELL_SIZE
-	return texture
-
-
 func _get_annotation_title() -> String:
 	return tr("STRANGER_GAMBLER").to_upper()
 
@@ -62,7 +55,3 @@ func _get_annotation_subtext() -> String:
 	}) + "\"\n" + tr("STRANGER_GAMBLER_BALANCE").format({
 		"coins": coins
 	})
-
-
-func _animate(time: float) -> void:
-	get_texture().animate(1.0, time)
