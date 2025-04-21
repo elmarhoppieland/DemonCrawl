@@ -8,7 +8,7 @@ func _use() -> void:
 
 
 func _can_use() -> bool:
-	return get_tree().current_scene is StageSelect
+	return super() and get_tree().current_scene is StageSelect
 
 
 func _invoke() -> void:

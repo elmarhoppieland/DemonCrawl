@@ -29,10 +29,16 @@ func get_item_count() -> int:
 
 
 func get_item(index: int) -> Item:
+	if index < -items.size() or index >= items.size():
+		return null
+	
 	return items[index]
 
 
 func item_gain(item: Item) -> void:
+	if not item.resource_path.is_empty():
+		item = item.duplicate()
+	
 	items.append(item)
 	item.notify_inventory_added()
 	item_added.emit(item)

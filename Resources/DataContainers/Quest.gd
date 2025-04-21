@@ -31,6 +31,11 @@ static var _current: Quest = Eternal.create(null) : set = _set_current, get = ge
 		selected_stage_idx = value
 		emit_changed()
 
+@export var heirlooms_active := true :
+	set(value):
+		heirlooms_active = value
+		emit_changed()
+
 @export var _inventory := QuestInventory.new() : get = get_inventory
 @export var _stats := QuestStats.new() : get = get_stats
 @export var _player_attributes := QuestPlayerAttributes.new() : get = get_attributes
@@ -101,6 +106,7 @@ func finish() -> void:
 		QuestsManager.selected_difficulty.get_name(),
 		name
 	])
+
 
 #endregion
 

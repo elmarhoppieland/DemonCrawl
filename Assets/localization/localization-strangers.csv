@@ -56,3 +56,8 @@ STRANGER_MAGE_DESCRIPTION;I will cast {item} on a random cell for {cost} coins!
 STRANGER_MAGE_LOST_ITEM;Oh no! I lost my {item}!
 STRANGER_MAGE_NO_ITEM;I seem to have lost my {item}!
 STRANGER_MAGE_CHARGING;I need {mana} more mana before I can cast {item} again!
+
+STRANGER_SCRIBE;Scribe
+STRANGER_SCRIBE_INCREASE_DESCRIPTION;I will add 1 to each of your heirlooms for {cost} coins!
+STRANGER_SCRIBE_COPY_DESCRIPTION;I will copy your first {slot_count} items into their heirloom slots for {cost} coins!
+STRANGER_SCRIBE_REACTIVATE_DESCRIPTION;I will reactivate your heirloom slots for {cost} coins!

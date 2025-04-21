@@ -2,6 +2,8 @@
 extends Item
 
 # ==============================================================================
+const COAL := preload("res://Assets/items/Coal.tres")
+# ==============================================================================
 
 func change_morality(morality: int) -> void:
 	if morality >= Quest.get_current().get_attributes().morality:
@@ -9,10 +11,18 @@ func change_morality(morality: int) -> void:
 	if not is_charged():
 		return
 	
-	gain_item(Item.from_path("res://Assets/items/Coal"))
+	gain_item(COAL)
 	
-	for coal in get_items().filter(func(item: Item) -> bool: return item.data == ItemData.from_path("res://Assets/items/Coal")):
-		var cells := Stage.get_current().get_instance().get_cells().filter(func(cell: CellData) -> bool: return cell.get_aura() != "burning")
+	for item in get_items():
+		if item.get_script() != COAL.get_script():
+			continue
+		var cells := Stage.get_current().get_instance().get_cells().filter(func(cell: CellData) -> bool: return cell.get_aura() != "burning") as Array[CellData]
+		if cells.is_empty():
+			break
 		cells[randi() % cells.size()].aura = "burning"
 	
 	clear_mana()
+
+
+func _can_use() -> bool:
+	return false

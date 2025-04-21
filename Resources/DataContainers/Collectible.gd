@@ -21,6 +21,9 @@ var _texture: ImageTexture :
 		var image := texture.get_image().get_region(_get_atlas_region())
 		_texture = ImageTexture.create_from_image(_parse_image(image))
 		return _texture
+
+# ==============================================================================
+@export var _origin_path := "" : get = get_origin_path
 # ==============================================================================
 
 func _init() -> void:
@@ -36,17 +39,14 @@ func create_status(uid: String = "") -> StatusEffect.Initializer:
 #region internals
 
 func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:
-	#RenderingServer.canvas_item_add_rect(to_canvas_item, Rect2(Vector2.ZERO, get_size()), _get_texture_bg_color())
 	_texture.draw(to_canvas_item, pos, modulate, transpose)
 
 
 func _draw_rect(to_canvas_item: RID, rect: Rect2, tile: bool, modulate: Color, transpose: bool) -> void:
-	#RenderingServer.canvas_item_add_rect(to_canvas_item, rect, _get_texture_bg_color())
 	_texture.draw_rect(to_canvas_item, rect, tile, modulate, transpose)
 
 
 func _draw_rect_region(to_canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color, transpose: bool, clip_uv: bool) -> void:
-	#RenderingServer.canvas_item_add_rect(to_canvas_item, rect, _get_texture_bg_color())
 	_texture.draw_rect_region(to_canvas_item, rect, src_rect, modulate, transpose, clip_uv)
 
 
@@ -201,3 +201,12 @@ func get_max_progress() -> int:
 
 func _get_max_progress() -> int:
 	return 0
+
+
+## Returns the original path that this [Collectible] was stored at on the filesystem.
+## If this is a duplicate of a saved [Collectible], this returns the path of the
+## original [Collectible].
+func get_origin_path() -> String:
+	if _origin_path.is_empty() and not resource_path.is_empty():
+		_origin_path = resource_path
+	return _origin_path

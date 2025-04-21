@@ -89,9 +89,10 @@ func _ability() -> void:
 
 ## Returns the description of this [Mastery]'s ability.
 func get_ability_description() -> String:
-	return _get_ability_description()
+	var override := _get_ability_description()
+	return tr("MASTERY_%s_ABILITY" % _get_identifier()) if override.is_empty() else override
 
 
 ## Virtual method to override the return value of [method get_ability_description].
 func _get_ability_description() -> String:
-	return tr("MASTERY_%s_ABILITY" % _get_identifier())
+	return ""

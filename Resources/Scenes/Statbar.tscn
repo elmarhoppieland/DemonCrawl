@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bqgqlnp8nk2x2"]
+[gd_scene load_steps=21 format=3 uid="uid://bqgqlnp8nk2x2"]
 
 [ext_resource type="Script" path="res://Resources/Scenes/Statbar.gd" id="1_nycng"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/Avatar.gd" id="2_kk3qc"]
@@ -8,11 +8,10 @@
 [ext_resource type="Script" path="res://Resources/UtilityNode/XPBar.gd" id="6_fmgjo"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/ProfileNameLabel.gd" id="7_8d5yt"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/ProfileLevelLabel.gd" id="8_flfi7"]
-[ext_resource type="Texture2D" uid="uid://c0w2jbbojcheq" path="res://Assets/sprites/heirloom_border.png" id="8_ihn7u"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="9_15a5f"]
-[ext_resource type="Texture2D" uid="uid://dahyw4bk8otd0" path="res://Assets/sprites/heirloom_fill_empty.png" id="9_b1nee"]
 [ext_resource type="PackedScene" uid="uid://db1krtggvj6tl" path="res://Resources/Scenes/Stats.tscn" id="9_eg8cx"]
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="10_0f8tq"]
+[ext_resource type="PackedScene" uid="uid://qyb7vtjc4d6o" path="res://Resources/Scenes/HeirloomDisplay.tscn" id="10_j6p5i"]
 [ext_resource type="PackedScene" uid="uid://bl07eret4ujpn" path="res://Resources/Scenes/Inventory.tscn" id="15_6x8ea"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hxu7"]
@@ -20,12 +19,6 @@ font_size = 8
 font_color = Color(0.745098, 0.745098, 0.745098, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c68yy"]
-atlas = ExtResource("9_15a5f")
-region = Rect2(64, 86, 16, 16)
-script = ExtResource("10_0f8tq")
-name = "icon_locked_flat"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yimff"]
 atlas = ExtResource("9_15a5f")
@@ -231,77 +224,30 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 0
 
-[node name="Heirloom" type="MarginContainer" parent="MarginContainer/HBoxContainer2"]
+[node name="HeirloomDisplay3" parent="MarginContainer/HBoxContainer2" instance=ExtResource("10_j6p5i")]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom"]
-layout_mode = 2
-size_flags_horizontal = 8
 size_flags_vertical = 4
-texture = ExtResource("8_ihn7u")
-
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource("9_b1nee")
-
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_c68yy")
+slot_idx = 2
 
 [node name="Control7" type="Control" parent="MarginContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="Heirloom2" type="MarginContainer" parent="MarginContainer/HBoxContainer2"]
+[node name="HeirloomDisplay2" parent="MarginContainer/HBoxContainer2" instance=ExtResource("10_j6p5i")]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom2"]
-layout_mode = 2
-size_flags_horizontal = 8
 size_flags_vertical = 4
-texture = ExtResource("8_ihn7u")
-
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom2"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource("9_b1nee")
-
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom2"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_c68yy")
+slot_idx = 1
 
 [node name="Control8" type="Control" parent="MarginContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="Heirloom3" type="MarginContainer" parent="MarginContainer/HBoxContainer2"]
+[node name="HeirloomDisplay1" parent="MarginContainer/HBoxContainer2" instance=ExtResource("10_j6p5i")]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom3"]
-layout_mode = 2
-size_flags_horizontal = 8
 size_flags_vertical = 4
-texture = ExtResource("8_ihn7u")
-
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom3"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource("9_b1nee")
-
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer2/Heirloom3"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_c68yy")
 
 [node name="Control9" type="Control" parent="MarginContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(3, 0)
@@ -360,5 +306,8 @@ libraries = {
 autoplay = "RESET"
 
 [connection signal="about_to_show" from="MarginContainer/HBoxContainer/Avatar/StatsTooltipGrabber" to="." method="_on_stats_tooltip_grabber_about_to_show"]
+[connection signal="interacted" from="MarginContainer/HBoxContainer2/HeirloomDisplay3" to="." method="_on_heirloom_display_interacted" binds= [2]]
+[connection signal="interacted" from="MarginContainer/HBoxContainer2/HeirloomDisplay2" to="." method="_on_heirloom_display_interacted" binds= [1]]
+[connection signal="interacted" from="MarginContainer/HBoxContainer2/HeirloomDisplay1" to="." method="_on_heirloom_display_interacted" binds= [0]]
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer2/InventoryIcon" to="." method="_on_inventory_icon_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/HBoxContainer2/InventoryIcon" to="." method="_on_inventory_icon_mouse_exited"]

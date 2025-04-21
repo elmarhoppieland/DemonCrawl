@@ -80,41 +80,51 @@ func _exit_tree() -> void:
 ## prints to the console.
 static func log_event(message: String, color: Color = Color.AQUA, print_to_console: bool = true, show_toast: bool = true) -> void:
 	if OS.is_debug_build() and print_to_console:
-		print_rich("[color=#%s]%s[/color]" % [color.to_html(),  message])
+		print_rich("[color=#%s]%s[/color]" % [color.to_html(), message])
 	
-	if not _log_queue.is_empty():
-		_log_queue += "\n"
-	_log_queue += "[%s] %s" % [Time.get_datetime_string_from_system().replace("T", " @ "), message]
+	_log_queue += "[%s] %s\n" % [Time.get_datetime_string_from_system().replace("T", " @ "), message]
 	
 	if show_toast:
 		Toasts.add_debug_toast(message)
 
 
+static func log_stack_event(message: String, color: Color = Color.WHITE, prefix: String = "", print_to_console: bool = true, show_toast: bool = true) -> void:
+	if not prefix.is_empty():
+		prefix += ": "
+	
+	var stack := get_stack()
+	while not stack.is_empty() and stack[0].source == (Debug as Script).resource_path:
+		stack.pop_front()
+	
+	if stack.is_empty():
+		log_event(message, color, print_to_console, show_toast)
+		return
+	
+	if OS.is_debug_build() and print_to_console:
+		print_rich("[color=#%s]● %s:%d @ %s() - %s[/color]" % [color.to_html(), stack[0].source, stack[0].line, stack[0].function, message])
+	
+	_log_queue += "[%s] %s%s:%d @ %s() - %s" % [
+		Time.get_datetime_string_from_system().replace("T", " @ "),
+		prefix,
+		stack[0].source,
+		stack[0].line,
+		stack[0].function,
+		message
+	]
+	
+	if show_toast:
+		Toasts.add_debug_toast(prefix + message)
+
+
 ## Logs [code]error[/code], and prints an error message.
 static func log_error(error: String) -> void:
-	var stack := get_stack()
-	
-	if stack.size() > 1 and "function" in stack[1]:
-		var method: String = stack[1].function
-		var message := "Error occurred in method '%s': %s" % [method, error]
-		push_error(message)
-		log_event(message, Color.RED)
-	else:
-		push_error(error)
-		log_event("Error: " + error, Color.RED)
+	log_stack_event(error, Color("ff786b"), "ERROR")
+	push_error(error)
 
 
 static func log_warning(warning: String) -> void:
-	var stack := get_stack()
-	
-	if stack.size() > 1 and "function" in stack[1]:
-		var method: String = stack[1].function
-		var message := "Warning in method '%s': %s" % [method, warning]
-		push_warning(message)
-		log_event(message, Color.YELLOW)
-	else:
-		push_warning(warning)
-		log_event("Warning: " + warning, Color.YELLOW)
+	log_stack_event(warning, Color("ffde66"), "WARNING")
+	push_warning(warning)
 
 
 static func clear_overlay() -> void:
@@ -270,7 +280,7 @@ static func _flush_log_file() -> void:
 		return
 	
 	file.seek_end()
-	file.store_line(_log_queue)
+	file.store_string(_log_queue)
 	file.close()
 	
 	_log_queue = ""

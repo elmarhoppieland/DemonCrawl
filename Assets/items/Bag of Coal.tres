@@ -12,6 +12,6 @@ _description = "ITEM_BAG_OF_COAL_DESCRIPTION"
 _type = 2
 _mana = 100
 _cost = 0
+_tags = PackedStringArray()
 _atlas_region = Rect2(304, 16, 16, 16)
 _atlas = ExtResource("1_pu0av")
-_current_mana = 100

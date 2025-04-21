@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=52 format=3 uid="uid://dmddrgkl04gph"]
+[gd_resource type="Theme" load_steps=65 format=3 uid="uid://dmddrgkl04gph"]
 
 [ext_resource type="StyleBox" uid="uid://cokg66aqb3ro1" path="res://Resources/xp_bar_fill.tres" id="1_0ok7g"]
 [ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://Assets/skins/default/bg.png" id="1_3w34f"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/skins/default/flag.png" id="6_xtqrh"]
 [ext_resource type="Texture2D" uid="uid://bvlvfq854wx7v" path="res://Assets/sprites/heart_palette_default.png" id="7_jnxwc"]
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="7_th4e0"]
-[ext_resource type="Texture2D" uid="uid://dfwsoi1dna1xn" path="res://Assets/skins/forest/monster.png" id="8_tvptk"]
 [ext_resource type="Texture2D" uid="uid://dgjo8o51t6e5e" path="res://Assets/sprites/strangers/Blacksmith.png" id="10_1o0v6"]
 [ext_resource type="Texture2D" uid="uid://cg8iob270yorm" path="res://Assets/sprites/strangers/Bagman.png" id="10_dh8jx"]
 [ext_resource type="Texture2D" uid="uid://cmn6y4ielu7f" path="res://Assets/sprites/strangers/Nomad.png" id="10_obq7b"]
@@ -20,9 +19,12 @@
 [ext_resource type="Texture2D" uid="uid://bh8p6aw2syxn" path="res://Assets/sprites/strangers/HungryPlant.png" id="11_nlc7e"]
 [ext_resource type="Texture2D" uid="uid://bj1151lup0syu" path="res://Assets/sprites/strangers/Elder.png" id="12_ufe7c"]
 [ext_resource type="Texture2D" uid="uid://bb54bvukgat5i" path="res://Assets/sprites/strangers/Gambler.png" id="13_p3b2n"]
+[ext_resource type="Texture2D" uid="uid://cmpdcmb5vb5b3" path="res://Assets/sprites/strangers/Doctor.png" id="16_gwo35"]
 [ext_resource type="Script" path="res://Resources/HelperObjects/CustomTextureBase.gd" id="21_5cqxe"]
+[ext_resource type="Texture2D" uid="uid://wvsgea66jqib" path="res://Assets/sprites/strangers/Priest.png" id="22_1ehdr"]
 [ext_resource type="Texture2D" uid="uid://dovfvraxpwlbj" path="res://Assets/sprites/strangers/Mage.png" id="22_kmkag"]
 [ext_resource type="Script" path="res://Resources/HelperObjects/AnimatedTextureSequence.gd" id="23_6lsge"]
+[ext_resource type="Texture2D" uid="uid://c5efdbrxamawq" path="res://Assets/sprites/strangers/Scribe.png" id="23_lujhd"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qp4ky"]
 content_margin_left = 5.0
@@ -78,12 +80,6 @@ draw_center = false
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("21_5cqxe")
-base_script = ExtResource("23_6lsge")
-duration = 1.0
-size = Vector2i(16, 16)
-atlas = ExtResource("8_tvptk")
-margin = Rect2(0, 0, 0, 0)
-filter_clip = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odxkr"]
 bg_color = Color(0, 0, 0, 1)
@@ -134,14 +130,29 @@ texture_margin_top = 2.0
 texture_margin_right = 2.0
 texture_margin_bottom = 2.0
 
+[sub_resource type="Texture2D" id="Texture2D_3x0wb"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
+duration = 1.0
+size = Vector2i(16, 16)
+atlas = ExtResource("10_dh8jx")
+margin = Rect2(0, 0, 0, 0)
+filter_clip = false
+
 [sub_resource type="Texture2D" id="Texture2D_m815n"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("21_5cqxe")
-base_script = ExtResource("23_6lsge")
+_instance = SubResource("Texture2D_3x0wb")
+
+[sub_resource type="Texture2D" id="Texture2D_05eta"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
 duration = 1.0
 size = Vector2i(16, 16)
-atlas = ExtResource("10_dh8jx")
+atlas = ExtResource("10_1o0v6")
 margin = Rect2(0, 0, 0, 0)
 filter_clip = false
 
@@ -149,10 +160,15 @@ filter_clip = false
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("21_5cqxe")
-base_script = ExtResource("23_6lsge")
+_instance = SubResource("Texture2D_05eta")
+
+[sub_resource type="Texture2D" id="Texture2D_xxckc"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
 duration = 1.0
 size = Vector2i(16, 16)
-atlas = ExtResource("10_1o0v6")
+atlas = ExtResource("16_gwo35")
 margin = Rect2(0, 0, 0, 0)
 filter_clip = false
 
@@ -160,10 +176,15 @@ filter_clip = false
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("21_5cqxe")
-base_script = ExtResource("23_6lsge")
+_instance = SubResource("Texture2D_xxckc")
+
+[sub_resource type="Texture2D" id="Texture2D_hcvib"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
 duration = 1.0
 size = Vector2i(16, 16)
-atlas = ExtResource("10_1o0v6")
+atlas = ExtResource("12_ufe7c")
 margin = Rect2(0, 0, 0, 0)
 filter_clip = false
 
@@ -171,10 +192,15 @@ filter_clip = false
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("21_5cqxe")
-base_script = ExtResource("23_6lsge")
+_instance = SubResource("Texture2D_hcvib")
+
+[sub_resource type="Texture2D" id="Texture2D_nhb6b"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
 duration = 1.0
 size = Vector2i(16, 16)
-atlas = ExtResource("12_ufe7c")
+atlas = ExtResource("13_p3b2n")
 margin = Rect2(0, 0, 0, 0)
 filter_clip = false
 
@@ -182,10 +208,15 @@ filter_clip = false
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("21_5cqxe")
-base_script = ExtResource("23_6lsge")
+_instance = SubResource("Texture2D_nhb6b")
+
+[sub_resource type="Texture2D" id="Texture2D_we0he"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
 duration = 1.0
 size = Vector2i(16, 16)
-atlas = ExtResource("13_p3b2n")
+atlas = ExtResource("11_nlc7e")
 margin = Rect2(0, 0, 0, 0)
 filter_clip = false
 
@@ -193,10 +224,15 @@ filter_clip = false
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("21_5cqxe")
-base_script = ExtResource("23_6lsge")
+_instance = SubResource("Texture2D_we0he")
+
+[sub_resource type="Texture2D" id="Texture2D_v7xxd"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
 duration = 1.0
 size = Vector2i(16, 16)
-atlas = ExtResource("11_nlc7e")
+atlas = ExtResource("22_kmkag")
 margin = Rect2(0, 0, 0, 0)
 filter_clip = false
 
@@ -204,10 +240,15 @@ filter_clip = false
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("21_5cqxe")
-base_script = ExtResource("23_6lsge")
+_instance = SubResource("Texture2D_v7xxd")
+
+[sub_resource type="Texture2D" id="Texture2D_gpk8x"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
 duration = 1.0
 size = Vector2i(16, 16)
-atlas = ExtResource("22_kmkag")
+atlas = ExtResource("10_obq7b")
 margin = Rect2(0, 0, 0, 0)
 filter_clip = false
 
@@ -215,10 +256,15 @@ filter_clip = false
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("21_5cqxe")
-base_script = ExtResource("23_6lsge")
+_instance = SubResource("Texture2D_gpk8x")
+
+[sub_resource type="Texture2D" id="Texture2D_8qrb7"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
 duration = 1.0
 size = Vector2i(16, 16)
-atlas = ExtResource("10_obq7b")
+atlas = ExtResource("22_1ehdr")
 margin = Rect2(0, 0, 0, 0)
 filter_clip = false
 
@@ -226,12 +272,23 @@ filter_clip = false
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("21_5cqxe")
-base_script = ExtResource("23_6lsge")
+_instance = SubResource("Texture2D_8qrb7")
+
+[sub_resource type="Texture2D" id="Texture2D_waegq"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
 duration = 1.0
 size = Vector2i(16, 16)
-atlas = ExtResource("10_1o0v6")
+atlas = ExtResource("23_lujhd")
 margin = Rect2(0, 0, 0, 0)
 filter_clip = false
+
+[sub_resource type="Texture2D" id="Texture2D_l86ws"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("21_5cqxe")
+_instance = SubResource("Texture2D_waegq")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gso4b"]
 atlas = ExtResource("11_010p6")
@@ -331,6 +388,7 @@ Stranger/icons/hungry_plant = SubResource("Texture2D_h5tdi")
 Stranger/icons/mage = SubResource("Texture2D_yki81")
 Stranger/icons/nomad = SubResource("Texture2D_t2k2h")
 Stranger/icons/priest = SubResource("Texture2D_u2hrp")
+Stranger/icons/scribe = SubResource("Texture2D_l86ws")
 VScrollBar/styles/grabber = SubResource("StyleBoxTexture_tsonw")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_7jy4q")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_d235a")

@@ -49,8 +49,6 @@ signal cleared()
 func _init() -> void:
 	super()
 	
-	if _type == Type.MAGIC:
-		_current_mana = _mana
 	if _name.is_empty() and Engine.is_editor_hint():
 		(func() -> void: _name = "ITEM_" + resource_path.get_file().get_basename().to_snake_case().to_upper()).call_deferred()
 
@@ -134,7 +132,7 @@ static func _import(value: Dictionary) -> Item:
 
 
 func _to_string() -> String:
-	return get_name()
+	return tr(get_name())
 
 
 func _property_can_revert(property: StringName) -> bool:
@@ -219,6 +217,7 @@ func _inventory_remove() -> void:
 ## Notifies the item that it has been gained. This method will call [method _gain]
 ## to allow items to react to being gained.
 func notify_gained() -> void:
+	charge()
 	_gain()
 
 
@@ -250,7 +249,7 @@ func _lose() -> void:
 func _can_use() -> bool:
 	if _type == Type.CONSUMABLE:
 		return true
-	if _type == Type.MAGIC and is_charged():
+	if has_mana() and is_charged():
 		return true
 	
 	return false
@@ -419,6 +418,8 @@ func is_mana_enabled() -> bool:
 
 
 func get_mana() -> int:
+	if not Engine.is_editor_hint() and not resource_path.is_empty():
+		return get_max_mana()
 	return _current_mana
 
 
