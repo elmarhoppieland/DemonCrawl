@@ -104,27 +104,7 @@ func _open_cell(cell: Cell) -> void:
 	if not get_stage().get_instance().is_generated():
 		get_stage().get_instance().generate(cell.get_board_position())
 	
-	if cell.get_value() != 0:
-		cell.open()
-		_after_open_cell()
-		return
-	
-	var to_explore: Array[Cell] = [cell]
-	var visited: Array[Cell] = []
-	
-	while not to_explore.is_empty():
-		var current_cell := to_explore.pop_back() as Cell
-		
-		visited.append(current_cell)
-		current_cell.open()
-		
-		if current_cell.get_value() != 0 or current_cell.get_object() is Monster:
-			continue
-		
-		for c in current_cell.get_nearby_cells():
-			if c in visited or c in to_explore or c.is_revealed() or c.is_flagged():
-				continue
-			to_explore.append(c)
+	cell.open()
 	
 	_after_open_cell()
 

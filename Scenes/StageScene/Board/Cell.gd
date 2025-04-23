@@ -42,6 +42,34 @@ func open(force: bool = false, allow_loot: bool = true) -> void:
 	if not force and get_mode() == Mode.FLAGGED:
 		return
 	
+	if get_value() != 0:
+		_open(force, allow_loot)
+		return
+	
+	var to_explore: Array[Cell] = [self]
+	var visited: Array[Cell] = []
+	
+	while not to_explore.is_empty():
+		var current_cell := to_explore.pop_back() as Cell
+		
+		visited.append(current_cell)
+		current_cell._open(force, allow_loot)
+		
+		if current_cell.get_value() != 0 or current_cell.get_object() is Monster:
+			continue
+		
+		for c in current_cell.get_nearby_cells():
+			if c in visited or c in to_explore or c.is_revealed() or c.is_flagged():
+				continue
+			to_explore.append(c)
+
+
+func _open(force: bool = false, allow_loot: bool = true) -> void:
+	if get_mode() == Mode.VISIBLE:
+		return
+	if not force and get_mode() == Mode.FLAGGED:
+		return
+	
 	set_mode(Mode.VISIBLE)
 	
 	Quest.get_current().get_inventory().mana_gain(get_value(), self)
