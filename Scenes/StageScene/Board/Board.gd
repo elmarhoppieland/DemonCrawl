@@ -42,6 +42,19 @@ func get_cell(at: Vector2i) -> Cell:
 	return _cell_container.get_child(at.x + at.y * get_stage().size.x)
 
 
+## Returns the [Cell] at the given [code]global_position[/code].
+func get_cell_at_global(global_postion: Vector2) -> Cell:
+	if not get_global_rect().has_point(global_postion):
+		return null
+	
+	var separation := Vector2i(
+		_cell_container.get_theme_constant("h_separation"),
+		_cell_container.get_theme_constant("v_separation")
+	)
+	
+	return get_cell(Vector2i(global_postion * get_global_transform()) / (Cell.CELL_SIZE + separation))
+
+
 ## Returns an [Array] of all [Cell]s.
 func get_cells() -> Array[Cell]:
 	var cells: Array[Cell] = []

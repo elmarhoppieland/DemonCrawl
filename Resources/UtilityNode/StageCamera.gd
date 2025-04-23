@@ -3,7 +3,6 @@ class_name StageCamera
 
 # ==============================================================================
 const DEFAULT_ZOOM := Vector2(3, 3)
-const ZOOM_INTERMEDIATE := Vector2(1.5, 1.5)
 const ZOOM_BEGIN := Vector2(0.75, 0.75)
 # ==============================================================================
 @export var move_speed := 0.0
@@ -49,10 +48,6 @@ func shake() -> void:
 	shake_enabled = true
 	await get_tree().create_timer(shake_duration).timeout
 	shake_enabled = false
-
-
-func get_zoom_level() -> Vector2:
-	return zoom
 
 
 func focus_progress() -> void:

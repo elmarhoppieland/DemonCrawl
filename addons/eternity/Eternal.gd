@@ -21,8 +21,8 @@ static func _register_eternal(default: Variant, stack: Array[Dictionary], path_n
 	if stack.is_empty():
 		return
 	
-	var script := _get_calling_script_class(stack, "create")
-	var prop_name := _get_calling_var_key(stack, "create")
+	var script := _get_calling_script_class(stack)
+	var prop_name := _get_calling_var_key(stack)
 	
 	if path_name.is_empty():
 		Eternity.get_defaults_cfg().set_eternal(script, prop_name, default)
@@ -30,11 +30,11 @@ static func _register_eternal(default: Variant, stack: Array[Dictionary], path_n
 		Eternity.get_defaults_cfg().set_eternal(script, path_name + "::" + prop_name, default)
 
 
-static func _get_calling_script_class(stack: Array[Dictionary], before_function: String) -> String:
+static func _get_calling_script_class(stack: Array[Dictionary]) -> String:
 	assert(not stack.is_empty(), "_get_class_script() can only be used in a debug build.")
 	
 	var idx := 0
-	while stack[idx].function != before_function:
+	while stack[idx].source != (Eternal as Script).resource_path:
 		idx += 1
 	idx += 1
 	
@@ -42,11 +42,11 @@ static func _get_calling_script_class(stack: Array[Dictionary], before_function:
 	return UserClassDB.class_get_name(source)
 
 
-static func _get_calling_var_key(stack: Array[Dictionary], before_function: String) -> String:
+static func _get_calling_var_key(stack: Array[Dictionary]) -> String:
 	assert(not stack.is_empty(), "_get_calling_var_key() can only be used in a debug build.")
 	
 	var idx := 0
-	while stack[idx].function != before_function:
+	while stack[idx].source != (Eternal as Script).resource_path:
 		idx += 1
 	idx += 1
 	
@@ -70,7 +70,7 @@ static func _get_calling_var_key(stack: Array[Dictionary], before_function: Stri
 	prop_name = prop_name.replace(" ", "").replace("\t", "")
 	
 	if not line.lstrip("\t").begins_with("static var"):
-		push_error("Eternal '%s' (on class '%s') was not assigned to a static variable. Eternals must be assigned to a static variable." % [prop_name, _get_calling_script_class(stack, before_function)])
+		push_error("Eternal '%s' (on class '%s') was not assigned to a static variable. Eternals must be assigned to a static variable." % [prop_name, _get_calling_script_class(stack)])
 		return ""
 	
 	return prop_name

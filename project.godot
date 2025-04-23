@@ -50,6 +50,7 @@ enabled=PackedStringArray("res://addons/AutoThread/plugin.cfg", "res://addons/Cu
 named_paths/defaults={
 "settings": "user://settings.ini"
 }
+editor/editor_save_path="res://EditorAssets/EditorSave.ini"
 
 [filesystem]
 

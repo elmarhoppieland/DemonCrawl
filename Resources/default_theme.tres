@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=65 format=3 uid="uid://dmddrgkl04gph"]
+[gd_resource type="Theme" load_steps=67 format=3 uid="uid://dmddrgkl04gph"]
 
 [ext_resource type="StyleBox" uid="uid://cokg66aqb3ro1" path="res://Resources/xp_bar_fill.tres" id="1_0ok7g"]
 [ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://Assets/skins/default/bg.png" id="1_3w34f"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/skins/default/flag.png" id="6_xtqrh"]
 [ext_resource type="Texture2D" uid="uid://bvlvfq854wx7v" path="res://Assets/sprites/heart_palette_default.png" id="7_jnxwc"]
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="7_th4e0"]
+[ext_resource type="Texture2D" uid="uid://dfwsoi1dna1xn" path="res://Assets/skins/forest/monster.png" id="9_hch6n"]
 [ext_resource type="Texture2D" uid="uid://dgjo8o51t6e5e" path="res://Assets/sprites/strangers/Blacksmith.png" id="10_1o0v6"]
 [ext_resource type="Texture2D" uid="uid://cg8iob270yorm" path="res://Assets/sprites/strangers/Bagman.png" id="10_dh8jx"]
 [ext_resource type="Texture2D" uid="uid://cmn6y4ielu7f" path="res://Assets/sprites/strangers/Nomad.png" id="10_obq7b"]
@@ -76,10 +77,21 @@ texture_margin_right = 1.0
 texture_margin_bottom = 1.0
 draw_center = false
 
+[sub_resource type="Texture2D" id="Texture2D_rvs6q"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
+duration = 1.0
+size = Vector2i(16, 16)
+atlas = ExtResource("9_hch6n")
+margin = Rect2(0, 0, 0, 0)
+filter_clip = false
+
 [sub_resource type="Texture2D" id="Texture2D_f7ymu"]
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("21_5cqxe")
+_instance = SubResource("Texture2D_rvs6q")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odxkr"]
 bg_color = Color(0, 0, 0, 1)

@@ -5,11 +5,12 @@ class_name StageScene
 # ==============================================================================
 @onready var _stage_background: StageBackground = %StageBackground : get = get_background
 @onready var _finish_button: FinishButton = %FinishButton
-@onready var _board: Board = %Board : get = get_board
 @onready var _statbar: Statbar = %Statbar : get = get_statbar
 @onready var _tweener_canvas: CanvasLayer = %TweenerCanvas
 @onready var _mouse_cast_sprite: MouseCastSprite = %MouseCastSprite
 @onready var _finish_popup: FinishPopup = %FinishPopup
+@onready var _board: Board = %Board : get = get_board
+@onready var _projectiles: Node2D = %Projectiles
 # ==============================================================================
 
 func _enter_tree() -> void:
@@ -54,7 +55,7 @@ func was_reloaded() -> bool:
 ## [br][br]Returns the created [Sprite2D] object.
 func tween_texture(texture: Texture2D, start_pos: Vector2, end_pos: Vector2, duration: float, sprite_material: Material = null) -> Sprite2D:
 	var sprite := Sprite2D.new()
-	sprite.scale = get_board().get_camera().get_zoom_level()
+	sprite.scale = get_board().get_camera().zoom
 	
 	sprite.texture = texture
 	sprite.material = sprite_material
@@ -64,6 +65,15 @@ func tween_texture(texture: Texture2D, start_pos: Vector2, end_pos: Vector2, dur
 	var tween := sprite.create_tween()
 	tween.tween_property(sprite, "position", end_pos, duration).from(start_pos)
 	tween.tween_callback(sprite.queue_free)
+	return sprite
+
+
+func register_projectile(projectile: Projectile, cell_pos: Vector2i) -> ProjectileSprite:
+	var sprite := ProjectileSprite.new(projectile)
+	sprite.position = cell_pos * Cell.CELL_SIZE + Cell.CELL_SIZE / 2
+	sprite.texture = projectile
+	_projectiles.add_child(sprite)
+	Quest.get_current().get_projectile_manager().register_projectile(projectile)
 	return sprite
 
 

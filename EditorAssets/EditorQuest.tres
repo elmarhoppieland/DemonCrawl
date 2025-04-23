@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=10 format=3 uid="uid://dx5hiqq0qun8x"]
+
+[ext_resource type="Script" path="res://Resources/DataContainers/QuestInventory.gd" id="1_hq8qf"]
+[ext_resource type="Script" path="res://Resources/DataContainers/QuestPlayerAttributes.gd" id="2_4q3jj"]
+[ext_resource type="Script" path="res://Resources/Singletons/ProjectileManager.gd" id="3_egee2"]
+[ext_resource type="Script" path="res://Resources/DataContainers/QuestStats.gd" id="4_g1yqp"]
+[ext_resource type="Script" path="res://Resources/DataContainers/Quest.gd" id="5_kp18l"]
+
+[sub_resource type="Resource" id="Resource_vr6ht"]
+script = ExtResource("1_hq8qf")
+items = Array[Resource("res://Resources/HelperObjects/Item.gd")]([])
+
+[sub_resource type="Resource" id="Resource_fhqc6"]
+script = ExtResource("2_4q3jj")
+score = 0
+cells_opened_since_mistake = 0
+morality = 0
+chests_opened = 0
+monsters_killed = 0
+chain_value = 0
+chain_length = 0
+
+[sub_resource type="Resource" id="Resource_sj4af"]
+script = ExtResource("3_egee2")
+speed = 32.0
+_projectiles = Array[Resource("res://Resources/HelperObjects/Projectile.gd")]([])
+
+[sub_resource type="Resource" id="Resource_1xt72"]
+script = ExtResource("4_g1yqp")
+max_life = 0
+life = 0
+revives = 0
+defense = 0
+coins = 0
+
+[resource]
+script = ExtResource("5_kp18l")
+name = "<editor>"
+stages = Array[Resource("res://Resources/DataContainers/Stage.gd")]([])
+selected_stage_idx = 0
+heirlooms_active = true
+_inventory = SubResource("Resource_vr6ht")
+_stats = SubResource("Resource_1xt72")
+_player_attributes = SubResource("Resource_fhqc6")
+_projectile_manager = SubResource("Resource_sj4af")

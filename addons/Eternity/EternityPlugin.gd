@@ -18,6 +18,10 @@ func _enter_tree() -> void:
 		ProjectSettings.set_setting("eternity/named_paths/defaults", {
 			"settings": "user://settings.ini"
 		})
+	if not ProjectSettings.has_setting("eternity/editor/editor_save_path"):
+		ProjectSettings.set_setting("eternity/editor/editor_save_path", "")
+	
+	Eternity._editor_init()
 
 
 func _enable_plugin() -> void:
@@ -25,9 +29,13 @@ func _enable_plugin() -> void:
 		ProjectSettings.set_setting("eternity/named_paths/defaults", {
 			"settings": "user://settings.ini"
 		})
+	if not ProjectSettings.has_setting("eternity/editor/editor_save_path"):
+		ProjectSettings.set_setting("eternity/editor/editor_save_path", "")
 	
 	ProjectSettings.set_as_internal("eternity/named_paths/defaults", false)
+	ProjectSettings.set_as_internal("eternity/editor/editor_save_path", false)
 
 
 func _disable_plugin() -> void:
 	ProjectSettings.set_as_internal("eternity/named_paths/defaults", true)
+	ProjectSettings.set_as_internal("eternity/editor/editor_save_path", true)

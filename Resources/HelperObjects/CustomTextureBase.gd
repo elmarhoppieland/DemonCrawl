@@ -3,18 +3,16 @@ extends Texture2D
 class_name CustomTextureBase
 
 # ==============================================================================
-@export var _instance: Texture2D :
-	set(value):
-		if _instance and _instance.changed.is_connected(_instance_changed):
-			_instance.changed.disconnect(_instance_changed)
-		
-		_instance = value
-		
-		if _instance:
-			_instance.changed.connect(_instance_changed)
-		
-		_instance_changed()
+@export var _instance: Texture2D
 # ==============================================================================
+
+static func _static_init() -> void:
+	CustomTexturePreview.add_remap(CustomTextureBase, "_instance")
+
+
+func _init(texture: Texture2D = null) -> void:
+	_instance = texture
+
 
 func create() -> Texture2D:
 	return _instance
@@ -51,8 +49,3 @@ func _has_alpha() -> bool:
 	if _instance and Engine.is_editor_hint():
 		return _instance.has_alpha()
 	return false
-
-
-func _instance_changed() -> void:
-	if Engine.is_editor_hint():
-		emit_changed()

@@ -151,7 +151,10 @@ func get_theme() -> Theme:
 	if ResourceLoader.exists(dir + "monster.png"):
 		var texture := AnimatedTextureSequence.new()
 		texture.atlas = load(dir + "monster.png")
-		_theme.set_icon("monster", "Cell", texture)
+		if Engine.is_editor_hint():
+			_theme.set_icon("monster", "Cell", CustomTextureBase.new(texture))
+		else:
+			_theme.set_icon("monster", "Cell", texture)
 	
 	_theme.set_icon("bg", "StageScene", load(dir + "bg.png"))
 	
@@ -178,7 +181,7 @@ func _load_music() -> void:
 				Toasts.add_debug_toast("Failed to load music at %s" % full_music_path)
 
 
-# Creates _audio_players and adds them to the [Scene]
+# Creates _audio_players and adds them to the StageScene
 func _create_audio_players() -> void:
 	for stream in _audio_streams:
 		var audio_player := AudioStreamPlayer.new()

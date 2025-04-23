@@ -52,6 +52,17 @@ static func _static_init() -> void:
 		_defaults_cfg.load(DEFAULTS_FILE_PATH)
 
 
+static func _editor_init() -> void:
+	if ProjectSettings.has_setting("eternity/editor/editor_save_path"):
+		var editor_save_file := EternalFile.new()
+		editor_save_file.load(ProjectSettings.get_setting("eternity/editor/editor_save_path"))
+		
+		for script_name in editor_save_file.get_scripts():
+			var script := UserClassDB.class_get_script(script_name)
+			for eternal in editor_save_file.get_eternals(script_name):
+				script.set(eternal, editor_save_file.get_eternal(script_name, eternal))
+
+
 static func get_saved_value(save_path: String, script: Script, key: String) -> Variant:
 	var script_class := UserClassDB.script_get_identifier(script)
 	var cfg := EternalFile.new()
