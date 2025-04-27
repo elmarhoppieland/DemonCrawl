@@ -11,15 +11,17 @@ const CELL_MODE_IDS := {
 	Cell.Mode.CHECKING: "h"
 }
 # ==============================================================================
-var cells: Array[CellData] = [] :
+@export var cells: Array[CellData] = [] :
 	set(value):
 		cells = value
 		if Engine.is_editor_hint() and get_stage() and value.size() > get_stage().area():
 			value.resize(get_stage().area())
 		emit_changed()
-@export var _cells := "" :
+var _cells := "" :
 	set(value):
 		_cells = value
+		
+		return
 		
 		assert(cells.is_empty())
 		
@@ -38,10 +40,13 @@ var cells: Array[CellData] = [] :
 				cell.mode = CELL_MODE_IDS.find_key(c)
 				cell = null
 	get:
+		return _cells
 		return "".join(cells.map(func(cell: CellData) -> String:
 			var string := str(cell.value)
 			if cell.object is Monster:
 				string += "m"
+			elif cell.object:
+				string += "{" + "" + "}"
 			string += CELL_MODE_IDS[cell.get_mode()]
 			return string
 		))

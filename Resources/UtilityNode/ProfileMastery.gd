@@ -19,7 +19,7 @@ func _ready() -> void:
 		return
 	
 	var tooltip_grabber := TooltipGrabber.new()
-	if Quest.get_current().get_mastery():
+	if Codex.selected_mastery:
 		var mastery_name := tr("MASTERY_" + Quest.get_current().get_mastery()._get_identifier())
 		tooltip_grabber.text = tr(mastery_name)
 		tooltip_grabber.text += " " + RomanNumeral.convert_to_roman(TokenShop.get_purchased_level(mastery_name))

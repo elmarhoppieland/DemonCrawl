@@ -14,7 +14,7 @@ func _get_texture() -> AnimatedTextureSequence:
 
 
 func _get_palette() -> CompressedTexture2D:
-	return get_cell().get_theme_icon("coin_palette", "Cell")
+	return get_theme_icon("coin_palette", "Cell")
 
 
 func _get_animation_delta() -> float:

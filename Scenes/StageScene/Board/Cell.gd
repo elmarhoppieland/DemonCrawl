@@ -280,6 +280,10 @@ func is_flag_solved() -> bool:
 func set_data(data: CellData) -> void:
 	_data = data
 	
+	if data.object:
+		data.object._cell_position = get_board_position()
+		data.object._stage = get_stage()
+	
 	mode_changed.emit(data.mode)
 	value_changed.emit(data.value)
 	object_changed.emit(data.object)
@@ -351,6 +355,20 @@ func get_value() -> int:
 ## Returns this [Cell]'s position on the [Board].
 func get_board_position() -> Vector2i:
 	return _board_position
+
+
+func _set_aura(aura: Aura) -> void:
+	get_data().aura = aura
+
+
+## Returns this [Cell]'s [Aura], if it has one. See also [method has_aura].
+func get_aura() -> Aura:
+	return get_data().aura
+
+
+## Returns whether this [Cell] has an [Aura].
+func has_aura() -> bool:
+	return get_aura() != null
 
 
 ## Returns this [Cell]'s [Stage].

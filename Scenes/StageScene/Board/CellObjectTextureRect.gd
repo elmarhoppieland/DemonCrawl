@@ -18,26 +18,8 @@ func _ready() -> void:
 	_object = cell.get_object()
 	_tooltip_grabber.enabled = _object != null and _object.has_annotation_text()
 	_mode = cell.get_mode()
-	cell.object_changed.connect(func(object: CellObject) -> void:
-		_object = object
-		texture = object
-		
-		if object:
-			material = object.get_material()
-			#var palette := object.get_palette()
-			#(material as ShaderMaterial).set_shader_parameter("palette_enabled", palette != null)
-			#(material as ShaderMaterial).set_shader_parameter("palette", palette)
-			
-			_tooltip_grabber.enabled = object.has_annotation_text()
-			_tooltip_grabber.text = object.get_annotation_text()
-		else:
-			#(material as ShaderMaterial).set_shader_parameter("palette_enabled", false)
-			material = null
-			
-			_tooltip_grabber.enabled = false
-		
-		_update()
-	)
+	cell.object_changed.connect(_change_object)
+	_change_object(cell.get_object())
 	cell.mode_changed.connect(func(mode: Cell.Mode) -> void:
 		_mode = mode
 		_update()
@@ -49,6 +31,27 @@ func _ready() -> void:
 	#if texture and texture is CellObject:
 		#_delta_sum += delta
 		#texture.animate(_delta_sum)
+
+
+func _change_object(object: Object) -> void:
+	_object = object
+	texture = object
+	
+	if object:
+		material = object.get_material()
+		#var palette := object.get_palette()
+		#(material as ShaderMaterial).set_shader_parameter("palette_enabled", palette != null)
+		#(material as ShaderMaterial).set_shader_parameter("palette", palette)
+		
+		_tooltip_grabber.enabled = object.has_annotation_text()
+		_tooltip_grabber.text = object.get_annotation_text()
+	else:
+		#(material as ShaderMaterial).set_shader_parameter("palette_enabled", false)
+		material = null
+		
+		_tooltip_grabber.enabled = false
+	
+	_update()
 
 
 func _update() -> void:

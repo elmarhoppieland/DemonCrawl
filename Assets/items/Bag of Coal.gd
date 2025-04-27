@@ -19,7 +19,7 @@ func change_morality(morality: int) -> void:
 		var cells := Stage.get_current().get_instance().get_cells().filter(func(cell: CellData) -> bool: return cell.get_aura() != "burning") as Array[CellData]
 		if cells.is_empty():
 			break
-		cells[randi() % cells.size()].aura = "burning"
+		cells[randi() % cells.size()].aura = Aura.create(Burning)
 	
 	clear_mana()
 

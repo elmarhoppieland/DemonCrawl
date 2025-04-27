@@ -53,7 +53,7 @@ static func _static_init() -> void:
 
 
 static func _editor_init() -> void:
-	if ProjectSettings.has_setting("eternity/editor/editor_save_path"):
+	if ProjectSettings.has_setting("eternity/editor/editor_save_path") and not ProjectSettings.get_setting("eternity/editor/editor_save_path").is_empty():
 		var editor_save_file := EternalFile.new()
 		editor_save_file.load(ProjectSettings.get_setting("eternity/editor/editor_save_path"))
 		
@@ -94,8 +94,8 @@ static func save(path_name: String = "") -> void:
 			
 			var value = script.get(key)
 			
-			if script.has_method("_export_" + key):
-				value = script.call("_export_" + key)
+			if script.has_method("_export_" + key.lstrip("_")):
+				value = script.call("_export_" + key.lstrip("_"))
 			
 			file.set_eternal(script_class, key, value)
 			
@@ -158,7 +158,12 @@ static func _reload_file(path_name: String = "") -> void:
 				push_error("Invalid key '%s' under section '%s': Could not find the key in the class." % [key, script_class])
 				continue
 			
-			var value = cfg.get_eternal(script_class, key, _defaults_cfg.get_eternal(script_class, prefix + key))
+			var value: Variant
+			if cfg.has_eternal(script_class, key):
+				value = cfg.get_eternal(script_class, key)
+			else:
+				value = _duplicate(_defaults_cfg.get_eternal(script_class, prefix + key))
+			
 			if script.has_method("_import_" + key):
 				value = script.call("_import_" + key, value)
 			
@@ -177,6 +182,17 @@ static func _queue_named_path_load(path_name: String) -> void:
 	_reload_file(path_name)
 	assert(path_name in _named_path_load_queue, "Unexpected result; investigate and add conditional return")
 	_named_path_load_queue.remove_at(_named_path_load_queue.find(path_name))
+
+
+static func _duplicate(value: Variant) -> Variant:
+	match typeof(value):
+		TYPE_ARRAY, TYPE_DICTIONARY, TYPE_PACKED_BYTE_ARRAY, TYPE_PACKED_COLOR_ARRAY,\
+		TYPE_PACKED_FLOAT32_ARRAY, TYPE_PACKED_FLOAT64_ARRAY, TYPE_PACKED_INT32_ARRAY,\
+		TYPE_PACKED_INT64_ARRAY, TYPE_PACKED_STRING_ARRAY, TYPE_PACKED_VECTOR2_ARRAY,\
+		TYPE_PACKED_VECTOR3_ARRAY:
+			return value.duplicate()
+		_:
+			return value
 
 
 class _Instance:

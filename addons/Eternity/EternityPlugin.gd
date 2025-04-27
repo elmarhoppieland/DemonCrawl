@@ -29,8 +29,12 @@ func _enable_plugin() -> void:
 		ProjectSettings.set_setting("eternity/named_paths/defaults", {
 			"settings": "user://settings.ini"
 		})
+		ProjectSettings.set_initial_value("eternity/named_paths/defaults", {
+			"settings": "user://settings.ini"
+		})
 	if not ProjectSettings.has_setting("eternity/editor/editor_save_path"):
 		ProjectSettings.set_setting("eternity/editor/editor_save_path", "")
+		ProjectSettings.set_initial_value("eternity/editor/editor_save_path", "")
 	
 	ProjectSettings.set_as_internal("eternity/named_paths/defaults", false)
 	ProjectSettings.set_as_internal("eternity/editor/editor_save_path", false)

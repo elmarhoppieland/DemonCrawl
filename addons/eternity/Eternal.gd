@@ -31,7 +31,9 @@ static func _register_eternal(default: Variant, stack: Array[Dictionary], path_n
 
 
 static func _get_calling_script_class(stack: Array[Dictionary]) -> String:
-	assert(not stack.is_empty(), "_get_class_script() can only be used in a debug build.")
+	if stack.is_empty():
+		push_error("_get_calling_script_class() can only be used in a debug build.")
+		return ""
 	
 	var idx := 0
 	while stack[idx].source != (Eternal as Script).resource_path:

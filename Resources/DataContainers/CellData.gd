@@ -3,6 +3,8 @@ extends Resource
 class_name CellData
 
 # ==============================================================================
+const Mode := Cell.Mode
+# ==============================================================================
 @export var mode := Cell.Mode.HIDDEN :
 	set(new_mode):
 		mode = new_mode
@@ -15,7 +17,44 @@ class_name CellData
 	set(new_value):
 		value = new_value
 		emit_changed()
+@export var aura: Aura = null
 # ==============================================================================
+
+@warning_ignore("shadowed_variable")
+static func _import_packed(value: int, arg0: Variant = null, arg1: Variant = null, arg2: Variant = null) -> CellData:
+	var cell := CellData.new()
+	cell.value = value
+	
+	var mode := Mode.VISIBLE
+	var object: CellObject = null
+	var aura: Aura = null
+	for arg in [arg0, arg1, arg2]:
+		if arg == null:
+			continue
+		if arg is int:
+			mode = arg
+		elif arg is CellObject:
+			object = arg
+		elif arg is Aura:
+			aura = arg
+	
+	cell.mode = mode
+	cell.object = object
+	cell.aura = aura
+	
+	return cell
+
+
+func _export_packed() -> Array:
+	var args := [value]
+	if mode != Mode.VISIBLE:
+		args.append(mode)
+	if object != null:
+		args.append(object)
+	if aura != null:
+		args.append(aura)
+	return args
+
 
 func _set_mode(new_mode: Cell.Mode) -> void:
 	mode = new_mode

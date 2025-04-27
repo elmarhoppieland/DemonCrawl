@@ -59,6 +59,33 @@ func _is_pixel_opaque(x: int, y: int) -> bool:
 		return true
 	return _texture.get_image().get_pixel(x, y).a8 != 0
 
+
+func _export_packed() -> Array:
+	var args := []
+	
+	for prop in get_property_list():
+		if prop.name == "CellObject.gd":
+			return args
+		if prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and prop.usage & PROPERTY_USAGE_STORAGE:
+			args.append(get(prop.name))
+	
+	return args
+
+
+static func _import_packed_static_v(script: String, args: Array) -> CellObject:
+	var object: CellObject = UserClassDB.instantiate(script)
+	var i := 0
+	for prop in object.get_property_list():
+		if prop.name == "CellObject.gd":
+			return object
+		if prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and prop.usage & PROPERTY_USAGE_STORAGE:
+			object.set(prop.name, args[i])
+			i += 1
+			if i >= args.size():
+				return object
+	
+	return object
+
 #endregion
 
 func get_cell() -> Cell:
@@ -387,9 +414,12 @@ func tween_texture_to(position: Vector2, duration: float = 0.4) -> Tween:
 
 
 func get_theme_icon(name: StringName, theme_type: StringName = "Cell") -> Texture2D:
-	if not get_cell():
-		return null
-	var icon := get_cell().get_theme_icon(name, theme_type)
+	var icon: Texture2D
+	if get_cell() == null:
+		icon = load("res://Resources/default_theme.tres").get_icon(name, theme_type)
+	else:
+		icon = get_cell().get_theme_icon(name, theme_type)
+	
 	if icon is CustomTextureBase:
 		return icon.create()
 	return icon

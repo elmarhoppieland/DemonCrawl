@@ -17,6 +17,8 @@ static var heirlooms_changed := Signal() :
 			(Codex as GDScript).add_user_signal("heirlooms_changed")
 			heirlooms_changed = Signal(Codex, "heirlooms_changed")
 		return heirlooms_changed
+
+static var selected_mastery: Mastery = Eternal.create(null)
 # ==============================================================================
 
 static func add_heirloom_slot() -> void:
