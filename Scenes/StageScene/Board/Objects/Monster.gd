@@ -23,3 +23,8 @@ func _reveal_active() -> void:
 
 func _get_annotation_title() -> String:
 	return name
+
+
+func _aura_apply() -> void:
+	if get_cell().get_aura() is Burning:
+		kill()

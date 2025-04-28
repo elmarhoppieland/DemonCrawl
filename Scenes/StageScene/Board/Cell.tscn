@@ -43,12 +43,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("4_ocqma")
 
 [node name="CellTextureRect" type="TextureRect" parent="CellAuraModulator"]
 layout_mode = 2
 offset_right = 16.0
 offset_bottom = 16.0
+mouse_filter = 2
 texture = ExtResource("4_uiyoy")
 script = ExtResource("3_te1nx")
 

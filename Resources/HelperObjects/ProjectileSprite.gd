@@ -3,6 +3,8 @@ extends Sprite2D
 class_name ProjectileSprite
 
 # ==============================================================================
+const Z_INDEX := 5
+# ==============================================================================
 @export var projectile: Projectile
 # ==============================================================================
 var _was_in_bounds := false
@@ -11,6 +13,8 @@ var _was_in_bounds := false
 @warning_ignore("shadowed_variable")
 func _init(projectile: Projectile = null) -> void:
 	self.projectile = projectile
+	
+	z_index = Z_INDEX
 
 
 func _validate_property(property: Dictionary) -> void:
@@ -47,7 +51,21 @@ func get_bounds() -> Rect2:
 
 
 func is_in_bounds() -> bool:
-	return get_bounds().intersects(Rect2(global_position, projectile.get_size()))
+	return get_bounds().grow_side(get_origin_side(), INF).intersects(Rect2(global_position, projectile.get_size()))
+
+
+func get_origin_side() -> Side:
+	match projectile.direction:
+		Vector2i.LEFT:
+			return SIDE_RIGHT
+		Vector2i.UP:
+			return SIDE_BOTTOM
+		Vector2i.RIGHT:
+			return SIDE_LEFT
+		Vector2i.DOWN:
+			return SIDE_TOP
+		_:
+			return SIDE_BOTTOM
 
 
 func _has_left_bounds() -> bool:

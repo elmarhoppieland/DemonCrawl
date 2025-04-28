@@ -175,6 +175,8 @@ func unflag() -> void:
 func apply_aura(aura: Script) -> Aura:
 	var aura_instance := Aura.create(aura)
 	_set_aura(aura_instance)
+	if is_occupied():
+		get_object().notify_aura_applied()
 	return aura_instance
 
 
@@ -383,6 +385,8 @@ func get_board_position() -> Vector2i:
 
 func _set_aura(aura: Aura) -> void:
 	get_data().aura = aura
+	if is_occupied():
+		get_object().notify_aura_changed()
 
 
 ## Returns this [Cell]'s [Aura], if it has one. See also [method has_aura].

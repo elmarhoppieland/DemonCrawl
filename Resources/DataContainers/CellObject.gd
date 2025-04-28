@@ -357,6 +357,37 @@ func _spawn() -> void:
 func notify_spawned() -> void:
 	_spawn()
 
+
+## Virtual method. Called when an [Aura] is applied to this object's [Cell].
+func _aura_apply() -> void:
+	pass
+
+
+## Notifies the object that an [Aura] was applied to its [Cell].
+func notify_aura_applied() -> void:
+	_aura_apply()
+
+
+## Virtual method. Called every time the [Cell]'s [Aura] changes (including after
+## it is removed).
+func _aura_change() -> void:
+	pass
+
+
+## Notifies the object that the [Aura] of its [Cell] was changed (or removed).
+func notify_aura_changed() -> void:
+	_aura_change()
+
+
+## Virtual method. Called when the [Aura] of this object's [Cell] is removed.
+func _aura_remove() -> void:
+	pass
+
+
+## Notifies the object that the [Aura] of its [Cell] was removed.
+func notify_aura_removed() -> void:
+	_aura_remove()
+
 #endregion
 
 #region utilities
