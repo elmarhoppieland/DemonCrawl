@@ -17,7 +17,10 @@ const Mode := Cell.Mode
 	set(new_value):
 		value = new_value
 		emit_changed()
-@export var aura: Aura = null
+@export var aura: Aura = null :
+	set(new_aura):
+		aura = new_aura
+		emit_changed()
 # ==============================================================================
 
 @warning_ignore("shadowed_variable")

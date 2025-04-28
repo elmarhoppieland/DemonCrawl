@@ -11,6 +11,6 @@ func _get_texture() -> Texture2D:
 func _cell_entered(cell: Cell) -> void:
 	if cell.is_occupied() or cell.is_hidden():
 		cell.open(true)
-		# TODO: apply burning
+		cell.apply_aura(Burning)
 		
 		clear()

@@ -15,6 +15,14 @@ static func create(script: Script) -> Aura:
 	return value
 
 
+func get_modulate() -> Color:
+	return _get_modulate()
+
+
+func _get_modulate() -> Color:
+	return Color.WHITE
+
+
 func _export_packed() -> Array:
 	return []
 

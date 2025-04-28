@@ -22,9 +22,12 @@ var _board_position := Vector2i.ZERO : get = get_board_position
 # ==============================================================================
 @onready var _text_particles: TextParticles = %TextParticles
 # ==============================================================================
-signal mode_changed(mode: Mode) ## Emitted when the mode (see [method get_mode]) of this [Cell] changes.
+signal mode_changed(mode: Mode) ## Emitted when the [enum Mode] (see [method get_mode]) of this [Cell] changes.
 signal value_changed(value: int) ## Emitted when the value (see [method get_value]) of this [Cell] changes.
 signal object_changed(object: CellObject) ## Emitted when the object (see [method get_object]) of this [Cell] changes.
+signal aura_changed(aura: Aura) ## Emitted when the [Aura] (see [method get_aura]) of this [Cell] changes.
+
+signal changed() ## Emitted when any of this [Cell]'s properties changes.
 # ==============================================================================
 
 ## Creates and returns a new [Cell] from its [PackedScene].
@@ -166,6 +169,15 @@ func unflag() -> void:
 		set_mode(Cell.Mode.HIDDEN)
 
 
+## Applies the given [Aura] to this [Cell], and returns the created [Aura].
+## [br][br][b]Note:[/b] Each type of [Aura] is only instanced once, and subsequent
+## calls to this method will return the existing [Aura].
+func apply_aura(aura: Script) -> Aura:
+	var aura_instance := Aura.create(aura)
+	_set_aura(aura_instance)
+	return aura_instance
+
+
 ## Adds a particle on this [Cell] showing the given text in the given color preset.
 func add_text_particle(text: String, color: TextParticles.ColorPreset) -> void:
 	_text_particles.text_color_preset = color
@@ -278,21 +290,27 @@ func is_flag_solved() -> bool:
 
 ## Sets the [CellData] instance of this [Cell] to [code]data[/code].
 func set_data(data: CellData) -> void:
+	if _data and _data.changed.is_connected(_data_changed):
+		_data.changed.disconnect(_data_changed)
+	
 	_data = data
 	
-	if data.object:
+	if data and data.object:
 		data.object._cell_position = get_board_position()
 		data.object._stage = get_stage()
 	
-	mode_changed.emit(data.mode)
-	value_changed.emit(data.value)
-	object_changed.emit(data.object)
+	_data_changed()
+	if data:
+		data.changed.connect(_data_changed)
+
+
+func _data_changed() -> void:
+	mode_changed.emit(get_mode())
+	value_changed.emit(get_value())
+	object_changed.emit(get_object())
+	aura_changed.emit(get_aura())
 	
-	data.changed.connect(func() -> void:
-		mode_changed.emit(data.mode)
-		value_changed.emit(data.value)
-		object_changed.emit(data.object)
-	)
+	changed.emit()
 
 
 ## Returns the [CellData] instance of the [Cell].
@@ -314,7 +332,9 @@ func _set_object(value: CellObject) -> void:
 ## this [Cell] has no object.
 ## [br][br]See also [method is_occupied].
 func get_object() -> CellObject:
-	return _data.object
+	if get_data():
+		return get_data().object
+	return null
 
 
 ## Removes this [Cell]'s [CellObject], if it has one.
@@ -336,7 +356,9 @@ func set_mode(mode: Cell.Mode) -> void:
 ## and [method is_checking] over this method, as some [enum Mode] constants are used
 ## for multiple states and can therefore behave unexpectedly.
 func get_mode() -> Cell.Mode:
-	return _data.mode
+	if _data:
+		return _data.mode
+	return Cell.Mode.INVALID
 
 
 ## Sets the value of this [Cell] to [code]value[/code]. The value typically indicates
@@ -349,7 +371,9 @@ func set_value(value: int) -> void:
 ## Returns this [Cell]'s value. This is usually the amount of nearby monsters, but
 ## various effects can change a [Cell]'s value to other values.
 func get_value() -> int:
-	return _data.value
+	if _data:
+		return _data.value
+	return 0
 
 
 ## Returns this [Cell]'s position on the [Board].
@@ -363,7 +387,9 @@ func _set_aura(aura: Aura) -> void:
 
 ## Returns this [Cell]'s [Aura], if it has one. See also [method has_aura].
 func get_aura() -> Aura:
-	return get_data().aura
+	if get_data():
+		return get_data().aura
+	return null
 
 
 ## Returns whether this [Cell] has an [Aura].

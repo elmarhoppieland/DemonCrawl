@@ -213,7 +213,7 @@ static func split_ignoring_nested(s: String, delimiter: String) -> PackedStringA
 	
 	return parts
 
-###
+
 static func get_depth(s: String, opening_char: String, closing_char: String) -> int:
 	var inside_string := false
 	var depth := 0
