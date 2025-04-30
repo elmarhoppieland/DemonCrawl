@@ -17,6 +17,10 @@ func _get_texture() -> Texture2D:
 	return get_theme_icon("monster").duplicate()
 
 
+func _get_source() -> Texture2D:
+	return (get_theme_icon("monster") as AnimatedTextureSequence)._textures[0]
+
+
 func _reveal_active() -> void:
 	Quest.get_current().get_stats().damage(Stage.get_current().roll_power(), self)
 

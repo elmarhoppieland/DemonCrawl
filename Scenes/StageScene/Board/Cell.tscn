@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bl8bwoewf0m57"]
+[gd_scene load_steps=17 format=3 uid="uid://bl8bwoewf0m57"]
 
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Cell.gd" id="1_e3wqt"]
 [ext_resource type="Script" path="res://Resources/DataContainers/CellData.gd" id="3_685kk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/CellObjectTextureRect.gd" id="7_3xaxv"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/TooltipGrabber.gd" id="7_ggwll"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/TextParticles.gd" id="12_4ov3c"]
+[ext_resource type="PackedScene" uid="uid://cn8gaau2ecden" path="res://Resources/Scenes/TextureShatter.tscn" id="13_mfvjy"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/Grabber.gd" id="13_tuktl"]
 
 [sub_resource type="Resource" id="Resource_fixtg"]
@@ -145,6 +146,12 @@ label_settings = SubResource("LabelSettings_rm8r2")
 
 [node name="Grabber" type="Node" parent="."]
 script = ExtResource("13_tuktl")
+
+[node name="TextureShatter" parent="." instance=ExtResource("13_mfvjy")]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+position = Vector2(8, 8)
 
 [connection signal="about_to_show" from="Control/Anchor/CellObjectTextureRect/TooltipGrabber" to="Control/Anchor/CellObjectTextureRect" method="_on_tooltip_grabber_about_to_show"]
 [connection signal="interacted" from="Grabber" to="." method="_on_interacted"]

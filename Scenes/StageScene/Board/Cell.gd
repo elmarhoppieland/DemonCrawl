@@ -21,6 +21,7 @@ const CELL_SIZE := Vector2i(16, 16) ## The size of a [Cell] in pixels.
 var _board_position := Vector2i.ZERO : get = get_board_position
 # ==============================================================================
 @onready var _text_particles: TextParticles = %TextParticles
+@onready var _texture_shatter: TextureShatter = %TextureShatter : get = get_texture_shatter
 # ==============================================================================
 signal mode_changed(mode: Mode) ## Emitted when the [enum Mode] (see [method get_mode]) of this [Cell] changes.
 signal value_changed(value: int) ## Emitted when the value (see [method get_value]) of this [Cell] changes.
@@ -190,6 +191,13 @@ func add_text_particle(text: String, color: TextParticles.ColorPreset) -> void:
 ## Returns this [Cell]'s object's [TextureRect].
 func get_object_texture_rect() -> CellObjectTextureRect:
 	return %CellObjectTextureRect
+
+
+## Returns this [Cell]'s [TextureShatter] instance.
+func get_texture_shatter() -> TextureShatter:
+	if _texture_shatter:
+		return _texture_shatter
+	return get_node_or_null("%TextureShatter")
 
 
 ## Returns all [Cell]s horizontally or diagonally adjacent to this [Cell].

@@ -6,9 +6,12 @@ class_name Projectile
 @export var position: Vector2 :
 	set(value):
 		position = value
-		sprite.position = value
+		if sprite:
+			sprite.position = value
 	get:
-		return sprite.position
+		if sprite:
+			return sprite.position
+		return position
 
 @export var direction := Vector2i.ZERO
 
@@ -31,7 +34,11 @@ func _init(cell_pos: Vector2i = Vector2i.ZERO, direction: Vector2i = Vector2i.ZE
 		direction[i / 2] = (i % 2) * 2 - 1
 	
 	self.direction = direction
-	sprite = Stage.get_current().get_scene().register_projectile(self, cell_pos)
+	self.position = cell_pos * Cell.CELL_SIZE + Cell.CELL_SIZE / 2
+
+
+func register() -> void:
+	sprite = Stage.get_current().get_scene().register_projectile(self, Vector2i(position) / Cell.CELL_SIZE)
 
 
 func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:

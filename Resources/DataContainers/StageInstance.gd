@@ -17,39 +17,6 @@ const CELL_MODE_IDS := {
 		if Engine.is_editor_hint() and get_stage() and value.size() > get_stage().area():
 			value.resize(get_stage().area())
 		emit_changed()
-var _cells := "" :
-	set(value):
-		_cells = value
-		
-		return
-		
-		assert(cells.is_empty())
-		
-		var cell := CellData.new()
-		cells.append(cell)
-		for c in value:
-			if c.is_valid_int():
-				if not cell:
-					cell = CellData.new()
-					cells.append(cell)
-				cell.value *= 10
-				cell.value += c.to_int()
-			elif c == "m":
-				(func() -> void: cell.object = Monster.new(cell.get_position(self), get_stage())).call_deferred()
-			elif c in CELL_MODE_IDS.values():
-				cell.mode = CELL_MODE_IDS.find_key(c)
-				cell = null
-	get:
-		return _cells
-		return "".join(cells.map(func(cell: CellData) -> String:
-			var string := str(cell.value)
-			if cell.object is Monster:
-				string += "m"
-			elif cell.object:
-				string += "{" + "" + "}"
-			string += CELL_MODE_IDS[cell.get_mode()]
-			return string
-		))
 # ==============================================================================
 @export var _stage: Stage : set = set_stage, get = get_stage
 @export var _time := 0.0 : get = get_timef

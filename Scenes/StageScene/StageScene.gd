@@ -20,6 +20,11 @@ func _enter_tree() -> void:
 		Stage.get_current().play_music()
 
 
+func _ready() -> void:
+	for projectile in Quest.get_current().get_projectile_manager().get_projectiles():
+		projectile.register()
+
+
 #func get_stage() -> Stage:
 	#return _stage_instance.stage
 
@@ -73,7 +78,8 @@ func register_projectile(projectile: Projectile, cell_pos: Vector2i) -> Projecti
 	sprite.position = cell_pos * Cell.CELL_SIZE + Cell.CELL_SIZE / 2
 	sprite.texture = projectile
 	_projectiles.add_child(sprite)
-	Quest.get_current().get_projectile_manager().register_projectile(projectile)
+	if projectile not in Quest.get_current().get_projectile_manager().get_projectiles():
+		Quest.get_current().get_projectile_manager().register_projectile(projectile)
 	return sprite
 
 

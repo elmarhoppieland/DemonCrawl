@@ -126,7 +126,7 @@ static func _can_spawn() -> bool:
 
 
 ## Returns the object's texture.
-## [br][br][b]Note:[/b] This object is a [Texture2D] by itself, so if can be used as
+## [br][br][b]Note:[/b] Each [CellObject] is a [Texture2D] by itself, so it can be used as
 ## a texture. This method simply returns the underlying [Texture2D] instance.
 func get_texture() -> Texture2D:
 	if not _texture:
@@ -139,6 +139,16 @@ func get_texture() -> Texture2D:
 ## [br][br]After this is called, the texture is cached and this method is not called
 ## anymore on this object.
 func _get_texture() -> Texture2D:
+	return null
+
+
+## Returns the object's texture source. This must be a built-in [Texture2D]-derived class.
+func get_source() -> Texture2D:
+	return _get_source()
+
+
+## Called when this object's source is used. Should return a built-in [Texture2D]-derived class.
+func _get_source() -> Texture2D:
 	return null
 
 
@@ -240,6 +250,11 @@ func _unhover() -> void:
 ## Kills this object.
 func kill() -> void:
 	clear()
+	
+	get_cell().get_texture_shatter().source_texture = get_source()
+	get_cell().get_texture_shatter().show()
+	
+	Stage.get_current().get_board().get_camera().shake()
 	
 	_kill()
 

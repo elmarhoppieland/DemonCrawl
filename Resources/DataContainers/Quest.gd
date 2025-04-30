@@ -43,8 +43,6 @@ static var _current: Quest = Eternal.create(null) : set = _set_current, get = ge
 @export var _mastery: Mastery : get = get_mastery
 
 @export var _projectile_manager := ProjectileManager.new() : get = get_projectile_manager
-
-@export var __temp_aura := Aura.new()
 # ==============================================================================
 
 #region current
