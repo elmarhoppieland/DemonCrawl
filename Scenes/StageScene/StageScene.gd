@@ -73,9 +73,9 @@ func tween_texture(texture: Texture2D, start_pos: Vector2, end_pos: Vector2, dur
 	return sprite
 
 
-func register_projectile(projectile: Projectile, cell_pos: Vector2i) -> ProjectileSprite:
+func register_projectile(projectile: Projectile) -> ProjectileSprite:
 	var sprite := ProjectileSprite.new(projectile)
-	sprite.position = cell_pos * Cell.CELL_SIZE + Cell.CELL_SIZE / 2
+	sprite.global_position = get_board().get_global_at_cell_position(projectile.position)
 	sprite.texture = projectile
 	_projectiles.add_child(sprite)
 	if projectile not in Quest.get_current().get_projectile_manager().get_projectiles():

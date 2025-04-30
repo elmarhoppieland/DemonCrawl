@@ -7,17 +7,17 @@ class_name Projectile
 	set(value):
 		position = value
 		if sprite:
-			sprite.position = value
+			sprite.global_position = Stage.get_current().get_board().get_global_at_cell_position(value)
 	get:
 		if sprite:
-			return sprite.position
+			return Stage.get_current().get_board().get_cell_position_at_global(sprite.global_position)
 		return position
 
 @export var direction := Vector2i.ZERO
 
 @export var _speed_override := NAN
 # ==============================================================================
-var sprite := ProjectileSprite.new()
+var sprite: ProjectileSprite
 
 var _texture: Texture2D :
 	get:
@@ -34,11 +34,11 @@ func _init(cell_pos: Vector2i = Vector2i.ZERO, direction: Vector2i = Vector2i.ZE
 		direction[i / 2] = (i % 2) * 2 - 1
 	
 	self.direction = direction
-	self.position = cell_pos * Cell.CELL_SIZE + Cell.CELL_SIZE / 2
+	self.position = cell_pos
 
 
 func register() -> void:
-	sprite = Stage.get_current().get_scene().register_projectile(self, Vector2i(position) / Cell.CELL_SIZE)
+	sprite = Stage.get_current().get_scene().register_projectile(self)
 
 
 func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:

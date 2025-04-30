@@ -181,6 +181,12 @@ func apply_aura(aura: Script) -> Aura:
 	return aura_instance
 
 
+func send_projectile(projectile: Script, direction: Vector2i = Vector2i.ZERO) -> Projectile:
+	var projectile_instance := projectile.new(get_board_position(), direction) as Projectile
+	projectile_instance.register()
+	return projectile_instance
+
+
 ## Adds a particle on this [Cell] showing the given text in the given color preset.
 func add_text_particle(text: String, color: TextParticles.ColorPreset) -> void:
 	_text_particles.text_color_preset = color

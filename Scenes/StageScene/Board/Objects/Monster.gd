@@ -32,3 +32,8 @@ func _get_annotation_title() -> String:
 func _aura_apply() -> void:
 	if get_cell().get_aura() is Burning:
 		kill()
+
+
+func _kill() -> void:
+	for cell in get_cell().get_nearby_cells():
+		cell.get_data().value -= 1

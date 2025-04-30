@@ -3,7 +3,7 @@ extends Resource
 class_name ProjectileManager
 
 # ==============================================================================
-@export var speed := 64.0
+@export var speed := 96.0
 
 @export var _projectiles: Array[Projectile] = [] : get = get_projectiles
 # ==============================================================================

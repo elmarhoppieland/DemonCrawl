@@ -51,21 +51,21 @@ func get_bounds() -> Rect2:
 
 
 func is_in_bounds() -> bool:
-	return get_bounds().grow_side(get_origin_side(), INF).intersects(Rect2(global_position, projectile.get_size()))
-
-
-func get_origin_side() -> Side:
 	match projectile.direction:
 		Vector2i.LEFT:
-			return SIDE_RIGHT
-		Vector2i.UP:
-			return SIDE_BOTTOM
+			if global_position.x > get_bounds().end.x:
+				return true
 		Vector2i.RIGHT:
-			return SIDE_LEFT
+			if global_position.x < get_bounds().position.x:
+				return true
+		Vector2i.UP:
+			if global_position.y > get_bounds().end.y:
+				return true
 		Vector2i.DOWN:
-			return SIDE_TOP
-		_:
-			return SIDE_BOTTOM
+			if global_position.y < get_bounds().position.y:
+				return true
+	
+	return get_bounds().intersects(Rect2(global_position, projectile.get_size()))
 
 
 func _has_left_bounds() -> bool:
