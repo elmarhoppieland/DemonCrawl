@@ -5,11 +5,16 @@ class_name CellObject
 ## A [Cell]'s object.
 
 # ==============================================================================
-@export var _cell_position := Vector2i.ZERO ## The board position of the [Cell] this is the object of.
+@export var _cell_position := Vector2i.ZERO : ## The board position of the [Cell] this is the object of.
+	set(value):
+		_cell_position = value
+		(func() -> void: cell_changed.emit()).call_deferred()
 @export var _stage: Stage : get = get_stage
 # ==============================================================================
 var _texture: Texture2D : get = get_texture
 var _material: Material : get = get_material
+# ==============================================================================
+signal cell_changed()
 # ==============================================================================
 
 #region internals
@@ -17,13 +22,6 @@ var _material: Material : get = get_material
 func _init(cell_position: Vector2i = Vector2i.ZERO, stage: Stage = null) -> void:
 	_cell_position = cell_position
 	_stage = stage
-	
-	var delta_sum := [0.0]
-	get_tree().process_frame.connect(func() -> void:
-		var delta := get_tree().root.get_process_delta_time()
-		delta_sum[0] += delta
-		animate(delta_sum[0])
-	)
 	
 	_ready()
 
@@ -193,17 +191,6 @@ func _get_palette() -> Texture2D:
 	return null
 
 
-## Returns the texture's animation frame duration, or [code]NAN[/code] if it does not have an animation.
-func get_animation_delta() -> float:
-	return _get_animation_delta()
-
-
-## Virtual method. Should return the texture's animation frame duration, or [code]NAN[/code]
-## if it does not have an animation.
-func _get_animation_delta() -> float:
-	return NAN
-
-
 ## Notifies this object that the player has interacted (left-click or Q) with it.
 func notify_interacted() -> void:
 	_interact()
@@ -249,18 +236,23 @@ func _unhover() -> void:
 
 ## Kills this object.
 func kill() -> void:
-	clear()
-	
 	get_cell().get_texture_shatter().source_texture = get_source()
 	get_cell().get_texture_shatter().show()
 	
 	Stage.get_current().get_board().get_camera().shake()
 	
 	_kill()
+	
+	clear()
 
 
 ## Virtual method to react to being killed.
 func _kill() -> void:
+	pass
+
+
+## Virtual method to react to being cleared, i.e. removed from the [Cell].
+func _clear() -> void:
 	pass
 
 
@@ -336,20 +328,6 @@ func _is_charitable() -> bool:
 	return false
 
 
-## Animates this object's texture.
-func animate(time: float) -> void:
-	_animate(time)
-
-
-## Virtual method. Called when this object's texture (see [method get_texture]) is used somewhere.
-## This method should be overridden to animate the texture.
-## [br][br]If this method is not overridden, nothing happens and the texture does not
-## animate.
-@warning_ignore("unused_parameter")
-func _animate(time: float) -> void:
-	pass
-
-
 ## Resets all properties modified by this object. This should be called when the object
 ## is removed from its [Cell].
 func reset() -> void:
@@ -410,6 +388,8 @@ func notify_aura_removed() -> void:
 ## Clears this [CellObject], setting the cell's object to [code]null[/code].
 func clear() -> void:
 	get_cell().clear_object()
+	
+	_clear()
 
 
 func move_to_cell(cell: Cell) -> void:

@@ -22,6 +22,7 @@ var _board_position := Vector2i.ZERO : get = get_board_position
 # ==============================================================================
 @onready var _text_particles: TextParticles = %TextParticles
 @onready var _texture_shatter: TextureShatter = %TextureShatter : get = get_texture_shatter
+@onready var _direction_arrow: Sprite2D = %DirectionArrow
 # ==============================================================================
 signal mode_changed(mode: Mode) ## Emitted when the [enum Mode] (see [method get_mode]) of this [Cell] changes.
 signal value_changed(value: int) ## Emitted when the value (see [method get_value]) of this [Cell] changes.
@@ -38,17 +39,20 @@ static func create(board_position: Vector2i = Vector2i.ZERO) -> Cell:
 	return cell
 
 
-## Opens this [Cell], showing its contents.
+## Opens this [Cell], showing its contents. Returns [code]true[/code] if the [Cell]
+## could be opened, and [code]false[/code] otherwise.
 ## [br][br]Calls [method Effects.cell_open] immediately after opening the [Cell].
-func open(force: bool = false, allow_loot: bool = true) -> void:
+func open(force: bool = false, allow_loot: bool = true) -> bool:
 	if get_mode() == Mode.VISIBLE:
-		return
+		return false
 	if not force and get_mode() == Mode.FLAGGED:
-		return
+		return false
+	
+	if not get_stage().get_instance().is_generated():
+		get_stage().get_instance().generate(get_board_position())
 	
 	if get_value() != 0:
-		_open(force, allow_loot)
-		return
+		return _open(force, allow_loot)
 	
 	var to_explore: Array[Cell] = [self]
 	var visited: Array[Cell] = []
@@ -66,13 +70,15 @@ func open(force: bool = false, allow_loot: bool = true) -> void:
 			if c in visited or c in to_explore or c.is_revealed() or c.is_flagged():
 				continue
 			to_explore.append(c)
+	
+	return true
 
 
-func _open(force: bool = false, allow_loot: bool = true) -> void:
+func _open(force: bool = false, allow_loot: bool = true) -> bool:
 	if get_mode() == Mode.VISIBLE:
-		return
+		return false
 	if not force and get_mode() == Mode.FLAGGED:
-		return
+		return false
 	
 	set_mode(Mode.VISIBLE)
 	
@@ -86,6 +92,8 @@ func _open(force: bool = false, allow_loot: bool = true) -> void:
 		get_object().notify_revealed(not force)
 	
 	Effects.cell_open(self)
+	
+	return true
 
 
 func _generate_content() -> void:
@@ -181,6 +189,8 @@ func apply_aura(aura: Script) -> Aura:
 	return aura_instance
 
 
+## Sends a [Projectile] in the given [code]direction[/code] (or a random one if omitted).
+## Returns the [Projectile] created from the given [code]projectile[/code] [Script].
 func send_projectile(projectile: Script, direction: Vector2i = Vector2i.ZERO) -> Projectile:
 	var projectile_instance := projectile.new(get_board_position(), direction) as Projectile
 	projectile_instance.register()
@@ -192,6 +202,18 @@ func add_text_particle(text: String, color: TextParticles.ColorPreset) -> void:
 	_text_particles.text_color_preset = color
 	_text_particles.text = text
 	_text_particles.emitting = true
+
+
+## Shows an arrow pointing in the given [code]direction[/code]. This arrow stays
+## visible until it is hidden using [method hide_direction_arrow].
+func show_direction_arrow(direction: Vector2i) -> void:
+	_direction_arrow.rotation = Vector2(direction).angle()
+	_direction_arrow.show()
+
+
+## Hides the direction arrow shown by [method show_direction_arrow].
+func hide_direction_arrow() -> void:
+	_direction_arrow.hide()
 
 
 ## Returns this [Cell]'s object's [TextureRect].

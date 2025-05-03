@@ -4,10 +4,15 @@ class_name EternalFile
 ## Helper class to write [Eternal]s to disk.
 
 # ==============================================================================
+var current_resource: Resource = null
+# ==============================================================================
 var _data := {}
 var _resources := {}
 # ==============================================================================
 signal value_changed(section: String, key: String, value: Variant)
+signal loaded(path: String)
+signal saved(path: String)
+
 signal _resource_saved(id: int)
 # ==============================================================================
 
@@ -21,10 +26,14 @@ func load(path: String) -> void:
 	if not FileAccess.file_exists(path):
 		_data.clear()
 		_resources.clear()
+		
+		loaded.emit(path)
 		return
 	
 	var file := FileAccess.open(path, FileAccess.READ)
 	_parse_ini(file)
+	
+	loaded.emit(path)
 
 
 ## Saves the loaded data to [code]path[/code].
@@ -38,6 +47,8 @@ func save(path: String) -> void:
 	#file.store_line(encode_to_text())
 	encode_to_file(file)
 	file.close()
+	
+	saved.emit(path)
 
 
 ## Returns a [PackedStringArray] of all [Script]s that have any [Eternal]s.
@@ -173,7 +184,6 @@ func _parse_ini(file: FileAccess) -> void:
 	_data.clear()
 	
 	var current_section := ""
-	var current_resource: Resource = null
 	while not file.eof_reached():
 		var line := _read_line(file)
 		
@@ -249,9 +259,10 @@ func _parse_script_line(line: String, current_section: String, file_path: String
 	var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
 	assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file_path])
 	
-	_data[current_section][key] = await _await_resource(_parse_value(value))
+	_data[current_section][key] = await await_resource(_parse_value(value))
 
 
+@warning_ignore("shadowed_variable")
 func _parse_resource_line(line: String, current_resource: Resource, file_path: String) -> void:
 	if "#" in line:
 		line = line.substr(0, line.find("#")).strip_edges()
@@ -268,10 +279,10 @@ func _parse_resource_line(line: String, current_resource: Resource, file_path: S
 			#await _resource_saved
 		#parsed_value = parsed_value.create(_resources)
 	
-	current_resource.set(key, await _await_resource(_parse_value(value)))
+	current_resource.set(key, await await_resource(_parse_value(value)))
 
 
-func _await_resource(resource: Variant) -> Variant:
+func await_resource(resource: Variant) -> Variant:
 	if not resource is PendingResourceBase:
 		return resource
 	
@@ -414,6 +425,19 @@ func _parse_packed_array(value: String) -> Variant:
 	
 	var is_pending := false
 	for s in Stringifier.split_ignoring_nested(value.trim_prefix("PackedArray[" + type_name + "]" + "(").trim_suffix(")"), ","):
+		#s = s.strip_edges().trim_prefix("(").trim_suffix(")").strip_edges()
+		#
+		#if s == "<null>":
+			#values.append(null)
+			#continue
+		#
+		#var v = _parse_constructor("%s(%s)" % [type_name, s])
+		#if v is PendingResourceBase:
+			#is_pending = true
+		#values.append(v)
+		#
+		#continue
+		
 		s = s.strip_edges().trim_prefix("(").trim_suffix(")").strip_edges()
 		
 		if s == "<null>":

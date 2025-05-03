@@ -21,7 +21,7 @@ STRANGER_PLANT_REWARD_SOULS;{amount} soul
 STRANGER_PLANT_REWARD_SOULS_PLURAL;{amount} souls
 STRANGER_PLANT_REWARD_MANA;{amount} mana
 STRANGER_PLANT_REWARD_MANA_PLURAL;{amount} mana
-STRANGER_PLANT_REWARD_PRESENT;a Present
+STRANGER_PLANT_REWARD_PRESENT;Gain a Present
 
 STRANGER_BLACKSMITH;Blacksmith
 STRANGER_BLACKSMITH_DESCRIPTION;Got {cost} coins? I'll forge you some {type} armor in {turns} turns!
@@ -40,7 +40,7 @@ STRANGER_BAGMAN_DESCRIPTION_PROMPT;Give me {cost} coins and I'll help you out...
 STRANGER_BAGMAN_INTERACT;You got it...
 
 STRANGER_ELDER;Elder
-STRANGER_ELDER_DESCRIPTION;I will activate your ultimate mastery ability for {cost} coins!
+STRANGER_ELDER_DESCRIPTION;I can activate your mastery's ultimate ability for {cost} coins...
 
 STRANGER_GAMBLER;Gambler
 STRANGER_GAMBLER_DESCRIPTION;I'll bet you {cost} coins that I can move to a hidden cell without getting hurt! If I'm wrong, well, you can have whatever I've got.
@@ -61,3 +61,6 @@ STRANGER_SCRIBE;Scribe
 STRANGER_SCRIBE_INCREASE_DESCRIPTION;I will add 1 to each of your heirlooms for {cost} coins!
 STRANGER_SCRIBE_COPY_DESCRIPTION;I will copy your first {slot_count} items into their heirloom slots for {cost} coins!
 STRANGER_SCRIBE_REACTIVATE_DESCRIPTION;I will reactivate your heirloom slots for {cost} coins!
+
+STRANGER_PYRO;Pyro
+STRANGER_PYRO_DESCRIPTION;Flares are my thing!! Give me {cost} coins and I'll rotate clockwise!

@@ -56,10 +56,17 @@ func _process(_delta: float) -> void:
 	if _pressed_cell and Input.is_action_just_released("cell_open"):
 		if _pressed_cell == _hovered_cell:
 			if _pressed_cell.is_hidden():
-				_open_cell(_pressed_cell)
+				var r := _pressed_cell.open()
+				if r:
+					_after_open_cell()
 			elif _pressed_cell.is_solved():
+				var found_openable_cell := false
 				for cell in _pressed_cell.get_nearby_cells():
-					_open_cell(cell)
+					var r := cell.open()
+					if r:
+						found_openable_cell = true
+				if found_openable_cell:
+					_after_open_cell()
 			else:
 				for cell in _pressed_cell.get_nearby_cells():
 					cell.uncheck()
@@ -95,22 +102,10 @@ func get_stage() -> Stage:
 	return Stage.get_current()
 
 
-# this function is needed because doing this recursively causes a stack overflow
-# if the stage is too big (also this is faster than recursive anyway)
-func _open_cell(cell: Cell) -> void:
-	if cell.is_flagged():
-		return
-	
-	if not get_stage().get_instance().is_generated():
-		get_stage().get_instance().generate(cell.get_board_position())
-	
-	cell.open()
-	
-	_after_open_cell()
-
-
 func _after_open_cell() -> void:
 	if get_stage().get_instance().is_finished():
 		for cell: Cell in get_children():
 			cell.flag()
 		stage_finished.emit()
+	
+	Effects.turn()

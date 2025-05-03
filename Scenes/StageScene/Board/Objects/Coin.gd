@@ -17,10 +17,6 @@ func _get_palette() -> CompressedTexture2D:
 	return get_theme_icon("coin_palette", "Cell")
 
 
-func _get_animation_delta() -> float:
-	return 0.1
-
-
 func _interact() -> void:
 	var value: int = Effects.get_coin_value(1, get_cell())
 	get_stats().coins += value

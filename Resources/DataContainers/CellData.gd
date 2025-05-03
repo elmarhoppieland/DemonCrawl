@@ -45,6 +45,13 @@ static func _import_packed(value: int, arg0: Variant = null, arg1: Variant = nul
 	cell.object = object
 	cell.aura = aura
 	
+	if object:
+		var owner := Eternity.get_processing_owner()
+		if owner.has_method("get_stage"):
+			Eternity.get_processing_file().loaded.connect(func(_path: String) -> void:
+				object._stage = owner.get_stage()
+			, CONNECT_ONE_SHOT)
+	
 	return cell
 
 

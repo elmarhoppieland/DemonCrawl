@@ -24,11 +24,14 @@ static var loaded: Signal :
 	get:
 		return _Instance.loaded
 
-static var _save_cfg: EternalFile
+static var _save_cfg: EternalFile = null
 
 static var _initialized := false
 
 static var _named_path_load_queue := PackedStringArray()
+
+static var _processing_cfg: EternalFile = null : get = get_processing_file
+static var _processing_owner: Object = null : get = get_processing_owner
 # ==============================================================================
 
 static func _static_init() -> void:
@@ -114,6 +117,16 @@ static func save(path_name: String = "") -> void:
 	saved.emit(file_path)
 
 
+static func get_processing_owner() -> Object:
+	if _processing_cfg and _processing_cfg.current_resource:
+		return _processing_cfg.current_resource
+	return _processing_owner
+
+
+static func get_processing_file() -> EternalFile:
+	return _processing_cfg
+
+
 static func get_save_name(path_name: String = "") -> String:
 	return _get_path(path_name).get_file().get_basename()
 
@@ -139,12 +152,14 @@ static func _reload_file(path_name: String = "") -> void:
 		return
 	
 	var cfg := EternalFile.new()
+	_processing_cfg = cfg
 	if path_name.is_empty():
 		_save_cfg = cfg
 	cfg.load(file_path)
 	
 	for script_class in _defaults_cfg.get_scripts():
 		var script := UserClassDB.class_get_script(script_class)
+		_processing_owner = script
 		assert(is_instance_valid(script))
 		for key in _defaults_cfg.get_eternals(script_class):
 			if "::" in key:

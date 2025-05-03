@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=67 format=3 uid="uid://dmddrgkl04gph"]
+[gd_resource type="Theme" load_steps=70 format=3 uid="uid://dmddrgkl04gph"]
 
 [ext_resource type="StyleBox" uid="uid://cokg66aqb3ro1" path="res://Resources/xp_bar_fill.tres" id="1_0ok7g"]
 [ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://Assets/skins/default/bg.png" id="1_3w34f"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dovfvraxpwlbj" path="res://Assets/sprites/strangers/Mage.png" id="22_kmkag"]
 [ext_resource type="Script" path="res://Resources/HelperObjects/AnimatedTextureSequence.gd" id="23_6lsge"]
 [ext_resource type="Texture2D" uid="uid://c5efdbrxamawq" path="res://Assets/sprites/strangers/Scribe.png" id="23_lujhd"]
+[ext_resource type="Texture2D" uid="uid://c86u4huxii17u" path="res://Assets/sprites/strangers/Pyro.png" id="24_obp0f"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qp4ky"]
 content_margin_left = 5.0
@@ -286,6 +287,22 @@ resource_name = ""
 script = ExtResource("21_5cqxe")
 _instance = SubResource("Texture2D_8qrb7")
 
+[sub_resource type="Texture2D" id="Texture2D_1xcmu"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
+duration = 1.0
+size = Vector2i(16, 16)
+atlas = ExtResource("24_obp0f")
+margin = Rect2(0, 0, 0, 0)
+filter_clip = false
+
+[sub_resource type="Texture2D" id="Texture2D_7xr1a"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("21_5cqxe")
+_instance = SubResource("Texture2D_1xcmu")
+
 [sub_resource type="Texture2D" id="Texture2D_waegq"]
 resource_local_to_scene = false
 resource_name = ""
@@ -400,6 +417,7 @@ Stranger/icons/hungry_plant = SubResource("Texture2D_h5tdi")
 Stranger/icons/mage = SubResource("Texture2D_yki81")
 Stranger/icons/nomad = SubResource("Texture2D_t2k2h")
 Stranger/icons/priest = SubResource("Texture2D_u2hrp")
+Stranger/icons/pyro = SubResource("Texture2D_7xr1a")
 Stranger/icons/scribe = SubResource("Texture2D_l86ws")
 VScrollBar/styles/grabber = SubResource("StyleBoxTexture_tsonw")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_7jy4q")

@@ -134,9 +134,24 @@ static func capture(s: Signal) -> Variant:
 
 
 static func defer() -> void:
-	var obj := RefCounted.new()
-	obj.add_user_signal("_tmp")
-	(func():
-		obj.emit_signal("_tmp")
+	var s := _temp_signal()
+	(func() -> void:
+		s.emit()
 	).call_deferred()
-	await Signal(obj, "_tmp")
+	await s
+
+
+static func signal_await(await_callable: Callable) -> Signal:
+	var s := _temp_signal()
+	(func() -> void:
+		s.emit(await await_callable.call())
+	).call()
+	return s
+
+
+static func _temp_signal() -> Signal:
+	var obj := Object.new()
+	obj.add_user_signal("_tmp")
+	var s := Signal(obj, "_tmp")
+	s.connect(func() -> void: obj.free(), CONNECT_DEFERRED)
+	return s

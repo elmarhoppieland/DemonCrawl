@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bl8bwoewf0m57"]
+[gd_scene load_steps=20 format=3 uid="uid://bl8bwoewf0m57"]
 
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Cell.gd" id="1_e3wqt"]
 [ext_resource type="Script" path="res://Resources/DataContainers/CellData.gd" id="3_685kk"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://Resources/UtilityNode/TextParticles.gd" id="12_4ov3c"]
 [ext_resource type="PackedScene" uid="uid://cn8gaau2ecden" path="res://Resources/Scenes/TextureShatter.tscn" id="13_mfvjy"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/Grabber.gd" id="13_tuktl"]
+[ext_resource type="Shader" path="res://Resources/Shaders/DirectionArrow.gdshader" id="14_27bf8"]
+[ext_resource type="Texture2D" uid="uid://cx3w4pgpiwi3p" path="res://Assets/sprites/dir_arrow.png" id="14_ffohp"]
 
 [sub_resource type="Resource" id="Resource_fixtg"]
 script = ExtResource("3_685kk")
@@ -28,6 +30,13 @@ font_size = 8
 font_color = Color(1, 0.772549, 0.772549, 1)
 outline_size = 3
 outline_color = Color(0.737255, 0.0470588, 0.0470588, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6d8hb"]
+shader = ExtResource("14_27bf8")
+shader_parameter/run_time = 1.0
+shader_parameter/wait_time = 0.1
+shader_parameter/start_offset = -2.0
+shader_parameter/end_offset = 1.0
 
 [node name="Cell" type="Control"]
 layout_mode = 3
@@ -106,6 +115,8 @@ _mode = 1
 
 [node name="TooltipGrabber" type="Node" parent="Control/Anchor/CellObjectTextureRect"]
 script = ExtResource("7_ggwll")
+text = "STRANGER_PYRO
+[color=gray]\"STRANGER_PYRO_DESCRIPTION\"[/color]"
 enabled = false
 
 [node name="CellFlagSprite" type="Sprite2D" parent="."]
@@ -152,6 +163,15 @@ unique_name_in_owner = true
 visible = false
 z_index = 2
 position = Vector2(8, 8)
+
+[node name="DirectionArrow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+material = SubResource("ShaderMaterial_6d8hb")
+position = Vector2(8, 8)
+texture = ExtResource("14_ffohp")
+offset = Vector2(9, 0)
 
 [connection signal="about_to_show" from="Control/Anchor/CellObjectTextureRect/TooltipGrabber" to="Control/Anchor/CellObjectTextureRect" method="_on_tooltip_grabber_about_to_show"]
 [connection signal="interacted" from="Grabber" to="." method="_on_interacted"]
