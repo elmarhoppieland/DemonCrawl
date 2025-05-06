@@ -5,7 +5,6 @@ class_name StageScene
 # ==============================================================================
 @onready var _stage_background: StageBackground = %StageBackground : get = get_background
 @onready var _finish_button: FinishButton = %FinishButton
-@onready var _statbar: Statbar = %Statbar : get = get_statbar
 @onready var _tweener_canvas: CanvasLayer = %TweenerCanvas
 @onready var _mouse_cast_sprite: MouseCastSprite = %MouseCastSprite
 @onready var _finish_popup: FinishPopup = %FinishPopup
@@ -21,6 +20,9 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	for projectile in Quest.get_current().get_projectile_manager().get_projectiles():
 		projectile.register()
 
@@ -39,12 +41,6 @@ func get_board() -> Board:
 	if not _board and has_node("%Board"):
 		_board = %Board
 	return _board
-
-
-func get_statbar() -> Statbar:
-	if not _statbar and has_node("%Statbar"):
-		_statbar = %Statbar
-	return _statbar
 
 
 ## Returns whether the [Stage] was reloaded from the save.

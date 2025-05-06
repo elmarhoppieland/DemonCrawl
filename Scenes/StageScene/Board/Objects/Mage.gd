@@ -55,7 +55,7 @@ func _get_annotation_subtext() -> String:
 			"item": tr(item.get_name())
 		}) + "\""
 	
-	if item.is_charged():
+	if item and item.is_charged():
 		return "\"" + tr("STRANGER_MAGE_DESCRIPTION").format({
 			"item": tr(item.get_name()),
 			"cost": cost

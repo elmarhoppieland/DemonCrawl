@@ -22,6 +22,7 @@ Focus="res://Resources/Singletons/Focus.tscn"
 Debug="res://Resources/Singletons/Debug.tscn"
 Toasts="res://Resources/Singletons/Toasts.tscn"
 ChestPopup="res://Resources/Singletons/ChestPopup.tscn"
+GuiLayer="res://Resources/Singletons/GuiLayer.tscn"
 
 [debug]
 

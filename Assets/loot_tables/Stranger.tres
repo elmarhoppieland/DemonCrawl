@@ -120,4 +120,4 @@ item_8/weight = 1.0
 item_9/value = SubResource("Resource_0a85g")
 item_9/weight = 1.0
 item_10/value = SubResource("Resource_v10j5")
-item_10/weight = 100.0
+item_10/weight = 1.0

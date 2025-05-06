@@ -13,11 +13,11 @@
 [ext_resource type="Shader" path="res://Scenes/StageScene/BoardBackground.gdshader" id="9_do03l"]
 [ext_resource type="PackedScene" uid="uid://cnbk18l62cltc" path="res://Resources/Singletons/MouseCastSprite.tscn" id="10_m6ujj"]
 [ext_resource type="Script" path="res://Scenes/StageScene/StageTimerLabel.gd" id="14_ffsll"]
-[ext_resource type="PackedScene" uid="uid://bqgqlnp8nk2x2" path="res://Resources/Scenes/Statbar.tscn" id="15_04b05"]
 [ext_resource type="PackedScene" uid="uid://dodpk1h3w0qvp" path="res://Scenes/StageScene/FinishPopup.tscn" id="15_df000"]
 [ext_resource type="Script" path="res://Scenes/StageScene/StageMonsterCountLabel.gd" id="15_nadoc"]
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="16_4hyf5"]
 [ext_resource type="Script" path="res://Scenes/StageScene/StagePowerLabel.gd" id="16_vj40o"]
+[ext_resource type="Script" path="res://Resources/Singletons/GuiEnabler.gd" id="19_kjs20"]
 
 [sub_resource type="Theme" id="Theme_7mm6j"]
 Cell/icons/bg = ExtResource("1_ar66c")
@@ -95,9 +95,6 @@ offset_right = 112.0
 offset_bottom = 88.0
 grow_horizontal = 2
 
-[node name="Statbar" parent="ForegroundCanvas" instance=ExtResource("15_04b05")]
-unique_name_in_owner = true
-
 [node name="VBoxContainer" type="VBoxContainer" parent="ForegroundCanvas"]
 offset_left = 12.0
 offset_top = 16.0
@@ -166,6 +163,10 @@ layout_mode = 1
 
 [node name="Projectiles" type="Node2D" parent="Board"]
 unique_name_in_owner = true
+
+[node name="GuiEnabler" type="Node" parent="."]
+script = ExtResource("19_kjs20")
+enabled = 3
 
 [connection signal="pressed" from="ForegroundCanvas/FinishButton" to="." method="_on_finish_button_pressed"]
 [connection signal="stage_finished" from="Board" to="." method="_on_board_stage_finished"]

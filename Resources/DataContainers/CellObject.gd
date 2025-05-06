@@ -13,6 +13,12 @@ class_name CellObject
 # ==============================================================================
 var _texture: Texture2D : get = get_texture
 var _material: Material : get = get_material
+
+var _theme: Theme :
+	get:
+		if _theme == null and _stage != null:
+			_theme = _stage.get_theme()
+		return _theme
 # ==============================================================================
 signal cell_changed()
 # ==============================================================================
@@ -59,7 +65,7 @@ func _is_pixel_opaque(x: int, y: int) -> bool:
 
 
 func _export_packed() -> Array:
-	var args := []
+	var args := [get_stage().name]
 	
 	for prop in get_property_list():
 		if prop.name == "CellObject.gd":
@@ -72,7 +78,10 @@ func _export_packed() -> Array:
 
 static func _import_packed_static_v(script: String, args: Array) -> CellObject:
 	var object: CellObject = UserClassDB.instantiate(script)
-	var i := 0
+	
+	object._theme = Stage.create_theme(args[0])
+	
+	var i := 1
 	for prop in object.get_property_list():
 		if prop.name == "CellObject.gd":
 			return object
@@ -389,6 +398,8 @@ func notify_aura_removed() -> void:
 func clear() -> void:
 	get_cell().clear_object()
 	
+	_cell_position = Vector2i(-1, -1)
+	
 	_clear()
 
 
@@ -440,11 +451,16 @@ func tween_texture_to(position: Vector2, duration: float = 0.4) -> Tween:
 
 
 func get_theme_icon(name: StringName, theme_type: StringName = "Cell") -> Texture2D:
+	if _theme and _theme.has_icon(name, theme_type):
+		return _theme.get_icon(name, theme_type)
+	
 	var icon: Texture2D
-	if get_cell() == null:
-		icon = load("res://Resources/default_theme.tres").get_icon(name, theme_type)
-	else:
+	if get_cell():
 		icon = get_cell().get_theme_icon(name, theme_type)
+	elif Stage.has_current():
+		icon = Stage.get_current().get_theme().get_icon(name, theme_type)
+	else:
+		icon = load("res://Resources/default_theme.tres").get_icon(name, theme_type)
 	
 	if icon is CustomTextureBase:
 		return icon.create()

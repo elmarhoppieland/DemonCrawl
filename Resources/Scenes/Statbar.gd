@@ -18,6 +18,9 @@ var _inventory_open := false
 # ==============================================================================
 
 func _ready() -> void:
+	if not Quest.has_current():
+		return
+	
 	Quest.get_current().changed.connect(_update_heirloom_activity)
 	_update_heirloom_activity()
 

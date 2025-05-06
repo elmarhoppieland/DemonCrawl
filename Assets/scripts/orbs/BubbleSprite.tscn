@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://cy08xwud1qrel"]
+
+[ext_resource type="Texture2D" uid="uid://bcymo5keobmrl" path="res://Assets/sprites/orbs/orb_bubble.png" id="1_k6xkl"]
+[ext_resource type="Texture2D" uid="uid://dbq3tjog3tb34" path="res://Assets/skins/ash/monster.png" id="2_740dd"]
+[ext_resource type="Script" path="res://Assets/scripts/orbs/BubbleSprite.gd" id="2_spln2"]
+[ext_resource type="Script" path="res://Resources/HelperObjects/TextureSequence.gd" id="3_lr37h"]
+
+[sub_resource type="Texture2D" id="Texture2D_r6nf4"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_lr37h")
+size = Vector2i(16, 16)
+index = 0
+atlas = ExtResource("2_740dd")
+margin = Rect2(0, 0, 0, 0)
+filter_clip = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r7tr5"]
+
+[node name="BubbleSprite" type="Node2D"]
+script = ExtResource("2_spln2")
+
+[node name="ObjectSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = SubResource("Texture2D_r6nf4")
+
+[node name="OrbSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_k6xkl")
+
+[node name="CollisionArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_r7tr5")

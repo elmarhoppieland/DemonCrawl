@@ -117,6 +117,7 @@ func spawn(base: CellObjectBase, visible_only: bool = false) -> CellObject:
 	if not is_occupied():
 		var instance := base.create(self, get_stage())
 		_set_object(instance)
+		instance.notify_spawned()
 		return instance
 	
 	var radius := 1
@@ -148,7 +149,7 @@ func spawn(base: CellObjectBase, visible_only: bool = false) -> CellObject:
 ## the new object will silently replace the old one. This does [b]not[/b] call cleanup
 ## methods, so it is advised to call [method clear_object] before calling this if
 ## the cell is occupied.
-## [br][br][br]Note:[/b] Though this method will not prevent it, using the same object
+## [br][br][b]Note:[/b] Though this method will not prevent it, using the same object
 ## for multiple [Cell]s may behave unexpectedly.
 func spawn_instance(instance: CellObject) -> void:
 	_set_object(instance)
@@ -361,7 +362,6 @@ func get_data() -> CellData:
 func _set_object(value: CellObject) -> void:
 	if value:
 		value._cell_position = _board_position
-		value.notify_spawned()
 	_data.object = value
 	object_changed.emit(value)
 

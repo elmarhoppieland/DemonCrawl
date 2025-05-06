@@ -404,10 +404,10 @@ func _parse_typed_array(value: String) -> Variant:
 
 
 func _parse_packed_array(value: String) -> Variant:
-	var type_name := value.trim_prefix("PackedArray[").get_slice("]", 0)
-	assert(UserClassDB.class_exists(type_name), "Invalid PackedArray of type '%s': Expected class name.")
+	var script_name := value.trim_prefix("PackedArray[").get_slice("]", 0)
+	assert(UserClassDB.class_exists(script_name), "Invalid PackedArray of type '%s': Expected class name.")
 	
-	var script := UserClassDB.class_get_script(type_name)
+	var script := UserClassDB.class_get_script(script_name)
 	
 	var instantiator: Callable
 	var add_script_name: bool
@@ -424,21 +424,44 @@ func _parse_packed_array(value: String) -> Variant:
 	var values := []
 	
 	var is_pending := false
-	for s in Stringifier.split_ignoring_nested(value.trim_prefix("PackedArray[" + type_name + "]" + "(").trim_suffix(")"), ","):
+	for s in Stringifier.split_ignoring_nested(value.trim_prefix("PackedArray[" + script_name + "]" + "(").trim_suffix(")"), ","):
 		#s = s.strip_edges().trim_prefix("(").trim_suffix(")").strip_edges()
 		#
 		#if s == "<null>":
 			#values.append(null)
 			#continue
 		#
-		#var v = _parse_constructor("%s(%s)" % [type_name, s])
+		#var v = _parse_constructor("%s(%s)" % [script_name, s])
 		#if v is PendingResourceBase:
 			#is_pending = true
 		#values.append(v)
 		#
 		#continue
 		
-		s = s.strip_edges().trim_prefix("(").trim_suffix(")").strip_edges()
+		s = s.strip_edges()
+		
+		var s_script_name: String
+		var s_instantiator: Callable
+		var s_add_script_name: bool
+		if not s.begins_with("(") and s.match("*(*)"):
+			s_script_name = s.get_slice("(", 0)
+			var s_script := UserClassDB.class_get_script(s_script_name)
+			
+			if s_script.has_method("_import_packed_static"):
+				s_instantiator = s_script._import_packed_static
+				s_add_script_name = true
+			elif s_script.has_method("_import_packed"):
+				s_instantiator = s_script._import_packed
+				s_add_script_name = false
+			else:
+				s_instantiator = s_script.new
+				s_add_script_name = false
+		else:
+			s_script_name = script_name
+			s_instantiator = instantiator
+			s_add_script_name = add_script_name
+		
+		s = s.trim_prefix(s_script_name).trim_prefix("(").trim_suffix(")").strip_edges()
 		
 		if s == "<null>":
 			values.append(null)
@@ -447,15 +470,15 @@ func _parse_packed_array(value: String) -> Variant:
 		var arg_strings := Stringifier.split_ignoring_nested(s, ",")
 		
 		var args := []
-		if add_script_name:
-			args.append(type_name)
+		if s_add_script_name:
+			args.append(s_script_name)
 		var parsed_args := Array(arg_strings).map(_parse_value)
 		args.append_array(parsed_args)
 		if parsed_args.any(func(a: Variant) -> bool: return a is PendingResourceBase):
 			is_pending = true
-			values.append(PendingResourceInstantiator.new(instantiator, parsed_args))
+			values.append(PendingResourceInstantiator.new(s_instantiator, parsed_args))
 		else:
-			var instance: Object = instantiator.callv(args)
+			var instance: Object = s_instantiator.callv(args)
 			values.append(instance)
 	
 	if is_pending:
@@ -728,7 +751,15 @@ func _serialize_value(value: Variant) -> String:
 					if method.name == "_export_packed":
 						return "PackedArray[%s](%s)" % [
 							script_id,
-							", ".join(value.map(_pack))
+							", ".join(value.map(func(v: Object) -> String:
+								var pack := _pack(v)
+								if v.get_script() != script:
+									if pack.match("(*)"):
+										pack = UserClassDB.script_get_identifier(v.get_script()) + pack
+									else:
+										pack = "%s(%s)" % [UserClassDB.script_get_identifier(v.get_script()), pack]
+								return pack\
+							))
 						]
 				
 				return "Array[%s]([%s])" % [
@@ -758,7 +789,7 @@ func _pack(value: Object) -> String:
 		return _serialize_value(pack)
 	
 	if pack.is_empty():
-		return ""
+		return "()"
 	if pack.size() == 1:
 		return _serialize_value(pack[0])
 	

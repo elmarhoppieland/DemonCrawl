@@ -6,6 +6,13 @@ class_name Quest
 
 # ==============================================================================
 static var _current: Quest = Eternal.create(null) : set = _set_current, get = get_current
+
+static var current_changed := Signal() :
+	get:
+		if current_changed.is_null():
+			(Quest as GDScript).add_user_signal("_current_changed")
+			current_changed = Signal(Quest, "_current_changed")
+		return current_changed
 # ==============================================================================
 @export var name := "" : ## The name of the quest.
 	set(value):
@@ -43,12 +50,16 @@ static var _current: Quest = Eternal.create(null) : set = _set_current, get = ge
 @export var _mastery: Mastery : get = get_mastery
 
 @export var _projectile_manager := ProjectileManager.new() : get = get_projectile_manager
+@export var _orb_manager := OrbManager.new() : get = get_orb_manager
 # ==============================================================================
 
 #region current
 
 static func _set_current(value: Quest) -> void:
+	var different := _current != value
 	_current = value
+	if different:
+		current_changed.emit()
 
 
 ## Returns the current quest.
@@ -137,5 +148,9 @@ func get_mastery() -> Mastery:
 
 func get_projectile_manager() -> ProjectileManager:
 	return _projectile_manager
+
+
+func get_orb_manager() -> OrbManager:
+	return _orb_manager
 
 #endregion

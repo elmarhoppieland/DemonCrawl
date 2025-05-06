@@ -23,7 +23,7 @@ func _interact() -> void:
 	
 	get_cell().add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)
 	
-	tween_texture_to(get_stage().get_statbar().get_coin_position())
+	tween_texture_to(GuiLayer.get_statbar().get_coin_position())
 	
 	clear()
 

@@ -12,8 +12,11 @@ const AMBIENCE_B_PATH := "res://Assets/skins/%s/ambience_b.ogg"
 
 # ==============================================================================
 static var _current: Stage = Eternal.create(null) : get = get_current
-var _audio_streams: Array[AudioStreamOggVorbis] = []
-var _audio_players: Array[AudioStreamPlayer] = []
+
+static var _audio_streams: Array[AudioStreamOggVorbis] = []
+static var _audio_players: Array[AudioStreamPlayer] = []
+
+static var _theme_cache := {}
 # ==============================================================================
 @export var name := "" : ## The name of the stage.
 	set(value):
@@ -133,32 +136,41 @@ func area() -> int:
 ## Returns a [Theme] instance for this [Stage], with all relevant properties set
 ## to this [Stage]'s theme.
 func get_theme() -> Theme:
-	if _theme:
-		return _theme
+	if not _theme:
+		_theme = Stage.create_theme(name)
 	
-	_theme = Theme.new()
+	return _theme
+
+
+static func create_theme(stage_name: String) -> Theme:
+	if stage_name in _theme_cache:
+		return _theme_cache[stage_name]
 	
-	var dir := "res://Assets/skins/%s/" % name
-	_theme.set_icon("bg", "Cell", load(dir + "empty.png"))
-	_theme.set_icon("checking", "Cell", load(dir + "checking.png"))
+	var theme := Theme.new()
+	
+	var dir := "res://Assets/skins/%s/" % stage_name
+	theme.set_icon("bg", "Cell", load(dir + "empty.png"))
+	theme.set_icon("checking", "Cell", load(dir + "checking.png"))
 	if ResourceLoader.exists(dir + "coin.png"):
-		_theme.set_icon("coin_palette", "Cell", load(dir + "coin.png"))
+		theme.set_icon("coin_palette", "Cell", load(dir + "coin.png"))
 	if ResourceLoader.exists(dir + "heart.png"):
-		_theme.set_icon("heart_palette", "Cell", load(dir + "heart.png"))
-	_theme.set_icon("flag", "Cell", load(dir + "flag.png"))
-	_theme.set_icon("flag_bg", "Cell", load(dir + "flag_bg.png"))
-	_theme.set_icon("hidden", "Cell", load(dir + "full.png"))
+		theme.set_icon("heart_palette", "Cell", load(dir + "heart.png"))
+	theme.set_icon("flag", "Cell", load(dir + "flag.png"))
+	theme.set_icon("flag_bg", "Cell", load(dir + "flag_bg.png"))
+	theme.set_icon("hidden", "Cell", load(dir + "full.png"))
 	if ResourceLoader.exists(dir + "monster.png"):
 		var texture := AnimatedTextureSequence.new()
 		texture.atlas = load(dir + "monster.png")
 		if Engine.is_editor_hint():
-			_theme.set_icon("monster", "Cell", CustomTextureBase.new(texture))
+			theme.set_icon("monster", "Cell", CustomTextureBase.new(texture))
 		else:
-			_theme.set_icon("monster", "Cell", texture)
+			theme.set_icon("monster", "Cell", texture)
 	
-	_theme.set_icon("bg", "StageScene", load(dir + "bg.png"))
+	theme.set_icon("bg", "StageScene", load(dir + "bg.png"))
 	
-	return _theme
+	_theme_cache[stage_name] = theme
+	
+	return theme
 
 
 ## Creates and returns a new [StageIcon] for this [Stage].
@@ -262,12 +274,6 @@ func get_scene() -> StageScene:
 		_scene = current_scene
 	
 	return _scene
-
-
-func get_statbar() -> Statbar:
-	if has_scene():
-		return get_scene().get_statbar()
-	return null
 
 
 ## Returns this [Stage]'s density, i.e. [code]monsters / area[/code].

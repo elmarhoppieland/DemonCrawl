@@ -8,6 +8,17 @@ var _item_displays := {}
 # ==============================================================================
 
 func _ready() -> void:
+	_load_from_current_quest()
+	Quest.current_changed.connect(_load_from_current_quest)
+
+
+func _load_from_current_quest() -> void:
+	for child in _item_grid.get_children():
+		child.queue_free()
+	
+	if not Quest.has_current():
+		return
+	
 	for i in Quest.get_current().get_inventory().get_item_count():
 		_add_item_display(Quest.get_current().get_inventory().get_item(i))
 	
