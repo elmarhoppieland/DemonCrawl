@@ -2,12 +2,12 @@ extends OrbSprite
 class_name BubbleSprite
 
 # ==============================================================================
-@onready var _object_sprite: Sprite2D = %ObjectSprite
+@onready var _cell_object_texture_rect: CellObjectTextureRect = %CellObjectTextureRect
 @onready var _shape: CircleShape2D = %CollisionShape2D.shape
 # ==============================================================================
 
 func _ready() -> void:
-	_object_sprite.texture = orb.object
+	_cell_object_texture_rect.object = orb.object
 
 
 func _clicked() -> void:

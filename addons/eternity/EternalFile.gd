@@ -292,13 +292,13 @@ func await_resource(resource: Variant) -> Variant:
 
 
 func _validate_value_string(value: String) -> bool:
-	if value[0] == "{":
+	value = value.strip_edges()
+	
+	if value.begins_with("{"):
 		return value[-1] == "}"
-	if value[0] == "[":
+	if value.begins_with("["):
 		return value[-1] == "]"
-	if value.begins_with("Array["):
-		return value.ends_with("])")
-	if value.begins_with("PackedArray["):
+	if value.begins_with("Array[") or value.begins_with("PackedArray["):
 		return Stringifier.get_depth(value, "(", ")") == 0
 	return true
 
@@ -528,7 +528,10 @@ func _parse_constructor(value: String) -> Variant:
 
 
 func _parse_value_list(value_list: String) -> Array:
-	return Array(Stringifier.split_ignoring_nested(value_list.strip_edges().trim_prefix("(").trim_suffix(")").strip_edges(), ",")).map(func(value: String) -> Variant:
+	value_list = value_list.strip_edges()
+	if value_list.begins_with("(") and value_list.ends_with(")"):
+		value_list = value_list.trim_prefix("(").trim_suffix(")").strip_edges()
+	return Array(Stringifier.split_ignoring_nested(value_list, ",")).map(func(value: String) -> Variant:
 		value = value.strip_edges()
 		
 		if value.begins_with("(") and value.ends_with(")"):
@@ -696,6 +699,8 @@ func _stream_encode(stream: ValueStream) -> void:
 				sub_resource.get_class(),
 				_stringify_uid(_resource_get_uid(sub_resource))
 			])
+		
+		current_resource = sub_resource
 		
 		for property in sub_resource.get_property_list():
 			if property.name == "script":

@@ -55,7 +55,7 @@ func _get_annotation_subtext() -> String:
 			"item": tr(item.get_name())
 		}) + "\""
 	
-	if item and item.is_charged():
+	if item.is_charged():
 		return "\"" + tr("STRANGER_MAGE_DESCRIPTION").format({
 			"item": tr(item.get_name()),
 			"cost": cost
@@ -65,3 +65,7 @@ func _get_annotation_subtext() -> String:
 		"item": tr(item.get_name()),
 		"mana": item.get_max_mana() - item.get_mana()
 	}) + "\""
+
+
+func _has_annotation_text() -> bool:
+	return item != null

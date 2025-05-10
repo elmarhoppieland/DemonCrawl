@@ -22,7 +22,7 @@ func _ready() -> void:
 	tween.tween_property(get_cell().get_object_texture_rect().get_2d_anchor(), "scale", Vector2.ONE, ANIM_DURATION / 2).set_ease(Tween.EASE_OUT)
 
 
-func _clear() -> void:
+func _reset() -> void:
 	get_cell().get_object_texture_rect().get_2d_anchor().scale = Vector2.ONE
 	tween.kill()
 

@@ -139,3 +139,9 @@ func get_tiles_area() -> int:
 		return 0
 	
 	return (atlas.get_width() / size.x) * (atlas.get_height() / size.y)
+
+
+func get_texture(idx: int) -> Texture2D:
+	if idx < -_textures.size() or idx >= _textures.size():
+		return null
+	return _textures[idx]

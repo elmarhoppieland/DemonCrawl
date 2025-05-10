@@ -94,7 +94,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Anchor" type="Node2D" parent="Control"]
-scale = Vector2(1.00655, 1.00655)
 
 [node name="CellObjectTextureRect" type="TextureRect" parent="Control/Anchor"]
 unique_name_in_owner = true
@@ -111,12 +110,10 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 3
 script = ExtResource("7_3xaxv")
-_mode = 1
 
 [node name="TooltipGrabber" type="Node" parent="Control/Anchor/CellObjectTextureRect"]
 script = ExtResource("7_ggwll")
-text = "STRANGER_PYRO
-[color=gray]\"STRANGER_PYRO_DESCRIPTION\"[/color]"
+text = "STRANGER_MAGE"
 enabled = false
 
 [node name="CellFlagSprite" type="Sprite2D" parent="."]
@@ -173,5 +170,4 @@ position = Vector2(8, 8)
 texture = ExtResource("14_ffohp")
 offset = Vector2(9, 0)
 
-[connection signal="about_to_show" from="Control/Anchor/CellObjectTextureRect/TooltipGrabber" to="Control/Anchor/CellObjectTextureRect" method="_on_tooltip_grabber_about_to_show"]
 [connection signal="interacted" from="Grabber" to="." method="_on_interacted"]

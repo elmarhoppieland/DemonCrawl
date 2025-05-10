@@ -350,6 +350,12 @@ func _data_changed() -> void:
 	aura_changed.emit(get_aura())
 	
 	changed.emit()
+	
+	if not is_node_ready():
+		await ready
+	
+	get_object_texture_rect().visible = get_mode() == Mode.VISIBLE
+	get_object_texture_rect().object = get_object()
 
 
 ## Returns the [CellData] instance of the [Cell].
@@ -363,7 +369,6 @@ func _set_object(value: CellObject) -> void:
 	if value:
 		value._cell_position = _board_position
 	_data.object = value
-	object_changed.emit(value)
 
 
 ## Returns this [Cell]'s [CellObject], if it has one. Returns [code]null[/code] if
@@ -386,7 +391,6 @@ func clear_object() -> void:
 func set_mode(mode: Cell.Mode) -> void:
 	assert(mode != Cell.Mode.INVALID, "Cells cannot have an invalid mode.")
 	_data.mode = mode
-	mode_changed.emit(mode)
 
 
 ## Returns this [Cell]'s mode. See each [enum Mode] constant for more information.
@@ -403,7 +407,6 @@ func get_mode() -> Cell.Mode:
 ## the number of nearby monsters, but can be changed by many effects.
 func set_value(value: int) -> void:
 	_data.value = value
-	value_changed.emit(value)
 
 
 ## Returns this [Cell]'s value. This is usually the amount of nearby monsters, but

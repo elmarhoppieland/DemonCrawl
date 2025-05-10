@@ -18,7 +18,7 @@ func _get_texture() -> Texture2D:
 
 
 func _get_source() -> Texture2D:
-	return (get_theme_icon("monster") as AnimatedTextureSequence)._textures[0]
+	return (get_theme_icon("monster") as TextureSequence).get_texture(0)
 
 
 func _reveal_active() -> void:

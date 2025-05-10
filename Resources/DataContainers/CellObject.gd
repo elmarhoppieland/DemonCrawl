@@ -9,7 +9,7 @@ class_name CellObject
 	set(value):
 		_cell_position = value
 		(func() -> void: cell_changed.emit()).call_deferred()
-@export var _stage: Stage : get = get_stage
+@export var _stage: Stage : set = _set_stage, get = get_stage
 # ==============================================================================
 var _texture: Texture2D : get = get_texture
 var _material: Material : get = get_material
@@ -25,7 +25,7 @@ signal cell_changed()
 
 #region internals
 
-func _init(cell_position: Vector2i = Vector2i.ZERO, stage: Stage = null) -> void:
+func _init(cell_position: Vector2i = Vector2i.ZERO, stage: Stage = Stage.get_current()) -> void:
 	_cell_position = cell_position
 	_stage = stage
 	
@@ -65,7 +65,11 @@ func _is_pixel_opaque(x: int, y: int) -> bool:
 
 
 func _export_packed() -> Array:
-	var args := [get_stage().name]
+	var args := []
+	
+	var owner := Eternity.get_processing_owner()
+	if not owner.has_method("get_stage") or owner.get_stage() != self.get_stage():
+		args.append(get_stage())
 	
 	for prop in get_property_list():
 		if prop.name == "CellObject.gd":
@@ -79,9 +83,22 @@ func _export_packed() -> Array:
 static func _import_packed_static_v(script: String, args: Array) -> CellObject:
 	var object: CellObject = UserClassDB.instantiate(script)
 	
-	object._theme = Stage.create_theme(args[0])
+	var i := 0
+	if not args.is_empty() and args[0] is Stage:
+		object._stage = args[0]
+		i = 1
+	else:
+		var owner := Eternity.get_processing_owner()
+		if owner.has_method("get_stage"):
+			Eternity.get_processing_file().loaded.connect(func(_path: String) -> void:
+				object._stage = owner.get_stage()
+			, CONNECT_ONE_SHOT)
+		else:
+			Debug.log_error("Could not obtain the stage for object '%s'." % object)
 	
-	var i := 1
+	if i >= args.size():
+		return object
+	
 	for prop in object.get_property_list():
 		if prop.name == "CellObject.gd":
 			return object
@@ -92,6 +109,10 @@ static func _import_packed_static_v(script: String, args: Array) -> CellObject:
 				return object
 	
 	return object
+
+
+func _to_string() -> String:
+	return "<%s#%d>" % [UserClassDB.script_get_identifier(get_script()), get_instance_id()]
 
 #endregion
 
@@ -106,6 +127,24 @@ func get_cell() -> Cell:
 
 func get_tree() -> SceneTree:
 	return Engine.get_main_loop()
+
+
+func _set_stage(value: Stage) -> void:
+	if _stage and _stage.changed.is_connected(_on_stage_changed):
+		_stage.changed.disconnect(_on_stage_changed)
+	
+	_stage = value
+	
+	_on_stage_changed()
+	if value:
+		value.changed.connect(_on_stage_changed)
+
+
+func _on_stage_changed() -> void:
+	_theme = null
+	_texture = null
+	_material = null
+	emit_changed()
 
 
 func get_stage() -> Stage:

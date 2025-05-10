@@ -3,68 +3,50 @@ extends TextureRect
 class_name CellObjectTextureRect
 
 # ==============================================================================
-@export var _mode := Cell.Mode.HIDDEN
-@export var _object: CellObject
+@export var object: CellObject :
+	set(value):
+		object = value
+		
+		texture = value
+		
+		if value:
+			material = value.get_material()
+			#var palette := value.get_palette()
+			#(material as ShaderMaterial).set_shader_parameter("palette_enabled", palette != null)
+			#(material as ShaderMaterial).set_shader_parameter("palette", palette)
+			
+			if _tooltip_grabber:
+				_tooltip_grabber.enabled = value.has_annotation_text()
+		else:
+			#(material as ShaderMaterial).set_shader_parameter("palette_enabled", false)
+			material = null
+			
+			if _tooltip_grabber:
+				_tooltip_grabber.enabled = false
 # ==============================================================================
 #var _delta_sum := 0.0
 # ==============================================================================
-@onready var _tooltip_grabber: TooltipGrabber = $TooltipGrabber
+@onready var _tooltip_grabber: TooltipGrabber = get_node_or_null("TooltipGrabber") :
+	set(value):
+		_tooltip_grabber = value
+		
+		if value:
+			value.about_to_show.connect(_on_tooltip_grabber_about_to_show)
 # ==============================================================================
-
-func _ready() -> void:
-	var cell := owner as Cell
-	
-	texture = cell.get_object()
-	_object = cell.get_object()
-	_tooltip_grabber.enabled = _object != null and _object.has_annotation_text()
-	_mode = cell.get_mode()
-	cell.object_changed.connect(_change_object)
-	_change_object(cell.get_object())
-	cell.mode_changed.connect(func(mode: Cell.Mode) -> void:
-		_mode = mode
-		_update()
-	)
-	_update()
-
-
-#func _process(delta: float) -> void:
-	#if texture and texture is CellObject:
-		#_delta_sum += delta
-		#texture.animate(_delta_sum)
-
-
-func _change_object(object: Object) -> void:
-	_object = object
-	texture = object
-	
-	if object:
-		material = object.get_material()
-		#var palette := object.get_palette()
-		#(material as ShaderMaterial).set_shader_parameter("palette_enabled", palette != null)
-		#(material as ShaderMaterial).set_shader_parameter("palette", palette)
-		
-		_tooltip_grabber.enabled = object.has_annotation_text()
-		_tooltip_grabber.text = object.get_annotation_text()
-	else:
-		#(material as ShaderMaterial).set_shader_parameter("palette_enabled", false)
-		material = null
-		
-		_tooltip_grabber.enabled = false
-	
-	_update()
-
-
-func _update() -> void:
-	visible = _mode == Cell.Mode.VISIBLE
-
 
 func get_2d_anchor() -> Node2D:
 	return get_parent()
 
 
+func _validate_property(property: Dictionary) -> void:
+	match property.name:
+		&"texture":
+			property.usage |= PROPERTY_USAGE_READ_ONLY
+
+
 func _on_tooltip_grabber_about_to_show() -> void:
-	if not _object:
+	if not object:
 		_tooltip_grabber.text = ""
 		return
 	
-	_tooltip_grabber.text = _object.get_annotation_text()
+	_tooltip_grabber.text = object.get_annotation_text()

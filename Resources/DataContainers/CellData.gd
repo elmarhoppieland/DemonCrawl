@@ -11,6 +11,8 @@ const Mode := Cell.Mode
 		emit_changed()
 @export var object: CellObject :
 	set(new_object):
+		if object:
+			object.reset()
 		object = new_object
 		emit_changed()
 @export var value := 0 :
