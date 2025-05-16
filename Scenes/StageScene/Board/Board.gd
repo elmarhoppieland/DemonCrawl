@@ -54,7 +54,7 @@ func get_global_at_cell_position(cell_position: Vector2i, centered: bool = true)
 	var global := Vector2(cell_position * (Cell.CELL_SIZE + CELL_SEPARATION))
 	if centered:
 		global += Vector2(Cell.CELL_SIZE) / 2
-	return global
+	return get_global_transform() * global
 
 
 func get_cell_position_at_global(global: Vector2) -> Vector2i:

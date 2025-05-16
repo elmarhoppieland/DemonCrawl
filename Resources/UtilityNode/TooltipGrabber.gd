@@ -1,3 +1,4 @@
+@tool
 extends Grabber
 class_name TooltipGrabber
 

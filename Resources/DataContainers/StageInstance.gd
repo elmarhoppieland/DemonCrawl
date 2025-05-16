@@ -3,14 +3,6 @@ extends Resource
 class_name StageInstance
 
 # ==============================================================================
-const CELL_MODE_IDS := {
-	Cell.Mode.INVALID: "!",
-	Cell.Mode.HIDDEN: "h",
-	Cell.Mode.VISIBLE: "v",
-	Cell.Mode.FLAGGED: "f",
-	Cell.Mode.CHECKING: "h"
-}
-# ==============================================================================
 @export var cells: Array[CellData] = [] :
 	set(value):
 		cells = value
@@ -28,6 +20,8 @@ const CELL_MODE_IDS := {
 @export var _flagless := true : get = is_flagless
 @export var _untouchable := true : get = is_untouchable
 # ==============================================================================
+var _scene: StageScene : get = get_scene
+
 var _timer_last_read_usec := 0
 var _timer_read_on_this_frame := false :
 	set(value):
@@ -60,7 +54,7 @@ func _stage_changed() -> void:
 ## Generates this [StageInstance], spawning [Monster]s at random [Cell]s.
 ## [br][br]Cells horizontally or diagonally adjacent to [code]start_cell[/code] will
 ## not contain a monster.
-func generate(start_cell: Vector2i) -> void:
+func generate(start_cell: CellData) -> void:
 	const COORD_OFFSETS: PackedInt32Array = [-1, 0, 1]
 	
 	assert(not is_generated(), "Cannot generate a StageInstance that has already generated.")
@@ -68,7 +62,7 @@ func generate(start_cell: Vector2i) -> void:
 	var invalid_indices := PackedInt32Array()
 	for dy in COORD_OFFSETS:
 		for dx in COORD_OFFSETS:
-			var neighbor := start_cell + Vector2i(dx, dy)
+			var neighbor := start_cell.get_position(self) + Vector2i(dx, dy)
 			if get_stage().has_coord(neighbor):
 				invalid_indices.append(neighbor.x + neighbor.y * get_stage().size.x)
 	
@@ -86,7 +80,7 @@ func generate(start_cell: Vector2i) -> void:
 		
 		var coord := Vector2i(idx % get_stage().size.x, idx / get_stage().size.x)
 		
-		cells[idx].object = Monster.new(coord, get_stage())
+		cells[idx].object = Monster.new(get_cell_data(idx), get_stage())
 		
 		for dx in COORD_OFFSETS:
 			for dy in COORD_OFFSETS:
@@ -115,6 +109,45 @@ func create_cell(idx: int) -> Cell:
 	var cell := Cell.create(Vector2i(idx % get_stage().size.x, idx / get_stage().size.x))
 	cell.set_data(data)
 	return cell
+
+
+func get_cell_content_spawn_rate() -> float:
+	const BASE_PROB := 0.3
+	const MOD_FACTOR := 0.13
+	const DENSITY_FACTOR := 0.5
+	return 1 - (1 - BASE_PROB) * exp(-MOD_FACTOR * get_stage().get_mods_difficulty()) * (1 - get_stage().get_density()) ** DENSITY_FACTOR
+
+
+func get_cell_content_quality(rare_loot_modifier: float = 1.0) -> float:
+	if get_stage().monsters == get_stage().area():
+		# this probably shouldn't happen since we wouldn't have space to spawn loot,
+		# but let's allow it anyway
+		return INF
+	
+	const MOD_FACTOR := 3.0
+	return rare_loot_modifier * (1 + get_stage().get_mods_difficulty() / MOD_FACTOR) / (1 - get_stage().get_density())
+
+
+func generate_cell_content(rare_loot_modifier: float = 1.0) -> CellObjectBase:
+	if randf() > get_cell_content_spawn_rate():
+		return null
+	
+	var table := load("res://Assets/loot_tables/CellContent.tres").generate() as LootTable
+	if not table:
+		return
+	
+	var quality := get_cell_content_quality(rare_loot_modifier)
+	var content: CellObjectBase = table.generate(quality)
+	var i := 0
+	while not content or not content.can_spawn():
+		if i > 100:
+			Debug.log_error("LootTable '%s' could not generate a cell's content." % table.resource_path)
+			return null
+		i += 1
+		
+		content = table.generate(quality)
+	
+	return content
 
 
 ## Returns all reward types if the [StageInstance] would be finished now.
@@ -316,3 +349,18 @@ func set_timer_paused(timer_paused: bool) -> void:
 
 func is_timer_paused() -> bool:
 	return _timer_paused
+
+
+## Returns the currently active [StageScene].
+func get_scene() -> StageScene:
+	if is_instance_valid(_scene):
+		return _scene
+	
+	var loop := Engine.get_main_loop()
+	assert(loop is SceneTree, "Expected a SceneTree as the main loop, but a %s was found." % loop.get_class())
+	
+	var current_scene := (loop as SceneTree).current_scene
+	if current_scene is StageScene:
+		_scene = current_scene
+	
+	return _scene

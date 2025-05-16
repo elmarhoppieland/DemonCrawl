@@ -13,10 +13,10 @@ func _ready() -> void:
 func _clicked() -> void:
 	if Stage.has_current():
 		var board := Stage.get_current().get_board()
-		var cell := board.get_cell_at_global(board.get_global_mouse_position())
-		if not cell:
+		var cell := board.get_cell_at_global(board.get_global_mouse_position()).get_data()
+		if not cell or cell.is_hidden() or cell.is_occupied():
 			return
-		cell.spawn_instance(orb.object)
+		cell.set_object(orb.object)
 		Quest.get_current().get_orb_manager().orbs.erase(orb)
 		queue_free()
 

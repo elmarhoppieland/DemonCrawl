@@ -44,7 +44,7 @@ func _turn() -> void:
 	get_cell().send_projectile(Flare, DIR_MAP[direction])
 
 
-func _clear() -> void:
+func _reset() -> void:
 	get_cell().hide_direction_arrow()
 	Effects.Signals.turn.disconnect(_turn)
 

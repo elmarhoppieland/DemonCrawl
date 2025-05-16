@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	var new_cell := board.get_cell_at_global(global_position)
 	
 	if old_cell != new_cell and new_cell != null:
-		projectile.notify_cell_entered(new_cell)
+		projectile.notify_cell_entered(new_cell.get_data())
 	
 	if _has_left_bounds():
 		projectile.notify_screen_exited()

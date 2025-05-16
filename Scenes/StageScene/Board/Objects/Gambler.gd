@@ -26,13 +26,13 @@ func _interact() -> void:
 func _activate() -> void:
 	Toasts.add_toast(tr("STRANGER_GAMBLER_INTERACT"), IconManager.get_icon_data("Gambler/Frame0").create_texture())
 	
-	var cells := Stage.get_current().get_board().get_cells().filter(func(cell: Cell) -> bool:
-		return cell.is_hidden() and (not cell.is_occupied() or cell.get_object() is Monster)
+	var cells := Stage.get_current().get_instance().get_cells().filter(func(cell: CellData) -> bool:
+		return cell.is_hidden() and (not cell.is_occupied() or cell.object is Monster)
 	)
 	if cells.is_empty():
 		return
 	
-	var cell := cells.pick_random() as Cell
+	var cell := cells.pick_random() as CellData
 	
 	cell.open(true, false)
 	

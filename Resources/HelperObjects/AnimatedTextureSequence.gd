@@ -35,7 +35,7 @@ func _init() -> void:
 			tween = null
 			return
 		
-		tween = get_tree().root.create_tween().set_loops()
+		tween = get_tree().create_tween().set_loops()
 		tween.tween_interval(duration / area)
 		tween.tween_callback(next)
 	)

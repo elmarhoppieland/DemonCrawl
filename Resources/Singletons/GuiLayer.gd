@@ -30,3 +30,7 @@ static func get_statbar() -> Statbar:
 
 static func get_orb_layer() -> OrbLayer:
 	return get_instance().get_node_or_null("OrbLayer")
+
+
+static func get_texture_tweener() -> TextureTweener:
+	return get_instance().get_node_or_null("TextureTweener")

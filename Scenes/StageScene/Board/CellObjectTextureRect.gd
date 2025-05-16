@@ -26,13 +26,17 @@ class_name CellObjectTextureRect
 # ==============================================================================
 #var _delta_sum := 0.0
 # ==============================================================================
-@onready var _tooltip_grabber: TooltipGrabber = get_node_or_null("TooltipGrabber") :
+@onready var _tooltip_grabber: TooltipGrabber = null:
 	set(value):
 		_tooltip_grabber = value
 		
 		if value:
 			value.about_to_show.connect(_on_tooltip_grabber_about_to_show)
 # ==============================================================================
+
+func _ready() -> void:
+	_tooltip_grabber = get_node_or_null("TooltipGrabber")
+
 
 func get_2d_anchor() -> Node2D:
 	return get_parent()

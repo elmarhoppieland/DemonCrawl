@@ -43,13 +43,15 @@ static func create(board_position: Vector2i = Vector2i.ZERO) -> Cell:
 ## could be opened, and [code]false[/code] otherwise.
 ## [br][br]Calls [method Effects.cell_open] immediately after opening the [Cell].
 func open(force: bool = false, allow_loot: bool = true) -> bool:
+	return get_data().open(force, allow_loot, get_stage())
+	
 	if get_mode() == Mode.VISIBLE:
 		return false
 	if not force and get_mode() == Mode.FLAGGED:
 		return false
 	
 	if not get_stage().get_instance().is_generated():
-		get_stage().get_instance().generate(get_board_position())
+		get_stage().get_instance().generate(get_data())
 	
 	if get_value() != 0:
 		return _open(force, allow_loot)
@@ -91,7 +93,7 @@ func _open(force: bool = false, allow_loot: bool = true) -> bool:
 	if is_occupied():
 		get_object().notify_revealed(not force)
 	
-	Effects.cell_open(self)
+	Effects.cell_open(get_data())
 	
 	return true
 
@@ -115,7 +117,7 @@ func spawn(base: CellObjectBase, visible_only: bool = false) -> CellObject:
 		return null
 	
 	if not is_occupied():
-		var instance := base.create(self, get_stage())
+		var instance := base.create(get_data(), get_stage())
 		_set_object(instance)
 		instance.notify_spawned()
 		return instance
@@ -217,9 +219,26 @@ func hide_direction_arrow() -> void:
 	_direction_arrow.hide()
 
 
-## Returns this [Cell]'s object's [TextureRect].
+## Returns the [TextureRect] of this [Cell]'s object.
 func get_object_texture_rect() -> CellObjectTextureRect:
 	return %CellObjectTextureRect
+
+
+## Returns this [Cell]'s [CellValueLabel].
+func get_value_label() -> CellValueLabel:
+	return %CellValueLabel
+
+
+## Returns this [Cell]'s [CellTextureRect].
+## [br][br]Should not be confused with [method get_object_texture_rect], which
+## returns the [CellObjectTextureRect] of this [Cell]'s object.
+func get_texture_rect() -> CellTextureRect:
+	return %CellTextureRect
+
+
+## Returns this [Cell]'s [CellAuraModulator].
+func get_aura_modulator() -> CellAuraModulator:
+	return %CellAuraModulator
 
 
 ## Returns this [Cell]'s [TextureShatter] instance.
@@ -329,18 +348,30 @@ func is_flag_solved() -> bool:
 
 ## Sets the [CellData] instance of this [Cell] to [code]data[/code].
 func set_data(data: CellData) -> void:
+	const CONNECTIONS := {
+		"changed": "_data_changed",
+		"shatter_requested": "shatter",
+		"text_particle_requested": "add_text_particle",
+		"show_direction_arrow_requested": "show_direction_arrow",
+		"hide_direction_arrow_requested": "hide_direction_arrow",
+		"scale_object_requested": "scale_object"
+	}
+	
 	if _data and _data.changed.is_connected(_data_changed):
 		_data.changed.disconnect(_data_changed)
 	
+	if _data:
+		for signal_name in CONNECTIONS:
+			if _data.is_connected(signal_name, get(CONNECTIONS[signal_name])):
+				_data.disconnect(signal_name, get(CONNECTIONS[signal_name]))
+	
 	_data = data
 	
-	if data and data.object:
-		data.object._cell_position = get_board_position()
-		data.object._stage = get_stage()
-	
 	_data_changed()
+	
 	if data:
-		data.changed.connect(_data_changed)
+		for signal_name in CONNECTIONS:
+			data.connect(signal_name, get(CONNECTIONS[signal_name]))
 
 
 func _data_changed() -> void:
@@ -356,6 +387,25 @@ func _data_changed() -> void:
 	
 	get_object_texture_rect().visible = get_mode() == Mode.VISIBLE
 	get_object_texture_rect().object = get_object()
+	
+	get_value_label().mode = get_mode()
+	get_value_label().value = get_value()
+	get_value_label().occupied = is_occupied()
+	
+	get_texture_rect().mode = get_mode()
+	
+	get_aura_modulator().mode = get_mode()
+	get_aura_modulator().aura = get_aura()
+
+
+func shatter(texture: Texture2D) -> void:
+	get_texture_shatter().source_texture = texture
+	get_texture_shatter().show()
+
+
+@warning_ignore("shadowed_variable_base_class")
+func scale_object(scale: float) -> void:
+	get_object_texture_rect().get_2d_anchor().scale = scale * Vector2.ONE
 
 
 ## Returns the [CellData] instance of the [Cell].

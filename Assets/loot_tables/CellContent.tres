@@ -1,18 +1,17 @@
 [gd_resource type="Resource" script_class="LootTable" load_steps=4 format=3 uid="uid://drrj86pyb5pax"]
 
 [ext_resource type="Script" path="res://Resources/DataContainers/LootTable.gd" id="1_6egj6"]
-[ext_resource type="Resource" uid="uid://s3q6chy65iag" path="res://Assets/loot_tables/Loot.tres" id="1_uv75e"]
+[ext_resource type="Resource" uid="uid://cipa5h4ildo4c" path="res://Assets/loot_tables/Loot.tres" id="1_uv75e"]
 [ext_resource type="Resource" uid="uid://dpgfvuaiurqu4" path="res://Assets/loot_tables/Stranger.tres" id="2_t67py"]
 
 [resource]
 script = ExtResource("1_6egj6")
 type = 24
 items_class = "LootTable"
-auto_sort = false
+auto_sort = true
 use_modifier = false
-item_count = 3
-item_0/weight = 0.0
-item_1/value = ExtResource("1_uv75e")
-item_1/weight = 20.0
-item_2/value = ExtResource("2_t67py")
-item_2/weight = 10.0
+item_count = 2
+item_0/value = ExtResource("1_uv75e")
+item_0/weight = 2.0
+item_1/value = ExtResource("2_t67py")
+item_1/weight = 1.0

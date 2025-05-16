@@ -1,0 +1,21 @@
+@tool
+extends Projectile
+class_name BubbleProjectile
+
+# ==============================================================================
+
+func _get_texture() -> Texture2D:
+	return preload("res://Assets/sprites/projectiles/Bubble.png")
+
+
+func _cell_entered(cell: CellData) -> void:
+	if cell.is_hidden():
+		clear()
+		return
+	
+	if cell.is_occupied():
+		var orb := Bubble.new(cell.object)
+		orb.position = Stage.get_current().get_board().get_global_at_cell_position(cell.get_position())
+		Quest.get_current().get_orb_manager().register_orb(orb)
+		
+		clear()

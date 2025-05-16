@@ -102,10 +102,10 @@ func _screen_exited() -> void:
 	screen_wrap()
 
 
-func notify_cell_entered(cell: Cell) -> void:
+func notify_cell_entered(cell: CellData) -> void:
 	_cell_entered(cell)
 
 
 @warning_ignore("unused_parameter")
-func _cell_entered(cell: Cell) -> void:
+func _cell_entered(cell: CellData) -> void:
 	pass

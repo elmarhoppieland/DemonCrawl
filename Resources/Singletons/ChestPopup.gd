@@ -4,7 +4,7 @@ class_name ChestPopup
 # ==============================================================================
 static var _instance: ChestPopup
 # ==============================================================================
-var cell: Cell
+var cell: CellData
 # ==============================================================================
 @onready var rewards_container: HBoxContainer = %RewardsContainer
 @onready var coin_value: CoinValue = %CoinValue

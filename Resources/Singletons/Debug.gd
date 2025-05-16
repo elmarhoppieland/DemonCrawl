@@ -127,6 +127,17 @@ static func log_warning(warning: String) -> void:
 	push_warning(warning)
 
 
+static func log_info(value: Variant) -> void:
+	var info := str(value)\
+		+ "\n" + type_string(typeof(value))
+	if value is Object:
+		info += "\n" + value.get_class()\
+			+ "".join(value.get_property_list().map(func(prop: Dictionary) -> String: return "\n%s: %s" % [prop.name, value.get(prop.name)] if prop.name in value else ""))
+		if value.get_script() != null:
+			info += "\n" + UserClassDB.script_get_identifier(value.get_script())
+	log_event(info)
+
+
 static func clear_overlay() -> void:
 	_instance._debug_lines_left.clear()
 	_instance._debug_lines_right.clear()

@@ -27,15 +27,17 @@ func _init(base_script: GDScript = null) -> void:
 	self.base_script = base_script
 
 
-func create(cell: Cell, stage: Stage = Stage.get_current()) -> CellObject:
-	var instance := base_script.new(cell.get_board_position(), stage) as CellObject
+func create(cell: CellData, stage: Stage = Stage.get_current()) -> CellObject:
+	var instance := base_script.new(cell, stage) as CellObject
 	for prop in _meta_props:
 		instance.set(prop, _meta_props[prop])
 	return instance
 
 
 func can_spawn() -> bool:
-	return base_script.can_spawn()
+	if not base_script:
+		return false
+	return CellObject.can_spawn(base_script)
 
 
 func _get_property_list() -> Array[Dictionary]:

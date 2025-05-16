@@ -36,4 +36,4 @@ func _aura_apply() -> void:
 
 func _kill() -> void:
 	for cell in get_cell().get_nearby_cells():
-		cell.get_data().value -= 1
+		cell.value -= 1

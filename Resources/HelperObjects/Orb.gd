@@ -3,13 +3,11 @@ extends Texture2D
 class_name Orb
 
 # ==============================================================================
-var speed_override := NAN
+var position := Vector2.ZERO
 # ==============================================================================
 
 func get_speed() -> float:
-	if is_nan(speed_override):
-		return Quest.get_current().get_orb_manager().orb_speed
-	return speed_override
+	return Quest.get_current().get_orb_manager().orb_speed
 
 
 func _export_packed() -> Array:
@@ -22,6 +20,7 @@ func create_sprite() -> OrbSprite:
 		return null
 	sprite.orb = self
 	sprite.direction = randf_range(-PI, PI)
+	sprite.position = position
 	return sprite
 
 

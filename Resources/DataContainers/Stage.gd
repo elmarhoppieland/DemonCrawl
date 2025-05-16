@@ -87,7 +87,6 @@ static var _theme_cache := {}
 # ==============================================================================
 @export var _instance: StageInstance : get = get_instance
 # ==============================================================================
-var _scene: StageScene : get = get_scene
 var _theme: Theme : get = get_theme
 # ==============================================================================
 
@@ -232,6 +231,11 @@ func get_instance() -> StageInstance:
 	return _instance
 
 
+## Returns [code]true[/code] if this [Stage] has a [StageInstance] object.
+func has_instance() -> bool:
+	return self == Stage.get_current()
+
+
 ## Clears this [Stage]'s [StageInstance]. The next call to [method get_instance] will
 ## create a new instance.
 func clear_instance() -> void:
@@ -263,17 +267,9 @@ func create_big_icon() -> ImageTexture:
 
 ## Returns the currently active [StageScene].
 func get_scene() -> StageScene:
-	if is_instance_valid(_scene):
-		return _scene
-	
-	var loop := Engine.get_main_loop()
-	assert(loop is SceneTree, "Expected a SceneTree as the main loop, but a %s was found." % loop.get_class())
-	
-	var current_scene := (loop as SceneTree).current_scene
-	if current_scene is StageScene:
-		_scene = current_scene
-	
-	return _scene
+	if has_instance():
+		return get_instance().get_scene()
+	return null
 
 
 ## Returns this [Stage]'s density, i.e. [code]monsters / area[/code].
@@ -291,6 +287,14 @@ func get_board() -> Board:
 
 func roll_power() -> int:
 	return randi_range(min_power, max_power)
+
+
+## Returns the total [StageMod] diffuclty of this [Stage].
+func get_mods_difficulty() -> int:
+	var difficulty := 0
+	for mod in mods:
+		difficulty += mod.difficulty
+	return difficulty
 
 
 ## Returns a property of this [Stage].

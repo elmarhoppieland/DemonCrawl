@@ -11,7 +11,7 @@ func _invoke() -> void:
 	_process(get_board().get_cells().pick_random())
 
 
-func _process(cell: Cell) -> void:
+func _process(cell: CellData) -> void:
 	if not cell.is_revealed():
 		cell.open(true)
 	

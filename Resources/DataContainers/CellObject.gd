@@ -5,16 +5,17 @@ class_name CellObject
 ## A [Cell]'s object.
 
 # ==============================================================================
-@export var _cell_position := Vector2i.ZERO : ## The board position of the [Cell] this is the object of.
-	set(value):
-		_cell_position = value
-		(func() -> void: cell_changed.emit()).call_deferred()
-@export var _stage: Stage : set = _set_stage, get = get_stage
+@export var _stage: Stage = null : set = _set_stage, get = get_stage
 # ==============================================================================
-var _texture: Texture2D : get = get_texture
-var _material: Material : get = get_material
+var _cell: WeakRef = null :
+	set(value):
+		_cell = value
+		cell_changed.emit()
 
-var _theme: Theme :
+var _texture: Texture2D = null : get = get_texture
+var _material: Material = null : get = get_material
+
+var _theme: Theme = null :
 	get:
 		if _theme == null and _stage != null:
 			_theme = _stage.get_theme()
@@ -25,8 +26,9 @@ signal cell_changed()
 
 #region internals
 
-func _init(cell_position: Vector2i = Vector2i.ZERO, stage: Stage = Stage.get_current()) -> void:
-	_cell_position = cell_position
+@warning_ignore("shadowed_variable")
+func _init(cell: CellData = null, stage: Stage = Stage.get_current()) -> void:
+	cell = cell
 	_stage = stage
 	
 	_ready()
@@ -116,13 +118,12 @@ func _to_string() -> String:
 
 #endregion
 
-func get_cell() -> Cell:
-	if Engine.is_editor_hint():
-		var root := EditorInterface.get_edited_scene_root()
-		return root if root is Cell else null
-	if get_stage() and get_stage().has_scene():
-		return get_stage().get_board().get_cell(_cell_position)
-	return null
+func set_cell(cell: CellData) -> void:
+	_cell = weakref(cell) if cell else null
+
+
+func get_cell() -> CellData:
+	return _cell.get_ref() if _cell else null
 
 
 func get_tree() -> SceneTree:
@@ -162,8 +163,8 @@ func _ready() -> void:
 
 ## Returns whether an object of this type can spawn. If this returns [code]false[/code],
 ## a [Cell] that attempts to spawn this object will try again.
-static func can_spawn() -> bool:
-	return _can_spawn()
+static func can_spawn(object: Script) -> bool:
+	return object._can_spawn()
 
 
 ## Virtual method to override the return value of [method can_spawn].
@@ -177,7 +178,8 @@ static func _can_spawn() -> bool:
 func get_texture() -> Texture2D:
 	if not _texture:
 		_texture = _get_texture()
-		_texture.changed.connect(emit_changed)
+		if _texture:
+			_texture.changed.connect(emit_changed)
 	return _texture
 
 
@@ -284,8 +286,7 @@ func _unhover() -> void:
 
 ## Kills this object.
 func kill() -> void:
-	get_cell().get_texture_shatter().source_texture = get_source()
-	get_cell().get_texture_shatter().show()
+	get_cell().shatter(get_source())
 	
 	Stage.get_current().get_board().get_camera().shake()
 	
@@ -435,17 +436,22 @@ func notify_aura_removed() -> void:
 
 ## Clears this [CellObject], setting the cell's object to [code]null[/code].
 func clear() -> void:
-	get_cell().clear_object()
-	
-	_cell_position = Vector2i(-1, -1)
-	
 	_clear()
+	
+	get_cell().clear_object()
 
 
-func move_to_cell(cell: Cell) -> void:
+## Creates a new [Tween] and binds it to the [StageScene].
+## [br][br]The [Tween] will start automatically on the next process frame or physics frame (depending on [enum Tween.TweenProcessMode]).
+func create_tween() -> Tween:
+	return Stage.get_current().get_scene().create_tween()
+
+
+@warning_ignore("shadowed_variable")
+func move_to_cell(cell: CellData) -> void:
 	# TODO: this should animate the texture from the old cell to the new one
-	get_cell().spawn_instance(null)
-	cell.spawn_instance(self)
+	get_cell().set_object(null)
+	cell.set_object(self)
 
 
 func flee() -> void:
@@ -481,23 +487,13 @@ func life_lose(life: int, source: Object = self) -> void:
 
 
 func tween_texture_to(position: Vector2, duration: float = 0.4) -> Tween:
-	var start_pos := get_cell().get_global_transform_with_canvas().origin + get_cell().size * get_cell().get_global_transform_with_canvas().get_scale() / 2
-	var sprite := Stage.get_current().get_scene().tween_texture(self, start_pos, position, duration, get_cell().get_object_texture_rect().material)
-	sprite.material = get_material()
-	var tween := sprite.create_tween()
-	tween.tween_property(sprite, "scale", Vector2.ZERO, 0.4).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
-	return tween
+	return GuiLayer.get_texture_tweener().tween_texture(self, Stage.get_current().get_board().get_global_at_cell_position(get_cell().get_position(Stage.get_current().get_instance())), position, duration)
 
 
 func get_theme_icon(name: StringName, theme_type: StringName = "Cell") -> Texture2D:
-	if _theme and _theme.has_icon(name, theme_type):
-		return _theme.get_icon(name, theme_type)
-	
 	var icon: Texture2D
-	if get_cell():
-		icon = get_cell().get_theme_icon(name, theme_type)
-	elif Stage.has_current():
-		icon = Stage.get_current().get_theme().get_icon(name, theme_type)
+	if _theme and _theme.has_icon(name, theme_type):
+		icon = _theme.get_icon(name, theme_type)
 	else:
 		icon = load("res://Resources/default_theme.tres").get_icon(name, theme_type)
 	

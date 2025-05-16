@@ -17,20 +17,19 @@ func _ready() -> void:
 	while not get_cell():
 		await cell_changed
 	
-	tween = get_cell().create_tween().set_loops().set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(get_cell().get_object_texture_rect().get_2d_anchor(), "scale", Vector2.ONE * (1 + 2.0 / TEXTURE_WIDTH), ANIM_DURATION / 2).set_ease(Tween.EASE_IN)
-	tween.tween_property(get_cell().get_object_texture_rect().get_2d_anchor(), "scale", Vector2.ONE, ANIM_DURATION / 2).set_ease(Tween.EASE_OUT)
+	tween = create_tween().set_loops().set_trans(Tween.TRANS_QUAD)
+	tween.tween_method(get_cell().scale_object, 1.0, 1 + 2.0 / TEXTURE_WIDTH, ANIM_DURATION * 0.5).set_ease(Tween.EASE_IN)
+	tween.tween_method(get_cell().scale_object, 1 + 2.0 / TEXTURE_WIDTH, 1.0, ANIM_DURATION * 0.5).set_ease(Tween.EASE_OUT)
+	#tween.tween_interval(ANIM_DURATION * 0.2)
 
 
 func _reset() -> void:
-	get_cell().get_object_texture_rect().get_2d_anchor().scale = Vector2.ONE
+	get_cell().scale_object(1.0)
 	tween.kill()
 
 
 func _get_palette() -> Texture2D:
-	if not get_cell():
-		return null
-	return get_cell().get_theme_icon("heart_palette", "Cell")
+	return get_theme_icon("heart_palette", "Cell")
 
 
 func _interact() -> void:
