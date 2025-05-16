@@ -5,7 +5,7 @@ class_name CellObject
 ## A [Cell]'s object.
 
 # ==============================================================================
-@export var _stage: Stage = null : set = _set_stage, get = get_stage
+@export var _origin_stage: Stage = null : set = _set_origin_stage, get = get_origin_stage
 # ==============================================================================
 var _cell: WeakRef = null :
 	set(value):
@@ -17,8 +17,8 @@ var _material: Material = null : get = get_material
 
 var _theme: Theme = null :
 	get:
-		if _theme == null and _stage != null:
-			_theme = _stage.get_theme()
+		if _theme == null and _origin_stage != null:
+			_theme = _origin_stage.get_theme()
 		return _theme
 # ==============================================================================
 signal cell_changed()
@@ -29,7 +29,7 @@ signal cell_changed()
 @warning_ignore("shadowed_variable")
 func _init(cell: CellData = null, stage: Stage = Stage.get_current()) -> void:
 	cell = cell
-	_stage = stage
+	_origin_stage = stage
 	
 	_ready()
 
@@ -70,8 +70,8 @@ func _export_packed() -> Array:
 	var args := []
 	
 	var owner := Eternity.get_processing_owner()
-	if not owner.has_method("get_stage") or owner.get_stage() != self.get_stage():
-		args.append(get_stage())
+	if not owner.has_method("get_stage") or owner.get_stage() != self.get_origin_stage():
+		args.append(get_origin_stage())
 	
 	for prop in get_property_list():
 		if prop.name == "CellObject.gd":
@@ -87,13 +87,13 @@ static func _import_packed_static_v(script: String, args: Array) -> CellObject:
 	
 	var i := 0
 	if not args.is_empty() and args[0] is Stage:
-		object._stage = args[0]
+		object._origin_stage = args[0]
 		i = 1
 	else:
 		var owner := Eternity.get_processing_owner()
 		if owner.has_method("get_stage"):
 			Eternity.get_processing_file().loaded.connect(func(_path: String) -> void:
-				object._stage = owner.get_stage()
+				object._origin_stage = owner.get_stage()
 			, CONNECT_ONE_SHOT)
 		else:
 			Debug.log_error("Could not obtain the stage for object '%s'." % object)
@@ -130,11 +130,11 @@ func get_tree() -> SceneTree:
 	return Engine.get_main_loop()
 
 
-func _set_stage(value: Stage) -> void:
-	if _stage and _stage.changed.is_connected(_on_stage_changed):
-		_stage.changed.disconnect(_on_stage_changed)
+func _set_origin_stage(value: Stage) -> void:
+	if _origin_stage and _origin_stage.changed.is_connected(_on_stage_changed):
+		_origin_stage.changed.disconnect(_on_stage_changed)
 	
-	_stage = value
+	_origin_stage = value
 	
 	_on_stage_changed()
 	if value:
@@ -148,8 +148,8 @@ func _on_stage_changed() -> void:
 	emit_changed()
 
 
-func get_stage() -> Stage:
-	return _stage
+func get_origin_stage() -> Stage:
+	return _origin_stage
 
 #region virtuals
 

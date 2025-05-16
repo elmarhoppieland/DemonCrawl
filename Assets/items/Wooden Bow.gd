@@ -8,14 +8,14 @@ func _use() -> void:
 
 
 func _invoke() -> void:
-	_process(get_board().get_cells().pick_random())
+	_process(Stage.get_current().get_instance().get_cells().pick_random())
 
 
 func _process(cell: CellData) -> void:
 	if not cell.is_revealed():
 		cell.open(true)
 	
-	if cell.get_object() is Monster:
-		cell.get_object().kill()
+	if cell.object is Monster:
+		cell.object.kill()
 	else:
 		clear()

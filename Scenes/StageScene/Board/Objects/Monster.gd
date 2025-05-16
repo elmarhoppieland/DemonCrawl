@@ -7,8 +7,8 @@ class_name Monster
 # ==============================================================================
 @export var name := "" :
 	get:
-		if name.is_empty() and get_stage():
-			var names: PackedStringArray = get_stage().get_property("monsters", "names", ["???"])
+		if name.is_empty() and get_origin_stage():
+			var names: PackedStringArray = get_origin_stage().get_property("monsters", "names", ["???"])
 			name = names[randi() % names.size()]
 		return name
 # ==============================================================================
@@ -22,7 +22,7 @@ func _get_source() -> Texture2D:
 
 
 func _reveal_active() -> void:
-	Quest.get_current().get_stats().damage(get_stage().roll_power(), self)
+	Quest.get_current().get_stats().damage(get_origin_stage().roll_power(), self)
 
 
 func _get_annotation_title() -> String:
