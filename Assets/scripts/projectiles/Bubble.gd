@@ -15,7 +15,8 @@ func _cell_entered(cell: CellData) -> void:
 	
 	if cell.is_occupied():
 		var orb := Bubble.new(cell.object)
-		orb.position = Stage.get_current().get_board().get_global_at_cell_position(cell.get_position())
-		Quest.get_current().get_orb_manager().register_orb(orb)
+		var global_position := Stage.get_current().get_board().get_global_at_cell_position(cell.get_position())
+		Quest.get_current().get_orb_manager().register_orb(orb, global_position)
 		
 		clear()
+		cell.clear_object()

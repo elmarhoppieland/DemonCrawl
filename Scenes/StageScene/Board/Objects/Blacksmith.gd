@@ -22,16 +22,17 @@ const TAGS := {
 # ==============================================================================
 
 func _ready() -> void:
-	Effects.Signals.turn.connect(func() -> void:
-		if get_cell():
-			_turn()
-	)
+	Effects.Signals.turn.connect(_turn)
 
 
 func _spawn() -> void:
 	type = Type.values().pick_random()
 	cost = randi_range(10, 20)
 	turns = randi_range(5, 15)
+
+
+func _reset() -> void:
+	Effects.Signals.turn.disconnect(_turn)
 
 
 func _interact() -> void:
@@ -72,6 +73,8 @@ func _get_annotation_subtext() -> String:
 
 
 func _turn() -> void:
+	if not get_cell():
+		return
 	if passed_turns < 0:
 		return
 	

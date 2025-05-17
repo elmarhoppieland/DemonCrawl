@@ -14,9 +14,6 @@ func _get_texture() -> CompressedTexture2D:
 
 
 func _ready() -> void:
-	while not get_cell():
-		await cell_changed
-	
 	tween = create_tween().set_loops().set_trans(Tween.TRANS_QUAD)
 	tween.tween_method(get_cell().scale_object, 1.0, 1 + 2.0 / TEXTURE_WIDTH, ANIM_DURATION * 0.5).set_ease(Tween.EASE_IN)
 	tween.tween_method(get_cell().scale_object, 1 + 2.0 / TEXTURE_WIDTH, 1.0, ANIM_DURATION * 0.5).set_ease(Tween.EASE_OUT)

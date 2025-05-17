@@ -9,7 +9,15 @@ class_name CellObject
 # ==============================================================================
 var _cell: WeakRef = null :
 	set(value):
+		var old := _cell
+		if old != null and value == null:
+			reset()
+		
 		_cell = value
+		
+		if old == null and value != null:
+			_ready()
+		
 		cell_changed.emit()
 
 var _texture: Texture2D = null : get = get_texture
@@ -27,11 +35,8 @@ signal cell_changed()
 #region internals
 
 @warning_ignore("shadowed_variable")
-func _init(cell: CellData = null, stage: Stage = Stage.get_current()) -> void:
-	cell = cell
+func _init(stage: Stage = Stage.get_current()) -> void:
 	_origin_stage = stage
-	
-	_ready()
 
 
 func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:

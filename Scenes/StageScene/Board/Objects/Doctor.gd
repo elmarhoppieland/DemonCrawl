@@ -13,19 +13,28 @@ const Apple := preload("res://Assets/items/Apple.gd")
 # ==============================================================================
 
 func _ready() -> void:
-	Effects.Signals.stage_leave.connect(func() -> void:
-		Quest.get_current().get_stats().lose_coins(extra_fee * purchase_count, self)
-	)
-	Effects.Signals.item_use.connect(func(item: Item) -> void:
-		if item is Apple:
-			flee()
-	)
+	Effects.Signals.stage_leave.connect(_stage_leave)
+	Effects.Signals.item_use.connect(_item_use)
 
 
 func _spawn() -> void:
 	cost = randi_range(5, 15)
 	extra_fee = randi_range(10, 20)
 	lives = randi_range(1, 3)
+
+
+func _reset() -> void:
+	Effects.Signals.stage_leave.disconnect(_stage_leave)
+	Effects.Signals.item_use.disconnect(_item_use)
+
+
+func _stage_leave() -> void:
+	Quest.get_current().get_stats().lose_coins(extra_fee * purchase_count, self)
+
+
+func _item_use(item: Item) -> void:
+	if item is Apple:
+		flee()
 
 
 func _interact() -> void:

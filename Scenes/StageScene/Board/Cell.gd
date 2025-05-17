@@ -45,35 +45,35 @@ static func create(board_position: Vector2i = Vector2i.ZERO) -> Cell:
 func open(force: bool = false, allow_loot: bool = true) -> bool:
 	return get_data().open(force, allow_loot, get_stage())
 	
-	if get_mode() == Mode.VISIBLE:
-		return false
-	if not force and get_mode() == Mode.FLAGGED:
-		return false
-	
-	if not get_stage().get_instance().is_generated():
-		get_stage().get_instance().generate(get_data())
-	
-	if get_value() != 0:
-		return _open(force, allow_loot)
-	
-	var to_explore: Array[Cell] = [self]
-	var visited: Array[Cell] = []
-	
-	while not to_explore.is_empty():
-		var current_cell := to_explore.pop_back() as Cell
-		
-		visited.append(current_cell)
-		current_cell._open(force, allow_loot)
-		
-		if current_cell.get_value() != 0 or current_cell.get_object() is Monster:
-			continue
-		
-		for c in current_cell.get_nearby_cells():
-			if c in visited or c in to_explore or c.is_revealed() or c.is_flagged():
-				continue
-			to_explore.append(c)
-	
-	return true
+	#if get_mode() == Mode.VISIBLE:
+		#return false
+	#if not force and get_mode() == Mode.FLAGGED:
+		#return false
+	#
+	#if not get_stage().get_instance().is_generated():
+		#get_stage().get_instance().generate(get_data())
+	#
+	#if get_value() != 0:
+		#return _open(force, allow_loot)
+	#
+	#var to_explore: Array[Cell] = [self]
+	#var visited: Array[Cell] = []
+	#
+	#while not to_explore.is_empty():
+		#var current_cell := to_explore.pop_back() as Cell
+		#
+		#visited.append(current_cell)
+		#current_cell._open(force, allow_loot)
+		#
+		#if current_cell.get_value() != 0 or current_cell.get_object() is Monster:
+			#continue
+		#
+		#for c in current_cell.get_nearby_cells():
+			#if c in visited or c in to_explore or c.is_revealed() or c.is_flagged():
+				#continue
+			#to_explore.append(c)
+	#
+	#return true
 
 
 func _open(force: bool = false, allow_loot: bool = true) -> bool:
@@ -117,7 +117,7 @@ func spawn(base: CellObjectBase, visible_only: bool = false) -> CellObject:
 		return null
 	
 	if not is_occupied():
-		var instance := base.create(get_data(), get_stage())
+		var instance := base.create(get_stage())
 		_set_object(instance)
 		instance.notify_spawned()
 		return instance
@@ -210,12 +210,16 @@ func add_text_particle(text: String, color: TextParticles.ColorPreset) -> void:
 ## Shows an arrow pointing in the given [code]direction[/code]. This arrow stays
 ## visible until it is hidden using [method hide_direction_arrow].
 func show_direction_arrow(direction: Vector2i) -> void:
+	if not is_node_ready():
+		await ready
 	_direction_arrow.rotation = Vector2(direction).angle()
 	_direction_arrow.show()
 
 
 ## Hides the direction arrow shown by [method show_direction_arrow].
 func hide_direction_arrow() -> void:
+	if not is_node_ready():
+		await ready
 	_direction_arrow.hide()
 
 
@@ -372,6 +376,9 @@ func set_data(data: CellData) -> void:
 	if data:
 		for signal_name in CONNECTIONS:
 			data.connect(signal_name, get(CONNECTIONS[signal_name]))
+	
+	if data.direction_arrow != Vector2i.ZERO:
+		show_direction_arrow(data.direction_arrow)
 
 
 func _data_changed() -> void:

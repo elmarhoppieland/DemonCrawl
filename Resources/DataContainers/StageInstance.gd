@@ -80,7 +80,7 @@ func generate(start_cell: CellData) -> void:
 		
 		var coord := Vector2i(idx % get_stage().size.x, idx / get_stage().size.x)
 		
-		cells[idx].object = Monster.new(get_cell_data(idx), get_stage())
+		cells[idx].object = Monster.new(get_stage())
 		
 		for dx in COORD_OFFSETS:
 			for dy in COORD_OFFSETS:

@@ -25,7 +25,6 @@ enum Direction {
 		while not get_cell():
 			await cell_changed
 		
-		get_cell().show_direction_arrow(DIR_MAP[direction])
 # ==============================================================================
 
 func _spawn() -> void:
@@ -34,10 +33,8 @@ func _spawn() -> void:
 
 
 func _ready() -> void:
-	while not get_cell():
-		await cell_changed
-	
 	Effects.Signals.turn.connect(_turn)
+	get_cell().show_direction_arrow(DIR_MAP[direction])
 
 
 func _turn() -> void:
@@ -61,6 +58,7 @@ func _interact() -> void:
 
 func _activate() -> void:
 	direction = (direction + 1) % Direction.size() as Direction
+	get_cell().show_direction_arrow(DIR_MAP[direction])
 
 
 func _get_annotation_title() -> String:

@@ -12,7 +12,6 @@ const Mode := Cell.Mode
 @export var object: CellObject :
 	set(new_object):
 		if object:
-			object.reset()
 			object.set_cell(null)
 		
 		object = new_object
@@ -30,6 +29,8 @@ const Mode := Cell.Mode
 	set(new_aura):
 		aura = new_aura
 		emit_changed()
+# ==============================================================================
+var direction_arrow := Vector2i.ZERO
 # ==============================================================================
 signal shatter_requested(texture: Texture2D)
 signal show_direction_arrow_requested(direction: Vector2i)
@@ -61,13 +62,6 @@ static func _import_packed(value: int, arg0: Variant = null, arg1: Variant = nul
 	cell.mode = mode
 	cell.object = object
 	cell.aura = aura
-	
-	if object:
-		var owner := Eternity.get_processing_owner()
-		if owner.has_method("get_stage"):
-			Eternity.get_processing_file().loaded.connect(func(_path: String) -> void:
-				object._stage = owner.get_stage()
-			, CONNECT_ONE_SHOT)
 	
 	return cell
 
@@ -178,7 +172,7 @@ func spawn_base(base: CellObjectBase, visible_only: bool = true, stage: Stage = 
 		return null
 	
 	if not is_occupied() and (not visible_only or is_visible()):
-		var instance := base.create(self, stage)
+		var instance := base.create(stage)
 		instance.notify_spawned()
 		object = instance
 		return instance
@@ -204,7 +198,7 @@ func spawn_base(base: CellObjectBase, visible_only: bool = true, stage: Stage = 
 		
 		if not unoccupied.is_empty():
 			var cell: CellData = unoccupied.pick_random()
-			var instance := base.create(self, stage)
+			var instance := base.create(stage)
 			instance.notify_spawned()
 			cell.object = instance
 			return instance
@@ -224,10 +218,12 @@ func create_tween(instance: StageInstance = Stage.get_current().get_instance()) 
 
 
 func show_direction_arrow(direcion: Vector2i) -> void:
+	direction_arrow = direcion
 	show_direction_arrow_requested.emit(direcion)
 
 
 func hide_direction_arrow() -> void:
+	direction_arrow = Vector2i.ZERO
 	hide_direction_arrow_requested.emit()
 
 

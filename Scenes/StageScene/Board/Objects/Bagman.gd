@@ -8,16 +8,22 @@ class_name Bagman
 # ==============================================================================
 
 func _ready() -> void:
-	Effects.MutableSignals.damage.connect(func(amount: int, source: Object) -> int:
-		if source is Monster:
-			amount += power
-		return maxi(0, amount)
-	)
+	Effects.MutableSignals.damage.connect(_damage)
 
 
 func _spawn() -> void:
 	cost = randi_range(5, 10)
 	power = randi_range(1, 3)
+
+
+func _reset() -> void:
+	Effects.MutableSignals.damage.disconnect(_damage)
+
+
+func _damage(amount: int, source: Object) -> int:
+	if source is Monster:
+		amount += power
+	return maxi(0, amount)
 
 
 func _interact() -> void:

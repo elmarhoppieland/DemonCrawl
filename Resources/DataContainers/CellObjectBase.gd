@@ -27,8 +27,8 @@ func _init(base_script: GDScript = null) -> void:
 	self.base_script = base_script
 
 
-func create(cell: CellData, stage: Stage = Stage.get_current()) -> CellObject:
-	var instance := base_script.new(cell, stage) as CellObject
+func create(stage: Stage = Stage.get_current()) -> CellObject:
+	var instance := base_script.new(stage) as CellObject
 	for prop in _meta_props:
 		instance.set(prop, _meta_props[prop])
 	return instance
