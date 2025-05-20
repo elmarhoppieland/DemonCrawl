@@ -132,6 +132,9 @@ OBJECT_TYPE_CELL_CHEST;chest
 ARMOR_TYPE_HEAD;head
 ARMOR_TYPE_BODY;body
 ARMOR_TYPE_LEG;leg
+FAMILIAR;Familiar
+FAMILIAR_DESCRIPTION;Moves in a random direction each turn, revealing cells and picking up loot for you. Avoids flagged cells.
+FAMILIAR_STRONG_DESCRIPTION;Moves in a random direction each turn, revealing cells and picking up loot for you. This familiar is also strong enough to kill monsters!
 LORE_LOCKED;You may purchase this quest from the Token Shop.
 LORE_LOCKED_CASUAL;You must complete the previous quest to unlock this one.
 LORE_TUTORIAL;Learn the basics of DemonCrawl!

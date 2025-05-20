@@ -3,30 +3,15 @@ extends TextureRect
 class_name CellObjectTextureRect
 
 # ==============================================================================
-@export var object: CellObject :
+@export var object: CellObject = null :
 	set(value):
 		object = value
 		
 		texture = value
 		
-		if value:
-			material = value.get_material()
-			#var palette := value.get_palette()
-			#(material as ShaderMaterial).set_shader_parameter("palette_enabled", palette != null)
-			#(material as ShaderMaterial).set_shader_parameter("palette", palette)
-			
-			if _tooltip_grabber:
-				_tooltip_grabber.enabled = value.has_annotation_text()
-		else:
-			#(material as ShaderMaterial).set_shader_parameter("palette_enabled", false)
-			material = null
-			
-			if _tooltip_grabber:
-				_tooltip_grabber.enabled = false
+		_update()
 # ==============================================================================
-#var _delta_sum := 0.0
-# ==============================================================================
-@onready var _tooltip_grabber: TooltipGrabber = null:
+@onready var _tooltip_grabber: TooltipGrabber = null :
 	set(value):
 		_tooltip_grabber = value
 		
@@ -36,6 +21,19 @@ class_name CellObjectTextureRect
 
 func _ready() -> void:
 	_tooltip_grabber = get_node_or_null("TooltipGrabber")
+
+
+func _update() -> void:
+	if object:
+		material = object.get_material()
+		
+		if _tooltip_grabber:
+			_tooltip_grabber.enabled = object.has_annotation_text()
+	else:
+		material = null
+		
+		if _tooltip_grabber:
+			_tooltip_grabber.enabled = false
 
 
 func get_2d_anchor() -> Node2D:

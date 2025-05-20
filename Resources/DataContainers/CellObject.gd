@@ -40,15 +40,15 @@ func _init(stage: Stage = Stage.get_current()) -> void:
 
 
 func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:
-	_texture.draw(to_canvas_item, pos, modulate, transpose)
+	_texture.draw(to_canvas_item, pos, modulate * get_modulate(), transpose)
 
 
 func _draw_rect(to_canvas_item: RID, rect: Rect2, tile: bool, modulate: Color, transpose: bool) -> void:
-	_texture.draw_rect(to_canvas_item, rect, tile, modulate, transpose)
+	_texture.draw_rect(to_canvas_item, rect, tile, modulate * get_modulate(), transpose)
 
 
 func _draw_rect_region(to_canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color, transpose: bool, clip_uv: bool) -> void:
-	_texture.draw_rect_region(to_canvas_item, rect, src_rect, modulate, transpose, clip_uv)
+	_texture.draw_rect_region(to_canvas_item, rect, src_rect, modulate * get_modulate(), transpose, clip_uv)
 
 
 func _get_width() -> int:
@@ -234,6 +234,16 @@ func get_material() -> Material:
 ## if it does not return [code]null[/code].
 func _get_material() -> Material:
 	return null
+
+
+## Returns this object's [Color] modulation.
+func get_modulate() -> Color:
+	return _get_modulate()
+
+
+## Virtual method to override the return value of [method get_modulate].
+func _get_modulate() -> Color:
+	return Color.WHITE
 
 
 ## Returns the object's color palette, to be inserted into the cell's shader.
