@@ -1,3 +1,4 @@
+@tool
 extends Control
 class_name OrbLayer
 
@@ -30,10 +31,10 @@ func _load_from_current_quest() -> void:
 
 
 @warning_ignore("shadowed_variable_base_class")
-func _register_orb(orb: Orb, global_position: Vector2 = Vector2.ZERO) -> void:
+func _register_orb(orb: Orb, screen_position: Vector2 = _orb_parent.position) -> void:
 	if orb not in _loaded_orbs:
 		var sprite := orb.create_sprite()
-		sprite.global_position = global_position
+		sprite.position = _orb_parent.get_global_transform().affine_inverse() * screen_position
 		_orb_parent.add_child(sprite)
 		_loaded_orbs.append(orb)
 		

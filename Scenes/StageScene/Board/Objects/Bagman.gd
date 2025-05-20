@@ -31,7 +31,7 @@ func _interact() -> void:
 		return
 	
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("STRANGER_BAGMAN_FAIL"), IconManager.get_icon_data("Bagman/Frame0").create_texture())
+		Toasts.add_toast(tr("STRANGER_BAGMAN_FAIL"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -40,7 +40,7 @@ func _interact() -> void:
 
 func _activate() -> void:
 	power -= 1
-	Toasts.add_toast(tr("STRANGER_BAGMAN_INTERACT"), IconManager.get_icon_data("Bagman/Frame0").create_texture())
+	Toasts.add_toast(tr("STRANGER_BAGMAN_INTERACT"), get_source())
 
 
 func _get_annotation_title() -> String:

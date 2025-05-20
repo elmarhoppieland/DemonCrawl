@@ -64,3 +64,7 @@ STRANGER_SCRIBE_REACTIVATE_DESCRIPTION;I will reactivate your heirloom slots for
 
 STRANGER_PYRO;Pyro
 STRANGER_PYRO_DESCRIPTION;Flares are my thing!! Give me {cost} coins and I'll rotate clockwise!
+
+STRANGER_WATERBOY;Pyro
+STRANGER_WATERBOY_DESCRIPTION;I love bubbles! Pay me {cost} coins and I'll move over one cell.
+STRANGER_WATERBOY_CANNOT_MOVE;I cannot move there!

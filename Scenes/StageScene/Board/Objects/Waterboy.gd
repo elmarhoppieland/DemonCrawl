@@ -1,6 +1,6 @@
 @tool
 extends Stranger
-class_name Pyro
+class_name Waterboy
 
 # ==============================================================================
 const DIR_MAP := {
@@ -28,7 +28,7 @@ enum Direction {
 # ==============================================================================
 
 func _spawn() -> void:
-	cost = randi_range(7, 12)
+	cost = randi_range(1, 5)
 	direction = Direction.values().pick_random()
 
 
@@ -40,7 +40,7 @@ func _ready() -> void:
 
 func _turn() -> void:
 	if get_cell().is_visible():
-		get_cell().send_projectile(Flare, DIR_MAP[direction])
+		get_cell().send_projectile(BubbleProjectile, DIR_MAP[direction])
 
 
 func _reset() -> void:
@@ -54,7 +54,11 @@ func _reveal() -> void:
 
 func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("STRANGER_PYRO_FAIL"), get_source())
+		Toasts.add_toast(tr("STRANGER_WATERBOY_FAIL"), get_source())
+		return
+	
+	if not can_move():
+		Toasts.add_toast(tr("STRANGER_WATERBOY_CANNOT_MOVE"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -63,15 +67,23 @@ func _interact() -> void:
 
 
 func _activate() -> void:
-	direction = (direction + 1) % Direction.size() as Direction
-	get_cell().show_direction_arrow(DIR_MAP[direction])
+	if can_move():
+		var new_pos: Vector2i = get_cell().get_position() + DIR_MAP[direction]
+		var new_cell := Stage.get_current().get_instance().get_cell(new_pos)
+		move_to_cell(new_cell)
 
 
 func _get_annotation_title() -> String:
-	return tr("STRANGER_PYRO").to_upper()
+	return tr("STRANGER_WATERBOY").to_upper()
 
 
 func _get_annotation_subtext() -> String:
-	return "\"" + tr("STRANGER_PYRO_DESCRIPTION").format({
+	return "\"" + tr("STRANGER_WATERBOY_DESCRIPTION").format({
 		"cost": cost
 	}) + "\""
+
+
+func can_move() -> bool:
+	var new_pos: Vector2i = get_cell().get_position() + DIR_MAP[direction]
+	var new_cell := Stage.get_current().get_instance().get_cell(new_pos)
+	return new_cell != null and new_cell.is_empty() and new_cell.is_visible()

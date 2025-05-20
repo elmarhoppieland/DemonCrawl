@@ -33,7 +33,7 @@ func _spawn() -> void:
 
 func _interact() -> void:
 	if Quest.get_current().get_inventory().is_empty():
-		Toasts.add_toast(tr("STRANGER_PLANT_FAIL"), IconManager.get_icon_data("HungryPlant/Frame0").create_texture())
+		Toasts.add_toast(tr("STRANGER_PLANT_FAIL"), get_source())
 		return
 	
 	activate()
@@ -57,7 +57,7 @@ func _activate() -> void:
 				const PRESENT = preload("res://Assets/items/Present.tres")
 				Quest.get_current().get_inventory().item_gain(PRESENT.duplicate())
 	
-	Toasts.add_toast(tr("STRANGER_PLANT_USE"), IconManager.get_icon_data("HungryPlant/Frame0").create_texture())
+	Toasts.add_toast(tr("STRANGER_PLANT_USE"), get_source())
 
 
 func _get_annotation_title() -> String:

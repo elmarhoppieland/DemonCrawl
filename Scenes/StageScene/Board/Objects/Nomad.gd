@@ -21,7 +21,7 @@ func _spawn() -> void:
 
 func _interact() -> void:
 	if not offer.can_afford():
-		Toasts.add_toast(offer.get_fail_message(), IconManager.get_icon_data("Nomad/Frame0").create_texture())
+		Toasts.add_toast(offer.get_fail_message(), get_source())
 		return
 	
 	offer.pay()
@@ -30,7 +30,7 @@ func _interact() -> void:
 
 func _activate() -> void:
 	if not offer.can_perform():
-		Toasts.add_toast(offer.get_fail_message(), IconManager.get_icon_data("Nomad/Frame0").create_texture())
+		Toasts.add_toast(offer.get_fail_message(), get_source())
 		return
 	
 	offer.perform()

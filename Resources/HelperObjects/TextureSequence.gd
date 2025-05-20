@@ -98,6 +98,12 @@ func _has_alpha() -> bool:
 	return _textures[index].has_alpha()
 
 
+func _validate_property(property: Dictionary) -> void:
+	match property.name:
+		&"size", &"margin":
+			property.hint_string = "suffix:px"
+
+
 func is_valid() -> bool:
 	if not atlas:
 		return false

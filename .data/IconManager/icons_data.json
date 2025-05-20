@@ -170,8 +170,46 @@
 			}
 		]
 	},
+	"Pyro": {
+		"atlas": "res://Assets/sprites/strangers/Pyro.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
 	"Scribe": {
 		"atlas": "res://Assets/sprites/strangers/Scribe.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"Waterboy": {
+		"atlas": "res://Assets/sprites/strangers/Waterboy.png",
 		"icons": [
 			{
 				"h": 16,

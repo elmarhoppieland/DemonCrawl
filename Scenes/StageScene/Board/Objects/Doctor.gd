@@ -39,7 +39,7 @@ func _item_use(item: Item) -> void:
 
 func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("STRANGER_DOCTOR_FAIL"), IconManager.get_icon_data("Doctor/Frame0").create_texture())
+		Toasts.add_toast(tr("STRANGER_DOCTOR_FAIL"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -48,7 +48,7 @@ func _interact() -> void:
 
 
 func _activate() -> void:
-	Toasts.add_toast(tr("STRANGER_DOCTOR_INTERACT"), IconManager.get_icon_data("Doctor/Frame0").create_texture())
+	Toasts.add_toast(tr("STRANGER_DOCTOR_INTERACT"), get_source())
 	
 	purchase_count += 1
 	Quest.get_current().get_stats().life_restore(lives, self)

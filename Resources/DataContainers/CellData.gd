@@ -264,6 +264,10 @@ func is_occupied() -> bool:
 	return object != null
 
 
+func is_empty() -> bool:
+	return object == null
+
+
 func get_position(instance: StageInstance = Stage.get_current().get_instance()) -> Vector2i:
 	var idx := instance.cells.find(self)
 	assert(idx >= 0, "The provided StageInstance does not contain this cell.")

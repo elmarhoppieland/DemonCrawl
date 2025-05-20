@@ -12,7 +12,7 @@ func _spawn() -> void:
 
 func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("STRANGER_PRIEST_FAIL"), IconManager.get_icon_data("Priest/Frame0").create_texture())
+		Toasts.add_toast(tr("STRANGER_PRIEST_FAIL"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)

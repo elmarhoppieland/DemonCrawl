@@ -14,7 +14,7 @@ func _spawn() -> void:
 
 func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("STRANGER_GAMBLER_FAIL"), IconManager.get_icon_data("Gambler/Frame0").create_texture())
+		Toasts.add_toast(tr("STRANGER_GAMBLER_FAIL"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -24,7 +24,7 @@ func _interact() -> void:
 
 
 func _activate() -> void:
-	Toasts.add_toast(tr("STRANGER_GAMBLER_INTERACT"), IconManager.get_icon_data("Gambler/Frame0").create_texture())
+	Toasts.add_toast(tr("STRANGER_GAMBLER_INTERACT"), get_source())
 	
 	var cells := Stage.get_current().get_instance().get_cells().filter(func(cell: CellData) -> bool:
 		return cell.is_hidden() and (not cell.is_occupied() or cell.object is Monster)

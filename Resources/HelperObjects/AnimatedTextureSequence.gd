@@ -20,8 +20,13 @@ func _notification(what: int) -> void:
 
 
 func _validate_property(property: Dictionary) -> void:
-	if property.name == &"index":
-		property.usage &= ~(PROPERTY_USAGE_EDITOR | PROPERTY_USAGE_STORAGE)
+	super(property)
+	
+	match property.name:
+		&"index":
+			property.usage &= ~(PROPERTY_USAGE_EDITOR | PROPERTY_USAGE_STORAGE)
+		&"duration":
+			property.hint_string = "suffix:sec"
 
 
 func _init() -> void:

@@ -36,11 +36,11 @@ func _reset() -> void:
 
 
 func _interact() -> void:
-	if passed_turns < 0:
+	if passed_turns >= 0:
 		return
 	
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("STRANGER_BLACKSMITH_FAIL"), IconManager.get_icon_data("Blacksmith/Frame0").create_texture())
+		Toasts.add_toast(tr("STRANGER_BLACKSMITH_FAIL"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -48,7 +48,7 @@ func _interact() -> void:
 
 
 func _activate() -> void:
-	if passed_turns < 0:
+	if passed_turns >= 0:
 		return
 	
 	passed_turns = 0

@@ -22,7 +22,7 @@ func _spawn() -> void:
 	item.cleared.connect(func() -> void:
 		Toasts.add_toast(tr("STRANGER_MAGE_LOST_ITEM").format({
 			"item": tr(item.get_name())
-		}), IconManager.get_icon_data("Mage/Frame0").create_texture())
+		}), get_source())
 		item_lost = true
 	)
 
@@ -33,7 +33,7 @@ func _interact() -> void:
 	if not item.is_charged():
 		return
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("STRANGER_MAGE_FAIL"), IconManager.get_icon_data("Mage/Frame0").create_texture())
+		Toasts.add_toast(tr("STRANGER_MAGE_FAIL"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
