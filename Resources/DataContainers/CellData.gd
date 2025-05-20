@@ -37,6 +37,7 @@ signal show_direction_arrow_requested(direction: Vector2i)
 signal hide_direction_arrow_requested()
 signal text_particle_requested(text: String, color_preset: TextParticles.ColorPreset)
 signal scale_object_requested(scale: float)
+signal move_object_requested(source: CellData)
 # ==============================================================================
 
 #region internals
@@ -153,6 +154,13 @@ func clear_object() -> void:
 @warning_ignore("shadowed_variable")
 func set_object(object: CellObject) -> void:
 	self.object = object
+
+
+func move_object_to(cell: CellData) -> void:
+	var obj := object
+	set_object(null)
+	cell.set_object(obj)
+	cell.move_object_requested.emit(self)
 
 
 @warning_ignore("shadowed_variable")

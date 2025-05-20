@@ -358,7 +358,8 @@ func set_data(data: CellData) -> void:
 		"text_particle_requested": "add_text_particle",
 		"show_direction_arrow_requested": "show_direction_arrow",
 		"hide_direction_arrow_requested": "hide_direction_arrow",
-		"scale_object_requested": "scale_object"
+		"scale_object_requested": "scale_object",
+		"move_object_requested": "move_object_from"
 	}
 	
 	if _data and _data.changed.is_connected(_data_changed):
@@ -413,6 +414,13 @@ func shatter(texture: Texture2D) -> void:
 @warning_ignore("shadowed_variable_base_class")
 func scale_object(scale: float) -> void:
 	get_object_texture_rect().get_2d_anchor().scale = scale * Vector2.ONE
+
+
+func move_object_from(source: CellData) -> void:
+	const ANIM_DURATION := 0.4
+	
+	var source_cell := get_stage().get_board().get_cell(source.get_position(get_stage().get_instance()))
+	create_tween().tween_property(get_object_texture_rect().get_2d_anchor(), "position", Vector2.ZERO, ANIM_DURATION).from(source_cell.global_position - global_position).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
 
 ## Returns the [CellData] instance of the [Cell].

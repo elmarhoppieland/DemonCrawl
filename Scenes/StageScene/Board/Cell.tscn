@@ -70,7 +70,7 @@ mode = 1
 
 [node name="CellValueLabel" type="Label" parent="CellAuraModulator"]
 unique_name_in_owner = true
-z_index = 1
+z_index = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -104,6 +104,7 @@ mouse_filter = 2
 
 [node name="CellObjectTextureRect" type="TextureRect" parent="Control/Anchor"]
 unique_name_in_owner = true
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
