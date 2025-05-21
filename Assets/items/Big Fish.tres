@@ -1,7 +1,7 @@
 [gd_resource type="Texture2D" script_class="Item" load_steps=3 format=3 uid="uid://dsud2disyfnx3"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_8u2nd"]
-[ext_resource type="Script" path="res://Resources/HelperObjects/Item.gd" id="1_eu4bp"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_8u2nd"]
+[ext_resource type="Script" path="res://Engine/Resources/HelperObjects/Item.gd" id="1_eu4bp"]
 
 [resource]
 resource_local_to_scene = false

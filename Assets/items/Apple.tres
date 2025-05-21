@@ -1,7 +1,7 @@
 [gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://8db7utolqq7s"]
 
-[ext_resource type="Script" path="res://Assets/items/Apple.gd" id="1_4wbc2"]
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_na8ie"]
+[ext_resource type="Script" path="res://Assets/Items/Apple.gd" id="1_4wbc2"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_na8ie"]
 
 [resource]
 resource_local_to_scene = false

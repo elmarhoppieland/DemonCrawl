@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cf046o7xtc4ot"
-path="res://.godot/imported/empty.png-bb4cb8202df0693ff0d51045f038e012.ctex"
+path="res://.godot/imported/empty.png-a8b885f881d000e07711100d21275920.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/fungus/empty.png"
-dest_files=["res://.godot/imported/empty.png-bb4cb8202df0693ff0d51045f038e012.ctex"]
+source_file="res://Assets/Skins/fungus/empty.png"
+dest_files=["res://.godot/imported/empty.png-a8b885f881d000e07711100d21275920.ctex"]
 
 [params]
 

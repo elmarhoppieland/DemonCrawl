@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwnrqcowgbjw8"
-path="res://.godot/imported/flag.png-09347c35c533ea8df783e9e82bea735f.ctex"
+path="res://.godot/imported/flag.png-11606905dc34658f61041e9578169058.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/halloween/flag.png"
-dest_files=["res://.godot/imported/flag.png-09347c35c533ea8df783e9e82bea735f.ctex"]
+source_file="res://Assets/Skins/halloween/flag.png"
+dest_files=["res://.godot/imported/flag.png-11606905dc34658f61041e9578169058.ctex"]
 
 [params]
 

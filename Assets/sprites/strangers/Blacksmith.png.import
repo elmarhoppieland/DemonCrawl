@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgjo8o51t6e5e"
-path="res://.godot/imported/Blacksmith.png-b294c397ff394943535faa8eacce3b62.ctex"
+path="res://.godot/imported/Blacksmith.png-44362b98398050febc6675451b8c9a7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/strangers/Blacksmith.png"
-dest_files=["res://.godot/imported/Blacksmith.png-b294c397ff394943535faa8eacce3b62.ctex"]
+source_file="res://Assets/Sprites/Strangers/Blacksmith.png"
+dest_files=["res://.godot/imported/Blacksmith.png-44362b98398050febc6675451b8c9a7d.ctex"]
 
 [params]
 

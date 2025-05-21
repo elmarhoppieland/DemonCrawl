@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bemu6do4c3jml"
-path="res://.godot/imported/empty.png-54c8f82a0f0f823780f48a31f4ee7bb0.ctex"
+path="res://.godot/imported/empty.png-fc8e7a9d656c2e60c4d3be530665bdd4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/island/empty.png"
-dest_files=["res://.godot/imported/empty.png-54c8f82a0f0f823780f48a31f4ee7bb0.ctex"]
+source_file="res://Assets/Skins/island/empty.png"
+dest_files=["res://.godot/imported/empty.png-fc8e7a9d656c2e60c4d3be530665bdd4.ctex"]
 
 [params]
 

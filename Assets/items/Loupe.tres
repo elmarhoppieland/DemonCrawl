@@ -1,7 +1,7 @@
 [gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://cf7mv45jarf4u"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_6k6cb"]
-[ext_resource type="Script" path="res://Assets/items/Loupe.gd" id="2_at1dx"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_6k6cb"]
+[ext_resource type="Script" path="res://Assets/Items/Loupe.gd" id="2_at1dx"]
 
 [resource]
 resource_local_to_scene = false

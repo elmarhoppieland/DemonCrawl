@@ -1,7 +1,7 @@
 [gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://trqmkx367t1j"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_k2ei0"]
-[ext_resource type="Script" path="res://Assets/items/Extra Pocket.gd" id="2_30n0j"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_k2ei0"]
+[ext_resource type="Script" path="res://Assets/Items/Extra Pocket.gd" id="2_30n0j"]
 
 [resource]
 resource_local_to_scene = false

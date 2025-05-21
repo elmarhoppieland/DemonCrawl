@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://coet67b3cv713"
-path="res://.godot/imported/full.png-58f785f88201136c3df5ac505627af72.ctex"
+path="res://.godot/imported/full.png-3c94dce3728d94dda3a661a011aafa34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/alcove/full.png"
-dest_files=["res://.godot/imported/full.png-58f785f88201136c3df5ac505627af72.ctex"]
+source_file="res://Assets/Skins/alcove/full.png"
+dest_files=["res://.godot/imported/full.png-3c94dce3728d94dda3a661a011aafa34.ctex"]
 
 [params]
 

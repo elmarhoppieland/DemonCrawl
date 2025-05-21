@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://dr75pkwfgpobd"
-path="res://.godot/imported/music.ogg-dbf8dc16927de337c6be6a1ac2325e3a.oggvorbisstr"
+path="res://.godot/imported/music.ogg-e7db34ab3d0fa69aed8297bf5bfae5f0.oggvorbisstr"
 
 [deps]
 
-source_file="res://Assets/skins/dungeon/music.ogg"
-dest_files=["res://.godot/imported/music.ogg-dbf8dc16927de337c6be6a1ac2325e3a.oggvorbisstr"]
+source_file="res://Assets/Skins/dungeon/music.ogg"
+dest_files=["res://.godot/imported/music.ogg-e7db34ab3d0fa69aed8297bf5bfae5f0.oggvorbisstr"]
 
 [params]
 

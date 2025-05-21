@@ -1,0 +1,221 @@
+[gd_scene load_steps=26 format=3 uid="uid://hhy78o5qolno"]
+
+[ext_resource type="Script" path="res://Engine/Scenes/StageSelect/StageSelect.gd" id="1_0kr35"]
+[ext_resource type="Texture2D" uid="uid://dqe6i8xvwotle" path="res://Assets/Backgrounds/stages0.png" id="1_6aai7"]
+[ext_resource type="PackedScene" uid="uid://bho6th882qje0" path="res://Engine/Scenes/StageSelect/StagesOverview.tscn" id="2_nrtxk"]
+[ext_resource type="PackedScene" uid="uid://c3vf0fdejs72s" path="res://Engine/Scenes/StageSelect/StageDetails.tscn" id="4_26rrt"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Quest.gd" id="4_t5245"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/StageMod.gd" id="5_cu4qn"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage.gd" id="6_a1317"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="6_asf3s"]
+[ext_resource type="PackedScene" uid="uid://bqgqlnp8nk2x2" path="res://Engine/Resources/Scenes/Statbar.tscn" id="7_8jogn"]
+[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/BackButton.gd" id="8_fl1vr"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="9_l3xwp"]
+
+[sub_resource type="Resource" id="Resource_fhc70"]
+script = ExtResource("6_a1317")
+name = "forest"
+size = Vector2i(0, 0)
+monsters = 0
+min_power = 0
+max_power = 0
+locked = false
+completed = true
+mods = Array[ExtResource("5_cu4qn")]([])
+
+[sub_resource type="Resource" id="Resource_cp374"]
+script = ExtResource("6_a1317")
+name = "cavern"
+size = Vector2i(10, 10)
+monsters = 10
+min_power = 0
+max_power = 0
+locked = false
+completed = false
+mods = Array[ExtResource("5_cu4qn")]([])
+
+[sub_resource type="Resource" id="Resource_0unnp"]
+script = ExtResource("6_a1317")
+name = "desert"
+size = Vector2i(0, 0)
+monsters = 0
+min_power = 0
+max_power = 0
+locked = true
+completed = false
+mods = Array[ExtResource("5_cu4qn")]([])
+
+[sub_resource type="Resource" id="Resource_lbh4f"]
+script = ExtResource("6_a1317")
+name = "ocean"
+size = Vector2i(0, 0)
+monsters = 0
+min_power = 0
+max_power = 0
+locked = true
+completed = false
+mods = Array[ExtResource("5_cu4qn")]([])
+
+[sub_resource type="Resource" id="Resource_1058p"]
+script = ExtResource("6_a1317")
+name = "tropics"
+size = Vector2i(0, 0)
+monsters = 0
+min_power = 0
+max_power = 0
+locked = true
+completed = false
+mods = Array[ExtResource("5_cu4qn")]([])
+
+[sub_resource type="Resource" id="Resource_d1fo0"]
+script = ExtResource("6_a1317")
+name = "volcano"
+size = Vector2i(50, 50)
+monsters = 200
+min_power = 0
+max_power = 0
+locked = false
+completed = false
+mods = Array[ExtResource("5_cu4qn")]([])
+
+[sub_resource type="Resource" id="Resource_l45tm"]
+script = ExtResource("6_a1317")
+name = "wilds"
+size = Vector2i(0, 0)
+monsters = 0
+min_power = 0
+max_power = 0
+locked = true
+completed = false
+mods = Array[ExtResource("5_cu4qn")]([])
+
+[sub_resource type="Resource" id="Resource_isdv2"]
+script = ExtResource("6_a1317")
+name = "arctic"
+size = Vector2i(0, 0)
+monsters = 0
+min_power = 0
+max_power = 0
+locked = true
+completed = false
+mods = Array[ExtResource("5_cu4qn")]([])
+
+[sub_resource type="Resource" id="Resource_62p6u"]
+script = ExtResource("6_a1317")
+name = "brink"
+size = Vector2i(0, 0)
+monsters = 0
+min_power = 0
+max_power = 0
+locked = true
+completed = false
+mods = Array[ExtResource("5_cu4qn")]([])
+
+[sub_resource type="Resource" id="Resource_kii6k"]
+script = ExtResource("4_t5245")
+name = "QUEST_GLORY_DAYS"
+stages = Array[ExtResource("6_a1317")]([SubResource("Resource_fhc70"), SubResource("Resource_cp374"), SubResource("Resource_0unnp"), SubResource("Resource_lbh4f"), SubResource("Resource_1058p"), SubResource("Resource_d1fo0"), SubResource("Resource_l45tm"), SubResource("Resource_isdv2"), SubResource("Resource_62p6u")])
+selected_stage_idx = 0
+
+[sub_resource type="Resource" id="Resource_4vqcl"]
+script = ExtResource("6_a1317")
+name = "cavern"
+size = Vector2i(12, 14)
+monsters = 12
+min_power = 1
+max_power = 2
+locked = false
+completed = false
+mods = Array[ExtResource("5_cu4qn")]([])
+
+[sub_resource type="LabelSettings" id="LabelSettings_pehmt"]
+font = ExtResource("6_asf3s")
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_baxs2"]
+atlas = ExtResource("9_l3xwp")
+region = Rect2(22, 44, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjf3c"]
+atlas = ExtResource("9_l3xwp")
+region = Rect2(34, 44, 12, 8)
+
+[node name="StageSelect" type="MarginContainer"]
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 0.25
+scale = Vector2(4, 4)
+script = ExtResource("1_0kr35")
+_quest = SubResource("Resource_kii6k")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_6aai7")
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StagesOverview" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_nrtxk")]
+unique_name_in_owner = true
+layout_mode = 2
+_quest_editable = false
+_quest = SubResource("Resource_kii6k")
+
+[node name="StageDetails" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_26rrt")]
+unique_name_in_owner = true
+layout_mode = 2
+stage = SubResource("Resource_4vqcl")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="QuestNameLabel" type="Label" parent="MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = "QUEST_GLORY_DAYS"
+label_settings = SubResource("LabelSettings_pehmt")
+
+[node name="Statbar" parent="." instance=ExtResource("7_8jogn")]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 7
+
+[node name="BackButton" type="MarginContainer" parent="MarginContainer3"]
+layout_mode = 2
+script = ExtResource("8_fl1vr")
+
+[node name="Normal" type="TextureRect" parent="MarginContainer3/BackButton"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_baxs2")
+
+[node name="Hovered" type="TextureRect" parent="MarginContainer3/BackButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_yjf3c")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 90)
+
+[connection signal="icon_selected" from="MarginContainer/VBoxContainer/StagesOverview" to="." method="_on_stages_overview_icon_selected"]
+[connection signal="interacted" from="MarginContainer/VBoxContainer/StageDetails" to="." method="_on_stage_details_interacted"]

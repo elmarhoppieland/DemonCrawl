@@ -1,7 +1,7 @@
 [gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://cfevdrefpiq4l"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_ykit7"]
-[ext_resource type="Script" path="res://Assets/items/Lyre.gd" id="2_gynep"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_ykit7"]
+[ext_resource type="Script" path="res://Assets/Items/Lyre.gd" id="2_gynep"]
 
 [resource]
 resource_local_to_scene = false
