@@ -13,7 +13,10 @@ func _ready() -> void:
 func _clicked() -> void:
 	if Stage.has_current():
 		var board := Stage.get_current().get_board()
-		var cell := board.get_cell_at_global(board.get_global_mouse_position()).get_data()
+		var cell_node := board.get_cell_at_global(board.get_global_mouse_position())
+		if cell_node == null:
+			return
+		var cell := cell_node.get_data()
 		if not cell or cell.is_hidden() or cell.is_occupied():
 			return
 		cell.set_object(orb.object)

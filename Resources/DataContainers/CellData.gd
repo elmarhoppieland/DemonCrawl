@@ -19,6 +19,11 @@ const Mode := Cell.Mode
 		if new_object:
 			assert(new_object.get_cell() == null, "A CellObject cannot be assigned to multiple cells at once.")
 			new_object.set_cell(self)
+			if not new_object.reloaded:
+				new_object.notify_cell_entered()
+			if not new_object.initialized:
+				new_object.notify_spawned()
+			new_object.reloaded = false
 		
 		emit_changed()
 @export var value := 0 :
@@ -147,6 +152,11 @@ func shatter(texture: Texture2D) -> void:
 	shatter_requested.emit(texture)
 
 
+func reset_value(instance: StageInstance = Stage.get_current().get_instance()) -> int:
+	value = get_real_value(instance)
+	return value
+
+
 func clear_object() -> void:
 	object = null
 
@@ -181,7 +191,6 @@ func spawn_base(base: CellObjectBase, visible_only: bool = true, stage: Stage = 
 	
 	if not is_occupied() and (not visible_only or is_visible()):
 		var instance := base.create(stage)
-		instance.notify_spawned()
 		object = instance
 		return instance
 	
@@ -207,7 +216,6 @@ func spawn_base(base: CellObjectBase, visible_only: bool = true, stage: Stage = 
 		if not unoccupied.is_empty():
 			var cell: CellData = unoccupied.pick_random()
 			var instance := base.create(stage)
-			instance.notify_spawned()
 			cell.object = instance
 			return instance
 		
@@ -298,6 +306,14 @@ func get_nearby_cells(instance: StageInstance = Stage.get_current().get_instance
 			cells.append(cell)
 	
 	return cells
+
+
+func get_real_value(instance: StageInstance = Stage.get_current().get_instance()) -> int:
+	var real_value := 0
+	for cell in get_nearby_cells(instance):
+		if cell.is_occupied():
+			real_value += cell.object.get_value_contribution()
+	return real_value
 
 
 func get_group(instance: StageInstance = Stage.get_current().get_instance()) -> Array[CellData]:

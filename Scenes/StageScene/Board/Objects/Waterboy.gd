@@ -18,13 +18,7 @@ enum Direction {
 }
 # ==============================================================================
 @export var cost := -1
-@export var direction := Direction.UP :
-	set(value):
-		direction = value
-		
-		while not get_cell():
-			await cell_changed
-		
+@export var direction := Direction.UP
 # ==============================================================================
 
 func _spawn() -> void:

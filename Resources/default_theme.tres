@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=73 format=3 uid="uid://dmddrgkl04gph"]
+[gd_resource type="Theme" load_steps=76 format=3 uid="uid://dmddrgkl04gph"]
 
 [ext_resource type="StyleBox" uid="uid://cokg66aqb3ro1" path="res://Resources/xp_bar_fill.tres" id="1_0ok7g"]
 [ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://Assets/skins/default/bg.png" id="1_3w34f"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://cmpdcmb5vb5b3" path="res://Assets/sprites/strangers/Doctor.png" id="16_gwo35"]
 [ext_resource type="Script" path="res://Resources/HelperObjects/CustomTextureBase.gd" id="21_5cqxe"]
 [ext_resource type="Texture2D" uid="uid://wvsgea66jqib" path="res://Assets/sprites/strangers/Priest.png" id="22_1ehdr"]
+[ext_resource type="Texture2D" uid="uid://b87affc8vd8sp" path="res://Assets/sprites/strangers/Mercenary.png" id="22_33vuc"]
 [ext_resource type="Texture2D" uid="uid://dovfvraxpwlbj" path="res://Assets/sprites/strangers/Mage.png" id="22_kmkag"]
 [ext_resource type="Script" path="res://Resources/HelperObjects/AnimatedTextureSequence.gd" id="23_6lsge"]
 [ext_resource type="Texture2D" uid="uid://c5efdbrxamawq" path="res://Assets/sprites/strangers/Scribe.png" id="23_lujhd"]
@@ -256,6 +257,22 @@ resource_name = ""
 script = ExtResource("21_5cqxe")
 _instance = SubResource("Texture2D_v7xxd")
 
+[sub_resource type="Texture2D" id="Texture2D_2p2bq"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
+duration = 1.0
+size = Vector2i(16, 16)
+atlas = ExtResource("22_33vuc")
+margin = Rect2(0, 0, 0, 0)
+filter_clip = false
+
+[sub_resource type="Texture2D" id="Texture2D_67h5x"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("21_5cqxe")
+_instance = SubResource("Texture2D_2p2bq")
+
 [sub_resource type="Texture2D" id="Texture2D_gpk8x"]
 resource_local_to_scene = false
 resource_name = ""
@@ -432,6 +449,7 @@ Stranger/icons/elder = SubResource("Texture2D_0exw0")
 Stranger/icons/gambler = SubResource("Texture2D_d7yxe")
 Stranger/icons/hungry_plant = SubResource("Texture2D_h5tdi")
 Stranger/icons/mage = SubResource("Texture2D_yki81")
+Stranger/icons/mercenary = SubResource("Texture2D_67h5x")
 Stranger/icons/nomad = SubResource("Texture2D_t2k2h")
 Stranger/icons/priest = SubResource("Texture2D_u2hrp")
 Stranger/icons/pyro = SubResource("Texture2D_7xr1a")

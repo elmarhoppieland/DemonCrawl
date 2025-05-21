@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootTable" load_steps=25 format=3 uid="uid://dpgfvuaiurqu4"]
+[gd_resource type="Resource" script_class="LootTable" load_steps=27 format=3 uid="uid://dpgfvuaiurqu4"]
 
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Nomad.gd" id="1_kyyba"]
 [ext_resource type="Script" path="res://Resources/DataContainers/LootTable.gd" id="1_vb474"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/HungryPlant.gd" id="3_naukx"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Blacksmith.gd" id="4_gm6vj"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Waterboy.gd" id="4_lrqes"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Mercenary.gd" id="5_fii67"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Priest.gd" id="5_iduay"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Bagman.gd" id="6_2d1q4"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Elder.gd" id="7_h2j88"]
@@ -33,6 +34,11 @@ script = ExtResource("2_qut8x")
 base_script = ExtResource("4_lrqes")
 cost = null
 direction = null
+
+[sub_resource type="Resource" id="Resource_41nxf"]
+script = ExtResource("2_qut8x")
+base_script = ExtResource("5_fii67")
+cost = null
 
 [sub_resource type="Resource" id="Resource_sjg7g"]
 resource_name = "Blacksmith"
@@ -98,7 +104,7 @@ type = 24
 items_class = "CellObjectBase"
 auto_sort = false
 use_modifier = false
-item_count = 11
+item_count = 12
 item_0/value = SubResource("Resource_q4qr1")
 item_0/weight = 1.0
 item_1/value = SubResource("Resource_w7fud")
@@ -120,4 +126,6 @@ item_8/weight = 1.0
 item_9/value = SubResource("Resource_0a85g")
 item_9/weight = 1.0
 item_10/value = SubResource("Resource_713gq")
-item_10/weight = 1000.0
+item_10/weight = 1.0
+item_11/value = SubResource("Resource_41nxf")
+item_11/weight = 1000.0

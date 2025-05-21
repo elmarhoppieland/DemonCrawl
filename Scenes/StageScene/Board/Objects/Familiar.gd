@@ -46,8 +46,13 @@ func _turn() -> void:
 		if new_cell.object is Monster:
 			if strong:
 				new_cell.object.kill()
+				move_to_cell(new_cell)
 			else:
 				clear()
+			return
+		
+		if not can_move_to(new_cell):
+			# something has spawned that blocks our way
 			return
 		
 		if new_cell.is_occupied():
@@ -75,3 +80,12 @@ func _get_annotation_subtext() -> String:
 	if strong:
 		return tr("FAMILIAR_STRONG_DESCRIPTION")
 	return tr("FAMILIAR_DESCRIPTION")
+
+
+func _aura_apply() -> void:
+	if get_cell().aura is Burning:
+		kill()
+
+
+func _cell_enter() -> void:
+	_aura_apply()

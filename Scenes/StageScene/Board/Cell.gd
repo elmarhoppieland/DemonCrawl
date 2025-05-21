@@ -119,7 +119,6 @@ func spawn(base: CellObjectBase, visible_only: bool = false) -> CellObject:
 	if not is_occupied():
 		var instance := base.create(get_stage())
 		_set_object(instance)
-		instance.notify_spawned()
 		return instance
 	
 	var radius := 1

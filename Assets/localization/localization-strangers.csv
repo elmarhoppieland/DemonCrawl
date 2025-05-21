@@ -68,3 +68,6 @@ STRANGER_PYRO_DESCRIPTION;Flares are my thing!! Give me {cost} coins and I'll ro
 STRANGER_WATERBOY;Pyro
 STRANGER_WATERBOY_DESCRIPTION;I love bubbles! Pay me {cost} coins and I'll move over one cell.
 STRANGER_WATERBOY_CANNOT_MOVE;I cannot move there!
+
+STRANGER_MERCENARY;Mercenary
+STRANGER_MERCENARY_DESCRIPTION;Give me {cost} coins and I will fight for you!

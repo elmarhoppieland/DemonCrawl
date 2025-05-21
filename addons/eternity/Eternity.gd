@@ -185,6 +185,7 @@ static func _reload_file(path_name: String = "") -> void:
 			script[key] = value
 	
 	loaded.emit(file_path)
+	_processing_cfg = null
 
 
 static func _queue_named_path_load(path_name: String) -> void:

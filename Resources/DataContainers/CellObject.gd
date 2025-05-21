@@ -28,6 +28,9 @@ var _theme: Theme = null :
 		if _theme == null and _origin_stage != null:
 			_theme = _origin_stage.get_theme()
 		return _theme
+
+var initialized := false
+var reloaded := false
 # ==============================================================================
 signal cell_changed()
 # ==============================================================================
@@ -78,6 +81,9 @@ func _export_packed() -> Array:
 	if not owner.has_method("get_stage") or owner.get_stage() != self.get_origin_stage():
 		args.append(get_origin_stage())
 	
+	if not initialized:
+		args.append(false)
+	
 	for prop in get_property_list():
 		if prop.name == "CellObject.gd":
 			return args
@@ -102,6 +108,33 @@ static func _import_packed_static_v(script: String, args: Array) -> CellObject:
 			, CONNECT_ONE_SHOT)
 		else:
 			Debug.log_error("Could not obtain the stage for object '%s'." % object)
+	
+	if i >= args.size():
+		return object
+	
+	if args[i] is bool and args[i] == false:
+		var bool_count := 0
+		while args.size() > i + bool_count:
+			if not args[i + bool_count] is bool:
+				break
+			bool_count += 1
+		
+		var bool_count_in_props := 0
+		for prop in object.get_property_list():
+			if prop.name == "CellObject.gd":
+				break
+			if prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and prop.usage & PROPERTY_USAGE_STORAGE:
+				if prop.type != TYPE_BOOL and prop.type != TYPE_NIL:
+					break
+				bool_count_in_props += 1
+		
+		if bool_count_in_props < bool_count:
+			object.initialized = true
+			i += 1
+	else:
+		object.initialized = true
+	
+	object.reloaded = true
 	
 	if i >= args.size():
 		return object
@@ -202,6 +235,8 @@ func get_source() -> Texture2D:
 
 ## Called when this object's source is used. Should return a built-in [Texture2D]-derived class.
 func _get_source() -> Texture2D:
+	if _texture is TextureSequence:
+		return _texture.get_texture(0)
 	return null
 
 
@@ -395,6 +430,10 @@ func _is_charitable() -> bool:
 ## Resets all properties modified by this object. This should be called when the object
 ## is removed from its [Cell].
 func reset() -> void:
+	var contribution := get_value_contribution()
+	for cell in get_cell().get_nearby_cells():
+		cell.value -= contribution
+	
 	_reset()
 
 
@@ -412,7 +451,23 @@ func _spawn() -> void:
 
 ## Notifies the object that is has just been spawned.
 func notify_spawned() -> void:
+	initialized = true
 	_spawn()
+
+
+func _cell_enter() -> void:
+	pass
+
+
+func notify_cell_entered() -> void:
+	if Eternity.get_processing_file() != null:
+		await Eternity.loaded
+	
+	var contribution := get_value_contribution()
+	for cell in get_cell().get_nearby_cells():
+		cell.value += contribution
+	
+	_cell_enter()
 
 
 ## Virtual method. Called when an [Aura] is applied to this object's [Cell].
@@ -444,6 +499,18 @@ func _aura_remove() -> void:
 ## Notifies the object that the [Aura] of its [Cell] was removed.
 func notify_aura_removed() -> void:
 	_aura_remove()
+
+
+## Virtual method. Should return the value contribution of this [CellObject], i.e.
+## the amount that each nearby cell should be increased by.
+func _contribute_value() -> int:
+	return 0
+
+
+## Returns the value contribution of this [CellObject], i.e. the amount that each
+## nearby cell should be increased by.
+func get_value_contribution() -> int:
+	return _contribute_value()
 
 #endregion
 
