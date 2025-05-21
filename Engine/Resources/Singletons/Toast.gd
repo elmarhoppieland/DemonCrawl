@@ -70,7 +70,7 @@ func play() -> void:
 
 
 static func create(_text: String = "", _icon: Texture2D = null) -> Toast:
-	var toast: Toast = load("res://Resources/Singletons/Toast.tscn").instantiate()
+	var toast: Toast = load("res://Engine/Resources/Singletons/Toast.tscn").instantiate()
 	toast.text = _text
 	toast.icon = _icon
 	return toast

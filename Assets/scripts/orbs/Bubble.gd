@@ -2,9 +2,9 @@ extends Orb
 class_name Bubble
 
 # ==============================================================================
-const BUBBLE_SPRITE = preload("res://Assets/scripts/orbs/BubbleSprite.tscn")
+const BUBBLE_SPRITE := preload("res://Assets/Scripts/Orbs/BubbleSprite.tscn")
 # ==============================================================================
-@export var object: CellObject
+@export var object: CellObject = null
 # ==============================================================================
 
 @warning_ignore("shadowed_variable")

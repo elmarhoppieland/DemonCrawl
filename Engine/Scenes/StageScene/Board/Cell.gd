@@ -88,7 +88,7 @@ func _open(force: bool = false, allow_loot: bool = true) -> bool:
 	
 	if allow_loot and not is_occupied() and get_value() == 0 and randf() > 0.8 * (1 - get_stage().get_density()):
 		_generate_content()
-		#spawn(preload("res://Assets/loot_tables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
+		spawn(preload("res://Assets/LootTables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
 	
 	if is_occupied():
 		get_object().notify_revealed(not force)
@@ -99,7 +99,7 @@ func _open(force: bool = false, allow_loot: bool = true) -> bool:
 
 
 func _generate_content() -> void:
-	var table := preload("res://Assets/loot_tables/CellContent.tres").generate() as LootTable
+	var table := preload("res://Assets/LootTables/CellContent.tres").generate() as LootTable
 	if not table:
 		return
 	

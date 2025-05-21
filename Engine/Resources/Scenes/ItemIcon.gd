@@ -64,7 +64,7 @@ func set_glow(value: float) -> void:
 
 
 static func create(_data: ItemData) -> ItemIcon:
-	var instance: ItemIcon = ResourceLoader.load("res://Resources/ItemIcon.tscn").instantiate()
+	var instance: ItemIcon = load("res://Engine/Resources/Scenes/ItemIcon.tscn").instantiate()
 	instance.data = _data
 	return instance
 

@@ -41,7 +41,7 @@ func interact() -> void:
 
 ## Creates a new instance of the scene.
 static func create(_collectible: Collectible) -> LargeCollectibleDisplay:
-	var instance: LargeCollectibleDisplay = load("res://Resources/Scenes/LargeCollectibleDisplay.tscn").instantiate()
+	var instance: LargeCollectibleDisplay = load("res://Engine/Resources/Scenes/LargeCollectibleDisplay.tscn").instantiate()
 	instance.collectible = _collectible
 	return instance
 

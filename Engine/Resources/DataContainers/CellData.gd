@@ -138,7 +138,7 @@ func _open(force: bool = false, allow_loot: bool = true, stage: Stage = Stage.ge
 	
 	if allow_loot and not is_occupied() and value == 0:
 		spawn_base(stage.get_instance().generate_cell_content(Quest.get_current().get_attributes().rare_loot_modifier))
-		#spawn(preload("res://Assets/loot_tables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
+		#spawn(preload("res://Assets/LootTables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
 	
 	if is_occupied():
 		object.notify_revealed(not force)

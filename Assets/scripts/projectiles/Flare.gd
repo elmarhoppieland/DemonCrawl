@@ -5,7 +5,7 @@ class_name Flare
 # ==============================================================================
 
 func _get_texture() -> Texture2D:
-	return preload("res://Assets/sprites/projectiles/Flare.png")
+	return preload("res://Assets/Sprites/Projectiles/Flare.png")
 
 
 func _cell_entered(cell: CellData) -> void:

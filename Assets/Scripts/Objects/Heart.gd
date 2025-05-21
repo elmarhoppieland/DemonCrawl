@@ -10,7 +10,7 @@ var tween: Tween
 # ==============================================================================
 
 func _get_texture() -> CompressedTexture2D:
-	return preload("res://Assets/sprites/heart.png")
+	return preload("res://Assets/Sprites/heart.png")
 
 
 func _ready() -> void:

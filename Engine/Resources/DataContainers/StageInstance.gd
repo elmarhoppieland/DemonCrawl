@@ -132,7 +132,7 @@ func generate_cell_content(rare_loot_modifier: float = 1.0) -> CellObjectBase:
 	if randf() > get_cell_content_spawn_rate():
 		return null
 	
-	var table := load("res://Assets/loot_tables/CellContent.tres").generate() as LootTable
+	var table := load("res://Assets/LootTables/CellContent.tres").generate() as LootTable
 	if not table:
 		return
 	

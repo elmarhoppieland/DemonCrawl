@@ -10,7 +10,7 @@ class_name Familiar
 	get:
 		if source == null:
 			source = AnimatedTextureSequence.new()
-			source.atlas = preload("res://Assets/sprites/Familiar.png")
+			source.atlas = preload("res://Assets/Sprites/Familiar.png")
 		return source
 @export var strong := false
 # ==============================================================================

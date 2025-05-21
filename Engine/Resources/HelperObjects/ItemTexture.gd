@@ -19,7 +19,7 @@ var item: Item :
 # ==============================================================================
 
 func _init() -> void:
-	atlas = preload("res://Assets/sprites/items.png")
+	atlas = preload("res://Assets/Sprites/items.png")
 
 
 func _get_property_list() -> Array[Dictionary]:

@@ -38,7 +38,7 @@ func _enter_tree() -> void:
 		add_child(label)
 	
 	if not outline.get_parent():
-		outline.texture = preload("res://Assets/sprites/button.png")
+		outline.texture = preload("res://Assets/Sprites/button.png")
 		outline.draw_center = false
 		for i in 4:
 			outline.set_patch_margin(i, 1)

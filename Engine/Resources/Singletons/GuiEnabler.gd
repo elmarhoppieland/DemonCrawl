@@ -85,7 +85,7 @@ func _exit_tree() -> void:
 static func get_gui_list() -> PackedStringArray:
 	var child_list := PackedStringArray()
 	
-	var state := load("res://Resources/Singletons/GuiLayer.tscn").get_state() as SceneState
+	var state := load("res://Engine/Resources/Singletons/GuiLayer.tscn").get_state() as SceneState
 	for i in state.get_node_count():
 		var parent_path := state.get_node_path(i, true)
 		if parent_path == ^".":
@@ -95,7 +95,7 @@ static func get_gui_list() -> PackedStringArray:
 
 
 static func get_gui_branch(gui_name: String) -> Node:
-	var instance := load("res://Resources/Singletons/GuiLayer.tscn").instantiate() as Node
+	var instance := load("res://Engine/Resources/Singletons/GuiLayer.tscn").instantiate() as Node
 	var branch := instance.get_node(gui_name)
 	instance.remove_child(branch)
 	branch.owner = null
@@ -104,7 +104,7 @@ static func get_gui_branch(gui_name: String) -> Node:
 
 
 static func has_gui_node(gui_name: String) -> bool:
-	var state := load("res://Resources/Singletons/GuiLayer.tscn").get_state() as SceneState
+	var state := load("res://Engine/Resources/Singletons/GuiLayer.tscn").get_state() as SceneState
 	
 	for i in state.get_node_count():
 		if state.get_node_name(i) == gui_name:

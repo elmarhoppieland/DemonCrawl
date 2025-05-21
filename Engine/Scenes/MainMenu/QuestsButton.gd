@@ -9,9 +9,9 @@ func _ready() -> void:
 	
 	pressed.connect(func():
 		if not Quest.has_current():
-			get_tree().change_scene_to_file("res://Scenes/QuestSelect/QuestSelect.tscn")
+			get_tree().change_scene_to_file("res://Engine/Scenes/QuestSelect/QuestSelect.tscn")
 		elif Stage.has_current():
-			get_tree().change_scene_to_file("res://Scenes/StageScene/StageScene.tscn")
+			get_tree().change_scene_to_file("res://Engine/Scenes/StageScene/StageScene.tscn")
 		else:
-			get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")
+			get_tree().change_scene_to_file("res://Engine/Scenes/StageSelect/StageSelect.tscn")
 	)

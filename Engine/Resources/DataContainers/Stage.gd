@@ -257,7 +257,7 @@ func get_bg_texture() -> CompressedTexture2D:
 
 
 func create_big_icon() -> ImageTexture:
-	var image: Image = ResourceLoader.load("res://Assets/skins".path_join(name).path_join("bg.png")).get_image()
+	var image: Image = ResourceLoader.load("res://Assets/Skins".path_join(name).path_join("bg.png")).get_image()
 	
 	image = image.get_region(Rect2i(image.get_width() / 2 - image.get_height() / 2, 0, image.get_height(), image.get_height()))
 	image.resize(58, 58)
@@ -304,7 +304,7 @@ func get_property(section: String, key: String, default: Variant = null) -> Vari
 	var stage_name := name
 	var value: Variant = null
 	while true:
-		cfg.load("res://Assets/skins/%s/properties.ini" % stage_name)
+		cfg.load("res://Assets/Skins/%s/properties.ini" % stage_name)
 		value = cfg.get_value(section, key, default)
 		if value != default and value is String and value.begins_with("->"):
 			stage_name = value.trim_prefix("->").strip_edges()

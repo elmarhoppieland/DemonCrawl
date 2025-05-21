@@ -576,7 +576,7 @@ func get_theme_icon(name: StringName, theme_type: StringName = "Cell") -> Textur
 	if _theme and _theme.has_icon(name, theme_type):
 		icon = _theme.get_icon(name, theme_type)
 	else:
-		icon = load("res://Resources/default_theme.tres").get_icon(name, theme_type)
+		icon = load("res://Engine/Resources/default_theme.tres").get_icon(name, theme_type)
 	
 	if icon is CustomTextureBase:
 		return icon.create()

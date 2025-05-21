@@ -127,7 +127,7 @@ func _update() -> void:
 
 @warning_ignore("shadowed_variable")
 static func create(collectible: Collectible) -> CollectibleDisplay:
-	var display := load("res://Resources/Scenes/CollectibleDisplay.tscn").instantiate() as CollectibleDisplay
+	var display := load("res://Engine/Resources/Scenes/CollectibleDisplay.tscn").instantiate() as CollectibleDisplay
 	display.collectible = collectible
 	return display
 

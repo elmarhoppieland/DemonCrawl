@@ -5,7 +5,7 @@ class_name Diamond
 # ==============================================================================
 
 func _get_texture() -> CompressedTexture2D:
-	return preload("res://Assets/sprites/diamond.png")
+	return preload("res://Assets/Sprites/diamond.png")
 
 
 func _interact() -> void:

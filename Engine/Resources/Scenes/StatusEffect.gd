@@ -110,13 +110,13 @@ func _restart_tween() -> void:
 
 
 static func create(uid: String = "") -> Initializer:
-	var instance: StatusEffect = ResourceLoader.load("res://Board/StatusEffectsOverlay/StatusEffect.tscn").instantiate()
+	var instance: StatusEffect = load("res://Engine/Resources/Scenes/StatusEffect.tscn").instantiate()
 	
 	return Initializer.new(instance, uid)
 
 
 static func from_dict(dict: Dictionary) -> StatusEffect:
-	var instance: StatusEffect = ResourceLoader.load("res://Board/StatusEffectsOverlay/StatusEffect.tscn").instantiate()
+	var instance: StatusEffect = load("res://Engine/Resources/Scenes/StatusEffect.tscn").instantiate()
 	
 	instance.duration = dict.duration
 	instance.origin = dict.origin

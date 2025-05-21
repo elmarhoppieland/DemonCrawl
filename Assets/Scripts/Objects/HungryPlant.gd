@@ -54,7 +54,7 @@ func _activate() -> void:
 			RewardType.MANA:
 				Quest.get_current().get_inventory().mana_gain(reward_amount, self)
 			RewardType.PRESENT:
-				const PRESENT = preload("res://Assets/items/Present.tres")
+				const PRESENT = preload("res://Assets/Items/Present.tres")
 				Quest.get_current().get_inventory().item_gain(PRESENT.duplicate())
 	
 	Toasts.add_toast(tr("STRANGER_PLANT_USE"), get_source())

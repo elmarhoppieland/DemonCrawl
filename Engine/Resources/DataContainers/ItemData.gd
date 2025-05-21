@@ -24,7 +24,7 @@ const TYPE_COLORS := {
 @export var mana := 0
 @export var cost := 0
 @export var atlas_region := Rect2(0, 0, 16, 16)
-@export var atlas: Texture2D = preload("res://Assets/sprites/items.png")
+@export var atlas: Texture2D = preload("res://Assets/Sprites/items.png")
 # ==============================================================================
 var _small_icon: Texture2D
 # ==============================================================================
@@ -71,6 +71,6 @@ func _property_get_revert(property: StringName) -> Variant:
 	if property == &"name":
 		return "ITEM_" + resource_path.get_file().get_basename().to_snake_case().to_upper()
 	if property == &"atlas":
-		return preload("res://Assets/sprites/items.png")
+		return preload("res://Assets/Sprites/items.png")
 	
 	return get_script().get_property_default_value(property)

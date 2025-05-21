@@ -8,7 +8,7 @@ const ANIM_DURATION := 0.4
 
 func _get_texture() -> AnimatedTextureSequence:
 	var texture := AnimatedTextureSequence.new()
-	texture.atlas = preload("res://Assets/sprites/coin.png")
+	texture.atlas = preload("res://Assets/Sprites/coin.png")
 	texture.duration = ANIM_DURATION
 	return texture
 

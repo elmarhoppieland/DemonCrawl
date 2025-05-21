@@ -41,7 +41,7 @@ var mod: StageMod :
 # ==============================================================================
 
 static func create(_mod: StageMod) -> StageModIcon:
-	var instance: StageModIcon = ResourceLoader.load("res://Resources/StageModIcon.tscn").instantiate()
+	var instance: StageModIcon = load("res://Engine/Resources/Scenes/StageModIcon.tscn").instantiate()
 	instance.mod = _mod
 	return instance
 

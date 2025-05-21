@@ -33,7 +33,7 @@ const TYPE_COLORS := {
 	set(value):
 		_atlas_region = value
 		emit_changed()
-@export var _atlas: Texture2D = preload("res://Assets/sprites/items.png") :
+@export var _atlas: Texture2D = preload("res://Assets/Sprites/items.png") :
 	set(value):
 		_atlas = value
 		emit_changed()
@@ -147,7 +147,7 @@ func _property_get_revert(property: StringName) -> Variant:
 	if property == &"_name":
 		return "ITEM_" + resource_path.get_file().get_basename().to_snake_case().to_upper()
 	if property == &"atlas":
-		return preload("res://Assets/sprites/items.png")
+		return preload("res://Assets/Sprites/items.png")
 	
 	return get_script().get_property_default_value(property)
 

@@ -13,7 +13,7 @@ class_name Nomad
 func _spawn() -> void:
 	var script: Script
 	while not script or not NomadOffer.is_enabled(script):
-		script = preload("res://Assets/loot_tables/NomadOffer.tres").generate()
+		script = preload("res://Assets/LootTables/NomadOffer.tres").generate()
 	
 	offer = script.new(self)
 	offer.notify_spawned()

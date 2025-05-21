@@ -27,7 +27,7 @@ class ItemFilter:
 	var _types: int = (1 << Item.Type.MAX) - 1
 	var _ignore_items_in_inventory := true# :
 		#get:
-			#if Inventory.items.any(func(item: Item) -> bool: return item.data == preload("res://Assets/items/Extra Pocket.tres")):
+			#if Inventory.items.any(func(item: Item) -> bool: return item.data == preload("res://Assets/Items/Extra Pocket.tres")):
 				#return false
 			#return _ignore_items_in_inventory
 	var _tags := PackedStringArray()
