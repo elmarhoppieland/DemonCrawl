@@ -18,10 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 Tooltip="res://Resources/Singletons/Tooltip.tscn"
-Focus="*res://Resources/Singletons/Focus.tscn"
+Focus="res://Resources/Singletons/Focus.tscn"
 Debug="res://Resources/Singletons/Debug.tscn"
 Toasts="res://Resources/Singletons/Toasts.tscn"
 ChestPopup="res://Resources/Singletons/ChestPopup.tscn"
+GuiLayer="res://Resources/Singletons/GuiLayer.tscn"
 
 [debug]
 
@@ -43,19 +44,30 @@ naming/script_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AutoThread/plugin.cfg", "res://addons/EffectManager/plugin.cfg", "res://addons/Eternity/plugin.cfg", "res://addons/IconManager/plugin.cfg", "res://addons/Promise/plugin.cfg", "res://addons/StaticClass/plugin.cfg", "res://addons/Stringifier/plugin.cfg", "res://addons/UserClassDB/plugin.cfg")
+enabled=PackedStringArray("res://addons/AutoThread/plugin.cfg", "res://addons/CustomTexturePreview/plugin.cfg", "res://addons/EffectManager/plugin.cfg", "res://addons/IconManager/plugin.cfg", "res://addons/Promise/plugin.cfg", "res://addons/StaticClass/plugin.cfg", "res://addons/Stringifier/plugin.cfg", "res://addons/UserClassDB/plugin.cfg")
 
 [eternity]
 
 named_paths/defaults={
 "settings": "user://settings.ini"
 }
+editor/editor_save_path="res://EditorAssets/EditorSave.ini"
+
+[filesystem]
+
+import/blender/enabled=false
 
 [gui]
 
 theme/custom="res://Resources/default_theme.tres"
 theme/custom_font="res://Assets/fonts/04B_03__.TTF"
 theme/default_font_antialiasing=0
+
+[importer_defaults]
+
+csv_translation={
+"delimiter": 1
+}
 
 [input]
 
@@ -143,7 +155,7 @@ debug_overlay_toggle={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Assets/localization/localization.en.translation")
+locale/translations=PackedStringArray("res://Assets/localization/localization.en.translation", "res://Assets/localization/localization-strangers.en.translation", "res://Assets/localization/localization-items.en.translation")
 
 [rendering]
 

@@ -12,6 +12,6 @@ _description = "ITEM_TRAPPER_DESCRIPTION"
 _type = 0
 _mana = 0
 _cost = 2
+_tags = PackedStringArray()
 _atlas_region = Rect2(32, 32, 16, 16)
 _atlas = ExtResource("1_odwvl")
-_current_mana = 0

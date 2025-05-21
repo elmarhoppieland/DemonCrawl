@@ -1,22 +1,20 @@
 @tool
 extends CellObject
-class_name CellCoin
+class_name Coin
 
 # ==============================================================================
+const ANIM_DURATION := 0.4
+# ==============================================================================
 
-func _get_texture() -> TextureSequence:
-	var texture := TextureSequence.new()
+func _get_texture() -> AnimatedTextureSequence:
+	var texture := AnimatedTextureSequence.new()
 	texture.atlas = preload("res://Assets/sprites/coin.png")
-	texture.size = Cell.CELL_SIZE
+	texture.duration = ANIM_DURATION
 	return texture
 
 
 func _get_palette() -> CompressedTexture2D:
-	return get_cell().get_theme_icon("coin_palette", "Cell")
-
-
-func _get_animation_delta() -> float:
-	return 0.1
+	return get_theme_icon("coin_palette", "Cell")
 
 
 func _interact() -> void:
@@ -25,7 +23,7 @@ func _interact() -> void:
 	
 	get_cell().add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)
 	
-	tween_texture_to(get_stage().get_statbar().get_coin_position())
+	tween_texture_to(GuiLayer.get_statbar().get_coin_position())
 	
 	clear()
 
@@ -36,7 +34,3 @@ func _get_charitable_amount() -> int:
 
 func _is_charitable() -> bool:
 	return true
-
-
-func _animate(time: float) -> void:
-	get_texture().animate(0.5, time)

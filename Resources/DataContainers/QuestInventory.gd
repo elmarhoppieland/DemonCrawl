@@ -12,6 +12,9 @@ class_name QuestInventory
 				item_removed.emit(items[i])
 			elif items[i].get_script() != value[i].get_script():
 				item_transformed.emit(items[i], value[i])
+			
+			if i < value.size():
+				value[i].cleared.connect(item_lose.bind(value[i]))
 		
 		items = value
 		emit_changed()
@@ -26,15 +29,23 @@ func get_item_count() -> int:
 
 
 func get_item(index: int) -> Item:
+	if index < -items.size() or index >= items.size():
+		return null
+	
 	return items[index]
 
 
 func item_gain(item: Item) -> void:
+	if not item.resource_path.is_empty():
+		item = item.duplicate()
+	
 	items.append(item)
 	item.notify_inventory_added()
 	item_added.emit(item)
 	emit_changed()
 	item.notify_gained()
+	
+	item.cleared.connect(item_lose.bind(item))
 
 
 func item_lose(item: Item) -> void:
@@ -59,6 +70,8 @@ func item_transform(old_item: Item, new_item: Item) -> void:
 	item_transformed.emit(old_item, new_item)
 	old_item.notify_lost()
 	new_item.notify_gained()
+	
+	new_item.cleared.connect(item_lose.bind(new_item))
 
 
 func item_has(item: Item, exact: bool = false) -> bool:
@@ -86,3 +99,18 @@ func mana_gain(mana: int, source: Object) -> void:
 	
 	for i in mana:
 		mana_items[rng.randi() % mana_items.size()].gain_mana(1)
+
+
+func get_random_item() -> Item:
+	return items.pick_random()
+
+
+func item_lose_random() -> void:
+	if items.is_empty():
+		return
+	
+	item_lose(get_random_item())
+
+
+func is_empty() -> bool:
+	return items.is_empty()

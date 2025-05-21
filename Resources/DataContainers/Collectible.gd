@@ -21,6 +21,9 @@ var _texture: ImageTexture :
 		var image := texture.get_image().get_region(_get_atlas_region())
 		_texture = ImageTexture.create_from_image(_parse_image(image))
 		return _texture
+
+# ==============================================================================
+@export var _origin_path := "" : get = get_origin_path
 # ==============================================================================
 
 func _init() -> void:
@@ -36,17 +39,14 @@ func create_status(uid: String = "") -> StatusEffect.Initializer:
 #region internals
 
 func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:
-	#RenderingServer.canvas_item_add_rect(to_canvas_item, Rect2(Vector2.ZERO, get_size()), _get_texture_bg_color())
 	_texture.draw(to_canvas_item, pos, modulate, transpose)
 
 
 func _draw_rect(to_canvas_item: RID, rect: Rect2, tile: bool, modulate: Color, transpose: bool) -> void:
-	#RenderingServer.canvas_item_add_rect(to_canvas_item, rect, _get_texture_bg_color())
 	_texture.draw_rect(to_canvas_item, rect, tile, modulate, transpose)
 
 
 func _draw_rect_region(to_canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color, transpose: bool, clip_uv: bool) -> void:
-	#RenderingServer.canvas_item_add_rect(to_canvas_item, rect, _get_texture_bg_color())
 	_texture.draw_rect_region(to_canvas_item, rect, src_rect, modulate, transpose, clip_uv)
 
 
@@ -60,6 +60,7 @@ func _get_height() -> int:
 
 func _has_alpha() -> bool:
 	return _texture.has_alpha()
+
 #endregion
 
 ## Returns the main [SceneTree].
@@ -96,10 +97,47 @@ func _parse_image(image: Image) -> Image:
 	return image
 
 
-## Virtual method to add an effect for when the [Collectible] is used. Note that,
-## by default, nothing prevents the player from using the collectible again afterwards.
+## Uses this [Collectible], if possible. First calls [method _use], and then [method _post].
+func use() -> void:
+	if can_use():
+		_use()
+		post()
+
+
+## Virtual method to add an effect for when the [Collectible] is used. Note that, by default,
+## nothing prevents the player from using the collectible again afterwards. To prevent this,
+## add a cost in [method _post].
+## [br][br][b]Note:[/b] If using the [Collectible] requires player input, [method _invoke]
+## should also be overridden to allow non-player game effects to invoke the [Collectible].
+## If using the [Collectible] does not require player input, this is not needed and
+## [method _use] is called when the [Collectible] is invoked.
 func _use() -> void:
 	pass
+
+
+## Posts this [Collectible]. This usally means performing its cost, like losing it.
+func post() -> void:
+	_post()
+
+
+## Virtual method. Called after this [Collectible] is used. Should perform the [Collectible]'s
+## cost, e.g. losing it. Not called if the [Collectible] is invoked.
+func _post() -> void:
+	pass
+
+
+## Invokes the [Collectible], if possible. This means that the [Collectible] will be used
+## without player input, often by randomly selecting a player's choice, e.g. picking
+## the targeted [Cell] randomly.
+func invoke() -> void:
+	_invoke()
+
+
+## Virtual method. Usually called when the [Collectible] is used by a game effect that is not the player.
+## Should use the [Collectible] without requiring player input. If the [Collectible] requires a
+## target [Cell], should target it on a random [Cell].
+func _invoke() -> void:
+	_use()
 
 
 ## Returns whether this collectible can be used. If this returns [code]true[/code],
@@ -163,3 +201,12 @@ func get_max_progress() -> int:
 
 func _get_max_progress() -> int:
 	return 0
+
+
+## Returns the original path that this [Collectible] was stored at on the filesystem.
+## If this is a duplicate of a saved [Collectible], this returns the path of the
+## original [Collectible].
+func get_origin_path() -> String:
+	if _origin_path.is_empty() and not resource_path.is_empty():
+		_origin_path = resource_path
+	return _origin_path

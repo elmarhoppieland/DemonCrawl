@@ -123,7 +123,10 @@ static func stringify(variable: Variant) -> String:
 				var class_string := UserClassDB.script_get_class(variable.get_script())
 				
 				if variable.has_method("_export"):
-					return "(%s)%s" % [class_string, stringify(variable._export())]
+					var export = variable._export()
+					if export is Array and not export.is_typed():
+						return "%s(%s)" % [class_string, stringify(export).trim_prefix("[").trim_suffix("]")]
+					return "%s(%s)" % [class_string, stringify(export)]
 				
 				return "Object(%s,%s)" % [class_string, ",".join(variable.get_property_list().filter(func(prop: Dictionary):
 					return prop.name in variable and prop.name != "script" # we are assigning the script ourselves
@@ -140,9 +143,7 @@ static func stringify(variable: Variant) -> String:
 			)) + "\n}"
 		TYPE_ARRAY:
 			variable = variable as Array
-			var stringified: PackedStringArray = variable.map(func(a: Variant) -> String:
-				return stringify(a)
-			)
+			var stringified: PackedStringArray = variable.map(stringify)
 			if variable.is_typed():
 				var typed_builtin: int = variable.get_typed_builtin()
 				var type := String(UserClassDB.script_get_class(variable.get_typed_script())) if typed_builtin == TYPE_OBJECT else type_string(typed_builtin)
@@ -172,43 +173,73 @@ static func parse(string: String) -> Variant:
 		return _Helpers.parse_typed_array(string)
 	elif string.begins_with("Object("):
 		return _Helpers.parse_object(string)
-	elif string.match("(*)*"):
-		return _Helpers.parse_importer(string)
-	else:
-		return str_to_var(string)
+	elif string.match("*(*)"):
+		var value := _Helpers.parse_importer(string)
+		if value != null:
+			return value
+	
+	return str_to_var(string)
 
 
 static func split_ignoring_nested(s: String, delimiter: String) -> PackedStringArray:
-		var parts := PackedStringArray()
-		var current := ""
-		var inside_string := false
-		var depth := 0
+	var parts := PackedStringArray()
+	var current := ""
+	var inside_string := false
+	var depth := 0
+	
+	var i := 0
+	while i < s.length():
+		var c := s[i]
 		
-		var i := 0
-		while i < s.length():
-			var c := s[i]
-			
-			if c == "\"" and (i == 0 or s[i - 1] != "\\"):
-				inside_string = !inside_string
-			elif not inside_string:
-				if c == "(" or c == "{" or c == "[":
-					depth += 1
-				elif c == ")" or c == "}" or c == "]":
-					depth -= 1
-				elif c == delimiter[0] and depth == 0 and s.substr(i, delimiter.length()) == delimiter:
-					parts.append(current.strip_edges())
-					current = ""
-					i += delimiter.length()
-					continue
-			
-			current += c
-			
+		if c == "\"" and (i == 0 or s[i - 1] != "\\"):
+			inside_string = not inside_string
+		elif not inside_string:
+			if c == "(" or c == "{" or c == "[":
+				depth += 1
+			elif c == ")" or c == "}" or c == "]":
+				depth -= 1
+			elif c == delimiter[0] and depth == 0 and s.substr(i, delimiter.length()) == delimiter:
+				parts.append(current.strip_edges())
+				current = ""
+				i += delimiter.length()
+				continue
+		
+		current += c
+		
+		i += 1
+	
+	if current != "":
+		parts.append(current.strip_edges())
+	
+	return parts
+
+
+static func get_depth(s: String, opening_char: String, closing_char: String) -> int:
+	var inside_string := false
+	var depth := 0
+	var escaped := false
+	
+	var i := 0
+	while i < s.length():
+		var c := s[i]
+		
+		if c == "\\" and not escaped:
+			escaped = true
 			i += 1
+			continue
+		if c == "\"" and not escaped:
+			inside_string = not inside_string
+		elif not inside_string:
+			if c == opening_char:
+				depth += 1
+			elif c == closing_char:
+				depth -= 1
 		
-		if current != "":
-			parts.append(current.strip_edges())
-		
-		return parts
+		escaped = false
+		i += 1
+	
+	return depth
+
 
 class _Helpers:
 	static func parse_dictionary(s: String) -> Dictionary:
@@ -276,6 +307,19 @@ class _Helpers:
 		return obj
 	
 	static func parse_importer(s: String) -> Object:
-		var class_string := s.trim_prefix("(").get_slice(")", 0)
+		var class_string := s.get_slice("(", 0)
+		if not UserClassDB.class_exists(class_string):
+			return null
+		
+		var args: Array = Stringifier.parse("[" + s.trim_prefix(class_string + "(").trim_suffix(")") + "]")
+		
 		var script := UserClassDB.class_get_script(class_string)
-		return script._import(Stringifier.parse(s.trim_prefix("(" + class_string + ")")))
+		if script.has_method("_static_import"):
+			return script._static_import.callv([class_string] + args)
+		
+		if script.has_method("_import"):
+			return script._import.callv(args)
+		
+		var instance := UserClassDB.instantiate(class_string)
+		instance._import.callv(args)
+		return instance

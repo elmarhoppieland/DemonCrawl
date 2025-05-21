@@ -1,6 +1,6 @@
 @tool
 extends CellObject
-class_name CellChest
+class_name TreasureChest
 
 # ==============================================================================
 var tween: Tween

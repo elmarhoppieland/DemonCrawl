@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy08xwud1qrel"]
+
+[ext_resource type="Texture2D" uid="uid://bcymo5keobmrl" path="res://Assets/sprites/orbs/orb_bubble.png" id="1_k6xkl"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/CellObjectTextureRect.gd" id="2_gghuw"]
+[ext_resource type="Script" path="res://Assets/scripts/orbs/BubbleSprite.gd" id="2_spln2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r7tr5"]
+
+[node name="BubbleSprite" type="Node2D"]
+script = ExtResource("2_spln2")
+
+[node name="CellObjectTextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_gghuw")
+
+[node name="OrbSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_k6xkl")
+
+[node name="CollisionArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_r7tr5")

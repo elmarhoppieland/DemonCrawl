@@ -1,33 +1,31 @@
-[gd_scene load_steps=26 format=3 uid="uid://csnbqhntbeb87"]
+[gd_scene load_steps=25 format=3 uid="uid://csnbqhntbeb87"]
 
-[ext_resource type="Texture2D" uid="uid://su7b02a334o2" path="res://Assets/skins/forest/empty.png" id="1_1te6k"]
+[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://Assets/skins/default/empty.png" id="1_ar66c"]
 [ext_resource type="Script" path="res://Scenes/StageScene/StageScene.gd" id="1_ene3y"]
-[ext_resource type="Texture2D" uid="uid://drmyj530c3xb" path="res://Assets/skins/forest/checking.png" id="2_vws3o"]
+[ext_resource type="Texture2D" uid="uid://cid1fd12q4fvd" path="res://Assets/skins/default/checking.png" id="2_hdub6"]
 [ext_resource type="Script" path="res://Scenes/StageScene/StageBackground.gd" id="3_gkgt8"]
-[ext_resource type="Texture2D" uid="uid://4nylpcy0f4xj" path="res://Assets/skins/forest/flag.png" id="3_k4a37"]
+[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/skins/default/flag.png" id="3_vq5wx"]
 [ext_resource type="PackedScene" uid="uid://d3lv5svg7xhht" path="res://Scenes/StageScene/FinishButton.tscn" id="4_dhd0n"]
-[ext_resource type="Texture2D" uid="uid://vvoyutrtxvd4" path="res://Assets/skins/forest/flag_bg.png" id="4_fx71a"]
+[ext_resource type="Texture2D" uid="uid://dwfec06v6p7h1" path="res://Assets/skins/default/flag_bg.png" id="4_dkk0g"]
 [ext_resource type="PackedScene" uid="uid://b07xutea3tepb" path="res://Scenes/StageScene/Board/Board.tscn" id="4_xuksn"]
-[ext_resource type="Texture2D" uid="uid://baseiykds5c7e" path="res://Assets/skins/forest/full.png" id="5_r14ff"]
-[ext_resource type="Texture2D" uid="uid://d2ybgqm1qjpln" path="res://Assets/skins/forest/bg.png" id="6_6vni6"]
-[ext_resource type="Texture2D" uid="uid://dfwsoi1dna1xn" path="res://Assets/skins/forest/monster.png" id="6_vdar5"]
+[ext_resource type="Texture2D" uid="uid://cwud7hep7qi5b" path="res://Assets/skins/default/full.png" id="5_mrdqu"]
+[ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://Assets/skins/default/bg.png" id="6_n7lcx"]
 [ext_resource type="Shader" path="res://Scenes/StageScene/BoardBackground.gdshader" id="9_do03l"]
 [ext_resource type="PackedScene" uid="uid://cnbk18l62cltc" path="res://Resources/Singletons/MouseCastSprite.tscn" id="10_m6ujj"]
 [ext_resource type="Script" path="res://Scenes/StageScene/StageTimerLabel.gd" id="14_ffsll"]
-[ext_resource type="PackedScene" uid="uid://bqgqlnp8nk2x2" path="res://Resources/Scenes/Statbar.tscn" id="15_04b05"]
 [ext_resource type="PackedScene" uid="uid://dodpk1h3w0qvp" path="res://Scenes/StageScene/FinishPopup.tscn" id="15_df000"]
 [ext_resource type="Script" path="res://Scenes/StageScene/StageMonsterCountLabel.gd" id="15_nadoc"]
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="16_4hyf5"]
 [ext_resource type="Script" path="res://Scenes/StageScene/StagePowerLabel.gd" id="16_vj40o"]
+[ext_resource type="Script" path="res://Resources/Singletons/GuiEnabler.gd" id="19_kjs20"]
 
-[sub_resource type="Theme" id="Theme_d6m62"]
-Cell/icons/bg = ExtResource("1_1te6k")
-Cell/icons/checking = ExtResource("2_vws3o")
-Cell/icons/flag = ExtResource("3_k4a37")
-Cell/icons/flag_bg = ExtResource("4_fx71a")
-Cell/icons/hidden = ExtResource("5_r14ff")
-Cell/icons/monster_atlas = ExtResource("6_vdar5")
-StageScene/icons/bg = ExtResource("6_6vni6")
+[sub_resource type="Theme" id="Theme_7mm6j"]
+Cell/icons/bg = ExtResource("1_ar66c")
+Cell/icons/checking = ExtResource("2_hdub6")
+Cell/icons/flag = ExtResource("3_vq5wx")
+Cell/icons/flag_bg = ExtResource("4_dkk0g")
+Cell/icons/hidden = ExtResource("5_mrdqu")
+StageScene/icons/bg = ExtResource("6_n7lcx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sxuvl"]
 shader = ExtResource("9_do03l")
@@ -65,7 +63,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_d6m62")
+theme = SubResource("Theme_7mm6j")
 script = ExtResource("1_ene3y")
 
 [node name="BackgroundCanvas" type="CanvasLayer" parent="."]
@@ -79,7 +77,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_6vni6")
+texture = ExtResource("6_n7lcx")
 stretch_mode = 5
 script = ExtResource("3_gkgt8")
 
@@ -96,9 +94,6 @@ offset_top = 20.0
 offset_right = 112.0
 offset_bottom = 88.0
 grow_horizontal = 2
-
-[node name="Statbar" parent="ForegroundCanvas" instance=ExtResource("15_04b05")]
-unique_name_in_owner = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ForegroundCanvas"]
 offset_left = 12.0
@@ -155,16 +150,23 @@ script = ExtResource("16_vj40o")
 [node name="TweenerCanvas" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 
-[node name="Board" parent="." instance=ExtResource("4_xuksn")]
-unique_name_in_owner = true
-layout_mode = 1
-
 [node name="MouseCastSprite" parent="." instance=ExtResource("10_m6ujj")]
 unique_name_in_owner = true
 visible = false
 
 [node name="FinishPopup" parent="." instance=ExtResource("15_df000")]
 unique_name_in_owner = true
+
+[node name="Board" parent="." instance=ExtResource("4_xuksn")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="Projectiles" type="Node2D" parent="Board"]
+unique_name_in_owner = true
+
+[node name="GuiEnabler" type="Node" parent="."]
+script = ExtResource("19_kjs20")
+enabled = 3
 
 [connection signal="pressed" from="ForegroundCanvas/FinishButton" to="." method="_on_finish_button_pressed"]
 [connection signal="stage_finished" from="Board" to="." method="_on_board_stage_finished"]

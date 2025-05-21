@@ -115,7 +115,7 @@ func get_score_reward(type: StringName) -> ScoreReward:
 			var reward := ScoreReward.new(0)
 			if Quest.get_current().get_stats().life < Quest.get_current().get_stats().max_life:
 				for cell in Stage.get_current().get_instance().get_cells():
-					if cell.object is CellHeart:
+					if cell.object is Heart:
 						reward.add(5)
 			
 			reward.cap(ceili(Stage.get_current().get_instance().get_3bv() * 0.7))

@@ -9,4 +9,4 @@ func interact() -> void:
 
 func disable() -> void:
 	if Focus.get_focused_node() == control:
-		Focus.hide()
+		Focus.get_instance().hide()

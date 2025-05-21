@@ -3,21 +3,19 @@ extends TextureRect
 class_name CellTextureRect
 
 # ==============================================================================
-var _mode := Cell.Mode.HIDDEN
+@export var mode := Cell.Mode.INVALID :
+	set(value):
+		mode = value
+		_update()
 # ==============================================================================
 
 func _ready() -> void:
-	_mode = owner.get_mode()
 	theme_changed.connect(_update)
-	owner.mode_changed.connect(func(mode: Cell.Mode) -> void:
-		_mode = mode
-		_update()
-	)
 	_update()
 
 
 func _update() -> void:
-	match _mode:
+	match mode:
 		Cell.Mode.HIDDEN:
 			texture = get_theme_icon("hidden", "Cell")
 		Cell.Mode.VISIBLE:

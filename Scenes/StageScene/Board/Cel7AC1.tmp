@@ -1,0 +1,147 @@
+[gd_scene load_steps=17 format=3 uid="uid://bl8bwoewf0m57"]
+
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/Cell.gd" id="1_e3wqt"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/CellNomad.gd" id="2_ue0ox"]
+[ext_resource type="Script" path="res://Resources/DataContainers/CellData.gd" id="3_685kk"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/CellTextureRect.gd" id="3_te1nx"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/CellValueLabel.gd" id="4_3k5be"]
+[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://Assets/skins/default/empty.png" id="4_uiyoy"]
+[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/skins/default/flag.png" id="5_3kk2r"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/CellFlagSprite.gd" id="6_ty2a2"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/CellObjectTextureRect.gd" id="7_3xaxv"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/TooltipGrabber.gd" id="7_ggwll"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/TextParticles.gd" id="12_4ov3c"]
+[ext_resource type="Script" path="res://Resources/UtilityNode/Grabber.gd" id="13_tuktl"]
+
+[sub_resource type="Texture2D" id="Texture2D_lbhep"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_ue0ox")
+offer = ""
+_cell_position = Vector2i(0, 0)
+
+[sub_resource type="Resource" id="Resource_aggif"]
+script = ExtResource("3_685kk")
+mode = 1
+object = SubResource("Texture2D_lbhep")
+value = 2
+
+[sub_resource type="Curve" id="Curve_0u5ry"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_rm8r2"]
+font_size = 8
+font_color = Color(1, 0.772549, 0.772549, 1)
+outline_size = 3
+outline_color = Color(0.737255, 0.0470588, 0.0470588, 1)
+
+[node name="Cell" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_e3wqt")
+_data = SubResource("Resource_aggif")
+
+[node name="CellTextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("4_uiyoy")
+script = ExtResource("3_te1nx")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Anchor" type="Node2D" parent="Control"]
+scale = Vector2(1.00655, 1.00655)
+
+[node name="CellObjectTextureRect" type="TextureRect" parent="Control/Anchor"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("Texture2D_lbhep")
+stretch_mode = 3
+script = ExtResource("7_3xaxv")
+_mode = 1
+
+[node name="TooltipGrabber" type="Node" parent="Control/Anchor/CellObjectTextureRect"]
+script = ExtResource("7_ggwll")
+text = "STRANGER_NOMAD"
+
+[node name="CellValueLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -3.0
+offset_right = 7.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+horizontal_alignment = 1
+script = ExtResource("4_3k5be")
+
+[node name="CellFlagSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, 8)
+texture = ExtResource("5_3kk2r")
+script = ExtResource("6_ty2a2")
+
+[node name="TextParticles" type="CPUParticles2D" parent="." node_paths=PackedStringArray("particle_viewport", "particle_label")]
+unique_name_in_owner = true
+position = Vector2(8, 8)
+emitting = false
+amount = 1
+one_shot = true
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, 100)
+initial_velocity_min = 35.0
+initial_velocity_max = 45.0
+scale_amount_curve = SubResource("Curve_0u5ry")
+script = ExtResource("12_4ov3c")
+text = "+1"
+text_color_preset = 2
+particle_viewport = NodePath("../SubViewport")
+particle_label = NodePath("../SubViewport/Label")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+gui_disable_input = true
+size = Vector2i(8, 8)
+
+[node name="Label" type="Label" parent="SubViewport"]
+offset_left = 1.0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "+1"
+label_settings = SubResource("LabelSettings_rm8r2")
+
+[node name="Grabber" type="Node" parent="."]
+script = ExtResource("13_tuktl")
+
+[connection signal="interacted" from="Grabber" to="." method="_on_interacted"]

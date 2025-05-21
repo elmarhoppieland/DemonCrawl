@@ -99,25 +99,25 @@ static func change_monsters_killed(monsters_killed: int) -> int:
 	return monsters_killed
 
 
-static func get_coin_value(value: int, cell: Cell) -> int:
+static func get_coin_value(value: int, cell: CellData) -> int:
 	value = EffectManager.propagate(MutableSignals.get_coin_value, [value, cell], 0)
 	EffectManager.propagate(Signals.get_coin_value, [value, cell])
 	return value
 
 
-static func get_diamond_value(value: int, cell: Cell) -> int:
+static func get_diamond_value(value: int, cell: CellData) -> int:
 	value = EffectManager.propagate(MutableSignals.get_diamond_value, [value, cell], 0)
 	EffectManager.propagate(Signals.get_diamond_value, [value, cell])
 	return value
 
 
-static func get_chest_reward_count(reward_count: int, cell: Cell) -> int:
+static func get_chest_reward_count(reward_count: int, cell: CellData) -> int:
 	reward_count = EffectManager.propagate(MutableSignals.get_chest_reward_count, [reward_count, cell], 0)
 	EffectManager.propagate(Signals.get_chest_reward_count, [reward_count, cell])
 	return reward_count
 
 
-static func get_chest_item_max_cost(max_cost: int, cell: Cell) -> int:
+static func get_chest_item_max_cost(max_cost: int, cell: CellData) -> int:
 	max_cost = EffectManager.propagate(MutableSignals.get_chest_item_max_cost, [max_cost, cell], 0)
 	EffectManager.propagate(Signals.get_chest_item_max_cost, [max_cost, cell])
 	return max_cost
@@ -128,13 +128,13 @@ static func item_use(item: Item) -> void:
 	EffectManager.propagate(Signals.item_use, [item])
 
 
-static func get_chest_rewards(rewards: Array[Collectible], cell: Cell) -> Array[Collectible]:
+static func get_chest_rewards(rewards: Array[Collectible], cell: CellData) -> Array[Collectible]:
 	rewards = EffectManager.propagate(MutableSignals.get_chest_rewards, [rewards, cell], 0)
 	EffectManager.propagate(Signals.get_chest_rewards, [rewards, cell])
 	return rewards
 
 
-static func cell_open(cell: Cell) -> void:
+static func cell_open(cell: CellData) -> void:
 	EffectManager.propagate(MutableSignals.cell_open, [cell])
 	EffectManager.propagate(Signals.cell_open, [cell])
 
@@ -198,3 +198,19 @@ static func get_heart_value(value: int = 1) -> int:
 	value = EffectManager.propagate(MutableSignals.get_heart_value, [value], 0)
 	EffectManager.propagate(Signals.get_heart_value, [value])
 	return value
+
+
+static func turn() -> void:
+	EffectManager.propagate(MutableSignals.turn, [])
+	EffectManager.propagate(Signals.turn, [])
+
+
+static func lose_coins(amount: int, destination: Object) -> int:
+	amount = EffectManager.propagate(MutableSignals.lose_coins, [amount, destination], 0)
+	EffectManager.propagate(Signals.lose_coins, [amount, destination])
+	return amount
+
+
+static func stage_leave() -> void:
+	EffectManager.propagate(MutableSignals.stage_leave, [])
+	EffectManager.propagate(Signals.stage_leave, [])

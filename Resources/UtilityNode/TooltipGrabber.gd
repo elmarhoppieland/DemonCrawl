@@ -1,3 +1,4 @@
+@tool
 extends Grabber
 class_name TooltipGrabber
 
@@ -36,4 +37,4 @@ func unhover() -> void:
 
 
 func interact() -> void:
-	hover()
+	hover.call_deferred()

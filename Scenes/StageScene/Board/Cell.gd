@@ -21,10 +21,15 @@ const CELL_SIZE := Vector2i(16, 16) ## The size of a [Cell] in pixels.
 var _board_position := Vector2i.ZERO : get = get_board_position
 # ==============================================================================
 @onready var _text_particles: TextParticles = %TextParticles
+@onready var _texture_shatter: TextureShatter = %TextureShatter : get = get_texture_shatter
+@onready var _direction_arrow: Sprite2D = %DirectionArrow
 # ==============================================================================
-signal mode_changed(mode: Mode) ## Emitted when the mode (see [method get_mode]) of this [Cell] changes.
+signal mode_changed(mode: Mode) ## Emitted when the [enum Mode] (see [method get_mode]) of this [Cell] changes.
 signal value_changed(value: int) ## Emitted when the value (see [method get_value]) of this [Cell] changes.
 signal object_changed(object: CellObject) ## Emitted when the object (see [method get_object]) of this [Cell] changes.
+signal aura_changed(aura: Aura) ## Emitted when the [Aura] (see [method get_aura]) of this [Cell] changes.
+
+signal changed() ## Emitted when any of this [Cell]'s properties changes.
 # ==============================================================================
 
 ## Creates and returns a new [Cell] from its [PackedScene].
@@ -34,36 +39,118 @@ static func create(board_position: Vector2i = Vector2i.ZERO) -> Cell:
 	return cell
 
 
-## Opens this [Cell], showing its contents.
+## Opens this [Cell], showing its contents. Returns [code]true[/code] if the [Cell]
+## could be opened, and [code]false[/code] otherwise.
 ## [br][br]Calls [method Effects.cell_open] immediately after opening the [Cell].
-func open(force: bool = false) -> void:
+func open(force: bool = false, allow_loot: bool = true) -> bool:
+	return get_data().open(force, allow_loot, get_stage())
+	
+	#if get_mode() == Mode.VISIBLE:
+		#return false
+	#if not force and get_mode() == Mode.FLAGGED:
+		#return false
+	#
+	#if not get_stage().get_instance().is_generated():
+		#get_stage().get_instance().generate(get_data())
+	#
+	#if get_value() != 0:
+		#return _open(force, allow_loot)
+	#
+	#var to_explore: Array[Cell] = [self]
+	#var visited: Array[Cell] = []
+	#
+	#while not to_explore.is_empty():
+		#var current_cell := to_explore.pop_back() as Cell
+		#
+		#visited.append(current_cell)
+		#current_cell._open(force, allow_loot)
+		#
+		#if current_cell.get_value() != 0 or current_cell.get_object() is Monster:
+			#continue
+		#
+		#for c in current_cell.get_nearby_cells():
+			#if c in visited or c in to_explore or c.is_revealed() or c.is_flagged():
+				#continue
+			#to_explore.append(c)
+	#
+	#return true
+
+
+func _open(force: bool = false, allow_loot: bool = true) -> bool:
 	if get_mode() == Mode.VISIBLE:
-		return
+		return false
 	if not force and get_mode() == Mode.FLAGGED:
-		return
+		return false
 	
 	set_mode(Mode.VISIBLE)
 	
 	Quest.get_current().get_inventory().mana_gain(get_value(), self)
 	
-	if not is_occupied() and get_value() == 0 and randf() > 0.8 * (1 - get_stage().get_density()):
-		spawn(preload("res://Assets/loot_tables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
+	if allow_loot and not is_occupied() and get_value() == 0 and randf() > 0.8 * (1 - get_stage().get_density()):
+		_generate_content()
+		#spawn(preload("res://Assets/loot_tables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
 	
 	if is_occupied():
 		get_object().notify_revealed(not force)
 	
-	Effects.cell_open(self)
+	Effects.cell_open(get_data())
+	
+	return true
 
 
-## Spawns an instance of the provided [CellObject] script in this [Cell].
-func spawn(base: CellObjectBase) -> CellObject:
-	var instance := base.create(self, get_stage())
-	_set_object(instance)
-	return instance
+func _generate_content() -> void:
+	var table := preload("res://Assets/loot_tables/CellContent.tres").generate() as LootTable
+	if not table:
+		return
+	
+	var content := table.generate(1 / (1 - get_stage().get_density())) as CellObjectBase
+	while content and not content.can_spawn():
+		content = table.generate(1 / (1 - get_stage().get_density()))
+	
+	spawn(content)
 
 
-## Spawns an existing [CellObject] in this [Cell].
-## [br][br][br]Note:[/b] Though this method will not prevent it, using the same object
+## Spawns an instance of the provided [CellObject] script in this [Cell], or the nearest
+## empty cell if this cell is occupied.
+func spawn(base: CellObjectBase, visible_only: bool = false) -> CellObject:
+	if not base:
+		return null
+	
+	if not is_occupied():
+		var instance := base.create(get_stage())
+		_set_object(instance)
+		return instance
+	
+	var radius := 1
+	while radius <= max(get_stage().size.x - get_board_position().x - 1, get_board_position().x, get_stage().size.y - get_board_position().y - 1, get_board_position().y):
+		var available_cells: Array[Cell] = []
+		for x in range(get_board_position().x - radius, get_board_position().x + radius + 1):
+			for y in [get_board_position().y - radius, get_board_position().y + radius]:
+				var cell := get_stage().get_board().get_cell(Vector2i(x, y))
+				if cell and not cell.is_occupied() and not visible_only or cell.is_revealed():
+					available_cells.append(cell)
+		for x in [get_board_position().x - radius, get_board_position().x + radius]:
+			for y in range(get_board_position().y - radius + 1, get_board_position().y + radius):
+				var cell := get_stage().get_board().get_cell(Vector2i(x, y))
+				if cell and not cell.is_occupied() and not visible_only or cell.is_revealed():
+					available_cells.append(cell)
+		
+		if not available_cells.is_empty():
+			var cell := available_cells.pick_random() as Cell
+			cell.spawn(base)
+			return
+		
+		radius += 1
+	
+	Toasts.add_toast(tr("OBJECT_OFF_WORLD").format({"object": tr("OBJECT_TYPE_" + UserClassDB.script_get_class(base.base_script).to_snake_case().to_upper())}), IconManager.get_icon_data("mastery/none").create_texture())
+	return
+
+
+## Spawns an existing [CellObject] in this [Cell]. If this cell is already occupied,
+## the new object will silently replace the old one. This does [b]not[/b] call cleanup
+## methods, so it is advised to call [method clear_object] before calling this if
+## the cell is occupied.
+## [br][br][b]Note:[/b] Though this method will not prevent it, using the same object
 ## for multiple [Cell]s may behave unexpectedly.
 func spawn_instance(instance: CellObject) -> void:
 	_set_object(instance)
@@ -93,6 +180,25 @@ func unflag() -> void:
 		set_mode(Cell.Mode.HIDDEN)
 
 
+## Applies the given [Aura] to this [Cell], and returns the created [Aura].
+## [br][br][b]Note:[/b] Each type of [Aura] is only instanced once, and subsequent
+## calls to this method will return the existing [Aura].
+func apply_aura(aura: Script) -> Aura:
+	var aura_instance := Aura.create(aura)
+	_set_aura(aura_instance)
+	if is_occupied():
+		get_object().notify_aura_applied()
+	return aura_instance
+
+
+## Sends a [Projectile] in the given [code]direction[/code] (or a random one if omitted).
+## Returns the [Projectile] created from the given [code]projectile[/code] [Script].
+func send_projectile(projectile: Script, direction: Vector2i = Vector2i.ZERO) -> Projectile:
+	var projectile_instance := projectile.new(get_board_position(), direction) as Projectile
+	projectile_instance.register()
+	return projectile_instance
+
+
 ## Adds a particle on this [Cell] showing the given text in the given color preset.
 func add_text_particle(text: String, color: TextParticles.ColorPreset) -> void:
 	_text_particles.text_color_preset = color
@@ -100,9 +206,49 @@ func add_text_particle(text: String, color: TextParticles.ColorPreset) -> void:
 	_text_particles.emitting = true
 
 
-## Returns this [Cell]'s object's [TextureRect].
+## Shows an arrow pointing in the given [code]direction[/code]. This arrow stays
+## visible until it is hidden using [method hide_direction_arrow].
+func show_direction_arrow(direction: Vector2i) -> void:
+	if not is_node_ready():
+		await ready
+	_direction_arrow.rotation = Vector2(direction).angle()
+	_direction_arrow.show()
+
+
+## Hides the direction arrow shown by [method show_direction_arrow].
+func hide_direction_arrow() -> void:
+	if not is_node_ready():
+		await ready
+	_direction_arrow.hide()
+
+
+## Returns the [TextureRect] of this [Cell]'s object.
 func get_object_texture_rect() -> CellObjectTextureRect:
 	return %CellObjectTextureRect
+
+
+## Returns this [Cell]'s [CellValueLabel].
+func get_value_label() -> CellValueLabel:
+	return %CellValueLabel
+
+
+## Returns this [Cell]'s [CellTextureRect].
+## [br][br]Should not be confused with [method get_object_texture_rect], which
+## returns the [CellObjectTextureRect] of this [Cell]'s object.
+func get_texture_rect() -> CellTextureRect:
+	return %CellTextureRect
+
+
+## Returns this [Cell]'s [CellAuraModulator].
+func get_aura_modulator() -> CellAuraModulator:
+	return %CellAuraModulator
+
+
+## Returns this [Cell]'s [TextureShatter] instance.
+func get_texture_shatter() -> TextureShatter:
+	if _texture_shatter:
+		return _texture_shatter
+	return get_node_or_null("%TextureShatter")
 
 
 ## Returns all [Cell]s horizontally or diagonally adjacent to this [Cell].
@@ -182,11 +328,11 @@ func is_occupied() -> bool:
 ## the number of nearby flags + monsters.
 func is_solved() -> bool:
 	if is_hidden():
-		return is_flagged() == get_object() is CellMonster
+		return is_flagged() == get_object() is Monster
 	
 	var count := 0
 	for cell in get_nearby_cells():
-		if cell.is_flagged() or (cell.is_revealed() and cell.get_object() is CellMonster):
+		if cell.is_flagged() or (cell.is_revealed() and cell.get_object() is Monster):
 			count += 1
 	
 	return count >= get_value()
@@ -197,9 +343,7 @@ func is_solved() -> bool:
 func is_flag_solved() -> bool:
 	var count := 0
 	for cell in get_nearby_cells():
-		if cell.is_hidden():
-			count += 1
-		elif cell.get_object() is CellMonster:
+		if cell.is_hidden() or cell.get_object() is Monster:
 			count += 1
 	
 	return count == get_value()
@@ -207,17 +351,75 @@ func is_flag_solved() -> bool:
 
 ## Sets the [CellData] instance of this [Cell] to [code]data[/code].
 func set_data(data: CellData) -> void:
+	const CONNECTIONS := {
+		"changed": "_data_changed",
+		"shatter_requested": "shatter",
+		"text_particle_requested": "add_text_particle",
+		"show_direction_arrow_requested": "show_direction_arrow",
+		"hide_direction_arrow_requested": "hide_direction_arrow",
+		"scale_object_requested": "scale_object",
+		"move_object_requested": "move_object_from"
+	}
+	
+	if _data and _data.changed.is_connected(_data_changed):
+		_data.changed.disconnect(_data_changed)
+	
+	if _data:
+		for signal_name in CONNECTIONS:
+			if _data.is_connected(signal_name, get(CONNECTIONS[signal_name])):
+				_data.disconnect(signal_name, get(CONNECTIONS[signal_name]))
+	
 	_data = data
 	
-	mode_changed.emit(data.mode)
-	value_changed.emit(data.value)
-	object_changed.emit(data.object)
+	_data_changed()
 	
-	data.changed.connect(func() -> void:
-		mode_changed.emit(data.mode)
-		value_changed.emit(data.value)
-		object_changed.emit(data.object)
-	)
+	if data:
+		for signal_name in CONNECTIONS:
+			data.connect(signal_name, get(CONNECTIONS[signal_name]))
+	
+	if data.direction_arrow != Vector2i.ZERO:
+		show_direction_arrow(data.direction_arrow)
+
+
+func _data_changed() -> void:
+	mode_changed.emit(get_mode())
+	value_changed.emit(get_value())
+	object_changed.emit(get_object())
+	aura_changed.emit(get_aura())
+	
+	changed.emit()
+	
+	if not is_node_ready():
+		await ready
+	
+	get_object_texture_rect().visible = get_mode() == Mode.VISIBLE
+	get_object_texture_rect().object = get_object()
+	
+	get_value_label().mode = get_mode()
+	get_value_label().value = get_value()
+	get_value_label().occupied = is_occupied()
+	
+	get_texture_rect().mode = get_mode()
+	
+	get_aura_modulator().mode = get_mode()
+	get_aura_modulator().aura = get_aura()
+
+
+func shatter(texture: Texture2D) -> void:
+	get_texture_shatter().source_texture = texture
+	get_texture_shatter().show()
+
+
+@warning_ignore("shadowed_variable_base_class")
+func scale_object(scale: float) -> void:
+	get_object_texture_rect().get_2d_anchor().scale = scale * Vector2.ONE
+
+
+func move_object_from(source: CellData) -> void:
+	const ANIM_DURATION := 0.2
+	
+	var source_cell := get_stage().get_board().get_cell(source.get_position(get_stage().get_instance()))
+	create_tween().tween_property(get_object_texture_rect().get_2d_anchor(), "position", Vector2.ZERO, ANIM_DURATION).from(source_cell.global_position - global_position).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
 
 ## Returns the [CellData] instance of the [Cell].
@@ -228,17 +430,18 @@ func get_data() -> CellData:
 
 
 func _set_object(value: CellObject) -> void:
-	_data.object = value
 	if value:
 		value._cell_position = _board_position
-	object_changed.emit(value)
+	_data.object = value
 
 
 ## Returns this [Cell]'s [CellObject], if it has one. Returns [code]null[/code] if
 ## this [Cell] has no object.
 ## [br][br]See also [method is_occupied].
 func get_object() -> CellObject:
-	return _data.object
+	if get_data():
+		return get_data().object
+	return null
 
 
 ## Removes this [Cell]'s [CellObject], if it has one.
@@ -252,7 +455,6 @@ func clear_object() -> void:
 func set_mode(mode: Cell.Mode) -> void:
 	assert(mode != Cell.Mode.INVALID, "Cells cannot have an invalid mode.")
 	_data.mode = mode
-	mode_changed.emit(mode)
 
 
 ## Returns this [Cell]'s mode. See each [enum Mode] constant for more information.
@@ -260,25 +462,46 @@ func set_mode(mode: Cell.Mode) -> void:
 ## and [method is_checking] over this method, as some [enum Mode] constants are used
 ## for multiple states and can therefore behave unexpectedly.
 func get_mode() -> Cell.Mode:
-	return _data.mode
+	if _data:
+		return _data.mode
+	return Cell.Mode.INVALID
 
 
 ## Sets the value of this [Cell] to [code]value[/code]. The value typically indicates
 ## the number of nearby monsters, but can be changed by many effects.
 func set_value(value: int) -> void:
 	_data.value = value
-	value_changed.emit(value)
 
 
 ## Returns this [Cell]'s value. This is usually the amount of nearby monsters, but
 ## various effects can change a [Cell]'s value to other values.
 func get_value() -> int:
-	return _data.value
+	if _data:
+		return _data.value
+	return 0
 
 
 ## Returns this [Cell]'s position on the [Board].
 func get_board_position() -> Vector2i:
 	return _board_position
+
+
+func _set_aura(aura: Aura) -> void:
+	get_data().aura = aura
+	if is_occupied():
+		get_object().notify_aura_changed()
+
+
+## Returns this [Cell]'s [Aura], if it has one. See also [method has_aura].
+func get_aura() -> Aura:
+	if get_data():
+		return get_data().aura
+	return null
+
+
+## Returns whether this [Cell] has an [Aura].
+func has_aura() -> bool:
+	return get_aura() != null
 
 
 ## Returns this [Cell]'s [Stage].

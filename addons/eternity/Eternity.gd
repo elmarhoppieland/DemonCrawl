@@ -24,11 +24,14 @@ static var loaded: Signal :
 	get:
 		return _Instance.loaded
 
-static var _save_cfg: EternalFile
+static var _save_cfg: EternalFile = null
 
 static var _initialized := false
 
 static var _named_path_load_queue := PackedStringArray()
+
+static var _processing_cfg: EternalFile = null : get = get_processing_file
+static var _processing_owner: Object = null : get = get_processing_owner
 # ==============================================================================
 
 static func _static_init() -> void:
@@ -50,6 +53,17 @@ static func _static_init() -> void:
 			get_defaults_cfg().save(DEFAULTS_FILE_PATH)
 	else:
 		_defaults_cfg.load(DEFAULTS_FILE_PATH)
+
+
+static func _editor_init() -> void:
+	if ProjectSettings.has_setting("eternity/editor/editor_save_path") and not ProjectSettings.get_setting("eternity/editor/editor_save_path").is_empty():
+		var editor_save_file := EternalFile.new()
+		editor_save_file.load(ProjectSettings.get_setting("eternity/editor/editor_save_path"))
+		
+		for script_name in editor_save_file.get_scripts():
+			var script := UserClassDB.class_get_script(script_name)
+			for eternal in editor_save_file.get_eternals(script_name):
+				script.set(eternal, editor_save_file.get_eternal(script_name, eternal))
 
 
 static func get_saved_value(save_path: String, script: Script, key: String) -> Variant:
@@ -83,8 +97,8 @@ static func save(path_name: String = "") -> void:
 			
 			var value = script.get(key)
 			
-			if script.has_method("_export_" + key):
-				value = script.call("_export_" + key)
+			if script.has_method("_export_" + key.lstrip("_")):
+				value = script.call("_export_" + key.lstrip("_"))
 			
 			file.set_eternal(script_class, key, value)
 			
@@ -101,6 +115,16 @@ static func save(path_name: String = "") -> void:
 		#cfg.save(_named_paths[named_path])
 	
 	saved.emit(file_path)
+
+
+static func get_processing_owner() -> Object:
+	if _processing_cfg and _processing_cfg.current_resource:
+		return _processing_cfg.current_resource
+	return _processing_owner
+
+
+static func get_processing_file() -> EternalFile:
+	return _processing_cfg
 
 
 static func get_save_name(path_name: String = "") -> String:
@@ -128,12 +152,14 @@ static func _reload_file(path_name: String = "") -> void:
 		return
 	
 	var cfg := EternalFile.new()
+	_processing_cfg = cfg
 	if path_name.is_empty():
 		_save_cfg = cfg
 	cfg.load(file_path)
 	
 	for script_class in _defaults_cfg.get_scripts():
 		var script := UserClassDB.class_get_script(script_class)
+		_processing_owner = script
 		assert(is_instance_valid(script))
 		for key in _defaults_cfg.get_eternals(script_class):
 			if "::" in key:
@@ -147,13 +173,19 @@ static func _reload_file(path_name: String = "") -> void:
 				push_error("Invalid key '%s' under section '%s': Could not find the key in the class." % [key, script_class])
 				continue
 			
-			var value = cfg.get_eternal(script_class, key, _defaults_cfg.get_eternal(script_class, prefix + key))
+			var value: Variant
+			if cfg.has_eternal(script_class, key):
+				value = cfg.get_eternal(script_class, key)
+			else:
+				value = _duplicate(_defaults_cfg.get_eternal(script_class, prefix + key))
+			
 			if script.has_method("_import_" + key):
 				value = script.call("_import_" + key, value)
 			
 			script[key] = value
 	
 	loaded.emit(file_path)
+	_processing_cfg = null
 
 
 static func _queue_named_path_load(path_name: String) -> void:
@@ -166,6 +198,17 @@ static func _queue_named_path_load(path_name: String) -> void:
 	_reload_file(path_name)
 	assert(path_name in _named_path_load_queue, "Unexpected result; investigate and add conditional return")
 	_named_path_load_queue.remove_at(_named_path_load_queue.find(path_name))
+
+
+static func _duplicate(value: Variant) -> Variant:
+	match typeof(value):
+		TYPE_ARRAY, TYPE_DICTIONARY, TYPE_PACKED_BYTE_ARRAY, TYPE_PACKED_COLOR_ARRAY,\
+		TYPE_PACKED_FLOAT32_ARRAY, TYPE_PACKED_FLOAT64_ARRAY, TYPE_PACKED_INT32_ARRAY,\
+		TYPE_PACKED_INT64_ARRAY, TYPE_PACKED_STRING_ARRAY, TYPE_PACKED_VECTOR2_ARRAY,\
+		TYPE_PACKED_VECTOR3_ARRAY:
+			return value.duplicate()
+		_:
+			return value
 
 
 class _Instance:

@@ -3,7 +3,6 @@ class_name StageCamera
 
 # ==============================================================================
 const DEFAULT_ZOOM := Vector2(3, 3)
-const ZOOM_INTERMEDIATE := Vector2(1.5, 1.5)
 const ZOOM_BEGIN := Vector2(0.75, 0.75)
 # ==============================================================================
 @export var move_speed := 0.0
@@ -51,19 +50,9 @@ func shake() -> void:
 	shake_enabled = false
 
 
-func get_zoom_level() -> Vector2:
-	return zoom
-
-
 func focus_progress() -> void:
 	position = Stage.get_current().get_board().get_progress_cell().board_position * Cell.CELL_SIZE
 
 
 func get_center() -> Vector2:
 	return position
-	
-	# TODO: investigate the intention here
-	# (was static, if we have an instance we return its position, if not we return the center of the viewport)
-	
-	# we need any node to get the main viewport here, Focus works here but anything else also works
-	#return Focus.get_viewport().size / 2

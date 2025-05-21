@@ -3,53 +3,52 @@ extends TextureRect
 class_name CellObjectTextureRect
 
 # ==============================================================================
-@export var _mode := Cell.Mode.HIDDEN
+@export var object: CellObject = null :
+	set(value):
+		object = value
+		
+		texture = value
+		
+		_update()
 # ==============================================================================
-var _delta_sum := 0.0
-# ==============================================================================
-@onready var _tooltip_grabber: TooltipGrabber = $TooltipGrabber
+@onready var _tooltip_grabber: TooltipGrabber = null :
+	set(value):
+		_tooltip_grabber = value
+		
+		if value:
+			value.about_to_show.connect(_on_tooltip_grabber_about_to_show)
 # ==============================================================================
 
 func _ready() -> void:
-	var cell := owner as Cell
-	
-	texture = cell.get_object()
-	_mode = cell.get_mode()
-	cell.object_changed.connect(func(object: CellObject) -> void:
-		texture = object
-		
-		if object:
-			material = object.get_material()
-			#var palette := object.get_palette()
-			#(material as ShaderMaterial).set_shader_parameter("palette_enabled", palette != null)
-			#(material as ShaderMaterial).set_shader_parameter("palette", palette)
-			
-			_tooltip_grabber.enabled = object.has_annotation_text()
-			_tooltip_grabber.text = object.get_annotation_text()
-		else:
-			#(material as ShaderMaterial).set_shader_parameter("palette_enabled", false)
-			material = null
-			
-			_tooltip_grabber.enabled = false
-		
-		_update()
-	)
-	cell.mode_changed.connect(func(mode: Cell.Mode) -> void:
-		_mode = mode
-		_update()
-	)
-	_update()
-
-
-func _process(delta: float) -> void:
-	if texture and texture is CellObject:
-		_delta_sum += delta
-		#texture.animate(_delta_sum)
+	_tooltip_grabber = get_node_or_null("TooltipGrabber")
 
 
 func _update() -> void:
-	visible = _mode == Cell.Mode.VISIBLE
+	if object:
+		material = object.get_material()
+		
+		if _tooltip_grabber:
+			_tooltip_grabber.enabled = object.has_annotation_text()
+	else:
+		material = null
+		
+		if _tooltip_grabber:
+			_tooltip_grabber.enabled = false
 
 
 func get_2d_anchor() -> Node2D:
 	return get_parent()
+
+
+func _validate_property(property: Dictionary) -> void:
+	match property.name:
+		&"texture":
+			property.usage |= PROPERTY_USAGE_READ_ONLY
+
+
+func _on_tooltip_grabber_about_to_show() -> void:
+	if not object:
+		_tooltip_grabber.text = ""
+		return
+	
+	_tooltip_grabber.text = object.get_annotation_text()

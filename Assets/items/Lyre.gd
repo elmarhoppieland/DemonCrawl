@@ -4,9 +4,12 @@ extends Item
 # ==============================================================================
 
 func _use() -> void:
-	if not get_tree().current_scene is StageSelect:
-		return
-	
 	Quest.get_current().get_selected_stage().monsters -= 5
-	
-	clear_mana()
+
+
+func _can_use() -> bool:
+	return super() and get_tree().current_scene is StageSelect
+
+
+func _invoke() -> void:
+	Quest.get_current().stages.pick_random().monsters -= 5

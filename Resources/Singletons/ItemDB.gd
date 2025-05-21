@@ -30,6 +30,7 @@ class ItemFilter:
 			#if Inventory.items.any(func(item: Item) -> bool: return item.data == preload("res://Assets/items/Extra Pocket.tres")):
 				#return false
 			#return _ignore_items_in_inventory
+	var _tags := PackedStringArray()
 	#var _rng: RandomNumberGenerator
 	
 	
@@ -87,6 +88,13 @@ class ItemFilter:
 	## inverse of [method set_ignore_items_in_inventory].
 	func set_allow_items_in_inventory(allow_items_in_inventory: bool = true) -> ItemFilter:
 		_ignore_items_in_inventory = not allow_items_in_inventory
+		return self
+	
+	## Only allow items with the specified [code]tag[/code]. If multiple tags are
+	## filtered, this filter will match items with any of the specified tags.
+	func filter_tag(tag: String) -> ItemFilter:
+		if tag not in _tags:
+			_tags.append(tag)
 		return self
 	
 	## Sets the [RandomNumberGenerator] used for randomizing.
@@ -148,6 +156,8 @@ class ItemFilter:
 		if not (1 << item.get_type()) & _types:
 			return false
 		if _ignore_items_in_inventory and item.get_type() != Item.Type.CONSUMABLE and Quest.get_current().get_inventory().item_has(item):
+			return false
+		if not _tags.is_empty() and Array(_tags).all(func(tag: String) -> bool: return not item.has_tag(tag)):
 			return false
 		
 		return true

@@ -53,11 +53,12 @@ func add_mastery_from_script(script_path: String) -> void:
 		return
 	
 	var mastery: Mastery = script.new()
-	mastery.level = TokenShop.get_purchased_level(Mastery.get_mastery_name_from_script(script))
+	mastery.level = TokenShop.get_purchased_level("MASTERY_" + mastery._get_identifier())
 	
-	add_mastery(Mastery.get_mastery_name_from_script(script), mastery.icon, script_path, mastery.get_description(), Mastery.get_unlock_text_from_script(script))
+	add_mastery("MASTERY_" + mastery._get_identifier(), mastery.icon, script_path, mastery.get_description())
 
 
+@warning_ignore("unused_parameter")
 func add_mastery(mastery_name: String, icon: Texture2D, identifier: String, description: PackedStringArray = [], unlock_text: String = "") -> void:
 	const LOCK_ALPHA := 0.5
 	
@@ -68,12 +69,12 @@ func add_mastery(mastery_name: String, icon: Texture2D, identifier: String, desc
 	
 	if not locked:
 		var grabber := CheckmarkGrabber.new()
-		grabber.main = Mastery.selected_path == identifier
+		#grabber.main = Mastery.selected_path == identifier
 		texture_rect.add_child(grabber)
 		
-		grabber.interacted.connect(func():
-			Mastery.selected_path = identifier
-		)
+		#grabber.interacted.connect(func():
+			#Mastery.selected_path = identifier
+		#)
 	
 	var tooltip_grabber := TooltipGrabber.new()
 	tooltip_grabber.text = tr(mastery_name)

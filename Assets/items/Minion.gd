@@ -13,7 +13,7 @@ func use() -> void:
 
 
 func damage(amount: int, source: Object) -> int:
-	if source is CellMonster:
+	if source is Monster:
 		clear()
 		source.kill()
 		return amount - 1

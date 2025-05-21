@@ -3,25 +3,23 @@ extends Label
 class_name CellValueLabel
 
 # ==============================================================================
-var _mode := Cell.Mode.HIDDEN
-var _value := 0
+@export var mode := Cell.Mode.INVALID :
+	set(new_mode):
+		mode = new_mode
+		if not is_node_ready():
+			await ready
+		visible = new_mode == Cell.Mode.VISIBLE and value != 0 and not occupied
+@export var value := 0 :
+	set(new_value):
+		value = new_value
+		if not is_node_ready():
+			await ready
+		visible = mode == Cell.Mode.VISIBLE and new_value != 0 and not occupied
+		text = str(new_value)
+@export var occupied := false :
+	set(new_occupied):
+		occupied = new_occupied
+		if not is_node_ready():
+			await ready
+		visible = mode == Cell.Mode.VISIBLE and value != 0 and not new_occupied
 # ==============================================================================
-
-func _ready() -> void:
-	_mode = owner.get_mode()
-	_value = owner.get_value()
-	owner.value_changed.connect(func(value: int) -> void:
-		_value = value
-		_update()
-	)
-	owner.mode_changed.connect(func(mode: Cell.Mode) -> void:
-		_mode = mode
-		_update()
-	)
-	owner.object_changed.connect(_update.unbind(1))
-	_update()
-
-
-func _update() -> void:
-	visible = _mode == Cell.Mode.VISIBLE and _value != 0 and not owner.is_occupied()
-	text = str(_value)

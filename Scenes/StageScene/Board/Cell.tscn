@@ -1,29 +1,25 @@
-[gd_scene load_steps=18 format=3 uid="uid://bl8bwoewf0m57"]
+[gd_scene load_steps=20 format=3 uid="uid://bl8bwoewf0m57"]
 
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/Cell.gd" id="1_e3wqt"]
 [ext_resource type="Script" path="res://Resources/DataContainers/CellData.gd" id="3_685kk"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/CellTextureRect.gd" id="3_te1nx"]
-[ext_resource type="Texture2D" uid="uid://cwud7hep7qi5b" path="res://Assets/skins/default/full.png" id="4_1xgkp"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/CellValueLabel.gd" id="4_3k5be"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/CellAuraModulator.gd" id="4_ocqma"]
+[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://Assets/skins/default/empty.png" id="4_uiyoy"]
 [ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/skins/default/flag.png" id="5_3kk2r"]
-[ext_resource type="Shader" path="res://Scenes/StageScene/Board/CellObject.gdshader" id="5_ua5pw"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/CellFlagSprite.gd" id="6_ty2a2"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/CellObjectTextureRect.gd" id="7_3xaxv"]
-[ext_resource type="Texture2D" uid="uid://bvlvfq854wx7v" path="res://Assets/sprites/heart_palette_default.png" id="7_8ac0g"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/TooltipGrabber.gd" id="7_ggwll"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/TextParticles.gd" id="12_4ov3c"]
+[ext_resource type="PackedScene" uid="uid://cn8gaau2ecden" path="res://Resources/Scenes/TextureShatter.tscn" id="13_mfvjy"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/Grabber.gd" id="13_tuktl"]
+[ext_resource type="Shader" path="res://Resources/Shaders/DirectionArrow.gdshader" id="14_27bf8"]
+[ext_resource type="Texture2D" uid="uid://cx3w4pgpiwi3p" path="res://Assets/sprites/dir_arrow.png" id="14_ffohp"]
 
-[sub_resource type="Resource" id="Resource_aggif"]
+[sub_resource type="Resource" id="Resource_fixtg"]
 script = ExtResource("3_685kk")
-mode = 0
-value = 0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4sbnp"]
-resource_local_to_scene = true
-shader = ExtResource("5_ua5pw")
-shader_parameter/palette_enabled = false
-shader_parameter/palette = ExtResource("7_8ac0g")
+mode = 1
+value = 2
 
 [sub_resource type="Curve" id="Curve_0u5ry"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -35,20 +31,63 @@ font_color = Color(1, 0.772549, 0.772549, 1)
 outline_size = 3
 outline_color = Color(0.737255, 0.0470588, 0.0470588, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6d8hb"]
+shader = ExtResource("14_27bf8")
+shader_parameter/run_time = 1.0
+shader_parameter/wait_time = 0.1
+shader_parameter/start_offset = -2.0
+shader_parameter/end_offset = 1.0
+
 [node name="Cell" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 16.0
 offset_bottom = 16.0
 script = ExtResource("1_e3wqt")
-_data = SubResource("Resource_aggif")
+_data = SubResource("Resource_fixtg")
 
-[node name="CellTextureRect" type="TextureRect" parent="."]
+[node name="CellAuraModulator" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_ocqma")
+mode = 1
+
+[node name="CellTextureRect" type="TextureRect" parent="CellAuraModulator"]
+unique_name_in_owner = true
 layout_mode = 2
 offset_right = 16.0
 offset_bottom = 16.0
-texture = ExtResource("4_1xgkp")
+mouse_filter = 2
+texture = ExtResource("4_uiyoy")
 script = ExtResource("3_te1nx")
+mode = 1
+
+[node name="CellValueLabel" type="Label" parent="CellAuraModulator"]
+unique_name_in_owner = true
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -3.0
+offset_right = 7.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+horizontal_alignment = 1
+script = ExtResource("4_3k5be")
+mode = 1
+value = 2
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -62,12 +101,10 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Anchor" type="Node2D" parent="Control"]
-scale = Vector2(1.00655, 1.00655)
 
 [node name="CellObjectTextureRect" type="TextureRect" parent="Control/Anchor"]
 unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_4sbnp")
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -84,25 +121,8 @@ script = ExtResource("7_3xaxv")
 
 [node name="TooltipGrabber" type="Node" parent="Control/Anchor/CellObjectTextureRect"]
 script = ExtResource("7_ggwll")
+text = "STRANGER_MAGE"
 enabled = false
-
-[node name="CellValueLabel" type="Label" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -6.0
-offset_top = -3.0
-offset_right = 7.0
-offset_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "0"
-horizontal_alignment = 1
-script = ExtResource("4_3k5be")
 
 [node name="CellFlagSprite" type="Sprite2D" parent="."]
 visible = false
@@ -142,5 +162,20 @@ label_settings = SubResource("LabelSettings_rm8r2")
 
 [node name="Grabber" type="Node" parent="."]
 script = ExtResource("13_tuktl")
+
+[node name="TextureShatter" parent="." instance=ExtResource("13_mfvjy")]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+position = Vector2(8, 8)
+
+[node name="DirectionArrow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+material = SubResource("ShaderMaterial_6d8hb")
+position = Vector2(8, 8)
+texture = ExtResource("14_ffohp")
+offset = Vector2(9, 0)
 
 [connection signal="interacted" from="Grabber" to="." method="_on_interacted"]

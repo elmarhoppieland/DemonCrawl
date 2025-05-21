@@ -11,12 +11,6 @@ static var debug_alerts: bool = Eternal.create(false, "settings")
 @onready var _toasts_container: VBoxContainer = %ToastsContainer
 # ==============================================================================
 
-static func _static_init() -> void:
-	Effects.Signals.quest_start.connect(func() -> void:
-		add_debug_toast("Quest started: %s on difficulty %s" % [TranslationServer.tr(Quest.get_current().name), QuestsManager.selected_difficulty.get_name()])
-	)
-
-
 func _init() -> void:
 	assert(not _instance, "Can only have one instance of Singleton '%s'. Use static functions instead." % name)
 	
@@ -37,5 +31,7 @@ static func add_toast(text: String, icon: Texture2D, debug_toast: bool = false) 
 	var toast := Toast.create(text, icon)
 	
 	_instance._toasts_container.add_child(toast)
+	
+	toast.finished.connect(toast.queue_free)
 	
 	return toast

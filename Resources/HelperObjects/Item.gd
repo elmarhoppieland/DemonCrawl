@@ -26,8 +26,9 @@ const TYPE_COLORS := {
 @export var _name := "" : set = _set_name
 @export_multiline var _description := ""
 @export var _type := Type.PASSIVE : set = _set_type, get = get_type
-@export var _mana := 0 : set = _set_max_mana, get = get_max_mana
+@export var _mana := 0 : set = set_max_mana, get = get_max_mana
 @export var _cost := 0 : get = get_cost
+@export var _tags: PackedStringArray : get = get_tags
 @export var _atlas_region := Rect2(0, 0, 16, 16) :
 	set(value):
 		_atlas_region = value
@@ -36,9 +37,11 @@ const TYPE_COLORS := {
 	set(value):
 		_atlas = value
 		emit_changed()
-@export var _current_mana := 0 : set = set_mana, get = get_mana
 # ==============================================================================
+var _current_mana := 0 : set = set_mana, get = get_mana
 var _in_inventory := false
+# ==============================================================================
+signal cleared()
 # ==============================================================================
 
 #region internals
@@ -46,8 +49,6 @@ var _in_inventory := false
 func _init() -> void:
 	super()
 	
-	if _type == Type.MAGIC:
-		_current_mana = _mana
 	if _name.is_empty() and Engine.is_editor_hint():
 		(func() -> void: _name = "ITEM_" + resource_path.get_file().get_basename().to_snake_case().to_upper()).call_deferred()
 
@@ -74,7 +75,7 @@ func _get_annotation_text() -> String:
 
 
 func _get_annotation_title() -> String:
-	return "[color=#" + get_texture_bg_color().to_html(false) + "]" + tr(_name) + "[/color]"
+	return "[color=#" + get_texture_bg_color().to_html(false) + "]" + tr(_name).to_upper() + "[/color]"
 
 
 func _get_annotation_subtext() -> String:
@@ -101,6 +102,15 @@ func _get_max_progress() -> int:
 	return get_max_mana()
 
 
+func _post() -> void:
+	if get_type() == Type.CONSUMABLE:
+		clear()
+		return
+	
+	if has_mana():
+		clear_mana()
+
+
 func _export() -> Dictionary:
 	var dict := {
 		"path": get_path()
@@ -119,6 +129,10 @@ static func _import(value: Dictionary) -> Item:
 	if "_mana" in value:
 		item._current_mana = value._mana
 	return item
+
+
+func _to_string() -> String:
+	return tr(get_name())
 
 
 func _property_can_revert(property: StringName) -> bool:
@@ -140,9 +154,8 @@ func _property_get_revert(property: StringName) -> Variant:
 
 func _validate_property(property: Dictionary) -> void:
 	match property.name:
-		"_in_inventory":
-			if not Engine.is_editor_hint():
-				property.usage |= PROPERTY_USAGE_STORAGE
+		"_in_inventory", "_current_mana" when not Engine.is_editor_hint():
+			property.usage |= PROPERTY_USAGE_STORAGE
 
 
 func _set_name(name: String) -> void:
@@ -161,7 +174,7 @@ func _set_type(type: Type) -> void:
 	emit_changed()
 
 
-func _set_max_mana(mana: int) -> void:
+func set_max_mana(mana: int) -> void:
 	_mana = mana
 	emit_changed()
 
@@ -204,6 +217,7 @@ func _inventory_remove() -> void:
 ## Notifies the item that it has been gained. This method will call [method _gain]
 ## to allow items to react to being gained.
 func notify_gained() -> void:
+	charge()
 	_gain()
 
 
@@ -235,7 +249,7 @@ func _lose() -> void:
 func _can_use() -> bool:
 	if _type == Type.CONSUMABLE:
 		return true
-	if _type == Type.MAGIC and is_charged():
+	if has_mana() and is_charged():
 		return true
 	
 	return false
@@ -259,6 +273,11 @@ func is_charged() -> bool:
 
 func _is_active() -> bool:
 	return _in_inventory
+
+
+## Fully charges this [Item]'s mana. Does nothing if the item does not have mana.
+func charge() -> void:
+	set_mana(get_max_mana())
 
 
 ## Sets this item's current mana to [code]mana[/code].
@@ -300,9 +319,17 @@ func get_attributes() -> QuestPlayerAttributes:
 	return get_quest().get_attributes()
 
 
+func get_stage() -> Stage:
+	return Stage.get_current()
+
+
+func get_board() -> Board:
+	return get_stage().get_board()
+
+
 ## Removes this item from the inventory.
 func clear() -> void:
-	get_inventory().item_lose(self)
+	cleared.emit()
 
 
 ## Resets this item's current mana to zero.
@@ -319,13 +346,13 @@ func transform(new_item: Item) -> void:
 ## Targets a [Cell]. Waits for the player to select a [Cell] and then return it.
 ## This method is a coroutine, so it should be called with [code]await[/code].
 ## See also [method target_cells].
-func target_cell() -> Cell:
-	return await Stage.get_current().get_scene().cast(self)
+func target_cell() -> CellData:
+	return await Stage.get_current().get_instance().cast(self)
 
 
 ## Targets multiple [Cell]s. Waits for the player to select a [Cell] and then
 ## returns all [Cell]s within the given [code]radius[/code] of the selected cell.
-func target_cells(radius: int) -> Array[Cell]:
+func target_cells(radius: int) -> Array[CellData]:
 	if not Stage.has_current():
 		return []
 	
@@ -334,14 +361,14 @@ func target_cells(radius: int) -> Array[Cell]:
 	if not origin:
 		return []
 	
-	var cells: Array[Cell] = []
+	var cells: Array[CellData] = []
 	var topleft := origin.get_board_position() - (radius - 1) * Vector2i.ONE
 	for offset_y in radius * 2 - 1:
 		var y := topleft.y + offset_y
 		for offset_x in radius * 2 - 1:
 			var x := topleft.x + offset_x
 			var pos := Vector2i(x, y)
-			var cell := Stage.get_current().get_board().get_cell(pos)
+			var cell := Stage.get_current().get_instance().get_cell(pos)
 			if cell:
 				cells.append(cell)
 	
@@ -368,11 +395,11 @@ func get_items() -> Array[Item]:
 
 
 func life_restore(life: int, source: Object = self) -> void:
-	get_inventory().life_restore(life, source)
+	get_stats().life_restore(life, source)
 
 
 func life_lose(life: int, source: Object = self) -> void:
-	get_inventory().life_lose(life, source)
+	get_stats().life_lose(life, source)
 
 #endregion
 
@@ -391,10 +418,20 @@ func is_mana_enabled() -> bool:
 
 
 func get_mana() -> int:
+	if not Engine.is_editor_hint() and not resource_path.is_empty():
+		return get_max_mana()
 	return _current_mana
 
 
 func get_cost() -> int:
 	return _cost
+
+
+func get_tags() -> PackedStringArray:
+	return _tags
+
+
+func has_tag(tag: String) -> bool:
+	return tag in _tags
 
 #endregion

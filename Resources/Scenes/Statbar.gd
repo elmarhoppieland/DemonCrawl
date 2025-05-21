@@ -13,8 +13,22 @@ var _inventory_open := false
 #@onready var _stats_tooltip_grabber: TooltipGrabber = %StatsTooltipGrabber
 @onready var _stats: StatsDisplay = %StatsDisplay
 @onready var _inventory_icon_hover: TextureRect = %Hover
+@onready var _heirloom_displays: Array[HeirloomDisplay] = [%HeirloomDisplay1, %HeirloomDisplay2, %HeirloomDisplay3]
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
+
+func _ready() -> void:
+	if not Quest.has_current():
+		return
+	
+	Quest.get_current().changed.connect(_update_heirloom_activity)
+	_update_heirloom_activity()
+
+
+func _update_heirloom_activity() -> void:
+	for heirloom_display in _heirloom_displays:
+		heirloom_display.active = Quest.get_current().heirlooms_active
+
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory_toggle"):
@@ -54,3 +68,9 @@ func _on_inventory_icon_mouse_exited() -> void:
 
 func _on_stats_tooltip_grabber_about_to_show() -> void:
 	pass
+
+
+func _on_heirloom_display_interacted(slot_idx: int) -> void:
+	var item := Codex.use_heirloom(slot_idx).duplicate()
+	Quest.get_current().heirlooms_active = false
+	Quest.get_current().get_inventory().item_gain(item)

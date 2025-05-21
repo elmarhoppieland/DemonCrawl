@@ -92,31 +92,32 @@ func overlay_select_right(path: String) -> String:
 	return "Set the right overlay to " + path + "."
 
 
-func inspect(keyword: String, side: String = "l") -> String:
-	const KEYWORDS := {
-		"player": "/root/QuestScene/QuestCanvas/Player"
-	}
-	
-	keyword = keyword.to_lower()
-	
-	if not keyword in KEYWORDS:
-		return "[color=red]Unknown keyword '%s'.[/color]" % keyword
-	
-	var path: String = KEYWORDS[keyword]
-	var node := get_node_or_null(path)
-	if not node:
-		return "[color=red]The object with keyword '%s' is not in the scene tree.[/color]" % keyword
+func inspect(object: Variant, side: String = "l") -> String:
+	if object is String:
+		const KEYWORDS := {
+			"player": "/root/QuestScene/QuestCanvas/Player"
+		}
+		
+		var keyword: String = object.to_lower()
+		
+		if not keyword in KEYWORDS:
+			return "[color=red]Unknown keyword '%s'.[/color]" % keyword
+		
+		var path: String = KEYWORDS[keyword]
+		object = get_node_or_null(path)
+		if not object:
+			return "[color=red]The object with keyword '%s' is not in the scene tree.[/color]" % keyword
 	
 	match side:
 		"l":
-			Debug.left_object = node
+			Debug.left_object = object
 		"r":
-			Debug.right_object = node
+			Debug.right_object = object
 		_:
 			return "[color=red]Expected a side as the 2nd argument.[/color]"
 	
-	return "Set the %s overlay to %s." % ["left" if side == "l" else "right", keyword]
+	return "Set the %s overlay to %s." % ["left" if side == "l" else "right", object]
 
 
-func inspectr(keyword: String) -> String:
-	return inspect(keyword, "r")
+func inspectr(object: Variant) -> String:
+	return inspect(object, "r")

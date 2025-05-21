@@ -3,48 +3,12 @@ extends Resource
 class_name StageInstance
 
 # ==============================================================================
-const CELL_MODE_IDS := {
-	Cell.Mode.INVALID: "!",
-	Cell.Mode.HIDDEN: "h",
-	Cell.Mode.VISIBLE: "v",
-	Cell.Mode.FLAGGED: "f",
-	Cell.Mode.CHECKING: "h"
-}
-# ==============================================================================
-var cells: Array[CellData] = [] :
+@export var cells: Array[CellData] = [] :
 	set(value):
 		cells = value
 		if Engine.is_editor_hint() and get_stage() and value.size() > get_stage().area():
 			value.resize(get_stage().area())
 		emit_changed()
-@export var _cells := "" :
-	set(value):
-		_cells = value
-		
-		assert(cells.is_empty())
-		
-		var cell := CellData.new()
-		cells.append(cell)
-		for c in value:
-			if c.is_valid_int():
-				if not cell:
-					cell = CellData.new()
-					cells.append(cell)
-				cell.value *= 10
-				cell.value += c.to_int()
-			elif c == "m":
-				(func() -> void: cell.object = CellMonster.new(cell.get_position(self), get_stage())).call_deferred()
-			elif c in CELL_MODE_IDS.values():
-				cell.mode = CELL_MODE_IDS.find_key(c)
-				cell = null
-	get:
-		return "".join(cells.map(func(cell: CellData) -> String:
-			var string := str(cell.value)
-			if cell.object is CellMonster:
-				string += "m"
-			string += CELL_MODE_IDS[cell.get_mode()]
-			return string
-		))
 # ==============================================================================
 @export var _stage: Stage : set = set_stage, get = get_stage
 @export var _time := 0.0 : get = get_timef
@@ -56,6 +20,8 @@ var cells: Array[CellData] = [] :
 @export var _flagless := true : get = is_flagless
 @export var _untouchable := true : get = is_untouchable
 # ==============================================================================
+var _scene: StageScene : get = get_scene
+
 var _timer_last_read_usec := 0
 var _timer_read_on_this_frame := false :
 	set(value):
@@ -85,10 +51,10 @@ func _stage_changed() -> void:
 	emit_changed()
 
 
-## Generates this [StageInstance], spawning [CellMonster]s at random [Cell]s.
+## Generates this [StageInstance], spawning [Monster]s at random [Cell]s.
 ## [br][br]Cells horizontally or diagonally adjacent to [code]start_cell[/code] will
 ## not contain a monster.
-func generate(start_cell: Vector2i) -> void:
+func generate(start_cell: CellData) -> void:
 	const COORD_OFFSETS: PackedInt32Array = [-1, 0, 1]
 	
 	assert(not is_generated(), "Cannot generate a StageInstance that has already generated.")
@@ -96,7 +62,7 @@ func generate(start_cell: Vector2i) -> void:
 	var invalid_indices := PackedInt32Array()
 	for dy in COORD_OFFSETS:
 		for dx in COORD_OFFSETS:
-			var neighbor := start_cell + Vector2i(dx, dy)
+			var neighbor := start_cell.get_position(self) + Vector2i(dx, dy)
 			if get_stage().has_coord(neighbor):
 				invalid_indices.append(neighbor.x + neighbor.y * get_stage().size.x)
 	
@@ -114,7 +80,7 @@ func generate(start_cell: Vector2i) -> void:
 		
 		var coord := Vector2i(idx % get_stage().size.x, idx / get_stage().size.x)
 		
-		cells[idx].object = CellMonster.new(coord, get_stage())
+		cells[idx].object = Monster.new(get_stage())
 		
 		for dx in COORD_OFFSETS:
 			for dy in COORD_OFFSETS:
@@ -145,6 +111,45 @@ func create_cell(idx: int) -> Cell:
 	return cell
 
 
+func get_cell_content_spawn_rate() -> float:
+	const BASE_PROB := 0.3
+	const MOD_FACTOR := 0.13
+	const DENSITY_FACTOR := 0.5
+	return 1 - (1 - BASE_PROB) * exp(-MOD_FACTOR * get_stage().get_mods_difficulty()) * (1 - get_stage().get_density()) ** DENSITY_FACTOR
+
+
+func get_cell_content_quality(rare_loot_modifier: float = 1.0) -> float:
+	if get_stage().monsters == get_stage().area():
+		# this probably shouldn't happen since we wouldn't have space to spawn loot,
+		# but let's allow it anyway
+		return INF
+	
+	const MOD_FACTOR := 3.0
+	return rare_loot_modifier * (1 + get_stage().get_mods_difficulty() / MOD_FACTOR) / (1 - get_stage().get_density())
+
+
+func generate_cell_content(rare_loot_modifier: float = 1.0) -> CellObjectBase:
+	if randf() > get_cell_content_spawn_rate():
+		return null
+	
+	var table := load("res://Assets/loot_tables/CellContent.tres").generate() as LootTable
+	if not table:
+		return
+	
+	var quality := get_cell_content_quality(rare_loot_modifier)
+	var content: CellObjectBase = table.generate(quality)
+	var i := 0
+	while not content or not content.can_spawn():
+		if i > 100:
+			Debug.log_error("LootTable '%s' could not generate a cell's content." % table.resource_path)
+			return null
+		i += 1
+		
+		content = table.generate(quality)
+	
+	return content
+
+
 ## Returns all reward types if the [StageInstance] would be finished now.
 func get_reward_types() -> PackedStringArray:
 	var types := PackedStringArray(["victory"])
@@ -168,7 +173,7 @@ func get_reward_types() -> PackedStringArray:
 	for cell in get_stage().get_board().get_cells():
 		if not "charitable" in types and cell.get_object() and cell.get_object().is_charitable():
 			types.append("charitable")
-		if not "heartless" in types and cell.get_object() and cell.get_object() is CellHeart:
+		if not "heartless" in types and cell.get_object() and cell.get_object() is Heart:
 			types.append("heartless")
 	
 	if Quest.get_current().stages.all(func(a: Stage) -> bool: return a.completed or a is SpecialStage):
@@ -231,7 +236,7 @@ func get_mode(idx: int) -> Cell.Mode:
 ## Returns whether the get_stage() is finished, i.e. all non-monster [Cell]s are revealed.
 func is_finished() -> bool:
 	for data in cells:
-		if data.mode != Cell.Mode.VISIBLE and not data.object is CellMonster:
+		if data.mode != Cell.Mode.VISIBLE and not data.object is Monster:
 			return false
 	
 	return true
@@ -249,7 +254,7 @@ func get_3bv() -> int:
 	var empty_groups: Array[CellData] = []
 	
 	for cell in get_cells():
-		if cell.object is CellMonster:
+		if cell.object is Monster:
 			continue
 		if cell.value == 0:
 			if cell in empty_groups:
@@ -296,7 +301,7 @@ func get_remaining_monster_count() -> int:
 	var monsters := 0
 	
 	for cell in get_cells():
-		if cell.object is CellMonster and cell.is_hidden():
+		if cell.object is Monster and cell.is_hidden():
 			monsters += 1
 		if cell.is_flagged():
 			monsters -= 1
@@ -344,3 +349,18 @@ func set_timer_paused(timer_paused: bool) -> void:
 
 func is_timer_paused() -> bool:
 	return _timer_paused
+
+
+## Returns the currently active [StageScene].
+func get_scene() -> StageScene:
+	if is_instance_valid(_scene):
+		return _scene
+	
+	var loop := Engine.get_main_loop()
+	assert(loop is SceneTree, "Expected a SceneTree as the main loop, but a %s was found." % loop.get_class())
+	
+	var current_scene := (loop as SceneTree).current_scene
+	if current_scene is StageScene:
+		_scene = current_scene
+	
+	return _scene

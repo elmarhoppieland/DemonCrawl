@@ -3,6 +3,8 @@ extends Control
 class_name Board
 
 # ==============================================================================
+const CELL_SEPARATION := Vector2i(1, 1)
+# ==============================================================================
 @onready var _cell_container: BoardCellContainer = %BoardCellContainer :
 	get:
 		if not _cell_container and has_node("%BoardCellContainer"):
@@ -40,6 +42,23 @@ func get_cell(at: Vector2i) -> Cell:
 	if at.x >= get_stage().size.x or at.y >= get_stage().size.y:
 		return null
 	return _cell_container.get_child(at.x + at.y * get_stage().size.x)
+
+
+## Returns the [Cell] at the given [code]global[/code] position.
+func get_cell_at_global(global: Vector2) -> Cell:
+	return get_cell(get_cell_position_at_global(global))
+
+
+## Returns the global position at the given [code]cell_position[/code].
+func get_global_at_cell_position(cell_position: Vector2i, centered: bool = true) -> Vector2:
+	var global := Vector2(cell_position * (Cell.CELL_SIZE + CELL_SEPARATION))
+	if centered:
+		global += Vector2(Cell.CELL_SIZE) / 2
+	return get_global_transform() * global
+
+
+func get_cell_position_at_global(global: Vector2) -> Vector2i:
+	return Vector2i(global * get_global_transform()) / (Cell.CELL_SIZE + CELL_SEPARATION)
 
 
 ## Returns an [Array] of all [Cell]s.

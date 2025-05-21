@@ -69,7 +69,12 @@ func lose() -> void:
 
 @warning_ignore("shadowed_variable")
 func spend_coins(coins: int, destination: Object) -> void:
-	self.coins -= Effects.spend_coins(coins, destination)
+	lose_coins(Effects.spend_coins(coins, destination), destination)
+
+
+@warning_ignore("shadowed_variable")
+func lose_coins(coins: int, destination: Object) -> void:
+	self.coins -= mini(Effects.lose_coins(coins, destination), self.coins)
 
 
 func damage(amount: int, source: Object) -> void:
@@ -78,3 +83,12 @@ func damage(amount: int, source: Object) -> void:
 		life_lose(amount, source)
 	if Stage.has_current() and Stage.get_current().has_scene():
 		Stage.get_current().get_board().get_camera().shake()
+
+
+func gain_souls(souls: int, source: Object) -> void:
+	if life == max_life:
+		max_life += souls
+		life = max_life
+	else:
+		max_life += souls
+		life_restore(souls, source)

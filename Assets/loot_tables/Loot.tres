@@ -1,28 +1,28 @@
-[gd_resource type="Resource" script_class="LootTable" load_steps=11 format=3 uid="uid://s3q6chy65iag"]
+[gd_resource type="Resource" script_class="LootTable" load_steps=11 format=3 uid="uid://c2gh03qbscoec"]
 
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Coin.gd" id="1_1sjnu"]
 [ext_resource type="Script" path="res://Resources/DataContainers/LootTable.gd" id="1_gciuk"]
-[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/CellCoin.gd" id="1_phqbk"]
 [ext_resource type="Script" path="res://Resources/DataContainers/CellObjectBase.gd" id="1_q3m3a"]
-[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/CellDiamond.gd" id="3_5uoj4"]
-[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/CellChest.gd" id="4_a3802"]
-[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/CellHeart.gd" id="5_46f8x"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Diamond.gd" id="3_61wjr"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/TreasureChest.gd" id="4_a3802"]
+[ext_resource type="Script" path="res://Scenes/StageScene/Board/Objects/Heart.gd" id="5_46f8x"]
 
-[sub_resource type="Resource" id="Resource_051o3"]
+[sub_resource type="Resource" id="Resource_ja4qr"]
 resource_name = "Coin"
 script = ExtResource("1_q3m3a")
-base_script = ExtResource("1_phqbk")
+base_script = ExtResource("1_1sjnu")
 
-[sub_resource type="Resource" id="Resource_cmw0d"]
+[sub_resource type="Resource" id="Resource_rs0x1"]
 resource_name = "Diamond"
 script = ExtResource("1_q3m3a")
-base_script = ExtResource("3_5uoj4")
+base_script = ExtResource("3_61wjr")
 
-[sub_resource type="Resource" id="Resource_sij5n"]
+[sub_resource type="Resource" id="Resource_hh6i5"]
 resource_name = "Chest"
 script = ExtResource("1_q3m3a")
 base_script = ExtResource("4_a3802")
 
-[sub_resource type="Resource" id="Resource_ioyr2"]
+[sub_resource type="Resource" id="Resource_qphml"]
 resource_name = "Heart"
 script = ExtResource("1_q3m3a")
 base_script = ExtResource("5_46f8x")
@@ -31,13 +31,14 @@ base_script = ExtResource("5_46f8x")
 script = ExtResource("1_gciuk")
 type = 24
 items_class = "CellObjectBase"
-auto_sort = true
+auto_sort = false
+use_modifier = true
 item_count = 4
-item_0/value = SubResource("Resource_051o3")
+item_0/value = SubResource("Resource_ja4qr")
 item_0/weight = 10.0
-item_1/value = SubResource("Resource_cmw0d")
+item_1/value = SubResource("Resource_rs0x1")
 item_1/weight = 1.0
-item_2/value = SubResource("Resource_sij5n")
+item_2/value = SubResource("Resource_hh6i5")
 item_2/weight = 1.0
-item_3/value = SubResource("Resource_ioyr2")
+item_3/value = SubResource("Resource_qphml")
 item_3/weight = 1.0

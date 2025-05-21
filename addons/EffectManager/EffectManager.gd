@@ -59,10 +59,13 @@ static func register_object(object: Object, connect_flags: int = 0) -> void:
 ## the object gets unregistered.
 static func unregister_object(object: Object) -> void:
 	for method in UserClassDB.class_get_method_list(UserClassDB.script_get_identifier(object.get_script())):
-		if method.return_type == TYPE_NIL:
-			Effects.Signals[method.name].disconnect(object[method.name])
+		var name: String = method.name
+		if name not in Effects.Signals:
+			continue
+		if method.return.type == TYPE_NIL:
+			Effects.Signals[name].disconnect(object[name])
 		else:
-			Effects.MutableSignals[method.name].disconnect(object[method.name])
+			Effects.MutableSignals[name].disconnect(object[name])
 
 
 ## Propagates the given [code]effect[/code], calling all [Callable]s that are connected

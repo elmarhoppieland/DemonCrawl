@@ -5,6 +5,11 @@ class_name CellObjectBase
 # ==============================================================================
 @export var base_script: GDScript :
 	set(value):
+		if not value:
+			base_script = null
+			notify_property_list_changed()
+			return
+		
 		var base := value
 		while base != CellObject:
 			base = base.get_base_script()
@@ -17,11 +22,22 @@ class_name CellObjectBase
 var _meta_props := {}
 # ==============================================================================
 
-func create(cell: Cell, stage: Stage = Stage.get_current()) -> CellObject:
-	var instance := base_script.new(cell.get_board_position(), stage) as CellObject
+@warning_ignore("shadowed_variable")
+func _init(base_script: GDScript = null) -> void:
+	self.base_script = base_script
+
+
+func create(stage: Stage = Stage.get_current()) -> CellObject:
+	var instance := base_script.new(stage) as CellObject
 	for prop in _meta_props:
 		instance.set(prop, _meta_props[prop])
 	return instance
+
+
+func can_spawn() -> bool:
+	if not base_script:
+		return false
+	return CellObject.can_spawn(base_script)
 
 
 func _get_property_list() -> Array[Dictionary]:
@@ -40,6 +56,9 @@ func _get(property: StringName) -> Variant:
 
 
 func _set(property: StringName, value: Variant) -> bool:
+	if not base_script:
+		return false
+	
 	if base_script.get_script_property_list().any(func(prop: Dictionary) -> bool: return prop.name == property):
 		_meta_props[property] = value
 		return true

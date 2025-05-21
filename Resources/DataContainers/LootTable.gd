@@ -12,6 +12,7 @@ class_name LootTable
 		items_class = value
 		notify_property_list_changed()
 @export var auto_sort := true
+@export var use_modifier := true
 # ==============================================================================
 var items: Array[Dictionary] = []
 # ==============================================================================
@@ -27,7 +28,10 @@ func generate(modifier: float = 1.0) -> Variant:
 	var cumulative := PackedFloat32Array([items[0].weight])
 	
 	for i in range(1, items.size()):
-		cumulative.append(cumulative[-1] + items[i].weight * (modifier ** i))
+		if use_modifier:
+			cumulative.append(cumulative[-1] + items[i].weight * (modifier ** i))
+		else:
+			cumulative.append(cumulative[-1] + items[i].weight)
 	
 	var random := randf_range(0, cumulative[-1])
 	var idx := cumulative.bsearch(random)

@@ -10,6 +10,10 @@ class_name QuestPlayerAttributes
 	set(value):
 		cells_opened_since_mistake = value
 		emit_changed()
+@export var rare_loot_modifier := 1.0 :
+	set(value):
+		rare_loot_modifier = value
+		emit_changed()
 @export var morality := 0 :
 	set(value):
 		morality = value

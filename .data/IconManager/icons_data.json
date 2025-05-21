@@ -1,4 +1,232 @@
 {
+	"Bagman": {
+		"atlas": "res://Assets/sprites/strangers/Bagman.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"Blacksmith": {
+		"atlas": "res://Assets/sprites/strangers/Blacksmith.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"Doctor": {
+		"atlas": "res://Assets/sprites/strangers/Doctor.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"Elder": {
+		"atlas": "res://Assets/sprites/strangers/Elder.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"Gambler": {
+		"atlas": "res://Assets/sprites/strangers/Gambler.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"HungryPlant": {
+		"atlas": "res://Assets/sprites/strangers/HungryPlant.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"Mage": {
+		"atlas": "res://Assets/sprites/strangers/Mage.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"Nomad": {
+		"atlas": "res://Assets/sprites/strangers/Nomad.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"Priest": {
+		"atlas": "res://Assets/sprites/strangers/Priest.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"Pyro": {
+		"atlas": "res://Assets/sprites/strangers/Pyro.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"Scribe": {
+		"atlas": "res://Assets/sprites/strangers/Scribe.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
+	"Waterboy": {
+		"atlas": "res://Assets/sprites/strangers/Waterboy.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Frame0",
+				"w": 16,
+				"x": 0,
+				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "Frame1",
+				"w": 16,
+				"x": 16,
+				"y": 0
+			}
+		]
+	},
 	"arrow_small": {
 		"atlas": "res://Assets/sprites/icons.png",
 		"icons": [
@@ -69,21 +297,21 @@
 				"y": 0
 			},
 			{
-				"h": 8,
+				"h": 9,
 				"name": "clock8",
 				"w": 8,
 				"x": 0,
 				"y": 7
 			},
 			{
-				"h": 8,
+				"h": 9,
 				"name": "monster8",
 				"w": 8,
 				"x": 8,
 				"y": 7
 			},
 			{
-				"h": 8,
+				"h": 9,
 				"name": "power8",
 				"w": 8,
 				"x": 16,
@@ -116,6 +344,13 @@
 				"w": 8,
 				"x": 59,
 				"y": 7
+			},
+			{
+				"h": 16,
+				"name": "locked_flat",
+				"w": 16,
+				"x": 64,
+				"y": 86
 			}
 		]
 	},

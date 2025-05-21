@@ -12,8 +12,11 @@ const AMBIENCE_B_PATH := "res://Assets/skins/%s/ambience_b.ogg"
 
 # ==============================================================================
 static var _current: Stage = Eternal.create(null) : get = get_current
-var _audio_streams: Array[AudioStreamOggVorbis] = []
-var _audio_players: Array[AudioStreamPlayer] = []
+
+static var _audio_streams: Array[AudioStreamOggVorbis] = []
+static var _audio_players: Array[AudioStreamPlayer] = []
+
+static var _theme_cache := {}
 # ==============================================================================
 @export var name := "" : ## The name of the stage.
 	set(value):
@@ -36,7 +39,7 @@ var _audio_players: Array[AudioStreamPlayer] = []
 		if monsters == value:
 			return
 		
-		monsters = value
+		monsters = maxi(1, value)
 		
 		emit_changed()
 @export var min_power := 0 : ## The stage's minimum power.
@@ -84,7 +87,6 @@ var _audio_players: Array[AudioStreamPlayer] = []
 # ==============================================================================
 @export var _instance: StageInstance : get = get_instance
 # ==============================================================================
-var _scene: StageScene : get = get_scene
 var _theme: Theme : get = get_theme
 # ==============================================================================
 
@@ -133,27 +135,41 @@ func area() -> int:
 ## Returns a [Theme] instance for this [Stage], with all relevant properties set
 ## to this [Stage]'s theme.
 func get_theme() -> Theme:
-	if _theme:
-		return _theme
-	
-	_theme = Theme.new()
-	
-	var dir := "res://Assets/skins/%s/" % name
-	_theme.set_icon("bg", "Cell", load(dir + "empty.png"))
-	_theme.set_icon("checking", "Cell", load(dir + "checking.png"))
-	if ResourceLoader.exists(dir + "coin.png"):
-		_theme.set_icon("coin_palette", "Cell", load(dir + "coin.png"))
-	if ResourceLoader.exists(dir + "heart.png"):
-		_theme.set_icon("heart_palette", "Cell", load(dir + "heart.png"))
-	_theme.set_icon("flag", "Cell", load(dir + "flag.png"))
-	_theme.set_icon("flag_bg", "Cell", load(dir + "flag_bg.png"))
-	_theme.set_icon("hidden", "Cell", load(dir + "full.png"))
-	if ResourceLoader.exists(dir + "monster.png"):
-		_theme.set_icon("monster_atlas", "Cell", load(dir + "monster.png"))
-	
-	_theme.set_icon("bg", "StageScene", load(dir + "bg.png"))
+	if not _theme:
+		_theme = Stage.create_theme(name)
 	
 	return _theme
+
+
+static func create_theme(stage_name: String) -> Theme:
+	if stage_name in _theme_cache:
+		return _theme_cache[stage_name]
+	
+	var theme := Theme.new()
+	
+	var dir := "res://Assets/skins/%s/" % stage_name
+	theme.set_icon("bg", "Cell", load(dir + "empty.png"))
+	theme.set_icon("checking", "Cell", load(dir + "checking.png"))
+	if ResourceLoader.exists(dir + "coin.png"):
+		theme.set_icon("coin_palette", "Cell", load(dir + "coin.png"))
+	if ResourceLoader.exists(dir + "heart.png"):
+		theme.set_icon("heart_palette", "Cell", load(dir + "heart.png"))
+	theme.set_icon("flag", "Cell", load(dir + "flag.png"))
+	theme.set_icon("flag_bg", "Cell", load(dir + "flag_bg.png"))
+	theme.set_icon("hidden", "Cell", load(dir + "full.png"))
+	if ResourceLoader.exists(dir + "monster.png"):
+		var texture := AnimatedTextureSequence.new()
+		texture.atlas = load(dir + "monster.png")
+		if Engine.is_editor_hint():
+			theme.set_icon("monster", "Cell", CustomTextureBase.new(texture))
+		else:
+			theme.set_icon("monster", "Cell", texture)
+	
+	theme.set_icon("bg", "StageScene", load(dir + "bg.png"))
+	
+	_theme_cache[stage_name] = theme
+	
+	return theme
 
 
 ## Creates and returns a new [StageIcon] for this [Stage].
@@ -176,7 +192,7 @@ func _load_music() -> void:
 				Toasts.add_debug_toast("Failed to load music at %s" % full_music_path)
 
 
-# Creates _audio_players and adds them to the [Scene]
+# Creates _audio_players and adds them to the StageScene
 func _create_audio_players() -> void:
 	for stream in _audio_streams:
 		var audio_player := AudioStreamPlayer.new()
@@ -215,6 +231,11 @@ func get_instance() -> StageInstance:
 	return _instance
 
 
+## Returns [code]true[/code] if this [Stage] has a [StageInstance] object.
+func has_instance() -> bool:
+	return self == Stage.get_current()
+
+
 ## Clears this [Stage]'s [StageInstance]. The next call to [method get_instance] will
 ## create a new instance.
 func clear_instance() -> void:
@@ -246,22 +267,8 @@ func create_big_icon() -> ImageTexture:
 
 ## Returns the currently active [StageScene].
 func get_scene() -> StageScene:
-	if is_instance_valid(_scene):
-		return _scene
-	
-	var loop := Engine.get_main_loop()
-	assert(loop is SceneTree, "Expected a SceneTree as the main loop, but a %s was found." % loop.get_class())
-	
-	var current_scene := (loop as SceneTree).current_scene
-	if current_scene is StageScene:
-		_scene = current_scene
-	
-	return _scene
-
-
-func get_statbar() -> Statbar:
-	if has_scene():
-		return get_scene().get_statbar()
+	if has_instance():
+		return get_instance().get_scene()
 	return null
 
 
@@ -280,6 +287,14 @@ func get_board() -> Board:
 
 func roll_power() -> int:
 	return randi_range(min_power, max_power)
+
+
+## Returns the total [StageMod] diffuclty of this [Stage].
+func get_mods_difficulty() -> int:
+	var difficulty := 0
+	for mod in mods:
+		difficulty += mod.difficulty
+	return difficulty
 
 
 ## Returns a property of this [Stage].

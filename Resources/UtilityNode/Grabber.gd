@@ -38,13 +38,13 @@ func _ready() -> void:
 	hovered.connect(func() -> void:
 		if enabled:
 			_mouse_inside = true
+			hover()
 	)
 	unhovered.connect(func() -> void:
 		_mouse_inside = false
 	)
 	
 	interacted.connect(interact)
-	hovered.connect(hover)
 	unhovered.connect(unhover)
 	second_interacted.connect(second_interact)
 	

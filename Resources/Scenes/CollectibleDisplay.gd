@@ -39,6 +39,8 @@ func _enter_tree() -> void:
 		
 		if not collectible:
 			return
+		if not collectible.is_active():
+			return
 		if not is_node_ready():
 			await ready
 		
@@ -47,7 +49,12 @@ func _enter_tree() -> void:
 	mouse_exited.connect(func() -> void:
 		_hovered = false
 		
-		if not collectible or is_equal_approx(_bg_rect.color.a, collectible.get_texture_bg_color().a * 0.5):
+		if not collectible:
+			return
+		if is_equal_approx(_bg_rect.color.a, collectible.get_texture_bg_color().a * 0.5):
+			_bg_rect.color.a = collectible.get_texture_bg_color().a * 0.5
+			return
+		if not collectible.is_active():
 			return
 		if not is_node_ready():
 			await ready
@@ -58,7 +65,8 @@ func _enter_tree() -> void:
 
 func _get_minimum_size() -> Vector2:
 	if not is_node_ready():
-		ready.connect(func() -> void: minimum_size_changed.emit(), CONNECT_ONE_SHOT)
+		if not ready.is_connected(update_minimum_size):
+			ready.connect(update_minimum_size, CONNECT_ONE_SHOT)
 		return Vector2.ZERO
 	return _collectible_texture.get_minimum_size()
 
@@ -80,7 +88,7 @@ func _update() -> void:
 		return
 	
 	_bg_rect.color = collectible.get_texture_bg_color()
-	if not _hovered:
+	if not _hovered or not collectible.is_active():
 		_bg_rect.color.a /= 2
 	_tooltip_grabber.text = collectible.get_annotation_text()
 	
@@ -91,6 +99,10 @@ func _update() -> void:
 		_progress_bar.value = progress
 		_progress_bar.max_value = max_progress
 		_progress_bar.modulate = progress_full_color if progress == max_progress else progress_partial_color
+	
+	if not collectible.is_active():
+		_collectible_texture.material.set_shader_parameter("glow", 0)
+		return
 	
 	if not collectible.is_blinking():
 		if _blink_tween:
@@ -121,6 +133,5 @@ static func create(collectible: Collectible) -> CollectibleDisplay:
 
 
 func _on_interacted() -> void:
-	if collectible.can_use():
-		collectible._use()
+	collectible.use()
 	interacted.emit()

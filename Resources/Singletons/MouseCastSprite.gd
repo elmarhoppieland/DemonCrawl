@@ -27,7 +27,7 @@ func cast(item: Item) -> void:
 	show()
 	anchor.position = anchor.get_global_mouse_position()
 	
-	Stage.get_current().get_statbar().inventory_toggle()
+	GuiLayer.get_statbar().inventory_toggle()
 	
 	await cast_finished
 	
