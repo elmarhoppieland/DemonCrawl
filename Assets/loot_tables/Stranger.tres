@@ -30,12 +30,14 @@ current = null
 maximum = null
 
 [sub_resource type="Resource" id="Resource_713gq"]
+resource_name = "Waterboy"
 script = ExtResource("2_qut8x")
 base_script = ExtResource("4_lrqes")
 cost = null
 direction = null
 
 [sub_resource type="Resource" id="Resource_41nxf"]
+resource_name = "Mercenary"
 script = ExtResource("2_qut8x")
 base_script = ExtResource("5_fii67")
 cost = null
@@ -128,4 +130,4 @@ item_9/weight = 1.0
 item_10/value = SubResource("Resource_713gq")
 item_10/weight = 1.0
 item_11/value = SubResource("Resource_41nxf")
-item_11/weight = 1000.0
+item_11/weight = 1.0
