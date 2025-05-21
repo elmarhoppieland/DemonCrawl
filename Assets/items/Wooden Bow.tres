@@ -1,7 +1,7 @@
 [gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://csmtq4s2licjx"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_oyfek"]
-[ext_resource type="Script" path="res://Assets/items/Wooden Bow.gd" id="2_v60xu"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_oyfek"]
+[ext_resource type="Script" path="res://Assets/Items/Wooden Bow.gd" id="2_v60xu"]
 
 [resource]
 resource_local_to_scene = false

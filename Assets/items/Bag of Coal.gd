@@ -2,7 +2,7 @@
 extends Item
 
 # ==============================================================================
-const COAL := preload("res://Assets/items/Coal.tres")
+const COAL := preload("res://Assets/Items/Coal.tres")
 # ==============================================================================
 
 func change_morality(morality: int) -> void:

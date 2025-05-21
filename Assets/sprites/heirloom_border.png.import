@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0w2jbbojcheq"
-path="res://.godot/imported/heirloom_border.png-dc20424388779be9e8d3427d108bffca.ctex"
+path="res://.godot/imported/heirloom_border.png-3d3b11ca72239d09455d13595a58f2cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/heirloom_border.png"
-dest_files=["res://.godot/imported/heirloom_border.png-dc20424388779be9e8d3427d108bffca.ctex"]
+source_file="res://Assets/Sprites/heirloom_border.png"
+dest_files=["res://.godot/imported/heirloom_border.png-3d3b11ca72239d09455d13595a58f2cb.ctex"]
 
 [params]
 

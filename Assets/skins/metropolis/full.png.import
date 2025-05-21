@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boq67lis60q1m"
-path="res://.godot/imported/full.png-34dd33edddcc256798f54f10f6a692c3.ctex"
+path="res://.godot/imported/full.png-536a7e1a2fefdda2d45cd00a6627692f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/metropolis/full.png"
-dest_files=["res://.godot/imported/full.png-34dd33edddcc256798f54f10f6a692c3.ctex"]
+source_file="res://Assets/Skins/metropolis/full.png"
+dest_files=["res://.godot/imported/full.png-536a7e1a2fefdda2d45cd00a6627692f.ctex"]
 
 [params]
 

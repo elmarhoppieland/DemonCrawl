@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://83cg5a6qu6bq"
-path="res://.godot/imported/music.ogg-65a3a63a2043500a5161d546b4c3f23e.oggvorbisstr"
+path="res://.godot/imported/music.ogg-d3e7e3ed11ba863769a5bd8ba46c5378.oggvorbisstr"
 
 [deps]
 
-source_file="res://Assets/skins/bloodway/music.ogg"
-dest_files=["res://.godot/imported/music.ogg-65a3a63a2043500a5161d546b4c3f23e.oggvorbisstr"]
+source_file="res://Assets/Skins/bloodway/music.ogg"
+dest_files=["res://.godot/imported/music.ogg-d3e7e3ed11ba863769a5bd8ba46c5378.oggvorbisstr"]
 
 [params]
 

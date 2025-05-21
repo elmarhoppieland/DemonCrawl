@@ -1,7 +1,7 @@
 [gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://dquw3e31p8cxd"]
 
-[ext_resource type="Script" path="res://Assets/items/Minion.gd" id="1_qsstj"]
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_sag85"]
+[ext_resource type="Script" path="res://Assets/Items/Minion.gd" id="1_qsstj"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_sag85"]
 
 [resource]
 resource_local_to_scene = false

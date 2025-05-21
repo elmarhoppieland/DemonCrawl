@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djo05p5ob48fr"
-path="res://.godot/imported/heart.png-8763ea65530a1d3804b92cad95ff3abb.ctex"
+path="res://.godot/imported/heart.png-d978eb7a2d0367a2ae4a3d12ca24751f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/elysium/heart.png"
-dest_files=["res://.godot/imported/heart.png-8763ea65530a1d3804b92cad95ff3abb.ctex"]
+source_file="res://Assets/Skins/elysium/heart.png"
+dest_files=["res://.godot/imported/heart.png-d978eb7a2d0367a2ae4a3d12ca24751f.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://dtcj5i5va55m7"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_csv0w"]
-[ext_resource type="Script" path="res://Assets/items/Sleeping Powder.gd" id="1_h41l3"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_csv0w"]
+[ext_resource type="Script" path="res://Assets/Items/Sleeping Powder.gd" id="1_h41l3"]
 
 [resource]
 resource_local_to_scene = false

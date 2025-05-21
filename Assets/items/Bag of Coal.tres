@@ -1,7 +1,7 @@
 [gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://cf4t5gi8mnxur"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_pu0av"]
-[ext_resource type="Script" path="res://Assets/items/Bag of Coal.gd" id="2_mhdai"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_pu0av"]
+[ext_resource type="Script" path="res://Assets/Items/Bag of Coal.gd" id="2_mhdai"]
 
 [resource]
 resource_local_to_scene = false

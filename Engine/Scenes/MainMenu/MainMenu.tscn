@@ -1,0 +1,171 @@
+[gd_scene load_steps=18 format=3 uid="uid://duasdk788nmel"]
+
+[ext_resource type="Texture2D" uid="uid://0mriccrr1804" path="res://Assets/Backgrounds/menu.png" id="1_ig13y"]
+[ext_resource type="Script" path="res://Engine/Scenes/MainMenu/MainMenu.gd" id="1_wtjuu"]
+[ext_resource type="Texture2D" uid="uid://bruk4v3wu4o07" path="res://Assets/Sprites/menu_fg.png" id="2_m72tx"]
+[ext_resource type="PackedScene" uid="uid://cb8wqr4blvh0j" path="res://Engine/Scenes/MainMenu/Logo.tscn" id="3_cos73"]
+[ext_resource type="PackedScene" uid="uid://g1r4iletxch8" path="res://Engine/Scenes/MainMenu/ButtonBar.tscn" id="3_qmaeo"]
+[ext_resource type="PackedScene" uid="uid://b4tqham7nhwam" path="res://Engine/Scenes/MainMenu/ProfileSelect.tscn" id="4_riyg4"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="5_2v2xs"]
+[ext_resource type="Script" path="res://Engine/Scenes/MainMenu/Foreground.gd" id="7_3dp2r"]
+[ext_resource type="PackedScene" uid="uid://c0xuhqy23ofnt" path="res://Engine/Scenes/MainMenu/CreateProfile/CreateProfile.tscn" id="9_2ior0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2115"]
+atlas = ExtResource("5_2v2xs")
+region = Rect2(24, 7, 12, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejptt"]
+atlas = ExtResource("5_2v2xs")
+region = Rect2(36, 4, 10, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mdhk"]
+atlas = ExtResource("5_2v2xs")
+region = Rect2(46, 6, 13, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnml3"]
+atlas = ExtResource("5_2v2xs")
+region = Rect2(13, 44, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deqqp"]
+atlas = ExtResource("5_2v2xs")
+region = Rect2(0, 44, 13, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fqfh"]
+atlas = ExtResource("5_2v2xs")
+region = Rect2(24, 32, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3tv4"]
+atlas = ExtResource("5_2v2xs")
+region = Rect2(12, 32, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6as0"]
+atlas = ExtResource("5_2v2xs")
+region = Rect2(0, 32, 12, 12)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchor_right = 0.25
+anchor_bottom = 0.25
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+script = ExtResource("1_wtjuu")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ig13y")
+
+[node name="ButtonBar" parent="." instance=ExtResource("3_qmaeo")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_top = -8.0
+offset_bottom = 8.0
+
+[node name="Foreground" type="Sprite2D" parent="."]
+position = Vector2(0, 79)
+texture = ExtResource("2_m72tx")
+centered = false
+script = ExtResource("7_3dp2r")
+
+[node name="Copyright" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -19.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center][img]res://Assets/sprites/icon_copyright.png[/img] 2024 [color=#9edeff]EROFEREHT GAMES[/color]
+[color=#c3c3c3]All Rights Reserved[/color]"
+fit_content = true
+scroll_active = false
+
+[node name="Logo" parent="." instance=ExtResource("3_cos73")]
+layout_mode = 1
+anchors_preset = -1
+offset_bottom = 85.0
+
+[node name="ProfileSelect" parent="." instance=ExtResource("4_riyg4")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+
+[node name="BottomRightButtons" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -4.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 7
+
+[node name="TextureButton" type="TextureButton" parent="BottomRightButtons"]
+layout_mode = 2
+size_flags_vertical = 8
+texture_normal = SubResource("AtlasTexture_r2115")
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomRightButtons"]
+layout_mode = 2
+theme_override_constants/margin_bottom = -1
+
+[node name="TextureButton2" type="TextureButton" parent="BottomRightButtons/MarginContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_ejptt")
+
+[node name="TextureButton3" type="TextureButton" parent="BottomRightButtons"]
+layout_mode = 2
+size_flags_vertical = 8
+texture_normal = SubResource("AtlasTexture_7mdhk")
+
+[node name="ExternalButtons" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 3.0
+offset_right = -4.0
+grow_horizontal = 0
+theme_override_constants/separation = 3
+
+[node name="TextureButton" type="TextureButton" parent="ExternalButtons"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_mnml3")
+
+[node name="TextureButton2" type="TextureButton" parent="ExternalButtons"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_deqqp")
+
+[node name="TextureButton3" type="TextureButton" parent="ExternalButtons"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_7fqfh")
+
+[node name="TextureButton4" type="TextureButton" parent="ExternalButtons"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_r3tv4")
+
+[node name="TextureButton5" type="TextureButton" parent="ExternalButtons"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_h6as0")
+
+[node name="CreateProfile" parent="." instance=ExtResource("9_2ior0")]
+unique_name_in_owner = true

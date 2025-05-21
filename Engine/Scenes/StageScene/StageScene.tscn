@@ -1,0 +1,172 @@
+[gd_scene load_steps=25 format=3 uid="uid://csnbqhntbeb87"]
+
+[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://Assets/Skins/default/empty.png" id="1_ar66c"]
+[ext_resource type="Script" path="res://Engine/Scenes/StageScene/StageScene.gd" id="1_ene3y"]
+[ext_resource type="Texture2D" uid="uid://cid1fd12q4fvd" path="res://Assets/Skins/default/checking.png" id="2_hdub6"]
+[ext_resource type="Script" path="res://Engine/Scenes/StageScene/StageBackground.gd" id="3_gkgt8"]
+[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/Skins/default/flag.png" id="3_vq5wx"]
+[ext_resource type="PackedScene" uid="uid://d3lv5svg7xhht" path="res://Engine/Scenes/StageScene/FinishButton.tscn" id="4_dhd0n"]
+[ext_resource type="Texture2D" uid="uid://dwfec06v6p7h1" path="res://Assets/Skins/default/flag_bg.png" id="4_dkk0g"]
+[ext_resource type="PackedScene" uid="uid://b07xutea3tepb" path="res://Engine/Scenes/StageScene/Board/Board.tscn" id="4_xuksn"]
+[ext_resource type="Texture2D" uid="uid://cwud7hep7qi5b" path="res://Assets/Skins/default/full.png" id="5_mrdqu"]
+[ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://Assets/Skins/default/bg.png" id="6_n7lcx"]
+[ext_resource type="Shader" path="res://Engine/Scenes/StageScene/BoardBackground.gdshader" id="9_do03l"]
+[ext_resource type="PackedScene" uid="uid://cnbk18l62cltc" path="res://Engine/Resources/Singletons/MouseCastSprite.tscn" id="10_m6ujj"]
+[ext_resource type="Script" path="res://Engine/Scenes/StageScene/StageTimerLabel.gd" id="14_ffsll"]
+[ext_resource type="PackedScene" uid="uid://dodpk1h3w0qvp" path="res://Engine/Scenes/StageScene/FinishPopup.tscn" id="15_df000"]
+[ext_resource type="Script" path="res://Engine/Scenes/StageScene/StageMonsterCountLabel.gd" id="15_nadoc"]
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="16_4hyf5"]
+[ext_resource type="Script" path="res://Engine/Scenes/StageScene/StagePowerLabel.gd" id="16_vj40o"]
+[ext_resource type="Script" path="res://Engine/Resources/Singletons/GuiEnabler.gd" id="19_kjs20"]
+
+[sub_resource type="Theme" id="Theme_7mm6j"]
+Cell/icons/bg = ExtResource("1_ar66c")
+Cell/icons/checking = ExtResource("2_hdub6")
+Cell/icons/flag = ExtResource("3_vq5wx")
+Cell/icons/flag_bg = ExtResource("4_dkk0g")
+Cell/icons/hidden = ExtResource("5_mrdqu")
+StageScene/icons/bg = ExtResource("6_n7lcx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxuvl"]
+shader = ExtResource("9_do03l")
+shader_parameter/color_transform_enabled = false
+shader_parameter/color_transform = Vector3(0, 0, 0)
+
+[sub_resource type="Texture2D" id="Texture2D_yi678"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("16_4hyf5")
+name = "icons/clock8"
+
+[sub_resource type="LabelSettings" id="LabelSettings_b7nsv"]
+font_size = 8
+font_color = Color(0.764706, 0.764706, 0.764706, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Texture2D" id="Texture2D_vh6wl"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("16_4hyf5")
+name = "icons/monster8"
+
+[sub_resource type="Texture2D" id="Texture2D_nrper"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("16_4hyf5")
+name = "icons/power8"
+
+[node name="StageScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7mm6j")
+script = ExtResource("1_ene3y")
+
+[node name="BackgroundCanvas" type="CanvasLayer" parent="."]
+layer = -20
+
+[node name="StageBackground" type="TextureRect" parent="BackgroundCanvas"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_sxuvl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_n7lcx")
+stretch_mode = 5
+script = ExtResource("3_gkgt8")
+
+[node name="ForegroundCanvas" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="FinishButton" parent="ForegroundCanvas" instance=ExtResource("4_dhd0n")]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_top = 20.0
+offset_right = 112.0
+offset_bottom = 88.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ForegroundCanvas"]
+offset_left = 12.0
+offset_top = 16.0
+scale = Vector2(4, 4)
+theme_override_constants/separation = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ForegroundCanvas/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ForegroundCanvas/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="TextureRect" type="TextureRect" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("Texture2D_yi678")
+
+[node name="TimerLabel" type="Label" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_b7nsv")
+script = ExtResource("14_ffsll")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ForegroundCanvas/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="TextureRect" type="TextureRect" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = SubResource("Texture2D_vh6wl")
+
+[node name="MonsterCountLabel" type="Label" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "12"
+label_settings = SubResource("LabelSettings_b7nsv")
+script = ExtResource("15_nadoc")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ForegroundCanvas/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="TextureRect" type="TextureRect" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = SubResource("Texture2D_nrper")
+
+[node name="PowerLabel" type="Label" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "1-2"
+label_settings = SubResource("LabelSettings_b7nsv")
+script = ExtResource("16_vj40o")
+
+[node name="TweenerCanvas" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="MouseCastSprite" parent="." instance=ExtResource("10_m6ujj")]
+unique_name_in_owner = true
+visible = false
+
+[node name="FinishPopup" parent="." instance=ExtResource("15_df000")]
+unique_name_in_owner = true
+
+[node name="Board" parent="." instance=ExtResource("4_xuksn")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="Projectiles" type="Node2D" parent="Board"]
+unique_name_in_owner = true
+
+[node name="GuiEnabler" type="Node" parent="."]
+script = ExtResource("19_kjs20")
+enabled = 3
+
+[connection signal="pressed" from="ForegroundCanvas/FinishButton" to="." method="_on_finish_button_pressed"]
+[connection signal="stage_finished" from="Board" to="." method="_on_board_stage_finished"]

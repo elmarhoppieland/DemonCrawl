@@ -1,7 +1,7 @@
 [gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://dg4q4xvbl5ph5"]
 
-[ext_resource type="Script" path="res://Assets/items/Wallet.gd" id="1_2flkl"]
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_r4ggt"]
+[ext_resource type="Script" path="res://Assets/Items/Wallet.gd" id="1_2flkl"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_r4ggt"]
 
 [resource]
 resource_local_to_scene = false

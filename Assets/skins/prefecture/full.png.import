@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0gdjw1wjajhs"
-path="res://.godot/imported/full.png-d5291ee1888d35c246643ff2c915d242.ctex"
+path="res://.godot/imported/full.png-c12b4d70820b4063e15eadec9f5c8f82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/prefecture/full.png"
-dest_files=["res://.godot/imported/full.png-d5291ee1888d35c246643ff2c915d242.ctex"]
+source_file="res://Assets/Skins/prefecture/full.png"
+dest_files=["res://.godot/imported/full.png-c12b4d70820b4063e15eadec9f5c8f82.ctex"]
 
 [params]
 

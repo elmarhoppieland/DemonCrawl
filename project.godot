@@ -11,18 +11,18 @@ config_version=5
 [application]
 
 config/name="DemonCrawl"
-run/main_scene="res://Scenes/MainMenu/MainMenu.tscn"
+run/main_scene="res://Engine/Scenes/MainMenu/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Tooltip="res://Resources/Singletons/Tooltip.tscn"
-Focus="res://Resources/Singletons/Focus.tscn"
-Debug="res://Resources/Singletons/Debug.tscn"
-Toasts="res://Resources/Singletons/Toasts.tscn"
-ChestPopup="res://Resources/Singletons/ChestPopup.tscn"
-GuiLayer="res://Resources/Singletons/GuiLayer.tscn"
+Tooltip="res://Engine/Resources/Singletons/Tooltip.tscn"
+Focus="res://Engine/Resources/Singletons/Focus.tscn"
+Debug="res://Engine/Resources/Singletons/Debug.tscn"
+Toasts="res://Engine/Resources/Singletons/Toasts.tscn"
+ChestPopup="res://Engine/Resources/Singletons/ChestPopup.tscn"
+GuiLayer="res://Engine/Resources/Singletons/GuiLayer.tscn"
 
 [debug]
 
@@ -35,7 +35,7 @@ gdscript/warnings/confusable_local_declaration=0
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
-mouse_cursor/custom_image="res://Assets/sprites/cursor.png"
+mouse_cursor/custom_image="res://Assets/Sprites/cursor.png"
 
 [editor]
 
@@ -53,14 +53,24 @@ named_paths/defaults={
 }
 editor/editor_save_path="res://EditorAssets/EditorSave.ini"
 
+[file_customization]
+
+folder_colors={
+"res://Assets/": "purple",
+"res://EditorAssets/": "orange",
+"res://EffectManager/": "gray",
+"res://Engine/": "teal",
+"res://addons/": "gray"
+}
+
 [filesystem]
 
 import/blender/enabled=false
 
 [gui]
 
-theme/custom="res://Resources/default_theme.tres"
-theme/custom_font="res://Assets/fonts/04B_03__.TTF"
+theme/custom="res://Engine/Resources/default_theme.tres"
+theme/custom_font="res://Assets/Fonts/04B_03__.TTF"
 theme/default_font_antialiasing=0
 
 [importer_defaults]

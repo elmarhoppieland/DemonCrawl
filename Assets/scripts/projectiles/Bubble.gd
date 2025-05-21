@@ -5,7 +5,7 @@ class_name BubbleProjectile
 # ==============================================================================
 
 func _get_texture() -> Texture2D:
-	return preload("res://Assets/sprites/projectiles/Bubble.png")
+	return preload("res://Assets/Sprites/Projectiles/Bubble.png")
 
 
 func _cell_entered(cell: CellData) -> void:

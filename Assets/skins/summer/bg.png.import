@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://h2iy56hxx7uf"
-path="res://.godot/imported/bg.png-1a822e992a6baee7ffdb09d38dc029ff.ctex"
+path="res://.godot/imported/bg.png-e0d8ad3545fe41073b81217de7ae6d2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/summer/bg.png"
-dest_files=["res://.godot/imported/bg.png-1a822e992a6baee7ffdb09d38dc029ff.ctex"]
+source_file="res://Assets/Skins/summer/bg.png"
+dest_files=["res://.godot/imported/bg.png-e0d8ad3545fe41073b81217de7ae6d2b.ctex"]
 
 [params]
 
