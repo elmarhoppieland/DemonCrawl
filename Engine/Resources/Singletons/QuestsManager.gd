@@ -77,3 +77,7 @@ class QuestCompletionData extends Resource:
 	@export var quest: QuestFile = null
 	@export var completion_count := 0
 	@export var best_score := 0
+	
+	func save() -> void:
+		if self not in QuestsManager.quest_completions:
+			QuestsManager.quest_completions.append(self)

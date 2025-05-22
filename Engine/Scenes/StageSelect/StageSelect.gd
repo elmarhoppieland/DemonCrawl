@@ -1,5 +1,5 @@
 @tool
-extends MarginContainer
+extends Control
 class_name StageSelect
 
 # ==============================================================================
@@ -34,7 +34,7 @@ func _on_stage_details_interacted() -> void:
 	if get_quest().get_selected_stage() is SpecialStage:
 		get_tree().change_scene_to_packed(get_quest().get_selected_stage().dest_scene)
 	else:
-		get_tree().change_scene_to_file("res://Scenes/StageScene/StageScene.tscn")
+		get_tree().change_scene_to_file("res://Engine/Scenes/StageScene/StageScene.tscn")
 
 
 func _on_stages_overview_icon_selected(icon: StageIcon) -> void:

@@ -29,6 +29,7 @@ func _on_quests_overview_quest_selected(quest: QuestFile, difficulty: Difficulty
 
 func _on_begin_button_pressed() -> void:
 	var quest := QuestsManager.selected_quest.generate()
+	quest.source_difficulty = QuestsManager.selected_difficulty
 	quest.set_as_current()
 	
 	QuestsManager.selected_difficulty.apply_starting_values(quest)

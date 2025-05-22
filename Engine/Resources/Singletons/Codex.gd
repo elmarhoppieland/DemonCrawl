@@ -10,6 +10,7 @@ static var _heirlooms: Array[Heirloom] = Eternal.create([Heirloom.new("res://Ass
 			if value[i]:
 				value[i].emptied.connect(clear_heirloom.bind(i))
 				value[i].changed.connect(func() -> void: heirlooms_changed.emit())
+		heirlooms_changed.emit()
 
 static var heirlooms_changed := Signal() :
 	get:

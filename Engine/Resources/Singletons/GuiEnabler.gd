@@ -60,7 +60,9 @@ func _enter_tree() -> void:
 	while e:
 		if e & 1:
 			var gui_name := GuiEnabler.get_gui_list()[i]
-			GuiLayer.get_instance().get_node(gui_name).show()
+			var node := GuiLayer.get_instance().get_node(gui_name)
+			if node.has_method("show"):
+				node.show()
 		
 		i += 1
 		e >>= 1
@@ -76,7 +78,9 @@ func _exit_tree() -> void:
 	while e:
 		if e & 1:
 			var gui_name := GuiEnabler.get_gui_list()[i]
-			GuiLayer.get_instance().get_node(gui_name).hide()
+			var node := GuiLayer.get_instance().get_node(gui_name)
+			if node.has_method("hide"):
+				node.hide()
 		
 		i += 1
 		e >>= 1

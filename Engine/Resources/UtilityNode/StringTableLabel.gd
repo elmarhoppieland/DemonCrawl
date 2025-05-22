@@ -30,4 +30,4 @@ func _validate_property(property: Dictionary) -> void:
 		property.usage ^= PROPERTY_USAGE_EDITOR
 	if property.name == "table_name":
 		property.hint = PROPERTY_HINT_ENUM_SUGGESTION
-		property.hint_string = &",".join(Array(DirAccess.get_files_at("res://Assets/string_tables/")).map(func(a: String) -> String: return a.get_basename()))
+		property.hint_string = &",".join(Array(DirAccess.get_files_at("res://Assets/StringTables/")).map(func(a: String) -> String: return a.get_basename()))

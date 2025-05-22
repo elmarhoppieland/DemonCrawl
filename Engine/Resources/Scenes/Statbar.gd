@@ -18,11 +18,19 @@ var _inventory_open := false
 # ==============================================================================
 
 func _ready() -> void:
+	Quest.current_changed.connect(_current_quest_changed)
+
+
+func _current_quest_changed() -> void:
 	if not Quest.has_current():
 		return
 	
-	Quest.get_current().changed.connect(_update_heirloom_activity)
+	var quest := Quest.get_current()
+	quest.changed.connect(_update_heirloom_activity)
 	_update_heirloom_activity()
+	
+	await Quest.current_changed
+	quest.changed.disconnect(_update_heirloom_activity)
 
 
 func _update_heirloom_activity() -> void:

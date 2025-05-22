@@ -78,17 +78,7 @@ func generate(start_cell: CellData) -> void:
 		
 		invalid_indices.insert(invalid_indices.bsearch(idx), idx)
 		
-		var coord := Vector2i(idx % get_stage().size.x, idx / get_stage().size.x)
-		
 		cells[idx].object = Monster.new(get_stage())
-		
-		for dx in COORD_OFFSETS:
-			for dy in COORD_OFFSETS:
-				if dx == 0 and dy == 0:
-					continue
-				if not get_stage().has_coord(coord + Vector2i(dx, dy)):
-					continue
-				cells[idx + dx + dy * get_stage().size.x].value += 1
 	
 	_generated = true
 	

@@ -12,8 +12,7 @@ class_name QuestFile
 
 func generate() -> Quest:
 	var quest := Quest.new()
-	
-	quest.name = name
+	quest.source_file = self
 	
 	var stage_index := 0
 	while true:
