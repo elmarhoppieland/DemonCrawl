@@ -2,7 +2,7 @@ extends StaticClass
 class_name QuestsManager
 
 # ==============================================================================
-static var selected_quest: QuestFile = Eternal.create(preload("res://Assets/Quests/Casual/Tutorial.tres"))
+static var selected_quest: QuestFile = Eternal.create(preload("res://Assets/Quests/Casual/0-Tutorial.tres"))
 static var selected_difficulty: Difficulty = Eternal.create(preload("res://Assets/Quests/Casual/Casual.tres"))
 
 static var difficulties: Array[Difficulty] = []

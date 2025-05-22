@@ -17,7 +17,7 @@ func _on_quests_overview_quest_selected(quest: QuestFile, difficulty: Difficulty
 	if not is_node_ready():
 		await ready
 	
-	if quest.get_meta("locked"):
+	if not QuestsManager.is_quest_unlocked(quest, difficulty):
 		quest_name_label.text = tr("LOCKED")
 		lore_label.text = tr("LORE_LOCKED") if QuestsManager.selected_difficulty.token_shop_purchase else tr("LORE_LOCKED_CASUAL")
 		begin_button_container.hide()

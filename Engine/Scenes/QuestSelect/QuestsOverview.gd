@@ -81,7 +81,6 @@ func add_quest(quest: QuestFile) -> void:
 	icon.name = quest.name
 	
 	var locked := not QuestsManager.is_quest_unlocked(quest)
-	quest.set_meta("locked", locked)
 	
 	if locked:
 		icon.texture = IconManager.get_icon_data("quest/locked").create_texture()
@@ -96,8 +95,8 @@ func add_quest(quest: QuestFile) -> void:
 		QuestsManager.selected_quest = quest
 		
 		var data := QuestsManager.get_completion_data(quest)
-		var completions := 0 if locked else data.completion_count
-		var best := 0 if locked else data.best_score
+		var completions := data.completion_count
+		var best := data.best_score
 		player_data_label.text = ("%s: x%d\n%s: %s" % [
 			tr("QUEST_COMPLETIONS"),
 			completions,
