@@ -21,10 +21,11 @@ static func find_difficulties(directory: String) -> void:
 		dirs.resize(dirs.size() - 1)
 		for subdir in DirAccess.get_directories_at(dir):
 			dirs.append(dir.path_join(subdir))
-		if ResourceLoader.exists(dir):
-			var resource := load(dir)
-			if resource is Difficulty:
-				difficulties.append(resource)
+		for file in DirAccess.get_files_at(dir):
+			if ResourceLoader.exists(dir.path_join(file)):
+				var resource := load(dir.path_join(file))
+				if resource is Difficulty:
+					difficulties.append(resource)
 
 
 static func change_difficulty(direction: int) -> void:
@@ -37,7 +38,7 @@ static func get_unlocked_difficulties() -> Array[Difficulty]:
 	var unlocked_difficulties: Array[Difficulty] = []
 	for difficulty in difficulties:
 		if difficulty.is_unlocked():
-			unlocked_difficulties.append(difficulty.difficulty)
+			unlocked_difficulties.append(difficulty)
 	return unlocked_difficulties
 
 

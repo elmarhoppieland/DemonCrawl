@@ -13,9 +13,9 @@ class_name StageBase
 @export var max_power_minimum := 0
 @export var max_power_maximum := 0
 
-@export_group("Monsters", "monsters_")
-@export var monsters_minimum := 0
-@export var monsters_maximum := 0
+@export_group("Density", "density_")
+@export var density_minimum := 0.0
+@export var density_maximum := 0.0
 
 @export_group("Size", "size_")
 @export var size_minimum := 0
@@ -35,7 +35,7 @@ func generate() -> Stage:
 	stage.min_power = randi_range(min_power_minimum, min_power_maximum)
 	stage.max_power = randi_range(max_power_minimum, max_power_maximum)
 	
-	stage.monsters = randi_range(monsters_minimum, monsters_maximum)
+	stage.monsters = roundi(stage.area() * randf_range(density_minimum, density_maximum))
 	
 	var total_difficulty := randi_range(mod_difficulty_minimum, mod_difficulty_maximum)
 	while total_difficulty > 0:

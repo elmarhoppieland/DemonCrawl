@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Difficulty" load_steps=6 format=3 uid="uid://caiig2eupe0vb"]
+[gd_resource type="Resource" script_class="Difficulty" load_steps=7 format=3 uid="uid://caiig2eupe0vb"]
 
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_kji8w"]
 [ext_resource type="Script" path="res://Engine/Resources/DataContainers/DifficultyFile.gd" id="1_vkdlg"]
 [ext_resource type="Resource" uid="uid://j0v6qlrgdwp1" path="res://Assets/Quests/Casual/Tutorial.tres" id="2_fbq50"]
 [ext_resource type="Resource" uid="uid://c5jggiamg73b6" path="res://Assets/Quests/Casual/Glory Days.tres" id="3_6aed7"]
+[ext_resource type="Resource" uid="uid://cmryc25pgrnah" path="res://Assets/Quests/Casual/Respite's End.tres" id="4_d51r4"]
 
 [sub_resource type="Texture2D" id="Texture2D_fnfsu"]
 resource_local_to_scene = false
@@ -17,7 +18,7 @@ name = "DIFFICULTY_CASUAL"
 token_shop_purchase = false
 icon = SubResource("Texture2D_fnfsu")
 conditions = PackedStringArray()
-quests = Array[Resource("res://Engine/Resources/DataContainers/QuestFile.gd")]([ExtResource("2_fbq50"), ExtResource("3_6aed7")])
+quests = Array[Resource("res://Engine/Resources/DataContainers/QuestFile.gd")]([ExtResource("2_fbq50"), ExtResource("3_6aed7"), ExtResource("4_d51r4")])
 max_life = 5
 life = 5
 revives = 0
