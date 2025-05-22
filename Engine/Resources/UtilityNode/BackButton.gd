@@ -20,4 +20,4 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if (mouse_is_inside and Input.is_action_just_pressed("interact")) or Input.is_action_just_pressed("back"):
-		get_tree().change_scene_to_file("res://Scenes/MainMenu/MainMenu.tscn")
+		get_tree().change_scene_to_file("res://Engine/Scenes/MainMenu/MainMenu.tscn")

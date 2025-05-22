@@ -1,74 +1,34 @@
-extends ConfigFile
-class_name DifficultyFile
+extends Resource
+class_name Difficulty
 
 # ==============================================================================
-var quests: Array[QuestFile] = []
+@export var name := ""  ## The name of the difficulty.
+@export var token_shop_purchase := true  ## Whether each quest should be purchased from the token shop before it is unlocked.
+@export var icon: Texture2D = null  ## The icon of the difficulty.
+
+@export var conditions: PackedStringArray = []
+
+@export var quests: Array[QuestFile] = []  ## This difficulty's quests.
+
+@export_group("Starting Stats")
+@export var max_life := 5  ## The amount of max lives the player should start each quest with.
+@export var life := 5  ## The amount of lives the player should start each quest with. Should never be higher than [property max_life].
+@export var revives := 0  ## The number of revives the player should start each quest with.
+@export var defense := 0  ## The amount of defense the player should start each quest with.
+@export var coins := 0  ## The amount of coins the player should start each quest with.
 # ==============================================================================
 
-func apply_starting_values() -> void:
-	if not has_section("Values"):
-		return
-	
-	for key in get_section_keys("Values"):
-		var origin := Quest.get_current()
-		while "/" in key:
-			if key.get_slice("/", 0) not in origin:
-				Debug.log_error("Property '%s' not found in base '%s'." % [key.get_slice("/", 0), UserClassDB.script_get_identifier(origin.get_script())])
-				break
-			
-			origin = origin[key.get_slice("/", 0)]
-			key = key.substr(key.find("/") + 1)
-		
-		origin.set(key, get_value("Values", key))
-
-
-func open_quests() -> Array[QuestFile]:
-	if not quests.is_empty():
-		return quests
-	
-	for quest in get_quests():
-		var file := QuestFile.new()
-		file.load(quest)
-		quests.append(file)
-	
-	return quests
-
-
-func get_name() -> String:
-	return get_value("General", "name", "UNSET_DIFFICULTY_NAME")
-
-
-func get_quests() -> PackedStringArray:
-	return get_value("General", "quests", [])
-
-
-func requires_token_shop_purchase() -> bool:
-	return get_value("General", "token_shop_purchase", false)
-
-
-func get_icon_path() -> String:
-	return get_value("General", "icon", "difficulty_casual")
-
-
-func get_icon() -> Texture2D:
-	return IconManager.get_icon_data(get_icon_path()).create_texture()
-
-
-func get_starting_lives() -> int:
-	return get_value("General", "starting_lives", 5)
-
-
-func get_conditions() -> PackedStringArray:
-	return get_value("General", "conditions", [])
+func apply_starting_values(quest: Quest) -> void:
+	quest.get_stats().max_life = max_life
+	quest.get_stats().life = life
+	quest.get_stats().revives = revives
+	quest.get_stats().defense = defense
+	quest.get_stats().coins = coins
 
 
 func is_unlocked() -> bool:
-	for condition in get_conditions():
+	for condition in conditions:
 		if condition.begins_with("!") == PlayerFlags.has_flag(condition.trim_prefix("!")):
 			return false
 	
 	return true
-
-
-func get_initial_unlocks() -> int:
-	return get_value("General", "initial_unlocks", 1)

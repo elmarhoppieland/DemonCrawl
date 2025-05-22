@@ -683,10 +683,12 @@ func _stream_encode(stream: ValueStream) -> void:
 			ext_resources.append(resource)
 	
 	for ext_resource in ext_resources:
-		await stream.step("[ext_resource path=\"%s\" id=\"%s\"]\n\n" % [
+		await stream.step("[ext_resource path=\"%s\" id=\"%s\"]\n" % [
 			ext_resource.resource_path,
 			_stringify_uid(_resource_get_uid(ext_resource)),
 		])
+	if not ext_resources.is_empty():
+		await stream.step("\n")
 	for sub_resource in sub_resources:
 		var script := sub_resource.get_script() as Script
 		if script:

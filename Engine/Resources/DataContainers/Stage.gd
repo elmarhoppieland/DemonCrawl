@@ -136,9 +136,13 @@ func area() -> int:
 ## to this [Stage]'s theme.
 func get_theme() -> Theme:
 	if not _theme:
-		_theme = Stage.create_theme(name)
+		_theme = _get_theme()
 	
 	return _theme
+
+
+func _get_theme() -> Theme:
+	return Stage.create_theme(name)
 
 
 static func create_theme(stage_name: String) -> Theme:
@@ -174,7 +178,7 @@ static func create_theme(stage_name: String) -> Theme:
 
 ## Creates and returns a new [StageIcon] for this [Stage].
 func create_icon() -> StageIcon:
-	var icon := load("res://Scenes/StageSelect/StageIcon.tscn").instantiate() as StageIcon
+	var icon := load("res://Engine/Scenes/StageSelect/StageIcon.tscn").instantiate() as StageIcon
 	icon.stage = self
 	return icon
 
@@ -315,26 +319,26 @@ func get_property(section: String, key: String, default: Variant = null) -> Vari
 
 
 # TODO: This is not accurate, we need to collect data about DemonCrawl's generation
-static func generate(base: QuestFile.StageBase, rng: RandomNumberGenerator) -> Stage: # (stage_name: String, index: int, toughness: float, rng: RandomNumberGenerator) -> Stage:
-	var stage := Stage.new(base.name)
-	
-	stage.size.x = rng.randi_range(base.size[0], base.size[-1])
-	stage.size.y = rng.randi_range(base.size[0], base.size[-1])
-	
-	stage.min_power = rng.randi_range(base.min_power[0], base.min_power[-1])
-	stage.max_power = rng.randi_range(base.max_power[0], base.max_power[-1])
-	
-	stage.monsters = rng.randi_range(base.monsters[0], base.monsters[-1])
-	
-	var total_difficulty := rng.randi_range(0, 4)
-	while total_difficulty > 0:
-		break # TODO
-		var mod := StageModDB.create_filter().get_random_mod()
-		stage.mods.append(mod)
-		total_difficulty -= mod.data.difficulty
-	
-	return stage
-	
+#static func generate(base: QuestFile.StageBase, rng: RandomNumberGenerator) -> Stage: # (stage_name: String, index: int, toughness: float, rng: RandomNumberGenerator) -> Stage:
+	#var stage := Stage.new(base.name)
+	#
+	#stage.size.x = rng.randi_range(base.size[0], base.size[-1])
+	#stage.size.y = rng.randi_range(base.size[0], base.size[-1])
+	#
+	#stage.min_power = rng.randi_range(base.min_power[0], base.min_power[-1])
+	#stage.max_power = rng.randi_range(base.max_power[0], base.max_power[-1])
+	#
+	#stage.monsters = rng.randi_range(base.monsters[0], base.monsters[-1])
+	#
+	#var total_difficulty := rng.randi_range(0, 4)
+	#while total_difficulty > 0:
+		#break # TODO
+		#var mod := StageModDB.create_filter().get_random_mod()
+		#stage.mods.append(mod)
+		#total_difficulty -= mod.data.difficulty
+	#
+	#return stage
+	#
 	#const SIZE_MEAN := Vector2(8, 8)
 	#const SIZE_MEAN_INCREASE := Vector2(1.5, 1.5)
 	#const SIZE_DEVIATION := 1.0

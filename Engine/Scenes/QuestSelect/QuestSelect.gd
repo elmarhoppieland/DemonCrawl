@@ -10,7 +10,7 @@ var _focused_node: CanvasItem
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
 
-func _on_quests_overview_quest_selected(quest: QuestFile, difficulty: DifficultyFile) -> void:
+func _on_quests_overview_quest_selected(quest: QuestFile, difficulty: Difficulty) -> void:
 	QuestsManager.selected_quest = quest
 	QuestsManager.selected_difficulty = difficulty
 	
@@ -19,21 +19,21 @@ func _on_quests_overview_quest_selected(quest: QuestFile, difficulty: Difficulty
 	
 	if quest.get_meta("locked"):
 		quest_name_label.text = tr("LOCKED")
-		lore_label.text = tr("LORE_LOCKED") if QuestsOverview.selected_difficulty.requires_token_shop_purchase() else tr("LORE_LOCKED_CASUAL")
+		lore_label.text = tr("LORE_LOCKED") if QuestsManager.selected_difficulty.token_shop_purchase else tr("LORE_LOCKED_CASUAL")
 		begin_button_container.hide()
 	else:
-		quest_name_label.text = tr(quest.get_name())
-		lore_label.text = tr(quest.get_lore())
+		quest_name_label.text = tr(quest.name)
+		lore_label.text = tr(quest.lore)
 		begin_button_container.show()
 
 
 func _on_begin_button_pressed() -> void:
-	var rng := RandomNumberGenerator.new()
-	QuestsManager.selected_quest.pack().generate(rng).set_as_current()
+	var quest := QuestsManager.selected_quest.generate()
+	quest.set_as_current()
 	
-	QuestsManager.selected_difficulty.apply_starting_values()
+	QuestsManager.selected_difficulty.apply_starting_values(quest)
 	
-	get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")
+	get_tree().change_scene_to_file("res://Engine/Scenes/StageSelect/StageSelect.tscn")
 	
 	Eternity.save()
 	

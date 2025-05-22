@@ -7,11 +7,8 @@ static func create(default: Variant, path_name: String = "") -> Variant:
 	if Engine.is_editor_hint():
 		return default
 	
-	if not OS.is_debug_build():
-		Eternity._queue_named_path_load(path_name)
-		return default
-	
-	_register_eternal(default, get_stack(), path_name)
+	if OS.is_debug_build():
+		_register_eternal(default, get_stack(), path_name)
 	
 	Eternity._queue_named_path_load(path_name)
 	return default

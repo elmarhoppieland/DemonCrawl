@@ -37,6 +37,18 @@
 			}
 		]
 	},
+	"Difficulties": {
+		"atlas": "res://Assets/Sprites/icons.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Casual",
+				"w": 16,
+				"x": 0,
+				"y": 166
+			}
+		]
+	},
 	"Doctor": {
 		"atlas": "res://Assets/sprites/strangers/Doctor.png",
 		"icons": [

@@ -83,15 +83,15 @@ func set_as_current() -> void:
 
 ## Starts a new [Quest], using the given [RandomNumberGenerator], and sets the current
 ## quest to the new quest.
-static func start_new(rng: RandomNumberGenerator) -> void:
-	_current = QuestsManager.selected_quest.pack().generate(rng)
-	
-	QuestsManager.selected_difficulty.apply_starting_values()
-	
-	# TODO: merge PlayerStats into QuestInstance
-	#PlayerStats.reset()
-	
-	Effects.quest_start()
+#static func start_new() -> void:
+	#_current = QuestsManager.selected_quest.generate()
+	#
+	#QuestsManager.selected_difficulty.apply_starting_values(_current)
+	#
+	## TODO: merge PlayerStats into QuestInstance
+	##PlayerStats.reset()
+	#
+	#Effects.quest_start()
 
 #endregion
 

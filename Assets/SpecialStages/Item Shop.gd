@@ -3,17 +3,21 @@ class_name ItemShop
 
 # ==============================================================================
 
-func _init() -> void:
-	type = Type.ITEM_SHOP
-	name = "Item Shop"
-	bg = preload("res://Assets/Backgrounds/item_shop.png")
-	icon = preload("res://Assets/Sprites/SpecialIcon/Item Shop.png")
-	icon_small = preload("res://Assets/Sprites/SpecialIcon/Item Shop_small.png")
-	
-	dest_scene = preload("res://Engine/Scenes/SpecialStages/Item Shop.tscn")
+func _get_name() -> String:
+	return tr("STAGE_ITEM_SHOP")
 
 
-static func _import(value: Dictionary) -> ItemShop:
-	var shop := ItemShop.new()
-	shop.locked = value.locked
-	return shop
+func _get_bg() -> Texture2D:
+	return preload("res://Assets/Backgrounds/item_shop.png")
+
+
+func _get_icon() -> Texture2D:
+	return preload("res://Assets/Sprites/SpecialIcon/Item Shop.png")
+
+
+func _get_icon_small() -> Texture2D:
+	return preload("res://Assets/Sprites/SpecialIcon/Item Shop_small.png")
+
+
+func _get_dest_scene() -> PackedScene:
+	return preload("res://Engine/Scenes/SpecialStages/Item Shop.tscn")
