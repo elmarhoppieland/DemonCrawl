@@ -11,11 +11,11 @@ func _get_bg() -> Texture2D:
 	return preload("res://Assets/Backgrounds/item_shop.png")
 
 
-func _get_icon() -> Texture2D:
+func _get_large_icon() -> Texture2D:
 	return preload("res://Assets/Sprites/SpecialIcon/Item Shop.png")
 
 
-func _get_icon_small() -> Texture2D:
+func _get_small_icon() -> Texture2D:
 	return preload("res://Assets/Sprites/SpecialIcon/Item Shop_small.png")
 
 

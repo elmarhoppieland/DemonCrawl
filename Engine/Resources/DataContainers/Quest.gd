@@ -145,6 +145,7 @@ func notify_stage_finished(stage: Stage) -> void:
 		next_stage.locked = false
 		if not next_stage is SpecialStage:
 			break
+		idx += 1
 
 #endregion
 

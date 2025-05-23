@@ -88,6 +88,9 @@ static var _theme_cache := {}
 @export var _instance: StageInstance : get = get_instance
 # ==============================================================================
 var _theme: Theme : get = get_theme
+
+var _icon_large: Texture2D = null : get = get_large_icon
+var _icon_small: Texture2D = null : get = get_small_icon
 # ==============================================================================
 
 func _init(_name: String = "", _size: Vector2i = Vector2i.ZERO, _monsters: int = 0) -> void:
@@ -123,8 +126,8 @@ func set_as_current() -> void:
 
 
 func finish() -> void:
-	completed = true
 	clear_instance()
+	completed = true
 
 
 ## Returns the total area of this [Stage], i.e. the number of [Cell]s.
@@ -181,6 +184,76 @@ func create_icon() -> StageIcon:
 	var icon := load("res://Engine/Scenes/StageSelect/StageIcon.tscn").instantiate() as StageIcon
 	icon.stage = self
 	return icon
+
+
+## Creates and returns this [Stage]'s small icon (the one shown in the [StageSelect] screen, in the [StagesOverview]).
+func get_small_icon() -> Texture2D:
+	if _icon_small:
+		return _icon_small
+	
+	var override := _get_small_icon()
+	if override:
+		_icon_small = override
+		return override
+	
+	const IMAGE_PATH := "res://Assets/skins/%s/bg.png"
+	
+	if not ResourceLoader.exists(IMAGE_PATH % name):
+		return IconManager.get_icon_data("quest/questionmark").create_texture()
+	
+	var image: Image = load(IMAGE_PATH % name).get_image()
+	image.convert(Image.FORMAT_RGBA8)
+	
+	var large_axis := maxi(image.get_width(), image.get_height())
+	var small_axis := mini(image.get_width(), image.get_height())
+	var max_axis_idx := image.get_size().max_axis_index()
+	var pos := Vector2i.ZERO
+	pos[max_axis_idx] = large_axis / 2 - small_axis / 2
+	image = image.get_region(Rect2i(pos, Vector2i(small_axis, small_axis)))
+	
+	image.resize(16, 16)
+	
+	for px: Vector2i in [Vector2i(0, 0), Vector2i(15, 0), Vector2i(0, 15), Vector2i(15, 15)]:
+		image.set_pixelv(px, Color.TRANSPARENT)
+	
+	_icon_small = ImageTexture.create_from_image(image)
+	return _icon_small
+
+
+## Virtual method. Should create and return this [Stage]'s small icon (the one shown in the [StageSelect]
+## screen, in the [StagesOverview]).
+## Return [code]null[/code] use the default behaviour by shrinking this [Stage]'s background.
+func _get_small_icon() -> Texture2D:
+	return null
+
+
+## Creates and return this [Stage]'s large icon (the one shown in the [StageSelect] screen, in the [StageDetails]).
+func get_large_icon() -> Texture2D:
+	if _icon_large:
+		return _icon_large
+	
+	var override := _get_large_icon()
+	if override:
+		_icon_large = override
+		return override
+	
+	if not ResourceLoader.exists("res://Assets/Skins/%s/bg.png" % name):
+		return ImageTexture.create_from_image(Image.create(58, 58, false, Image.FORMAT_RGB8))
+	
+	var image: Image = load("res://Assets/Skins/%s/bg.png" % name).get_image()
+	
+	image = image.get_region(Rect2i(image.get_width() / 2 - image.get_height() / 2, 0, image.get_height(), image.get_height()))
+	image.resize(58, 58)
+	
+	_icon_large = ImageTexture.create_from_image(image)
+	return _icon_large
+
+
+## Virtual method. Should create and return this [Stage]'s large icon (the one shown in the [StageSelect]
+## screen, in the [StageDetails]).
+## Return [code]null[/code] to use the default behaviour by shrinking this [Stage]'s background.
+func _get_large_icon() -> Texture2D:
+	return null
 
 
 # Loads music and ambience into _audio_streams
@@ -258,15 +331,6 @@ func has_coord(coord: Vector2i) -> bool:
 
 func get_bg_texture() -> CompressedTexture2D:
 	return load(BG_TEXTURE_PATH % name)
-
-
-func create_big_icon() -> ImageTexture:
-	var image: Image = ResourceLoader.load("res://Assets/Skins".path_join(name).path_join("bg.png")).get_image()
-	
-	image = image.get_region(Rect2i(image.get_width() / 2 - image.get_height() / 2, 0, image.get_height(), image.get_height()))
-	image.resize(58, 58)
-	
-	return ImageTexture.create_from_image(image)
 
 
 ## Returns the currently active [StageScene].
