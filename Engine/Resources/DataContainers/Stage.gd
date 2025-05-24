@@ -5,16 +5,13 @@ class_name Stage
 ## A single stage in a [Quest].
 
 # ==============================================================================
-const BG_TEXTURE_PATH := "res://Assets/skins/%s/bg.png"
-const MUSIC_PATH := "res://Assets/skins/%s/music.ogg"
-const AMBIENCE_A_PATH := "res://Assets/skins/%s/ambience_a.ogg"
-const AMBIENCE_B_PATH := "res://Assets/skins/%s/ambience_b.ogg"
+const BG_TEXTURE_PATH := "res://Assets/Skins/%s/bg.png"
+const MUSIC_PATH := "res://Assets/Skins/%s/music.ogg"
+const AMBIENCE_A_PATH := "res://Assets/Skins/%s/ambience_a.ogg"
+const AMBIENCE_B_PATH := "res://Assets/Skins/%s/ambience_b.ogg"
 
 # ==============================================================================
 static var _current: Stage = Eternal.create(null) : get = get_current
-
-static var _audio_streams: Array[AudioStreamOggVorbis] = []
-static var _audio_players: Array[AudioStreamPlayer] = []
 
 static var _theme_cache := {}
 # ==============================================================================
@@ -91,6 +88,9 @@ var _theme: Theme : get = get_theme
 
 var _icon_large: Texture2D = null : get = get_large_icon
 var _icon_small: Texture2D = null : get = get_small_icon
+
+var _audio_streams: Array[AudioStreamOggVorbis] = []
+var _audio_players: Array[AudioStreamPlayer] = []
 # ==============================================================================
 
 func _init(_name: String = "", _size: Vector2i = Vector2i.ZERO, _monsters: int = 0) -> void:
@@ -267,7 +267,7 @@ func _load_music() -> void:
 				audio_stream.loop = true
 				_audio_streams.append(audio_stream)
 			else:
-				Toasts.add_debug_toast("Failed to load music at %s" % full_music_path)
+				Debug.log_error("Failed to load music at %s" % full_music_path)
 
 
 # Creates _audio_players and adds them to the StageScene
