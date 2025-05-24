@@ -2,51 +2,6 @@ extends VBoxContainer
 class_name QuestsOverview
 
 # ==============================================================================
-#static var _difficulty_paths_cache := PackedStringArray() :
-	#get:
-		#if _difficulty_paths_cache.is_empty():
-			#const DIR := "res://Assets/quests/difficulties/"
-			#
-			#for file in DirAccess.get_files_at(DIR):
-				#_difficulty_paths_cache.append(DIR.path_join(file))
-		#
-		#return _difficulty_paths_cache
-
-#static var selected_difficulty: Difficulty :
-	#get:
-		#if not selected_difficulty:
-			#selected_difficulty = Difficulty.new()
-			#selected_difficulty.load(selected_difficulty_path)
-		#return selected_difficulty
-# SavesManager.get_value("selected_difficulty_path", QuestsOverview, _difficulty_paths_cache[0])
-#static var selected_difficulty_path: String = Eternal.create(_difficulty_paths_cache[0]) :
-	#set(value):
-		#var different := value != selected_difficulty_path
-		#selected_difficulty_path = value
-		#if different:
-			#selected_difficulty = Difficulty.new()
-			#selected_difficulty.load(value)
-
-# SavesManager.get_value("selected_quest_idx", QuestsOverview, 0)
-#static var selected_quest_idx: int = Eternal.create(0) :
-	#set(value):
-		#var different := value != selected_quest_idx
-		#selected_quest_idx = value
-		#if different:
-			#selected_quest = null
-#static var selected_quest: QuestFile :
-	#get:
-		#if not selected_quest:
-			#selected_quest = QuestFile.new()
-			#selected_quest.load(selected_difficulty.get_quests()[selected_quest_idx])
-		#return selected_quest
-
-# SavesManager.get_value("player_data", QuestsOverview, {...
-static var player_data: Dictionary = {
-	"DIFFICULTY_CASUAL": [{"completions": 0, "best": 0}, {"completions": 0, "best": 0}],
-	"DIFFICULTY_NORMAL": [{"completions": 0, "best": 0}, {"completions": 0, "best": 0}]
-}
-# ==============================================================================
 var quest_icons: Array[TextureRect] = []
 # ==============================================================================
 @onready var quest_icons_container: HBoxContainer = %QuestIconsContainer
@@ -59,8 +14,6 @@ signal quest_selected(quest: QuestFile, difficulty: Difficulty)
 
 func _ready() -> void:
 	redraw_quests()
-	
-	#Debug.push_debug(get_tree().current_scene, "Selected Quest Index", selected_quest_idx)
 
 
 func redraw_quests() -> void:
@@ -126,18 +79,3 @@ func _on_difficulty_select_interacted() -> void:
 
 func _on_difficulty_select_second_interacted() -> void:
 	change_difficulty(-1)
-
-
-static func get_current_player_data() -> Array[Dictionary]:
-	var current_data: Array = player_data.get(QuestsManager.selected_difficulty.name, [])
-	if current_data.size() < QuestsManager.selected_difficulty.quests.size():
-		for i in range(current_data.size(), QuestsManager.selected_difficulty.quests.size()):
-			current_data.append({
-				"completions": 0,
-				"best": 0
-			})
-	
-	var data: Array[Dictionary] = []
-	data.assign(current_data)
-	return data
-

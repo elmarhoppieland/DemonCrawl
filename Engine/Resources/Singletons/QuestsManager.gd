@@ -13,27 +13,13 @@ enum QuestState {
 static var selected_quest: QuestFile = Eternal.create(preload("res://Assets/Quests/Casual/0-Tutorial.tres"))
 static var selected_difficulty: Difficulty = Eternal.create(preload("res://Assets/Quests/Casual/Casual.tres"))
 
-static var difficulties: Array[Difficulty] = []
+static var difficulty_list: DifficultyList = Eternal.create(preload("res://Assets/Quests/Difficulties.tres"))
 
 static var quest_completions: Array[QuestCompletionData] = Eternal.create([] as Array[QuestCompletionData])
 # ==============================================================================
 
-static func _static_init() -> void:
-	find_difficulties("res://Assets/Quests/")
-
-
-static func find_difficulties(directory: String) -> void:
-	var dirs := PackedStringArray([directory])
-	while not dirs.is_empty():
-		var dir := dirs[-1]
-		dirs.resize(dirs.size() - 1)
-		for subdir in DirAccess.get_directories_at(dir):
-			dirs.append(dir.path_join(subdir))
-		for file in DirAccess.get_files_at(dir):
-			if ResourceLoader.exists(dir.path_join(file)):
-				var resource := load(dir.path_join(file))
-				if resource is Difficulty:
-					difficulties.append(resource)
+static func get_difficulties() -> Array[Difficulty]:
+	return difficulty_list.difficulties
 
 
 static func change_difficulty(direction: int) -> void:
@@ -44,7 +30,7 @@ static func change_difficulty(direction: int) -> void:
 
 static func get_unlocked_difficulties() -> Array[Difficulty]:
 	var unlocked_difficulties: Array[Difficulty] = []
-	for difficulty in difficulties:
+	for difficulty in get_difficulties():
 		if difficulty.is_unlocked():
 			unlocked_difficulties.append(difficulty)
 	return unlocked_difficulties

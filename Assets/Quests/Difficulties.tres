@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DifficultyList" load_steps=5 format=3 uid="uid://43gm3oc0w84g"]
+
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/DifficultyList.gd" id="1_g30ny"]
+[ext_resource type="Resource" uid="uid://caiig2eupe0vb" path="res://Assets/Quests/Casual/Casual.tres" id="1_xyils"]
+[ext_resource type="Resource" uid="uid://c8r0jgj2jdnl" path="res://Assets/Quests/Normal/Normal.tres" id="2_ftlyp"]
+[ext_resource type="Resource" uid="uid://im6g8j5omb54" path="res://Assets/Quests/Hard/Hard.tres" id="3_1l7d2"]
+
+[resource]
+script = ExtResource("1_g30ny")
+difficulties = Array[Resource("res://Engine/Resources/DataContainers/DifficultyFile.gd")]([ExtResource("1_xyils"), ExtResource("2_ftlyp"), ExtResource("3_1l7d2")])

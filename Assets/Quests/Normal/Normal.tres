@@ -18,9 +18,8 @@ name = "Difficulties/Normal"
 [resource]
 script = ExtResource("8_f1lbq")
 name = "DIFFICULTY_NORMAL"
-token_shop_purchase = true
 icon = SubResource("Texture2D_fnfsu")
-conditions = PackedStringArray()
+conditions = []
 quests = Array[Resource("res://Engine/Resources/DataContainers/QuestFile.gd")]([ExtResource("2_5afsg"), ExtResource("3_cc6qd"), ExtResource("4_wa072"), ExtResource("5_ldfkd"), ExtResource("6_lqhvi"), ExtResource("7_mot14")])
 max_life = 5
 life = 5
