@@ -66,7 +66,7 @@ func update() -> void:
 	_name_label.text = "STAGE_" + stage.name.to_snake_case().to_upper()
 	_lore_label.text = "LORE_" + stage.name.to_snake_case().to_upper()
 	
-	_stage_texture.texture = stage.create_big_icon()
+	_stage_texture.texture = stage.get_large_icon()
 	
 	for child in _stage_mods_container.get_children():
 		_stage_mods_container.remove_child(child)

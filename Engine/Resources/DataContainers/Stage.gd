@@ -5,16 +5,13 @@ class_name Stage
 ## A single stage in a [Quest].
 
 # ==============================================================================
-const BG_TEXTURE_PATH := "res://Assets/skins/%s/bg.png"
-const MUSIC_PATH := "res://Assets/skins/%s/music.ogg"
-const AMBIENCE_A_PATH := "res://Assets/skins/%s/ambience_a.ogg"
-const AMBIENCE_B_PATH := "res://Assets/skins/%s/ambience_b.ogg"
+const BG_TEXTURE_PATH := "res://Assets/Skins/%s/bg.png"
+const MUSIC_PATH := "res://Assets/Skins/%s/music.ogg"
+const AMBIENCE_A_PATH := "res://Assets/Skins/%s/ambience_a.ogg"
+const AMBIENCE_B_PATH := "res://Assets/Skins/%s/ambience_b.ogg"
 
 # ==============================================================================
 static var _current: Stage = Eternal.create(null) : get = get_current
-
-static var _audio_streams: Array[AudioStreamOggVorbis] = []
-static var _audio_players: Array[AudioStreamPlayer] = []
 
 static var _theme_cache := {}
 # ==============================================================================
@@ -88,6 +85,12 @@ static var _theme_cache := {}
 @export var _instance: StageInstance : get = get_instance
 # ==============================================================================
 var _theme: Theme : get = get_theme
+
+var _icon_large: Texture2D = null : get = get_large_icon
+var _icon_small: Texture2D = null : get = get_small_icon
+
+var _audio_streams: Array[AudioStreamOggVorbis] = []
+var _audio_players: Array[AudioStreamPlayer] = []
 # ==============================================================================
 
 func _init(_name: String = "", _size: Vector2i = Vector2i.ZERO, _monsters: int = 0) -> void:
@@ -123,8 +126,9 @@ func set_as_current() -> void:
 
 
 func finish() -> void:
-	completed = true
+	get_instance().finish()
 	clear_instance()
+	completed = true
 
 
 ## Returns the total area of this [Stage], i.e. the number of [Cell]s.
@@ -136,9 +140,13 @@ func area() -> int:
 ## to this [Stage]'s theme.
 func get_theme() -> Theme:
 	if not _theme:
-		_theme = Stage.create_theme(name)
+		_theme = _get_theme()
 	
 	return _theme
+
+
+func _get_theme() -> Theme:
+	return Stage.create_theme(name)
 
 
 static func create_theme(stage_name: String) -> Theme:
@@ -174,9 +182,79 @@ static func create_theme(stage_name: String) -> Theme:
 
 ## Creates and returns a new [StageIcon] for this [Stage].
 func create_icon() -> StageIcon:
-	var icon := load("res://Scenes/StageSelect/StageIcon.tscn").instantiate() as StageIcon
+	var icon := load("res://Engine/Scenes/StageSelect/StageIcon.tscn").instantiate() as StageIcon
 	icon.stage = self
 	return icon
+
+
+## Creates and returns this [Stage]'s small icon (the one shown in the [StageSelect] screen, in the [StagesOverview]).
+func get_small_icon() -> Texture2D:
+	if _icon_small:
+		return _icon_small
+	
+	var override := _get_small_icon()
+	if override:
+		_icon_small = override
+		return override
+	
+	const IMAGE_PATH := "res://Assets/skins/%s/bg.png"
+	
+	if not ResourceLoader.exists(IMAGE_PATH % name):
+		return IconManager.get_icon_data("quest/questionmark").create_texture()
+	
+	var image: Image = load(IMAGE_PATH % name).get_image()
+	image.convert(Image.FORMAT_RGBA8)
+	
+	var large_axis := maxi(image.get_width(), image.get_height())
+	var small_axis := mini(image.get_width(), image.get_height())
+	var max_axis_idx := image.get_size().max_axis_index()
+	var pos := Vector2i.ZERO
+	pos[max_axis_idx] = large_axis / 2 - small_axis / 2
+	image = image.get_region(Rect2i(pos, Vector2i(small_axis, small_axis)))
+	
+	image.resize(16, 16)
+	
+	for px: Vector2i in [Vector2i(0, 0), Vector2i(15, 0), Vector2i(0, 15), Vector2i(15, 15)]:
+		image.set_pixelv(px, Color.TRANSPARENT)
+	
+	_icon_small = ImageTexture.create_from_image(image)
+	return _icon_small
+
+
+## Virtual method. Should create and return this [Stage]'s small icon (the one shown in the [StageSelect]
+## screen, in the [StagesOverview]).
+## Return [code]null[/code] use the default behaviour by shrinking this [Stage]'s background.
+func _get_small_icon() -> Texture2D:
+	return null
+
+
+## Creates and return this [Stage]'s large icon (the one shown in the [StageSelect] screen, in the [StageDetails]).
+func get_large_icon() -> Texture2D:
+	if _icon_large:
+		return _icon_large
+	
+	var override := _get_large_icon()
+	if override:
+		_icon_large = override
+		return override
+	
+	if not ResourceLoader.exists("res://Assets/Skins/%s/bg.png" % name):
+		return ImageTexture.create_from_image(Image.create(58, 58, false, Image.FORMAT_RGB8))
+	
+	var image: Image = load("res://Assets/Skins/%s/bg.png" % name).get_image()
+	
+	image = image.get_region(Rect2i(image.get_width() / 2 - image.get_height() / 2, 0, image.get_height(), image.get_height()))
+	image.resize(58, 58)
+	
+	_icon_large = ImageTexture.create_from_image(image)
+	return _icon_large
+
+
+## Virtual method. Should create and return this [Stage]'s large icon (the one shown in the [StageSelect]
+## screen, in the [StageDetails]).
+## Return [code]null[/code] to use the default behaviour by shrinking this [Stage]'s background.
+func _get_large_icon() -> Texture2D:
+	return null
 
 
 # Loads music and ambience into _audio_streams
@@ -189,7 +267,7 @@ func _load_music() -> void:
 				audio_stream.loop = true
 				_audio_streams.append(audio_stream)
 			else:
-				Toasts.add_debug_toast("Failed to load music at %s" % full_music_path)
+				Debug.log_error("Failed to load music at %s" % full_music_path)
 
 
 # Creates _audio_players and adds them to the StageScene
@@ -222,18 +300,25 @@ func stop_music() -> void:
 
 ## Returns a [StageInstance] for this [Stage]. Reuses the same one if one was already created.
 func get_instance() -> StageInstance:
-	if self != Stage.get_current():
-		return null
-	
-	if not _instance:
-		_instance = StageInstance.new()
-		_instance.set_stage(self)
+	#if self != Stage.get_current():
+		#return null
+	#
+	#if not _instance:
+		#_instance = StageInstance.new()
+		#_instance.set_stage(self)
+	return _instance
+
+
+## Returns a [StageInstance] for this [Stage]. Reuses an existing one if one was already created.
+func create_instance() -> StageInstance:
+	if _instance == null:
+		_instance = StageInstance.new(self)
 	return _instance
 
 
 ## Returns [code]true[/code] if this [Stage] has a [StageInstance] object.
 func has_instance() -> bool:
-	return self == Stage.get_current()
+	return _instance != null
 
 
 ## Clears this [Stage]'s [StageInstance]. The next call to [method get_instance] will
@@ -254,15 +339,6 @@ func has_coord(coord: Vector2i) -> bool:
 
 func get_bg_texture() -> CompressedTexture2D:
 	return load(BG_TEXTURE_PATH % name)
-
-
-func create_big_icon() -> ImageTexture:
-	var image: Image = ResourceLoader.load("res://Assets/Skins".path_join(name).path_join("bg.png")).get_image()
-	
-	image = image.get_region(Rect2i(image.get_width() / 2 - image.get_height() / 2, 0, image.get_height(), image.get_height()))
-	image.resize(58, 58)
-	
-	return ImageTexture.create_from_image(image)
 
 
 ## Returns the currently active [StageScene].
@@ -315,26 +391,26 @@ func get_property(section: String, key: String, default: Variant = null) -> Vari
 
 
 # TODO: This is not accurate, we need to collect data about DemonCrawl's generation
-static func generate(base: QuestFile.StageBase, rng: RandomNumberGenerator) -> Stage: # (stage_name: String, index: int, toughness: float, rng: RandomNumberGenerator) -> Stage:
-	var stage := Stage.new(base.name)
-	
-	stage.size.x = rng.randi_range(base.size[0], base.size[-1])
-	stage.size.y = rng.randi_range(base.size[0], base.size[-1])
-	
-	stage.min_power = rng.randi_range(base.min_power[0], base.min_power[-1])
-	stage.max_power = rng.randi_range(base.max_power[0], base.max_power[-1])
-	
-	stage.monsters = rng.randi_range(base.monsters[0], base.monsters[-1])
-	
-	var total_difficulty := rng.randi_range(0, 4)
-	while total_difficulty > 0:
-		break # TODO
-		var mod := StageModDB.create_filter().get_random_mod()
-		stage.mods.append(mod)
-		total_difficulty -= mod.data.difficulty
-	
-	return stage
-	
+#static func generate(base: QuestFile.StageBase, rng: RandomNumberGenerator) -> Stage: # (stage_name: String, index: int, toughness: float, rng: RandomNumberGenerator) -> Stage:
+	#var stage := Stage.new(base.name)
+	#
+	#stage.size.x = rng.randi_range(base.size[0], base.size[-1])
+	#stage.size.y = rng.randi_range(base.size[0], base.size[-1])
+	#
+	#stage.min_power = rng.randi_range(base.min_power[0], base.min_power[-1])
+	#stage.max_power = rng.randi_range(base.max_power[0], base.max_power[-1])
+	#
+	#stage.monsters = rng.randi_range(base.monsters[0], base.monsters[-1])
+	#
+	#var total_difficulty := rng.randi_range(0, 4)
+	#while total_difficulty > 0:
+		#break # TODO
+		#var mod := StageModDB.create_filter().get_random_mod()
+		#stage.mods.append(mod)
+		#total_difficulty -= mod.data.difficulty
+	#
+	#return stage
+	#
 	#const SIZE_MEAN := Vector2(8, 8)
 	#const SIZE_MEAN_INCREASE := Vector2(1.5, 1.5)
 	#const SIZE_DEVIATION := 1.0

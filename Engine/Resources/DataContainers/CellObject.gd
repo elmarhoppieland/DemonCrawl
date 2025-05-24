@@ -5,7 +5,7 @@ class_name CellObject
 ## A [Cell]'s object.
 
 # ==============================================================================
-@export var _origin_stage: Stage = null : set = _set_origin_stage, get = get_origin_stage
+@export var _origin_stage: Stage : set = _set_origin_stage, get = get_origin_stage
 # ==============================================================================
 var _cell: WeakRef = null :
 	set(value):
@@ -20,6 +20,8 @@ var _cell: WeakRef = null :
 		
 		cell_changed.emit()
 
+var _origin_stage_weakref: WeakRef = null
+
 var _texture: Texture2D = null : get = get_texture
 var _material: Material = null : get = get_material
 
@@ -28,6 +30,8 @@ var _theme: Theme = null :
 		if _theme == null and _origin_stage != null:
 			_theme = _origin_stage.get_theme()
 		return _theme
+
+var _tweens: Array[Tween] = []
 
 var initialized := false
 var reloaded := false
@@ -40,6 +44,13 @@ signal cell_changed()
 @warning_ignore("shadowed_variable")
 func _init(stage: Stage = Stage.get_current()) -> void:
 	_origin_stage = stage
+
+
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_PREDELETE:
+			for tween in _tweens:
+				tween.kill()
 
 
 func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:
@@ -172,7 +183,7 @@ func _set_origin_stage(value: Stage) -> void:
 	if _origin_stage and _origin_stage.changed.is_connected(_on_stage_changed):
 		_origin_stage.changed.disconnect(_on_stage_changed)
 	
-	_origin_stage = value
+	_origin_stage_weakref = weakref(value)
 	
 	_on_stage_changed()
 	if value:
@@ -187,7 +198,9 @@ func _on_stage_changed() -> void:
 
 
 func get_origin_stage() -> Stage:
-	return _origin_stage
+	if _origin_stage_weakref == null:
+		return null
+	return _origin_stage_weakref.get_ref()
 
 #region virtuals
 
@@ -523,10 +536,14 @@ func clear() -> void:
 	get_cell().clear_object()
 
 
-## Creates a new [Tween] and binds it to the [StageScene].
+## Creates a new [Tween].
 ## [br][br]The [Tween] will start automatically on the next process frame or physics frame (depending on [enum Tween.TweenProcessMode]).
+## [br][br]The [Tween] will automatically be killed when this [CellObject] gets freed.
 func create_tween() -> Tween:
-	return Stage.get_current().get_scene().create_tween()
+	var tween := get_tree().create_tween()
+	_tweens.append(tween)
+	tween.finished.connect(func() -> void: _tweens.erase(tween), CONNECT_ONE_SHOT)
+	return tween
 
 
 @warning_ignore("shadowed_variable")

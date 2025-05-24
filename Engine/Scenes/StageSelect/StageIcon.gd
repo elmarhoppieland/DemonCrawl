@@ -60,14 +60,7 @@ func _update() -> void:
 	else:
 		_icon.modulate = Color.WHITE
 	
-	if "icon_small" in stage and stage.icon_small != null:
-		_icon.texture = stage.icon_small
-	elif "icon" in stage and stage.icon != null:
-		_icon.texture = StageIcon.shrink_image(stage.icon.get_image())
-	elif FileAccess.file_exists(IMAGE_PATH % stage.name):
-		_icon.texture = StageIcon.create_texture(stage.name)
-	else:
-		_icon.texture = StageIcon.shrink_image(IconManager.get_icon_data("quest/questionmark").create_texture().get_image())
+	_icon.texture = stage.get_small_icon()
 
 
 func _on_mouse_entered() -> void:

@@ -24,7 +24,7 @@ static var loaded: Signal :
 	get:
 		return _Instance.loaded
 
-static var _save_cfg: EternalFile = null
+#static var _save_cfg: EternalFile = null
 
 static var _initialized := false
 
@@ -82,7 +82,7 @@ static func save(path_name: String = "") -> void:
 	if file_path.is_empty():
 		return
 	
-	var file := _save_cfg if path_name.is_empty() else EternalFile.new()
+	var file := EternalFile.new()
 	
 	file.clear()
 	
@@ -153,8 +153,6 @@ static func _reload_file(path_name: String = "") -> void:
 	
 	var cfg := EternalFile.new()
 	_processing_cfg = cfg
-	if path_name.is_empty():
-		_save_cfg = cfg
 	cfg.load(file_path)
 	
 	for script_class in _defaults_cfg.get_scripts():

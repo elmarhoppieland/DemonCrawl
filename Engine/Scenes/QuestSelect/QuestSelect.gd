@@ -10,30 +10,33 @@ var _focused_node: CanvasItem
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
 
-func _on_quests_overview_quest_selected(quest: QuestFile, difficulty: DifficultyFile) -> void:
+func _on_quests_overview_quest_selected(quest: QuestFile, difficulty: Difficulty) -> void:
 	QuestsManager.selected_quest = quest
 	QuestsManager.selected_difficulty = difficulty
 	
 	if not is_node_ready():
 		await ready
 	
-	if quest.get_meta("locked"):
+	var state := QuestsManager.get_quest_state(quest, difficulty)
+	
+	if not QuestsManager.is_quest_unlocked(quest, difficulty):
 		quest_name_label.text = tr("LOCKED")
-		lore_label.text = tr("LORE_LOCKED") if QuestsOverview.selected_difficulty.requires_token_shop_purchase() else tr("LORE_LOCKED_CASUAL")
+		lore_label.text = tr("LORE_LOCKED") if state == QuestsManager.QuestState.LOCKED_NEEDS_PURCHASE else tr("LORE_LOCKED_CASUAL")
 		begin_button_container.hide()
 	else:
-		quest_name_label.text = tr(quest.get_name())
-		lore_label.text = tr(quest.get_lore())
+		quest_name_label.text = tr(quest.name)
+		lore_label.text = tr(quest.lore)
 		begin_button_container.show()
 
 
 func _on_begin_button_pressed() -> void:
-	var rng := RandomNumberGenerator.new()
-	QuestsManager.selected_quest.pack().generate(rng).set_as_current()
+	var quest := QuestsManager.selected_quest.generate()
+	quest.source_difficulty = QuestsManager.selected_difficulty
+	quest.set_as_current()
 	
-	QuestsManager.selected_difficulty.apply_starting_values()
+	QuestsManager.selected_difficulty.apply_starting_values(quest)
 	
-	get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")
+	get_tree().change_scene_to_file("res://Engine/Scenes/StageSelect/StageSelect.tscn")
 	
 	Eternity.save()
 	
@@ -47,7 +50,7 @@ func _on_quest_select_statbar_edit_equipment() -> void:
 
 
 func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/MainMenu/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://Engine/Scenes/MainMenu/MainMenu.tscn")
 
 
 func _on_edit_equipment_back_button_pressed() -> void:

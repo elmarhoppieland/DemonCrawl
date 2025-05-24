@@ -1,0 +1,162 @@
+[gd_resource type="Resource" script_class="QuestFile" load_steps=16 format=3 uid="uid://ct4h3rpvny7ve"]
+
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_mept3"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/QuestFile.gd" id="2_2p1sc"]
+[ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://Assets/SpecialStages/Item Shop.tres" id="3_y0a6p"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/StageBase.gd" id="4_r8pr0"]
+
+[sub_resource type="Texture2D" id="Texture2D_kpscn"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_mept3")
+name = "quest/1"
+
+[sub_resource type="Resource" id="Resource_arluq"]
+script = ExtResource("4_r8pr0")
+name = "forest"
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 1
+max_power_maximum = 1
+density_minimum = 0.11
+density_maximum = 0.16
+size_minimum = 6
+size_maximum = 8
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_0fprk"]
+script = ExtResource("4_r8pr0")
+name = "cavern"
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 1
+max_power_maximum = 2
+density_minimum = 0.13
+density_maximum = 0.18
+size_minimum = 6
+size_maximum = 8
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_7sity"]
+script = ExtResource("4_r8pr0")
+name = "desert"
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 1
+max_power_maximum = 2
+density_minimum = 0.16
+density_maximum = 0.2
+size_minimum = 6
+size_maximum = 10
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_avld4"]
+script = ExtResource("4_r8pr0")
+name = "strand"
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 2
+max_power_maximum = 3
+density_minimum = 0.16
+density_maximum = 0.21
+size_minimum = 9
+size_maximum = 11
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_ccxup"]
+script = ExtResource("4_r8pr0")
+name = "ocean"
+min_power_minimum = 1
+min_power_maximum = 2
+max_power_minimum = 4
+max_power_maximum = 4
+density_minimum = 0.17
+density_maximum = 0.22
+size_minimum = 10
+size_maximum = 13
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_4lmxs"]
+script = ExtResource("4_r8pr0")
+name = "tropics"
+min_power_minimum = 2
+min_power_maximum = 2
+max_power_minimum = 4
+max_power_maximum = 5
+density_minimum = 0.18
+density_maximum = 0.23
+size_minimum = 11
+size_maximum = 12
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_sivim"]
+script = ExtResource("4_r8pr0")
+name = "volcano"
+min_power_minimum = 2
+min_power_maximum = 2
+max_power_minimum = 4
+max_power_maximum = 6
+density_minimum = 0.19
+density_maximum = 0.24
+size_minimum = 11
+size_maximum = 15
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_3jn66"]
+script = ExtResource("4_r8pr0")
+name = "wilds"
+min_power_minimum = 2
+min_power_maximum = 2
+max_power_minimum = 6
+max_power_maximum = 6
+density_minimum = 0.2
+density_maximum = 0.25
+size_minimum = 13
+size_maximum = 15
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_72pru"]
+script = ExtResource("4_r8pr0")
+name = "arctic"
+min_power_minimum = 3
+min_power_maximum = 3
+max_power_minimum = 7
+max_power_maximum = 7
+density_minimum = 0.21
+density_maximum = 0.26
+size_minimum = 14
+size_maximum = 16
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_c8ijh"]
+script = ExtResource("4_r8pr0")
+name = "brink"
+min_power_minimum = 3
+min_power_maximum = 3
+max_power_minimum = 7
+max_power_maximum = 8
+density_minimum = 0.22
+density_maximum = 0.27
+size_minimum = 16
+size_maximum = 18
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[resource]
+script = ExtResource("2_2p1sc")
+name = "QUEST_GLORY_DAYS"
+lore = "LORE_GLORY_DAYS"
+token_shop_purchase = false
+icon = SubResource("Texture2D_kpscn")
+skip_unlock = false
+stages = Array[ExtResource("4_r8pr0")]([SubResource("Resource_arluq"), SubResource("Resource_0fprk"), SubResource("Resource_7sity"), SubResource("Resource_avld4"), SubResource("Resource_ccxup"), SubResource("Resource_4lmxs"), SubResource("Resource_sivim"), SubResource("Resource_3jn66"), SubResource("Resource_72pru"), SubResource("Resource_c8ijh")])
+special_stages = Array[Resource("res://Engine/Resources/DataContainers/SpecialStageBase.gd")]([ExtResource("3_y0a6p")])

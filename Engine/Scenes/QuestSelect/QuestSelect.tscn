@@ -171,6 +171,18 @@ tracks/10/keys = {
 "update": 1,
 "values": [0.0]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("MainContent/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer2/LoreLabel:z_index")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="Animation" id="Animation_mi1jm"]
 resource_name = "equipment_edit"
@@ -259,6 +271,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MainContent/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer2/LoreLabel:z_index")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_ck28q"]
 resource_name = "equipment_edit_back"
@@ -334,6 +358,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 180)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MainContent/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer2/LoreLabel:z_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f4j6h"]
@@ -431,8 +467,10 @@ theme_override_constants/margin_left = 4
 
 [node name="LoreLabel" type="Label" parent="MainContent/MarginContainer/MarginContainer2/VBoxContainer/QuestDetails/MarginContainer2"]
 unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
-text = "The king has tasked you with the delivery of an important message to a land across the great waters. Use your renowned tracking skills to avoid the monsters along the way!"
+text = "Years have gone by in the flash of an eye. The glory days are long behind you. How exactly did your adventure end? What lay beyond the brink? It seems you've grown a bit fuzzy on the details. Regardless, there are more pressing matters to attend to - your quiet farm life has been interrupted by a strange new evil!"
 label_settings = SubResource("LabelSettings_oq5d8")
 autowrap_mode = 3
 

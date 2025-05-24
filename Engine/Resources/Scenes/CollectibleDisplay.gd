@@ -133,5 +133,6 @@ static func create(collectible: Collectible) -> CollectibleDisplay:
 
 
 func _on_interacted() -> void:
-	collectible.use()
-	interacted.emit()
+	if collectible:
+		collectible.use()
+		interacted.emit()

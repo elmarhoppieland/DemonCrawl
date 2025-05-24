@@ -14,10 +14,9 @@ static var current_changed := Signal() :
 			current_changed = Signal(Quest, "_current_changed")
 		return current_changed
 # ==============================================================================
-@export var name := "" : ## The name of the quest.
-	set(value):
-		name = value
-		emit_changed()
+@export var source_file: QuestFile = null
+@export var source_difficulty: Difficulty = null
+
 @export var stages: Array[Stage] = [] : ## The stages in the quest.
 	set(value):
 		for stage in stages:
@@ -49,7 +48,6 @@ static var current_changed := Signal() :
 
 @export var _mastery: Mastery : get = get_mastery
 
-@export var _projectile_manager := ProjectileManager.new() : get = get_projectile_manager
 @export var _orb_manager := OrbManager.new() : get = get_orb_manager
 # ==============================================================================
 
@@ -72,6 +70,11 @@ static func has_current() -> bool:
 	return get_current() != null
 
 
+## Sets the currently active [Quest] to [code]null[/code].
+static func clear_current() -> void:
+	_current = null
+
+
 ## Sets this [Quest] as the current quest. Future calls to [method get_current] will
 ## return this [Quest].
 func set_as_current() -> void:
@@ -83,15 +86,15 @@ func set_as_current() -> void:
 
 ## Starts a new [Quest], using the given [RandomNumberGenerator], and sets the current
 ## quest to the new quest.
-static func start_new(rng: RandomNumberGenerator) -> void:
-	_current = QuestsManager.selected_quest.pack().generate(rng)
-	
-	QuestsManager.selected_difficulty.apply_starting_values()
-	
-	# TODO: merge PlayerStats into QuestInstance
-	#PlayerStats.reset()
-	
-	Effects.quest_start()
+#static func start_new() -> void:
+	#_current = QuestsManager.selected_quest.generate()
+	#
+	#QuestsManager.selected_difficulty.apply_starting_values(_current)
+	#
+	## TODO: merge PlayerStats into QuestInstance
+	##PlayerStats.reset()
+	#
+	#Effects.quest_start()
 
 #endregion
 
@@ -113,17 +116,43 @@ func unlock_next_stage(skip_special_stages: bool = true, start_stage_index: int 
 func finish() -> void:
 	Effects.quest_finish()
 	
-	stages.clear()
-	
 	PlayerFlags.add_flag("%s/%s" % [
-		QuestsManager.selected_difficulty.get_name(),
-		name
+		source_difficulty.name,
+		source_file.name
 	])
+	
+	var data := QuestsManager.get_completion_data(source_file)
+	data.completion_count += 1
+	if data.best_score < get_attributes().score:
+		data.best_score = get_attributes().score
+	data.save()
 
+
+func notify_stage_finished(stage: Stage) -> void:
+	stage.finish()
+	
+	if stage not in stages:
+		return
+	
+	if is_finished():
+		finish()
+		return
+	
+	var idx := stages.find(stage) + 1
+	while idx < stages.size():
+		var next_stage := stages[idx]
+		next_stage.locked = false
+		if not next_stage is SpecialStage:
+			break
+		idx += 1
 
 #endregion
 
 #region getters
+
+func is_finished() -> bool:
+	return stages.all(func(stage: Stage) -> bool: return stage is SpecialStage or stage.completed)
+
 
 ## Returns the currently selected [Stage].
 func get_selected_stage() -> Stage:
@@ -144,10 +173,6 @@ func get_attributes() -> QuestPlayerAttributes:
 
 func get_mastery() -> Mastery:
 	return _mastery
-
-
-func get_projectile_manager() -> ProjectileManager:
-	return _projectile_manager
 
 
 func get_orb_manager() -> OrbManager:

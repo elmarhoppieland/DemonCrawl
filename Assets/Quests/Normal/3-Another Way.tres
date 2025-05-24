@@ -1,0 +1,162 @@
+[gd_resource type="Resource" script_class="QuestFile" load_steps=16 format=3 uid="uid://bk14shjgawsbt"]
+
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_lktao"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/QuestFile.gd" id="2_sj12g"]
+[ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://Assets/SpecialStages/Item Shop.tres" id="3_34oo7"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/StageBase.gd" id="4_mvh7x"]
+
+[sub_resource type="Texture2D" id="Texture2D_utex0"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_lktao")
+name = "quest/3"
+
+[sub_resource type="Resource" id="Resource_tvu10"]
+script = ExtResource("4_mvh7x")
+name = "blossom"
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 1
+max_power_maximum = 1
+density_minimum = 0.14
+density_maximum = 0.19
+size_minimum = 6
+size_maximum = 8
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_tla61"]
+script = ExtResource("4_mvh7x")
+name = "island"
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 1
+max_power_maximum = 2
+density_minimum = 0.15
+density_maximum = 0.2
+size_minimum = 6
+size_maximum = 8
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_2hp6w"]
+script = ExtResource("4_mvh7x")
+name = "mountain"
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 1
+max_power_maximum = 2
+density_minimum = 0.16
+density_maximum = 0.21
+size_minimum = 6
+size_maximum = 10
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_wkeh8"]
+script = ExtResource("4_mvh7x")
+name = "garden"
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 2
+max_power_maximum = 3
+density_minimum = 0.17
+density_maximum = 0.22
+size_minimum = 9
+size_maximum = 11
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_kacdp"]
+script = ExtResource("4_mvh7x")
+name = "ruins"
+min_power_minimum = 1
+min_power_maximum = 2
+max_power_minimum = 4
+max_power_maximum = 4
+density_minimum = 0.18
+density_maximum = 0.24
+size_minimum = 10
+size_maximum = 13
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_kuu0j"]
+script = ExtResource("4_mvh7x")
+name = "skies"
+min_power_minimum = 2
+min_power_maximum = 2
+max_power_minimum = 4
+max_power_maximum = 5
+density_minimum = 0.19
+density_maximum = 0.25
+size_minimum = 11
+size_maximum = 12
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_sj86w"]
+script = ExtResource("4_mvh7x")
+name = "fungus"
+min_power_minimum = 2
+min_power_maximum = 2
+max_power_minimum = 4
+max_power_maximum = 6
+density_minimum = 0.2
+density_maximum = 0.26
+size_minimum = 11
+size_maximum = 15
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_n7fvn"]
+script = ExtResource("4_mvh7x")
+name = "sewer"
+min_power_minimum = 2
+min_power_maximum = 2
+max_power_minimum = 6
+max_power_maximum = 6
+density_minimum = 0.21
+density_maximum = 0.27
+size_minimum = 13
+size_maximum = 15
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_3vq3j"]
+script = ExtResource("4_mvh7x")
+name = "prefecture"
+min_power_minimum = 3
+min_power_maximum = 3
+max_power_minimum = 7
+max_power_maximum = 7
+density_minimum = 0.22
+density_maximum = 0.28
+size_minimum = 14
+size_maximum = 16
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_yywuu"]
+script = ExtResource("4_mvh7x")
+name = "machine"
+min_power_minimum = 3
+min_power_maximum = 3
+max_power_minimum = 7
+max_power_maximum = 8
+density_minimum = 0.23
+density_maximum = 0.29
+size_minimum = 16
+size_maximum = 18
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[resource]
+script = ExtResource("2_sj12g")
+name = "QUEST_ANOTHER_WAY"
+lore = "LORE_ANOTHER_WAY"
+token_shop_purchase = true
+icon = SubResource("Texture2D_utex0")
+skip_unlock = false
+stages = Array[ExtResource("4_mvh7x")]([SubResource("Resource_tvu10"), SubResource("Resource_tla61"), SubResource("Resource_2hp6w"), SubResource("Resource_wkeh8"), SubResource("Resource_kacdp"), SubResource("Resource_kuu0j"), SubResource("Resource_sj86w"), SubResource("Resource_n7fvn"), SubResource("Resource_3vq3j"), SubResource("Resource_yywuu")])
+special_stages = Array[Resource("res://Engine/Resources/DataContainers/SpecialStageBase.gd")]([ExtResource("3_34oo7")])

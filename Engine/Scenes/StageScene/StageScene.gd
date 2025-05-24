@@ -23,7 +23,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	for projectile in Quest.get_current().get_projectile_manager().get_projectiles():
+	for projectile in Stage.get_current().get_instance().get_projectile_manager().get_projectiles():
 		projectile.register()
 
 
@@ -74,8 +74,8 @@ func register_projectile(projectile: Projectile) -> ProjectileSprite:
 	sprite.global_position = get_board().get_global_at_cell_position(projectile.position) * _projectiles.get_global_transform()
 	sprite.texture = projectile
 	_projectiles.add_child(sprite)
-	if projectile not in Quest.get_current().get_projectile_manager().get_projectiles():
-		Quest.get_current().get_projectile_manager().register_projectile(projectile)
+	if projectile not in Stage.get_current().get_instance().get_projectile_manager().get_projectiles():
+		Stage.get_current().get_instance().get_projectile_manager().register_projectile(projectile)
 	return sprite
 
 
@@ -97,11 +97,22 @@ func _on_finish_button_pressed() -> void:
 	
 	await _finish_popup.popup()
 	
-	Stage.get_current().finish()
+	var stage := Stage.get_current()
+	var quest := Quest.get_current()
+	quest.notify_stage_finished(stage)
+	
 	Stage.clear_current()
 	
-	Quest.get_current().unlock_next_stage()
+	if quest.is_finished():
+		Quest.clear_current()
+		
+		Eternity.save()
+		
+		# TODO: send player to "quest finished" scene
+		get_tree().change_scene_to_file("res://Engine/Scenes/MainMenu/MainMenu.tscn")
+		
+		return
 	
 	Eternity.save()
 	
-	get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")
+	get_tree().change_scene_to_file("res://Engine/Scenes/StageSelect/StageSelect.tscn")

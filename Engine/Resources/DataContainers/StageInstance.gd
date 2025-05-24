@@ -8,6 +8,8 @@ class_name StageInstance
 		cells = value
 		if Engine.is_editor_hint() and get_stage() and value.size() > get_stage().area():
 			value.resize(get_stage().area())
+		for cell in value:
+			cell.changed.connect(emit_changed)
 		emit_changed()
 # ==============================================================================
 @export var _stage: Stage : set = set_stage, get = get_stage
@@ -19,8 +21,12 @@ class_name StageInstance
 @export var _generated := false : get = is_generated
 @export var _flagless := true : get = is_flagless
 @export var _untouchable := true : get = is_untouchable
+
+@export var _projectile_manager := ProjectileManager.new() : get = get_projectile_manager
 # ==============================================================================
 var _scene: StageScene : get = get_scene
+
+var _stage_weakref: WeakRef = null
 
 var _timer_last_read_usec := 0
 var _timer_read_on_this_frame := false :
@@ -30,6 +36,12 @@ var _timer_read_on_this_frame := false :
 			await Promise.defer()
 			_timer_read_on_this_frame = false
 # ==============================================================================
+signal finished()
+# ==============================================================================
+
+func _init(stage: Stage = null) -> void:
+	load_from_stage(stage)
+
 
 func _bind_idx(idx: int) -> int:
 	if idx < 0:
@@ -38,21 +50,19 @@ func _bind_idx(idx: int) -> int:
 
 
 func _stage_changed() -> void:
-	if get_stage():
+	if Engine.is_editor_hint() and get_stage():
 		if cells.size() > get_stage().area():
 			cells.resize(get_stage().area())
 		while cells.size() < get_stage().area():
 			var data := CellData.new()
-			data.changed.connect(func() -> void:
-				emit_changed()
-			)
+			data.changed.connect(emit_changed) # we CANNOT use a lambda function here - it causes a cyclic reference while a direct connection does not
 			cells.append(data)
 	
 	emit_changed()
 
 
 ## Generates this [StageInstance], spawning [Monster]s at random [Cell]s.
-## [br][br]Cells horizontally or diagonally adjacent to [code]start_cell[/code] will
+## [br][br]Cells orthogonally or diagonally adjacent to [code]start_cell[/code] will
 ## not contain a monster.
 func generate(start_cell: CellData) -> void:
 	const COORD_OFFSETS: PackedInt32Array = [-1, 0, 1]
@@ -78,17 +88,7 @@ func generate(start_cell: CellData) -> void:
 		
 		invalid_indices.insert(invalid_indices.bsearch(idx), idx)
 		
-		var coord := Vector2i(idx % get_stage().size.x, idx / get_stage().size.x)
-		
 		cells[idx].object = Monster.new(get_stage())
-		
-		for dx in COORD_OFFSETS:
-			for dy in COORD_OFFSETS:
-				if dx == 0 and dy == 0:
-					continue
-				if not get_stage().has_coord(coord + Vector2i(dx, dy)):
-					continue
-				cells[idx + dx + dy * get_stage().size.x].value += 1
 	
 	_generated = true
 	
@@ -109,6 +109,13 @@ func create_cell(idx: int) -> Cell:
 	var cell := Cell.create(Vector2i(idx % get_stage().size.x, idx / get_stage().size.x))
 	cell.set_data(data)
 	return cell
+
+
+func finish() -> void:
+	for cell in cells:
+		if cell.object:
+			cell.object.reset()
+	finished.emit()
 
 
 func get_cell_content_spawn_rate() -> float:
@@ -310,19 +317,36 @@ func get_remaining_monster_count() -> int:
 
 
 func set_stage(stage: Stage) -> void:
-	if stage and stage.changed.is_connected(_stage_changed):
-		stage.changed.disconnect(_stage_changed)
+	if _stage and _stage.changed.is_connected(_stage_changed):
+		_stage.changed.disconnect(_stage_changed)
 	
-	_stage = stage
+	_stage_weakref = weakref(stage)
 	
 	if stage:
 		stage.changed.connect(_stage_changed)
+
+
+func load_from_stage(stage: Stage) -> void:
+	set_stage(stage)
 	
-	_stage_changed()
+	if stage == null:
+		return
+	
+	if stage:
+		if cells.size() > stage.area():
+			cells.resize(stage.area())
+		while cells.size() < stage.area():
+			var data := CellData.new()
+			data.changed.connect(emit_changed) # we CANNOT use a lambda function here - it causes a cyclic reference while a direct connection does not
+			cells.append(data)
+	
+	emit_changed()
 
 
 func get_stage() -> Stage:
-	return _stage
+	if _stage_weakref == null:
+		return null
+	return _stage_weakref.get_ref()
 
 
 func get_time() -> int:
@@ -364,3 +388,11 @@ func get_scene() -> StageScene:
 		_scene = current_scene
 	
 	return _scene
+
+
+func get_board() -> Board:
+	return get_scene().get_board()
+
+
+func get_projectile_manager() -> ProjectileManager:
+	return _projectile_manager

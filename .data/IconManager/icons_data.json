@@ -37,6 +37,39 @@
 			}
 		]
 	},
+	"Difficulties": {
+		"atlas": "res://Assets/Sprites/icons.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Casual",
+				"w": 16,
+				"x": 0,
+				"y": 166
+			},
+			{
+				"h": 16,
+				"name": "Normal",
+				"w": 16,
+				"x": 16,
+				"y": 166
+			},
+			{
+				"h": 16,
+				"name": "Hard",
+				"w": 16,
+				"x": 32,
+				"y": 166
+			},
+			{
+				"h": 16,
+				"name": "Beyond",
+				"w": 16,
+				"x": 48,
+				"y": 166
+			}
+		]
+	},
 	"Doctor": {
 		"atlas": "res://Assets/sprites/strangers/Doctor.png",
 		"icons": [

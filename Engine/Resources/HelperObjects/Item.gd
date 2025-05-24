@@ -186,7 +186,6 @@ func set_max_mana(mana: int) -> void:
 ## first initialize the item and then call [method _inventory_add].
 func notify_inventory_added() -> void:
 	_in_inventory = true
-	EffectManager.register_object(self)
 	_inventory_add()
 
 
@@ -202,7 +201,6 @@ func _inventory_add() -> void:
 ## first uninitialize the item and then call [method _inventory_remove].
 func notify_inventory_removed() -> void:
 	_in_inventory = false
-	EffectManager.unregister_object(self)
 	_inventory_remove()
 
 

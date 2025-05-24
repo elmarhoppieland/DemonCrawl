@@ -2,66 +2,18 @@ extends VBoxContainer
 class_name QuestsOverview
 
 # ==============================================================================
-static var _difficulty_paths_cache := PackedStringArray() :
-	get:
-		if _difficulty_paths_cache.is_empty():
-			const DIR := "res://Assets/quests/difficulties/"
-			
-			for file in DirAccess.get_files_at(DIR):
-				_difficulty_paths_cache.append(DIR.path_join(file))
-		
-		return _difficulty_paths_cache
-
-static var selected_difficulty: DifficultyFile :
-	get:
-		if not selected_difficulty:
-			selected_difficulty = DifficultyFile.new()
-			selected_difficulty.load(selected_difficulty_path)
-		return selected_difficulty
-# SavesManager.get_value("selected_difficulty_path", QuestsOverview, _difficulty_paths_cache[0])
-static var selected_difficulty_path: String = Eternal.create(_difficulty_paths_cache[0]) :
-	set(value):
-		var different := value != selected_difficulty_path
-		selected_difficulty_path = value
-		if different:
-			selected_difficulty = DifficultyFile.new()
-			selected_difficulty.load(value)
-
-# SavesManager.get_value("selected_quest_idx", QuestsOverview, 0)
-static var selected_quest_idx: int = Eternal.create(0) :
-	set(value):
-		var different := value != selected_quest_idx
-		selected_quest_idx = value
-		if different:
-			selected_quest = null
-static var selected_quest: QuestFile :
-	get:
-		if not selected_quest:
-			selected_quest = QuestFile.new()
-			selected_quest.load(selected_difficulty.get_quests()[selected_quest_idx])
-		return selected_quest
-
-# SavesManager.get_value("player_data", QuestsOverview, {...
-static var player_data: Dictionary = Eternal.create({
-	"DIFFICULTY_CASUAL": [{"completions": 0, "best": 0}, {"completions": 0, "best": 0}],
-	"DIFFICULTY_NORMAL": [{"completions": 0, "best": 0}, {"completions": 0, "best": 0}]
-})
-# ==============================================================================
 var quest_icons: Array[TextureRect] = []
 # ==============================================================================
 @onready var quest_icons_container: HBoxContainer = %QuestIconsContainer
 @onready var difficulty_select: TextureRect = %DifficultySelect
-@onready var difficulty_select_icon: Icon = difficulty_select.texture
 @onready var difficulty_select_tooltip_grabber: TooltipGrabber = %TooltipGrabber
 @onready var player_data_label: Label = %PlayerDataLabel
 # ==============================================================================
-signal quest_selected(quest: QuestFile, difficulty: DifficultyFile)
+signal quest_selected(quest: QuestFile, difficulty: Difficulty)
 # ==============================================================================
 
 func _ready() -> void:
 	redraw_quests()
-	
-	Debug.push_debug(get_tree().current_scene, "Selected Quest Index", selected_quest_idx)
 
 
 func redraw_quests() -> void:
@@ -70,39 +22,34 @@ func redraw_quests() -> void:
 	
 	quest_icons.clear()
 	
-	difficulty_select_icon.name = selected_difficulty.get_icon_path()
-	difficulty_select_tooltip_grabber.text = tr(selected_difficulty.get_name())
+	difficulty_select.texture = QuestsManager.selected_difficulty.icon
+	difficulty_select_tooltip_grabber.text = tr(QuestsManager.selected_difficulty.name)
 	
-	for i in selected_difficulty.get_quests().size():
-		var quest := QuestFile.new()
-		quest.load(selected_difficulty.get_quests()[i])
-		add_quest(quest, i == selected_quest_idx)
+	for quest in QuestsManager.selected_difficulty.quests:
+		add_quest(quest)
 
 
-func add_quest(quest: QuestFile, main: bool = false) -> void:
+func add_quest(quest: QuestFile) -> void:
 	var icon := TextureRect.new()
-	icon.name = quest.get_name()
+	icon.name = quest.name
 	
-	var index := quest_icons.size()
-	var locked := not QuestsOverview.is_quest_unlocked(index)
-	quest.set_meta("locked", locked)
-	#quest.set_meta("index", index)
+	var locked := not QuestsManager.is_quest_unlocked(quest)
 	
 	if locked:
 		icon.texture = IconManager.get_icon_data("quest/locked").create_texture()
 	else:
-		icon.texture = quest.create_icon()
+		icon.texture = quest.icon
 	
 	var focus_grabber := FocusGrabber.new()
-	focus_grabber.main = main
+	focus_grabber.main = quest == QuestsManager.selected_quest
 	icon.add_child(focus_grabber)
 	
 	focus_grabber.interacted.connect(func() -> void:
-		QuestsOverview.selected_quest_idx = index
-		Debug.push_debug(get_tree().current_scene, "Selected Quest Index", QuestsOverview.selected_quest_idx)
+		QuestsManager.selected_quest = quest
 		
-		var completions: int = 0 if locked else QuestsOverview.get_current_player_data()[index].completions
-		var best: int = 0 if locked else QuestsOverview.get_current_player_data()[index].best
+		var data := QuestsManager.get_completion_data(quest)
+		var completions := data.completion_count
+		var best := data.best_score
 		player_data_label.text = ("%s: x%d\n%s: %s" % [
 			tr("QUEST_COMPLETIONS"),
 			completions,
@@ -110,7 +57,7 @@ func add_quest(quest: QuestFile, main: bool = false) -> void:
 			str(best) if completions > 0 else "-"
 		])
 		
-		quest_selected.emit(quest, QuestsOverview.selected_difficulty)
+		quest_selected.emit(quest, QuestsManager.selected_difficulty)
 	)
 	
 	quest_icons_container.add_child(icon)
@@ -119,20 +66,10 @@ func add_quest(quest: QuestFile, main: bool = false) -> void:
 
 
 func change_difficulty(direction: int) -> void:
-	var idx := _difficulty_paths_cache.find(selected_difficulty_path)
-	
-	while true:
-		if idx < 0:
-			Debug.log_warning("Could not find the selected difficulty (%s) in the cached difficulties. Selecting the first difficulty..." % selected_difficulty_path)
-			idx = 0
-		else:
-			idx = wrapi(idx + direction, 0, _difficulty_paths_cache.size())
-		
-		selected_difficulty_path = _difficulty_paths_cache[idx]
-		
-		if selected_difficulty.is_unlocked():
-			break
-	
+	var selected_idx := QuestsManager.selected_difficulty.quests.find(QuestsManager.selected_quest)
+	QuestsManager.change_difficulty(direction)
+	selected_idx = clampi(selected_idx, 0, QuestsManager.selected_difficulty.quests.size() - 1)
+	QuestsManager.selected_quest = QuestsManager.selected_difficulty.quests[selected_idx]
 	redraw_quests()
 
 
@@ -142,30 +79,3 @@ func _on_difficulty_select_interacted() -> void:
 
 func _on_difficulty_select_second_interacted() -> void:
 	change_difficulty(-1)
-
-
-static func get_current_player_data() -> Array[Dictionary]:
-	var current_data: Array = player_data.get(selected_difficulty.get_name(), [])
-	if current_data.size() < selected_difficulty.get_quests().size():
-		for i in range(current_data.size(), selected_difficulty.get_quests().size()):
-			current_data.append({
-				"completions": 0,
-				"best": 0
-			})
-	
-	var data: Array[Dictionary] = []
-	data.assign(current_data)
-	return data
-
-
-static func is_quest_unlocked(quest_index: int) -> bool:
-	if quest_index < selected_difficulty.get_initial_unlocks():
-		return true
-	
-	if selected_difficulty.requires_token_shop_purchase():
-		return TokenShop.is_item_purchased("TOKEN_SHOP_UPGRADE_QUEST_" + str(quest_index + 1))
-	else:
-		return PlayerFlags.has_flag("%s/%s" % [
-			selected_difficulty.get_name(),
-			selected_difficulty.open_quests()[quest_index - 1].get_name()
-		])
