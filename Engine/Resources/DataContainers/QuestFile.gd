@@ -4,6 +4,7 @@ class_name QuestFile
 # ==============================================================================
 @export var name := ""  ## The name of the quest.
 @export_multiline var lore := ""  ## The quest's lore.
+@export var token_shop_purchase := false  ## Whether this quest must be purchased from the token shop before unlocking it.
 @export var icon: Texture2D = null  ## The quest's icon.
 @export var skip_unlock := false  ## If this is [code]true[/code], unlocking this quest should also unlock the next quest.
 @export var stages: Array[StageBase] = []  ## The stages in the quest.

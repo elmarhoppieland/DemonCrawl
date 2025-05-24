@@ -81,7 +81,7 @@ func _get_texture() -> Texture2D:
 
 func get_speed() -> float:
 	if is_nan(_speed_override):
-		return Quest.get_current().get_projectile_manager().speed
+		return Stage.get_current().get_instance().get_projectile_manager().speed
 	return _speed_override
 
 
@@ -91,7 +91,7 @@ func screen_wrap() -> void:
 
 func clear() -> void:
 	sprite.queue_free()
-	Quest.get_current().get_projectile_manager().clear_projectile(self)
+	Stage.get_current().get_instance().get_projectile_manager().clear_projectile(self)
 
 
 func notify_screen_exited() -> void:

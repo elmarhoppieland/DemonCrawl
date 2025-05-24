@@ -1,18 +1,18 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=16 format=3 uid="uid://cmryc25pgrnah"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=16 format=3 uid="uid://bnceos644ncor"]
 
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_adv6f"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/QuestFile.gd" id="2_12ux7"]
-[ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://Assets/SpecialStages/Item Shop.tres" id="3_qucdc"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/StageBase.gd" id="4_1ncdf"]
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_25enw"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/QuestFile.gd" id="2_7v1oy"]
+[ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://Assets/SpecialStages/Item Shop.tres" id="3_r5c5x"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/StageBase.gd" id="4_n5jd8"]
 
 [sub_resource type="Texture2D" id="Texture2D_ah532"]
 resource_local_to_scene = false
 resource_name = ""
-script = ExtResource("1_adv6f")
+script = ExtResource("1_25enw")
 name = "quest/2"
 
 [sub_resource type="Resource" id="Resource_5387s"]
-script = ExtResource("4_1ncdf")
+script = ExtResource("4_n5jd8")
 name = "farm"
 min_power_minimum = 1
 min_power_maximum = 1
@@ -26,7 +26,7 @@ mod_difficulty_minimum = 0
 mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_kvqxj"]
-script = ExtResource("4_1ncdf")
+script = ExtResource("4_n5jd8")
 name = "alcove"
 min_power_minimum = 1
 min_power_maximum = 1
@@ -40,7 +40,7 @@ mod_difficulty_minimum = 0
 mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_nrcjf"]
-script = ExtResource("4_1ncdf")
+script = ExtResource("4_n5jd8")
 name = "grotto"
 min_power_minimum = 1
 min_power_maximum = 1
@@ -54,7 +54,7 @@ mod_difficulty_minimum = 0
 mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_8u0ev"]
-script = ExtResource("4_1ncdf")
+script = ExtResource("4_n5jd8")
 name = "hallow"
 min_power_minimum = 1
 min_power_maximum = 1
@@ -68,7 +68,7 @@ mod_difficulty_minimum = 0
 mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_m124s"]
-script = ExtResource("4_1ncdf")
+script = ExtResource("4_n5jd8")
 name = "swamp"
 min_power_minimum = 1
 min_power_maximum = 2
@@ -82,7 +82,7 @@ mod_difficulty_minimum = 0
 mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_y85rx"]
-script = ExtResource("4_1ncdf")
+script = ExtResource("4_n5jd8")
 name = "graveyard"
 min_power_minimum = 2
 min_power_maximum = 2
@@ -96,7 +96,7 @@ mod_difficulty_minimum = 0
 mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_qyh3i"]
-script = ExtResource("4_1ncdf")
+script = ExtResource("4_n5jd8")
 name = "dungeon"
 min_power_minimum = 2
 min_power_maximum = 2
@@ -110,7 +110,7 @@ mod_difficulty_minimum = 0
 mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_ir8ee"]
-script = ExtResource("4_1ncdf")
+script = ExtResource("4_n5jd8")
 name = "memory"
 min_power_minimum = 2
 min_power_maximum = 2
@@ -124,7 +124,7 @@ mod_difficulty_minimum = 0
 mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_o1x01"]
-script = ExtResource("4_1ncdf")
+script = ExtResource("4_n5jd8")
 name = "tribe"
 min_power_minimum = 3
 min_power_maximum = 3
@@ -138,7 +138,7 @@ mod_difficulty_minimum = 0
 mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_suxme"]
-script = ExtResource("4_1ncdf")
+script = ExtResource("4_n5jd8")
 name = "shrine"
 min_power_minimum = 3
 min_power_maximum = 3
@@ -152,11 +152,11 @@ mod_difficulty_minimum = 0
 mod_difficulty_maximum = 0
 
 [resource]
-script = ExtResource("2_12ux7")
+script = ExtResource("2_7v1oy")
 name = "QUEST_RESPITES_END"
 lore = "LORE_RESPITES_END"
-token_shop_purchase = false
+token_shop_purchase = true
 icon = SubResource("Texture2D_ah532")
 skip_unlock = false
-stages = Array[ExtResource("4_1ncdf")]([SubResource("Resource_5387s"), SubResource("Resource_kvqxj"), SubResource("Resource_nrcjf"), SubResource("Resource_8u0ev"), SubResource("Resource_m124s"), SubResource("Resource_y85rx"), SubResource("Resource_qyh3i"), SubResource("Resource_ir8ee"), SubResource("Resource_o1x01"), SubResource("Resource_suxme")])
-special_stages = Array[Resource("res://Engine/Resources/DataContainers/SpecialStageBase.gd")]([ExtResource("3_qucdc")])
+stages = Array[ExtResource("4_n5jd8")]([SubResource("Resource_5387s"), SubResource("Resource_kvqxj"), SubResource("Resource_nrcjf"), SubResource("Resource_8u0ev"), SubResource("Resource_m124s"), SubResource("Resource_y85rx"), SubResource("Resource_qyh3i"), SubResource("Resource_ir8ee"), SubResource("Resource_o1x01"), SubResource("Resource_suxme")])
+special_stages = Array[Resource("res://Engine/Resources/DataContainers/SpecialStageBase.gd")]([ExtResource("3_r5c5x")])

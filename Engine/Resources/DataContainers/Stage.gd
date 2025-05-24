@@ -126,6 +126,7 @@ func set_as_current() -> void:
 
 
 func finish() -> void:
+	get_instance().finish()
 	clear_instance()
 	completed = true
 

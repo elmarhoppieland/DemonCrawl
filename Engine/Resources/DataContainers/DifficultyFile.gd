@@ -3,7 +3,6 @@ class_name Difficulty
 
 # ==============================================================================
 @export var name := ""  ## The name of the difficulty.
-@export var token_shop_purchase := true  ## Whether each quest should be purchased from the token shop before it is unlocked.
 @export var icon: Texture2D = null  ## The icon of the difficulty.
 
 @export var conditions: PackedStringArray = []

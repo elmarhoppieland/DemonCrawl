@@ -21,6 +21,8 @@ class_name StageInstance
 @export var _generated := false : get = is_generated
 @export var _flagless := true : get = is_flagless
 @export var _untouchable := true : get = is_untouchable
+
+@export var _projectile_manager := ProjectileManager.new() : get = get_projectile_manager
 # ==============================================================================
 var _scene: StageScene : get = get_scene
 
@@ -33,6 +35,8 @@ var _timer_read_on_this_frame := false :
 		if value:
 			await Promise.defer()
 			_timer_read_on_this_frame = false
+# ==============================================================================
+signal finished()
 # ==============================================================================
 
 func _init(stage: Stage = null) -> void:
@@ -105,6 +109,13 @@ func create_cell(idx: int) -> Cell:
 	var cell := Cell.create(Vector2i(idx % get_stage().size.x, idx / get_stage().size.x))
 	cell.set_data(data)
 	return cell
+
+
+func finish() -> void:
+	for cell in cells:
+		if cell.object:
+			cell.object.reset()
+	finished.emit()
 
 
 func get_cell_content_spawn_rate() -> float:
@@ -381,3 +392,7 @@ func get_scene() -> StageScene:
 
 func get_board() -> Board:
 	return get_scene().get_board()
+
+
+func get_projectile_manager() -> ProjectileManager:
+	return _projectile_manager

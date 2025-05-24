@@ -2,6 +2,14 @@ extends StaticClass
 class_name QuestsManager
 
 # ==============================================================================
+enum QuestState {
+	INVALID = -1,
+	COMPLETED,
+	UNLOCKED,
+	LOCKED_COMPLETE_PREVIOUS,
+	LOCKED_NEEDS_PURCHASE
+}
+# ==============================================================================
 static var selected_quest: QuestFile = Eternal.create(preload("res://Assets/Quests/Casual/0-Tutorial.tres"))
 static var selected_difficulty: Difficulty = Eternal.create(preload("res://Assets/Quests/Casual/Casual.tres"))
 
@@ -52,14 +60,33 @@ static func get_completion_data(quest: QuestFile) -> QuestCompletionData:
 	return data
 
 
+static func get_quest_state(quest: QuestFile, difficulty: Difficulty = selected_difficulty) -> QuestState:
+	var quest_index := difficulty.quests.find(quest)
+	if quest_index < 0:
+		return QuestState.INVALID
+	
+	for i in quest_index:
+		var previous_quest := difficulty.quests[i]
+		if previous_quest.skip_unlock:
+			continue
+		if QuestsManager.get_completion_data(previous_quest).completion_count > 0:
+			continue
+		return QuestState.LOCKED_COMPLETE_PREVIOUS
+	
+	if quest.token_shop_purchase:
+		return QuestState.LOCKED_NEEDS_PURCHASE
+	
+	var data := get_completion_data(quest)
+	if data.completion_count > 0:
+		return QuestState.COMPLETED
+	return QuestState.UNLOCKED
+
+
 static func is_quest_unlocked(quest: QuestFile, difficulty: Difficulty = selected_difficulty) -> bool:
 	var quest_index := selected_difficulty.quests.find(quest)
 	if quest_index < 0:
 		Debug.log_error("The provided quest (%s) is not a part of the provided difficulty (%s)." % [quest.name, difficulty.name])
 		return false
-	
-	if quest_index == 0:
-		return true
 	
 	for i in quest_index:
 		var previous_quest := selected_difficulty.quests[i]
@@ -69,7 +96,7 @@ static func is_quest_unlocked(quest: QuestFile, difficulty: Difficulty = selecte
 			continue
 		return false
 	
-	if QuestsManager.selected_difficulty.token_shop_purchase:
+	if quest.token_shop_purchase:
 		return TokenShop.is_item_purchased("TOKEN_SHOP_UPGRADE_QUEST_" + str(quest_index + 1))
 	return true
 

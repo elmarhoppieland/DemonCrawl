@@ -1,0 +1,170 @@
+[gd_resource type="Resource" script_class="QuestFile" load_steps=18 format=3 uid="uid://cnleqtnuvvj7y"]
+
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_hxaby"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/QuestFile.gd" id="2_wrs1r"]
+[ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://Assets/SpecialStages/Item Shop.tres" id="3_ej5gr"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/RandomStageBase.gd" id="4_q81aj"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/PortalStageBase.gd" id="5_2yjai"]
+
+[sub_resource type="Texture2D" id="Texture2D_bpcax"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_hxaby")
+name = "quest/em"
+
+[sub_resource type="Resource" id="Resource_xniog"]
+script = ExtResource("4_q81aj")
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 1
+max_power_maximum = 1
+density_minimum = 0.16
+density_maximum = 0.21
+size_minimum = 6
+size_maximum = 8
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_p5u11"]
+script = ExtResource("4_q81aj")
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 1
+max_power_maximum = 2
+density_minimum = 0.17
+density_maximum = 0.22
+size_minimum = 6
+size_maximum = 8
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_thi6w"]
+script = ExtResource("4_q81aj")
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 1
+max_power_maximum = 2
+density_minimum = 0.18
+density_maximum = 0.23
+size_minimum = 6
+size_maximum = 10
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_hxiju"]
+script = ExtResource("4_q81aj")
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 2
+max_power_maximum = 3
+density_minimum = 0.19
+density_maximum = 0.24
+size_minimum = 9
+size_maximum = 11
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_gwavl"]
+script = ExtResource("4_q81aj")
+min_power_minimum = 1
+min_power_maximum = 2
+max_power_minimum = 4
+max_power_maximum = 4
+density_minimum = 0.2
+density_maximum = 0.25
+size_minimum = 10
+size_maximum = 13
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_t2hxq"]
+script = ExtResource("4_q81aj")
+min_power_minimum = 2
+min_power_maximum = 2
+max_power_minimum = 4
+max_power_maximum = 5
+density_minimum = 0.0
+density_maximum = 26.0
+size_minimum = 11
+size_maximum = 12
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_xvww4"]
+script = ExtResource("4_q81aj")
+min_power_minimum = 2
+min_power_maximum = 2
+max_power_minimum = 4
+max_power_maximum = 6
+density_minimum = 0.22
+density_maximum = 0.27
+size_minimum = 11
+size_maximum = 15
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_3f7c8"]
+script = ExtResource("4_q81aj")
+min_power_minimum = 2
+min_power_maximum = 2
+max_power_minimum = 6
+max_power_maximum = 6
+density_minimum = 0.23
+density_maximum = 0.28
+size_minimum = 13
+size_maximum = 15
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_rk7nb"]
+script = ExtResource("4_q81aj")
+min_power_minimum = 3
+min_power_maximum = 3
+max_power_minimum = 7
+max_power_maximum = 7
+density_minimum = 0.24
+density_maximum = 0.29
+size_minimum = 14
+size_maximum = 16
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_gq67k"]
+script = ExtResource("4_q81aj")
+min_power_minimum = 3
+min_power_maximum = 3
+max_power_minimum = 7
+max_power_maximum = 8
+density_minimum = 0.25
+density_maximum = 0.3
+size_minimum = 16
+size_maximum = 18
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[sub_resource type="Resource" id="Resource_nvngs"]
+script = ExtResource("5_2yjai")
+min_power_multi = 1.1
+max_power_multi = 1.1
+density_multi = 1.1
+size_multi = 1.1
+name = "metagate"
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 1
+max_power_maximum = 2
+density_minimum = 0.05
+density_maximum = 0.08
+size_minimum = 12
+size_maximum = 15
+mod_difficulty_minimum = 0
+mod_difficulty_maximum = 0
+
+[resource]
+script = ExtResource("2_wrs1r")
+name = "QUEST_ENDLESS_MULTIVERSE"
+lore = "LORE_ENDLESS_MULTIVERSE"
+icon = SubResource("Texture2D_bpcax")
+skip_unlock = false
+stages = Array[Resource("res://Engine/Resources/DataContainers/StageBase.gd")]([SubResource("Resource_xniog"), SubResource("Resource_p5u11"), SubResource("Resource_thi6w"), SubResource("Resource_hxiju"), SubResource("Resource_gwavl"), SubResource("Resource_t2hxq"), SubResource("Resource_xvww4"), SubResource("Resource_3f7c8"), SubResource("Resource_rk7nb"), SubResource("Resource_gq67k"), SubResource("Resource_nvngs")])
+special_stages = Array[Resource("res://Engine/Resources/DataContainers/SpecialStageBase.gd")]([ExtResource("3_ej5gr")])

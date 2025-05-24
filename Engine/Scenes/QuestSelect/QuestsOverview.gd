@@ -112,30 +112,20 @@ func add_quest(quest: QuestFile) -> void:
 	quest_icons.append(icon)
 
 
-#func change_difficulty(direction: int) -> void:
-	#var idx := _difficulty_paths_cache.find(selected_difficulty_path)
-	#
-	#while true:
-		#if idx < 0:
-			#Debug.log_warning("Could not find the selected difficulty (%s) in the cached difficulties. Selecting the first difficulty..." % selected_difficulty_path)
-			#idx = 0
-		#else:
-			#idx = wrapi(idx + direction, 0, _difficulty_paths_cache.size())
-		#
-		#selected_difficulty_path = _difficulty_paths_cache[idx]
-		#
-		#if selected_difficulty.is_unlocked():
-			#break
-	#
-	#redraw_quests()
+func change_difficulty(direction: int) -> void:
+	var selected_idx := QuestsManager.selected_difficulty.quests.find(QuestsManager.selected_quest)
+	QuestsManager.change_difficulty(direction)
+	selected_idx = clampi(selected_idx, 0, QuestsManager.selected_difficulty.quests.size() - 1)
+	QuestsManager.selected_quest = QuestsManager.selected_difficulty.quests[selected_idx]
+	redraw_quests()
 
 
 func _on_difficulty_select_interacted() -> void:
-	QuestsManager.change_difficulty(+1)
+	change_difficulty(+1)
 
 
 func _on_difficulty_select_second_interacted() -> void:
-	QuestsManager.change_difficulty(-1)
+	change_difficulty(-1)
 
 
 static func get_current_player_data() -> Array[Dictionary]:

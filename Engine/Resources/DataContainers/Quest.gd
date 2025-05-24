@@ -48,7 +48,6 @@ static var current_changed := Signal() :
 
 @export var _mastery: Mastery : get = get_mastery
 
-@export var _projectile_manager := ProjectileManager.new() : get = get_projectile_manager
 @export var _orb_manager := OrbManager.new() : get = get_orb_manager
 # ==============================================================================
 
@@ -174,10 +173,6 @@ func get_attributes() -> QuestPlayerAttributes:
 
 func get_mastery() -> Mastery:
 	return _mastery
-
-
-func get_projectile_manager() -> ProjectileManager:
-	return _projectile_manager
 
 
 func get_orb_manager() -> OrbManager:
