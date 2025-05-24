@@ -29,10 +29,12 @@ func _on_stage_details_interacted() -> void:
 	#Foreground.fade_out(FADE_DURATION)
 	await tween.finished
 	
-	get_quest().get_selected_stage().set_as_current()
+	var stage := get_quest().get_selected_stage()
+	stage.set_as_current()
+	stage.create_instance()
 	
-	if get_quest().get_selected_stage() is SpecialStage:
-		get_tree().change_scene_to_packed(get_quest().get_selected_stage().dest_scene)
+	if stage is SpecialStage:
+		get_tree().change_scene_to_packed(stage.dest_scene)
 	else:
 		get_tree().change_scene_to_file("res://Engine/Scenes/StageScene/StageScene.tscn")
 

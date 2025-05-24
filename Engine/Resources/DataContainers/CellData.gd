@@ -9,7 +9,7 @@ const Mode := Cell.Mode
 	set(new_mode):
 		mode = new_mode
 		emit_changed()
-@export var object: CellObject :
+@export var object: CellObject = null :
 	set(new_object):
 		if object:
 			object.set_cell(null)
@@ -226,7 +226,7 @@ func spawn_base(base: CellObjectBase, visible_only: bool = true, stage: Stage = 
 
 
 func create_tween(instance: StageInstance = Stage.get_current().get_instance()) -> Tween:
-	var board := instance.get_stage().get_board()
+	var board := instance.get_board()
 	assert(board != null, "Cannot create a Tween on a Stage that doesn't have a board.")
 	
 	var position := get_position(instance)

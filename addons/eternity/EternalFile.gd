@@ -113,6 +113,7 @@ func _prepare_resource_list() -> void:
 	while i < resources.size():
 		var resource := resources[i]
 		if not resource.resource_path.is_empty():
+			_resource_get_uid(resource)
 			i += 1
 			continue
 		

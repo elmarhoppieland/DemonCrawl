@@ -299,18 +299,25 @@ func stop_music() -> void:
 
 ## Returns a [StageInstance] for this [Stage]. Reuses the same one if one was already created.
 func get_instance() -> StageInstance:
-	if self != Stage.get_current():
-		return null
-	
-	if not _instance:
-		_instance = StageInstance.new()
-		_instance.set_stage(self)
+	#if self != Stage.get_current():
+		#return null
+	#
+	#if not _instance:
+		#_instance = StageInstance.new()
+		#_instance.set_stage(self)
+	return _instance
+
+
+## Returns a [StageInstance] for this [Stage]. Reuses an existing one if one was already created.
+func create_instance() -> StageInstance:
+	if _instance == null:
+		_instance = StageInstance.new(self)
 	return _instance
 
 
 ## Returns [code]true[/code] if this [Stage] has a [StageInstance] object.
 func has_instance() -> bool:
-	return self == Stage.get_current()
+	return _instance != null
 
 
 ## Clears this [Stage]'s [StageInstance]. The next call to [method get_instance] will
