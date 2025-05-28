@@ -2,11 +2,13 @@ extends Resource
 class_name Mastery
 
 # ==============================================================================
+static var _token_shop_items := {}
+# ==============================================================================
 @export var level := 0
 # ==============================================================================
 
 func _init() -> void:
-	level = TokenShop.get_purchased_level(_get_identifier())
+	level = TokenShop.get_purchased_level(_token_shop_items.get(get_script(), null))
 
 #region decription & visualization
 

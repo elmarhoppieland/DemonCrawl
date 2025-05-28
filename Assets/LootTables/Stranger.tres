@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LootTable" load_steps=27 format=3 uid="uid://dpgfvuaiurqu4"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Objects/Nomad.gd" id="1_q4mlo"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/CellObjectBase.gd" id="2_x6567"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Cell/CellObjectBase.gd" id="2_x6567"]
 [ext_resource type="Script" path="res://Assets/Scripts/Objects/HungryPlant.gd" id="3_jovw7"]
 [ext_resource type="Script" path="res://Assets/Scripts/Objects/Waterboy.gd" id="4_l1a1a"]
 [ext_resource type="Script" path="res://Assets/Scripts/Objects/Mercenary.gd" id="5_3cmhx"]

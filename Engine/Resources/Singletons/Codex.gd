@@ -20,6 +20,8 @@ static var heirlooms_changed := Signal() :
 		return heirlooms_changed
 
 static var selected_mastery: Mastery = Eternal.create(null)
+
+static var tokens: int = Eternal.create(0)
 # ==============================================================================
 
 static func add_heirloom_slot() -> void:

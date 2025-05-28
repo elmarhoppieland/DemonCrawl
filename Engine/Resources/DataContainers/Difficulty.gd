@@ -5,7 +5,7 @@ class_name Difficulty
 @export var name := ""  ## The name of the difficulty.
 @export var icon: Texture2D = null  ## The icon of the difficulty.
 
-@export var conditions: PackedStringArray = []
+@export var conditions: Array[Condition] = []
 
 @export var quests: Array[QuestFile] = []  ## This difficulty's quests.
 
@@ -27,7 +27,7 @@ func apply_starting_values(quest: Quest) -> void:
 
 func is_unlocked() -> bool:
 	for condition in conditions:
-		if condition.begins_with("!") == PlayerFlags.has_flag(condition.trim_prefix("!")):
+		if not condition.is_met():
 			return false
 	
 	return true

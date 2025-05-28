@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="TokenShopCategory" load_steps=7 format=3 uid="uid://3rduhwvlqb1q"]
+
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_x5oia"]
+[ext_resource type="Resource" uid="uid://ch182n15td6ju" path="res://Assets/TokenShop/Upgrades/Tokeneer.tres" id="2_k7bdy"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopCategory.gd" id="3_chlul"]
+[ext_resource type="Resource" uid="uid://5glsbfdmdh2k" path="res://Assets/TokenShop/Upgrades/Q1 - Glory Days.tres" id="3_mqox2"]
+[ext_resource type="Resource" uid="uid://b58ybksdysnl7" path="res://Assets/TokenShop/Upgrades/Q2 - Respite's End.tres" id="4_sklqb"]
+
+[sub_resource type="Texture2D" id="Texture2D_0f4lc"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_x5oia")
+name = "tokenshop/category_upgrades"
+
+[resource]
+script = ExtResource("3_chlul")
+name = "TOKEN_SHOP_CATEGORY_UPGRADES"
+icon = SubResource("Texture2D_0f4lc")
+items = Array[Resource("res://Engine/Resources/DataContainers/TokenShop/TokenShopItemBase.gd")]([ExtResource("2_k7bdy"), ExtResource("3_mqox2"), ExtResource("4_sklqb")])

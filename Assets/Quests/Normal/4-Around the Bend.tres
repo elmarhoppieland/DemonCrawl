@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="QuestFile" load_steps=16 format=3 uid="uid://c24u78kr4evmt"]
 
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_kbhp5"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/QuestFile.gd" id="2_pgrld"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="2_pgrld"]
 [ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://Assets/SpecialStages/Item Shop.tres" id="3_w4fdq"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/StageBase.gd" id="4_sh7ef"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/StageBase/StageBase.gd" id="4_sh7ef"]
 
 [sub_resource type="Texture2D" id="Texture2D_axt8q"]
 resource_local_to_scene = false
@@ -155,8 +155,7 @@ mod_difficulty_maximum = 0
 script = ExtResource("2_pgrld")
 name = "QUEST_AROUND_THE_BEND"
 lore = "LORE_AROUND_THE_BEND"
-token_shop_purchase = true
 icon = SubResource("Texture2D_axt8q")
 skip_unlock = false
 stages = Array[ExtResource("4_sh7ef")]([SubResource("Resource_0qqpw"), SubResource("Resource_yayms"), SubResource("Resource_vvx3l"), SubResource("Resource_l2jdi"), SubResource("Resource_gcirs"), SubResource("Resource_0wsmg"), SubResource("Resource_axbgc"), SubResource("Resource_d6ugj"), SubResource("Resource_golmq"), SubResource("Resource_nsgeo")])
-special_stages = Array[Resource("res://Engine/Resources/DataContainers/SpecialStageBase.gd")]([ExtResource("3_w4fdq")])
+special_stages = Array[Resource("res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd")]([ExtResource("3_w4fdq")])

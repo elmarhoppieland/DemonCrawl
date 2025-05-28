@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dqe6i8xvwotle" path="res://Assets/Backgrounds/stages0.png" id="1_6aai7"]
 [ext_resource type="PackedScene" uid="uid://bho6th882qje0" path="res://Engine/Scenes/StageSelect/StagesOverview.tscn" id="2_nrtxk"]
 [ext_resource type="PackedScene" uid="uid://c3vf0fdejs72s" path="res://Engine/Scenes/StageSelect/StageDetails.tscn" id="4_26rrt"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage.gd" id="6_a1317"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/Stage.gd" id="6_a1317"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="6_asf3s"]
 [ext_resource type="Script" path="res://Engine/Resources/UtilityNode/BackButton.gd" id="8_fl1vr"]
 [ext_resource type="Script" path="res://Engine/Resources/Singletons/GuiEnabler.gd" id="9_a0qlk"]
@@ -19,7 +19,7 @@ min_power = 1
 max_power = 2
 locked = false
 completed = false
-mods = Array[Resource("res://Engine/Resources/DataContainers/StageMod.gd")]([])
+mods = Array[Resource("res://Engine/Resources/DataContainers/Stage/StageMod.gd")]([])
 
 [sub_resource type="LabelSettings" id="LabelSettings_pehmt"]
 font = ExtResource("6_asf3s")

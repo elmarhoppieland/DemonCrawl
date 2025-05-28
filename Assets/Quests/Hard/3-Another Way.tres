@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="QuestFile" load_steps=16 format=3 uid="uid://thtiwo46behm"]
 
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_72e7e"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/QuestFile.gd" id="2_tgd6p"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="2_tgd6p"]
 [ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://Assets/SpecialStages/Item Shop.tres" id="3_pg2j1"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/StageBase.gd" id="4_tk50n"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/StageBase/StageBase.gd" id="4_tk50n"]
 
 [sub_resource type="Texture2D" id="Texture2D_utex0"]
 resource_local_to_scene = false
@@ -155,8 +155,7 @@ mod_difficulty_maximum = 0
 script = ExtResource("2_tgd6p")
 name = "QUEST_ANOTHER_WAY"
 lore = "LORE_ANOTHER_WAY"
-token_shop_purchase = true
 icon = SubResource("Texture2D_utex0")
 skip_unlock = false
 stages = Array[ExtResource("4_tk50n")]([SubResource("Resource_tvu10"), SubResource("Resource_tla61"), SubResource("Resource_2hp6w"), SubResource("Resource_wkeh8"), SubResource("Resource_kacdp"), SubResource("Resource_kuu0j"), SubResource("Resource_sj86w"), SubResource("Resource_n7fvn"), SubResource("Resource_3vq3j"), SubResource("Resource_yywuu")])
-special_stages = Array[Resource("res://Engine/Resources/DataContainers/SpecialStageBase.gd")]([ExtResource("3_pg2j1")])
+special_stages = Array[Resource("res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd")]([ExtResource("3_pg2j1")])
