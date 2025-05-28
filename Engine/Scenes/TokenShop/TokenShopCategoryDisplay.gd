@@ -27,7 +27,7 @@ class_name TokenShopCategoryDisplay
 				item_display.update()
 			)
 # ==============================================================================
-@onready var _items_container: HFlowContainer = %HFlowContainer
+@onready var _items_container: Container = %ItemsContainer
 # ==============================================================================
 signal item_purchased(item: TokenShopItemBase)
 # ==============================================================================

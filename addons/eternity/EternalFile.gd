@@ -59,6 +59,7 @@ func get_scripts() -> PackedStringArray:
 			continue
 		if UserClassDB.class_exists(key):
 			scripts.append(key)
+	scripts.sort()
 	return scripts
 
 
@@ -193,8 +194,15 @@ func _parse_ini(file: FileAccess) -> void:
 			if current_section.begins_with("ext_resource "):
 				var id := current_section.get_slice("id=\"", 1).get_slice("\"", 0).hex_to_int()
 				assert(id not in _resources, "Duplicate ID found in the file at '%s'." % file.get_path())
-				var resource := load(current_section.get_slice("path=\"", 1).get_slice("\"", 0))
-				_resources[id] = resource
+				
+				var path := current_section.get_slice("path=\"", 1).get_slice("\"", 0)
+				if ResourceLoader.exists(path):
+					_resources[id] = load(path)
+				else:
+					var resource := MissingExtResource.new()
+					resource.path = path
+					_resources[id] = resource
+				
 				current_section = ""
 				continue
 			
@@ -354,6 +362,8 @@ func _parse_value(value: String) -> Variant:
 			var parsed_value = _parse_value(key_value[1])
 			if key is PendingResourceBase or parsed_value is PendingResourceBase:
 				is_pending = true
+			elif key is MissingExtResource or parsed_value is MissingExtResource:
+				continue
 			dict[key] = parsed_value
 		if is_pending:
 			return PendingResourceDictionary.new(dict)
@@ -373,6 +383,8 @@ func _parse_array(value: String) -> Variant:
 		var v = _parse_value(s)
 		if v is PendingResourceBase:
 			is_pending = true
+		elif v is MissingExtResource:
+			continue
 		values.append(v)
 	if is_pending:
 		return UntypedPendingResourceArray.new(values)
@@ -395,6 +407,8 @@ func _parse_typed_array(value: String) -> Variant:
 			var v = _parse_value(s)
 			if v is PendingResourceBase:
 				is_pending = true
+			elif v is MissingExtResource:
+				continue
 			values.append(v)
 		if is_pending:
 			return TypedPendingResourceArray.new(values, Array([], TYPE_OBJECT, script.get_instance_base_type(), script))
@@ -426,19 +440,6 @@ func _parse_packed_array(value: String) -> Variant:
 	
 	var is_pending := false
 	for s in Stringifier.split_ignoring_nested(value.trim_prefix("PackedArray[" + script_name + "]" + "(").trim_suffix(")"), ","):
-		#s = s.strip_edges().trim_prefix("(").trim_suffix(")").strip_edges()
-		#
-		#if s == "<null>":
-			#values.append(null)
-			#continue
-		#
-		#var v = _parse_constructor("%s(%s)" % [script_name, s])
-		#if v is PendingResourceBase:
-			#is_pending = true
-		#values.append(v)
-		#
-		#continue
-		
 		s = s.strip_edges()
 		
 		var s_script_name: String
@@ -931,6 +932,10 @@ class PendingResourceInstantiator extends PendingResourceBase:
 			if args[i] is PendingResourceBase:
 				args[i] = args[i].create(resources)
 		return instantiator.callv(args)
+
+
+class MissingExtResource extends Resource:
+	var path := ""
 
 
 class ValueStream:

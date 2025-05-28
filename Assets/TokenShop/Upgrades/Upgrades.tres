@@ -1,10 +1,16 @@
-[gd_resource type="Resource" script_class="TokenShopCategory" load_steps=7 format=3 uid="uid://3rduhwvlqb1q"]
+[gd_resource type="Resource" script_class="TokenShopCategory" load_steps=13 format=3 uid="uid://3rduhwvlqb1q"]
 
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_x5oia"]
 [ext_resource type="Resource" uid="uid://ch182n15td6ju" path="res://Assets/TokenShop/Upgrades/Tokeneer.tres" id="2_k7bdy"]
 [ext_resource type="Script" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopCategory.gd" id="3_chlul"]
-[ext_resource type="Resource" uid="uid://5glsbfdmdh2k" path="res://Assets/TokenShop/Upgrades/Q1 - Glory Days.tres" id="3_mqox2"]
 [ext_resource type="Resource" uid="uid://b58ybksdysnl7" path="res://Assets/TokenShop/Upgrades/Q2 - Respite's End.tres" id="4_sklqb"]
+[ext_resource type="Resource" uid="uid://b7yi75jhkqp27" path="res://Assets/TokenShop/Upgrades/Q3 - Another Way.tres" id="5_x2vp2"]
+[ext_resource type="Resource" uid="uid://bn053h0s8sx8t" path="res://Assets/TokenShop/Upgrades/Q4 - Around the Bend.tres" id="6_pgb1v"]
+[ext_resource type="Resource" uid="uid://jt0gtyhyhjkp" path="res://Assets/TokenShop/Upgrades/Q5 - Shadowman.tres" id="7_s1qwk"]
+[ext_resource type="Resource" uid="uid://b4u12ujiinmqe" path="res://Assets/TokenShop/Upgrades/QH2 - Respite's End.tres" id="9_2218y"]
+[ext_resource type="Resource" uid="uid://wv5jht8bndvy" path="res://Assets/TokenShop/Upgrades/QH3 - Another Way.tres" id="10_61hjr"]
+[ext_resource type="Resource" uid="uid://bgxkoaxnxme5p" path="res://Assets/TokenShop/Upgrades/QH4 - Around the Bend.tres" id="11_omlok"]
+[ext_resource type="Resource" uid="uid://crenv4t4ujhim" path="res://Assets/TokenShop/Upgrades/QH5 - Shadowman.tres" id="12_4fylt"]
 
 [sub_resource type="Texture2D" id="Texture2D_0f4lc"]
 resource_local_to_scene = false
@@ -16,4 +22,4 @@ name = "tokenshop/category_upgrades"
 script = ExtResource("3_chlul")
 name = "TOKEN_SHOP_CATEGORY_UPGRADES"
 icon = SubResource("Texture2D_0f4lc")
-items = Array[Resource("res://Engine/Resources/DataContainers/TokenShop/TokenShopItemBase.gd")]([ExtResource("2_k7bdy"), ExtResource("3_mqox2"), ExtResource("4_sklqb")])
+items = Array[Resource("res://Engine/Resources/DataContainers/TokenShop/TokenShopItemBase.gd")]([ExtResource("2_k7bdy"), ExtResource("4_sklqb"), ExtResource("5_x2vp2"), ExtResource("6_pgb1v"), ExtResource("7_s1qwk"), ExtResource("9_2218y"), ExtResource("10_61hjr"), ExtResource("11_omlok"), ExtResource("12_4fylt")])
