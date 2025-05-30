@@ -30,10 +30,10 @@ func _is_purchased() -> bool:
 
 
 func get_display_name() -> String:
-	return _get_display_name()
+	return _get_name()
 
 
-func _get_display_name() -> String:
+func _get_name() -> String:
 	return ""
 
 

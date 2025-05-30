@@ -24,7 +24,7 @@ static func get_icon_data(name: String) -> IconData:
 		return IconData.new()
 	
 	if name.get_base_dir() not in json:
-		push_error("No icon with name '%s' exists, since the atlas was not found." % name)
+		push_error("No icon with name '%s' exists: Atlas not found." % name)
 		return IconData.new()
 	
 	var atlas_data := json[name.get_base_dir()] as Dictionary
@@ -39,7 +39,7 @@ static func get_icon_data(name: String) -> IconData:
 			)
 			return data
 	
-	push_error("No icon with the name '%s' exists, since its atlas has no icon '%s'." % [name, name.get_file()])
+	push_error("Icon '%s' not found under base '%s'." % [name.get_file(), name.get_base_dir()])
 	return data
 
 

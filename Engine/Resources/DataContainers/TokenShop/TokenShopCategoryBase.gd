@@ -1,12 +1,12 @@
 @tool
-extends TokenShopCategoryBase
-class_name TokenShopCategory
+extends Resource
+class_name TokenShopCategoryBase
 
 # ==============================================================================
-@export var name := ""
-@export var icon: Texture2D = null
-@export var items: Array[TokenShopItemBase] = []
-# ==============================================================================
+
+func try_purchase(item: TokenShopItemBase) -> bool:
+	return _try_purchase(item)
+
 
 func _try_purchase(item: TokenShopItemBase) -> bool:
 	if Codex.tokens < item.get_cost():
@@ -18,13 +18,25 @@ func _try_purchase(item: TokenShopItemBase) -> bool:
 	return true
 
 
+func get_display_name() -> String:
+	return _get_name()
+
+
 func _get_name() -> String:
-	return name
+	return ""
+
+
+func get_icon() -> Texture2D:
+	return _get_icon()
 
 
 func _get_icon() -> Texture2D:
-	return icon
+	return null
+
+
+func get_items() -> Array[TokenShopItemBase]:
+	return _get_items()
 
 
 func _get_items() -> Array[TokenShopItemBase]:
-	return items
+	return []

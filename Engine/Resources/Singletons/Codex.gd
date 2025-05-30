@@ -26,6 +26,9 @@ static var selected_mastery: Mastery = Eternal.create(null)
 static var tokens: int = Eternal.create(0)
 
 static var profiles: Array[CodexProfile] = Eternal.create([] as Array[CodexProfile])
+
+static var unlocked_masteries: Array[Mastery] = Eternal.create([] as Array[Mastery])
+static var selectable_masteries: Array[Mastery] = Eternal.create([] as Array[Mastery])
 # ==============================================================================
 
 static func add_heirloom_slot() -> void:

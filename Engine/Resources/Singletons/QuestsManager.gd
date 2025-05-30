@@ -10,10 +10,10 @@ enum QuestState {
 	LOCKED_NEEDS_PURCHASE
 }
 # ==============================================================================
-static var selected_quest: QuestFile = Eternal.create(preload("res://Assets/Quests/Casual/0-Tutorial.tres"))
-static var selected_difficulty: Difficulty = Eternal.create(preload("res://Assets/Quests/Casual/Casual.tres"))
+static var selected_quest: QuestFile = Eternal.create(load("res://Assets/Quests/Casual/0-Tutorial.tres"))
+static var selected_difficulty: Difficulty = Eternal.create(load("res://Assets/Quests/Casual/Casual.tres"))
 
-static var difficulty_list: DifficultyList = Eternal.create(preload("res://Assets/Quests/Difficulties.tres"))
+static var difficulty_list: DifficultyList = Eternal.create(load("res://Assets/Quests/Difficulties.tres"))
 
 static var quest_completions: Array[QuestCompletionData] = Eternal.create([] as Array[QuestCompletionData])
 # ==============================================================================

@@ -3,5 +3,5 @@ extends Resource
 class_name TokenShopCategoryList
 
 # ==============================================================================
-@export var categories: Array[TokenShopCategory] = []
+@export var categories: Array[TokenShopCategoryBase] = []
 # ==============================================================================

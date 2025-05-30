@@ -22,7 +22,7 @@ func _reapply_reward(purchase_count: int) -> void:
 		reward.reapply()
 
 
-func _get_display_name() -> String:
+func _get_name() -> String:
 	return name
 
 

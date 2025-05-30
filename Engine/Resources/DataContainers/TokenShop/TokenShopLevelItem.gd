@@ -32,23 +32,23 @@ func _is_purchased() -> bool:
 	return TokenShop.get_purchased_level(self) >= levels.size()
 
 
-func _get_display_name() -> String:
+func _get_name() -> String:
 	var level := TokenShop.get_purchased_level(self)
 	if level < levels.size():
-		return tr(get_next_level().name) + " " + RomanNumeral.convert_to_roman(level + 1)
-	return tr(get_next_level().name)
+		return tr(get_next_level().get_display_name()) + " " + RomanNumeral.convert_to_roman(level + 1)
+	return tr(get_next_level().get_display_name())
 
 
 func _get_description() -> String:
-	return get_next_level().description
+	return get_next_level().get_description()
 
 
 func _get_icon() -> Texture2D:
-	return get_next_level().icon
+	return get_next_level().get_icon()
 
 
 func _get_cost() -> int:
-	return get_next_level().cost
+	return get_next_level().get_cost()
 
 
 func _is_visible() -> bool:

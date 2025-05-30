@@ -6,11 +6,13 @@ class_name TokenShop
 const CATEGORIES := preload("res://Assets/TokenShop/Categories.tres")
 # ==============================================================================
 static var purchased_items: Dictionary = Eternal.create({})
-# ==============================================================================
-var selected_category: TokenShopCategoryDisplay = null
+
+static var selected_category: TokenShopCategoryBase = Eternal.create(CATEGORIES.categories[0])
 # ==============================================================================
 @onready var _category_tab_buttons: HBoxContainer = %CategoryTabButtons
 @onready var _categories_container: MarginContainer = %Categories
+# ==============================================================================
+signal category_selected(category: TokenShopCategoryBase)
 # ==============================================================================
 
 func _ready() -> void:
@@ -26,21 +28,24 @@ func _ready() -> void:
 		category_display.category = category
 		_categories_container.add_child(category_display)
 		
+		if category != selected_category:
+			category_display.hide()
+		
 		icon.interacted.connect(func() -> void:
-			if category_display.visible:
-				return
-			
-			selected_category.hide()
-			selected_category = category_display
-			category_display.show()
+			selected_category = category
+			category_selected.emit(category)
 		)
 		
-		category_display.item_purchased.connect(func(item: TokenShopItemBase) -> void:
-			if Codex.tokens >= item.get_cost():
-				Codex.tokens -= item.get_cost()
-				TokenShop.purchase(item)
-				Eternity.save()
+		category_selected.connect(func(selected: TokenShopCategoryBase) -> void:
+			category_display.visible = category == selected
 		)
+		
+		#category_display.item_purchased.connect(func(item: TokenShopItemBase) -> void:
+			#if Codex.tokens >= item.get_cost():
+				#Codex.tokens -= item.get_cost()
+				#TokenShop.purchase(item)
+				#Eternity.save()
+		#)
 	
 	#const DIR := "res://Assets/TokenShop/"
 	#
