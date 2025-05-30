@@ -8,6 +8,8 @@ var current_resource: Resource = null
 # ==============================================================================
 var _data := {}
 var _resources := {}
+
+var _rng := RandomNumberGenerator.new()
 # ==============================================================================
 signal value_changed(section: String, key: String, value: Variant)
 signal loaded(path: String)
@@ -819,7 +821,7 @@ func _resource_get_uid(resource: Resource) -> int:
 
 
 func _generate_unique_id() -> int:
-	var uid := randi()
+	var uid := _rng.randi()
 	if uid in _resources:
 		return _generate_unique_id()
 	return uid

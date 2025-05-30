@@ -3,7 +3,7 @@ extends StaticClass
 class_name Codex
 
 # ==============================================================================
-static var _heirlooms: Array[Heirloom] = Eternal.create([Heirloom.new("res://Assets/items/Apple.tres"), null] as Array[Heirloom]) :
+static var _heirlooms: Array[Heirloom] = Eternal.create([] as Array[Heirloom]) :
 	set(value):
 		_heirlooms = value
 		for i in value.size():

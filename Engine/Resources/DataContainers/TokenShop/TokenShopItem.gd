@@ -13,11 +13,12 @@ class_name TokenShopItem
 # ==============================================================================
 
 func _purchase() -> void:
-	reward.apply()
+	if reward:
+		reward.apply()
 
 
 func _reapply_reward(purchase_count: int) -> void:
-	if purchase_count > 0:
+	if reward and purchase_count > 0:
 		reward.reapply()
 
 
