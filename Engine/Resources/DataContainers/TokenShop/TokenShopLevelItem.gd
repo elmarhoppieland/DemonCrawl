@@ -118,7 +118,7 @@ func _set(property: StringName, value: Variant) -> bool:
 	if property.get_base_dir() == "Base":
 		var old_value = base.get(property.get_file())
 		for level in levels:
-			if level.get(property.get_file()) == old_value:
+			if level and level.get(property.get_file()) == old_value:
 				level.set(property.get_file(), value)
 		base.set(property.get_file(), value)
 		return true

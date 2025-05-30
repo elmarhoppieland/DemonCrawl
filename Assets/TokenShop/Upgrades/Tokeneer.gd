@@ -1,5 +1,4 @@
 extends TokenShopReward
-class_name Tokeneer
 
 # ==============================================================================
 const WEIGHT_FACTOR := 1.1

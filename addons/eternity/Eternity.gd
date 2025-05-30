@@ -182,7 +182,7 @@ static func _reload_file(path_name: String = "") -> void:
 			if script.has_method("_import_" + key):
 				value = script.call("_import_" + key, value)
 			
-			script[key] = value
+			script.set(key, value)
 	
 	loaded.emit(file_path)
 	_processing_cfg = null
