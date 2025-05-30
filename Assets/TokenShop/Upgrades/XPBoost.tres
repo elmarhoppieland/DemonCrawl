@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="TokenShopInfiniteItem" load_steps=4 format=3 uid="uid://crmxudsgrgcxw"]
+
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopInfiniteItem.gd" id="1_tl66k"]
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_vngus"]
+
+[sub_resource type="Texture2D" id="Texture2D_oyf6t"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_vngus")
+name = "tokenshop/xp_boost"
+
+[resource]
+script = ExtResource("1_tl66k")
+name = "XP_BOOST"
+description = "XP_BOOST_DESCRIPTION"
+icon = SubResource("Texture2D_oyf6t")
+cost = 5
+conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
