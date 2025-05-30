@@ -4,6 +4,23 @@ class_name TokenShopItemBase
 
 # ==============================================================================
 
+func notify_purchased() -> void:
+	_purchase()
+
+
+func _purchase() -> void:
+	pass
+
+
+func reapply_reward(purchase_count: int) -> void:
+	_reapply_reward(purchase_count)
+
+
+@warning_ignore("unused_parameter")
+func _reapply_reward(purchase_count: int) -> void:
+	pass
+
+
 func is_purchased() -> bool:
 	return _is_purchased()
 

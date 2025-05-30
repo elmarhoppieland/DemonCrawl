@@ -184,6 +184,9 @@ func _is_packable(value: Variant) -> bool:
 
 func _parse_ini(file: FileAccess) -> void:
 	_data.clear()
+	_resources.clear()
+	
+	current_resource = null
 	
 	var current_section := ""
 	while not file.eof_reached():

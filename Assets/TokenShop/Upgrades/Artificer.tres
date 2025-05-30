@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="TokenShopLevelItem" load_steps=6 format=3 uid="uid://o4ce6fvojob5"]
+
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_x0faw"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopLevelItem.gd" id="2_62ice"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Condition/FlagCondition.gd" id="2_vqia3"]
+
+[sub_resource type="Texture2D" id="Texture2D_nhp6q"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_x0faw")
+name = "tokenshop/upgrade_specialist"
+
+[sub_resource type="Resource" id="Resource_14rhc"]
+script = ExtResource("2_vqia3")
+flag = "hard"
+invert = false
+
+[resource]
+script = ExtResource("2_62ice")
+Base/name = "TOKEN_SHOP_UPGRADE_ARTIFICER"
+Base/description = "TOKEN_SHOP_UPGRADE_ARTIFICER_DESCRIPTION"
+Base/icon = SubResource("Texture2D_nhp6q")
+Base/cost = 0
+Base/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+Base/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_14rhc")])
+level_count = 5
+level_0/name = "TOKEN_SHOP_UPGRADE_ARTIFICER"
+level_0/description = "TOKEN_SHOP_UPGRADE_ARTIFICER_DESCRIPTION"
+level_0/icon = SubResource("Texture2D_nhp6q")
+level_0/cost = 5
+level_0/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_0/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_14rhc")])
+level_1/name = "TOKEN_SHOP_UPGRADE_ARTIFICER"
+level_1/description = "TOKEN_SHOP_UPGRADE_ARTIFICER_DESCRIPTION"
+level_1/icon = SubResource("Texture2D_nhp6q")
+level_1/cost = 10
+level_1/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_1/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_14rhc")])
+level_2/name = "TOKEN_SHOP_UPGRADE_ARTIFICER"
+level_2/description = "TOKEN_SHOP_UPGRADE_ARTIFICER_DESCRIPTION"
+level_2/icon = SubResource("Texture2D_nhp6q")
+level_2/cost = 20
+level_2/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_2/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_14rhc")])
+level_3/name = "TOKEN_SHOP_UPGRADE_ARTIFICER"
+level_3/description = "TOKEN_SHOP_UPGRADE_ARTIFICER_DESCRIPTION"
+level_3/icon = SubResource("Texture2D_nhp6q")
+level_3/cost = 50
+level_3/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_3/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_14rhc")])
+level_4/name = "TOKEN_SHOP_UPGRADE_ARTIFICER"
+level_4/description = "TOKEN_SHOP_UPGRADE_ARTIFICER_DESCRIPTION"
+level_4/icon = SubResource("Texture2D_nhp6q")
+level_4/cost = 100
+level_4/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_4/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_14rhc")])

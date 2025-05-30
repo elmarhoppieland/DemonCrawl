@@ -7,10 +7,19 @@ class_name TokenShopItem
 @export_multiline var description := ""
 @export var icon: Texture2D = null
 @export var cost := 0
-@export var reward_script: Script = null
+@export var reward: TokenShopReward = null
 @export var conditions: Array[Condition] = []
 @export var unlock_conditions: Array[Condition] = []
 # ==============================================================================
+
+func _purchase() -> void:
+	reward.apply()
+
+
+func _reapply_reward(purchase_count: int) -> void:
+	if purchase_count > 0:
+		reward.reapply()
+
 
 func _get_display_name() -> String:
 	return name
@@ -26,10 +35,6 @@ func _get_icon() -> Texture2D:
 
 func _get_cost() -> int:
 	return cost
-
-
-func _get_reward_script() -> Script:
-	return reward_script
 
 
 func _is_visible() -> bool:

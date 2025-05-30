@@ -19,12 +19,24 @@ func get_next_level() -> TokenShopItem:
 	return levels[idx]
 
 
+func _purchase() -> void:
+	get_next_level().notify_purchased()
+
+
+func _reapply_reward(purchase_count: int) -> void:
+	for i in purchase_count:
+		levels[i].reapply_reward(1)
+
+
 func _is_purchased() -> bool:
 	return TokenShop.get_purchased_level(self) >= levels.size()
 
 
 func _get_display_name() -> String:
-	return get_next_level().name
+	var level := TokenShop.get_purchased_level(self)
+	if level < levels.size():
+		return tr(get_next_level().name) + " " + RomanNumeral.convert_to_roman(level + 1)
+	return tr(get_next_level().name)
 
 
 func _get_description() -> String:
@@ -45,10 +57,6 @@ func _is_visible() -> bool:
 
 func _is_locked() -> bool:
 	return get_next_level().is_locked()
-
-
-func _get_reward_script() -> Script:
-	return get_next_level().reward_script
 
 
 func _get_property_list() -> Array[Dictionary]:
@@ -108,12 +116,11 @@ func _get(property: StringName) -> Variant:
 
 func _set(property: StringName, value: Variant) -> bool:
 	if property.get_base_dir() == "Base":
-		var old_value = base.get(property.trim_prefix("Base/"))
+		var old_value = base.get(property.get_file())
 		for level in levels:
 			if level.get(property.get_file()) == old_value:
 				level.set(property.get_file(), value)
-		base.set(property.trim_prefix("Base/"), value)
-		notify_property_list_changed()
+		base.set(property.get_file(), value)
 		return true
 	
 	if property.match("level_*/*"):

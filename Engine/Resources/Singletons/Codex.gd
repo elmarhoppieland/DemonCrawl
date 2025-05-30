@@ -19,6 +19,8 @@ static var heirlooms_changed := Signal() :
 			heirlooms_changed = Signal(Codex, "heirlooms_changed")
 		return heirlooms_changed
 
+static var favored_items: Array[Item] = Eternal.create([] as Array[Item])
+
 static var selected_mastery: Mastery = Eternal.create(null)
 
 static var tokens: int = Eternal.create(0)

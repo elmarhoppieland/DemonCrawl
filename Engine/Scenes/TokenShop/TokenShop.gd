@@ -79,6 +79,7 @@ func _ready() -> void:
 
 static func purchase(item: TokenShopItemBase) -> void:
 	purchased_items[item] = purchased_items.get(item, 0) + 1
+	item.notify_purchased()
 
 
 static func is_item_purchased(item: TokenShopItemBase) -> bool:

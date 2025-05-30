@@ -132,6 +132,8 @@ static func get_save_name(path_name: String = "") -> String:
 
 
 static func get_defaults_cfg() -> EternalFile:
+	if Engine.is_editor_hint():
+		_defaults_cfg.load(DEFAULTS_FILE_PATH)
 	return _defaults_cfg
 
 

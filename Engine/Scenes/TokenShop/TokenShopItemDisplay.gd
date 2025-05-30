@@ -11,53 +11,53 @@ const ICON_COVERED_MODULATE := Color.DARK_GRAY
 	set(value):
 		item = value
 		update()
-
-@export var locked := false :
-	set(value):
-		if locked == value:
-			return
-		
-		locked = value
-		
-		if not is_node_ready():
-			await ready
-		
-		if value:
-			is_purchased = false
-			
-			_icon_rect.modulate = Color.DARK_GRAY
-			_lock.show()
-			
-			if _hovered:
-				_hover_tween = create_tween().set_parallel()
-				_hover_tween.tween_property(_hover_anchor, "position", HOVER_ANIM_BEGIN_OFFSET, HOVER_ANIM_DURATION).from(Vector2.ZERO)
-				_hover_tween.tween_property(_hover_anchor, "modulate", Color.TRANSPARENT, HOVER_ANIM_DURATION).from(Color.WHITE)
-		else:
-			_icon_rect.modulate = Color.WHITE
-			_lock.hide()
-@export var is_purchased := false :
-	set(value):
-		if is_purchased == value:
-			return
-		
-		is_purchased = value
-		
-		if not is_node_ready():
-			await ready
-		
-		if value:
-			locked = false
-			
-			_icon_rect.modulate = Color.DARK_GRAY
-			_checkmark.show()
-			
-			if _hovered:
-				_hover_tween = create_tween().set_parallel()
-				_hover_tween.tween_property(_hover_anchor, "position", HOVER_ANIM_BEGIN_OFFSET, HOVER_ANIM_DURATION).from(Vector2.ZERO)
-				_hover_tween.tween_property(_hover_anchor, "modulate", Color.TRANSPARENT, HOVER_ANIM_DURATION).from(Color.WHITE)
-		else:
-			_icon_rect.modulate = Color.WHITE
-			_checkmark.hide()
+# ==============================================================================
+#var locked := false :
+	#set(value):
+		#if locked == value:
+			#return
+		#
+		#locked = value
+		#
+		#if not is_node_ready():
+			#await ready
+		#
+		#if value:
+			#is_purchased = false
+			#
+			#_icon_rect.modulate = Color.DARK_GRAY
+			#_lock.show()
+			#
+			#if _hovered:
+				#_hover_tween = create_tween().set_parallel()
+				#_hover_tween.tween_property(_hover_anchor, "position", HOVER_ANIM_BEGIN_OFFSET, HOVER_ANIM_DURATION).from(Vector2.ZERO)
+				#_hover_tween.tween_property(_hover_anchor, "modulate", Color.TRANSPARENT, HOVER_ANIM_DURATION).from(Color.WHITE)
+		#else:
+			#_icon_rect.modulate = Color.WHITE
+			#_lock.hide()
+#var is_purchased := false :
+	#set(value):
+		#if is_purchased == value:
+			#return
+		#
+		#is_purchased = value
+		#
+		#if not is_node_ready():
+			#await ready
+		#
+		#if value:
+			#locked = false
+			#
+			#_icon_rect.modulate = Color.DARK_GRAY
+			#_checkmark.show()
+			#
+			#if _hovered:
+				#_hover_tween = create_tween().set_parallel()
+				#_hover_tween.tween_property(_hover_anchor, "position", HOVER_ANIM_BEGIN_OFFSET, HOVER_ANIM_DURATION).from(Vector2.ZERO)
+				#_hover_tween.tween_property(_hover_anchor, "modulate", Color.TRANSPARENT, HOVER_ANIM_DURATION).from(Color.WHITE)
+		#else:
+			#_icon_rect.modulate = Color.WHITE
+			#_checkmark.hide()
 # ==============================================================================
 var _hovered := false
 var _hover_tween: Tween = null :
@@ -90,9 +90,41 @@ func update() -> void:
 	_icon_rect.texture = item.get_icon()
 	_cost_label.text = str(item.get_cost())
 	
-	visible = item.is_visible()
-	locked = item.is_locked()
-	is_purchased = item.is_purchased()
+	if not item.is_visible():
+		hide()
+		return
+	
+	show()
+	
+	if item.is_purchased():
+		_icon_rect.modulate = Color.DARK_GRAY
+		_checkmark.show()
+		_lock.hide()
+		
+		if _hovered:
+			_hover_tween = create_tween().set_parallel()
+			_hover_tween.tween_property(_hover_anchor, "position", HOVER_ANIM_BEGIN_OFFSET, HOVER_ANIM_DURATION).from(Vector2.ZERO)
+			_hover_tween.tween_property(_hover_anchor, "modulate", Color.TRANSPARENT, HOVER_ANIM_DURATION).from(Color.WHITE)
+			_hovered = false
+		
+		return
+	
+	_checkmark.hide()
+	
+	if item.is_locked():
+		_icon_rect.modulate = Color.DARK_GRAY
+		_lock.show()
+		
+		if _hovered:
+			_hover_tween = create_tween().set_parallel()
+			_hover_tween.tween_property(_hover_anchor, "position", HOVER_ANIM_BEGIN_OFFSET, HOVER_ANIM_DURATION).from(Vector2.ZERO)
+			_hover_tween.tween_property(_hover_anchor, "modulate", Color.TRANSPARENT, HOVER_ANIM_DURATION).from(Color.WHITE)
+			_hovered = false
+		
+		return
+	
+	_icon_rect.modulate = Color.WHITE
+	_lock.hide()
 
 
 static func create() -> TokenShopItemDisplay:
@@ -100,7 +132,7 @@ static func create() -> TokenShopItemDisplay:
 
 
 func _on_icon_mouse_entered() -> void:
-	if not locked and not is_purchased:
+	if not item.is_locked() and not item.is_purchased():
 		_hovered = true
 		_hover_tween = create_tween().set_parallel()
 		_hover_tween.tween_property(_hover_anchor, "position", Vector2.ZERO, HOVER_ANIM_DURATION).from(HOVER_ANIM_BEGIN_OFFSET)
@@ -110,7 +142,7 @@ func _on_icon_mouse_entered() -> void:
 
 func _on_icon_mouse_exited() -> void:
 	_hovered = false
-	if not locked and not is_purchased:
+	if not item.is_locked() and not item.is_purchased():
 		_hover_tween = create_tween().set_parallel()
 		_hover_tween.tween_property(_hover_anchor, "position", HOVER_ANIM_BEGIN_OFFSET, HOVER_ANIM_DURATION).from(Vector2.ZERO)
 		_hover_tween.tween_property(_hover_anchor, "modulate", Color.TRANSPARENT, HOVER_ANIM_DURATION).from(Color.WHITE)
@@ -118,5 +150,5 @@ func _on_icon_mouse_exited() -> void:
 
 
 func _on_tooltip_grabber_interacted() -> void:
-	if not locked and not is_purchased:
+	if not item.is_locked() and not item.is_purchased():
 		purchased.emit()
