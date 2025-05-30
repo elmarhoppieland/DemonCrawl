@@ -24,6 +24,8 @@ static var favored_items: Array[Favor] = Eternal.create([] as Array[Favor])
 static var selected_mastery: Mastery = Eternal.create(null)
 
 static var tokens: int = Eternal.create(0)
+
+static var profiles: Array[CodexProfile] = Eternal.create([] as Array[CodexProfile])
 # ==============================================================================
 
 static func add_heirloom_slot() -> void:
@@ -112,6 +114,10 @@ static func notify_heirlooms_changed() -> void:
 	heirlooms_changed.emit()
 
 
+static func add_profile_slot() -> void:
+	profiles.append(CodexProfile.new())
+
+
 class Heirloom extends Resource:
 	# ==========================================================================
 	@export var item: Item = null :
@@ -152,3 +158,7 @@ class Favor extends Resource:
 			item = value
 			emit_changed()
 	@export var inverted := false
+
+
+class CodexProfile extends Resource:
+	@export var favored_items: Array[Favor] = []
