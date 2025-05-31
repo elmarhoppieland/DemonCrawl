@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://b1cpngw5lupxi"]
 
 [ext_resource type="Script" path="res://Engine/Scenes/StageSelect/StageIcon.gd" id="1_g5r4x"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/StageMod.gd" id="2_40404"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage.gd" id="3_malp5"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/StageMod.gd" id="2_40404"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/Stage.gd" id="3_malp5"]
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="4_7x0h2"]
 
 [sub_resource type="Resource" id="Resource_5wiua"]

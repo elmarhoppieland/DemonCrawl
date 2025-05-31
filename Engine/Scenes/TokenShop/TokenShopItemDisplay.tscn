@@ -1,0 +1,182 @@
+[gd_scene load_steps=14 format=3 uid="uid://dml1nvpclhf7"]
+
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="1_05fa6"]
+[ext_resource type="Script" path="res://Engine/Scenes/TokenShop/TokenShopItemDisplay.gd" id="1_t3k8l"]
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="2_nqj62"]
+[ext_resource type="Resource" uid="uid://cnbevbtob1jom" path="res://Assets/TokenShop/Upgrades/Specialist.tres" id="2_xy8jt"]
+[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_ebpj2"]
+
+[sub_resource type="Texture2D" id="Texture2D_nhp6q"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_nqj62")
+name = "tokenshop/upgrade_specialist"
+
+[sub_resource type="Texture2D" id="Texture2D_r7k7g"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_nqj62")
+name = "icons/locked_flat"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5p4qq"]
+atlas = ExtResource("1_05fa6")
+region = Rect2(59, 7, 8, 9)
+script = ExtResource("2_nqj62")
+name = "checkmark"
+
+[sub_resource type="Texture2D" id="Texture2D_urhtn"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_nqj62")
+name = "tokenshop/hover_plus"
+
+[sub_resource type="Gradient" id="Gradient_2wa0h"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4lfha"]
+gradient = SubResource("Gradient_2wa0h")
+width = 78
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8yt5"]
+atlas = ExtResource("1_05fa6")
+region = Rect2(20, 0, 6, 6)
+script = ExtResource("2_nqj62")
+name = "token_small"
+
+[sub_resource type="LabelSettings" id="LabelSettings_7f3nl"]
+font_size = 8
+font_color = Color(0.972549, 0.705882, 0.0705882, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="TokenShopItemDisplay" type="MarginContainer"]
+offset_right = 122.0
+offset_bottom = 22.0
+script = ExtResource("1_t3k8l")
+item = ExtResource("2_xy8jt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Icon" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Icon"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Icon"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Icon/MarginContainer"]
+layout_mode = 2
+color = Color(0.545098, 0.545098, 0.545098, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Icon/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.0352941, 0.0352941, 0.0352941, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Icon/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="IconRect" type="TextureRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("Texture2D_nhp6q")
+stretch_mode = 3
+
+[node name="Lock" type="TextureRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = SubResource("Texture2D_r7k7g")
+
+[node name="Checkmark" type="TextureRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_5p4qq")
+stretch_mode = 3
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/Icon"]
+unique_name_in_owner = true
+script = ExtResource("4_ebpj2")
+text = "TOKEN_SHOP_UPGRADE_SPECIALIST I"
+subtext = "TOKEN_SHOP_UPGRADE_SPECIALIST_DESCRIPTION"
+c_unescape = true
+
+[node name="Node2D" type="Node2D" parent="HBoxContainer/Icon"]
+position = Vector2(3, 2)
+
+[node name="HoverAnchor" type="Node2D" parent="HBoxContainer/Icon/Node2D"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 4)
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Icon/Node2D/HoverAnchor"]
+offset_right = 16.0
+offset_bottom = 16.0
+texture = SubResource("Texture2D_urhtn")
+stretch_mode = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_4lfha")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "TOKEN_SHOP_UPGRADE_SPECIALIST I"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_x8yt5")
+stretch_mode = 3
+
+[node name="CostLabel" type="Label" parent="HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "30"
+label_settings = SubResource("LabelSettings_7f3nl")
+
+[connection signal="mouse_entered" from="HBoxContainer/Icon" to="." method="_on_icon_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/Icon" to="." method="_on_icon_mouse_exited"]
+[connection signal="interacted" from="HBoxContainer/Icon/TooltipGrabber" to="." method="_on_tooltip_grabber_interacted"]

@@ -10,10 +10,10 @@ enum QuestState {
 	LOCKED_NEEDS_PURCHASE
 }
 # ==============================================================================
-static var selected_quest: QuestFile = Eternal.create(preload("res://Assets/Quests/Casual/0-Tutorial.tres"))
-static var selected_difficulty: Difficulty = Eternal.create(preload("res://Assets/Quests/Casual/Casual.tres"))
+static var selected_quest: QuestFile = Eternal.create(load("res://Assets/Quests/Casual/0-Tutorial.tres"))
+static var selected_difficulty: Difficulty = Eternal.create(load("res://Assets/Quests/Casual/Casual.tres"))
 
-static var difficulty_list: DifficultyList = Eternal.create(preload("res://Assets/Quests/Difficulties.tres"))
+static var difficulty_list: DifficultyList = Eternal.create(load("res://Assets/Quests/Difficulties.tres"))
 
 static var quest_completions: Array[QuestCompletionData] = Eternal.create([] as Array[QuestCompletionData])
 # ==============================================================================
@@ -34,6 +34,10 @@ static func get_unlocked_difficulties() -> Array[Difficulty]:
 		if difficulty.is_unlocked():
 			unlocked_difficulties.append(difficulty)
 	return unlocked_difficulties
+
+
+static func is_completed(quest: QuestFile) -> bool:
+	return get_completion_data(quest).completion_count > 0
 
 
 static func get_completion_data(quest: QuestFile) -> QuestCompletionData:
@@ -59,7 +63,7 @@ static func get_quest_state(quest: QuestFile, difficulty: Difficulty = selected_
 			continue
 		return QuestState.LOCKED_COMPLETE_PREVIOUS
 	
-	if quest.token_shop_purchase:
+	if quest.token_shop_purchase != null:
 		return QuestState.LOCKED_NEEDS_PURCHASE
 	
 	var data := get_completion_data(quest)
@@ -82,8 +86,8 @@ static func is_quest_unlocked(quest: QuestFile, difficulty: Difficulty = selecte
 			continue
 		return false
 	
-	if quest.token_shop_purchase:
-		return TokenShop.is_item_purchased("TOKEN_SHOP_UPGRADE_QUEST_" + str(quest_index + 1))
+	if quest.token_shop_purchase != null:
+		return TokenShop.is_item_purchased(quest.token_shop_purchase)
 	return true
 
 

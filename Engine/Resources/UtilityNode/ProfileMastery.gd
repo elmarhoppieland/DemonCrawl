@@ -22,7 +22,7 @@ func _ready() -> void:
 	if Codex.selected_mastery:
 		var mastery_name := tr("MASTERY_" + Quest.get_current().get_mastery()._get_identifier())
 		tooltip_grabber.text = tr(mastery_name)
-		tooltip_grabber.text += " " + RomanNumeral.convert_to_roman(TokenShop.get_purchased_level(mastery_name))
+		tooltip_grabber.text += " " + RomanNumeral.convert_to_roman(Codex.selected_mastery.level) # TODO: properly get the purchased level
 		
 		tooltip_grabber.subtext = "• " + "\n• ".join(Quest.get_current().get_mastery().get_description())
 	else:

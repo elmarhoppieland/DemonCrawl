@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://bl8bwoewf0m57"]
 
 [ext_resource type="Script" path="res://Engine/Scenes/StageScene/Board/Cell.gd" id="1_e3wqt"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/CellData.gd" id="3_685kk"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Cell/CellData.gd" id="3_685kk"]
 [ext_resource type="Script" path="res://Engine/Scenes/StageScene/Board/CellTextureRect.gd" id="3_te1nx"]
 [ext_resource type="Script" path="res://Engine/Scenes/StageScene/Board/CellValueLabel.gd" id="4_3k5be"]
 [ext_resource type="Script" path="res://Engine/Scenes/StageScene/Board/CellAuraModulator.gd" id="4_ocqma"]

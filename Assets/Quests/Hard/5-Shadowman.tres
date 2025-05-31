@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=16 format=3 uid="uid://cg7k2pp8icuip"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=17 format=3 uid="uid://cg7k2pp8icuip"]
 
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_66yfc"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/QuestFile.gd" id="2_18dfo"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="2_18dfo"]
 [ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://Assets/SpecialStages/Item Shop.tres" id="3_wn1o1"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/StageBase.gd" id="4_ygy7y"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/StageBase/StageBase.gd" id="4_ygy7y"]
+[ext_resource type="Resource" uid="uid://crenv4t4ujhim" path="res://Assets/TokenShop/Upgrades/QH5 - Shadowman.tres" id="5_2qvfl"]
 
 [sub_resource type="Texture2D" id="Texture2D_bpcax"]
 resource_local_to_scene = false
@@ -155,8 +156,8 @@ mod_difficulty_maximum = 0
 script = ExtResource("2_18dfo")
 name = "QUEST_SHADOWMAN"
 lore = "LORE_SHADOWMAN"
-token_shop_purchase = true
+token_shop_purchase = ExtResource("5_2qvfl")
 icon = SubResource("Texture2D_bpcax")
 skip_unlock = false
 stages = Array[ExtResource("4_ygy7y")]([SubResource("Resource_8oyvu"), SubResource("Resource_rgivt"), SubResource("Resource_wpbqx"), SubResource("Resource_pp2ut"), SubResource("Resource_qwhsj"), SubResource("Resource_sww72"), SubResource("Resource_gqq0w"), SubResource("Resource_jh6r2"), SubResource("Resource_n4513"), SubResource("Resource_w03sx")])
-special_stages = Array[Resource("res://Engine/Resources/DataContainers/SpecialStageBase.gd")]([ExtResource("3_wn1o1")])
+special_stages = Array[Resource("res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd")]([ExtResource("3_wn1o1")])

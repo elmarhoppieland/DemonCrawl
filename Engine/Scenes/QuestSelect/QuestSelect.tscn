@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c223d84jnw2lw"]
+[gd_scene load_steps=26 format=3 uid="uid://c223d84jnw2lw"]
 
 [ext_resource type="Texture2D" uid="uid://cdpd806yu8ood" path="res://Assets/Backgrounds/quests.png" id="1_7r2xj"]
 [ext_resource type="Script" path="res://Engine/Scenes/QuestSelect/QuestSelect.gd" id="1_46gki"]
@@ -6,7 +6,8 @@
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="3_y3u8k"]
 [ext_resource type="PackedScene" uid="uid://cs4xjk311kxho" path="res://Engine/Scenes/QuestSelect/QuestsOverview.tscn" id="4_6l8m7"]
 [ext_resource type="Shader" path="res://Engine/Scenes/QuestSelect/BackgroundLine.gdshader" id="5_nkaui"]
-[ext_resource type="PackedScene" uid="uid://hvvjdj6n7b1e" path="res://Engine/Resources/BackButton.tscn" id="6_qaovl"]
+[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/BackButton.gd" id="6_aslko"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="7_2rtrq"]
 [ext_resource type="PackedScene" uid="uid://di6wvg6vsnpk6" path="res://Engine/Scenes/QuestSelect/QuestSelectStatbar.tscn" id="12_0mlav"]
 [ext_resource type="PackedScene" uid="uid://ckftsugq2vfat" path="res://Engine/Scenes/QuestSelect/EditEquipment.tscn" id="15_e1val"]
 [ext_resource type="Texture2D" uid="uid://co7maglvq1akc" path="res://Assets/Sprites/finish_bg.png" id="20_002ai"]
@@ -36,6 +37,14 @@ line_spacing = 0.0
 font_size = 8
 outline_size = 3
 outline_color = Color(0.0862745, 0.145098, 0.258824, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ns4ty"]
+atlas = ExtResource("7_2rtrq")
+region = Rect2(22, 44, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1otdn"]
+atlas = ExtResource("7_2rtrq")
+region = Rect2(34, 44, 12, 8)
 
 [sub_resource type="Animation" id="Animation_2dwr6"]
 length = 0.001
@@ -481,9 +490,18 @@ size_flags_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 6
 
-[node name="BackButton" parent="MainContent/MarginContainer/MarginContainer3" instance=ExtResource("6_qaovl")]
+[node name="BackButton" type="MarginContainer" parent="MainContent/MarginContainer/MarginContainer3"]
 layout_mode = 2
-hover_text = "RETURN_TO_MAIN_MENU"
+script = ExtResource("6_aslko")
+
+[node name="Normal" type="TextureRect" parent="MainContent/MarginContainer/MarginContainer3/BackButton"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ns4ty")
+
+[node name="Hovered" type="TextureRect" parent="MainContent/MarginContainer/MarginContainer3/BackButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_1otdn")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MainContent"]
 layout_mode = 2
@@ -545,7 +563,6 @@ libraries = {
 }
 
 [connection signal="quest_selected" from="MainContent/MarginContainer/MarginContainer2/VBoxContainer/QuestsOverview" to="." method="_on_quests_overview_quest_selected"]
-[connection signal="pressed" from="MainContent/MarginContainer/MarginContainer3/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="edit_equipment" from="QuestSelectStatbar" to="." method="_on_quest_select_statbar_edit_equipment"]
 [connection signal="pressed" from="BeginButtonContainer/MarginContainer/BeginButton" to="." method="_on_begin_button_pressed"]
 [connection signal="back_button_pressed" from="EditEquipment" to="." method="_on_edit_equipment_back_button_pressed"]

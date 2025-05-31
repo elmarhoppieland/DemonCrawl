@@ -8,6 +8,8 @@ var current_resource: Resource = null
 # ==============================================================================
 var _data := {}
 var _resources := {}
+
+var _rng := RandomNumberGenerator.new()
 # ==============================================================================
 signal value_changed(section: String, key: String, value: Variant)
 signal loaded(path: String)
@@ -22,16 +24,17 @@ func clear() -> void:
 
 
 ## Loads the file at the given [code]path[/code].
-func load(path: String) -> void:
+func load(path: String, additive: bool = false) -> void:
 	if not FileAccess.file_exists(path):
-		_data.clear()
-		_resources.clear()
+		if not additive:
+			_data.clear()
+			_resources.clear()
 		
 		loaded.emit(path)
 		return
 	
 	var file := FileAccess.open(path, FileAccess.READ)
-	_parse_ini(file)
+	_parse_ini(file, additive)
 	
 	loaded.emit(path)
 
@@ -59,6 +62,7 @@ func get_scripts() -> PackedStringArray:
 			continue
 		if UserClassDB.class_exists(key):
 			scripts.append(key)
+	scripts.sort()
 	return scripts
 
 
@@ -181,8 +185,12 @@ func _is_packable(value: Variant) -> bool:
 	return false
 
 
-func _parse_ini(file: FileAccess) -> void:
-	_data.clear()
+func _parse_ini(file: FileAccess, additive: bool = false) -> void:
+	if not additive:
+		_data.clear()
+		_resources.clear()
+	
+	current_resource = null
 	
 	var current_section := ""
 	while not file.eof_reached():
@@ -193,8 +201,17 @@ func _parse_ini(file: FileAccess) -> void:
 			if current_section.begins_with("ext_resource "):
 				var id := current_section.get_slice("id=\"", 1).get_slice("\"", 0).hex_to_int()
 				assert(id not in _resources, "Duplicate ID found in the file at '%s'." % file.get_path())
-				var resource := load(current_section.get_slice("path=\"", 1).get_slice("\"", 0))
-				_resources[id] = resource
+				
+				var path := current_section.get_slice("path=\"", 1).get_slice("\"", 0)
+				if ResourceLoader.exists(path):
+					var resource := load(path)
+					if resource not in _resources.values():
+						_resources[id] = resource
+				else:
+					var resource := MissingExtResource.new()
+					resource.path = path
+					_resources[id] = resource
+				
 				current_section = ""
 				continue
 			
@@ -211,7 +228,8 @@ func _parse_ini(file: FileAccess) -> void:
 				continue
 			
 			current_resource = null
-			_data[current_section] = {}
+			if current_section not in _data:
+				_data[current_section] = {}
 			continue
 		
 		if current_resource:
@@ -354,6 +372,8 @@ func _parse_value(value: String) -> Variant:
 			var parsed_value = _parse_value(key_value[1])
 			if key is PendingResourceBase or parsed_value is PendingResourceBase:
 				is_pending = true
+			elif key is MissingExtResource or parsed_value is MissingExtResource:
+				continue
 			dict[key] = parsed_value
 		if is_pending:
 			return PendingResourceDictionary.new(dict)
@@ -373,6 +393,8 @@ func _parse_array(value: String) -> Variant:
 		var v = _parse_value(s)
 		if v is PendingResourceBase:
 			is_pending = true
+		elif v is MissingExtResource:
+			continue
 		values.append(v)
 	if is_pending:
 		return UntypedPendingResourceArray.new(values)
@@ -395,6 +417,8 @@ func _parse_typed_array(value: String) -> Variant:
 			var v = _parse_value(s)
 			if v is PendingResourceBase:
 				is_pending = true
+			elif v is MissingExtResource:
+				continue
 			values.append(v)
 		if is_pending:
 			return TypedPendingResourceArray.new(values, Array([], TYPE_OBJECT, script.get_instance_base_type(), script))
@@ -426,19 +450,6 @@ func _parse_packed_array(value: String) -> Variant:
 	
 	var is_pending := false
 	for s in Stringifier.split_ignoring_nested(value.trim_prefix("PackedArray[" + script_name + "]" + "(").trim_suffix(")"), ","):
-		#s = s.strip_edges().trim_prefix("(").trim_suffix(")").strip_edges()
-		#
-		#if s == "<null>":
-			#values.append(null)
-			#continue
-		#
-		#var v = _parse_constructor("%s(%s)" % [script_name, s])
-		#if v is PendingResourceBase:
-			#is_pending = true
-		#values.append(v)
-		#
-		#continue
-		
 		s = s.strip_edges()
 		
 		var s_script_name: String
@@ -815,7 +826,7 @@ func _resource_get_uid(resource: Resource) -> int:
 
 
 func _generate_unique_id() -> int:
-	var uid := randi()
+	var uid := _rng.randi()
 	if uid in _resources:
 		return _generate_unique_id()
 	return uid
@@ -931,6 +942,10 @@ class PendingResourceInstantiator extends PendingResourceBase:
 			if args[i] is PendingResourceBase:
 				args[i] = args[i].create(resources)
 		return instantiator.callv(args)
+
+
+class MissingExtResource extends Resource:
+	var path := ""
 
 
 class ValueStream:

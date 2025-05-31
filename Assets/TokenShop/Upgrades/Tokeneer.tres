@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="TokenShopLevelItem" load_steps=7 format=3 uid="uid://ch182n15td6ju"]
+
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_teiaw"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopLevelItem.gd" id="2_2gjkg"]
+[ext_resource type="Script" path="res://Assets/TokenShop/Upgrades/Tokeneer.gd" id="2_vpyd8"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopScriptReward.gd" id="3_pjvhc"]
+
+[sub_resource type="Texture2D" id="Texture2D_8mt1i"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_teiaw")
+name = "tokenshop/upgrade_tokeneer"
+
+[sub_resource type="Resource" id="Resource_33y4g"]
+script = ExtResource("3_pjvhc")
+reward_script = ExtResource("2_vpyd8")
+
+[resource]
+script = ExtResource("2_2gjkg")
+Base/name = "TOKEN_SHOP_UPGRADE_TOKENEER"
+Base/description = "TOKEN_SHOP_UPGRADE_TOKENEER_DESCRIPTION"
+Base/icon = SubResource("Texture2D_8mt1i")
+Base/cost = 0
+Base/reward = SubResource("Resource_33y4g")
+Base/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+Base/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_count = 5
+level_0/name = "TOKEN_SHOP_UPGRADE_TOKENEER"
+level_0/description = "TOKEN_SHOP_UPGRADE_TOKENEER_DESCRIPTION"
+level_0/icon = SubResource("Texture2D_8mt1i")
+level_0/cost = 5
+level_0/reward = SubResource("Resource_33y4g")
+level_0/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_0/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_1/name = "TOKEN_SHOP_UPGRADE_TOKENEER"
+level_1/description = "TOKEN_SHOP_UPGRADE_TOKENEER_DESCRIPTION"
+level_1/icon = SubResource("Texture2D_8mt1i")
+level_1/cost = 10
+level_1/reward = SubResource("Resource_33y4g")
+level_1/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_1/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_2/name = "TOKEN_SHOP_UPGRADE_TOKENEER"
+level_2/description = "TOKEN_SHOP_UPGRADE_TOKENEER_DESCRIPTION"
+level_2/icon = SubResource("Texture2D_8mt1i")
+level_2/cost = 20
+level_2/reward = SubResource("Resource_33y4g")
+level_2/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_2/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_3/name = "TOKEN_SHOP_UPGRADE_TOKENEER"
+level_3/description = "TOKEN_SHOP_UPGRADE_TOKENEER_DESCRIPTION"
+level_3/icon = SubResource("Texture2D_8mt1i")
+level_3/cost = 50
+level_3/reward = SubResource("Resource_33y4g")
+level_3/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_3/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_4/name = "TOKEN_SHOP_UPGRADE_TOKENEER"
+level_4/description = "TOKEN_SHOP_UPGRADE_TOKENEER_DESCRIPTION"
+level_4/icon = SubResource("Texture2D_8mt1i")
+level_4/cost = 100
+level_4/reward = SubResource("Resource_33y4g")
+level_4/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
+level_4/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])

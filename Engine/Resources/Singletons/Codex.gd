@@ -3,7 +3,7 @@ extends StaticClass
 class_name Codex
 
 # ==============================================================================
-static var _heirlooms: Array[Heirloom] = Eternal.create([Heirloom.new("res://Assets/items/Apple.tres"), null] as Array[Heirloom]) :
+static var _heirlooms: Array[Heirloom] = Eternal.create([] as Array[Heirloom]) :
 	set(value):
 		_heirlooms = value
 		for i in value.size():
@@ -19,7 +19,16 @@ static var heirlooms_changed := Signal() :
 			heirlooms_changed = Signal(Codex, "heirlooms_changed")
 		return heirlooms_changed
 
+static var favored_items: Array[Favor] = Eternal.create([] as Array[Favor])
+
 static var selected_mastery: Mastery = Eternal.create(null)
+
+static var tokens: int = Eternal.create(0)
+
+static var profiles: Array[CodexProfile] = Eternal.create([] as Array[CodexProfile])
+
+static var unlocked_masteries: Array[Mastery] = Eternal.create([] as Array[Mastery])
+static var selectable_masteries: Array[Mastery] = Eternal.create([] as Array[Mastery])
 # ==============================================================================
 
 static func add_heirloom_slot() -> void:
@@ -46,7 +55,7 @@ static func set_heirloom(index: int, item: Item, count: int = 1) -> void:
 	if _heirlooms[index] and _heirlooms[index].changed.is_connected(notify_heirlooms_changed):
 		_heirlooms[index].changed.disconnect(notify_heirlooms_changed)
 	
-	var heirloom := Heirloom.new(item.get_origin_path(), count)
+	var heirloom := Heirloom.new(item, count)
 	heirloom.emptied.connect(func() -> void:
 		if Codex._heirlooms[index] == heirloom:
 			clear_heirloom(index)
@@ -79,7 +88,7 @@ static func get_heirloom(index: int) -> Item:
 	if not has_heirloom(index):
 		return null
 	
-	return load(_heirlooms[index].item_path)
+	return _heirlooms[index].item
 
 
 static func get_heirloom_data(index: int) -> Heirloom:
@@ -108,11 +117,17 @@ static func notify_heirlooms_changed() -> void:
 	heirlooms_changed.emit()
 
 
+static func add_profile_slot() -> void:
+	profiles.append(CodexProfile.new())
+
+
 class Heirloom extends Resource:
 	# ==========================================================================
-	@export var item_path := "" :
+	@export var item: Item = null :
 		set(value):
-			item_path = value
+			if value and value.resource_path.is_empty():
+				value = load(value.get_origin_path())
+			item = value
 			emit_changed()
 	@export var count := 1 :
 		set(value):
@@ -125,14 +140,28 @@ class Heirloom extends Resource:
 	# ==========================================================================
 	
 	@warning_ignore("shadowed_variable")
-	func _init(item_path: String = "", count: int = 1) -> void:
-		self.item_path = item_path
+	func _init(item: Item = null, count: int = 1) -> void:
+		self.item = item
 		self.count = count
 	
 	func use() -> Item:
 		if count <= 0:
-			Debug.log_error("Attempted to use an empty heirloom (of item '%s')." % item_path)
-			return load(item_path)
+			Debug.log_error("Attempted to use an empty heirloom (of item '%s')." % item.resource_path)
+			return item
 		
 		count -= 1
-		return load(item_path)
+		return item
+
+
+class Favor extends Resource:
+	@export var item: Item = null :
+		set(value):
+			if value and value.resource_path.is_empty():
+				value = load(value.get_origin_path())
+			item = value
+			emit_changed()
+	@export var inverted := false
+
+
+class CodexProfile extends Resource:
+	@export var favored_items: Array[Favor] = []

@@ -7,4 +7,4 @@
 
 [resource]
 script = ExtResource("1_g30ny")
-difficulties = Array[Resource("res://Engine/Resources/DataContainers/DifficultyFile.gd")]([ExtResource("1_xyils"), ExtResource("2_ftlyp"), ExtResource("3_1l7d2")])
+difficulties = Array[Resource("res://Engine/Resources/DataContainers/Difficulty.gd")]([ExtResource("1_xyils"), ExtResource("2_ftlyp"), ExtResource("3_1l7d2")])

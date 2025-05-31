@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="QuestFile" load_steps=16 format=3 uid="uid://7rcj8aaeg57t"]
 
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_85xo3"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/QuestFile.gd" id="2_lbchf"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="2_lbchf"]
 [ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://Assets/SpecialStages/Item Shop.tres" id="3_3ed66"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/StageBase.gd" id="4_12a3h"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/StageBase/StageBase.gd" id="4_12a3h"]
 
 [sub_resource type="Texture2D" id="Texture2D_kpscn"]
 resource_local_to_scene = false
@@ -155,8 +155,7 @@ mod_difficulty_maximum = 0
 script = ExtResource("2_lbchf")
 name = "QUEST_GLORY_DAYS"
 lore = "LORE_GLORY_DAYS"
-token_shop_purchase = false
 icon = SubResource("Texture2D_kpscn")
 skip_unlock = false
 stages = Array[ExtResource("4_12a3h")]([SubResource("Resource_arluq"), SubResource("Resource_0fprk"), SubResource("Resource_7sity"), SubResource("Resource_avld4"), SubResource("Resource_ccxup"), SubResource("Resource_4lmxs"), SubResource("Resource_sivim"), SubResource("Resource_3jn66"), SubResource("Resource_72pru"), SubResource("Resource_c8ijh")])
-special_stages = Array[Resource("res://Engine/Resources/DataContainers/SpecialStageBase.gd")]([ExtResource("3_3ed66")])
+special_stages = Array[Resource("res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd")]([ExtResource("3_3ed66")])

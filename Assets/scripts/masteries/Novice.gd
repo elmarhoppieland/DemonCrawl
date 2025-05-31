@@ -23,7 +23,7 @@ func damage(amount: int, source: Object) -> int:
 		return amount
 	
 	if Stage.get_current().get_instance().needs_guess():
-		Toasts.add_toast(tr("NOVICE_UNLUCKY_GUESS"), IconManager.get_icon_data("mastery0/novice").create_texture())
+		Toasts.add_toast(tr("NOVICE_UNLUCKY_GUESS"), IconManager.get_icon_data("mastery1/novice").create_texture())
 		return 1
 	
 	return amount
@@ -40,3 +40,8 @@ func death(_source: Object) -> void:
 
 func _ability() -> void:
 	Stage.get_current().get_board().get_camera().focus_progress()
+
+
+func _get_cost() -> int:
+	return level
+	

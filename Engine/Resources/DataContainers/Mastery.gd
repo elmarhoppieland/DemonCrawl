@@ -5,10 +5,19 @@ class_name Mastery
 @export var level := 0
 # ==============================================================================
 
-func _init() -> void:
-	level = TokenShop.get_purchased_level(_get_identifier())
-
 #region decription & visualization
+
+## Returns this [Mastery]'s name.
+func get_display_name() -> String:
+	return _get_name()
+
+
+## Virtual method to override this [Mastery]'s name. If not overridden, uses the identifier
+## to generate a translatable string:
+## [br][code]MASTERY_{id}[/code]
+func _get_name() -> String:
+	return tr("MASTERY_" + _get_identifier())
+
 
 ## Returns this [Mastery]'s full description. Each level is one element in the returned array.
 func get_description() -> PackedStringArray:
@@ -38,6 +47,45 @@ func create_icon() -> Texture2D:
 ## the [Mastery]'s class name into an identifier.
 func _get_identifier() -> String:
 	return UserClassDB.script_get_class(get_script()).to_snake_case().to_upper()
+
+
+## Returns the [Token] cost for this [Mastery] at the given [code]level[/code].
+func get_cost() -> int:
+	return _get_cost()
+
+
+## Virtual method to override the [Token] cost for this [Mastery] at the given [code]level[/code].
+## If not overridden, returns [code]level * 10[/code].
+func _get_cost() -> int:
+	return level * 10
+
+
+## Returns this [Mastery]'s unlock [Condition]s. All of them must be met (see [method Condition.is_met])
+## before being able to purchase this [Mastery].
+func get_conditions() -> Array[Condition]:
+	return _get_conditions()
+
+
+## Virtual method to override this [Mastery]'s unlock [Condition]s. All of them
+## must be met (see [method Condition.is_met]) before being able to purchase this [Mastery].
+## [br][br]If not overridden, returns a [FlagCondition] for [code]mastery_unlock_{id}_{level}[/code].
+@warning_ignore("shadowed_variable")
+func _get_conditions() -> Array[Condition]:
+	var condition := FlagCondition.new()
+	condition.flag = "mastery_unlock_%s_%d" % [_get_identifier(), level]
+	return [condition]
+
+
+## Returns a [String] explaining how to unlock this [Mastery]'s level.
+func get_condition_text() -> String:
+	return _get_condition_text()
+
+
+## Virtual method to explain how to unlock this [Mastery]'s level. If not overridden,
+## returns a translatable [String]: [code]MASTERY_{id}_UNLOCK_{level}[/code].
+func _get_condition_text() -> String:
+	return tr("MASTERY_%s_UNLOCK_%d" % [_get_identifier(), level])
+
 #endregion
 
 #region utilities

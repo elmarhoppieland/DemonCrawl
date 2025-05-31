@@ -48,8 +48,8 @@ func _ready() -> void:
 	unhovered.connect(unhover)
 	second_interacted.connect(second_interact)
 	
+	await get_tree().process_frame
 	if main and enabled and control.is_visible_in_tree():
-		await get_tree().process_frame
 		interacted.emit()
 		_main_grabber = self
 

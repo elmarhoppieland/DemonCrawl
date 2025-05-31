@@ -53,7 +53,8 @@ func add_mastery_from_script(script_path: String) -> void:
 		return
 	
 	var mastery: Mastery = script.new()
-	mastery.level = TokenShop.get_purchased_level("MASTERY_" + mastery._get_identifier())
+	# TODO: set mastery level correctly
+	#mastery.level = TokenShop.get_purchased_level(Mastery._token_shop_items.get(script, null))
 	
 	add_mastery("MASTERY_" + mastery._get_identifier(), mastery.icon, script_path, mastery.get_description())
 

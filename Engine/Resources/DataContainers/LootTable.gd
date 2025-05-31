@@ -120,12 +120,12 @@ func _set(property: StringName, value: Variant) -> bool:
 	
 	if property.match("item_*/*"):
 		items[property.get_base_dir().to_int()][property.get_file()] = value
-		notify_property_list_changed()
+		#notify_property_list_changed()
 		return true
 	
 	if property.match("item_*"):
 		items[property.get_base_dir().to_int()] = value
-		notify_property_list_changed()
+		#notify_property_list_changed()
 		return true
 	
 	return false

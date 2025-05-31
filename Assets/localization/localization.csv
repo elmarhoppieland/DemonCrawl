@@ -44,7 +44,7 @@ TOKEN_SHOP_UPGRADE_QUEST_5H_DESCRIPTION;Unlocks the fifth quest on Hard.
 MASTERY_NONE;No mastery
 MASTERY_NOVICE;NOVICE
 MASTERY_NOVICE_DESCRIPTION_1;Reduce your score by half. If you make a mistake on a necessary guess, reduce incoming damage to 1.
-MASTERY_NOVICE_UNLOCK;Unlock by discovering a 4 or greater.
+MASTERY_NOVICE_UNLOCK_1;Unlock by discovering a 4 or greater.
 MASTERY_NOVICE_UNLOCK_DESCRIPTION_1;• Reduce your score by half. If you make a mistake on a necessary guess, reduce incoming damage to 1.\n\n(Unlock I by discovering a 4 or greater.)
 MASTERY_SURVIVOR;SURVIVOR
 MASTERY_GUARDIAN;GUARDIAN

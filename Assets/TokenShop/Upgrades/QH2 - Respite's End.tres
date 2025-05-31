@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="TokenShopItem" load_steps=9 format=3 uid="uid://b4u12ujiinmqe"]
+
+[ext_resource type="Resource" uid="uid://ct4h3rpvny7ve" path="res://Assets/Quests/Hard/1-Glory Days.tres" id="1_gq6cg"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Condition/QuestCompleteCondition.gd" id="2_kgwqy"]
+[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="3_qujs5"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopItem.gd" id="4_a50dv"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Condition/FlagCondition.gd" id="5_jyhd1"]
+
+[sub_resource type="Resource" id="Resource_6fwrc"]
+script = ExtResource("2_kgwqy")
+quest = ExtResource("1_gq6cg")
+
+[sub_resource type="Texture2D" id="Texture2D_not6g"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_qujs5")
+name = "tokenshop/upgrade_quest"
+
+[sub_resource type="Resource" id="Resource_0xp88"]
+script = ExtResource("5_jyhd1")
+flag = "hard"
+invert = false
+
+[resource]
+script = ExtResource("4_a50dv")
+name = "QUEST_RESPITES_END"
+description = "QUEST_UNLOCK_RESPITES_END"
+icon = SubResource("Texture2D_not6g")
+cost = 3
+conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_6fwrc")])
+unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_0xp88")])

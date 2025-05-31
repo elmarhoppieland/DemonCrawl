@@ -387,14 +387,59 @@
 			}
 		]
 	},
-	"mastery": {
-		"atlas": "res://Assets/sprites/masteries.png",
+	"mastery1": {
+		"atlas": "res://Assets/Sprites/masteries0.png",
 		"icons": [
 			{
 				"h": 16,
-				"name": "none",
+				"name": "Novice",
 				"w": 16,
-				"x": 80,
+				"x": 48,
+				"y": 48
+			},
+			{
+				"h": 16,
+				"name": "Survivor",
+				"w": 16,
+				"x": 0,
+				"y": 80
+			}
+		]
+	},
+	"mastery2": {
+		"atlas": "res://Assets/Sprites/masteries1.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Novice",
+				"w": 16,
+				"x": 48,
+				"y": 48
+			},
+			{
+				"h": 16,
+				"name": "Survivor",
+				"w": 16,
+				"x": 0,
+				"y": 80
+			}
+		]
+	},
+	"mastery3": {
+		"atlas": "res://Assets/Sprites/masteries2.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "Novice",
+				"w": 16,
+				"x": 48,
+				"y": 48
+			},
+			{
+				"h": 16,
+				"name": "Survivor",
+				"w": 16,
+				"x": 0,
 				"y": 80
 			}
 		]
@@ -537,6 +582,62 @@
 				"w": 6,
 				"x": 20,
 				"y": 0
+			},
+			{
+				"h": 16,
+				"name": "upgrade_tokeneer",
+				"w": 16,
+				"x": 0,
+				"y": 134
+			},
+			{
+				"h": 16,
+				"name": "upgrade_specialist",
+				"w": 16,
+				"x": 16,
+				"y": 134
+			},
+			{
+				"h": 16,
+				"name": "upgrade_artificer",
+				"w": 16,
+				"x": 32,
+				"y": 134
+			},
+			{
+				"h": 16,
+				"name": "upgrade_crafter",
+				"w": 16,
+				"x": 48,
+				"y": 134
+			},
+			{
+				"h": 16,
+				"name": "upgrade_chaote",
+				"w": 16,
+				"x": 48,
+				"y": 134
+			},
+			{
+				"h": 16,
+				"name": "upgrade_hoarder",
+				"w": 16,
+				"x": 48,
+				"y": 134
+			},
+			{
+				"h": 16,
+				"name": "xp_boost",
+				"w": 16,
+				"x": 64,
+				"y": 134
+			},
+			{
+				"h": 16,
+				"name": "category_masteries",
+				"w": 16,
+				"x": 16,
+				"y": 102
 			}
 		]
 	}
