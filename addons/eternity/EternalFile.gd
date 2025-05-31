@@ -24,16 +24,17 @@ func clear() -> void:
 
 
 ## Loads the file at the given [code]path[/code].
-func load(path: String) -> void:
+func load(path: String, additive: bool = false) -> void:
 	if not FileAccess.file_exists(path):
-		_data.clear()
-		_resources.clear()
+		if not additive:
+			_data.clear()
+			_resources.clear()
 		
 		loaded.emit(path)
 		return
 	
 	var file := FileAccess.open(path, FileAccess.READ)
-	_parse_ini(file)
+	_parse_ini(file, additive)
 	
 	loaded.emit(path)
 
@@ -184,9 +185,10 @@ func _is_packable(value: Variant) -> bool:
 	return false
 
 
-func _parse_ini(file: FileAccess) -> void:
-	_data.clear()
-	_resources.clear()
+func _parse_ini(file: FileAccess, additive: bool = false) -> void:
+	if not additive:
+		_data.clear()
+		_resources.clear()
 	
 	current_resource = null
 	
@@ -202,7 +204,9 @@ func _parse_ini(file: FileAccess) -> void:
 				
 				var path := current_section.get_slice("path=\"", 1).get_slice("\"", 0)
 				if ResourceLoader.exists(path):
-					_resources[id] = load(path)
+					var resource := load(path)
+					if resource not in _resources.values():
+						_resources[id] = resource
 				else:
 					var resource := MissingExtResource.new()
 					resource.path = path
@@ -224,7 +228,8 @@ func _parse_ini(file: FileAccess) -> void:
 				continue
 			
 			current_resource = null
-			_data[current_section] = {}
+			if current_section not in _data:
+				_data[current_section] = {}
 			continue
 		
 		if current_resource:

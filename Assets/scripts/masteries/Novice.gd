@@ -44,3 +44,4 @@ func _ability() -> void:
 
 func _get_cost() -> int:
 	return level
+	

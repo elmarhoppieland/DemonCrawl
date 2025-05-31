@@ -46,7 +46,7 @@ static func _static_init() -> void:
 	if ProjectSettings.has_setting("eternity/named_paths/defaults"):
 		_named_paths = ProjectSettings.get_setting("eternity/named_paths/defaults")
 	
-	_defaults_cfg.load.call_deferred(DEFAULTS_FILE_PATH)
+	_defaults_cfg.load.call_deferred(DEFAULTS_FILE_PATH, true)
 	
 	if OS.is_debug_build():
 		while true:
