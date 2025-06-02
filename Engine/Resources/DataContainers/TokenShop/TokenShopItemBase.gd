@@ -26,7 +26,7 @@ func is_purchased() -> bool:
 
 
 func _is_purchased() -> bool:
-	return TokenShop.is_item_purchased(self)
+	return load("res://Engine/Scenes/TokenShop/TokenShop.gd").is_item_purchased(self)
 
 
 func get_display_name() -> String:
