@@ -7,27 +7,34 @@ const GUI_LAYER_SCENE := preload("res://Engine/Resources/Singletons/GuiLayer.tsc
 # ==============================================================================
 @export var enabled := 0 :
 	set(value):
-		var diff := enabled ^ value
-		enabled = value
-		
-		var i := 0
-		while diff:
-			if diff & 1:
-				var gui_name := GuiEnabler.get_gui_list()[i]
-				
-				if value & 1:
-					if Engine.is_editor_hint() and GuiEnabler.has_gui_node(gui_name):
-						var gui_instance := GuiEnabler.get_gui_branch(gui_name)
-						_editor_gui_layer_placeholder.add_child(gui_instance)
-				else:
-					if Engine.is_editor_hint() and _editor_gui_layer_placeholder.has_node(gui_name):
-						var gui_instance := _editor_gui_layer_placeholder.get_node(gui_name)
-						gui_instance.queue_free()
-			
-			i += 1
-			diff >>= 1
-			value >>= 1
+		_disabled = GuiEnabler.invert_bits(value, GuiEnabler.get_gui_list().size())
+	get:
+		return GuiEnabler.invert_bits(_disabled, GuiEnabler.get_gui_list().size())
 # ==============================================================================
+var _disabled := 0 :
+	set(value):
+		var diff := _disabled ^ value
+		_disabled = value
+		
+		if Engine.is_editor_hint():
+			var i := 0
+			while diff:
+				if diff & 1:
+					var gui_name := GuiEnabler.get_gui_list()[i]
+					
+					if value & 1:
+						if _editor_gui_layer_placeholder.has_node(gui_name):
+							var gui_instance := _editor_gui_layer_placeholder.get_node(gui_name)
+							gui_instance.queue_free()
+					else:
+						if GuiEnabler.has_gui_node(gui_name):
+							var gui_instance := GuiEnabler.get_gui_branch(gui_name)
+							_editor_gui_layer_placeholder.add_child(gui_instance)
+				
+				i += 1
+				diff >>= 1
+				value >>= 1
+
 var _editor_gui_layer_placeholder: CanvasLayer :
 	get:
 		if not _editor_gui_layer_placeholder and Engine.is_editor_hint():
@@ -46,8 +53,11 @@ var _editor_gui_layer_placeholder: CanvasLayer :
 func _validate_property(property: Dictionary) -> void:
 	match property.name:
 		&"enabled":
+			property.usage &= ~PROPERTY_USAGE_STORAGE
 			property.hint = PROPERTY_HINT_FLAGS
 			property.hint_string = ",".join(GuiEnabler.get_gui_list())
+		&"_disabled":
+			property.usage |= PROPERTY_USAGE_STORAGE
 
 
 func _enter_tree() -> void:
@@ -115,3 +125,9 @@ static func has_gui_node(gui_name: String) -> bool:
 			return true
 	
 	return false
+
+
+static func invert_bits(bits: int, size: int) -> int:
+	for i in size:
+		bits ^= 1 << i
+	return bits

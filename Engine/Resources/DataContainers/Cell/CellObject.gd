@@ -585,7 +585,7 @@ func life_lose(life: int, source: Object = self) -> void:
 
 
 func tween_texture_to(position: Vector2, duration: float = 0.4) -> Tween:
-	return GuiLayer.get_texture_tweener().tween_texture(self, Stage.get_current().get_board().get_global_at_cell_position(get_cell().get_position(Stage.get_current().get_instance())), position, duration)
+	return GuiLayer.get_texture_tweener().tween_texture(self, Stage.get_current().get_board().get_global_at_cell_position(get_cell().get_position(Stage.get_current().get_instance())), position, duration, 4.0)
 
 
 func get_theme_icon(name: StringName, theme_type: StringName = "Cell") -> Texture2D:

@@ -38,6 +38,14 @@ func _get_description(level: int) -> String:
 	return tr("MASTERY_%s_DESCRIPTION_%d" % [_get_identifier(), level])
 
 
+func get_description_text() -> String:
+	var description := get_description()
+	if description.is_empty():
+		return ""
+	
+	return "• " + "\n• ".join(description)
+
+
 ## Creates and returns a new icon for this [Mastery].
 func create_icon() -> Texture2D:
 	return IconManager.get_icon_data("mastery%d/%s" % [level, UserClassDB.script_get_class(get_script())]).create_texture()
@@ -72,7 +80,7 @@ func get_conditions() -> Array[Condition]:
 @warning_ignore("shadowed_variable")
 func _get_conditions() -> Array[Condition]:
 	var condition := FlagCondition.new()
-	condition.flag = "mastery_unlock_%s_%d" % [_get_identifier(), level]
+	condition.flag = "mastery_unlock_%s_%d" % [_get_identifier().to_snake_case(), level]
 	return [condition]
 
 
@@ -144,3 +152,14 @@ func get_ability_description() -> String:
 ## Virtual method to override the return value of [method get_ability_description].
 func _get_ability_description() -> String:
 	return ""
+
+
+func _export_packed() -> Array:
+	return [level]
+
+
+@warning_ignore("shadowed_variable")
+static func _import_packed_static(script_name: String, level: int) -> Mastery:
+	var mastery: Mastery = UserClassDB.instantiate(script_name)
+	mastery.level = level
+	return mastery

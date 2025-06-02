@@ -112,7 +112,7 @@ position = Vector2(160, 90)
 
 [node name="GuiEnabler" type="Node" parent="."]
 script = ExtResource("9_a0qlk")
-enabled = 7
+_disabled = 0
 
 [connection signal="icon_selected" from="MarginContainer/VBoxContainer/StagesOverview" to="." method="_on_stages_overview_icon_selected"]
 [connection signal="interacted" from="MarginContainer/VBoxContainer/StageDetails" to="." method="_on_stage_details_interacted"]

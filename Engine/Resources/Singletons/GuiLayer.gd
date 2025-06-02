@@ -34,3 +34,7 @@ static func get_orb_layer() -> OrbLayer:
 
 static func get_texture_tweener() -> TextureTweener:
 	return get_instance().get_node_or_null("TextureTweener")
+
+
+static func get_mastery_achieved_popup() -> MasteryAchievedPopup:
+	return get_instance().get_node_or_null("MasteryAchievedPopup")

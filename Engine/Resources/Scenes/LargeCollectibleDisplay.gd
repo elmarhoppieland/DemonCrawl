@@ -17,15 +17,39 @@ class_name LargeCollectibleDisplay
 		
 		_coin_value.coin_value = offer_price
 @export var show_focus := true
-# ==============================================================================
-@export var collectible: Collectible :
+
+@export var texture: Texture2D :
 	set(value):
-		collectible = value
+		texture = value
 		
 		if not is_node_ready():
 			await ready
 		
-		_collectible_display.collectible = value
+		_collectible_display.texture = value
+
+@export_group("Description Override", "description_")
+@export_multiline var description_text := "" :
+	set(value):
+		description_text = value
+		
+		if not is_node_ready():
+			await ready
+		
+		_collectible_display.description_text = value
+@export_multiline var description_subtext := "" :
+	set(value):
+		description_subtext = value
+		
+		if not is_node_ready():
+			await ready
+		
+		_collectible_display.description_subtext = value
+# ==============================================================================
+var collectible: Collectible :
+	set(value):
+		texture = value
+	get:
+		return texture if texture is Collectible else null
 # ==============================================================================
 @onready var _collectible_container: MarginContainer = %CollectibleContainer
 @onready var _collectible_display: CollectibleDisplay = %CollectibleDisplay
@@ -40,9 +64,10 @@ func interact() -> void:
 
 
 ## Creates a new instance of the scene.
-static func create(_collectible: Collectible) -> LargeCollectibleDisplay:
+@warning_ignore("shadowed_variable")
+static func create(texture: Texture2D) -> LargeCollectibleDisplay:
 	var instance: LargeCollectibleDisplay = load("res://Engine/Resources/Scenes/LargeCollectibleDisplay.tscn").instantiate()
-	instance.collectible = _collectible
+	instance.texture = texture
 	return instance
 
 

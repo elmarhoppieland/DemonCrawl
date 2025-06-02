@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1sxicooe0q4c"]
+
+[ext_resource type="PackedScene" uid="uid://dhymmrd8j6du3" path="res://Engine/Resources/Scenes/DCPopup.tscn" id="1_iin5w"]
+[ext_resource type="Script" path="res://Engine/Resources/Singletons/MasteryAchievedPopup.gd" id="2_1c2e2"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="3_wuen5"]
+[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://Engine/Resources/Scenes/LargeCollectibleDisplay.tscn" id="4_wc757"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7aahr"]
+font = ExtResource("3_wuen5")
+font_color = Color(0.0627451, 0.87451, 0.501961, 1)
+
+[node name="MasteryAchievedPopup" instance=ExtResource("1_iin5w")]
+visible = true
+script = ExtResource("2_1c2e2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentsAnchor/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContentsAnchor/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MASTERY_ACHIEVED"
+label_settings = SubResource("LabelSettings_7aahr")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ContentsAnchor/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MASTERY_AVAILABLE"
+horizontal_alignment = 1
+
+[node name="MasteryDisplay" parent="ContentsAnchor/MarginContainer/VBoxContainer" index="2" instance=ExtResource("4_wc757")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4

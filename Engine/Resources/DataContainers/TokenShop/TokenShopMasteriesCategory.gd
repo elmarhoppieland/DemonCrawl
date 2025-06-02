@@ -41,9 +41,10 @@ func _get_icon() -> Texture2D:
 func _get_items() -> Array[TokenShopItemBase]:
 	var items: Array[TokenShopItemBase] = []
 	
-	for mastery in masteries:
+	for mastery in Codex.masteries:
 		var item := MasteryItem.new()
-		item.mastery = mastery
+		item.mastery = mastery.duplicate()
+		item.mastery.level = Codex.get_selectable_mastery_level(mastery) + 1
 		
 		items.append(item)
 	

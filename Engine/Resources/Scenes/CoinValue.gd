@@ -38,6 +38,9 @@ func update_font_color() -> void:
 	if Engine.is_editor_hint():
 		return
 	
+	if not is_visible_in_tree():
+		return
+	
 	if red_if_too_expensive and coin_value > Quest.get_current().get_stats().coins and not Engine.is_editor_hint():
 		cost_label.label_settings.font_color = Color.RED
 	else:

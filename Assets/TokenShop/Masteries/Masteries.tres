@@ -23,4 +23,4 @@ level = 1
 script = ExtResource("1_vgdhh")
 name = "TOKEN_SHOP_CATEGORY_MASTERIES"
 icon = SubResource("Texture2D_hk8i5")
-masteries = Array[Resource("res://Engine/Resources/DataContainers/Mastery.gd")]([SubResource("Resource_53o15"), SubResource("Resource_uynya")])
+masteries = Array[Resource("res://Engine/Resources/DataContainers/Mastery/Mastery.gd")]([SubResource("Resource_53o15"), SubResource("Resource_uynya")])

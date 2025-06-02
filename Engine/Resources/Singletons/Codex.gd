@@ -27,7 +27,7 @@ static var tokens: int = Eternal.create(0)
 
 static var profiles: Array[CodexProfile] = Eternal.create([] as Array[CodexProfile])
 
-static var unlocked_masteries: Array[Mastery] = Eternal.create([] as Array[Mastery])
+static var masteries: Array[Mastery] = load("res://Assets/Scripts/Masteries/MasteryList.tres").masteries
 static var selectable_masteries: Array[Mastery] = Eternal.create([] as Array[Mastery])
 # ==============================================================================
 
@@ -119,6 +119,14 @@ static func notify_heirlooms_changed() -> void:
 
 static func add_profile_slot() -> void:
 	profiles.append(CodexProfile.new())
+
+
+static func get_selectable_mastery_level(mastery: Mastery) -> int:
+	for selectable in Codex.selectable_masteries:
+		if selectable.get_script() == mastery.get_script():
+			return selectable.level
+	
+	return 0
 
 
 class Heirloom extends Resource:

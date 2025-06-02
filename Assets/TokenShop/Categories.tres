@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TokenShopCategoryList" load_steps=4 format=3 uid="uid://0i03npews6u6"]
+[gd_resource type="Resource" script_class="TokenShopCategoryList" load_steps=4 format=3 uid="uid://b35dfmws6vffa"]
 
 [ext_resource type="Script" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopCategoryList.gd" id="1_3ylhg"]
 [ext_resource type="Resource" uid="uid://3rduhwvlqb1q" path="res://Assets/TokenShop/Upgrades/Upgrades.tres" id="1_5n84j"]

@@ -3,12 +3,12 @@ extends Control
 class_name CollectibleDisplay
 
 # ==============================================================================
-@export var collectible: Collectible :
+@export var texture: Texture2D :
 	set(value):
-		if collectible and collectible.changed.is_connected(_update):
-			collectible.changed.disconnect(_update)
+		if texture and texture.changed.is_connected(_update):
+			texture.changed.disconnect(_update)
 		
-		collectible = value
+		texture = value
 		
 		if not is_node_ready():
 			await ready
@@ -17,10 +17,31 @@ class_name CollectibleDisplay
 		_update()
 		if value:
 			value.changed.connect(_update)
-@export_group("Progress", "progress_")
+
+@export_group("Progress Bar", "progress_")
 @export var progress_full_color := Color("10df80")
 @export var progress_partial_color := Color("f7ce4f")
+
+@export_group("Description Override", "description_")
+@export_multiline var description_text := "" :
+	set(value):
+		description_text = value
+		if not is_node_ready():
+			await ready
+		_tooltip_grabber.text = value
+@export_multiline var description_subtext := "" :
+	set(value):
+		description_subtext = value
+		if not is_node_ready():
+			await ready
+		_tooltip_grabber.subtext = value
 # ==============================================================================
+var collectible: Collectible :
+	set(value):
+		texture = value
+	get:
+		return texture if texture is Collectible else null
+
 var _hovered := false
 
 var _blink_tween: Tween
@@ -77,7 +98,8 @@ func _update() -> void:
 	
 	if not collectible:
 		_bg_rect.color = Color.TRANSPARENT
-		_tooltip_grabber.text = ""
+		_tooltip_grabber.text = description_text
+		_tooltip_grabber.subtext = description_subtext
 		_progress_bar.hide()
 		
 		if _blink_tween:
@@ -90,7 +112,8 @@ func _update() -> void:
 	_bg_rect.color = collectible.get_texture_bg_color()
 	if not _hovered or not collectible.is_active():
 		_bg_rect.color.a /= 2
-	_tooltip_grabber.text = collectible.get_annotation_text()
+	_tooltip_grabber.text = collectible.get_annotation_text() if description_text.is_empty() else description_text
+	_tooltip_grabber.subtext = description_subtext
 	
 	_progress_bar.visible = collectible.has_progress_bar()
 	if _progress_bar.visible:
@@ -126,9 +149,9 @@ func _update() -> void:
 
 
 @warning_ignore("shadowed_variable")
-static func create(collectible: Collectible) -> CollectibleDisplay:
+static func create(texture: Texture2D) -> CollectibleDisplay:
 	var display := load("res://Engine/Resources/Scenes/CollectibleDisplay.tscn").instantiate() as CollectibleDisplay
-	display.collectible = collectible
+	display.texture = texture
 	return display
 
 

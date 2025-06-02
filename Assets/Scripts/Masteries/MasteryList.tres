@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MasteryList" load_steps=6 format=3 uid="uid://b4qst8a7yil1u"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Masteries/Novice.gd" id="1_kwn4a"]
+[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Mastery/MasteryList.gd" id="1_wgtlx"]
+[ext_resource type="Script" path="res://Assets/Scripts/Masteries/Survivor.gd" id="2_62e2s"]
+
+[sub_resource type="Resource" id="Resource_utis1"]
+script = ExtResource("1_kwn4a")
+level = 0
+
+[sub_resource type="Resource" id="Resource_nyld0"]
+script = ExtResource("2_62e2s")
+level = 0
+
+[resource]
+script = ExtResource("1_wgtlx")
+masteries = Array[Resource("res://Engine/Resources/DataContainers/Mastery/Mastery.gd")]([SubResource("Resource_utis1"), SubResource("Resource_nyld0")])
