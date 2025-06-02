@@ -39,6 +39,104 @@ func load(path: String, additive: bool = false) -> void:
 	loaded.emit(path)
 
 
+func load_existing_resources(path: String) -> void:
+	if not FileAccess.file_exists(path):
+		return
+	
+	var file := FileAccess.open(path, FileAccess.READ)
+	
+	var sub_resource_positions := {}
+	
+	current_resource = null
+	
+	var current_section := ""
+	while not file.eof_reached():
+		var line := _read_line(file)
+		var position := file.get_position()
+		
+		if line.begins_with("[") and line.ends_with("]"):
+			current_section = line.substr(1, line.length() - 2).strip_edges()
+			if current_section.begins_with("ext_resource "):
+				current_section = ""
+				continue
+			
+			if current_section.begins_with("sub_resource "):
+				var id := current_section.get_slice("id=\"", 1).get_slice("\"", 0).hex_to_int()
+				sub_resource_positions[id] = position
+				continue
+			
+			current_resource = null
+			continue
+		
+		if "#" in line:
+			line = line.substr(0, line.find("#")).strip_edges()
+		if line.is_empty():
+			continue
+		
+		if current_section.is_empty():
+			var key := line.get_slice("=", 0).strip_edges()
+			var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
+			push_warning("Key-value pair '%s'-'%s' found outside of a section in file '%s'. Continuing..." % [key, value])
+			continue
+		
+		var key := line.get_slice("=", 0).strip_edges()
+		var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
+		assert("=" in line, "Invalid line '%s' in file '%s'." % [line, path])
+		
+		if not value.match("Resource(*)"):
+			continue
+		
+		var id := value.get_slice("\"", 1).hex_to_int()
+		var resource = get_eternal(current_section, key)
+		if resource not in _resources.values():
+			continue
+		
+		_resources.erase(_resources.find_key(resource))
+		_resources[id] = resource
+		
+		if not resource.resource_path.is_empty():
+			continue
+		
+		file.seek(sub_resource_positions[id])
+		
+		_reassign_resource_ids_in_subresource(resource, file, sub_resource_positions)
+		
+		file.seek(position)
+
+
+func _reassign_resource_ids_in_subresource(subresource: Resource, file: FileAccess, sub_resource_positions: Dictionary) -> void:
+	while true:
+		var line := file.get_line()
+		var position := file.get_position()
+		if "#" in line:
+			line = line.substr(0, line.find("#")).strip_edges()
+		if line.is_empty():
+			continue
+		if line.match("[*]"):
+			return
+		
+		var key := line.get_slice("=", 0).strip_edges()
+		var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
+		assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file.get_path()])
+		
+		if not value.match("Resource(*)"):
+			continue
+		
+		var id := value.get_slice("\"", 1).hex_to_int()
+		var resource = subresource.get(key)
+		if resource not in _resources.values():
+			continue
+		
+		_resources.erase(_resources.find_key(resource))
+		_resources[id] = resource
+		
+		file.seek(sub_resource_positions[id])
+		
+		_reassign_resource_ids_in_subresource(resource, file, sub_resource_positions)
+		
+		file.seek(position)
+
+
 ## Saves the loaded data to [code]path[/code].
 func save(path: String) -> void:
 	if not DirAccess.dir_exists_absolute(path.get_base_dir()):
@@ -291,12 +389,6 @@ func _parse_resource_line(line: String, current_resource: Resource, file_path: S
 	var key := line.get_slice("=", 0).strip_edges()
 	var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
 	assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file_path])
-	
-	#var parsed_value = _parse_value(value)
-	#if parsed_value is PendingResourceBase:
-		#while not parsed_value.is_ready(_resources):
-			#await _resource_saved
-		#parsed_value = parsed_value.create(_resources)
 	
 	current_resource.set(key, await await_resource(_parse_value(value)))
 

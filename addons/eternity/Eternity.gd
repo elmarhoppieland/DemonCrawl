@@ -46,13 +46,15 @@ static func _static_init() -> void:
 	if ProjectSettings.has_setting("eternity/named_paths/defaults"):
 		_named_paths = ProjectSettings.get_setting("eternity/named_paths/defaults")
 	
-	_defaults_cfg.load.call_deferred(DEFAULTS_FILE_PATH, true)
-	
 	if OS.is_debug_build():
+		_defaults_cfg.load_existing_resources.call_deferred(DEFAULTS_FILE_PATH)
+		
 		while true:
 			await _defaults_cfg.value_changed
 			await Promise.defer() # this makes sure we never save more than once per frame (unless any values get changed in deferred calls after this)
 			_defaults_cfg.save(DEFAULTS_FILE_PATH)
+	else:
+		_defaults_cfg.load.call_deferred(DEFAULTS_FILE_PATH)
 
 
 static func _editor_init() -> void:
