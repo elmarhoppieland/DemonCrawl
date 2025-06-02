@@ -526,44 +526,18 @@ func _parse_packed_array(value: String) -> Variant:
 	
 	var script := UserClassDB.class_get_script(script_name)
 	
-	var instantiator: Callable
-	var add_script_name: bool
-	if script.has_method("_import_packed_static"):
-		instantiator = script._import_packed_static
-		add_script_name = true
-	elif script.has_method("_import_packed"):
-		instantiator = script._import_packed
-		add_script_name = false
-	else:
-		instantiator = script.new
-		add_script_name = false
-	
 	var values := []
-	
 	var is_pending := false
 	for s in Stringifier.split_ignoring_nested(value.trim_prefix("PackedArray[" + script_name + "]" + "(").trim_suffix(")"), ","):
 		s = s.strip_edges()
 		
 		var s_script_name: String
-		var s_instantiator: Callable
-		var s_add_script_name: bool
 		if not s.begins_with("(") and s.match("*(*)"):
 			s_script_name = s.get_slice("(", 0)
-			var s_script := UserClassDB.class_get_script(s_script_name)
-			
-			if s_script.has_method("_import_packed_static"):
-				s_instantiator = s_script._import_packed_static
-				s_add_script_name = true
-			elif s_script.has_method("_import_packed"):
-				s_instantiator = s_script._import_packed
-				s_add_script_name = false
-			else:
-				s_instantiator = s_script.new
-				s_add_script_name = false
 		else:
 			s_script_name = script_name
-			s_instantiator = instantiator
-			s_add_script_name = add_script_name
+		
+		var constructor := Constructor.new(s_script_name)
 		
 		s = s.trim_prefix(s_script_name).trim_prefix("(").trim_suffix(")").strip_edges()
 		
@@ -573,17 +547,10 @@ func _parse_packed_array(value: String) -> Variant:
 		
 		var arg_strings := Stringifier.split_ignoring_nested(s, ",")
 		
-		var args := []
-		if s_add_script_name:
-			args.append(s_script_name)
-		var parsed_args := Array(arg_strings).map(_parse_value)
-		args.append_array(parsed_args)
-		if parsed_args.any(func(a: Variant) -> bool: return a is PendingResourceBase):
+		var instance := constructor.construct(Array(arg_strings).map(_parse_value))
+		if instance is PendingResource:
 			is_pending = true
-			values.append(PendingResourceInstantiator.new(s_instantiator, parsed_args))
-		else:
-			var instance: Object = s_instantiator.callv(args)
-			values.append(instance)
+		values.append(instance)
 	
 	if is_pending:
 		return TypedPendingResourceArray.new(values, Array([], TYPE_OBJECT, script.get_instance_base_type(), script))
@@ -593,42 +560,10 @@ func _parse_packed_array(value: String) -> Variant:
 
 func _parse_constructor(value: String) -> Variant:
 	var script_name := value.get_slice("(", 0).trim_suffix(")")
-	var script := UserClassDB.class_get_script(script_name)
-	
-	var instantiator: Callable
-	var add_script_name: bool
-	var pack_args: bool
-	if "_import_packed_static_v" in script and script._import_packed_static_v is Callable:
-		instantiator = script._import_packed_static_v
-		add_script_name = true
-		pack_args = true
-	elif "_import_packed_static" in script and script._import_packed_static is Callable:
-		instantiator = script._import_packed_static
-		add_script_name = true
-		pack_args = false
-	elif "_import_packed_v" in script and script._import_packed_v is Callable:
-		instantiator = script._import_packed_v
-		add_script_name = false
-		pack_args = true
-	elif "_import_packed" in script and script._import_packed is Callable:
-		instantiator = script._import_packed
-		add_script_name = false
-		pack_args = false
-	else:
-		instantiator = script.new
-		add_script_name = false
-		pack_args = false
 	
 	var args := _parse_value_list(value.trim_prefix(script_name + "(").trim_suffix(")"))
-	if pack_args:
-		args = [args]
-	if add_script_name:
-		args.push_front(script_name)
 	
-	if args.any(func(v: Variant) -> bool: return v is PendingResourceBase):
-		return PendingResourceInstantiator.new(instantiator, args)
-	
-	return instantiator.callv(args)
+	return Constructor.new(script_name).construct(args)
 
 
 func _parse_value_list(value_list: String) -> Array:
@@ -1064,3 +999,47 @@ class ValueStream:
 	
 	func is_finished() -> bool:
 		return _finished
+
+
+class Constructor:
+	var script_name: String
+	var instantiator: Callable
+	var add_script_name: bool
+	var pack_args: bool
+	
+	@warning_ignore("shadowed_variable")
+	func _init(script_name: String) -> void:
+		self.script_name = script_name
+		
+		var script := UserClassDB.class_get_script(script_name)
+		if "_import_packed_static_v" in script and script._import_packed_static_v is Callable:
+			instantiator = script._import_packed_static_v
+			add_script_name = true
+			pack_args = true
+		elif "_import_packed_static" in script and script._import_packed_static is Callable:
+			instantiator = script._import_packed_static
+			add_script_name = true
+			pack_args = false
+		elif "_import_packed_v" in script and script._import_packed_v is Callable:
+			instantiator = script._import_packed_v
+			add_script_name = false
+			pack_args = true
+		elif "_import_packed" in script and script._import_packed is Callable:
+			instantiator = script._import_packed
+			add_script_name = false
+			pack_args = false
+		else:
+			instantiator = script.new
+			add_script_name = false
+			pack_args = false
+	
+	func construct(args: Array) -> Object:
+		if pack_args:
+			args = [args]
+		if add_script_name:
+			args.push_front(script_name)
+		
+		if args.any(func(v: Variant) -> bool: return v is PendingResourceBase):
+			return PendingResourceInstantiator.new(instantiator, args)
+		
+		return instantiator.callv(args)
