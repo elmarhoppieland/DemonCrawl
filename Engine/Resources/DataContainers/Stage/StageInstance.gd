@@ -249,9 +249,41 @@ func is_finished() -> bool:
 	return true
 
 
-# TODO
 func needs_guess() -> bool:
-	return false
+	return get_progress_cell() == null
+
+
+func get_progress_cell() -> CellData:
+	var real_flags: Array[CellData] = []
+	
+	for cell in get_cells():
+		if cell.is_hidden() or cell.value == 0 or cell.is_occupied():
+			continue
+		
+		var hidden_cells: Array[CellData] = []
+		for neighbor in cell.get_nearby_cells():
+			if neighbor.is_hidden() or neighbor.object is Monster:
+				hidden_cells.append(neighbor)
+		if hidden_cells.size() == cell.value:
+			for neighbor in hidden_cells:
+				if neighbor not in real_flags:
+					real_flags.append(neighbor)
+	
+	for cell in get_cells():
+		if cell.is_hidden() or cell.is_occupied():
+			continue
+		
+		var monsters := 0
+		var safe_cell: CellData = null
+		for neighbor in cell.get_nearby_cells():
+			if neighbor in real_flags:
+				monsters += 1
+			elif not safe_cell and neighbor.is_hidden():
+				safe_cell = neighbor
+		if safe_cell and monsters == cell.value:
+			return safe_cell
+	
+	return null
 
 
 func get_3bv() -> int:

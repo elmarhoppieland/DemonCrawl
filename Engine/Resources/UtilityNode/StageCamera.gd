@@ -50,9 +50,5 @@ func shake() -> void:
 	shake_enabled = false
 
 
-func focus_progress() -> void:
-	global_position = Stage.get_current().get_board().get_global_at_cell_position(Stage.get_current().get_instance().get_progress_cell().get_position())
-
-
-func get_center() -> Vector2:
-	return position
+func focus_on_cell(cell: CellData) -> void:
+	global_position = Stage.get_current().get_board().get_global_at_cell_position(cell.get_position())

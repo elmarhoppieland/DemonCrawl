@@ -221,7 +221,7 @@ func life_lose(life: int, source: Object = self) -> void:
 #endregion
 
 ## Activates this [Mastery]'s ability. This does [b]not[/b] reset its charges,
-## or check the [Mastery]'s level.
+## or check the [Mastery]'s [member level].
 func activate_ability() -> void:
 	_ability()
 
