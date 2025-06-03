@@ -16,7 +16,7 @@ func _exit_tree() -> void:
 
 func _ready() -> void:
 	for child in get_children():
-		if child is CanvasItem:
+		if child is CanvasItem or child is CanvasLayer:
 			child.hide()
 
 
