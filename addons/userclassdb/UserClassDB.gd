@@ -523,6 +523,9 @@ static func is_parent_class(name: StringName, inherits: StringName) -> bool:
 static func class_get_script(name: StringName) -> Script:
 	name = class_get_path(name)
 	
+	if not Engine.is_editor_hint() and name in _classes:
+		return _classes[name]
+	
 	if not class_exists(name):
 		return null
 	

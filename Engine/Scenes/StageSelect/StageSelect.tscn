@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://hhy78o5qolno"]
+[gd_scene load_steps=19 format=3 uid="uid://hhy78o5qolno"]
 
 [ext_resource type="Script" path="res://Engine/Scenes/StageSelect/StageSelect.gd" id="1_0kr35"]
 [ext_resource type="Texture2D" uid="uid://dqe6i8xvwotle" path="res://Assets/Backgrounds/stages0.png" id="1_6aai7"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" path="res://Engine/Resources/UtilityNode/BackButton.gd" id="8_fl1vr"]
 [ext_resource type="Script" path="res://Engine/Resources/Singletons/GuiEnabler.gd" id="9_a0qlk"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="9_l3xwp"]
+[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/FadeButton.gd" id="9_xkiay"]
+[ext_resource type="Texture2D" uid="uid://c1dflngu6flp4" path="res://Assets/Sprites/abandon.png" id="10_0nt55"]
+[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="11_dcp1b"]
 
 [sub_resource type="Resource" id="Resource_ithns"]
 script = ExtResource("6_a1317")
@@ -34,6 +37,14 @@ region = Rect2(22, 44, 12, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_yjf3c"]
 atlas = ExtResource("9_l3xwp")
 region = Rect2(34, 44, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hle2i"]
+atlas = ExtResource("10_0nt55")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t66ta"]
+atlas = ExtResource("10_0nt55")
+region = Rect2(8, 0, 8, 8)
 
 [node name="StageSelect" type="Control"]
 layout_mode = 3
@@ -89,23 +100,34 @@ size_flags_vertical = 1
 text = "QUEST_GLORY_DAYS"
 label_settings = SubResource("LabelSettings_pehmt")
 
-[node name="BackButton" type="MarginContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 10.0
 offset_top = 7.0
-offset_right = 22.0
-offset_bottom = 15.0
+
+[node name="BackButton" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
 script = ExtResource("8_fl1vr")
 
-[node name="Normal" type="TextureRect" parent="BackButton"]
+[node name="Normal" type="TextureRect" parent="HBoxContainer/BackButton"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_baxs2")
 
-[node name="Hovered" type="TextureRect" parent="BackButton"]
+[node name="Hovered" type="TextureRect" parent="HBoxContainer/BackButton"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = SubResource("AtlasTexture_yjf3c")
+
+[node name="AbandonButton" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+script = ExtResource("9_xkiay")
+texture_normal = SubResource("AtlasTexture_hle2i")
+texture_hover = SubResource("AtlasTexture_t66ta")
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/AbandonButton"]
+script = ExtResource("11_dcp1b")
+text = "QUEST_ABANDON"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)
@@ -116,3 +138,4 @@ _disabled = 0
 
 [connection signal="icon_selected" from="MarginContainer/VBoxContainer/StagesOverview" to="." method="_on_stages_overview_icon_selected"]
 [connection signal="interacted" from="MarginContainer/VBoxContainer/StageDetails" to="." method="_on_stage_details_interacted"]
+[connection signal="pressed" from="HBoxContainer/AbandonButton" to="." method="_on_abandon_button_pressed"]
