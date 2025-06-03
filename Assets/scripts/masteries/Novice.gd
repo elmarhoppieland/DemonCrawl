@@ -44,4 +44,7 @@ func _ability() -> void:
 
 func _get_cost() -> int:
 	return level
-	
+
+
+func _get_max_charges() -> int:
+	return 1
