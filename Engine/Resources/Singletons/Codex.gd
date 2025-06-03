@@ -21,14 +21,27 @@ static var heirlooms_changed := Signal() :
 
 static var favored_items: Array[Favor] = Eternal.create([] as Array[Favor])
 
-static var selected_mastery: Mastery = Eternal.create(null)
+static var masteries: Array[Mastery] = load("res://Assets/Scripts/Masteries/MasteryList.tres").masteries
+static var selected_mastery: Mastery = Eternal.create(null) :
+	set(value):
+		selected_mastery = value
+		selected_mastery_changed.emit()
+	get:
+		if selected_mastery and selected_mastery.level != get_selectable_mastery_level(selected_mastery):
+			selected_mastery.level = get_selectable_mastery_level(selected_mastery)
+		return selected_mastery
+static var selectable_masteries: Array[Mastery] = Eternal.create([] as Array[Mastery])
+
+static var selected_mastery_changed := Signal() :
+	get:
+		if selected_mastery_changed.is_null():
+			(Codex as GDScript).add_user_signal("selected_mastery_changed")
+			selected_mastery_changed = Signal(Codex, "selected_mastery_changed")
+		return selected_mastery_changed
 
 static var tokens: int = Eternal.create(0)
 
 static var profiles: Array[CodexProfile] = Eternal.create([] as Array[CodexProfile])
-
-static var masteries: Array[Mastery] = load("res://Assets/Scripts/Masteries/MasteryList.tres").masteries
-static var selectable_masteries: Array[Mastery] = Eternal.create([] as Array[Mastery])
 # ==============================================================================
 
 static func add_heirloom_slot() -> void:

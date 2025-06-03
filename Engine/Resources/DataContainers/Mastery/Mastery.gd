@@ -3,6 +3,9 @@ class_name Mastery
 
 # ==============================================================================
 @export var level := 0
+@export var charges := -1
+# ==============================================================================
+var quest: Quest = null : set = set_quest, get = get_quest
 # ==============================================================================
 
 #region decription & visualization
@@ -16,7 +19,10 @@ func get_display_name() -> String:
 ## to generate a translatable string:
 ## [br][code]MASTERY_{id}[/code]
 func _get_name() -> String:
-	return tr("MASTERY_" + _get_identifier())
+	var name := tr("MASTERY_" + _get_identifier())
+	if level > 0:
+		name += " " + RomanNumeral.convert_to_roman(level)
+	return name
 
 
 ## Returns this [Mastery]'s full description. Each level is one element in the returned array.
@@ -35,7 +41,28 @@ func get_description() -> PackedStringArray:
 ## [br][code]MASTERY_{id}_DESCRIPTION_{level}[/code].
 @warning_ignore("shadowed_variable")
 func _get_description(level: int) -> String:
-	return tr("MASTERY_%s_DESCRIPTION_%d" % [_get_identifier(), level])
+	var description := tr("MASTERY_%s_DESCRIPTION_%d" % [_get_identifier(), level])
+	
+	if level != 3:
+		return description
+	
+	var max_charges := get_max_charges()
+	if max_charges <= 0:
+		return description
+	
+	var charges := get_charges()
+	if charges >= 0:
+		return "[%d/%d] %s" % [
+			charges,
+			max_charges,
+			description
+		]
+	
+	return "[%d %s] %s" % [
+		max_charges,
+		Translator.translate("CHARGES", max_charges),
+		description
+	]
 
 
 func get_description_text() -> String:
@@ -48,7 +75,7 @@ func get_description_text() -> String:
 
 ## Creates and returns a new icon for this [Mastery].
 func create_icon() -> Texture2D:
-	return IconManager.get_icon_data("mastery%d/%s" % [level, UserClassDB.script_get_class(get_script())]).create_texture()
+	return IconManager.get_icon_data("mastery%d/%s" % [level if level > 0 else 1, UserClassDB.script_get_class(get_script())]).create_texture()
 
 
 ## Virtual method to override this [Mastery]'s identifier. If not overridden, converts
@@ -94,12 +121,28 @@ func get_condition_text() -> String:
 func _get_condition_text() -> String:
 	return tr("MASTERY_%s_UNLOCK_%d" % [_get_identifier(), level])
 
+
+func get_max_charges() -> int:
+	return _get_max_charges()
+
+
+func _get_max_charges() -> int:
+	return -1
+
+
+func get_charges() -> int:
+	return charges
+
 #endregion
 
 #region utilities
 
+func set_quest(value: Quest) -> void:
+	quest = value
+
+
 func get_quest() -> Quest:
-	return Quest.get_current()
+	return quest
 
 
 func get_inventory() -> QuestInventory:
@@ -155,11 +198,14 @@ func _get_ability_description() -> String:
 
 
 func _export_packed() -> Array:
+	if charges >= 0:
+		return [level, charges]
 	return [level]
 
 
 @warning_ignore("shadowed_variable")
-static func _import_packed_static(script_name: String, level: int) -> Mastery:
+static func _import_packed_static(script_name: String, level: int, charges: int = -1) -> Mastery:
 	var mastery: Mastery = UserClassDB.instantiate(script_name)
 	mastery.level = level
+	mastery.charges = charges
 	return mastery

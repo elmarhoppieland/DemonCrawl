@@ -387,6 +387,18 @@
 			}
 		]
 	},
+	"mastery": {
+		"atlas": "res://Assets/Sprites/masteries2.png",
+		"icons": [
+			{
+				"h": 16,
+				"name": "none",
+				"w": 16,
+				"x": 80,
+				"y": 80
+			}
+		]
+	},
 	"mastery1": {
 		"atlas": "res://Assets/Sprites/masteries0.png",
 		"icons": [

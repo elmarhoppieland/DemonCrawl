@@ -3,29 +3,23 @@ extends TextureRect
 class_name ProfileMastery
 
 # ==============================================================================
-static var icon: Icon
-	#get:
-		#if not Mastery.selected:
-			#return AssetManager.get_icon("mastery/none")
-		#return Mastery.selected.icon
+var _tooltip_grabber := TooltipGrabber.new()
 # ==============================================================================
-
-func _enter_tree() -> void:
-	texture = icon
-
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	var tooltip_grabber := TooltipGrabber.new()
+	add_child(_tooltip_grabber)
+	_update()
+	Codex.selected_mastery_changed.connect(_update)
+
+
+func _update() -> void:
 	if Codex.selected_mastery:
-		var mastery_name := tr("MASTERY_" + Quest.get_current().get_mastery()._get_identifier())
-		tooltip_grabber.text = tr(mastery_name)
-		tooltip_grabber.text += " " + RomanNumeral.convert_to_roman(Codex.selected_mastery.level) # TODO: properly get the purchased level
-		
-		tooltip_grabber.subtext = "• " + "\n• ".join(Quest.get_current().get_mastery().get_description())
+		texture = Codex.selected_mastery.create_icon()
+		_tooltip_grabber.text = Codex.selected_mastery.get_display_name()
+		_tooltip_grabber.subtext = Codex.selected_mastery.get_description_text()
 	else:
-		tooltip_grabber.text = tr("MASTERY_NONE")
-	
-	add_child(tooltip_grabber)
+		texture = IconManager.get_icon_data("mastery/none").create_texture()
+		_tooltip_grabber.text = tr("MASTERY_NONE")

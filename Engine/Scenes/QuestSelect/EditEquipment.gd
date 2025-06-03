@@ -34,58 +34,47 @@ func _on_masteries_button_interacted() -> void:
 		flow_container.remove_child(child)
 		child.queue_free()
 	
-	add_none_mastery()
+	add_mastery(null)
 	
-	const DIR := "res://Assets/scripts/masteries/"
-	for file in DirAccess.get_files_at(DIR):
-		var path := DIR.path_join(file)
-		add_mastery_from_script(path)
+	for mastery in Codex.masteries:
+		mastery = mastery.duplicate()
+		mastery.level = Codex.get_selectable_mastery_level(mastery)
+		if mastery.level == 0:
+			mastery.level = 1
+		add_mastery(mastery)
 
 
-func add_none_mastery() -> void:
-	add_mastery("MASTERY_NONE", IconManager.get_icon_data("mastery/none").create_texture(), "")
-
-
-func add_mastery_from_script(script_path: String) -> void:
-	var script = ResourceLoader.load(script_path)
-	if not script is Script:
-		Debug.log_error("The file at '%s' was attempted to be loaded as a mastery script, but it is either not a Script or not loadable." % script_path)
-		return
-	
-	var mastery: Mastery = script.new()
-	# TODO: set mastery level correctly
-	#mastery.level = TokenShop.get_purchased_level(Mastery._token_shop_items.get(script, null))
-	
-	add_mastery("MASTERY_" + mastery._get_identifier(), mastery.icon, script_path, mastery.get_description())
-
-
-@warning_ignore("unused_parameter")
-func add_mastery(mastery_name: String, icon: Texture2D, identifier: String, description: PackedStringArray = [], unlock_text: String = "") -> void:
+func add_mastery(mastery: Mastery) -> void:
 	const LOCK_ALPHA := 0.5
 	
-	var locked := description.is_empty() and not unlock_text.is_empty()
+	var icon := mastery.create_icon() if mastery else IconManager.get_icon_data("mastery/none").create_texture()
+	
+	var locked := (Codex.get_selectable_mastery_level(mastery) < mastery.level) if mastery else false
 	
 	var texture_rect := TextureRect.new()
 	texture_rect.texture = icon
 	
 	if not locked:
 		var grabber := CheckmarkGrabber.new()
-		#grabber.main = Mastery.selected_path == identifier
+		if mastery:
+			grabber.main = Codex.selected_mastery.get_script() == mastery.get_script()
+		else:
+			grabber.main = Codex.selected_mastery == null
 		texture_rect.add_child(grabber)
 		
-		#grabber.interacted.connect(func():
-			#Mastery.selected_path = identifier
-		#)
+		grabber.interacted.connect(func():
+			Codex.selected_mastery = mastery
+		)
 	
 	var tooltip_grabber := TooltipGrabber.new()
-	tooltip_grabber.text = tr(mastery_name)
+	tooltip_grabber.text = mastery.get_display_name() if mastery else "MASTERY_NONE"
 	
 	if locked:
-		tooltip_grabber.text += " I"
-		tooltip_grabber.subtext = "(" + tr(unlock_text) + ")"
-	elif not unlock_text.is_empty():
-		tooltip_grabber.text += " " + RomanNumeral.convert_to_roman(description.size())
-		tooltip_grabber.subtext = "• " + "\n• ".join(description)
+		var unlock_text := mastery.get_condition_text() if mastery else ""
+		tooltip_grabber.subtext = "(" + unlock_text + ")"
+	else:
+		var description := mastery.get_description_text() if mastery else ""
+		tooltip_grabber.subtext = description
 	
 	if not locked:
 		texture_rect.add_child(tooltip_grabber)
@@ -102,7 +91,7 @@ func add_mastery(mastery_name: String, icon: Texture2D, identifier: String, desc
 	margin.add_child(color)
 	
 	var lock := TextureRect.new()
-	lock.texture = IconManager.get_icon_data("icons/icon_locked_flat").create_texture()
+	lock.texture = IconManager.get_icon_data("icons/locked_flat").create_texture()
 	margin.add_child(lock)
 	
 	flow_container.add_child(margin)
