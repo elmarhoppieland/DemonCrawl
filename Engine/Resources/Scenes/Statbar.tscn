@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Engine/Resources/UtilityNode/Avatar.gd" id="2_kk3qc"]
 [ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Engine/Resources/UtilityNode/Avatar_atlas.tres" id="2_kuo8t"]
 [ext_resource type="Script" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_gcjxo"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/ProfileMastery.gd" id="5_beiwq"]
+[ext_resource type="Script" path="res://Engine/Resources/HelperObjects/QuestMastery.gd" id="5_8bgww"]
 [ext_resource type="Script" path="res://Engine/Resources/UtilityNode/XPBar.gd" id="6_fmgjo"]
 [ext_resource type="Script" path="res://Engine/Resources/UtilityNode/ProfileNameLabel.gd" id="7_8d5yt"]
 [ext_resource type="Script" path="res://Engine/Resources/UtilityNode/ProfileLevelLabel.gd" id="8_flfi7"]
@@ -167,10 +167,10 @@ max_line_length = 48
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 
-[node name="ProfileMastery" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="QuestMastery" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 4
-script = ExtResource("5_beiwq")
+stretch_mode = 5
+script = ExtResource("5_8bgww")
 
 [node name="Control2" type="Control" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(1, 0)
@@ -294,9 +294,8 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
 [node name="Inventory" parent="InventoryCanvas" instance=ExtResource("15_6x8ea")]
-offset_left = 320.0
-offset_right = 397.0
-offset_bottom = 160.0
+offset_left = 0.0
+offset_right = 77.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

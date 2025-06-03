@@ -45,6 +45,7 @@ func get_quest() -> Quest:
 
 
 func _on_abandon_button_pressed() -> void:
+	Quest.get_current().lost.emit()
 	Quest.clear_current()
 	Eternity.save()
 	

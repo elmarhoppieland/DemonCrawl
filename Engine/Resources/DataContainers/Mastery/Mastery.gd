@@ -8,6 +8,39 @@ class_name Mastery
 var quest: Quest = null : set = set_quest, get = get_quest
 # ==============================================================================
 
+#region virtuals
+
+## Virtual method. Called (once) when the [Quest] starts.
+func _quest_start() -> void:
+	pass
+
+
+## Virtual method. Called (once) when the player wins the [Quest].
+func _quest_win() -> void:
+	pass
+
+
+## Virtual method. Called (once) when the player loses or abandons the [Quest].
+func _quest_lose() -> void:
+	pass
+
+
+## Virtual method. Called every time the player loads the [Quest] (usually after entering
+## the [StageSelect] or [StageScene] from the [MainMenu] or [QuestSelect]). Also called
+## when the player starts the [Quest].
+## [br][br]Can be used to connect to effect [Signal]s.
+func _quest_load() -> void:
+	pass
+
+
+## Virtual method. Called every time the player exits the [Quest] (usually before entering
+## the [MainMenu]). Also called when the player wins, loses or abandons the [Quest].
+## [br][br]Can be used to disconnect from effect [Signal]s.
+func _quest_unload() -> void:
+	pass
+
+#endregion
+
 #region decription & visualization
 
 ## Returns this [Mastery]'s name.
@@ -138,7 +171,21 @@ func get_charges() -> int:
 #region utilities
 
 func set_quest(value: Quest) -> void:
+	if quest:
+		quest.loaded.disconnect(_quest_load)
+		quest.unloaded.disconnect(_quest_unload)
+		quest.started.disconnect(_quest_start)
+		quest.lost.disconnect(_quest_lose)
+		quest.won.disconnect(_quest_win)
+	
 	quest = value
+	
+	if value:
+		value.loaded.connect(_quest_load)
+		value.unloaded.connect(_quest_unload)
+		value.started.connect(_quest_start)
+		value.lost.connect(_quest_lose)
+		value.won.connect(_quest_win)
 
 
 func get_quest() -> Quest:

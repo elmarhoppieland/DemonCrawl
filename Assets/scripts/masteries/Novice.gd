@@ -4,7 +4,19 @@ class_name Novice
 
 # ==============================================================================
 
-func change_score(value: int) -> int:
+func _quest_load() -> void:
+	Effects.MutableSignals.change_score.connect(_change_score)
+	Effects.MutableSignals.damage.connect(_damage)
+	Effects.MutableSignals.death.connect(_death)
+
+
+func _quest_unload() -> void:
+	Effects.MutableSignals.change_score.disconnect(_change_score)
+	Effects.MutableSignals.damage.disconnect(_damage)
+	Effects.Signals.death.disconnect(_death)
+
+
+func _change_score(value: int) -> int:
 	if level < 1:
 		return value
 	
@@ -14,7 +26,7 @@ func change_score(value: int) -> int:
 	return (get_attributes().score + value) / 2
 
 
-func damage(amount: int, source: Object) -> int:
+func _damage(amount: int, source: Object) -> int:
 	if level < 1:
 		return amount
 	if amount < 1:
@@ -29,7 +41,7 @@ func damage(amount: int, source: Object) -> int:
 	return amount
 
 
-func death(_source: Object) -> void:
+func _death(_source: Object) -> void:
 	if level < 2:
 		return
 	

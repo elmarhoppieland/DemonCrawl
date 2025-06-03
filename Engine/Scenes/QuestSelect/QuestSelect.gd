@@ -33,6 +33,7 @@ func _on_begin_button_pressed() -> void:
 	var quest := QuestsManager.selected_quest.generate()
 	quest.source_difficulty = QuestsManager.selected_difficulty
 	quest.set_as_current()
+	quest.start()
 	
 	QuestsManager.selected_difficulty.apply_starting_values(quest)
 	
@@ -41,6 +42,8 @@ func _on_begin_button_pressed() -> void:
 	Eternity.save()
 	
 	Effects.quest_start()
+	
+	quest.notify_loaded()
 
 
 func _on_quest_select_statbar_edit_equipment() -> void:

@@ -114,6 +114,17 @@ CHOOSE_ITEM;CHOOSE AN ITEM:
 BUY_ITEM;BUY NOW!
 LEAVE;LEAVE
 STATS_YOUR_OVERVIEW;YOUR OVERVIEW
+OVERVIEW_SCORE;Score: {score} pts
+OVERVIEW_CELLS_OPENED_SINCE_MISTAKE;Cells opened since last mistake: {cells}
+OVERVIEW_MORALITY;Morality: {morality}
+OVERVIEW_MASTERY_ACTIVATIONS;Mastery activations: {activations}
+OVERVIEW_CHAIN_VALUE;Chain value: {value}
+OVERVIEW_CHAIN_LENGTH;Chain length: {length}
+OVERVIEW_CHAIN_SUM;Chain sum: {sum}
+OVERVIEW_PATHFINDING;Pathfinding: {pathfinding}%
+OVERVIEW_RARE_LOOT_MODIFIER;Rare loot modifier: {modifier}%
+OVERVIEW_CHESTS_OPENED;Chests opened: {chests}
+OVERVIEW_MONSTERS_KILLED;Monsters killed: {monsters}
 SCORE;Score
 POINTS_ABBR;pts
 CELLS_OPENED_SINCE_MISTAKE;Cells opened since last mistake

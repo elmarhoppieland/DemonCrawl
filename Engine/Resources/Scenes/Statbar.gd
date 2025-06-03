@@ -10,7 +10,7 @@ const _INVENTORY_OPEN_CLOSE_ANIM_DURATION := 0.2
 var _inventory_button_hovered := false
 var _inventory_open := false
 # ==============================================================================
-#@onready var _stats_tooltip_grabber: TooltipGrabber = %StatsTooltipGrabber
+@onready var _stats_tooltip_grabber: TooltipGrabber = %StatsTooltipGrabber
 @onready var _stats: StatsDisplay = %StatsDisplay
 @onready var _inventory_icon_hover: TextureRect = %Hover
 @onready var _heirloom_displays: Array[HeirloomDisplay] = [%HeirloomDisplay1, %HeirloomDisplay2, %HeirloomDisplay3]
@@ -75,7 +75,7 @@ func _on_inventory_icon_mouse_exited() -> void:
 
 
 func _on_stats_tooltip_grabber_about_to_show() -> void:
-	pass
+	_stats_tooltip_grabber.subtext = Quest.get_current().get_attributes().get_overview_text()
 
 
 func _on_heirloom_display_interacted(slot_idx: int) -> void:

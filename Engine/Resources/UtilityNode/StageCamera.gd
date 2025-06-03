@@ -51,7 +51,7 @@ func shake() -> void:
 
 
 func focus_progress() -> void:
-	position = Stage.get_current().get_board().get_progress_cell().board_position * Cell.CELL_SIZE
+	global_position = Stage.get_current().get_board().get_global_at_cell_position(Stage.get_current().get_instance().get_progress_cell().get_position())
 
 
 func get_center() -> Vector2:

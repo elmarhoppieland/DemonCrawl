@@ -46,9 +46,16 @@ static var current_changed := Signal() :
 @export var _stats := QuestStats.new() : get = get_stats
 @export var _player_attributes := QuestPlayerAttributes.new() : get = get_attributes
 
-@export var _mastery: Mastery : get = get_mastery
+@export var _mastery: Mastery : set = set_mastery, get = get_mastery
 
 @export var _orb_manager := OrbManager.new() : get = get_orb_manager
+# ==============================================================================
+signal started()
+signal lost()
+signal won()
+signal loaded()
+signal unloaded()
+
 # ==============================================================================
 
 #region current
@@ -100,6 +107,18 @@ func set_as_current() -> void:
 
 #region global utils
 
+func start() -> void:
+	started.emit()
+
+
+func notify_loaded() -> void:
+	loaded.emit()
+
+
+func notify_unloaded() -> void:
+	unloaded.emit()
+
+
 ## Unlocks the next stage of the quest, starting at [code]stage[/code].
 func unlock_next_stage(skip_special_stages: bool = true, start_stage_index: int = selected_stage_idx) -> void:
 	if start_stage_index + 1 >= stages.size():
@@ -114,6 +133,8 @@ func unlock_next_stage(skip_special_stages: bool = true, start_stage_index: int 
 
 ## Finishes this quest.
 func finish() -> void:
+	won.emit()
+	
 	Effects.quest_finish()
 	
 	PlayerFlags.add_flag("%s/%s" % [
@@ -169,6 +190,14 @@ func get_stats() -> QuestStats:
 
 func get_attributes() -> QuestPlayerAttributes:
 	return _player_attributes
+
+
+func set_mastery(value: Mastery) -> void:
+	if _mastery:
+		_mastery.quest = null
+	_mastery = value
+	if value:
+		value.quest = self
 
 
 func get_mastery() -> Mastery:

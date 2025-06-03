@@ -14,6 +14,8 @@ class_name QuestFile
 func generate() -> Quest:
 	var quest := Quest.new()
 	quest.source_file = self
+	if Codex.selected_mastery:
+		quest.set_mastery(Codex.selected_mastery.duplicate())
 	
 	var stage_index := 0
 	while true:

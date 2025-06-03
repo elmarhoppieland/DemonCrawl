@@ -23,6 +23,8 @@ class_name QuestStats
 		coins = value
 		emit_changed()
 # ==============================================================================
+var _dying := false
+# ==============================================================================
 
 ## Restores [code]life[/code] lives, without exceeding the max lives.
 @warning_ignore("shadowed_variable")
@@ -44,14 +46,22 @@ func life_lose(life: int, source: Object) -> void:
 	if Stage.has_current():
 		Stage.get_current().get_scene().get_background().flash_red()
 	
-	if self.life < 0:
-		die()
+	if self.life <= 0:
+		die(source)
 
 
 ## Causes the player to immediately die. If the player has any revives, one will
 ## be used to revive the player at maximum life. Otherwise, the player loses the quest.
 ## See also [method lose].
-func die() -> void:
+func die(source: Object) -> void:
+	_dying = true
+	Effects.death(source)
+	if not _dying:
+		life = max_life
+		return
+	
+	_dying = false
+	
 	if revives > 0:
 		revives -= 1
 		life = max_life
@@ -65,6 +75,12 @@ func die() -> void:
 ## they will not be used to revive the player. See also [method die].
 func lose() -> void:
 	pass # TODO
+
+
+func revive() -> void:
+	if _dying:
+		_dying = false
+		EffectManager.get_priority_tree().interrupt()
 
 
 @warning_ignore("shadowed_variable")

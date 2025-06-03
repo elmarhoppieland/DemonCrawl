@@ -66,7 +66,7 @@ func show_rewards() -> void:
 		
 		await get_tree().process_frame
 	
-	Quest.get_current().get_attributes().score += total_score
+	Quest.get_current().get_attributes().score = Effects.change_score(Quest.get_current().get_attributes().score + total_score)
 	
 	rewards_showing = false
 	rewards_shown = true

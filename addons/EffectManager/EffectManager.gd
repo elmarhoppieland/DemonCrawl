@@ -99,16 +99,28 @@ static func reload_priority_tree() -> void:
 
 class PriorityTree:
 	var root := PriorityRoot.new()
+	var interrupted := false
+	
+	func _init() -> void:
+		root._tree = weakref(self)
+	
+	func interrupt() -> void:
+		interrupted = true
 
 
 class PriorityNode:
 	var name := ""
-	var _parent: WeakRef
+	var _parent: WeakRef = null
+	var _tree: WeakRef = null
 	
 	func propagate(connections: Array[Dictionary], args: Array, mutable: int = -1) -> Array[Dictionary]:
 		var unhandled_connections: Array[Dictionary] = []
 		
 		for connection in connections:
+			if get_tree().interrupted:
+				get_tree().interrupted = false
+				return []
+			
 			if handles(connection):
 				if mutable < 0:
 					connection.callable.callv(args)
@@ -149,11 +161,15 @@ class PriorityNode:
 	func set_parent(parent: PriorityNode) -> void:
 		_parent = weakref(parent)
 	
+	func get_tree() -> PriorityTree:
+		return _tree.get_ref() if _tree else null
+	
 	func add_child(child: PriorityNode) -> void:
 		assert(can_have_children(), "add_child() can only be used on a node that can have children.")
 		assert(child.get_parent() == null, "Cannot add a child that already has a parent.")
 		
 		child._parent = weakref(self)
+		child._tree = _tree
 		get_children().append(child)
 	
 	func insert_child(child: PriorityNode, index: int) -> void:
@@ -343,4 +359,5 @@ class PriorityRoot extends PrioritySection:
 			else:
 				args[mutable] = connection.callable.callv(args)
 		
+		get_tree().interrupted = false
 		return connections
