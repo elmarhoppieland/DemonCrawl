@@ -58,6 +58,10 @@ func _ability() -> void:
 		Toasts.add_toast(tr("MUST_GUESS"), IconManager.get_icon_data("mastery1/Novice").create_texture())
 
 
+func _can_use_ability() -> bool:
+	return Stage.has_current() and Stage.get_current().has_scene()
+
+
 func _get_cost() -> int:
 	return level
 

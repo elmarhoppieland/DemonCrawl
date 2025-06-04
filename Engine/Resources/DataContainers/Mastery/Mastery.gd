@@ -1,9 +1,16 @@
+@tool
 extends Resource
 class_name Mastery
 
 # ==============================================================================
-@export var level := 0
-@export var charges := -1
+@export var level := 0 :
+	set(value):
+		level = value
+		emit_changed()
+@export var charges := -1 :
+	set(value):
+		charges = value
+		emit_changed()
 # ==============================================================================
 var quest: Quest = null : set = set_quest, get = get_quest
 # ==============================================================================
@@ -166,6 +173,10 @@ func _get_max_charges() -> int:
 func get_charges() -> int:
 	return charges
 
+
+func is_charged() -> bool:
+	return charges >= 0 and get_charges() >= get_max_charges()
+
 #endregion
 
 #region utilities
@@ -224,6 +235,26 @@ func life_lose(life: int, source: Object = self) -> void:
 ## or check the [Mastery]'s [member level].
 func activate_ability() -> void:
 	_ability()
+
+
+## If this [Mastery] is charged (see [method is_charged]), activates the ability
+## (see [activate_ability]) and resets its charges to zero.
+func use_ability() -> void:
+	if is_charged() and can_use_ability():
+		activate_ability()
+		charges = 0
+
+
+## Returns whether this [Mastery]'s ability can currently be used. Does [b]not[/b]
+## check whether it is charged.
+func can_use_ability() -> bool:
+	return _can_use_ability()
+
+
+## Vitual method. Should return [code]true[/code] if this [Mastery]'s ability can
+## currently be used (regardless of whether it is charged), and [code]false[/code] if not.
+func _can_use_ability() -> bool:
+	return true
 
 
 ## Virtual method. Called when the [Mastery]'s ability is activated (see [method activate_ability]).
