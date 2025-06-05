@@ -709,17 +709,18 @@ func encode_to_stream() -> ValueStream:
 func _stream_encode(stream: ValueStream) -> void:
 	await stream.start()
 	
-	var ext_resources: Array[Resource] = []
-	var sub_resources: Array[Resource] = []
-	
 	_prepare_resource_list()
 	
+	var ext_resources: Array[Resource] = []
+	var sub_resources: Array[Resource] = []
 	for id in _resources:
 		var resource: Resource = _resources[id]
 		if resource.resource_path.is_empty():
 			sub_resources.append(resource)
 		else:
 			ext_resources.append(resource)
+	
+	ext_resources.sort_custom(func(a: Resource, b: Resource) -> bool: return a.resource_path < b.resource_path)
 	
 	for ext_resource in ext_resources:
 		await stream.step("[ext_resource path=\"%s\" id=\"%s\"]\n" % [
