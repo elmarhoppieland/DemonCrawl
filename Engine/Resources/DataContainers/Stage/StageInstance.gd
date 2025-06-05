@@ -308,6 +308,19 @@ func get_3bv() -> int:
 	return _3bv
 
 
+func solve_cell() -> CellData:
+	var cell := get_cells().filter(func(cell: CellData) -> bool:
+		return cell.is_hidden() and cell.is_flagged() == cell.object is Monster
+	).pick_random() as CellData
+	
+	if cell.is_flagged():
+		cell.unflag()
+	else:
+		cell.flag()
+	
+	return cell
+
+
 ## Returns whether this [StageInstance] has been generated. If this is not the
 ## case, [method get_cell] will return the correct instances of [CellData],
 ## but their properties may be changed when the first [Cell] gets opened.

@@ -94,6 +94,7 @@ func _on_board_stage_finished() -> void:
 
 func _on_finish_button_pressed() -> void:
 	_finish_button.hide()
+	Stage.get_current().finish_pressed.emit()
 	
 	await _finish_popup.popup()
 	

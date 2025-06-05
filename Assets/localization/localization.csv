@@ -51,8 +51,14 @@ MASTERY_NOVICE_ABILITY;Focus an area where you can make progress.
 MASTERY_NOVICE_UNLOCK_1;Unlock by discovering a 4 or greater.
 MASTERY_NOVICE_UNLOCK_2;Unlock II by discovering a 5 or greater.
 MASTERY_NOVICE_UNLOCK_3;Unlock III by discovering a 6 or greater.
-MASTERY_NOVICE_UNLOCK_DESCRIPTION_1;• Reduce your score by half. If you make a mistake on a necessary guess, reduce incoming damage to 1.\n\n(Unlock I by discovering a 4 or greater.)
 MASTERY_SURVIVOR;SURVIVOR
+MASTERY_SURVIVOR_DESCRIPTION_1;Begin the quest with 1 extra max life.
+MASTERY_SURVIVOR_DESCRIPTION_2;At the end of each stage, gain max life equal to the minimum power if you are injured.
+MASTERY_SURVIVOR_DESCRIPTION_3;Solve a number of cells equal to your missing life, then heal to full.
+MASTERY_SURVIVOR_ABILITY;Solve a number of cells equal to your missing life, then heal to full.
+MASTERY_SURVIVOR_UNLOCK_1;Unlock by completing a quest with 10 or more lives.
+MASTERY_SURVIVOR_UNLOCK_2;Unlock II by completing a quest with 20 or more lives.
+MASTERY_SURVIVOR_UNLOCK_3;Unlock III by completing a quest with 30 or more lives.
 MASTERY_GUARDIAN;GUARDIAN
 MASTERY_KNIGHT;KNIGHT
 MASTERY_HUNTER;HUNTER

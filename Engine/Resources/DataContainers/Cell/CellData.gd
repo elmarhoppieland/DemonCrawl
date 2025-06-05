@@ -157,6 +157,30 @@ func reset_value(instance: StageInstance = Stage.get_current().get_instance()) -
 	return value
 
 
+## Checks this [CellData], visually pressing it down, if this [CellData] is hidden and not flagged.
+func check() -> void:
+	if mode == Cell.Mode.HIDDEN:
+		mode = Cell.Mode.CHECKING
+
+
+## Unchecks this [CellData], resetting it to [constant Cell.HIDDEN].
+func uncheck() -> void:
+	if mode == Cell.Mode.CHECKING:
+		mode = Cell.Mode.HIDDEN
+
+
+## Flags this [CellData]. This prevents it from being opened.
+func flag() -> void:
+	if mode != Cell.Mode.FLAGGED and not is_revealed():
+		mode = Cell.Mode.FLAGGED
+
+
+## Unflags this [CellData], resetting it to [constant Cell.HIDDEN].
+func unflag() -> void:
+	if mode == Cell.Mode.FLAGGED:
+		mode = Cell.Mode.HIDDEN
+
+
 func clear_object() -> void:
 	object = null
 
@@ -340,14 +364,3 @@ func get_mode() -> Mode:
 	return mode
 
 #endregion
-
-class ObjectArray:
-	var _objects: Array[Object] = []
-	
-	func _init(objects: Array[Object]) -> void:
-		_objects = objects
-	
-	func propagate(callable: Callable) -> ObjectArray:
-		for object in _objects:
-			callable.call(object)
-		return self

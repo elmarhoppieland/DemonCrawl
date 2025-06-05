@@ -5,7 +5,7 @@ class_name Mastery
 # ==============================================================================
 @export var level := 0 :
 	set(value):
-		level = value
+		level = mini(value, get_max_level())
 		emit_changed()
 @export var charges := -1 :
 	set(value):
@@ -176,6 +176,19 @@ func get_charges() -> int:
 
 func is_charged() -> bool:
 	return charges >= 0 and get_charges() >= get_max_charges()
+
+
+func gain_charge() -> void:
+	if charges >= 0 and charges < get_max_charges():
+		charges += 1
+
+
+func get_max_level() -> int:
+	return _get_max_level()
+
+
+func _get_max_level() -> int:
+	return 3
 
 #endregion
 

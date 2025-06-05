@@ -11,7 +11,14 @@ const AMBIENCE_A_PATH := "res://Assets/Skins/%s/ambience_a.ogg"
 const AMBIENCE_B_PATH := "res://Assets/Skins/%s/ambience_b.ogg"
 
 # ==============================================================================
-static var _current: Stage = Eternal.create(null) : get = get_current
+static var _current: Stage = Eternal.create(null) : set = _set_current, get = get_current
+
+static var current_changed := Signal() :
+	get:
+		if current_changed.is_null():
+			(Stage as GDScript).add_user_signal("_current_changed")
+			current_changed = Signal(Stage, "_current_changed")
+		return current_changed
 
 static var _theme_cache := {}
 # ==============================================================================
@@ -92,11 +99,22 @@ var _icon_small: Texture2D = null : get = get_small_icon
 var _audio_streams: Array[AudioStreamOggVorbis] = []
 var _audio_players: Array[AudioStreamPlayer] = []
 # ==============================================================================
+signal left()
+signal finished()
+signal finish_pressed()
+# ==============================================================================
 
 func _init(_name: String = "", _size: Vector2i = Vector2i.ZERO, _monsters: int = 0) -> void:
 	name = _name
 	size = _size
 	monsters = _monsters
+
+
+static func _set_current(value: Stage) -> void:
+	var different := _current != value
+	_current = value
+	if different:
+		current_changed.emit()
 
 
 ## Returns the currently active [Stage]. Returns [code]null[/code] if there is no
@@ -127,6 +145,8 @@ func set_as_current() -> void:
 
 func finish() -> void:
 	get_instance().finish()
+	finished.emit()
+	left.emit()
 	clear_instance()
 	completed = true
 

@@ -60,7 +60,7 @@ class MasteryItem extends TokenShopItemBase:
 	func _get_description() -> String:
 		var unlock_text := mastery.get_condition_text()
 		var text := "• " + "\n• ".join(mastery.get_description())
-		if not unlock_text.is_empty():
+		if not unlock_text.is_empty() and not is_purchased():
 			text += "\n\n(%s)" % unlock_text
 		return text
 	
@@ -76,3 +76,6 @@ class MasteryItem extends TokenShopItemBase:
 				return true
 		
 		return false
+	
+	func _is_purchased() -> bool:
+		return Codex.get_selectable_mastery_level(mastery) >= mastery.get_max_level()

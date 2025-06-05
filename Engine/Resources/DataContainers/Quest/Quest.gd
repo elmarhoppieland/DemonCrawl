@@ -108,6 +108,9 @@ func set_as_current() -> void:
 #region global utils
 
 func start() -> void:
+	if get_mastery() and get_mastery().level >= 3:
+		get_mastery().charges = 0
+	
 	started.emit()
 
 
@@ -151,6 +154,9 @@ func finish() -> void:
 
 func notify_stage_finished(stage: Stage) -> void:
 	stage.finish()
+	
+	if get_mastery():
+		get_mastery().gain_charge()
 	
 	if stage not in stages:
 		return

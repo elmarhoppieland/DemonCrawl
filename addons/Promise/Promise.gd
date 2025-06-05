@@ -155,3 +155,48 @@ static func _temp_signal() -> Signal:
 	var s := Signal(obj, "_tmp")
 	s.connect(func() -> void: obj.free(), CONNECT_DEFERRED)
 	return s
+
+
+static func dynamic_signal(owner_callable: Callable, signal_name: String, changed_signal: Signal) -> Signal:
+	var obj := _SignalObject.new()
+	
+	(func() -> void:
+		var break_queued: Array[bool] = [false]
+		
+		var emitter := func() -> void:
+			if obj.s.get_connections().is_empty():
+				break_queued[0] = true
+				return
+			obj.s.emit()
+		
+		var owner: Variant
+		var owner_signal := Signal()
+		while true:
+			if break_queued[0]:
+				break
+			
+			if not owner_signal.is_null():
+				owner_signal.disconnect(emitter)
+			
+			owner = owner_callable.call()
+			
+			if owner == null:
+				owner_signal = Signal()
+				await changed_signal
+				continue
+			
+			assert(owner is Object, "The provided callable must return an object.")
+			assert(signal_name in owner, "The returned owner must have a property named '%s'." % signal_name)
+			assert(owner.get(signal_name) is Signal, "The returned owner's property must be of type Signal.")
+			
+			owner_signal = owner.get(signal_name)
+			owner_signal.connect(emitter)
+			
+			await changed_signal
+	).call()
+	
+	return obj.s
+
+
+class _SignalObject:
+	signal s()

@@ -33,9 +33,10 @@ func _on_begin_button_pressed() -> void:
 	var quest := QuestsManager.selected_quest.generate()
 	quest.source_difficulty = QuestsManager.selected_difficulty
 	quest.set_as_current()
-	quest.start()
 	
 	QuestsManager.selected_difficulty.apply_starting_values(quest)
+	
+	quest.start()
 	
 	get_tree().change_scene_to_file("res://Engine/Scenes/StageSelect/StageSelect.tscn")
 	
