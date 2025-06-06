@@ -309,9 +309,13 @@ func get_3bv() -> int:
 
 
 func solve_cell() -> CellData:
-	var cell := get_cells().filter(func(cell: CellData) -> bool:
-		return cell.is_hidden() and cell.is_flagged() == cell.object is Monster
-	).pick_random() as CellData
+	var unsolved_cells := get_cells().filter(func(cell: CellData) -> bool:
+		return cell.is_hidden() and cell.is_flagged() != cell.object is Monster
+	)
+	if unsolved_cells.is_empty():
+		return null
+	
+	var cell := unsolved_cells.pick_random() as CellData
 	
 	if cell.is_flagged():
 		cell.unflag()

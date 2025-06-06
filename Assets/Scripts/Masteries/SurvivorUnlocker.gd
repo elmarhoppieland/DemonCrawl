@@ -4,12 +4,7 @@ class_name SurvivorUnlocker
 # ==============================================================================
 
 func _init() -> void:
-	var s := Promise.dynamic_signal(Quest.get_current, "won", Quest.current_changed)
-	print(s.get_name())
-	print(s.get_connections())
-	print(s.get_object_id())
-	print(s.get_object())
-	s.connect(_quest_win)
+	Promise.dynamic_signal(Quest.get_current, "won", Quest.current_changed).connect(_quest_win)
 
 
 func _quest_win() -> void:
