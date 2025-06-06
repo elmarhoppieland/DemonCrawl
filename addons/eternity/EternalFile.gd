@@ -138,15 +138,23 @@ func _reassign_resource_ids_in_subresource(subresource: Resource, file: FileAcce
 
 
 ## Saves the loaded data to [code]path[/code].
-func save(path: String) -> void:
+func save(path: String, safe_mode: bool = false) -> void:
+	var safe_text := ""
+	if safe_mode:
+		safe_text = encode_to_text()
+	
 	if not DirAccess.dir_exists_absolute(path.get_base_dir()):
 		DirAccess.make_dir_recursive_absolute(path.get_base_dir())
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	if not file:
 		push_error("Could not open file '%s': %s" % [path, error_string(FileAccess.get_open_error())])
 		return
-	#file.store_line(encode_to_text())
-	encode_to_file(file)
+	
+	if safe_mode:
+		file.store_string(safe_text)
+	else:
+		encode_to_file(file)
+	
 	file.close()
 	
 	saved.emit(path)

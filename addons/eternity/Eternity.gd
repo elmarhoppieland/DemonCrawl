@@ -52,7 +52,7 @@ static func _static_init() -> void:
 		while true:
 			await _defaults_cfg.value_changed
 			await Promise.defer() # this makes sure we never save more than once per frame (unless any values get changed in deferred calls after this)
-			_defaults_cfg.save(DEFAULTS_FILE_PATH)
+			_defaults_cfg.save(DEFAULTS_FILE_PATH, true)
 	else:
 		_defaults_cfg.load.call_deferred(DEFAULTS_FILE_PATH)
 
