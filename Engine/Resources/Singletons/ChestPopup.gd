@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends DCPopup
 class_name ChestPopup
 
 # ==============================================================================
@@ -6,10 +6,9 @@ static var _instance: ChestPopup
 # ==============================================================================
 var cell: CellData
 # ==============================================================================
-@onready var rewards_container: HBoxContainer = %RewardsContainer
-@onready var coin_value: CoinValue = %CoinValue
-@onready var string_table_label: StringTableLabel = %StringTableLabel
-@onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var _rewards_container: HBoxContainer = %RewardsContainer
+@onready var _coin_value: CoinValue = %CoinValue
+@onready var _string_table_label: StringTableLabel = %StringTableLabel
 # ==============================================================================
 
 func _enter_tree() -> void:
@@ -21,24 +20,17 @@ func _exit_tree() -> void:
 		_instance = null
 
 
-func _process(_delta: float) -> void:
-	if visible and Input.is_action_just_pressed("interact"):
-		animation_player.play("popup_hide")
-
-
-func _show_items() -> void:
-	while rewards_container.get_child_count() > 0:
-		var child := rewards_container.get_child(0)
-		rewards_container.remove_child(child)
+func _show_items(chest: TreasureChest) -> void:
+	while _rewards_container.get_child_count() > 0:
+		var child := _rewards_container.get_child(0)
+		_rewards_container.remove_child(child)
 		child.queue_free()
 	
-	rewards_container.show()
-	coin_value.hide()
+	_rewards_container.show()
+	_coin_value.hide()
 	
-	animation_player.play("popup_show")
-	
-	var count := Effects.get_chest_reward_count(1, cell)
-	var max_cost := Effects.get_chest_item_max_cost(4 * Quest.get_current().get_selected_stage().max_power + 3, cell)
+	var count := Effects.get_chest_reward_count(1, chest)
+	var max_cost := Effects.get_chest_item_max_cost(4 * Quest.get_current().get_selected_stage().max_power + 3, chest)
 	
 	var has_omen := false
 	var rewards: Array[Collectible] = []
@@ -50,38 +42,47 @@ func _show_items() -> void:
 			rewards.append(ItemDB.create_filter().disallow_type(Item.Type.OMEN).set_min_cost(1).set_max_cost(max_cost).get_random_item())
 	
 	if has_omen:
-		string_table_label.table_name = "Chest-Omen"
+		_string_table_label.table = load("res://Assets/StringTables/Chest/Omen.tres")
 	else:
-		string_table_label.table_name = "Chest-Item"
+		_string_table_label.table = load("res://Assets/StringTables/Chest/Item.tres")
 	
-	string_table_label.generate()
+	_string_table_label.generate()
 	
-	rewards = Effects.get_chest_rewards(rewards, cell)
+	rewards = Effects.get_chest_rewards(rewards, chest)
 	
 	for reward in rewards:
 		var display := LargeCollectibleDisplay.create(reward)
 		display.show_focus = false
-		rewards_container.add_child(display)
-		
+		_rewards_container.add_child(display)
+	
+	popup_show()
+	await popup_hidden
+	
+	for reward in rewards:
 		if reward is Item:
 			Quest.get_current().get_inventory().item_gain(reward.duplicate())
 
 
-func _show_coins() -> void:
-	rewards_container.hide()
-	coin_value.show()
+func _show_coins(chest: TreasureChest) -> void:
+	_rewards_container.hide()
+	_coin_value.show()
 	
-	animation_player.play("popup_show")
+	_string_table_label.table = load("res://Assets/StringTables/Chest/Coins.tres")
 	
-	string_table_label.table_name = "Chest-Coins"
+	var coins := Effects.get_chest_coins(randi_range(6, 2 * Quest.get_current().get_selected_stage().max_power + 6), chest)
 	
-	string_table_label.generate()
+	_string_table_label.generate({"coins": coins})
 	
-	coin_value.coin_value = randi_range(0, 2 * Quest.get_current().get_selected_stage().max_power + 6)
+	_coin_value.coin_value = coins
+	
+	popup_show()
+	await popup_hidden
+	
+	Quest.get_current().get_stats().coins += coins
 
 
-static func show_rewards() -> void:
+static func show_rewards(chest: TreasureChest) -> void:
 	if randi() % 2 == 0:
-		_instance._show_items()
+		_instance._show_items(chest)
 	else:
-		_instance._show_coins()
+		_instance._show_coins(chest)

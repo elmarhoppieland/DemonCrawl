@@ -111,15 +111,15 @@ static func get_diamond_value(value: int, cell: CellData) -> int:
 	return value
 
 
-static func get_chest_reward_count(reward_count: int, cell: CellData) -> int:
-	reward_count = EffectManager.propagate(MutableSignals.get_chest_reward_count, [reward_count, cell], 0)
-	EffectManager.propagate(Signals.get_chest_reward_count, [reward_count, cell])
+static func get_chest_reward_count(reward_count: int, chest: TreasureChest) -> int:
+	reward_count = EffectManager.propagate(MutableSignals.get_chest_reward_count, [reward_count, chest], 0)
+	EffectManager.propagate(Signals.get_chest_reward_count, [reward_count, chest])
 	return reward_count
 
 
-static func get_chest_item_max_cost(max_cost: int, cell: CellData) -> int:
-	max_cost = EffectManager.propagate(MutableSignals.get_chest_item_max_cost, [max_cost, cell], 0)
-	EffectManager.propagate(Signals.get_chest_item_max_cost, [max_cost, cell])
+static func get_chest_item_max_cost(max_cost: int, chest: TreasureChest) -> int:
+	max_cost = EffectManager.propagate(MutableSignals.get_chest_item_max_cost, [max_cost, chest], 0)
+	EffectManager.propagate(Signals.get_chest_item_max_cost, [max_cost, chest])
 	return max_cost
 
 
@@ -128,9 +128,9 @@ static func item_use(item: Item) -> void:
 	EffectManager.propagate(Signals.item_use, [item])
 
 
-static func get_chest_rewards(rewards: Array[Collectible], cell: CellData) -> Array[Collectible]:
-	rewards = EffectManager.propagate(MutableSignals.get_chest_rewards, [rewards, cell], 0)
-	EffectManager.propagate(Signals.get_chest_rewards, [rewards, cell])
+static func get_chest_rewards(rewards: Array[Collectible], chest: TreasureChest) -> Array[Collectible]:
+	rewards = EffectManager.propagate(MutableSignals.get_chest_rewards, [rewards, chest], 0)
+	EffectManager.propagate(Signals.get_chest_rewards, [rewards, chest])
 	return rewards
 
 
@@ -214,3 +214,9 @@ static func lose_coins(amount: int, destination: Object) -> int:
 static func stage_leave() -> void:
 	EffectManager.propagate(MutableSignals.stage_leave, [])
 	EffectManager.propagate(Signals.stage_leave, [])
+
+
+static func get_chest_coins(coins: int, chest: TreasureChest) -> int:
+	coins = EffectManager.propagate(MutableSignals.get_chest_coins, [coins, chest], 0)
+	EffectManager.propagate(Signals.get_chest_coins, [coins, chest])
+	return coins

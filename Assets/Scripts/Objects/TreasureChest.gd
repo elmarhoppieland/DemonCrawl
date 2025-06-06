@@ -27,7 +27,7 @@ func _interact() -> void:
 	, 0.0, CHEST_ATLAS_MAX_X, CHEST_OPEN_ANIM_DURATION)
 	
 	tween.tween_interval(CHEST_OPEN_WAIT_DURATION)
-	tween.tween_callback(ChestPopup.show_rewards)
+	tween.tween_callback(ChestPopup.show_rewards.bind(self))
 	tween.tween_callback(clear)
 
 
