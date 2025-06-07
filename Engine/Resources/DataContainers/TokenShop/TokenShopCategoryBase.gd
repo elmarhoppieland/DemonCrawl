@@ -14,7 +14,6 @@ func _try_purchase(item: TokenShopItemBase) -> bool:
 	
 	Codex.tokens -= item.get_cost()
 	TokenShop.purchase(item)
-	Eternity.save()
 	return true
 
 

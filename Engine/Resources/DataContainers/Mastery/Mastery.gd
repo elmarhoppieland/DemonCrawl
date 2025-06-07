@@ -143,11 +143,11 @@ func get_conditions() -> Array[Condition]:
 
 ## Virtual method to override this [Mastery]'s unlock [Condition]s. All of them
 ## must be met (see [method Condition.is_met]) before being able to purchase this [Mastery].
-## [br][br]If not overridden, returns a [FlagCondition] for [code]mastery_unlock_{id}_{level}[/code].
+## [br][br]If not overridden, returns a [MasteryUnlockConditon] for this [Mastery].
 @warning_ignore("shadowed_variable")
 func _get_conditions() -> Array[Condition]:
-	var condition := FlagCondition.new()
-	condition.flag = "mastery_unlock_%s_%d" % [_get_identifier().to_snake_case(), level]
+	var condition := MasteryUnlockConditon.new()
+	condition.mastery = self
 	return [condition]
 
 

@@ -23,7 +23,17 @@ func unlock(level: int) -> void:
 
 
 func _unlock(level: int) -> void:
-	PlayerFlags.add_flag("mastery_unlock_%s_%d" % [UserClassDB.script_get_class(get_script()).trim_suffix("Unlocker").to_snake_case(), level])
+	if level == 1:
+		var mastery := get_mastery()
+		mastery.level = 1
+		Codex.unlocked_masteries.append(mastery)
+		return
+	
+	for unlocked in Codex.unlocked_masteries:
+		if UserClassDB.script_get_class(unlocked.get_script()) == get_mastery_class():
+			if unlocked.level < level:
+				unlocked.level = level
+			return
 
 
 func get_mastery() -> Mastery:
@@ -31,4 +41,12 @@ func get_mastery() -> Mastery:
 
 
 func _get_mastery() -> Mastery:
-	return UserClassDB.instantiate(UserClassDB.script_get_class(get_script()).trim_suffix("Unlocker"))
+	return UserClassDB.instantiate(get_mastery_class())
+
+
+func get_mastery_class() -> StringName:
+	return _get_mastery_class()
+
+
+func _get_mastery_class() -> StringName:
+	return UserClassDB.script_get_class(get_script()).trim_suffix("Unlocker")

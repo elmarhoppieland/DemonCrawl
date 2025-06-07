@@ -122,6 +122,8 @@ texture = SubResource("AtlasTexture_yjf3c")
 [node name="AbandonButton" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 script = ExtResource("9_xkiay")
+press_action = null
+shortcut_action = null
 texture_normal = SubResource("AtlasTexture_hle2i")
 texture_hover = SubResource("AtlasTexture_t66ta")
 

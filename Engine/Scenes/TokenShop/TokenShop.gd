@@ -314,3 +314,8 @@ static func get_purchased_level(item: TokenShopItemBase) -> int:
 	#func set_flags(flags_arr: PackedStringArray) -> void:
 		#for flag in flags_arr:
 			#flags |= Flags[flag.to_snake_case().to_upper()]
+
+
+func _on_back_to_menu_button_pressed() -> void:
+	Eternity.save()
+	get_tree().change_scene_to_file("res://Engine/Scenes/MainMenu/MainMenu.tscn")

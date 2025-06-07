@@ -1,17 +1,18 @@
-[gd_scene load_steps=20 format=3 uid="uid://52plnh26fjgo"]
+[gd_scene load_steps=21 format=3 uid="uid://52plnh26fjgo"]
 
 [ext_resource type="Script" path="res://Engine/Scenes/TokenShop/TokenShop.gd" id="1_x20b8"]
 [ext_resource type="Texture2D" uid="uid://b5rt77loesna7" path="res://Assets/Backgrounds/token_shop_sky.png" id="2_c6u0t"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/BackButton.gd" id="2_p5u17"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="3_i3xv6"]
 [ext_resource type="Texture2D" uid="uid://chamkmak0kl0t" path="res://Assets/Backgrounds/token_shop.png" id="3_j1oel"]
 [ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="4_nqp1b"]
 [ext_resource type="Shader" path="res://Engine/Scenes/MainMenu/ProfileSelect.gdshader" id="4_uy6s8"]
 [ext_resource type="Script" path="res://Engine/Scenes/MainMenu/ChangePageButton.gd" id="5_52qn8"]
+[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="6_f5ovn"]
 [ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Engine/Resources/UtilityNode/Avatar_atlas.tres" id="10_hyis6"]
 [ext_resource type="Script" path="res://Engine/Resources/UtilityNode/Avatar.gd" id="11_3wli1"]
 [ext_resource type="Script" path="res://Engine/Resources/UtilityNode/XPBar.gd" id="12_qob23"]
 [ext_resource type="Script" path="res://Engine/Resources/UtilityNode/ProfileNameLabel.gd" id="13_nipms"]
+[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/FadeButton.gd" id="14_7gi5r"]
 [ext_resource type="Script" path="res://Engine/Resources/UtilityNode/ProfileLevelLabel.gd" id="14_37g46"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahp6w"]
@@ -69,21 +70,19 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_j1oel")
 
-[node name="BackButton" type="MarginContainer" parent="."]
+[node name="BackToMenuButton" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 10.0
 offset_top = 7.0
-script = ExtResource("2_p5u17")
+script = ExtResource("14_7gi5r")
+shortcut_action = &"back"
+texture_normal = SubResource("AtlasTexture_ahp6w")
+texture_hover = SubResource("AtlasTexture_c7xjk")
 
-[node name="Normal" type="TextureRect" parent="BackButton"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_ahp6w")
-
-[node name="Hovered" type="TextureRect" parent="BackButton"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-texture = SubResource("AtlasTexture_c7xjk")
+[node name="TooltipGrabber" type="Node" parent="BackToMenuButton"]
+script = ExtResource("6_f5ovn")
+text = "RETURN_TO_MAIN_MENU"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -188,3 +187,5 @@ size_flags_vertical = 10
 text = "Lv1"
 label_settings = SubResource("LabelSettings_ts3ab")
 script = ExtResource("14_37g46")
+
+[connection signal="pressed" from="BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

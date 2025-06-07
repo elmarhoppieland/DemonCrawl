@@ -31,6 +31,7 @@ static var selected_mastery: Mastery = Eternal.create(null) :
 			selected_mastery.level = get_selectable_mastery_level(selected_mastery)
 		return selected_mastery
 static var selectable_masteries: Array[Mastery] = Eternal.create([] as Array[Mastery])
+static var unlocked_masteries: Array[Mastery] = Eternal.create([] as Array[Mastery])
 
 static var selected_mastery_changed := Signal() :
 	get:

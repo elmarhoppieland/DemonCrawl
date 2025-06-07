@@ -77,6 +77,13 @@ MASTERY_MUTANT;MUTANT
 MASTERY_DETECTIVE;DETECTIVE
 MASTERY_SCOUT;SCOUT
 MASTERY_BANKER;BANKER
+MASTERY_BANKER_DESCRIPTION_1;Begin the quest with 15 extra coins.
+MASTERY_BANKER_DESCRIPTION_2;Chests contain double coins.
+MASTERY_BANKER_DESCRIPTION_3;Double your coins.
+MASTERY_BANKER_ABILITY;Double your coins.
+MASTERY_BANKER_UNLOCK_1;Unlock by completing a quest on Normal or above with 100 or more coins
+MASTERY_BANKER_UNLOCK_2;Unlock II by completing a quest on Normal or above with 200 or more coins
+MASTERY_BANKER_UNLOCK_3;Unlock III by completing a quest on Normal or above with 300 or more coins
 MASTERY_MARKSMAN;MARKSMAN
 MASTERY_LUMBERJACK;LUMBERJACK
 MASTERY_EXORCIST;EXORCIST
