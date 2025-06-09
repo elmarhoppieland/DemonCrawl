@@ -85,6 +85,7 @@ static func save(path_name: String = "") -> void:
 		return
 	
 	var file := EternalFile.new()
+	_processing_cfg = file
 	
 	file.clear()
 	
@@ -110,7 +111,11 @@ static func save(path_name: String = "") -> void:
 			#elif key in _named_values[section] and _named_values[section][key] == path_name:
 				#file.set_value(section, key, value)
 	
-	file.save(file_path)
+	_processing_owner = null
+	
+	file.save(file_path, OS.is_debug_build())
+	
+	_processing_cfg = null
 	
 	#for named_path in named_cfgs:
 		#var cfg: EternalFile = named_cfgs[named_path]
@@ -120,8 +125,8 @@ static func save(path_name: String = "") -> void:
 
 
 static func get_processing_owner() -> Object:
-	if _processing_cfg and _processing_cfg.current_resource:
-		return _processing_cfg.current_resource
+	if _processing_cfg and not _processing_cfg.processing_owner_stack.is_empty():
+		return _processing_cfg.processing_owner_stack[-1]
 	return _processing_owner
 
 
@@ -151,7 +156,7 @@ static func _get_path(path_name: String = "") -> String:
 
 static func _reload_file(path_name: String = "") -> void:
 	var file_path := _get_path(path_name)
-	var prefix := "" if path_name.is_empty() else ( path_name + "::")
+	var prefix := "" if path_name.is_empty() else (path_name + "::")
 	if file_path.is_empty():
 		return
 	
@@ -185,6 +190,8 @@ static func _reload_file(path_name: String = "") -> void:
 				value = script.call("_import_" + key, value)
 			
 			script.set(key, value)
+	
+	_processing_owner = null
 	
 	loaded.emit(file_path)
 	_processing_cfg = null

@@ -4,7 +4,7 @@ class_name EternalFile
 ## Helper class to write [Eternal]s to disk.
 
 # ==============================================================================
-var current_resource: Resource = null
+var processing_owner_stack: Array[Object] = []
 # ==============================================================================
 var _data := {}
 var _resources := {}
@@ -47,7 +47,7 @@ func load_existing_resources(path: String) -> void:
 	
 	var sub_resource_positions := {}
 	
-	current_resource = null
+	processing_owner_stack.clear()
 	
 	var current_section := ""
 	while not file.eof_reached():
@@ -55,6 +55,8 @@ func load_existing_resources(path: String) -> void:
 		var position := file.get_position()
 		
 		if line.begins_with("[") and line.ends_with("]"):
+			processing_owner_stack.pop_back()
+			
 			current_section = line.substr(1, line.length() - 2).strip_edges()
 			if current_section.begins_with("ext_resource "):
 				current_section = ""
@@ -65,7 +67,7 @@ func load_existing_resources(path: String) -> void:
 				sub_resource_positions[id] = position
 				continue
 			
-			current_resource = null
+			processing_owner_stack.append(UserClassDB.class_get_script(line.trim_prefix("[").trim_suffix("]")))
 			continue
 		
 		if "#" in line:
@@ -102,6 +104,9 @@ func load_existing_resources(path: String) -> void:
 		_reassign_resource_ids_in_subresource(resource, file, sub_resource_positions)
 		
 		file.seek(position)
+	
+	processing_owner_stack.pop_back()
+	assert(processing_owner_stack.is_empty(), "Processing stack did not get cleared.")
 
 
 func _reassign_resource_ids_in_subresource(subresource: Resource, file: FileAccess, sub_resource_positions: Dictionary) -> void:
@@ -242,9 +247,8 @@ func _prepare_resource_list() -> void:
 
 func _prepare_variant(variant: Variant, resources: Array[Resource]) -> void:
 	if variant is Object and variant.has_method("_export_packed"):
-		return
-	
-	if variant is Resource and variant not in resources:
+		_prepare_variant(variant._export_packed(), resources)
+	elif variant is Resource and variant not in resources:
 		resources.append(variant)
 	elif variant is Array:
 		_prepare_array(variant, resources)
@@ -296,7 +300,7 @@ func _parse_ini(file: FileAccess, additive: bool = false) -> void:
 		_data.clear()
 		_resources.clear()
 	
-	current_resource = null
+	processing_owner_stack.clear()
 	
 	var current_section := ""
 	while not file.eof_reached():
@@ -313,10 +317,16 @@ func _parse_ini(file: FileAccess, additive: bool = false) -> void:
 					var resource := load(path)
 					if resource not in _resources.values():
 						_resources[id] = resource
+					
+					processing_owner_stack.pop_back()
+					processing_owner_stack.append(resource)
 				else:
 					var resource := MissingExtResource.new()
 					resource.path = path
 					_resources[id] = resource
+					
+					processing_owner_stack.pop_back()
+					processing_owner_stack.append(resource)
 				
 				current_section = ""
 				continue
@@ -325,23 +335,38 @@ func _parse_ini(file: FileAccess, additive: bool = false) -> void:
 				var id := current_section.get_slice("id=\"", 1).get_slice("\"", 0).hex_to_int()
 				assert(id not in _resources, "Duplicate ID found in the file at '%s'." % file.get_path())
 				if current_section.match("* script=\"*\"*"):
-					var script := UserClassDB.class_get_script(current_section.get_slice("script=\"", 1).get_slice("\"", 0))
-					current_resource = script.new()
+					var instance := UserClassDB.instantiate(current_section.get_slice("script=\"", 1).get_slice("\"", 0))
+					assert(instance is Resource, "A sub_resource script must use a Resource-extending Script, but %s was found." % instance.get_class())
+					_resources[id] = instance
+					_resource_saved.emit(id)
+					
+					processing_owner_stack.pop_back()
+					processing_owner_stack.append(instance)
 				elif current_section.match("* class=\"*\"*"):
-					current_resource = ClassDB.instantiate(current_section.get_slice("class=\"", 1).get_slice("\"", 0))
-				_resources[id] = current_resource
-				_resource_saved.emit(id)
+					var instance: Object = ClassDB.instantiate(current_section.get_slice("class=\"", 1).get_slice("\"", 0))
+					assert(instance is Resource, "A sub_resource script must use a Resource-extending Script, but %s was found." % instance.get_class())
+					_resources[id] = instance
+					_resource_saved.emit(id)
+					
+					processing_owner_stack.pop_back()
+					processing_owner_stack.append(instance)
+				
+				current_section = ""
 				continue
 			
-			current_resource = null
 			if current_section not in _data:
 				_data[current_section] = {}
+			processing_owner_stack.pop_back()
+			processing_owner_stack.append(UserClassDB.class_get_script(line.trim_prefix("[").trim_suffix("]")))
 			continue
 		
-		if current_resource:
-			_parse_resource_line(line, current_resource, file.get_path())
+		if current_section.is_empty():
+			_parse_line(line, processing_owner_stack[-1], file.get_path())
 		else:
-			_parse_script_line(line, current_section, file.get_path())
+			_parse_line(line, _data[current_section], file.get_path())
+	
+	processing_owner_stack.pop_back()
+	assert(processing_owner_stack.is_empty(), "Processing stack did not get cleared.")
 
 
 func _read_line(file: FileAccess) -> String:
@@ -368,27 +393,7 @@ func _read_line(file: FileAccess) -> String:
 	return line
 
 
-func _parse_script_line(line: String, current_section: String, file_path: String) -> void:
-	if "#" in line:
-		line = line.substr(0, line.find("#")).strip_edges()
-	if line.is_empty():
-		return
-	
-	if current_section.is_empty():
-		var key := line.get_slice("=", 0).strip_edges()
-		var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
-		push_warning("Key-value pair '%s'-'%s' found outside of a section in file '%s'. Continuing..." % [key, value])
-		return
-	
-	var key := line.get_slice("=", 0).strip_edges()
-	var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
-	assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file_path])
-	
-	_data[current_section][key] = await await_resource(_parse_value(value))
-
-
-@warning_ignore("shadowed_variable")
-func _parse_resource_line(line: String, current_resource: Resource, file_path: String) -> void:
+func _parse_line(line: String, owner: Variant, file_path: String) -> void:
 	if "#" in line:
 		line = line.substr(0, line.find("#")).strip_edges()
 	if line.is_empty():
@@ -398,16 +403,57 @@ func _parse_resource_line(line: String, current_resource: Resource, file_path: S
 	var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
 	assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file_path])
 	
-	current_resource.set(key, await await_resource(_parse_value(value)))
+	if owner is Dictionary or key in owner:
+		owner[key] = await await_resource(_parse_value(value))
+
+
+#func _parse_script_line(line: String, current_section: String, file_path: String) -> void:
+	#if "#" in line:
+		#line = line.substr(0, line.find("#")).strip_edges()
+	#if line.is_empty():
+		#return
+	#
+	#var key := line.get_slice("=", 0).strip_edges()
+	#var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
+	#assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file_path])
+	#
+	#_data[current_section][key] = await await_resource(_parse_value(value))
+
+
+#@warning_ignore("shadowed_variable")
+#func _parse_resource_line(line: String, current_resource: Resource, file_path: String) -> void:
+	#if "#" in line:
+		#line = line.substr(0, line.find("#")).strip_edges()
+	#if line.is_empty():
+		#return
+	#
+	#var key := line.get_slice("=", 0).strip_edges()
+	#var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
+	#assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file_path])
+	#
+	#current_resource.set(key, await await_resource(_parse_value(value)))
 
 
 func await_resource(resource: Variant) -> Variant:
 	if not resource is PendingResourceBase:
 		return resource
 	
+	var owner := processing_owner_stack[-1]
+	
 	while not resource.is_ready(_resources):
 		await _resource_saved
-	return resource.create(_resources)
+	
+	var added_owner := false
+	if processing_owner_stack[-1] != owner:
+		processing_owner_stack.append(owner)
+		added_owner = true
+	
+	var value = resource.create(_resources)
+	
+	if added_owner:
+		processing_owner_stack.pop_back()
+	
+	return value
 
 
 func _validate_value_string(value: String) -> bool:
@@ -556,7 +602,7 @@ func _parse_packed_array(value: String) -> Variant:
 		var arg_strings := Stringifier.split_ignoring_nested(s, ",")
 		
 		var instance := constructor.construct(Array(arg_strings).map(_parse_value))
-		if instance is PendingResource:
+		if instance is PendingResourceBase:
 			is_pending = true
 		values.append(instance)
 	
@@ -738,6 +784,8 @@ func _stream_encode(stream: ValueStream) -> void:
 	if not ext_resources.is_empty():
 		await stream.step("\n")
 	for sub_resource in sub_resources:
+		processing_owner_stack.append(sub_resource)
+		
 		var script := sub_resource.get_script() as Script
 		if script:
 			await stream.step("[sub_resource script=\"%s\" id=\"%s\"]\n" % [
@@ -750,8 +798,6 @@ func _stream_encode(stream: ValueStream) -> void:
 				_stringify_uid(_resource_get_uid(sub_resource))
 			])
 		
-		current_resource = sub_resource
-		
 		for property in sub_resource.get_property_list():
 			if property.name == "script":
 				continue
@@ -760,15 +806,22 @@ func _stream_encode(stream: ValueStream) -> void:
 				await stream.step("%s = %s\n" % [property.name, _serialize_value(value)])
 		
 		await stream.step("\n")
+		
+		processing_owner_stack.pop_back()
 	
 	for script in get_scripts():
+		processing_owner_stack.append(UserClassDB.class_get_script(script))
+		
 		await stream.step("[%s]\n" % script)
 		for key in get_eternals(script):
 			var value := _serialize_value(get_eternal(script, key))
 			await stream.step("%s = %s\n" % [key, value])
 		
 		await stream.step("\n")
+		
+		processing_owner_stack.pop_back()
 	
+	assert(processing_owner_stack.is_empty(), "Processing stack did not get cleared.")
 	stream.finish()
 
 
@@ -1044,7 +1097,10 @@ class Constructor:
 	
 	func construct(args: Array) -> Object:
 		if pack_args:
-			args = [args]
+			if args.any(func(v: Variant) -> bool: return v is PendingResourceBase):
+				args = [UntypedPendingResourceArray.new(args)]
+			else:
+				args = [args]
 		if add_script_name:
 			args.push_front(script_name)
 		
