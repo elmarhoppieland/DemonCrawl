@@ -7,10 +7,10 @@ class_name Projectile
 	set(value):
 		position = value
 		if sprite:
-			sprite.global_position = Stage.get_current().get_board().get_global_at_cell_position(value)
+			sprite.global_position = StageInstance.get_current().get_board().get_global_at_cell_position(value)
 	get:
 		if sprite:
-			return Stage.get_current().get_board().get_cell_position_at_global(sprite.global_position)
+			return StageInstance.get_current().get_board().get_cell_position_at_global(sprite.global_position)
 		return position
 
 @export var direction := Vector2i.ZERO
@@ -38,7 +38,7 @@ func _init(cell_pos: Vector2i = Vector2i.ZERO, direction: Vector2i = Vector2i.ZE
 
 
 func register() -> void:
-	sprite = Stage.get_current().get_scene().register_projectile(self)
+	sprite = StageInstance.get_current().get_scene().register_projectile(self)
 
 
 func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:
@@ -81,7 +81,7 @@ func _get_texture() -> Texture2D:
 
 func get_speed() -> float:
 	if is_nan(_speed_override):
-		return Stage.get_current().get_instance().get_projectile_manager().speed
+		return StageInstance.get_current().get_projectile_manager().speed
 	return _speed_override
 
 
@@ -91,7 +91,7 @@ func screen_wrap() -> void:
 
 func clear() -> void:
 	sprite.queue_free()
-	Stage.get_current().get_instance().get_projectile_manager().clear_projectile(self)
+	StageInstance.get_current().get_projectile_manager().clear_projectile(self)
 
 
 func notify_screen_exited() -> void:

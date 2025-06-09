@@ -4,10 +4,10 @@ extends Item
 # ==============================================================================
 
 func use() -> void:
-	if not Stage.has_current():
+	if not StageInstance.has_current():
 		return
 	
-	Stage.get_current().get_instance().solve_cell()
+	StageInstance.get_current().solve_cell()
 	
 	clear()
 

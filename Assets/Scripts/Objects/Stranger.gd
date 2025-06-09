@@ -29,3 +29,11 @@ func _aura_apply() -> void:
 
 func _cell_enter() -> void:
 	_aura_apply()
+
+
+func can_afford() -> bool:
+	return _can_afford()
+
+
+func _can_afford() -> bool:
+	return true

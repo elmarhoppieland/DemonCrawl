@@ -72,3 +72,7 @@ func _get_annotation_subtext() -> String:
 		"lives": lives,
 		"new_fee": extra_fee * (purchase_count + 1)
 	}) + "\""
+
+
+func _can_afford() -> bool:
+	return Quest.get_current().get_stats().coins >= cost

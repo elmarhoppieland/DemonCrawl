@@ -3,10 +3,10 @@ extends Item
 # ==============================================================================
 
 func _use() -> void:
-	if not Stage.has_current():
+	if not StageInstance.has_current():
 		return
 	
-	var cells := Stage.get_current().get_instance().get_cells().filter(func(c: CellData): return c.is_revealed())# and not c.aura is Sanctified)
+	var cells := StageInstance.get_current().get_cells().filter(func(c: CellData): return c.is_visible())# and not c.aura is Sanctified)
 	if cells.is_empty():
 		return
 	

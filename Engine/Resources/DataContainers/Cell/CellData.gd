@@ -36,6 +36,8 @@ const Mode := Cell.Mode
 		emit_changed()
 # ==============================================================================
 var direction_arrow := Vector2i.ZERO
+
+var _stage_instance_weakref: WeakRef = null
 # ==============================================================================
 signal shatter_requested(texture: Texture2D)
 signal show_direction_arrow_requested(direction: Vector2i)
@@ -43,19 +45,22 @@ signal hide_direction_arrow_requested()
 signal text_particle_requested(text: String, color_preset: TextParticles.ColorPreset)
 signal scale_object_requested(scale: float)
 signal move_object_requested(source: CellData)
+
+signal interacted()
 # ==============================================================================
 
 #region internals
 
 @warning_ignore("shadowed_variable")
-static func _import_packed(value: int, arg0: Variant = null, arg1: Variant = null, arg2: Variant = null) -> CellData:
+static func _import_packed_v(args: Array) -> CellData:
 	var cell := CellData.new()
-	cell.value = value
+	assert(args[0] is int, "The first argument of a CellData must be of type \"int\".")
+	cell.value = args.pop_front()
 	
 	var mode := Mode.VISIBLE
 	var object: CellObject = null
 	var aura: Aura = null
-	for arg in [arg0, arg1, arg2]:
+	for arg in args:
 		if arg == null:
 			continue
 		if arg is int:
@@ -68,6 +73,10 @@ static func _import_packed(value: int, arg0: Variant = null, arg1: Variant = nul
 	cell.mode = mode
 	cell.object = object
 	cell.aura = aura
+	
+	var owner := Eternity.get_processing_owner()
+	if owner is StageInstance:
+		cell._stage_instance_weakref = weakref(owner)
 	
 	return cell
 
@@ -94,26 +103,27 @@ func _set_mode(new_mode: Mode) -> void:
 ## Opens this [CellData], showing its contents. Returns [code]true[/code] if the [CellData]
 ## could be opened, and [code]false[/code] otherwise.
 ## [br][br]Calls [method Effects.cell_open] immediately after opening the [CellData].
-func open(force: bool = false, allow_loot: bool = true, stage: Stage = Stage.get_current()) -> bool:
-	if get_mode() == Mode.VISIBLE:
+func open(force: bool = false, allow_loot: bool = true) -> bool:
+	if is_visible():
 		return false
-	if not force and get_mode() == Mode.FLAGGED:
+	if not force and is_flagged():
 		return false
 	
-	if not stage.get_instance().is_generated():
-		stage.get_instance().generate(self)
+	if not get_stage_instance().is_generated():
+		get_stage_instance().generate(self)
 	
 	if value != 0:
-		return _open(force, allow_loot, stage)
+		return _open(force, allow_loot)
+	
+	_open(force, allow_loot)
 	
 	var to_explore: Array[CellData] = [self]
 	var visited: Array[CellData] = []
-	
 	while not to_explore.is_empty():
 		var current_cell := to_explore.pop_back() as CellData
 		
 		visited.append(current_cell)
-		current_cell._open(force, allow_loot, stage)
+		current_cell._open(force)
 		
 		if current_cell.value != 0 or current_cell.object is Monster:
 			continue
@@ -126,7 +136,7 @@ func open(force: bool = false, allow_loot: bool = true, stage: Stage = Stage.get
 	return true
 
 
-func _open(force: bool = false, allow_loot: bool = true, stage: Stage = Stage.get_current()) -> bool:
+func _open(force: bool = false, allow_loot: bool = true) -> bool:
 	if mode == Mode.VISIBLE:
 		return false
 	if not force and mode == Mode.FLAGGED:
@@ -137,8 +147,7 @@ func _open(force: bool = false, allow_loot: bool = true, stage: Stage = Stage.ge
 	Quest.get_current().get_inventory().mana_gain(value, self)
 	
 	if allow_loot and not is_occupied() and value == 0:
-		spawn_base(stage.get_instance().generate_cell_content(Quest.get_current().get_attributes().rare_loot_modifier))
-		#spawn(preload("res://Assets/LootTables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
+		spawn_base(get_stage_instance().generate_cell_content(Quest.get_current().get_attributes().rare_loot_modifier))
 	
 	if is_occupied():
 		object.notify_revealed(not force)
@@ -152,8 +161,8 @@ func shatter(texture: Texture2D) -> void:
 	shatter_requested.emit(texture)
 
 
-func reset_value(instance: StageInstance = Stage.get_current().get_instance()) -> int:
-	value = get_real_value(instance)
+func reset_value() -> int:
+	value = get_real_value()
 	return value
 
 
@@ -205,16 +214,16 @@ func apply_aura(aura: Script) -> Aura:
 	return self.aura
 
 
-func spawn(base: Script, visible_only: bool = true, stage: Stage = Stage.get_current()) -> CellObject:
-	return spawn_base(CellObjectBase.new(base), visible_only, stage)
+func spawn(base: Script, visible_only: bool = true) -> CellObject:
+	return spawn_base(CellObjectBase.new(base), visible_only)
 
 
-func spawn_base(base: CellObjectBase, visible_only: bool = true, stage: Stage = Stage.get_current()) -> CellObject:
+func spawn_base(base: CellObjectBase, visible_only: bool = true) -> CellObject:
 	if not base:
 		return null
 	
 	if not is_occupied() and (not visible_only or is_visible()):
-		var instance := base.create(stage)
+		var instance := base.create(get_stage())
 		object = instance
 		return instance
 	
@@ -239,7 +248,7 @@ func spawn_base(base: CellObjectBase, visible_only: bool = true, stage: Stage = 
 		
 		if not unoccupied.is_empty():
 			var cell: CellData = unoccupied.pick_random()
-			var instance := base.create(stage)
+			var instance := base.create(get_stage())
 			cell.object = instance
 			return instance
 		
@@ -249,11 +258,11 @@ func spawn_base(base: CellObjectBase, visible_only: bool = true, stage: Stage = 
 	return null
 
 
-func create_tween(instance: StageInstance = Stage.get_current().get_instance()) -> Tween:
-	var board := instance.get_board()
+func create_tween() -> Tween:
+	var board := get_stage_instance().get_board()
 	assert(board != null, "Cannot create a Tween on a Stage that doesn't have a board.")
 	
-	var position := get_position(instance)
+	var position := get_position()
 	return board.get_cell(position).create_tween()
 
 
@@ -271,9 +280,9 @@ func add_text_particle(text: String, color_preset: TextParticles.ColorPreset = T
 	text_particle_requested.emit(text, color_preset)
 
 
-func send_projectile(projectile: Script, direction: Vector2i = Vector2i.ZERO, stage_instance: StageInstance = Stage.get_current().get_instance()) -> Projectile:
-	var instance: Projectile = projectile.new(get_position(stage_instance), direction)
-	instance.sprite = stage_instance.get_scene().register_projectile(instance)
+func send_projectile(projectile: Script, direction: Vector2i = Vector2i.ZERO) -> Projectile:
+	var instance: Projectile = projectile.new(get_position(), direction)
+	instance.sprite = get_stage_instance().get_scene().register_projectile(instance)
 	return instance
 
 
@@ -308,39 +317,52 @@ func is_empty() -> bool:
 	return object == null
 
 
-func get_position(instance: StageInstance = Stage.get_current().get_instance()) -> Vector2i:
-	var idx := instance.cells.find(self)
+func set_stage_instance(stage_instance: StageInstance) -> void:
+	_stage_instance_weakref = weakref(stage_instance) if stage_instance else null
+
+
+func get_stage_instance() -> StageInstance:
+	return _stage_instance_weakref.get_ref() if _stage_instance_weakref else StageInstance.get_current()
+
+
+func get_stage() -> Stage:
+	var instance := get_stage_instance()
+	return instance.get_stage() if instance else null
+
+
+func get_position() -> Vector2i:
+	var idx := get_stage_instance().cells.find(self)
 	assert(idx >= 0, "The provided StageInstance does not contain this cell.")
-	return Vector2i(idx % instance.get_stage().size.x, idx / instance.get_stage().size.x)
+	return Vector2i(idx % get_stage_instance().get_stage().size.x, idx / get_stage_instance().get_stage().size.x)
 
 
-func get_nearby_cells(instance: StageInstance = Stage.get_current().get_instance()) -> Array[CellData]:
+func get_nearby_cells() -> Array[CellData]:
 	const DIRECTIONS: Array[Vector2i] = [
 		Vector2i(-1, -1), Vector2i(0, -1), Vector2i(1, -1),
 		Vector2i(-1, 0),                   Vector2i(1, 0),
 		Vector2i(-1, 1),  Vector2i(0, 1),  Vector2i(1, 1)
 	]
 	
-	var position := get_position(instance)
+	var position := get_position()
 	
 	var cells: Array[CellData] = []
 	for dir in DIRECTIONS:
-		var cell := instance.get_cell(position + dir)
+		var cell := get_stage_instance().get_cell(position + dir)
 		if cell:
 			cells.append(cell)
 	
 	return cells
 
 
-func get_real_value(instance: StageInstance = Stage.get_current().get_instance()) -> int:
+func get_real_value() -> int:
 	var real_value := 0
-	for cell in get_nearby_cells(instance):
+	for cell in get_nearby_cells():
 		if cell.is_occupied():
 			real_value += cell.object.get_value_contribution()
 	return real_value
 
 
-func get_group(instance: StageInstance = Stage.get_current().get_instance()) -> Array[CellData]:
+func get_group() -> Array[CellData]:
 	var group: Array[CellData] = []
 	var to_explore: Array[CellData] = [self]
 	var visited: Array[CellData] = []
@@ -353,7 +375,7 @@ func get_group(instance: StageInstance = Stage.get_current().get_instance()) -> 
 		visited.append(current_cell)
 		group.append(current_cell)
 		
-		for cell in current_cell.get_nearby_cells(instance):
+		for cell in current_cell.get_nearby_cells():
 			if not cell in visited and cell.value == value:
 				to_explore.append(cell)
 	
@@ -362,5 +384,14 @@ func get_group(instance: StageInstance = Stage.get_current().get_instance()) -> 
 
 func get_mode() -> Mode:
 	return mode
+
+#endregion
+
+#region notifiers
+
+func notify_interacted() -> void:
+	interacted.emit()
+	if object and is_visible():
+		object.notify_interacted()
 
 #endregion

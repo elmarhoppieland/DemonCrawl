@@ -220,3 +220,13 @@ static func get_chest_coins(coins: int, chest: TreasureChest) -> int:
 	coins = EffectManager.propagate(MutableSignals.get_chest_coins, [coins, chest], 0)
 	EffectManager.propagate(Signals.get_chest_coins, [coins, chest])
 	return coins
+
+
+static func object_interacted(object: CellObject) -> void:
+	EffectManager.propagate(MutableSignals.object_interacted, [object])
+	EffectManager.propagate(Signals.object_interacted, [object])
+
+
+static func object_killed(object: CellObject) -> void:
+	EffectManager.propagate(MutableSignals.object_killed, [object])
+	EffectManager.propagate(Signals.object_killed, [object])

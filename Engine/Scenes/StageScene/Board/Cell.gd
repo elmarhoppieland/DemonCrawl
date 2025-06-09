@@ -43,7 +43,7 @@ static func create(board_position: Vector2i = Vector2i.ZERO) -> Cell:
 ## could be opened, and [code]false[/code] otherwise.
 ## [br][br]Calls [method Effects.cell_open] immediately after opening the [Cell].
 func open(force: bool = false, allow_loot: bool = true) -> bool:
-	return get_data().open(force, allow_loot, get_stage())
+	return get_data().open(force, allow_loot)
 	
 	#if get_mode() == Mode.VISIBLE:
 		#return false
@@ -266,7 +266,7 @@ func get_nearby_cells() -> Array[Cell]:
 	
 	var cells: Array[Cell] = []
 	for dir in DIRECTIONS:
-		var cell := Stage.get_current().get_board().get_cell(get_board_position() + dir)
+		var cell := StageInstance.get_current().get_board().get_cell(get_board_position() + dir)
 		if cell:
 			cells.append(cell)
 	return cells
@@ -418,7 +418,7 @@ func scale_object(scale: float) -> void:
 func move_object_from(source: CellData) -> void:
 	const ANIM_DURATION := 0.2
 	
-	var source_cell := get_stage().get_board().get_cell(source.get_position(get_stage().get_instance()))
+	var source_cell := get_stage().get_board().get_cell(source.get_position())
 	create_tween().tween_property(get_object_texture_rect().get_2d_anchor(), "position", Vector2.ZERO, ANIM_DURATION).from(source_cell.global_position - global_position).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
 
@@ -505,10 +505,8 @@ func has_aura() -> bool:
 
 
 ## Returns this [Cell]'s [Stage].
-## [br][br][b]Note:[/b] Currently, this method always returns the current [Stage].
-## However, this may change in the future.
 func get_stage() -> Stage:
-	return Stage.get_current()
+	return get_data().get_stage()
 
 
 func _get_minimum_size() -> Vector2:
@@ -516,5 +514,4 @@ func _get_minimum_size() -> Vector2:
 
 
 func _on_interacted() -> void:
-	if is_occupied() and is_revealed():
-		get_object().notify_interacted()
+	get_data().notify_interacted()

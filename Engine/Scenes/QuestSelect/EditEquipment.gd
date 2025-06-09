@@ -70,8 +70,7 @@ func add_mastery(mastery: Mastery) -> void:
 	tooltip_grabber.text = mastery.get_display_name() if mastery else "MASTERY_NONE"
 	
 	if locked:
-		var unlock_text := mastery.get_condition_text() if mastery else ""
-		tooltip_grabber.subtext = "(" + unlock_text + ")"
+		tooltip_grabber.subtext = "(" + mastery.get_condition_text() + ")"
 	else:
 		var description := mastery.get_description_text() if mastery else ""
 		tooltip_grabber.subtext = description

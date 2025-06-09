@@ -54,6 +54,6 @@ func _on_buy_button_pressed() -> void:
 
 
 func _on_leave_button_pressed() -> void:
-	Stage.get_current().finish()
-	Stage.clear_current()
+	StageInstance.get_current().finish()
+	StageInstance.clear_current()
 	get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")

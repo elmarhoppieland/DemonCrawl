@@ -69,3 +69,7 @@ func _get_annotation_subtext() -> String:
 
 func _has_annotation_text() -> bool:
 	return item != null
+
+
+func _can_afford() -> bool:
+	return Quest.get_current().get_stats().coins >= cost

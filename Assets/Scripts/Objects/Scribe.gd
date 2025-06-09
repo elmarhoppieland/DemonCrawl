@@ -51,3 +51,7 @@ func _get_annotation_subtext() -> String:
 		"cost": cost,
 		"slot_count": Codex.get_heirloom_slots()
 	}) + "\""
+
+
+func _can_afford() -> bool:
+	return Quest.get_current().get_stats().coins >= cost

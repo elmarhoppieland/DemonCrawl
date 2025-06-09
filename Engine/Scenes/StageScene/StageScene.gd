@@ -13,7 +13,7 @@ class_name StageScene
 # ==============================================================================
 
 func _enter_tree() -> void:
-	#_stage_instance = Stage.get_current().get_instance()
+	#_stage_instance = StageInstance.get_current()
 	if Stage.has_current():
 		theme = Stage.get_current().get_theme()
 		Stage.get_current().play_music()
@@ -23,7 +23,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	for projectile in Stage.get_current().get_instance().get_projectile_manager().get_projectiles():
+	for projectile in StageInstance.get_current().get_projectile_manager().get_projectiles():
 		projectile.register()
 
 
@@ -74,8 +74,8 @@ func register_projectile(projectile: Projectile) -> ProjectileSprite:
 	sprite.global_position = get_board().get_global_at_cell_position(projectile.position) * _projectiles.get_global_transform()
 	sprite.texture = projectile
 	_projectiles.add_child(sprite)
-	if projectile not in Stage.get_current().get_instance().get_projectile_manager().get_projectiles():
-		Stage.get_current().get_instance().get_projectile_manager().register_projectile(projectile)
+	if projectile not in StageInstance.get_current().get_projectile_manager().get_projectiles():
+		StageInstance.get_current().get_projectile_manager().register_projectile(projectile)
 	return sprite
 
 
@@ -87,14 +87,14 @@ func cast(item: Item) -> Cell:
 
 
 func _on_board_stage_finished() -> void:
-	Stage.get_current().get_instance().set_timer_paused(true)
+	StageInstance.get_current().set_timer_paused(true)
 	Stage.get_current().stop_music()
 	_finish_button.show()
 
 
 func _on_finish_button_pressed() -> void:
 	_finish_button.hide()
-	Stage.get_current().finish_pressed.emit()
+	StageInstance.get_current().finish_pressed.emit()
 	
 	await _finish_popup.popup()
 	
@@ -102,7 +102,7 @@ func _on_finish_button_pressed() -> void:
 	var quest := Quest.get_current()
 	quest.notify_stage_finished(stage)
 	
-	Stage.clear_current()
+	StageInstance.clear_current()
 	
 	if quest.is_finished():
 		Quest.clear_current()

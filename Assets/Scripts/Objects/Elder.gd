@@ -37,3 +37,7 @@ func _get_annotation_subtext() -> String:
 	return "\"" + tr("STRANGER_ELDER_DESCRIPTION").format({
 		"cost": cost
 	}) + "\"\n(" + Quest.get_current().get_mastery().get_ability_description() + ")"
+
+
+func _can_afford() -> bool:
+	return Quest.get_current().get_stats().coins >= cost

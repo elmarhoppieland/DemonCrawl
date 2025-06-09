@@ -71,11 +71,11 @@ func _ready() -> void:
 				duration -= 1
 			)
 		Type.SECONDS:
-			if Stage.get_current().can_run_timer():
+			if StageInstance.get_current().can_run_timer():
 				_restart_tween()
 			
 			Effects.Signals.stage_permissions_changed.connect(func() -> void:
-				if Stage.get_current().can_run_timer().can_run_timer():
+				if StageInstance.get_current().can_run_timer():
 					_restart_tween()
 				elif _tween:
 					_tween.kill()

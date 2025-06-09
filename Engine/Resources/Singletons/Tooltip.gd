@@ -28,6 +28,7 @@ static func show_text(text: String) -> void:
 		var bullet := false
 		while i < text.length():
 			var c := text[i]
+			
 			if not inside_tag:
 				line_length += 1
 			
@@ -36,13 +37,13 @@ static func show_text(text: String) -> void:
 					line_length = 0
 					last_space = -1
 					bullet = false
-				" ":
+				" " when i > 0 and text[i - 1] != "•":
 					last_space = i
-				"[":
+				"[" when not inside_tag:
 					inside_tag = true
-				"]":
-					if text.substr(i - 4, 5) != "[img]":
-						inside_tag = false
+					line_length -= 1 # we just incremented it, but we shouldn't
+				"]" when text.substr(i - 4, 5) != "[img]":
+					inside_tag = false
 				"•": # U+2022
 					bullet = true
 					line_length -= 2

@@ -2,7 +2,9 @@ extends MarginContainer
 class_name ProfileList
 
 # ==============================================================================
-static var selected_profile: String = Eternal.create("", "settings")
+static var selected_profile: String = Eternal.create("", "settings") :
+	set(value):
+		selected_profile = value
 # ==============================================================================
 var selected_page: Page
 # ==============================================================================

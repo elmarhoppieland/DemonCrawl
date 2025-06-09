@@ -15,7 +15,7 @@ var _zoom_tween: Tween
 # ==============================================================================
 
 func _ready() -> void:
-	if Stage.get_current().get_scene().was_reloaded():
+	if StageInstance.get_current().get_scene().was_reloaded():
 		zoom = DEFAULT_ZOOM
 	else:
 		create_tween().tween_property(self, "zoom", DEFAULT_ZOOM, 4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).from(ZOOM_BEGIN)
@@ -51,4 +51,4 @@ func shake() -> void:
 
 
 func focus_on_cell(cell: CellData) -> void:
-	global_position = Stage.get_current().get_board().get_global_at_cell_position(cell.get_position())
+	global_position = StageInstance.get_current().get_board().get_global_at_cell_position(cell.get_position())

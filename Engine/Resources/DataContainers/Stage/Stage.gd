@@ -11,7 +11,7 @@ const AMBIENCE_A_PATH := "res://Assets/Skins/%s/ambience_a.ogg"
 const AMBIENCE_B_PATH := "res://Assets/Skins/%s/ambience_b.ogg"
 
 # ==============================================================================
-static var _current: Stage = Eternal.create(null) : set = _set_current, get = get_current
+#static var _current: Stage = Eternal.create(null) : set = _set_current, get = get_current
 
 static var current_changed := Signal() :
 	get:
@@ -110,37 +110,20 @@ func _init(_name: String = "", _size: Vector2i = Vector2i.ZERO, _monsters: int =
 	monsters = _monsters
 
 
-static func _set_current(value: Stage) -> void:
-	var different := _current != value
-	_current = value
-	if different:
-		current_changed.emit()
-
-
 ## Returns the currently active [Stage]. Returns [code]null[/code] if there is no
 ## active [Stage], for example when the player is on the [StageSelect] scene or
 ## no [Quest] is active.
 ## [br][br]See also [method has_current].
 static func get_current() -> Stage:
-	return _current
+	if StageInstance.has_current():
+		return StageInstance.get_current().get_stage()
+	return null
 
 
 ## Returns whether there is an active [Stage].
 ## [br][br]See also [method get_current].
 static func has_current() -> bool:
 	return get_current() != null
-
-
-## Resets the current [Stage] to [code]null[/code]. This means no [Stage] is set as
-## the current [Stage].
-static func clear_current() -> void:
-	_current = null
-
-
-## Sets this [Stage] as the current stage. Future calls to [method get_current] will
-## return this [Stage].
-func set_as_current() -> void:
-	_current = self
 
 
 func finish() -> void:

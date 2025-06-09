@@ -321,8 +321,12 @@ func get_stage() -> Stage:
 	return Stage.get_current()
 
 
+func get_stage_instance() -> StageInstance:
+	return StageInstance.get_current()
+
+
 func get_board() -> Board:
-	return get_stage().get_board()
+	return get_stage_instance().get_board()
 
 
 ## Removes this item from the inventory.
@@ -345,16 +349,16 @@ func transform(new_item: Item) -> void:
 ## This method is a coroutine, so it should be called with [code]await[/code].
 ## See also [method target_cells].
 func target_cell() -> CellData:
-	return await Stage.get_current().get_instance().cast(self)
+	return await StageInstance.get_current().cast(self)
 
 
 ## Targets multiple [Cell]s. Waits for the player to select a [Cell] and then
 ## returns all [Cell]s within the given [code]radius[/code] of the selected cell.
 func target_cells(radius: int) -> Array[CellData]:
-	if not Stage.has_current():
+	if not StageInstance.has_current():
 		return []
 	
-	var origin := await Stage.get_current().get_scene().cast(self)
+	var origin := await StageInstance.get_current().get_scene().cast(self)
 	
 	if not origin:
 		return []
@@ -366,7 +370,7 @@ func target_cells(radius: int) -> Array[CellData]:
 		for offset_x in radius * 2 - 1:
 			var x := topleft.x + offset_x
 			var pos := Vector2i(x, y)
-			var cell := Stage.get_current().get_instance().get_cell(pos)
+			var cell := StageInstance.get_current().get_cell(pos)
 			if cell:
 				cells.append(cell)
 	

@@ -25,11 +25,10 @@ func _on_stage_details_interacted() -> void:
 	await tween.finished
 	
 	var stage := get_quest().get_selected_stage()
-	stage.set_as_current()
-	stage.create_instance()
+	stage.create_instance().set_as_current()
 	
 	if stage is SpecialStage:
-		get_tree().change_scene_to_packed(stage.dest_scene)
+		get_tree().change_scene_to_packed(stage.get_dest_scene())
 	else:
 		get_tree().change_scene_to_file("res://Engine/Scenes/StageScene/StageScene.tscn")
 

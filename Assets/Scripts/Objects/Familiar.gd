@@ -38,7 +38,7 @@ func _turn() -> void:
 	var dirs: Array[Vector2i] = DIRS.duplicate()
 	dirs.shuffle()
 	for dir in dirs:
-		var new_cell := Stage.get_current().get_instance().get_cell(position + dir)
+		var new_cell := StageInstance.get_current().get_cell(position + dir)
 		if not can_move_to(new_cell):
 			continue
 		

@@ -42,3 +42,7 @@ func _get_annotation_title() -> String:
 
 func _get_annotation_subtext() -> String:
 	return offer.get_description()
+
+
+func _can_afford() -> bool:
+	return offer.can_afford()

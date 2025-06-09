@@ -1,3 +1,4 @@
+@tool
 extends Mastery
 class_name Banker
 

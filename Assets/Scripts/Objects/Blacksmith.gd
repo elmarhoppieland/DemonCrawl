@@ -84,3 +84,7 @@ func _turn() -> void:
 		var item := ItemDB.create_filter().filter_tag(TAGS[type]).set_min_cost(1).get_random_item()
 		Quest.get_current().get_inventory().item_gain(item)
 		passed_turns = -1
+
+
+func _can_afford() -> bool:
+	return Quest.get_current().get_stats().coins >= cost

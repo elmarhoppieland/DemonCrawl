@@ -72,3 +72,7 @@ func _get_annotation_subtext() -> String:
 			"amount": reward_amount
 		})
 	})
+
+
+func _can_afford() -> bool:
+	return not Quest.get_current().get_inventory().items.is_empty()

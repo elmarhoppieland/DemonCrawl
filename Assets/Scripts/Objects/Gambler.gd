@@ -26,7 +26,7 @@ func _interact() -> void:
 func _activate() -> void:
 	Toasts.add_toast(tr("STRANGER_GAMBLER_INTERACT"), get_source())
 	
-	var cells := Stage.get_current().get_instance().get_cells().filter(func(cell: CellData) -> bool:
+	var cells := StageInstance.get_current().get_cells().filter(func(cell: CellData) -> bool:
 		return cell.is_hidden() and (not cell.is_occupied() or cell.object is Monster)
 	)
 	if cells.is_empty():
@@ -55,3 +55,7 @@ func _get_annotation_subtext() -> String:
 	}) + "\"\n" + tr("STRANGER_GAMBLER_BALANCE").format({
 		"coins": coins
 	})
+
+
+func _can_afford() -> bool:
+	return Quest.get_current().get_stats().coins >= cost

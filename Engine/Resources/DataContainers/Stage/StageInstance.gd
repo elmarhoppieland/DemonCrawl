@@ -3,6 +3,15 @@ extends Resource
 class_name StageInstance
 
 # ==============================================================================
+static var _current: StageInstance = Eternal.create(null) : set = _set_current, get = get_current
+
+static var current_changed := Signal() :
+	get:
+		if current_changed.is_null():
+			(StageInstance as GDScript).add_user_signal("_current_changed")
+			current_changed = Signal(StageInstance, "_current_changed")
+		return current_changed
+# ==============================================================================
 @export var cells: Array[CellData] = [] :
 	set(value):
 		cells = value
@@ -36,8 +45,11 @@ var _timer_read_on_this_frame := false :
 			await Promise.defer()
 			_timer_read_on_this_frame = false
 # ==============================================================================
+signal finish_pressed()
 signal finished()
 # ==============================================================================
+
+#region internals
 
 func _init(stage: Stage = null) -> void:
 	load_from_stage(stage)
@@ -60,6 +72,30 @@ func _stage_changed() -> void:
 	
 	emit_changed()
 
+#endregion
+
+static func _set_current(value: StageInstance) -> void:
+	var different := _current != value
+	_current = value
+	if different:
+		current_changed.emit()
+
+
+static func get_current() -> StageInstance:
+	return _current
+
+
+static func has_current() -> bool:
+	return get_current() != null
+
+
+static func clear_current() -> void:
+	_current = null
+
+
+func set_as_current() -> void:
+	_current = self
+
 
 ## Generates this [StageInstance], spawning [Monster]s at random [Cell]s.
 ## [br][br]Cells orthogonally or diagonally adjacent to [code]start_cell[/code] will
@@ -72,11 +108,11 @@ func generate(start_cell: CellData) -> void:
 	var invalid_indices := PackedInt32Array()
 	for dy in COORD_OFFSETS:
 		for dx in COORD_OFFSETS:
-			var neighbor := start_cell.get_position(self) + Vector2i(dx, dy)
+			var neighbor := start_cell.get_position() + Vector2i(dx, dy)
 			if get_stage().has_coord(neighbor):
 				invalid_indices.append(neighbor.x + neighbor.y * get_stage().size.x)
 	
-	assert(Array(invalid_indices).all(func(b: int) -> bool: return Array(invalid_indices.slice(0, invalid_indices.find(b))).all(func(a: int) -> bool: return a < b)))
+	assert(Array(invalid_indices).all(func(b: int) -> bool: return Array(invalid_indices.slice(0, invalid_indices.find(b))).all(func(a: int) -> bool: return a < b)), "The invalid indices list is expected to be sorted.")
 	
 	for i in get_stage().monsters:
 		var idx := randi_range(0, get_stage().area() - invalid_indices.size() - 1)
@@ -301,7 +337,7 @@ func get_3bv() -> int:
 			
 			_3bv += 1
 			
-			empty_groups.append_array(cell.get_group(self))
+			empty_groups.append_array(cell.get_group())
 		else:
 			_3bv += 1
 	
@@ -386,6 +422,7 @@ func load_from_stage(stage: Stage) -> void:
 			cells.resize(stage.area())
 		while cells.size() < stage.area():
 			var data := CellData.new()
+			data.set_stage_instance(self)
 			data.changed.connect(emit_changed) # we CANNOT use a lambda function here - it causes a cyclic reference while a direct connection does not
 			cells.append(data)
 	
@@ -437,6 +474,10 @@ func get_scene() -> StageScene:
 		_scene = current_scene
 	
 	return _scene
+
+
+func has_scene() -> bool:
+	return _scene != null
 
 
 func get_board() -> Board:

@@ -85,11 +85,11 @@ func _process(_delta: float) -> void:
 			if _hovered_cell.is_flag_solved():
 				for cell in _hovered_cell.get_nearby_cells():
 					if cell.get_mode() == Cell.Mode.HIDDEN:
-						Stage.get_current().get_instance().remove_flagless()
+						StageInstance.get_current().remove_flagless()
 					cell.flag()
 		else:
 			if _hovered_cell.get_mode() == Cell.Mode.HIDDEN:
-				Stage.get_current().get_instance().remove_flagless()
+				StageInstance.get_current().remove_flagless()
 			_hovered_cell.flag()
 			get_stage().get_instance().remove_flagless()
 

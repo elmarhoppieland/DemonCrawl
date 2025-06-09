@@ -11,8 +11,8 @@ func _ready() -> void:
 
 
 func _clicked() -> void:
-	if Stage.has_current():
-		var board := Stage.get_current().get_board()
+	if StageInstance.has_current():
+		var board := StageInstance.get_current().get_board()
 		var cell_node := board.get_cell_at_global(board.get_global_mouse_position())
 		if cell_node == null:
 			return

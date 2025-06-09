@@ -8,7 +8,7 @@ func _use() -> void:
 
 
 func _invoke() -> void:
-	_process(Stage.get_current().get_instance().get_cells().pick_random())
+	_process(StageInstance.get_current().get_cells().pick_random())
 
 
 func _process(cell: CellData) -> void:

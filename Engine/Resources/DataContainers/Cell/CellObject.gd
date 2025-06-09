@@ -309,6 +309,8 @@ func notify_interacted() -> void:
 	_interact()
 	
 	_hover()
+	
+	Effects.object_interacted(self)
 
 
 ## Virtual method to react to this object being interacted with.
@@ -351,11 +353,13 @@ func _unhover() -> void:
 func kill() -> void:
 	get_cell().shatter(get_source())
 	
-	Stage.get_current().get_board().get_camera().shake()
+	StageInstance.get_current().get_board().get_camera().shake()
 	
 	_kill()
 	
 	clear()
+	
+	Effects.object_killed(self)
 
 
 ## Virtual method to react to being killed.
@@ -585,7 +589,7 @@ func life_lose(life: int, source: Object = self) -> void:
 
 
 func tween_texture_to(position: Vector2, duration: float = 0.4) -> Tween:
-	return GuiLayer.get_texture_tweener().tween_texture(self, Stage.get_current().get_board().get_global_at_cell_position(get_cell().get_position(Stage.get_current().get_instance())), position, duration, 4.0)
+	return GuiLayer.get_texture_tweener().tween_texture(self, get_cell().get_stage_instance().get_board().get_global_at_cell_position(get_cell().get_position()), position, duration, 4.0)
 
 
 func get_theme_icon(name: StringName, theme_type: StringName = "Cell") -> Texture2D:

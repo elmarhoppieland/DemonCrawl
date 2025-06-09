@@ -63,7 +63,7 @@ func _interact() -> void:
 func _activate() -> void:
 	if can_move():
 		var new_pos: Vector2i = get_cell().get_position() + DIR_MAP[direction]
-		var new_cell := Stage.get_current().get_instance().get_cell(new_pos)
+		var new_cell := StageInstance.get_current().get_cell(new_pos)
 		move_to_cell(new_cell)
 
 
@@ -79,5 +79,9 @@ func _get_annotation_subtext() -> String:
 
 func can_move() -> bool:
 	var new_pos: Vector2i = get_cell().get_position() + DIR_MAP[direction]
-	var new_cell := Stage.get_current().get_instance().get_cell(new_pos)
+	var new_cell := StageInstance.get_current().get_cell(new_pos)
 	return new_cell != null and new_cell.is_empty() and new_cell.is_visible()
+
+
+func _can_afford() -> bool:
+	return Quest.get_current().get_stats().coins >= cost

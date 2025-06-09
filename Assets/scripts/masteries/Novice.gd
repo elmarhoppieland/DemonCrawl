@@ -34,7 +34,7 @@ func _damage(amount: int, source: Object) -> int:
 	if not source is Monster:
 		return amount
 	
-	if Stage.get_current().get_instance().needs_guess():
+	if StageInstance.get_current().needs_guess():
 		Toasts.add_toast(tr("NOVICE_UNLUCKY_GUESS"), IconManager.get_icon_data("mastery1/Novice").create_texture())
 		return 1
 	
@@ -51,15 +51,15 @@ func _death(_source: Object) -> void:
 
 
 func _ability() -> void:
-	var progress_cell := Stage.get_current().get_instance().get_progress_cell()
+	var progress_cell := StageInstance.get_current().get_progress_cell()
 	if progress_cell:
-		Stage.get_current().get_board().get_camera().focus_on_cell(progress_cell)
+		StageInstance.get_current().get_board().get_camera().focus_on_cell(progress_cell)
 	else:
 		Toasts.add_toast(tr("MUST_GUESS"), IconManager.get_icon_data("mastery1/Novice").create_texture())
 
 
 func _can_use_ability() -> bool:
-	return Stage.has_current() and Stage.get_current().has_scene()
+	return StageInstance.has_current() and StageInstance.get_current().has_scene()
 
 
 func _get_cost() -> int:

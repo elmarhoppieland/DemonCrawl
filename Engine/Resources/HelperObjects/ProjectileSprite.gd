@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	
 	position += projectile.get_speed() * projectile.direction * delta
 	
-	var board := Stage.get_current().get_board()
+	var board := StageInstance.get_current().get_board()
 	var old_cell := board.get_cell_at_global(old_global_position)
 	var new_cell := board.get_cell_at_global(global_position)
 	
@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 
 
 func get_bounds() -> Rect2:
-	var board := Stage.get_current().get_board()
+	var board := StageInstance.get_current().get_board()
 	var camera := board.get_camera()
 	
 	var camera_center := camera.get_screen_center_position()

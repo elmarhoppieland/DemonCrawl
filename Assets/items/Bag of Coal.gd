@@ -16,7 +16,7 @@ func change_morality(morality: int) -> void:
 	for item in get_items():
 		if item.get_script() != COAL.get_script():
 			continue
-		var cells := Stage.get_current().get_instance().get_cells().filter(func(cell: CellData) -> bool: return cell.get_aura() != "burning") as Array[CellData]
+		var cells := StageInstance.get_current().get_cells().filter(func(cell: CellData) -> bool: return cell.get_aura() != "burning") as Array[CellData]
 		if cells.is_empty():
 			break
 		cells[randi() % cells.size()].aura = Aura.create(Burning)

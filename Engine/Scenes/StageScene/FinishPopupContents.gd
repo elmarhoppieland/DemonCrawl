@@ -27,7 +27,7 @@ func show_rewards() -> void:
 	var total_xp := 0
 	var total_score := 0
 	
-	var types := Stage.get_current().get_instance().get_reward_types()
+	var types := StageInstance.get_current().get_reward_types()
 	stage_clear_rewards_container.custom_minimum_size.x = 20 * types.size() - 4
 	for reward_type in types:
 		var reward := StageClearReward.create(reward_type)
@@ -88,11 +88,11 @@ func _process(_delta: float) -> void:
 func get_score_reward(type: StringName) -> ScoreReward:
 	match type:
 		"victory":
-			return ScoreReward.new(ceili(Stage.get_current().get_instance().get_3bv() * 1.4))
+			return ScoreReward.new(ceili(StageInstance.get_current().get_3bv() * 1.4))
 		"flagless":
-			return ScoreReward.new(ceili(Stage.get_current().get_instance().get_3bv() * 0.7))
+			return ScoreReward.new(ceili(StageInstance.get_current().get_3bv() * 0.7))
 		"untouchable":
-			return ScoreReward.new(ceili(Stage.get_current().get_instance().get_3bv() * 0.35))
+			return ScoreReward.new(ceili(StageInstance.get_current().get_3bv() * 0.35))
 		"thrifty":
 			var specials := 0
 			
@@ -102,23 +102,23 @@ func get_score_reward(type: StringName) -> ScoreReward:
 				if Quest.get_current().stages[i] is SpecialStage:
 					specials += 1
 			
-			return ScoreReward.new(ceili(Stage.get_current().get_instance().get_3bv() * specials * 0.35 / 6))
+			return ScoreReward.new(ceili(StageInstance.get_current().get_3bv() * specials * 0.35 / 6))
 		"charitable":
 			var reward := ScoreReward.new(0)
-			for cell in Stage.get_current().get_instance().get_cells():
+			for cell in StageInstance.get_current().get_cells():
 				if cell.object:
 					reward.add(cell.object.get_charitable_amount())
 			
-			reward.cap(ceili(Stage.get_current().get_instance().get_3bv() * 0.7))
+			reward.cap(ceili(StageInstance.get_current().get_3bv() * 0.7))
 			return reward
 		"heartless":
 			var reward := ScoreReward.new(0)
 			if Quest.get_current().get_stats().life < Quest.get_current().get_stats().max_life:
-				for cell in Stage.get_current().get_instance().get_cells():
+				for cell in StageInstance.get_current().get_cells():
 					if cell.object is Heart:
 						reward.add(5)
 			
-			reward.cap(ceili(Stage.get_current().get_instance().get_3bv() * 0.7))
+			reward.cap(ceili(StageInstance.get_current().get_3bv() * 0.7))
 			return reward
 		_:
 			Debug.log_error("Unknown reward name '%s'." % type)
