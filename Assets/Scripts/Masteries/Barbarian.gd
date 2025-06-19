@@ -45,3 +45,7 @@ func _object_kill(object: CellObject) -> void:
 
 func _ability() -> void:
 	ROTTING_HEAD.create_status(ROTTING_HEAD.Status).set_seconds(ROTTING_HEAD.DURATION_SEC * strangers_killed).set_joined().start()
+
+
+func _get_max_charges() -> int:
+	return 3
