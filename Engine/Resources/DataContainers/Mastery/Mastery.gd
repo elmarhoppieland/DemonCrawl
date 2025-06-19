@@ -288,6 +288,23 @@ func _get_ability_description() -> String:
 	return ""
 
 
+## Virtual method. Called when exporting this [Mastery] and should return
+## all properties that should be exported.
+## [br][br]If this returns an empty [PackedStringArray], this [Mastery] will
+## be packed (i.e. saved as [code]MasteryName(level, charges)[/code]).
+func _get_export_properties() -> PackedStringArray:
+	return []
+
+
+func _validate_property(property: Dictionary) -> void:
+	if property.name in _get_export_properties():
+		property.usage |= PROPERTY_USAGE_STORAGE
+
+
+func _export_packed_enabled() -> bool:
+	return _get_export_properties().is_empty()
+
+
 func _export_packed() -> Array:
 	if charges >= 0:
 		return [level, charges]

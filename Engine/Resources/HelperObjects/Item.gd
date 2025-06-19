@@ -136,7 +136,7 @@ func _to_string() -> String:
 
 
 func _property_can_revert(property: StringName) -> bool:
-	return get_script().get_script_property_list().any(func(prop: Dictionary): return prop.name == property)
+	return property in [&"_description", &"_name", &"_atlas"]
 
 
 func _property_get_revert(property: StringName) -> Variant:
@@ -146,10 +146,10 @@ func _property_get_revert(property: StringName) -> Variant:
 		return _name.to_snake_case().to_upper() + "_DESCRIPTION"
 	if property == &"_name":
 		return "ITEM_" + resource_path.get_file().get_basename().to_snake_case().to_upper()
-	if property == &"atlas":
+	if property == &"_atlas":
 		return preload("res://Assets/Sprites/items.png")
 	
-	return get_script().get_property_default_value(property)
+	return null
 
 
 func _validate_property(property: Dictionary) -> void:

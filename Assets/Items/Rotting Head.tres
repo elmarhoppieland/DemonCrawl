@@ -1,0 +1,18 @@
+[gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://b677in1rlhybm"]
+
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_gbdai"]
+[ext_resource type="Script" path="res://Assets/Items/Rotting Head.gd" id="2_p8vc1"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = "ITEM_ROTTING_HEAD"
+script = ExtResource("2_p8vc1")
+_name = "ITEM_ROTTING_HEAD"
+_description = "ITEM_ROTTING_HEAD_DESCRIPTION"
+_type = 1
+_mana = 0
+_cost = 11
+_tags = PackedStringArray("meat", "halloween")
+_atlas_region = Rect2(144, 192, 16, 16)
+_atlas = ExtResource("1_gbdai")
+_origin_path = "res://Assets/Items/Rotting Head.tres"

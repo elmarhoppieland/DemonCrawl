@@ -220,7 +220,7 @@ func _store_resource(value: Variant) -> Variant:
 	return value
 
 
-func _prepare_resource_list() -> void:
+func _prepare_resource_list() -> Array[Resource]:
 	var resources: Array[Resource] = []
 	resources.assign(_resources.values())
 	var i := 0
@@ -232,6 +232,9 @@ func _prepare_resource_list() -> void:
 			continue
 		
 		for property in resource.get_property_list():
+			if resource.has_method("_validate_property"):
+				resource._validate_property(property) # this property should be validated but this isn't the case by default
+			
 			if property.name == "script":
 				continue
 			if resource.has_method("_export_" + property.name):
@@ -242,10 +245,12 @@ func _prepare_resource_list() -> void:
 		
 		_resource_get_uid(resource)
 		i += 1
+	
+	return resources
 
 
 func _prepare_variant(variant: Variant, resources: Array[Resource]) -> void:
-	if variant is Object and variant.has_method("_export_packed"):
+	if variant is Object and _is_object_packable(variant):
 		processing_owner_stack.append(variant)
 		_prepare_variant(variant._export_packed(), resources)
 		processing_owner_stack.pop_back()
@@ -274,6 +279,12 @@ func _prepare_dictionary(dict: Dictionary, resources: Array[Resource]) -> void:
 		_prepare_variant(dict[key], resources)
 
 
+func _is_object_packable(object: Object) -> bool:
+	if object.has_method("_export_packed_enabled") and not object._export_packed_enabled():
+		return false
+	return object.has_method("_export_packed")
+
+
 func _is_packable(value: Variant) -> bool:
 	if not value is Array or not value.is_typed():
 		return false
@@ -282,17 +293,11 @@ func _is_packable(value: Variant) -> bool:
 	if not script:
 		return false
 	
-	var base := script
-	while base:
-		for method in base.get_script_method_list():
-			if method.flags & METHOD_FLAG_STATIC:
-				continue
-			if method.name == "_export_packed":
-				return true
-		
-		base = base.get_base_script()
-	
-	
+	for method in script.get_script_method_list():
+		if method.flags & METHOD_FLAG_STATIC:
+			continue
+		if method.name == "_export_packed":
+			return true
 	return false
 
 
@@ -638,12 +643,11 @@ func encode_to_stream() -> ValueStream:
 func _stream_encode(stream: ValueStream) -> void:
 	await stream.start()
 	
-	_prepare_resource_list()
+	var resources := _prepare_resource_list()
 	
 	var ext_resources: Array[Resource] = []
 	var sub_resources: Array[Resource] = []
-	for id in _resources:
-		var resource: Resource = _resources[id]
+	for resource in resources:
 		if resource.resource_path.is_empty():
 			sub_resources.append(resource)
 		else:
@@ -705,7 +709,7 @@ func _stream_encode(stream: ValueStream) -> void:
 
 
 func _serialize_value(value: Variant) -> String:
-	if value is Object and value.has_method("_export_packed"):
+	if value is Object and _is_object_packable(value):
 		var script := UserClassDB.script_get_identifier(value.get_script())
 		var r = value._export_packed()
 		if r is Array:

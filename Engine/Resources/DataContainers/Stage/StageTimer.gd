@@ -7,7 +7,17 @@ var _paused := false
 
 var _time := 0.0 : get = get_timef
 
-var _blockers: Array[WeakRef] = []
+var _blockers: Array[WeakRef] = [] :
+	get:
+		var invalid := PackedInt32Array()
+		for i in _blockers.size():
+			if _blockers[i].get_ref() == null:
+				invalid.append(i)
+		
+		for i in invalid.size():
+			_blockers.remove_at(invalid[i] - i)
+		
+		return _blockers
 # ==============================================================================
 
 func _init() -> void:

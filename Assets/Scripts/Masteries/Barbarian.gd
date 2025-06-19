@@ -3,6 +3,16 @@ extends Mastery
 class_name Barbarian
 
 # ==============================================================================
+const ROTTING_HEAD := preload("res://Assets/Items/Rotting Head.tres")
+# ==============================================================================
+var strangers_killed := 0
+# ==============================================================================
+
+func _get_export_properties() -> PackedStringArray:
+	if level < 3 or strangers_killed == 0:
+		return []
+	return ["strangers_killed"]
+
 
 func _quest_load() -> void:
 	Effects.Signals.object_interacted.connect(_object_interact)
@@ -25,5 +35,13 @@ func _object_kill(object: CellObject) -> void:
 	if level < 2:
 		return
 	
-	# TODO: activate Rotting Head
-	Toasts.add_toast("Activated Rotting Head", create_icon())
+	ROTTING_HEAD.invoke()
+	
+	if level < 3:
+		return
+	
+	strangers_killed += 1
+
+
+func _ability() -> void:
+	ROTTING_HEAD.create_status(ROTTING_HEAD.Status).set_seconds(ROTTING_HEAD.DURATION_SEC * strangers_killed).set_joined().start()
