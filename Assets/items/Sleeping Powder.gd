@@ -5,27 +5,27 @@ extends Item
 const DURATION_SEC := 300
 # ==============================================================================
 
-func use() -> void:
-	#for status in StatusEffectsOverlay.get_status_effects():
-		#if status.attribute is Status:
-			#status.duration += DURATION_SEC
-			#status.origin += DURATION_SEC
-			#clear()
-			#return
-	
-	#create_status().set_seconds(DURATION_SEC).set_attribute(Status.new()).start()
-	clear()
+func _use() -> void:
+	create_status(Status).set_seconds(DURATION_SEC).set_joined().start()
 
 
-#class Status:
-	#func _init() -> void:
-		#Board.pause_timer()
-		#Effects.Signals.board_permissions_changed.connect(board_permissions_changed)
-	#
-	#func board_permissions_changed() -> void:
-		#if Board.exists():
-			#Board.pause_timer()
-	#
-	#func end() -> void:
-		#if Board.exists() and Board.can_run_timer():
-			#Board.resume_timer()
+class Status extends StatusEffect:
+	func _load() -> void:
+		var stage: StageInstance = null
+		var promise := Promise.new([StageInstance.current_changed, finished])
+		while not is_finished():
+			if stage:
+				stage.get_timer().unblock(self)
+				stage = null
+			
+			if not StageInstance.has_current() or quest != Quest.get_current():
+				await promise.any()
+				continue
+			
+			stage = StageInstance.get_current()
+			stage.get_timer().block(self)
+			
+			await promise.any()
+		
+		if stage:
+			stage.get_timer().unblock(self)

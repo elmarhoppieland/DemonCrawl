@@ -39,6 +39,9 @@ func load(path: String, additive: bool = false) -> void:
 	loaded.emit(path)
 
 
+## Loads all [Resource] ids from the file at the given [code]path[/code].
+## This method expects data to already be loaded, and will replace existing
+## [Resource] ids with the file's ids.
 func load_existing_resources(path: String) -> void:
 	if not FileAccess.file_exists(path):
 		return
@@ -71,7 +74,7 @@ func load_existing_resources(path: String) -> void:
 			continue
 		
 		if "#" in line:
-			line = line.substr(0, line.find("#")).strip_edges()
+			line = Stringifier.split_ignoring_nested(line, "#")[0].strip_edges()
 		if line.is_empty():
 			continue
 		
@@ -114,7 +117,7 @@ func _reassign_resource_ids_in_subresource(subresource: Resource, file: FileAcce
 		var line := file.get_line()
 		var position := file.get_position()
 		if "#" in line:
-			line = line.substr(0, line.find("#")).strip_edges()
+			line = Stringifier.split_ignoring_nested(line, "#")[0].strip_edges()
 		if line.is_empty():
 			continue
 		if line.match("[*]"):
@@ -179,7 +182,6 @@ func get_scripts() -> PackedStringArray:
 
 ## Returns all [Eternal]s saved under the given [code]script[/code].
 func get_eternals(script: String) -> PackedStringArray:
-	#var identifier: String = UserClassDB.script_get_identifier(script)
 	if script in _data:
 		return PackedStringArray(_data[script].keys())
 	return PackedStringArray()
@@ -189,7 +191,6 @@ func get_eternals(script: String) -> PackedStringArray:
 ## with the given [code]key[/code]. If it is not available, returns [code]default[/code],
 ## or [code]null[/code] if the parameter is omitted.
 func get_eternal(script: String, key: String, default: Variant = null) -> Variant:
-	#var identifier: String = UserClassDB.script_get_identifier(script)
 	if script not in _data or key not in _data[script]:
 		return default
 	
@@ -199,7 +200,6 @@ func get_eternal(script: String, key: String, default: Variant = null) -> Varian
 ## Sets the value of the [Eternal] in the given [code]script[/code] with the given
 ## [code]key[/code] to [code]value[/code].
 func set_eternal(script: String, key: String, value: Variant) -> void:
-	#var identifier: String = UserClassDB.script_get_identifier(script)
 	if script not in _data:
 		_data[script] = {}
 	
@@ -208,7 +208,6 @@ func set_eternal(script: String, key: String, value: Variant) -> void:
 
 
 func has_eternal(script: String, key: String) -> bool:
-	#var identifier := UserClassDB.script_get_identifier(script)
 	return script in _data and key in _data[script]
 
 
@@ -247,7 +246,9 @@ func _prepare_resource_list() -> void:
 
 func _prepare_variant(variant: Variant, resources: Array[Resource]) -> void:
 	if variant is Object and variant.has_method("_export_packed"):
+		processing_owner_stack.append(variant)
 		_prepare_variant(variant._export_packed(), resources)
+		processing_owner_stack.pop_back()
 	elif variant is Resource and variant not in resources:
 		resources.append(variant)
 	elif variant is Array:
@@ -405,33 +406,6 @@ func _parse_line(line: String, owner: Variant, file_path: String) -> void:
 	
 	if owner is Dictionary or key in owner:
 		owner[key] = await await_resource(_parse_value(value))
-
-
-#func _parse_script_line(line: String, current_section: String, file_path: String) -> void:
-	#if "#" in line:
-		#line = line.substr(0, line.find("#")).strip_edges()
-	#if line.is_empty():
-		#return
-	#
-	#var key := line.get_slice("=", 0).strip_edges()
-	#var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
-	#assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file_path])
-	#
-	#_data[current_section][key] = await await_resource(_parse_value(value))
-
-
-#@warning_ignore("shadowed_variable")
-#func _parse_resource_line(line: String, current_resource: Resource, file_path: String) -> void:
-	#if "#" in line:
-		#line = line.substr(0, line.find("#")).strip_edges()
-	#if line.is_empty():
-		#return
-	#
-	#var key := line.get_slice("=", 0).strip_edges()
-	#var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
-	#assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file_path])
-	#
-	#current_resource.set(key, await await_resource(_parse_value(value)))
 
 
 func await_resource(resource: Variant) -> Variant:
@@ -646,105 +620,6 @@ func encode_to_text() -> String:
 	return result
 
 
-#func encode_to_text() -> String:
-	#var result := ""
-	#var ext_resources: Array[Resource] = []
-	#var sub_resources: Array[Resource] = []
-	#
-	#_prepare_resource_list()
-	#
-	#for id in _resources:
-		#var resource: Resource = _resources[id]
-		#if resource.resource_path.is_empty():
-			#sub_resources.append(resource)
-		#else:
-			#ext_resources.append(resource)
-	#
-	#for ext_resource in ext_resources:
-		#result += "[ext_resource path=\"%s\" id=\"%s\"]\n\n" % [
-			#ext_resource.resource_path,
-			#_stringify_uid(_resource_get_uid(ext_resource)),
-		#]
-	#for sub_resource in sub_resources:
-		#var script := sub_resource.get_script() as Script
-		#if script:
-			#result += "[sub_resource script=\"%s\" id=\"%s\"]\n" % [
-				#UserClassDB.script_get_identifier(script),
-				#_stringify_uid(_resource_get_uid(sub_resource))
-			#]
-		#else:
-			#result += "[sub_resource class=\"%s\" id=\"%s\"]\n" % [
-				#sub_resource.get_class(),
-				#_stringify_uid(_resource_get_uid(sub_resource))
-			#]
-		#
-		#for property in sub_resource.get_property_list():
-			#if property.name == "script":
-				#continue
-			#if property.usage & PROPERTY_USAGE_STORAGE:
-				#var value: Variant = sub_resource[property.name]
-				#result += "%s = %s\n" % [property.name, _serialize_value(value)]
-		#
-		#result += "\n"
-	#
-	#for script in get_scripts():
-		#result += "[%s]\n" % script
-		#for key in get_eternals(script):
-			#var value := _serialize_value(get_eternal(script, key))
-			#result += "%s = %s\n" % [key, value]
-		#result += "\n"
-	#return result.strip_edges()
-
-
-#func encode_to_file(file: FileAccess) -> void:
-	#var ext_resources: Array[Resource] = []
-	#var sub_resources: Array[Resource] = []
-	#
-	#_prepare_resource_list()
-	#
-	#for id in _resources:
-		#var resource: Resource = _resources[id]
-		#if resource.resource_path.is_empty():
-			#sub_resources.append(resource)
-		#else:
-			#ext_resources.append(resource)
-	#
-	#for ext_resource in ext_resources:
-		#file.store_line("[ext_resource path=\"%s\" id=\"%s\"]\n" % [
-			#ext_resource.resource_path,
-			#_stringify_uid(_resource_get_uid(ext_resource)),
-		#])
-	#for sub_resource in sub_resources:
-		#var script := sub_resource.get_script() as Script
-		#if script:
-			#file.store_line("[sub_resource script=\"%s\" id=\"%s\"]" % [
-				#UserClassDB.script_get_identifier(script),
-				#_stringify_uid(_resource_get_uid(sub_resource))
-			#])
-		#else:
-			#file.store_line("[sub_resource class=\"%s\" id=\"%s\"]" % [
-				#sub_resource.get_class(),
-				#_stringify_uid(_resource_get_uid(sub_resource))
-			#])
-		#
-		#for property in sub_resource.get_property_list():
-			#if property.name == "script":
-				#continue
-			#if property.usage & PROPERTY_USAGE_STORAGE:
-				#var value: Variant = sub_resource[property.name]
-				#file.store_line("%s = %s" % [property.name, _serialize_value(value)])
-		#
-		#file.store_line("")
-	#
-	#for script in get_scripts():
-		#file.store_line("[%s]" % script)
-		#for key in get_eternals(script):
-			#var value := _serialize_value(get_eternal(script, key))
-			#file.store_line("%s = %s" % [key, value])
-		#
-		#file.store_line("")
-
-
 func encode_to_file(file: FileAccess) -> void:
 	var stream := encode_to_stream()
 	while true:
@@ -800,6 +675,10 @@ func _stream_encode(stream: ValueStream) -> void:
 		
 		for property in sub_resource.get_property_list():
 			if property.name == "script":
+				continue
+			if property.name == "resource_local_to_scene" and sub_resource.get(property.name) == false:
+				continue
+			if property.name == "resource_name" and sub_resource.get(property.name) == "":
 				continue
 			if property.usage & PROPERTY_USAGE_STORAGE:
 				var value: Variant = sub_resource[property.name]
@@ -1095,7 +974,7 @@ class Constructor:
 			add_script_name = false
 			pack_args = false
 	
-	func construct(args: Array) -> Object:
+	func construct(args: Array = []) -> Object:
 		if pack_args:
 			if args.any(func(v: Variant) -> bool: return v is PendingResourceBase):
 				args = [UntypedPendingResourceArray.new(args)]

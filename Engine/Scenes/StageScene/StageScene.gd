@@ -8,6 +8,7 @@ class_name StageScene
 @onready var _tweener_canvas: CanvasLayer = %TweenerCanvas
 @onready var _mouse_cast_sprite: MouseCastSprite = %MouseCastSprite
 @onready var _finish_popup: FinishPopup = %FinishPopup
+@onready var _status_effect_list: StatusEffectList = %StatusEffectList
 @onready var _board: Board = %Board : get = get_board
 @onready var _projectiles: Node2D = %Projectiles
 # ==============================================================================
@@ -25,6 +26,8 @@ func _ready() -> void:
 	
 	for projectile in StageInstance.get_current().get_projectile_manager().get_projectiles():
 		projectile.register()
+	
+	_status_effect_list.manager = Quest.get_current().get_status_manager()
 
 
 #func get_stage() -> Stage:
@@ -87,7 +90,8 @@ func cast(item: Item) -> Cell:
 
 
 func _on_board_stage_finished() -> void:
-	StageInstance.get_current().set_timer_paused(true)
+	StageInstance.get_current().get_timer().pause()
+	StageInstance.get_current().get_status_timer().pause()
 	Stage.get_current().stop_music()
 	_finish_button.show()
 

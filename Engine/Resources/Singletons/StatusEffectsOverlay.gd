@@ -14,8 +14,8 @@ static var status_effect_data: Dictionary = Eternal.create({}) :
 		
 		_status_effects.clear()
 		
-		for uid: String in value:
-			_status_effects[uid] = null if value[uid].is_empty() else StatusEffect.from_dict(value[uid])
+		#for uid: String in value:
+			#_status_effects[uid] = null if value[uid].is_empty() else StatusEffect.from_dict(value[uid])
 			# we don't need to add it to the SceneTree because we load on the main menu
 			# it will be added in _ready()
 	get:
@@ -27,7 +27,7 @@ static var status_effect_data: Dictionary = Eternal.create({}) :
 		
 		return status_effect_data
 # ==============================================================================
-@onready var _status_effect_container: VBoxContainer = %StatusEffectContainer
+#@onready var _status_effect_container: VBoxContainer = %StatusEffectContainer
 # ==============================================================================
 
 func _enter_tree() -> void:
@@ -43,13 +43,13 @@ func _ready() -> void:
 	var effects := StatusEffectsOverlay.get_status_effects()
 	effects.sort_custom(func(a: StatusEffect, b: StatusEffect): return a.sort_order < b.sort_order)
 	
-	for status in effects:
-		_status_effect_container.add_child(status)
+	#for status in effects:
+		#_status_effect_container.add_child(status)
 	
-	Effects.Signals.stage_leave.connect(func() -> void:
-		for status in StatusEffectsOverlay.get_status_effects():
-			_status_effect_container.remove_child(status)
-	)
+	#Effects.Signals.stage_leave.connect(func() -> void:
+		#for status in StatusEffectsOverlay.get_status_effects():
+			#_status_effect_container.remove_child(status)
+	#)
 
 
 static func add_status_effect(status_effect: StatusEffect, uid: String = "") -> void:
@@ -60,8 +60,8 @@ static func add_status_effect(status_effect: StatusEffect, uid: String = "") -> 
 	
 	status_effect.sort_order = get_status_count()
 	_status_effects[uid] = status_effect
-	if _instance:
-		_instance._status_effect_container.add_child(status_effect)
+	#if _instance:
+		#_instance._status_effect_container.add_child(status_effect)
 
 
 static func get_status_effect(uid: String) -> StatusEffect:
@@ -76,8 +76,8 @@ static func get_status_effects() -> Array[StatusEffect]:
 
 
 static func remove_status_effect(status_effect: StatusEffect, keep_instance: bool = false, keep_uid: bool = false) -> void:
-	if _instance:
-		_instance._status_effect_container.remove_child(status_effect)
+	#if _instance:
+		#_instance._status_effect_container.remove_child(status_effect)
 	
 	if not keep_instance:
 		status_effect.queue_free()
@@ -113,8 +113,8 @@ static func remove_id(uid: String) -> StatusEffect:
 	if has_id(uid):
 		var effect := get_status_effect(uid)
 		
-		if effect and _instance:
-			_instance._status_effect_container.remove_child(effect)
+		#if effect and _instance:
+			#_instance._status_effect_container.remove_child(effect)
 		_status_effects.erase(uid)
 		
 		return effect

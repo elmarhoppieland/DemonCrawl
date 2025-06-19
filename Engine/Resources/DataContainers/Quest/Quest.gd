@@ -42,13 +42,14 @@ static var current_changed := Signal() :
 		heirlooms_active = value
 		emit_changed()
 
-@export var _inventory := QuestInventory.new() : get = get_inventory
-@export var _stats := QuestStats.new() : get = get_stats
+@export var _inventory: QuestInventory = null : get = get_inventory
+@export var _stats: QuestStats = null : get = get_stats
 @export var _player_attributes := QuestPlayerAttributes.new() : get = get_attributes
 
-@export var _mastery: Mastery : set = set_mastery, get = get_mastery
+@export var _mastery: Mastery = null : set = set_mastery, get = get_mastery
 
-@export var _orb_manager := OrbManager.new() : get = get_orb_manager
+@export var _orb_manager: OrbManager = null : get = get_orb_manager
+@export var _status_manager: StatusEffectsManager = null : get = get_status_manager
 # ==============================================================================
 signal started()
 signal lost()
@@ -187,10 +188,14 @@ func get_selected_stage() -> Stage:
 
 
 func get_inventory() -> QuestInventory:
+	if not _inventory:
+		_inventory = QuestInventory.new()
 	return _inventory
 
 
 func get_stats() -> QuestStats:
+	if not _stats:
+		_stats = QuestStats.new()
 	return _stats
 
 
@@ -211,6 +216,14 @@ func get_mastery() -> Mastery:
 
 
 func get_orb_manager() -> OrbManager:
+	if not _orb_manager:
+		_orb_manager = OrbManager.new()
 	return _orb_manager
+
+
+func get_status_manager() -> StatusEffectsManager:
+	if not _status_manager:
+		_status_manager = StatusEffectsManager.new()
+	return _status_manager
 
 #endregion

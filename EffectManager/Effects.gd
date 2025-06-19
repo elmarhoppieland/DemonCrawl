@@ -230,3 +230,8 @@ static func object_interacted(object: CellObject) -> void:
 static func object_killed(object: CellObject) -> void:
 	EffectManager.propagate(MutableSignals.object_killed, [object])
 	EffectManager.propagate(Signals.object_killed, [object])
+
+
+static func mistake(cell: CellData) -> void:
+	EffectManager.propagate(MutableSignals.mistake, [cell])
+	EffectManager.propagate(Signals.mistake, [cell])

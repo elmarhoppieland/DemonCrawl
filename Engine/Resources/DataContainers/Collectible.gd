@@ -5,23 +5,7 @@ class_name Collectible
 ## An abstract object that can be collected by the player.
 
 # ==============================================================================
-var _texture: ImageTexture :
-	get:
-		if _texture:
-			return _texture
-		
-		var texture := _get_atlas()
-		if not texture:
-			return null
-		var region := _get_atlas_region()
-		if not region:
-			_texture = ImageTexture.create_from_image(texture.get_image())
-			return _texture
-		
-		var image := texture.get_image().get_region(_get_atlas_region())
-		_texture = ImageTexture.create_from_image(_parse_image(image))
-		return _texture
-
+var _texture: ImageTexture : get = get_texture
 # ==============================================================================
 @export var _origin_path := "" : get = get_origin_path
 # ==============================================================================
@@ -32,9 +16,9 @@ func _init() -> void:
 	)
 
 
-## Creates a new [StatusEffect]. Uses the given [code]uid[/code] if specified.
-func create_status(uid: String = "") -> StatusEffect.Initializer:
-	return StatusEffect.create(uid).set_source(self)
+## Creates a new [StatusEffect] for this [Collectible].
+func create_status(status_script: Script = null) -> StatusEffect.Initializer:
+	return StatusEffect.create(status_script).set_source(self)
 
 #region internals
 
@@ -63,6 +47,8 @@ func _has_alpha() -> bool:
 
 #endregion
 
+#region getters
+
 ## Returns the main [SceneTree].
 func get_tree() -> SceneTree:
 	return Engine.get_main_loop()
@@ -90,6 +76,24 @@ func get_texture_bg_color() -> Color:
 func _get_texture_bg_color() -> Color:
 	return Color.TRANSPARENT
 
+
+func get_texture() -> ImageTexture:
+	if _texture:
+		return _texture
+	
+	var texture := _get_atlas()
+	if not texture:
+		return null
+	var region := _get_atlas_region()
+	if not region:
+		_texture = ImageTexture.create_from_image(texture.get_image())
+		return _texture
+	
+	var image := texture.get_image().get_region(_get_atlas_region())
+	_texture = ImageTexture.create_from_image(_parse_image(image))
+	return _texture
+
+#endregion
 
 ## Virtual method to make final modifications to this collectible's [Image],
 ## after cropping it and applying a background. Should return the final [Image].

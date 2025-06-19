@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cumgux0onyrup"]
 
-[ext_resource type="Script" path="res://Board/StatusEffectsOverlay/StatusEffectsOverlay.gd" id="1_d2m47"]
+[ext_resource type="Script" path="res://Engine/Resources/Singletons/StatusEffectsOverlay.gd" id="1_d2m47"]
 
 [node name="StatusEffectsOverlay" type="CanvasLayer"]
 layer = 20

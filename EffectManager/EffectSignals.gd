@@ -40,3 +40,5 @@ class_name __EffectSignals
 @warning_ignore("unused_signal") signal get_chest_coins(coins: int, chest: TreasureChest)
 @warning_ignore("unused_signal") signal object_interacted(object: CellObject)
 @warning_ignore("unused_signal") signal object_killed(object: CellObject)
+@warning_ignore("unused_signal") signal object_destroyed(object: CellObject)
+@warning_ignore("unused_signal") signal mistake(cell: CellData)

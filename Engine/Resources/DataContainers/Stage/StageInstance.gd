@@ -22,7 +22,6 @@ static var current_changed := Signal() :
 		emit_changed()
 # ==============================================================================
 @export var _stage: Stage : set = set_stage, get = get_stage
-@export var _time := 0.0 : get = get_timef
 
 @export var _3bv := 0 : get = get_3bv
 @export var _timer_paused := true : get = is_timer_paused
@@ -31,7 +30,10 @@ static var current_changed := Signal() :
 @export var _flagless := true : get = is_flagless
 @export var _untouchable := true : get = is_untouchable
 
-@export var _projectile_manager := ProjectileManager.new() : get = get_projectile_manager
+@export var _timer: StageTimer = null : get = get_timer
+@export var _status_timer: StageTimer = null : get = get_status_timer
+
+@export var _projectile_manager: ProjectileManager = null : get = get_projectile_manager
 # ==============================================================================
 var _scene: StageScene : get = get_scene
 
@@ -53,6 +55,15 @@ signal finished()
 
 func _init(stage: Stage = null) -> void:
 	load_from_stage(stage)
+	
+	(func() -> void:
+		var timer := get_timer()
+		var status_timer := get_status_timer()
+		if not _generated:
+			timer.pause()
+			status_timer.pause()
+	).call_deferred()
+	# make sure the timers get loaded
 
 
 func _bind_idx(idx: int) -> int:
@@ -133,7 +144,9 @@ func generate(start_cell: CellData) -> void:
 
 func _after_generating() -> void:
 	_3bv = get_3bv()
-	set_timer_paused(false)
+	
+	get_timer().play()
+	get_status_timer().play()
 
 
 ## Creates and returns a new [Cell] for the [CellData] at the given [code]idx[/code].
@@ -436,19 +449,11 @@ func get_stage() -> Stage:
 
 
 func get_time() -> int:
-	return int(get_timef())
+	return get_timer().get_time()
 
 
 func get_timef() -> float:
-	if is_timer_paused() or _timer_read_on_this_frame:
-		return _time
-	
-	var time := Time.get_ticks_usec()
-	_time += (time - _timer_last_read_usec) / 1e6
-	_timer_last_read_usec = time
-	_timer_read_on_this_frame = true
-	
-	return _time
+	return get_timer().get_timef()
 
 
 func set_timer_paused(timer_paused: bool) -> void:
@@ -484,5 +489,19 @@ func get_board() -> Board:
 	return get_scene().get_board()
 
 
+func get_timer() -> StageTimer:
+	if not _timer:
+		_timer = StageTimer.new()
+	return _timer
+
+
+func get_status_timer() -> StageTimer:
+	if not _status_timer:
+		_status_timer = StageTimer.new()
+	return _status_timer
+
+
 func get_projectile_manager() -> ProjectileManager:
+	if not _projectile_manager:
+		_projectile_manager = ProjectileManager.new()
 	return _projectile_manager
