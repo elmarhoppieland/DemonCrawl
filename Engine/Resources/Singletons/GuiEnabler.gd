@@ -29,7 +29,7 @@ var _disabled := 0 :
 					else:
 						if GuiEnabler.has_gui_node(gui_name):
 							var gui_instance := GuiEnabler.get_gui_branch(gui_name)
-							_editor_gui_layer_placeholder.add_child(gui_instance)
+							_editor_gui_layer_placeholder.add_child.call_deferred(gui_instance)
 				
 				i += 1
 				diff >>= 1
@@ -61,18 +61,20 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func _enter_tree() -> void:
-	if Engine.is_editor_hint():
-		return
-	
 	var e := enabled # create a local copy so we can modify it without modifying the actual property
 	
 	var i := 0
 	while e:
 		if e & 1:
 			var gui_name := GuiEnabler.get_gui_list()[i]
-			var node := GuiLayer.get_instance().get_node(gui_name)
-			if node.has_method("show"):
-				node.show()
+			if Engine.is_editor_hint():
+				if GuiEnabler.has_gui_node(gui_name):
+					var gui_instance := GuiEnabler.get_gui_branch(gui_name)
+					_editor_gui_layer_placeholder.add_child.call_deferred(gui_instance)
+			else:
+				var node := GuiLayer.get_instance().get_node(gui_name)
+				if node.has_method("show"):
+					node.show()
 		
 		i += 1
 		e >>= 1
