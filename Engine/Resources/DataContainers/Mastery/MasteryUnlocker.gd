@@ -1,15 +1,25 @@
-extends RefCounted
+extends Resource
 class_name MasteryUnlocker
 
 # ==============================================================================
-static var _unlockers: Array[MasteryUnlocker] = []
-# ==============================================================================
 
-static func _static_init() -> void:
-	await Promise.defer()
-	
-	for script_name in UserClassDB.get_inheriters_from_class(&"MasteryUnlocker"):
-		_unlockers.append(UserClassDB.instantiate(script_name))
+func _init() -> void:
+	_ready()
+
+
+## Virtual method. Called after this [MasteryUnlocker] has been initialized.
+func _ready() -> void:
+	pass
+
+
+## Notifies the [MasteryUnlocker] that the given [Quest] has been won.
+func notify_quest_won() -> void:
+	_quest_win()
+
+
+## Virtual method. Called whenever a [Quest] is won.
+func _quest_win() -> void:
+	pass
 
 
 func unlock(level: int) -> void:
@@ -23,17 +33,18 @@ func unlock(level: int) -> void:
 
 
 func _unlock(level: int) -> void:
-	if level == 1:
-		var mastery := get_mastery()
-		mastery.level = 1
-		Codex.unlocked_masteries.append(mastery)
+	if Codex.get_unlocked_mastery_level(get_mastery_class()) >= level:
 		return
 	
-	for unlocked in Codex.unlocked_masteries:
-		if UserClassDB.script_get_class(unlocked.get_script()) == get_mastery_class():
-			if unlocked.level < level:
-				unlocked.level = level
+	var mastery := Codex.get_unlocked_mastery(get_mastery_class())
+	if not mastery:
+		if level > 1:
 			return
+		mastery = get_mastery()
+		Codex.unlocked_masteries.append(mastery)
+	
+	if mastery.level == level - 1:
+		mastery.level = level
 
 
 func get_mastery() -> Mastery:
@@ -50,3 +61,11 @@ func get_mastery_class() -> StringName:
 
 func _get_mastery_class() -> StringName:
 	return UserClassDB.script_get_class(get_script()).trim_suffix("Unlocker")
+
+
+func is_quest_export() -> bool:
+	return _is_quest_export()
+
+
+func _is_quest_export() -> bool:
+	return false

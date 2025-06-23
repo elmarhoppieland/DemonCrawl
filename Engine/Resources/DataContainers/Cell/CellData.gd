@@ -393,5 +393,7 @@ func notify_interacted() -> void:
 	interacted.emit()
 	if object and is_visible():
 		object.notify_interacted()
+	if aura:
+		aura.notify_interacted(self)
 
 #endregion

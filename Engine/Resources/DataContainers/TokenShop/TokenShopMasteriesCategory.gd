@@ -5,7 +5,6 @@ class_name TokenShopMasteriesCategory
 # ==============================================================================
 @export var name := ""
 @export var icon: Texture2D = null
-@export var masteries: Array[Mastery] = []
 # ==============================================================================
 
 func _try_purchase(item: TokenShopItemBase) -> bool:
@@ -41,7 +40,7 @@ func _get_icon() -> Texture2D:
 func _get_items() -> Array[TokenShopItemBase]:
 	var items: Array[TokenShopItemBase] = []
 	
-	for mastery in Codex.masteries:
+	for mastery in DemonCrawl.get_full_registry().masteries:
 		var item := MasteryItem.new()
 		item.mastery = mastery.duplicate()
 		item.mastery.level = Codex.get_selectable_mastery_level(mastery) + 1

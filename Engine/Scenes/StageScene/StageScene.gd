@@ -109,6 +109,8 @@ func _on_finish_button_pressed() -> void:
 	StageInstance.clear_current()
 	
 	if quest.is_finished():
+		await quest.finish()
+		
 		Quest.clear_current()
 		
 		Eternity.save()

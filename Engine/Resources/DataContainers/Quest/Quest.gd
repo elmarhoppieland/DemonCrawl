@@ -50,13 +50,23 @@ static var current_changed := Signal() :
 
 @export var _orb_manager: OrbManager = null : get = get_orb_manager
 @export var _status_manager: StatusEffectsManager = null : get = get_status_manager
+
+@export var _exported_mastery_unlockers: Array[MasteryUnlocker] = [] :
+	get:
+		if _mastery_unlockers.is_empty():
+			return _exported_mastery_unlockers
+		_exported_mastery_unlockers.assign(_mastery_unlockers.filter(func(unlocker: MasteryUnlocker) -> bool:
+			return unlocker.is_quest_export()
+		))
+		return _exported_mastery_unlockers
+# ==============================================================================
+var _mastery_unlockers: Array[MasteryUnlocker] = []
 # ==============================================================================
 signal started()
 signal lost()
 signal won()
 signal loaded()
 signal unloaded()
-
 # ==============================================================================
 
 #region current
@@ -90,22 +100,6 @@ func set_as_current() -> void:
 
 #endregion
 
-#region static utils
-
-## Starts a new [Quest], using the given [RandomNumberGenerator], and sets the current
-## quest to the new quest.
-#static func start_new() -> void:
-	#_current = QuestsManager.selected_quest.generate()
-	#
-	#QuestsManager.selected_difficulty.apply_starting_values(_current)
-	#
-	## TODO: merge PlayerStats into QuestInstance
-	##PlayerStats.reset()
-	#
-	#Effects.quest_start()
-
-#endregion
-
 #region global utils
 
 func start() -> void:
@@ -116,10 +110,30 @@ func start() -> void:
 
 
 func notify_loaded() -> void:
+	_mastery_unlockers.clear()
+	
+	var unlockers: Array[MasteryUnlocker] = []
+	var unlocker_count := DemonCrawl.get_full_registry().mastery_unlockers.size()
+	unlockers.resize(unlocker_count)
+	for i in unlocker_count:
+		var unlocker := DemonCrawl.get_full_registry().mastery_unlockers[i]
+		
+		for exported_unlocker in _exported_mastery_unlockers:
+			if exported_unlocker.get_script() == unlocker.get_script():
+				unlockers[i] = exported_unlocker
+				unlocker = null
+		
+		if unlocker:
+			unlockers[i] = unlocker.duplicate()
+	
+	_mastery_unlockers = unlockers
+	
 	loaded.emit()
 
 
 func notify_unloaded() -> void:
+	_mastery_unlockers.clear()
+	
 	unloaded.emit()
 
 
@@ -137,6 +151,9 @@ func unlock_next_stage(skip_special_stages: bool = true, start_stage_index: int 
 
 ## Finishes this quest.
 func finish() -> void:
+	for unlocker in _mastery_unlockers:
+		unlocker.notify_quest_won()
+	
 	won.emit()
 	
 	Effects.quest_finish()
@@ -151,6 +168,11 @@ func finish() -> void:
 	if data.best_score < get_attributes().score:
 		data.best_score = get_attributes().score
 	data.save()
+	
+	while GuiLayer.get_mastery_achieved_popup().is_popup_visible():
+		await GuiLayer.get_mastery_achieved_popup().popup_hidden
+	
+	notify_unloaded()
 
 
 func notify_stage_finished(stage: Stage) -> void:
@@ -160,10 +182,6 @@ func notify_stage_finished(stage: Stage) -> void:
 		get_mastery().gain_charge()
 	
 	if stage not in stages:
-		return
-	
-	if is_finished():
-		finish()
 		return
 	
 	var idx := stages.find(stage) + 1

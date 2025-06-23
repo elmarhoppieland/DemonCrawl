@@ -36,7 +36,7 @@ func _on_masteries_button_interacted() -> void:
 	
 	add_mastery(null)
 	
-	for mastery in Codex.masteries:
+	for mastery in DemonCrawl.get_full_registry().masteries:
 		mastery = mastery.duplicate()
 		mastery.level = Codex.get_selectable_mastery_level(mastery)
 		if mastery.level == 0:

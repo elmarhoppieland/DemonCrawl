@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://hhy78o5qolno"]
+[gd_scene load_steps=18 format=3 uid="uid://hhy78o5qolno"]
 
 [ext_resource type="Script" path="res://Engine/Scenes/StageSelect/StageSelect.gd" id="1_0kr35"]
 [ext_resource type="Texture2D" uid="uid://dqe6i8xvwotle" path="res://Assets/Backgrounds/stages0.png" id="1_6aai7"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c3vf0fdejs72s" path="res://Engine/Scenes/StageSelect/StageDetails.tscn" id="4_26rrt"]
 [ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/Stage.gd" id="6_a1317"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="6_asf3s"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/BackButton.gd" id="8_fl1vr"]
 [ext_resource type="Script" path="res://Engine/Resources/Singletons/GuiEnabler.gd" id="9_a0qlk"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="9_l3xwp"]
 [ext_resource type="Script" path="res://Engine/Resources/UtilityNode/FadeButton.gd" id="9_xkiay"]
@@ -106,18 +105,15 @@ anchors_preset = -1
 offset_left = 10.0
 offset_top = 7.0
 
-[node name="BackButton" type="MarginContainer" parent="HBoxContainer"]
+[node name="BackToMenuButton" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
-script = ExtResource("8_fl1vr")
+script = ExtResource("9_xkiay")
+texture_normal = SubResource("AtlasTexture_baxs2")
+texture_hover = SubResource("AtlasTexture_yjf3c")
 
-[node name="Normal" type="TextureRect" parent="HBoxContainer/BackButton"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_baxs2")
-
-[node name="Hovered" type="TextureRect" parent="HBoxContainer/BackButton"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-texture = SubResource("AtlasTexture_yjf3c")
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/BackToMenuButton"]
+script = ExtResource("11_dcp1b")
+text = "RETURN_TO_MAIN_MENU"
 
 [node name="AbandonButton" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -138,4 +134,5 @@ _disabled = 0
 
 [connection signal="icon_selected" from="MarginContainer/VBoxContainer/StagesOverview" to="." method="_on_stages_overview_icon_selected"]
 [connection signal="interacted" from="MarginContainer/VBoxContainer/StageDetails" to="." method="_on_stage_details_interacted"]
+[connection signal="pressed" from="HBoxContainer/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/AbandonButton" to="." method="_on_abandon_button_pressed"]

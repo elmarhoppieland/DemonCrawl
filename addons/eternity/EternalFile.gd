@@ -226,7 +226,7 @@ func _prepare_resource_list() -> Array[Resource]:
 	var i := 0
 	while i < resources.size():
 		var resource := resources[i]
-		if not resource.resource_path.is_empty():
+		if not resource.resource_path.is_empty() and not "::" in resource.resource_path:
 			_resource_get_uid(resource)
 			i += 1
 			continue
@@ -409,8 +409,19 @@ func _parse_line(line: String, owner: Variant, file_path: String) -> void:
 	var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
 	assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file_path])
 	
-	if owner is Dictionary or key in owner:
-		owner[key] = await await_resource(_parse_value(value))
+	if owner is StageInstance:
+		pass
+	
+	_set_variant(owner, key, await await_resource(_parse_value(value)))
+
+
+func _set_variant(variant: Variant, key: Variant, value: Variant) -> void:
+	match typeof(variant):
+		TYPE_DICTIONARY:
+			variant[key] = value
+		TYPE_OBJECT:
+			if key is String or key is StringName:
+				variant.set(key, value)
 
 
 func await_resource(resource: Variant) -> Variant:
@@ -648,7 +659,7 @@ func _stream_encode(stream: ValueStream) -> void:
 	var ext_resources: Array[Resource] = []
 	var sub_resources: Array[Resource] = []
 	for resource in resources:
-		if resource.resource_path.is_empty():
+		if resource.resource_path.is_empty() or "::" in resource.resource_path:
 			sub_resources.append(resource)
 		else:
 			ext_resources.append(resource)

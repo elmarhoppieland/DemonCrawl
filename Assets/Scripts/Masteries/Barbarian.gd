@@ -19,6 +19,11 @@ func _quest_load() -> void:
 	Effects.Signals.object_killed.connect(_object_kill)
 
 
+func _quest_unload() -> void:
+	Effects.Signals.object_interacted.disconnect(_object_interact)
+	Effects.Signals.object_killed.disconnect(_object_kill)
+
+
 func _object_interact(object: CellObject) -> void:
 	if not object is Stranger:
 		return

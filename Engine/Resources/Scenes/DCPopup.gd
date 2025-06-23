@@ -2,7 +2,7 @@ extends CanvasLayer
 class_name DCPopup
 
 # ==============================================================================
-var _popup_visible := false
+var _popup_visible := false : get = is_popup_visible
 # ==============================================================================
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
@@ -27,3 +27,7 @@ func popup_hide() -> void:
 	await _animation_player.animation_finished
 	_popup_visible = false
 	popup_hidden.emit()
+
+
+func is_popup_visible() -> bool:
+	return _popup_visible

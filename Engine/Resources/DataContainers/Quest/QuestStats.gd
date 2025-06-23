@@ -43,9 +43,6 @@ func life_lose(life: int, source: Object) -> void:
 	
 	self.life -= Effects.lose_life(life, source)
 	
-	if StageInstance.has_current():
-		StageInstance.get_current().get_scene().get_background().flash_red()
-	
 	if self.life <= 0:
 		die(source)
 
@@ -98,6 +95,7 @@ func damage(amount: int, source: Object) -> void:
 	if amount > 0:
 		life_lose(amount, source)
 	if StageInstance.has_current() and StageInstance.get_current().has_scene():
+		StageInstance.get_current().get_scene().get_background().flash_red()
 		StageInstance.get_current().get_board().get_camera().shake()
 
 
