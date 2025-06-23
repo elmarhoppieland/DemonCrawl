@@ -12,7 +12,7 @@ func _ready() -> void:
 	pass
 
 
-## Notifies the [MasteryUnlocker] that the given [Quest] has been won.
+## Notifies the [MasteryUnlocker] that the current [Quest] has been won.
 func notify_quest_won() -> void:
 	_quest_win()
 

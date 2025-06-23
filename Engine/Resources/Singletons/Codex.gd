@@ -21,7 +21,6 @@ static var heirlooms_changed := Signal() :
 
 static var favored_items: Array[Favor] = Eternal.create([] as Array[Favor])
 
-static var masteries: Array[Mastery] = load("res://Assets/Scripts/Masteries/MasteryList.tres").masteries
 static var selected_mastery: Mastery = Eternal.create(null) :
 	set(value):
 		selected_mastery = value
@@ -135,12 +134,43 @@ static func add_profile_slot() -> void:
 	profiles.append(CodexProfile.new())
 
 
-static func get_selectable_mastery_level(mastery: Mastery) -> int:
-	for selectable in Codex.selectable_masteries:
-		if selectable.get_script() == mastery.get_script():
-			return selectable.level
-	
+static func get_selectable_mastery(mastery: Variant) -> Mastery:
+	return _get_mastery_from_list(mastery, selectable_masteries)
+
+
+static func get_selectable_mastery_level(mastery: Variant) -> int:
+	var selectable := get_selectable_mastery(mastery)
+	if selectable:
+		return selectable.level
 	return 0
+
+
+static func get_unlocked_mastery(mastery: Variant) -> Mastery:
+	return _get_mastery_from_list(mastery, unlocked_masteries)
+
+
+static func get_unlocked_mastery_level(mastery: Variant) -> int:
+	var unlocked := get_unlocked_mastery(mastery)
+	if unlocked:
+		return unlocked.level
+	return 0
+
+
+static func _get_mastery_from_list(mastery: Variant, list: Array) -> Mastery:
+	assert(mastery is Mastery or mastery is String or mastery is StringName or mastery is Script, "The parameter must be a Mastery, a Mastery id, or a Mastery Script, but '%s' was found." % type_string(typeof(mastery)))
+	
+	for i in list:
+		if mastery is String or mastery is StringName:
+			if mastery in [i._get_identifier(), UserClassDB.class_get_name(i.get_script())]:
+				return i
+		elif mastery is Script:
+			if i.get_script() == mastery:
+				return i
+		elif mastery is Mastery:
+			if i.get_script() == mastery.get_script():
+				return i
+	
+	return null
 
 
 class Heirloom extends Resource:
