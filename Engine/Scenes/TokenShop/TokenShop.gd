@@ -3,11 +3,9 @@ extends Control
 class_name TokenShop
 
 # ==============================================================================
-const CATEGORIES := preload("res://Assets/TokenShop/Categories.tres")
-# ==============================================================================
 static var purchased_items: Dictionary = Eternal.create({})
 
-static var selected_category: TokenShopCategoryBase = Eternal.create(CATEGORIES.categories[0])
+static var selected_category: TokenShopCategoryBase = Eternal.create(DemonCrawl.get_full_registry().token_shop_categories[0])
 # ==============================================================================
 @onready var _category_tab_buttons: HBoxContainer = %CategoryTabButtons
 @onready var _categories_container: MarginContainer = %Categories
@@ -19,7 +17,7 @@ func _ready() -> void:
 	var icon_scene := load("res://Engine/Scenes/TokenShop/TokenShopCategoryIcon.tscn") as PackedScene
 	var category_scene := load("res://Engine/Scenes/TokenShop/TokenShopCategoryDisplay.tscn") as PackedScene
 	
-	for category in CATEGORIES.categories:
+	for category in DemonCrawl.get_full_registry().token_shop_categories:
 		var icon := icon_scene.instantiate() as TokenShopCategoryIcon
 		icon.category = category
 		_category_tab_buttons.add_child(icon)

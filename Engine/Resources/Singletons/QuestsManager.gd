@@ -13,13 +13,11 @@ enum QuestState {
 static var selected_quest: QuestFile = Eternal.create(load("res://Assets/Quests/Casual/0-Tutorial.tres"))
 static var selected_difficulty: Difficulty = Eternal.create(load("res://Assets/Quests/Casual/Casual.tres"))
 
-static var difficulty_list: DifficultyList = Eternal.create(load("res://Assets/Quests/Difficulties.tres"))
-
 static var quest_completions: Array[QuestCompletionData] = Eternal.create([] as Array[QuestCompletionData])
 # ==============================================================================
 
 static func get_difficulties() -> Array[Difficulty]:
-	return difficulty_list.difficulties
+	return DemonCrawl.get_full_registry().difficulties
 
 
 static func change_difficulty(direction: int) -> void:
