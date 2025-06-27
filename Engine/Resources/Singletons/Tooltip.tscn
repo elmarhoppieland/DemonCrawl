@@ -111,11 +111,6 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/outline_size = 0
 bbcode_enabled = true
-text = "NOVICE I
-[color=gray]• Reduce your score by half. If
-  you make a mistake on a
-  necessary guess, reduce incoming
-  damage to 1.[/color]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
