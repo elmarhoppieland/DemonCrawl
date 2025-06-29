@@ -32,7 +32,10 @@ const Mode := Cell.Mode
 		emit_changed()
 @export var aura: Aura = null :
 	set(new_aura):
+		var old := aura
 		aura = new_aura
+		if old:
+			Effects.aura_remove(self, old)
 		emit_changed()
 # ==============================================================================
 var direction_arrow := Vector2i.ZERO
@@ -47,6 +50,7 @@ signal scale_object_requested(scale: float)
 signal move_object_requested(source: CellData)
 
 signal interacted()
+signal second_interacted()
 # ==============================================================================
 
 #region internals
@@ -207,10 +211,11 @@ func move_object_to(cell: CellData) -> void:
 
 
 @warning_ignore("shadowed_variable")
-func apply_aura(aura: Script) -> Aura:
-	self.aura = Aura.create(aura)
+func apply_aura(aura: Variant) -> Aura:
+	self.aura = aura.new() if aura is Script else aura
 	if is_occupied():
 		object.notify_aura_applied()
+	Effects.aura_apply(self)
 	return self.aura
 
 
@@ -395,5 +400,17 @@ func notify_interacted() -> void:
 		object.notify_interacted()
 	if aura:
 		aura.notify_interacted(self)
+	
+	Effects.cell_interact(self)
+
+
+func notify_second_interacted() -> void:
+	second_interacted.emit()
+	if object and is_visible():
+		object.notify_second_interacted()
+	if aura:
+		aura.notify_second_interacted(self)
+	
+	Effects.cell_second_interact(self)
 
 #endregion

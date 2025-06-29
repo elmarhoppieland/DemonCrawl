@@ -183,8 +183,8 @@ func unflag() -> void:
 ## Applies the given [Aura] to this [Cell], and returns the created [Aura].
 ## [br][br][b]Note:[/b] Each type of [Aura] is only instanced once, and subsequent
 ## calls to this method will return the existing [Aura].
-func apply_aura(aura: Script) -> Aura:
-	var aura_instance := Aura.create(aura)
+func apply_aura(aura: Variant) -> Aura:
+	var aura_instance: Aura = aura.new() if aura is Script else aura
 	_set_aura(aura_instance)
 	if is_occupied():
 		get_object().notify_aura_applied()
@@ -515,3 +515,7 @@ func _get_minimum_size() -> Vector2:
 
 func _on_interacted() -> void:
 	get_data().notify_interacted()
+
+
+func _on_second_interacted() -> void:
+	get_data().notify_second_interacted()

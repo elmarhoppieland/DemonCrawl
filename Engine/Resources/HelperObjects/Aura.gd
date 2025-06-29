@@ -3,19 +3,6 @@ extends Resource
 class_name Aura
 
 # ==============================================================================
-static var _instances := {}
-# ==============================================================================
-
-## Creates an aura with the given [Script]. The [Script] must extend [Aura]
-## (directly or indirectly).
-static func create(script: Script) -> Aura:
-	if script in _instances:
-		return _instances[script]
-	
-	var value: Aura = script.new()
-	_instances[script] = value
-	return value
-
 
 ## Returns this [Aura]'s modulation.
 func get_modulate() -> Color:
@@ -25,6 +12,16 @@ func get_modulate() -> Color:
 ## Virtual method. Should return this [Aura]'s modulation [Color].
 func _get_modulate() -> Color:
 	return Color.WHITE
+
+
+## Returns whether this [Aura] is elemental.
+func is_elemental() -> bool:
+	return _is_elemental()
+
+
+## Virtual method. Should return [code]true[/code] if this [Aura] is elemental.
+func _is_elemental() -> bool:
+	return false
 
 
 ## Notifies this [Aura] that the given [code]cell[/code] has been interacted with.
@@ -38,10 +35,20 @@ func _interact(cell: CellData) -> void:
 	pass
 
 
+## Notifies this [Aura] that the given [code]cell[/code] has been second-interacted with.
+func notify_second_interacted(cell: CellData) -> void:
+	_second_interacted(cell)
+
+
+## Virtual method. Called whenever the given [code]cell[/code] is second-interacted with.
+@warning_ignore("unused_parameter")
+func _second_interacted(cell: CellData) -> void:
+	pass
+
+
+func negative_effect(effect: Callable) -> void:
+	Immunity.try_call(func() -> void: effect.call(), "negative_effect")
+
+
 func _export_packed() -> Array:
 	return []
-
-
-static func _import_packed_static(script_name: String) -> Aura:
-	var script := UserClassDB.class_get_script(script_name)
-	return create(script)

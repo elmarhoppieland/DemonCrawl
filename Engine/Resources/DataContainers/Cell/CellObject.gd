@@ -319,12 +319,12 @@ func _interact() -> void:
 
 
 ## Notifies this object aht the player used secondary interact (right-click or E) on this object.
-func notify_secondary_interacted() -> void:
-	_secondary_interact()
+func notify_second_interacted() -> void:
+	_second_interact()
 
 
-## Virtual method to react to this object being secondary interacted with.
-func _secondary_interact() -> void:
+## Virtual method to react to this object being second interacted with.
+func _second_interact() -> void:
 	pass
 
 

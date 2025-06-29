@@ -13,6 +13,8 @@ var cell: CellData
 
 func _enter_tree() -> void:
 	_instance = self
+	
+	hide()
 
 
 func _exit_tree() -> void:
@@ -21,6 +23,8 @@ func _exit_tree() -> void:
 
 
 func _show_items(chest: TreasureChest) -> void:
+	show()
+	
 	while _rewards_container.get_child_count() > 0:
 		var child := _rewards_container.get_child(0)
 		_rewards_container.remove_child(child)
@@ -82,6 +86,9 @@ func _show_coins(chest: TreasureChest) -> void:
 
 
 static func show_rewards(chest: TreasureChest) -> void:
+	while _instance._popup_visible:
+		await _instance.popup_hidden
+	
 	if randi() % 2 == 0:
 		_instance._show_items(chest)
 	else:

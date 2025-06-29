@@ -235,3 +235,28 @@ static func object_killed(object: CellObject) -> void:
 static func mistake(cell: CellData) -> void:
 	EffectManager.propagate(MutableSignals.mistake, [cell])
 	EffectManager.propagate(Signals.mistake, [cell])
+
+
+static func stage_generate(stage: StageInstance) -> void:
+	EffectManager.propagate(MutableSignals.stage_generate, [stage])
+	EffectManager.propagate(Signals.stage_generate, [stage])
+
+
+static func cell_interact(cell: CellData) -> void:
+	EffectManager.propagate(MutableSignals.new_effect, [cell])
+	EffectManager.propagate(Signals.new_effect, [cell])
+
+
+static func cell_second_interact(cell: CellData) -> void:
+	EffectManager.propagate(MutableSignals.cell_second_interact, [cell])
+	EffectManager.propagate(Signals.cell_second_interact, [cell])
+
+
+static func aura_apply(cell: CellData) -> void:
+	EffectManager.propagate(MutableSignals.aura_apply, [cell])
+	EffectManager.propagate(Signals.aura_apply, [cell])
+
+
+static func aura_remove(cell: CellData, aura: Aura) -> void:
+	EffectManager.propagate(MutableSignals.aura_remove, [cell, aura])
+	EffectManager.propagate(Signals.aura_remove, [cell, aura])

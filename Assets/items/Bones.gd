@@ -12,7 +12,7 @@ func _use() -> void:
 	
 	var cell: CellData = cells[randi() % cells.size()]
 	
-	#cell.aura = Aura.create(Sanctified)
+	#cell.aura = Sanctified.new()
 	life_restore(cell.cell_value)
 	#Effects.bury_bones(cell)
 	

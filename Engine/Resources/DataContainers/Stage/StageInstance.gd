@@ -137,6 +137,8 @@ func generate(start_cell: CellData) -> void:
 		
 		cells[idx].object = Monster.new(get_stage())
 	
+	Effects.stage_generate(self)
+	
 	_generated = true
 	
 	_after_generating()

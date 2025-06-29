@@ -179,3 +179,4 @@ texture = ExtResource("14_ffohp")
 offset = Vector2(9, 0)
 
 [connection signal="interacted" from="Grabber" to="." method="_on_interacted"]
+[connection signal="second_interacted" from="Grabber" to="." method="_on_second_interacted"]

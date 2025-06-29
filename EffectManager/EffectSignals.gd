@@ -42,3 +42,8 @@ class_name __EffectSignals
 @warning_ignore("unused_signal") signal object_killed(object: CellObject)
 @warning_ignore("unused_signal") signal object_destroyed(object: CellObject)
 @warning_ignore("unused_signal") signal mistake(cell: CellData)
+@warning_ignore("unused_signal") signal stage_generate(stage: StageInstance)
+@warning_ignore("unused_signal") signal new_effect(new_argument: CellData)
+@warning_ignore("unused_signal") signal cell_second_interact(cell: CellData)
+@warning_ignore("unused_signal") signal aura_apply(cell: CellData)
+@warning_ignore("unused_signal") signal aura_remove(cell: CellData, aura: Aura)
