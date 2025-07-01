@@ -28,11 +28,13 @@ var _dying := false
 
 ## Restores [code]life[/code] lives, without exceeding the max lives.
 @warning_ignore("shadowed_variable")
-func life_restore(life: int, source: Object) -> void:
+func life_restore(life: int, source: Object) -> int:
 	if life < 0:
-		return
+		return 0
 	
-	self.life = mini(self.life + Effects.restore_life(life, source), max_life)
+	life = Effects.restore_life(life, source)
+	self.life = mini(self.life + life, max_life)
+	return life
 
 
 ## Loses [code]life[/code] lives.

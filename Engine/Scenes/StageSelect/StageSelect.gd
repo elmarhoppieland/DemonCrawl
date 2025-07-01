@@ -25,7 +25,9 @@ func _on_stage_details_interacted() -> void:
 	await tween.finished
 	
 	var stage := get_quest().get_selected_stage()
-	stage.create_instance().set_as_current()
+	var instance := stage.create_instance()
+	instance.notify_loaded()
+	instance.set_as_current()
 	
 	if stage is SpecialStage:
 		get_tree().change_scene_to_packed(stage.get_dest_scene())

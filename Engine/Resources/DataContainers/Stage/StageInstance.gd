@@ -49,21 +49,15 @@ var _timer_read_on_this_frame := false :
 # ==============================================================================
 signal finish_pressed()
 signal finished()
+
+signal loaded()
+signal unloaded()
 # ==============================================================================
 
 #region internals
 
 func _init(stage: Stage = null) -> void:
 	load_from_stage(stage)
-	
-	(func() -> void:
-		var timer := get_timer()
-		var status_timer := get_status_timer()
-		if not _generated:
-			timer.pause()
-			status_timer.pause()
-	).call_deferred()
-	# make sure the timers get loaded
 
 
 func _bind_idx(idx: int) -> int:
@@ -167,6 +161,27 @@ func finish() -> void:
 		if cell.object:
 			cell.object.reset()
 	finished.emit()
+
+
+func notify_loaded() -> void:
+	loaded.emit()
+	
+	# make sure the timers get loaded
+	var timer := get_timer()
+	var status_timer := get_status_timer()
+	if _generated:
+		timer.play()
+		status_timer.play()
+	else:
+		timer.pause()
+		status_timer.pause()
+
+
+func notify_unloaded() -> void:
+	unloaded.emit()
+	
+	get_timer().pause()
+	get_status_timer().pause()
 
 
 func get_cell_content_spawn_rate() -> float:

@@ -409,9 +409,6 @@ func _parse_line(line: String, owner: Variant, file_path: String) -> void:
 	var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
 	assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file_path])
 	
-	if owner is StageInstance:
-		pass
-	
 	_set_variant(owner, key, await await_resource(_parse_value(value)))
 
 

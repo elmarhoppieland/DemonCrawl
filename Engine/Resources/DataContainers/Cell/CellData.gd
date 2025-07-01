@@ -35,6 +35,7 @@ const Mode := Cell.Mode
 		var old := aura
 		aura = new_aura
 		if old:
+			old.notify_removed(self)
 			Effects.aura_remove(self, old)
 		emit_changed()
 # ==============================================================================
@@ -64,15 +65,16 @@ static func _import_packed_v(args: Array) -> CellData:
 	var mode := Mode.VISIBLE
 	var object: CellObject = null
 	var aura: Aura = null
+	var stage: StageInstance = null
 	for arg in args:
-		if arg == null:
-			continue
 		if arg is int:
 			mode = arg
 		elif arg is CellObject:
 			object = arg
 		elif arg is Aura:
 			aura = arg
+		elif arg is StageInstance:
+			stage = arg
 	
 	cell.mode = mode
 	cell.object = object
@@ -80,7 +82,15 @@ static func _import_packed_v(args: Array) -> CellData:
 	
 	var owner := Eternity.get_processing_owner()
 	if owner is StageInstance:
-		cell._stage_instance_weakref = weakref(owner)
+		if stage != null and stage != owner:
+			Debug.log_warning("A CellData object was created under a StageInstance, but a different StageInstance was provided in the constructor. Ignoring the argument...")
+		
+		stage = owner
+	
+	cell.set_stage_instance(stage)
+	
+	if aura:
+		stage.loaded.connect(aura.initialize_on_cell.bind(cell), CONNECT_ONE_SHOT)
 	
 	return cell
 
@@ -213,10 +223,17 @@ func move_object_to(cell: CellData) -> void:
 @warning_ignore("shadowed_variable")
 func apply_aura(aura: Variant) -> Aura:
 	self.aura = aura.new() if aura is Script else aura
+	self.aura.notify_applied(self)
 	if is_occupied():
 		object.notify_aura_applied()
 	Effects.aura_apply(self)
 	return self.aura
+
+
+func clear_aura() -> void:
+	self.aura = null
+	if is_occupied():
+		object.notify_aura_removed()
 
 
 func spawn(base: Script, visible_only: bool = true) -> CellObject:

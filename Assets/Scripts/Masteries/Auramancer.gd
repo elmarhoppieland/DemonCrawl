@@ -40,7 +40,7 @@ func _stage_generate(stage: StageInstance) -> void:
 		
 		picked.insert(picked.bsearch(idx), idx)
 		
-		cells[idx].apply_aura(DemonCrawl.get_full_registry().get_elemental_auras().pick_random().duplicate())
+		cells[idx].apply_aura(DemonCrawl.get_full_registry().auras.pick_random().duplicate())
 
 
 func _cell_second_interact(cell: CellData) -> void:
@@ -75,6 +75,8 @@ func _can_use_ability() -> bool:
 
 func apply_effect(aura: Aura) -> void:
 	match aura.get_script():
+		Sanctified:
+			Quest.get_current().get_stats().gain_souls(1, self)
 		Burning:
 			StageInstance.get_current().cells.filter(func(cell: CellData) -> bool:
 				return cell.is_occupied() and cell.is_hidden() and cell.object is Monster
@@ -83,6 +85,8 @@ func apply_effect(aura: Aura) -> void:
 
 func apply_repeated_effect(aura: Aura, repeats: int) -> void:
 	match aura.get_script():
+		Sanctified:
+			Quest.get_current().get_stats().gain_souls(repeats, self)
 		_:
 			for i in repeats:
 				apply_effect(aura)

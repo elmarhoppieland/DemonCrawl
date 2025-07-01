@@ -20,6 +20,11 @@ func _enter_tree() -> void:
 		Stage.get_current().play_music()
 
 
+func _exit_tree() -> void:
+	if Stage.has_current():
+		Stage.get_current().stop_music()
+
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
@@ -102,9 +107,12 @@ func _on_finish_button_pressed() -> void:
 	
 	await _finish_popup.popup()
 	
-	var stage := Stage.get_current()
+	var stage := StageInstance.get_current()
 	var quest := Quest.get_current()
-	quest.notify_stage_finished(stage)
+	stage.notify_unloaded()
+	quest.notify_stage_finished(stage.get_stage())
+	
+	stage.get_stage().stop_music()
 	
 	StageInstance.clear_current()
 	

@@ -292,8 +292,8 @@ func play_music() -> void:
 	_create_audio_players()
 	_start_audio_players()
 
-
 func stop_music() -> void:
+
 	for player in _audio_players:
 		player.stop()
 		player.queue_free()

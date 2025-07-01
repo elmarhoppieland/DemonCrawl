@@ -36,7 +36,7 @@ func _interact() -> void:
 	
 	var life := Effects.get_heart_value()
 	
-	get_stats().life_restore(life, self)
+	life = get_stats().life_restore(life, self)
 	get_cell().add_text_particle("+" + str(life), TextParticles.ColorPreset.LIFE)
 	tween_texture_to(GuiLayer.get_statbar().get_heart_position())
 	clear()

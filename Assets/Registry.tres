@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Registry" load_steps=29 format=3 uid="uid://dbtam61joj2mf"]
+[gd_resource type="Resource" script_class="Registry" load_steps=31 format=3 uid="uid://dbtam61joj2mf"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Auras/Burning.gd" id="1_08rg4"]
 [ext_resource type="Script" path="res://Engine/Resources/DataContainers/Registry.gd" id="1_8420k"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://caiig2eupe0vb" path="res://Assets/Quests/Casual/Casual.tres" id="1_srnaq"]
 [ext_resource type="Script" path="res://Assets/Scripts/Masteries/Survivor.gd" id="2_1wb4m"]
 [ext_resource type="Resource" uid="uid://c8r0jgj2jdnl" path="res://Assets/Quests/Normal/Normal.tres" id="2_chtep"]
+[ext_resource type="Script" path="res://Assets/Scripts/Auras/Sanctified.gd" id="2_whijf"]
 [ext_resource type="Script" path="res://Assets/Scripts/Masteries/Banker.gd" id="3_4a4vb"]
 [ext_resource type="Resource" uid="uid://im6g8j5omb54" path="res://Assets/Quests/Hard/Hard.tres" id="3_g8edj"]
 [ext_resource type="Script" path="res://Assets/Scripts/Masteries/Barbarian.gd" id="4_ck5np"]
@@ -20,6 +21,9 @@
 
 [sub_resource type="Resource" id="Resource_7wu6l"]
 script = ExtResource("1_08rg4")
+
+[sub_resource type="Resource" id="Resource_1x2gd"]
+script = ExtResource("2_whijf")
 
 [sub_resource type="Resource" id="Resource_brltj"]
 script = ExtResource("1_ekxos")
@@ -68,4 +72,4 @@ masteries = Array[Resource("res://Engine/Resources/DataContainers/Mastery/Master
 mastery_unlockers = Array[Resource("res://Engine/Resources/DataContainers/Mastery/MasteryUnlocker.gd")]([SubResource("Resource_sy2ts"), SubResource("Resource_3freg"), SubResource("Resource_gnp11"), SubResource("Resource_fy1ul"), SubResource("Resource_a4vyl")])
 difficulties = Array[Resource("res://Engine/Resources/DataContainers/Difficulty.gd")]([ExtResource("1_srnaq"), ExtResource("2_chtep"), ExtResource("3_g8edj")])
 token_shop_categories = Array[Resource("res://Engine/Resources/DataContainers/TokenShop/TokenShopCategoryBase.gd")]([ExtResource("13_0b80u"), ExtResource("14_ov03c")])
-auras = Array[Resource("res://Engine/Resources/HelperObjects/Aura.gd")]([SubResource("Resource_7wu6l")])
+auras = Array[Resource("res://Engine/Resources/HelperObjects/Aura.gd")]([SubResource("Resource_7wu6l"), SubResource("Resource_1x2gd")])
