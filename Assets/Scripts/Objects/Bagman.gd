@@ -8,7 +8,7 @@ class_name Bagman
 # ==============================================================================
 
 func _ready() -> void:
-	Effects.MutableSignals.damage.connect(_damage)
+	get_quest().get_stats().get_mutable_effects().damage.connect(_damage)
 
 
 func _spawn() -> void:
@@ -17,7 +17,7 @@ func _spawn() -> void:
 
 
 func _reset() -> void:
-	Effects.MutableSignals.damage.disconnect(_damage)
+	get_quest().get_stats().get_mutable_effects().damage.connect(_damage)
 
 
 func _damage(amount: int, source: Object) -> int:

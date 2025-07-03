@@ -7,12 +7,12 @@ func _apply(_cell: CellData) -> void:
 	Quest.get_current().get_attributes().morality += 1
 
 
-func _cell_load(cell: CellData) -> void:
-	Effects.MutableSignals.restore_life.connect(_restore_life.bind(cell))
+func _cell_init(cell: CellData) -> void:
+	Quest.get_current().get_stats().get_mutable_effects().life_restore.connect(_restore_life.bind(cell))
 
 
-func _cell_unload(cell: CellData) -> void:
-	Effects.MutableSignals.restore_life.disconnect(_restore_life.bind(cell))
+func _remove(cell: CellData) -> void:
+	Quest.get_current().get_stats().get_mutable_effects().life_restore.disconnect(_restore_life.bind(cell))
 
 
 func _get_modulate() -> Color:

@@ -99,6 +99,8 @@ grow_horizontal = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="ForegroundCanvas"]
 offset_left = 12.0
 offset_top = 16.0
+offset_right = 35.0
+offset_bottom = 171.0
 scale = Vector2(4, 4)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ForegroundCanvas/VBoxContainer"]
@@ -149,9 +151,9 @@ script = ExtResource("16_vj40o")
 
 [node name="StatusEffectList" parent="ForegroundCanvas/VBoxContainer" instance=ExtResource("15_fwvnx")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 3
 
 [node name="TweenerCanvas" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

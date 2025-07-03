@@ -221,12 +221,20 @@ func get_attributes() -> QuestPlayerAttributes:
 	return _player_attributes
 
 
-func set_mastery(value: Mastery) -> void:
+func set_mastery(mastery: Mastery) -> void:
 	if _mastery:
 		_mastery.quest = null
-	_mastery = value
-	if value:
-		value.quest = self
+		_mastery.notify_unequipped()
+	_mastery = mastery
+	if mastery:
+		mastery.quest = self
+		mastery.initialize_on_quest()
+
+
+func equip_mastery(mastery: Mastery) -> void:
+	set_mastery(mastery)
+	if mastery:
+		mastery.notify_equipped()
 
 
 func get_mastery() -> Mastery:

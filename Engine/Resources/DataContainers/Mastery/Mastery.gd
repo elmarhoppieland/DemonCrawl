@@ -46,6 +46,36 @@ func _quest_load() -> void:
 func _quest_unload() -> void:
 	pass
 
+
+## Initializes this [Mastery] on the selected [member quest].
+func initialize_on_quest() -> void:
+	_quest_init()
+
+
+## Virtual method. Called when this [Mastery] is loaded onto the [Quest].
+func _quest_init() -> void:
+	pass
+
+
+## Notifies this [Mastery] that it has been equipped on the selected [member quest].
+func notify_equipped() -> void:
+	_equip()
+
+
+## Virtual method. Called when this [Mastery] is equipped onto the [Quest].
+func _equip() -> void:
+	pass
+
+
+## Notifies this [Mastery] that it has been unequipped (removed) on the selected [member quest].
+func notify_unequipped() -> void:
+	_unequip()
+
+
+## Virtual method. Called when this [Mastery] is unequipped (removed) from the [Quest].
+func _unequip() -> void:
+	pass
+
 #endregion
 
 #region decription & visualization

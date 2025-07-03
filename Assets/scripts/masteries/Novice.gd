@@ -6,14 +6,20 @@ class_name Novice
 
 func _quest_load() -> void:
 	Effects.MutableSignals.change_score.connect(_change_score)
-	Effects.MutableSignals.damage.connect(_damage)
-	Effects.MutableSignals.death.connect(_death)
+
+
+func _quest_init() -> void:
+	quest.get_stats().get_mutable_effects().damage.connect(_damage)
+	quest.get_stats().get_mutable_effects().death.connect(_death)
 
 
 func _quest_unload() -> void:
 	Effects.MutableSignals.change_score.disconnect(_change_score)
-	Effects.MutableSignals.damage.disconnect(_damage)
-	Effects.Signals.death.disconnect(_death)
+
+
+func _unequip() -> void:
+	quest.get_stats().get_mutable_effects().damage.disconnect(_damage)
+	quest.get_stats().get_mutable_effects().death.disconnect(_death)
 
 
 func _change_score(value: int) -> int:
