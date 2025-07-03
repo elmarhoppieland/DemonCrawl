@@ -12,9 +12,9 @@ var cell: CellData
 # ==============================================================================
 
 func _enter_tree() -> void:
-	_instance = self
+	super()
 	
-	hide()
+	_instance = self
 
 
 func _exit_tree() -> void:

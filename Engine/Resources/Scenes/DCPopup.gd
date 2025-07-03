@@ -10,6 +10,11 @@ signal popup_shown()
 signal popup_hidden()
 # ==============================================================================
 
+func _enter_tree() -> void:
+	hide()
+	_popup_visible = false
+
+
 func _process(_delta: float) -> void:
 	if visible and _popup_visible and not _animation_player.is_playing() and Input.is_action_just_pressed("interact"):
 		popup_hide()
