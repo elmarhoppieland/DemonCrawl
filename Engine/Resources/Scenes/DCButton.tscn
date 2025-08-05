@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1v0qvvw8dwe0"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Scenes/DCButton.gd" id="1_0iwdg"]
-[ext_resource type="Texture2D" uid="uid://c7bnfk2x7amtj" path="res://Assets/Sprites/button.png" id="2_xca83"]
+[ext_resource type="Script" uid="uid://bjx6jiy1qh1x1" path="res://Engine/Resources/Scenes/DCButton.gd" id="1_0iwdg"]
+[ext_resource type="Texture2D" uid="uid://c7bnfk2x7amtj" path="res://Assets/sprites/button.png" id="2_xca83"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_15td2"]
 content_margin_left = 5.0

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=17 format=3 uid="uid://cicigaftl7qpj"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=18 format=3 uid="uid://cicigaftl7qpj"]
 
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_p4n6k"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="2_s5c0a"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="1_p4n6k"]
+[ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="2_s5c0a"]
+[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd" id="3_88fuc"]
 [ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://Assets/SpecialStages/Item Shop.tres" id="3_kv666"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/StageBase/StageBase.gd" id="4_8pk26"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://Engine/Resources/DataContainers/Stage/StageBase/StageBase.gd" id="4_8pk26"]
 [ext_resource type="Resource" uid="uid://b58ybksdysnl7" path="res://Assets/TokenShop/Upgrades/Q2 - Respite's End.tres" id="5_u05ok"]
 
 [sub_resource type="Texture2D" id="Texture2D_ah532"]
@@ -160,4 +161,4 @@ token_shop_purchase = ExtResource("5_u05ok")
 icon = SubResource("Texture2D_ah532")
 skip_unlock = false
 stages = Array[ExtResource("4_8pk26")]([SubResource("Resource_5387s"), SubResource("Resource_kvqxj"), SubResource("Resource_nrcjf"), SubResource("Resource_8u0ev"), SubResource("Resource_m124s"), SubResource("Resource_y85rx"), SubResource("Resource_qyh3i"), SubResource("Resource_ir8ee"), SubResource("Resource_o1x01"), SubResource("Resource_suxme")])
-special_stages = Array[Resource("res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd")]([ExtResource("3_kv666")])
+special_stages = Array[ExtResource("3_88fuc")]([ExtResource("3_kv666")])

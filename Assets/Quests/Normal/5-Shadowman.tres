@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=17 format=3 uid="uid://xvwdvsqap7uq"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=18 format=3 uid="uid://xvwdvsqap7uq"]
 
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_gio0p"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="2_qukv7"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="1_gio0p"]
+[ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="2_qukv7"]
+[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd" id="3_53dxn"]
 [ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://Assets/SpecialStages/Item Shop.tres" id="3_hu1kk"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/StageBase/StageBase.gd" id="4_27io0"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://Engine/Resources/DataContainers/Stage/StageBase/StageBase.gd" id="4_27io0"]
 [ext_resource type="Resource" uid="uid://jt0gtyhyhjkp" path="res://Assets/TokenShop/Upgrades/Q5 - Shadowman.tres" id="5_57whx"]
 
 [sub_resource type="Texture2D" id="Texture2D_bpcax"]
@@ -160,4 +161,4 @@ token_shop_purchase = ExtResource("5_57whx")
 icon = SubResource("Texture2D_bpcax")
 skip_unlock = false
 stages = Array[ExtResource("4_27io0")]([SubResource("Resource_8oyvu"), SubResource("Resource_rgivt"), SubResource("Resource_wpbqx"), SubResource("Resource_pp2ut"), SubResource("Resource_qwhsj"), SubResource("Resource_sww72"), SubResource("Resource_gqq0w"), SubResource("Resource_jh6r2"), SubResource("Resource_n4513"), SubResource("Resource_w03sx")])
-special_stages = Array[Resource("res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd")]([ExtResource("3_hu1kk")])
+special_stages = Array[ExtResource("3_53dxn")]([ExtResource("3_hu1kk")])

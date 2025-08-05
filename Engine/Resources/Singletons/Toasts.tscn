@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://na7oyge0vot4"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Singletons/Toasts.gd" id="1_l3kai"]
+[ext_resource type="Script" uid="uid://r6opnbvykuc2" path="res://Engine/Resources/Singletons/Toasts.gd" id="1_l3kai"]
 
 [node name="Toasts" type="CanvasLayer"]
 layer = 20

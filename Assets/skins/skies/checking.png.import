@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b772bp1iqa6gm"
-path="res://.godot/imported/checking.png-e8f822f6797e4a05cfdca9a7ecfb8af3.ctex"
+path="res://.godot/imported/checking.png-732b252b937c35b6b0971814415bdef0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/skies/checking.png"
-dest_files=["res://.godot/imported/checking.png-e8f822f6797e4a05cfdca9a7ecfb8af3.ctex"]
+source_file="res://Assets/skins/skies/checking.png"
+dest_files=["res://.godot/imported/checking.png-732b252b937c35b6b0971814415bdef0.ctex"]
 
 [params]
 

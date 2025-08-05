@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmmjehr3v50q2"
-path="res://.godot/imported/checking.png-e11f7d0313b64d3fbacaa93fc066c14d.ctex"
+path="res://.godot/imported/checking.png-afffedb999536bea45440c55645f5501.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/convoy/checking.png"
-dest_files=["res://.godot/imported/checking.png-e11f7d0313b64d3fbacaa93fc066c14d.ctex"]
+source_file="res://Assets/skins/convoy/checking.png"
+dest_files=["res://.godot/imported/checking.png-afffedb999536bea45440c55645f5501.ctex"]
 
 [params]
 

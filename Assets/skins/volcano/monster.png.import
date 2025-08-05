@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4gv54cp7lxkg"
-path="res://.godot/imported/monster.png-e8642a58c92610763479b7af58d13547.ctex"
+path="res://.godot/imported/monster.png-3011ec80ba63ca0099e60a61af1156cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/volcano/monster.png"
-dest_files=["res://.godot/imported/monster.png-e8642a58c92610763479b7af58d13547.ctex"]
+source_file="res://Assets/skins/volcano/monster.png"
+dest_files=["res://.godot/imported/monster.png-3011ec80ba63ca0099e60a61af1156cf.ctex"]
 
 [params]
 

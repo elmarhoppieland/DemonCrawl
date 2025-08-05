@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://v3wapvvbuaub"]
 
-[ext_resource type="Script" path="res://addons/EffectManager/PriorityGroupEditor.gd" id="1"]
+[ext_resource type="Script" uid="uid://dhfu6dplk3b5n" path="res://addons/EffectManager/PriorityGroupEditor.gd" id="1"]
 
 [node name="PriorityGroupEditor" type="PopupPanel"]
 title = "Edit Priority Group..."

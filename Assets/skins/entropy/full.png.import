@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0hk7uof7rv1s"
-path="res://.godot/imported/full.png-4b5213200da9094feaaaea0b683e78db.ctex"
+path="res://.godot/imported/full.png-fef9bee998313b11e0a9291641b81baf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/entropy/full.png"
-dest_files=["res://.godot/imported/full.png-4b5213200da9094feaaaea0b683e78db.ctex"]
+source_file="res://Assets/skins/entropy/full.png"
+dest_files=["res://.godot/imported/full.png-fef9bee998313b11e0a9291641b81baf.ctex"]
 
 [params]
 

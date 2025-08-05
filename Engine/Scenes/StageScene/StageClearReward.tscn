@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://dpq1vnwdb6sb0"]
 
-[ext_resource type="Script" path="res://Engine/Scenes/StageScene/StageClearReward.gd" id="1_ldqm5"]
-[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="2_qhlw7"]
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="3_bxsns"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_t24t8"]
+[ext_resource type="Script" uid="uid://dh6plq7jbdxb4" path="res://Engine/Scenes/StageScene/StageClearReward.gd" id="1_ldqm5"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="2_qhlw7"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="3_bxsns"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_t24t8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrrtb"]
 resource_local_to_scene = true
@@ -69,8 +69,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_78xsv"]
 _data = {
-"RESET": SubResource("Animation_66hrd"),
-"show": SubResource("Animation_6ynwr")
+&"RESET": SubResource("Animation_66hrd"),
+&"show": SubResource("Animation_6ynwr")
 }
 
 [node name="StageClearReward" type="Control"]

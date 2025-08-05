@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3jq1d7bc4cs8"
-path="res://.godot/imported/bg.png-8274c3caf5b56a09446721a7ba2f136e.ctex"
+path="res://.godot/imported/bg.png-98dd5f46363d226f0386ff2764d95520.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/salem/bg.png"
-dest_files=["res://.godot/imported/bg.png-8274c3caf5b56a09446721a7ba2f136e.ctex"]
+source_file="res://Assets/skins/salem/bg.png"
+dest_files=["res://.godot/imported/bg.png-98dd5f46363d226f0386ff2764d95520.ctex"]
 
 [params]
 

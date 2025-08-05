@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0ufqwywle2si"
-path="res://.godot/imported/flag_bg.png-fd27bacd8fe5dff839a96be2f801ac6c.ctex"
+path="res://.godot/imported/flag_bg.png-22c6db7c3c24100ea568cc78ab58dcde.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/entropy/flag_bg.png"
-dest_files=["res://.godot/imported/flag_bg.png-fd27bacd8fe5dff839a96be2f801ac6c.ctex"]
+source_file="res://Assets/skins/entropy/flag_bg.png"
+dest_files=["res://.godot/imported/flag_bg.png-22c6db7c3c24100ea568cc78ab58dcde.ctex"]
 
 [params]
 

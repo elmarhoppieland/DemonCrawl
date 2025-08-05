@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://euhju558vfxy"
-path="res://.godot/imported/empty.png-5dc603ef3a749541d9233c8443c04f65.ctex"
+path="res://.godot/imported/empty.png-b69edc9a1c498f07381c3e8254f2aaf6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/bloodway/empty.png"
-dest_files=["res://.godot/imported/empty.png-5dc603ef3a749541d9233c8443c04f65.ctex"]
+source_file="res://Assets/skins/bloodway/empty.png"
+dest_files=["res://.godot/imported/empty.png-b69edc9a1c498f07381c3e8254f2aaf6.ctex"]
 
 [params]
 

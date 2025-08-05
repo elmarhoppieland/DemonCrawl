@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://cf6pwvend36k4"]
 
-[ext_resource type="Script" path="res://Engine/Scenes/SpecialStages/ItemShopStage.gd" id="1_3moa5"]
+[ext_resource type="Script" uid="uid://dlk23qy0u2xwh" path="res://Engine/Scenes/SpecialStages/ItemShopStage.gd" id="1_3moa5"]
 [ext_resource type="Texture2D" uid="uid://bgg7dvorx22m1" path="res://Assets/Backgrounds/item_shop.png" id="1_hllyk"]
-[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="2_7h07o"]
-[ext_resource type="Shader" path="res://Engine/Scenes/SpecialStages/Item Shop.gdshader" id="4_6l62f"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="2_7h07o"]
+[ext_resource type="Shader" uid="uid://dg3b7w8v3tf2r" path="res://Engine/Scenes/SpecialStages/Item Shop.gdshader" id="4_6l62f"]
 [ext_resource type="PackedScene" uid="uid://d1v0qvvw8dwe0" path="res://Engine/Resources/Scenes/DCButton.tscn" id="5_3qi0c"]
-[ext_resource type="Texture2D" uid="uid://cq175wtkgma0r" path="res://Assets/Sprites/item_shop_present_logo.png" id="5_gc6dr"]
+[ext_resource type="Texture2D" uid="uid://cq175wtkgma0r" path="res://Assets/sprites/item_shop_present_logo.png" id="5_gc6dr"]
 [ext_resource type="PackedScene" uid="uid://bqgqlnp8nk2x2" path="res://Engine/Resources/Scenes/Statbar.tscn" id="6_4cftb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g72nf"]

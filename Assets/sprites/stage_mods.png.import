@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bcb8tob5ubxrk"
-path="res://.godot/imported/stage_mods.png-e75d11b0dc3e542b7e8b92913d611ca3.ctex"
+path="res://.godot/imported/stage_mods.png-6e97a2b2470339ef5ab2ba050d4c9888.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/stage_mods.png"
-dest_files=["res://.godot/imported/stage_mods.png-e75d11b0dc3e542b7e8b92913d611ca3.ctex"]
+source_file="res://Assets/sprites/stage_mods.png"
+dest_files=["res://.godot/imported/stage_mods.png-6e97a2b2470339ef5ab2ba050d4c9888.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bxbgx1thrn23e"
-path="res://.godot/imported/flag_bg.png-d81f79528842c3557871896509ffc92e.ctex"
+path="res://.godot/imported/flag_bg.png-ce8626b580d7f7c1b8e769367fd27675.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/dungeon/flag_bg.png"
-dest_files=["res://.godot/imported/flag_bg.png-d81f79528842c3557871896509ffc92e.ctex"]
+source_file="res://Assets/skins/dungeon/flag_bg.png"
+dest_files=["res://.godot/imported/flag_bg.png-ce8626b580d7f7c1b8e769367fd27675.ctex"]
 
 [params]
 

@@ -1,20 +1,20 @@
 [gd_scene load_steps=26 format=3 uid="uid://c223d84jnw2lw"]
 
 [ext_resource type="Texture2D" uid="uid://cdpd806yu8ood" path="res://Assets/Backgrounds/quests.png" id="1_7r2xj"]
-[ext_resource type="Script" path="res://Engine/Scenes/QuestSelect/QuestSelect.gd" id="1_46gki"]
+[ext_resource type="Script" uid="uid://cholpb2sv88kc" path="res://Engine/Scenes/QuestSelect/QuestSelect.gd" id="1_46gki"]
 [ext_resource type="Texture2D" uid="uid://05l8sgif4un2" path="res://Assets/Backgrounds/quests_fg.png" id="2_5ggq1"]
-[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="3_y3u8k"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="3_y3u8k"]
 [ext_resource type="PackedScene" uid="uid://cs4xjk311kxho" path="res://Engine/Scenes/QuestSelect/QuestsOverview.tscn" id="4_6l8m7"]
-[ext_resource type="Shader" path="res://Engine/Scenes/QuestSelect/BackgroundLine.gdshader" id="5_nkaui"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/BackButton.gd" id="6_aslko"]
-[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="7_2rtrq"]
+[ext_resource type="Shader" uid="uid://50cnnobypta" path="res://Engine/Scenes/QuestSelect/BackgroundLine.gdshader" id="5_nkaui"]
+[ext_resource type="Script" uid="uid://df5pxf6x3qkqw" path="res://Engine/Resources/UtilityNode/BackButton.gd" id="6_aslko"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="7_2rtrq"]
 [ext_resource type="PackedScene" uid="uid://di6wvg6vsnpk6" path="res://Engine/Scenes/QuestSelect/QuestSelectStatbar.tscn" id="12_0mlav"]
 [ext_resource type="PackedScene" uid="uid://ckftsugq2vfat" path="res://Engine/Scenes/QuestSelect/EditEquipment.tscn" id="15_e1val"]
-[ext_resource type="Texture2D" uid="uid://co7maglvq1akc" path="res://Assets/Sprites/finish_bg.png" id="20_002ai"]
+[ext_resource type="Texture2D" uid="uid://co7maglvq1akc" path="res://Assets/sprites/finish_bg.png" id="20_002ai"]
 [ext_resource type="Material" uid="uid://dk24wtqiv26r5" path="res://Engine/Resources/moving_bg.tres" id="20_g7kal"]
-[ext_resource type="Texture2D" uid="uid://cokabceyaajw6" path="res://Assets/Sprites/begin_fg.png" id="22_3ssya"]
-[ext_resource type="Texture2D" uid="uid://cb841dg7jgt5x" path="res://Assets/Sprites/begin_fg_pressed.png" id="23_1rhh3"]
-[ext_resource type="Texture2D" uid="uid://bh4ddbqxe12na" path="res://Assets/Sprites/begin_fg_hover.png" id="23_05vpt"]
+[ext_resource type="Texture2D" uid="uid://cokabceyaajw6" path="res://Assets/sprites/begin_fg.png" id="22_3ssya"]
+[ext_resource type="Texture2D" uid="uid://cb841dg7jgt5x" path="res://Assets/sprites/begin_fg_pressed.png" id="23_1rhh3"]
+[ext_resource type="Texture2D" uid="uid://bh4ddbqxe12na" path="res://Assets/sprites/begin_fg_hover.png" id="23_05vpt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y818d"]
 font = ExtResource("3_y3u8k")
@@ -383,9 +383,9 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f4j6h"]
 _data = {
-"RESET": SubResource("Animation_2dwr6"),
-"equipment_edit": SubResource("Animation_mi1jm"),
-"equipment_edit_back": SubResource("Animation_ck28q")
+&"RESET": SubResource("Animation_2dwr6"),
+&"equipment_edit": SubResource("Animation_mi1jm"),
+&"equipment_edit_back": SubResource("Animation_ck28q")
 }
 
 [node name="QuestSelect" type="Control"]

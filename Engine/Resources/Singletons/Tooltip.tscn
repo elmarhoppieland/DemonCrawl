@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dy7h614yc7ptg"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Singletons/Tooltip.gd" id="1_errb6"]
-[ext_resource type="Texture2D" uid="uid://bvlywjjg0tpt1" path="res://Assets/Sprites/tooltip_bg.png" id="1_yrkkl"]
+[ext_resource type="Script" uid="uid://bjsw7yj8ahomy" path="res://Engine/Resources/Singletons/Tooltip.gd" id="1_errb6"]
+[ext_resource type="Texture2D" uid="uid://bvlywjjg0tpt1" path="res://Assets/sprites/tooltip_bg.png" id="1_yrkkl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4aptq"]
 content_margin_left = 5.0
@@ -87,9 +87,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sg3rk"]
 _data = {
-"RESET": SubResource("Animation_6s100"),
-"hide": SubResource("Animation_1uf60"),
-"show": SubResource("Animation_bxy1y")
+&"RESET": SubResource("Animation_6s100"),
+&"hide": SubResource("Animation_1uf60"),
+&"show": SubResource("Animation_bxy1y")
 }
 
 [node name="Tooltip" type="CanvasLayer"]

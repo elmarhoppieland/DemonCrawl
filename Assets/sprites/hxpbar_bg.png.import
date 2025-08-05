@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crx85kipjfvqw"
-path="res://.godot/imported/hxpbar_bg.png-1f6b2d2b64308f90cfff62f7fc817f6c.ctex"
+path="res://.godot/imported/hxpbar_bg.png-4181f6e1fe349ee826d4e0fc280998af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/hxpbar_bg.png"
-dest_files=["res://.godot/imported/hxpbar_bg.png-1f6b2d2b64308f90cfff62f7fc817f6c.ctex"]
+source_file="res://Assets/sprites/hxpbar_bg.png"
+dest_files=["res://.godot/imported/hxpbar_bg.png-4181f6e1fe349ee826d4e0fc280998af.ctex"]
 
 [params]
 

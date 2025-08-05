@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://db1krtggvj6tl"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Scenes/Stats.gd" id="1_javti"]
-[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="1_q2c8v"]
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="2_qx04j"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_i7qnt"]
+[ext_resource type="Script" uid="uid://dkhp6ha2mykik" path="res://Engine/Resources/Scenes/Stats.gd" id="1_javti"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="1_q2c8v"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="2_qx04j"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_i7qnt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m4dh1"]
 atlas = ExtResource("1_q2c8v")
@@ -93,8 +93,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gmjjv"]
 _data = {
-"RESET": SubResource("Animation_ofpkn"),
-"coin_gain": SubResource("Animation_011nx")
+&"RESET": SubResource("Animation_ofpkn"),
+&"coin_gain": SubResource("Animation_011nx")
 }
 
 [node name="Stats" type="MarginContainer"]

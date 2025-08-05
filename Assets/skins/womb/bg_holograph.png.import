@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://uctofcqegs15"
-path="res://.godot/imported/bg_holograph.png-be09fb182eed9fe06343d3001b5764fa.ctex"
+path="res://.godot/imported/bg_holograph.png-99b079ae96df34ce37973ab38b4564b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/womb/bg_holograph.png"
-dest_files=["res://.godot/imported/bg_holograph.png-be09fb182eed9fe06343d3001b5764fa.ctex"]
+source_file="res://Assets/skins/womb/bg_holograph.png"
+dest_files=["res://.godot/imported/bg_holograph.png-99b079ae96df34ce37973ab38b4564b9.ctex"]
 
 [params]
 

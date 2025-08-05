@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://l26wus4d320"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Scenes/QuestMastery.gd" id="1_yfm4h"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="2_uxhc0"]
-[ext_resource type="Shader" path="res://Engine/Resources/Scenes/CollectibleTexture.gdshader" id="8_7q17g"]
+[ext_resource type="Script" uid="uid://cfr747xc3ca41" path="res://Engine/Resources/Scenes/QuestMastery.gd" id="1_yfm4h"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="2_uxhc0"]
+[ext_resource type="Shader" uid="uid://bkn3o0cujs67t" path="res://Engine/Resources/Scenes/CollectibleTexture.gdshader" id="8_7q17g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pypo4"]
 shader = ExtResource("8_7q17g")

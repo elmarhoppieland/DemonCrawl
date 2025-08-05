@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://by6uf71damaay"
-path="res://.godot/imported/full.png-8d00a4a7d63ba9eade6698b17e8321ab.ctex"
+path="res://.godot/imported/full.png-390db2e32fbdd44b3986decbc79cc67e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/mountain/full.png"
-dest_files=["res://.godot/imported/full.png-8d00a4a7d63ba9eade6698b17e8321ab.ctex"]
+source_file="res://Assets/skins/mountain/full.png"
+dest_files=["res://.godot/imported/full.png-390db2e32fbdd44b3986decbc79cc67e.ctex"]
 
 [params]
 

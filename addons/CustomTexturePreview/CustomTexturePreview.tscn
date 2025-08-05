@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bibx36r3yoaad"]
 
-[ext_resource type="Script" path="res://addons/CustomTexturePreview/CustomTexturePreview.gd" id="1_ir4lm"]
+[ext_resource type="Script" uid="uid://ckbx7u1ehyd6m" path="res://addons/CustomTexturePreview/CustomTexturePreview.gd" id="1_ir4lm"]
 
 [node name="CustomTexturePreview" type="Control"]
 texture_filter = 1

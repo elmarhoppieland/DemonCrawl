@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://d3fpf8gbjxsbx"]
 
-[ext_resource type="Texture2D" uid="uid://bjyk0v2cs40fy" path="res://Assets/Sprites/shop_coin.png" id="1_ag3je"]
-[ext_resource type="Script" path="res://Engine/Resources/Scenes/CoinValue.gd" id="1_og3kn"]
-[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="2_dc386"]
+[ext_resource type="Texture2D" uid="uid://bjyk0v2cs40fy" path="res://Assets/sprites/shop_coin.png" id="1_ag3je"]
+[ext_resource type="Script" uid="uid://cbpc3674hpbf8" path="res://Engine/Resources/Scenes/CoinValue.gd" id="1_og3kn"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="2_dc386"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qyn01"]
 resource_local_to_scene = true

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvjyr5pdp5hfc"
-path="res://.godot/imported/full.png-869a7be0581cbc15946a1849e6d2cd95.ctex"
+path="res://.godot/imported/full.png-1498c283c1c6ff2a24553cd7f4be9176.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/lagoon/full.png"
-dest_files=["res://.godot/imported/full.png-869a7be0581cbc15946a1849e6d2cd95.ctex"]
+source_file="res://Assets/skins/lagoon/full.png"
+dest_files=["res://.godot/imported/full.png-1498c283c1c6ff2a24553cd7f4be9176.ctex"]
 
 [params]
 

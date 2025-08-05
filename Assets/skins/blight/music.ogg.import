@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://muinaugpys1d"
-path="res://.godot/imported/music.ogg-cdbc2f9a280241c038b8619c4b298fdd.oggvorbisstr"
+path="res://.godot/imported/music.ogg-6f263bbbab2154d06c55d9da5e18bb88.oggvorbisstr"
 
 [deps]
 
-source_file="res://Assets/Skins/blight/music.ogg"
-dest_files=["res://.godot/imported/music.ogg-cdbc2f9a280241c038b8619c4b298fdd.oggvorbisstr"]
+source_file="res://Assets/skins/blight/music.ogg"
+dest_files=["res://.godot/imported/music.ogg-6f263bbbab2154d06c55d9da5e18bb88.oggvorbisstr"]
 
 [params]
 

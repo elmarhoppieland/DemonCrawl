@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://blkfq3rsl3dag"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Scenes/StatusEffectDisplay.gd" id="1_cw27g"]
+[ext_resource type="Script" uid="uid://cetyk65vjtuji" path="res://Engine/Resources/Scenes/StatusEffectDisplay.gd" id="1_cw27g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eyao0"]
 resource_local_to_scene = true

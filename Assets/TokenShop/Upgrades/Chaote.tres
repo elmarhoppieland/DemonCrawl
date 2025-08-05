@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="TokenShopLevelItem" load_steps=6 format=3 uid="uid://bd7wb2gtc0c4f"]
+[gd_resource type="Resource" script_class="TokenShopLevelItem" load_steps=7 format=3 uid="uid://bd7wb2gtc0c4f"]
 
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_hmava"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Condition/FlagCondition.gd" id="4_gxhro"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopLevelItem.gd" id="5_nf2mm"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="1_hmava"]
+[ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://Engine/Resources/DataContainers/Condition/Condition.gd" id="1_iba6r"]
+[ext_resource type="Script" uid="uid://ddeq2y3c5x2gj" path="res://Engine/Resources/DataContainers/Condition/FlagCondition.gd" id="4_gxhro"]
+[ext_resource type="Script" uid="uid://ba12xyhtl3546" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopLevelItem.gd" id="5_nf2mm"]
 
 [sub_resource type="Texture2D" id="Texture2D_nhp6q"]
 resource_local_to_scene = false
@@ -21,36 +22,36 @@ Base/name = "TOKEN_SHOP_UPGRADE_CHAOTE"
 Base/description = "TOKEN_SHOP_UPGRADE_CHAOTE_DESCRIPTION"
 Base/icon = SubResource("Texture2D_nhp6q")
 Base/cost = 0
-Base/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
-Base/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_14rhc")])
+Base/conditions = Array[ExtResource("1_iba6r")]([])
+Base/unlock_conditions = Array[ExtResource("1_iba6r")]([SubResource("Resource_14rhc")])
 level_count = 5
 level_0/name = "TOKEN_SHOP_UPGRADE_CHAOTE"
 level_0/description = "TOKEN_SHOP_UPGRADE_CHAOTE_DESCRIPTION"
 level_0/icon = SubResource("Texture2D_nhp6q")
 level_0/cost = 50
-level_0/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
-level_0/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_14rhc")])
+level_0/conditions = Array[ExtResource("1_iba6r")]([])
+level_0/unlock_conditions = Array[ExtResource("1_iba6r")]([SubResource("Resource_14rhc")])
 level_1/name = "TOKEN_SHOP_UPGRADE_CHAOTE"
 level_1/description = "TOKEN_SHOP_UPGRADE_CHAOTE_DESCRIPTION"
 level_1/icon = SubResource("Texture2D_nhp6q")
 level_1/cost = 100
-level_1/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
-level_1/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_14rhc")])
+level_1/conditions = Array[ExtResource("1_iba6r")]([])
+level_1/unlock_conditions = Array[ExtResource("1_iba6r")]([SubResource("Resource_14rhc")])
 level_2/name = "TOKEN_SHOP_UPGRADE_CHAOTE"
 level_2/description = "TOKEN_SHOP_UPGRADE_CHAOTE_DESCRIPTION"
 level_2/icon = SubResource("Texture2D_nhp6q")
 level_2/cost = 200
-level_2/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
-level_2/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_14rhc")])
+level_2/conditions = Array[ExtResource("1_iba6r")]([])
+level_2/unlock_conditions = Array[ExtResource("1_iba6r")]([SubResource("Resource_14rhc")])
 level_3/name = "TOKEN_SHOP_UPGRADE_CHAOTE"
 level_3/description = "TOKEN_SHOP_UPGRADE_CHAOTE_DESCRIPTION"
 level_3/icon = SubResource("Texture2D_nhp6q")
 level_3/cost = 500
-level_3/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
-level_3/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_14rhc")])
+level_3/conditions = Array[ExtResource("1_iba6r")]([])
+level_3/unlock_conditions = Array[ExtResource("1_iba6r")]([SubResource("Resource_14rhc")])
 level_4/name = "TOKEN_SHOP_UPGRADE_CHAOTE"
 level_4/description = "TOKEN_SHOP_UPGRADE_CHAOTE_DESCRIPTION"
 level_4/icon = SubResource("Texture2D_nhp6q")
 level_4/cost = 1000
-level_4/conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
-level_4/unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_14rhc")])
+level_4/conditions = Array[ExtResource("1_iba6r")]([])
+level_4/unlock_conditions = Array[ExtResource("1_iba6r")]([SubResource("Resource_14rhc")])

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drewhvnb06p0k"
-path="res://.godot/imported/finish_fg_hovered.png-dd3879e073c9965e2760787ae517c852.ctex"
+path="res://.godot/imported/finish_fg_hovered.png-fa2b8e575aeef34472eac350ed736604.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/finish_fg_hovered.png"
-dest_files=["res://.godot/imported/finish_fg_hovered.png-dd3879e073c9965e2760787ae517c852.ctex"]
+source_file="res://Assets/sprites/finish_fg_hovered.png"
+dest_files=["res://.godot/imported/finish_fg_hovered.png-fa2b8e575aeef34472eac350ed736604.ctex"]
 
 [params]
 

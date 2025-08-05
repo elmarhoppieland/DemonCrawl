@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://kwco715ga5g0"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Scenes/LargeCollectibleDisplay.gd" id="1_mhrok"]
+[ext_resource type="Script" uid="uid://b2o6vxxglfsfr" path="res://Engine/Resources/Scenes/LargeCollectibleDisplay.gd" id="1_mhrok"]
 [ext_resource type="PackedScene" uid="uid://dppdeqskdv8hc" path="res://Engine/Resources/Scenes/CollectibleDisplay.tscn" id="2_iebip"]
 [ext_resource type="PackedScene" uid="uid://d3fpf8gbjxsbx" path="res://Engine/Resources/Scenes/CoinValue.tscn" id="3_milrp"]
 

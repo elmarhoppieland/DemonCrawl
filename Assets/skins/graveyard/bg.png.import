@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://co0bmb3vg6u0q"
-path="res://.godot/imported/bg.png-5144aedc1eba194eb0dfbecb1912bae9.ctex"
+path="res://.godot/imported/bg.png-1c85c7d2f5235b32327a983214d94b31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/graveyard/bg.png"
-dest_files=["res://.godot/imported/bg.png-5144aedc1eba194eb0dfbecb1912bae9.ctex"]
+source_file="res://Assets/skins/graveyard/bg.png"
+dest_files=["res://.godot/imported/bg.png-1c85c7d2f5235b32327a983214d94b31.ctex"]
 
 [params]
 

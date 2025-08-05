@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dppdeqskdv8hc"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Scenes/CollectibleDisplay.gd" id="1_mhrok"]
-[ext_resource type="Texture2D" uid="uid://cfevdrefpiq4l" path="res://Assets/Items/Lyre.tres" id="2_mx77s"]
-[ext_resource type="Shader" path="res://Engine/Resources/Scenes/CollectibleTexture.gdshader" id="3_g7q54"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_qke8a"]
+[ext_resource type="Script" uid="uid://cx3bhmrancadt" path="res://Engine/Resources/Scenes/CollectibleDisplay.gd" id="1_mhrok"]
+[ext_resource type="Texture2D" uid="uid://cfevdrefpiq4l" path="res://Assets/items/Lyre.tres" id="2_mx77s"]
+[ext_resource type="Shader" uid="uid://bkn3o0cujs67t" path="res://Engine/Resources/Scenes/CollectibleTexture.gdshader" id="3_g7q54"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_qke8a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0nv3h"]
 resource_local_to_scene = true

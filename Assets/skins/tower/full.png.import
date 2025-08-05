@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://yddsd261sc1a"
-path="res://.godot/imported/full.png-2804b9b0c1a453fab024d0d2c552e7b6.ctex"
+path="res://.godot/imported/full.png-6310cb725ec306537c0d45bb56bb2922.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/tower/full.png"
-dest_files=["res://.godot/imported/full.png-2804b9b0c1a453fab024d0d2c552e7b6.ctex"]
+source_file="res://Assets/skins/tower/full.png"
+dest_files=["res://.godot/imported/full.png-6310cb725ec306537c0d45bb56bb2922.ctex"]
 
 [params]
 

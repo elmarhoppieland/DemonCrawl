@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ke1c1gq0i3bm"
-path="res://.godot/imported/full.png-81707ad5b1fa25679513c8ff51f1bc5e.ctex"
+path="res://.godot/imported/full.png-848db73e701bb90fe0cf60306e747e6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/tribe/full.png"
-dest_files=["res://.godot/imported/full.png-81707ad5b1fa25679513c8ff51f1bc5e.ctex"]
+source_file="res://Assets/skins/tribe/full.png"
+dest_files=["res://.godot/imported/full.png-848db73e701bb90fe0cf60306e747e6b.ctex"]
 
 [params]
 

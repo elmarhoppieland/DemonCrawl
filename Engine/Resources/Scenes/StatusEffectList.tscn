@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://8qlat3a8vvtm"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Scenes/StatusEffectList.gd" id="1_prycg"]
+[ext_resource type="Script" uid="uid://c47u35d5aso3r" path="res://Engine/Resources/Scenes/StatusEffectList.gd" id="1_prycg"]
 
 [node name="StatusEffectList" type="Control"]
 clip_contents = true

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://i7mwg7v0aim7"
-path="res://.godot/imported/full.png-56f6220e2b592e35df4b32a45c25703f.ctex"
+path="res://.godot/imported/full.png-e5e6ce93b2276b416f1675e97814884c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/blight/full.png"
-dest_files=["res://.godot/imported/full.png-56f6220e2b592e35df4b32a45c25703f.ctex"]
+source_file="res://Assets/skins/blight/full.png"
+dest_files=["res://.godot/imported/full.png-e5e6ce93b2276b416f1675e97814884c.ctex"]
 
 [params]
 

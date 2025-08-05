@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqk4d6ln4ylsw"
-path="res://.godot/imported/bg.png-b33618e6034444b191b1065ccd31615b.ctex"
+path="res://.godot/imported/bg.png-0d82cf410d430315c391bc3b80340f3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/storm/bg.png"
-dest_files=["res://.godot/imported/bg.png-b33618e6034444b191b1065ccd31615b.ctex"]
+source_file="res://Assets/skins/storm/bg.png"
+dest_files=["res://.godot/imported/bg.png-0d82cf410d430315c391bc3b80340f3c.ctex"]
 
 [params]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c1sxicooe0q4c"]
 
 [ext_resource type="PackedScene" uid="uid://dhymmrd8j6du3" path="res://Engine/Resources/Scenes/DCPopup.tscn" id="1_iin5w"]
-[ext_resource type="Script" path="res://Engine/Resources/Singletons/MasteryAchievedPopup.gd" id="2_1c2e2"]
-[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="3_wuen5"]
+[ext_resource type="Script" uid="uid://bw6y1ekoixlwm" path="res://Engine/Resources/Singletons/MasteryAchievedPopup.gd" id="2_1c2e2"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="3_wuen5"]
 [ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://Engine/Resources/Scenes/LargeCollectibleDisplay.tscn" id="4_wc757"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7aahr"]

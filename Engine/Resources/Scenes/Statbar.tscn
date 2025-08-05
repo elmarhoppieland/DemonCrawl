@@ -1,16 +1,16 @@
 [gd_scene load_steps=21 format=3 uid="uid://bqgqlnp8nk2x2"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Scenes/Statbar.gd" id="1_nycng"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/Avatar.gd" id="2_kk3qc"]
+[ext_resource type="Script" uid="uid://d1iul338ly6s" path="res://Engine/Resources/Scenes/Statbar.gd" id="1_nycng"]
+[ext_resource type="Script" uid="uid://d16rb2jruql4e" path="res://Engine/Resources/UtilityNode/Avatar.gd" id="2_kk3qc"]
 [ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Engine/Resources/UtilityNode/Avatar_atlas.tres" id="2_kuo8t"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_gcjxo"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_gcjxo"]
 [ext_resource type="PackedScene" uid="uid://l26wus4d320" path="res://Engine/Resources/Scenes/QuestMastery.tscn" id="5_upqp3"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/XPBar.gd" id="6_fmgjo"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/ProfileNameLabel.gd" id="7_8d5yt"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/ProfileLevelLabel.gd" id="8_flfi7"]
-[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="9_15a5f"]
+[ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://Engine/Resources/UtilityNode/XPBar.gd" id="6_fmgjo"]
+[ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://Engine/Resources/UtilityNode/ProfileNameLabel.gd" id="7_8d5yt"]
+[ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://Engine/Resources/UtilityNode/ProfileLevelLabel.gd" id="8_flfi7"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="9_15a5f"]
 [ext_resource type="PackedScene" uid="uid://db1krtggvj6tl" path="res://Engine/Resources/Scenes/Stats.tscn" id="9_eg8cx"]
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="10_0f8tq"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="10_0f8tq"]
 [ext_resource type="PackedScene" uid="uid://qyb7vtjc4d6o" path="res://Engine/Resources/Scenes/HeirloomDisplay.tscn" id="10_j6p5i"]
 [ext_resource type="PackedScene" uid="uid://bl07eret4ujpn" path="res://Engine/Resources/Scenes/Inventory.tscn" id="15_6x8ea"]
 
@@ -119,8 +119,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sehu4"]
 _data = {
-"RESET": SubResource("Animation_gc0rt"),
-"inventory_show": SubResource("Animation_tuys5")
+&"RESET": SubResource("Animation_gc0rt"),
+&"inventory_show": SubResource("Animation_tuys5")
 }
 
 [node name="Statbar" type="MarginContainer"]

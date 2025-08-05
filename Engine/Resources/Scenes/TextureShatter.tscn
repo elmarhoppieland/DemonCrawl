@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cn8gaau2ecden"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Scenes/TextureShatter.gd" id="1_4xgnv"]
+[ext_resource type="Script" uid="uid://bf2w6tilswfru" path="res://Engine/Resources/Scenes/TextureShatter.gd" id="1_4xgnv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dsvwj"]
 particles_animation = true

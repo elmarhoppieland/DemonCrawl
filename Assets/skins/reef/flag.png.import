@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmgwbf3kykxx1"
-path="res://.godot/imported/flag.png-48e2d0112a9df537fa405b36e0fb532a.ctex"
+path="res://.godot/imported/flag.png-d5d6266046a175cde2889c4a775a8d62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/reef/flag.png"
-dest_files=["res://.godot/imported/flag.png-48e2d0112a9df537fa405b36e0fb532a.ctex"]
+source_file="res://Assets/skins/reef/flag.png"
+dest_files=["res://.godot/imported/flag.png-d5d6266046a175cde2889c4a775a8d62.ctex"]
 
 [params]
 

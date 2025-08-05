@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh8p6aw2syxn"
-path="res://.godot/imported/HungryPlant.png-47ed8d247e39093cd57dc04c4d0c69d7.ctex"
+path="res://.godot/imported/HungryPlant.png-339f0fed2ba8bfde042d183495519daf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Strangers/HungryPlant.png"
-dest_files=["res://.godot/imported/HungryPlant.png-47ed8d247e39093cd57dc04c4d0c69d7.ctex"]
+source_file="res://Assets/sprites/strangers/HungryPlant.png"
+dest_files=["res://.godot/imported/HungryPlant.png-339f0fed2ba8bfde042d183495519daf.ctex"]
 
 [params]
 

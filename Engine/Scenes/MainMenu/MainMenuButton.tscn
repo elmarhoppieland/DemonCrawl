@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dpbvhpo6h1cog"]
 
-[ext_resource type="Script" path="res://Engine/Scenes/MainMenu/MainMenuButton.gd" id="1_1rfl1"]
+[ext_resource type="Script" uid="uid://b27a48kb8s2lv" path="res://Engine/Scenes/MainMenu/MainMenuButton.gd" id="1_1rfl1"]
 
 [node name="MarginContainer" type="MarginContainer"]
 custom_minimum_size = Vector2(16, 16)

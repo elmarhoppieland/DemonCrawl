@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="TokenShopItem" load_steps=9 format=3 uid="uid://b4u12ujiinmqe"]
+[gd_resource type="Resource" script_class="TokenShopItem" load_steps=10 format=3 uid="uid://b4u12ujiinmqe"]
 
+[ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://Engine/Resources/DataContainers/Condition/Condition.gd" id="1_2gogk"]
 [ext_resource type="Resource" uid="uid://ct4h3rpvny7ve" path="res://Assets/Quests/Hard/1-Glory Days.tres" id="1_gq6cg"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Condition/QuestCompleteCondition.gd" id="2_kgwqy"]
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="3_qujs5"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopItem.gd" id="4_a50dv"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Condition/FlagCondition.gd" id="5_jyhd1"]
+[ext_resource type="Script" uid="uid://dgc5yi6lu6u70" path="res://Engine/Resources/DataContainers/Condition/QuestCompleteCondition.gd" id="2_kgwqy"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="3_qujs5"]
+[ext_resource type="Script" uid="uid://c2jr3se2cjy15" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopItem.gd" id="4_a50dv"]
+[ext_resource type="Script" uid="uid://ddeq2y3c5x2gj" path="res://Engine/Resources/DataContainers/Condition/FlagCondition.gd" id="5_jyhd1"]
 
 [sub_resource type="Resource" id="Resource_6fwrc"]
 script = ExtResource("2_kgwqy")
@@ -27,5 +28,5 @@ name = "QUEST_RESPITES_END"
 description = "QUEST_UNLOCK_RESPITES_END"
 icon = SubResource("Texture2D_not6g")
 cost = 3
-conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_6fwrc")])
-unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_0xp88")])
+conditions = Array[ExtResource("1_2gogk")]([SubResource("Resource_6fwrc")])
+unlock_conditions = Array[ExtResource("1_2gogk")]([SubResource("Resource_0xp88")])

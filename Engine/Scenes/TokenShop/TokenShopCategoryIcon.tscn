@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwse66eo4god5"]
 
-[ext_resource type="Script" path="res://Engine/Scenes/TokenShop/TokenShopCategoryIcon.gd" id="1_rm7s6"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/FocusGrabber.gd" id="2_abnkn"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="3_j82o3"]
+[ext_resource type="Script" uid="uid://c6sym3fnkcxkb" path="res://Engine/Scenes/TokenShop/TokenShopCategoryIcon.gd" id="1_rm7s6"]
+[ext_resource type="Script" uid="uid://631a8dlwe7ms" path="res://Engine/Resources/UtilityNode/FocusGrabber.gd" id="2_abnkn"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="3_j82o3"]
 
 [node name="TokenShopCategoryIcon" type="TextureRect"]
 anchors_preset = 15

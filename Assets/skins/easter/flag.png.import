@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhqcoq5tqxd4n"
-path="res://.godot/imported/flag.png-88b6a1fd0990ee2b1d504144e88714f9.ctex"
+path="res://.godot/imported/flag.png-e6df0600af72a239d961633fcbfc7439.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/easter/flag.png"
-dest_files=["res://.godot/imported/flag.png-88b6a1fd0990ee2b1d504144e88714f9.ctex"]
+source_file="res://Assets/skins/easter/flag.png"
+dest_files=["res://.godot/imported/flag.png-e6df0600af72a239d961633fcbfc7439.ctex"]
 
 [params]
 

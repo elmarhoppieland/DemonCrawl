@@ -1,18 +1,24 @@
 [gd_scene load_steps=6 format=3 uid="uid://cax2hgw22uqos"]
 
-[ext_resource type="Texture2D" uid="uid://p71smuhu64pg" path="res://Assets/sprites/stage_mod_bg.png" id="1_bbrpv"]
-[ext_resource type="Texture2D" uid="uid://cr5goqa32lk3h" path="res://Assets/sprites/stage_mods.png" id="2_iv60g"]
-[ext_resource type="Script" path="res://Resources/StageModIcon.gd" id="2_ueymb"]
-[ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="3_qrwup"]
+[ext_resource type="Texture2D" uid="uid://bcb8tob5ubxrk" path="res://Assets/sprites/stage_mods.png" id="2_iv60g"]
+
+[sub_resource type="Resource" id="Resource_q1j5n"]
+metadata/__load_path__ = "res://Assets/sprites/stage_mod_bg.png"
+
+[sub_resource type="Resource" id="Resource_ev5wx"]
+metadata/__load_path__ = "res://Resources/StageModIcon.gd"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nsahc"]
 resource_local_to_scene = true
 atlas = ExtResource("2_iv60g")
 region = Rect2(0, 0, 10, 10)
 
+[sub_resource type="Resource" id="Resource_a18g0"]
+metadata/__load_path__ = "res://Scenes/QuestSelect/TooltipGrabber.gd"
+
 [node name="StageModIcon" type="TextureRect"]
-texture = ExtResource("1_bbrpv")
-script = ExtResource("2_ueymb")
+texture = SubResource("Resource_q1j5n")
+script = SubResource("Resource_ev5wx")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -32,6 +38,6 @@ texture = SubResource("AtlasTexture_nsahc")
 
 [node name="TooltipGrabber" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3_qrwup")
+script = SubResource("Resource_a18g0")
 
 [connection signal="about_to_show" from="TooltipGrabber" to="." method="_on_tooltip_grabber_about_to_show"]

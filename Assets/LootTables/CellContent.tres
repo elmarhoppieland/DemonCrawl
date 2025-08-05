@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="LootTable" load_steps=4 format=3 uid="uid://drrj86pyb5pax"]
 
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/LootTable.gd" id="1_6egj6"]
+[ext_resource type="Script" uid="uid://cntvip8m67kjy" path="res://Engine/Resources/DataContainers/LootTable.gd" id="1_6egj6"]
 [ext_resource type="Resource" uid="uid://c2gh03qbscoec" path="res://Assets/LootTables/Loot.tres" id="1_uv75e"]
 [ext_resource type="Resource" uid="uid://dpgfvuaiurqu4" path="res://Assets/LootTables/Stranger.tres" id="2_t67py"]
 

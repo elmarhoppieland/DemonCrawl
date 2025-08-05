@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ke1qun0x7lx3"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Singletons/Focus.gd" id="1_g54rn"]
-[ext_resource type="Texture2D" uid="uid://fk4ds8n78usp" path="res://Assets/Sprites/stage_icon_focus0.png" id="1_vpuug"]
+[ext_resource type="Script" uid="uid://e3jnrx6g7wot" path="res://Engine/Resources/Singletons/Focus.gd" id="1_g54rn"]
+[ext_resource type="Texture2D" uid="uid://fk4ds8n78usp" path="res://Assets/sprites/stage_icon_focus0.png" id="1_vpuug"]
 
 [sub_resource type="Animation" id="Animation_ycauv"]
 length = 0.001
@@ -108,8 +108,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_crwsi"]
 _data = {
-"RESET": SubResource("Animation_ycauv"),
-"idle": SubResource("Animation_2817v")
+&"RESET": SubResource("Animation_ycauv"),
+&"idle": SubResource("Animation_2817v")
 }
 
 [node name="Focus" type="CanvasLayer"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cy08xwud1qrel"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Orbs/BubbleSprite.gd" id="1_w38gm"]
-[ext_resource type="Script" path="res://Engine/Scenes/StageScene/Board/CellObjectTextureRect.gd" id="2_d5swb"]
-[ext_resource type="Texture2D" uid="uid://bcymo5keobmrl" path="res://Assets/Sprites/Orbs/orb_bubble.png" id="3_bhg3n"]
+[ext_resource type="Script" uid="uid://db2ob6vqs80x4" path="res://Assets/Scripts/Orbs/BubbleSprite.gd" id="1_w38gm"]
+[ext_resource type="Script" uid="uid://dmnt7qof86lgs" path="res://Engine/Scenes/StageScene/Board/CellObjectTextureRect.gd" id="2_d5swb"]
+[ext_resource type="Texture2D" uid="uid://bcymo5keobmrl" path="res://Assets/sprites/orbs/orb_bubble.png" id="3_bhg3n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7tr5"]
 

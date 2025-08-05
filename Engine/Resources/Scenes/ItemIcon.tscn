@@ -1,15 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://1fukndg6gj0l"]
+[gd_scene load_steps=9 format=3 uid="uid://1fukndg6gj0l"]
 
-[ext_resource type="Script" path="res://Resources/ItemIcon.gd" id="1_hf83v"]
-[ext_resource type="Resource" uid="uid://cfevdrefpiq4l" path="res://Assets/Items/Lyre.tres" id="2_8xrbs"]
-[ext_resource type="Shader" path="res://Resources/ItemIconTexture.gdshader" id="3_1wf42"]
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="3_dv85j"]
-[ext_resource type="Script" path="res://Scenes/QuestSelect/TooltipGrabber.gd" id="4_2e3xg"]
+[ext_resource type="Texture2D" uid="uid://cfevdrefpiq4l" path="res://Assets/items/Lyre.tres" id="2_8xrbs"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="3_dv85j"]
+
+[sub_resource type="Resource" id="Resource_srk66"]
+metadata/__load_path__ = "res://Resources/ItemIcon.gd"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hw7eq"]
 resource_local_to_scene = true
-shader = ExtResource("3_1wf42")
-shader_parameter/glow = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t10h2"]
 resource_local_to_scene = true
@@ -23,8 +21,11 @@ expand_margin_top = 1.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oj035"]
 bg_color = Color(0.0627451, 0.87451, 0.501961, 1)
 
+[sub_resource type="Resource" id="Resource_ami1q"]
+metadata/__load_path__ = "res://Scenes/QuestSelect/TooltipGrabber.gd"
+
 [node name="ItemIcon" type="MarginContainer"]
-script = ExtResource("1_hf83v")
+script = SubResource("Resource_srk66")
 data = ExtResource("2_8xrbs")
 
 [node name="BGColorRect" type="ColorRect" parent="."]
@@ -51,7 +52,7 @@ show_percentage = false
 
 [node name="TooltipGrabber" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("4_2e3xg")
+script = SubResource("Resource_ami1q")
 
 [connection signal="about_to_show" from="TooltipGrabber" to="." method="_on_tooltip_grabber_about_to_show"]
 [connection signal="interacted" from="TooltipGrabber" to="." method="_on_tooltip_grabber_interacted"]

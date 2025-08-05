@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bw7rrodxvttij"
-path="res://.godot/imported/empty.png-fb91cf8cdda94e730a45e019d93fc6b5.ctex"
+path="res://.godot/imported/empty.png-34fd776ffa385f6087967fc9a08ecfda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/hallow/empty.png"
-dest_files=["res://.godot/imported/empty.png-fb91cf8cdda94e730a45e019d93fc6b5.ctex"]
+source_file="res://Assets/skins/hallow/empty.png"
+dest_files=["res://.godot/imported/empty.png-34fd776ffa385f6087967fc9a08ecfda.ctex"]
 
 [params]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://c0xuhqy23ofnt"]
 
-[ext_resource type="Texture2D" uid="uid://t6f814mrrtwh" path="res://Assets/Sprites/avatar.png" id="1_73b04"]
-[ext_resource type="Script" path="res://Engine/Scenes/MainMenu/CreateProfile/CreateProfile.gd" id="1_wmvix"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/DCButton.gd" id="1_wpoxc"]
-[ext_resource type="Script" path="res://Engine/Scenes/MainMenu/CreateProfile/CreateProfileLineEdit.gd" id="3_kf0gw"]
+[ext_resource type="Texture2D" uid="uid://t6f814mrrtwh" path="res://Assets/sprites/avatar.png" id="1_73b04"]
+[ext_resource type="Script" uid="uid://s3kkq7wypxeg" path="res://Engine/Scenes/MainMenu/CreateProfile/CreateProfile.gd" id="1_wmvix"]
+[ext_resource type="Script" uid="uid://0dvg6vecmv8w" path="res://Engine/Resources/UtilityNode/DCButton.gd" id="1_wpoxc"]
+[ext_resource type="Script" uid="uid://wfbymt7ph35t" path="res://Engine/Scenes/MainMenu/CreateProfile/CreateProfileLineEdit.gd" id="3_kf0gw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ardet"]
 atlas = ExtResource("1_73b04")
@@ -178,9 +178,9 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x74cr"]
 _data = {
-"RESET": SubResource("Animation_2bkcx"),
-"popup_hide": SubResource("Animation_4ng0r"),
-"popup_show": SubResource("Animation_mpr8n")
+&"RESET": SubResource("Animation_2bkcx"),
+&"popup_hide": SubResource("Animation_4ng0r"),
+&"popup_show": SubResource("Animation_mpr8n")
 }
 
 [node name="CreateProfile" type="CanvasLayer"]

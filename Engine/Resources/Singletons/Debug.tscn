@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvk0crgtytdv1"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Singletons/Debug.gd" id="1_c7rdp"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/CommandLine.gd" id="3_qqgcm"]
+[ext_resource type="Script" uid="uid://b3cknt44j16up" path="res://Engine/Resources/Singletons/Debug.gd" id="1_c7rdp"]
+[ext_resource type="Script" uid="uid://cb8f3tuk3mw0f" path="res://Engine/Resources/UtilityNode/CommandLine.gd" id="3_qqgcm"]
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_xj2h2"]
 number_color = Color(0.482353, 0.737255, 0.662745, 1)

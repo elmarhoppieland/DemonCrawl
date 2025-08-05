@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=16 format=3 uid="uid://cmryc25pgrnah"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=17 format=3 uid="uid://cmryc25pgrnah"]
 
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_adv6f"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="2_12ux7"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="1_adv6f"]
+[ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="2_12ux7"]
+[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd" id="3_qt1oi"]
 [ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://Assets/SpecialStages/Item Shop.tres" id="3_qucdc"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/StageBase/StageBase.gd" id="4_1ncdf"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://Engine/Resources/DataContainers/Stage/StageBase/StageBase.gd" id="4_1ncdf"]
 
 [sub_resource type="Texture2D" id="Texture2D_ah532"]
 resource_local_to_scene = false
@@ -158,4 +159,4 @@ lore = "LORE_RESPITES_END"
 icon = SubResource("Texture2D_ah532")
 skip_unlock = false
 stages = Array[ExtResource("4_1ncdf")]([SubResource("Resource_5387s"), SubResource("Resource_kvqxj"), SubResource("Resource_nrcjf"), SubResource("Resource_8u0ev"), SubResource("Resource_m124s"), SubResource("Resource_y85rx"), SubResource("Resource_qyh3i"), SubResource("Resource_ir8ee"), SubResource("Resource_o1x01"), SubResource("Resource_suxme")])
-special_stages = Array[Resource("res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd")]([ExtResource("3_qucdc")])
+special_stages = Array[ExtResource("3_qt1oi")]([ExtResource("3_qucdc")])

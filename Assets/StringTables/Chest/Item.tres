@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StringTable" load_steps=2 format=3 uid="uid://eswndy3mivp6"]
 
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/StringTable.gd" id="1_p4qb5"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://Engine/Resources/DataContainers/StringTable.gd" id="1_p4qb5"]
 
 [resource]
 script = ExtResource("1_p4qb5")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhymmrd8j6du3"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Scenes/DCPopup.gd" id="1_hs0ji"]
+[ext_resource type="Script" uid="uid://c1jvttml1fuj3" path="res://Engine/Resources/Scenes/DCPopup.gd" id="1_hs0ji"]
 [ext_resource type="AnimationLibrary" uid="uid://cgc18ruj3xe6x" path="res://Engine/Resources/DCPopupAnimationLibrary.tres" id="5_5yx61"]
 
 [node name="DCPopup" type="CanvasLayer"]

@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="Difficulty" load_steps=10 format=3 uid="uid://c8r0jgj2jdnl"]
+[gd_resource type="Resource" script_class="Difficulty" load_steps=12 format=3 uid="uid://c8r0jgj2jdnl"]
 
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_jd80n"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="1_jd80n"]
+[ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://Engine/Resources/DataContainers/Condition/Condition.gd" id="1_vtmt6"]
 [ext_resource type="Resource" uid="uid://dygo4l027csin" path="res://Assets/Quests/Normal/0-Tutorial.tres" id="2_5afsg"]
+[ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="3_c6frc"]
 [ext_resource type="Resource" uid="uid://7rcj8aaeg57t" path="res://Assets/Quests/Normal/1-Glory Days.tres" id="3_cc6qd"]
 [ext_resource type="Resource" uid="uid://cicigaftl7qpj" path="res://Assets/Quests/Normal/2-Respite's End.tres" id="4_wa072"]
 [ext_resource type="Resource" uid="uid://bk14shjgawsbt" path="res://Assets/Quests/Normal/3-Another Way.tres" id="5_ldfkd"]
 [ext_resource type="Resource" uid="uid://c24u78kr4evmt" path="res://Assets/Quests/Normal/4-Around the Bend.tres" id="6_lqhvi"]
 [ext_resource type="Resource" uid="uid://xvwdvsqap7uq" path="res://Assets/Quests/Normal/5-Shadowman.tres" id="7_mot14"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Difficulty.gd" id="8_f1lbq"]
+[ext_resource type="Script" uid="uid://dx8sic8p7f7lp" path="res://Engine/Resources/DataContainers/Difficulty.gd" id="8_f1lbq"]
 
 [sub_resource type="Texture2D" id="Texture2D_fnfsu"]
 resource_local_to_scene = false
@@ -19,8 +21,8 @@ name = "Difficulties/Normal"
 script = ExtResource("8_f1lbq")
 name = "DIFFICULTY_NORMAL"
 icon = SubResource("Texture2D_fnfsu")
-conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([])
-quests = Array[Resource("res://Engine/Resources/DataContainers/Quest/QuestFile.gd")]([ExtResource("2_5afsg"), ExtResource("3_cc6qd"), ExtResource("4_wa072"), ExtResource("5_ldfkd"), ExtResource("6_lqhvi"), ExtResource("7_mot14")])
+conditions = Array[ExtResource("1_vtmt6")]([])
+quests = Array[ExtResource("3_c6frc")]([ExtResource("2_5afsg"), ExtResource("3_cc6qd"), ExtResource("4_wa072"), ExtResource("5_ldfkd"), ExtResource("6_lqhvi"), ExtResource("7_mot14")])
 max_life = 5
 life = 5
 revives = 0

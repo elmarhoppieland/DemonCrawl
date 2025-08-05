@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://dml1nvpclhf7"]
 
-[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="1_05fa6"]
-[ext_resource type="Script" path="res://Engine/Scenes/TokenShop/TokenShopItemDisplay.gd" id="1_t3k8l"]
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="2_nqj62"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="1_05fa6"]
+[ext_resource type="Script" uid="uid://t4ci38oq6hsx" path="res://Engine/Scenes/TokenShop/TokenShopItemDisplay.gd" id="1_t3k8l"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="2_nqj62"]
 [ext_resource type="Resource" uid="uid://cnbevbtob1jom" path="res://Assets/TokenShop/Upgrades/Specialist.tres" id="2_xy8jt"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_ebpj2"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_ebpj2"]
 
 [sub_resource type="Texture2D" id="Texture2D_nhp6q"]
 resource_local_to_scene = false

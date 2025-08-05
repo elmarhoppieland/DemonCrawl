@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dodpk1h3w0qvp"]
 
-[ext_resource type="Script" path="res://Engine/Scenes/StageScene/FinishPopup.gd" id="1_5wpvd"]
+[ext_resource type="Script" uid="uid://cjsjidvhenmka" path="res://Engine/Scenes/StageScene/FinishPopup.gd" id="1_5wpvd"]
 [ext_resource type="PackedScene" uid="uid://cjx67qhbqro41" path="res://Engine/Scenes/StageScene/FinishPopupContents.tscn" id="1_7c5k8"]
 
 [sub_resource type="Animation" id="Animation_mvt3q"]
@@ -112,9 +112,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dsuti"]
 _data = {
-"RESET": SubResource("Animation_mvt3q"),
-"popup_hide": SubResource("Animation_xub6i"),
-"popup_show": SubResource("Animation_g65m4")
+&"RESET": SubResource("Animation_mvt3q"),
+&"popup_hide": SubResource("Animation_xub6i"),
+&"popup_show": SubResource("Animation_g65m4")
 }
 
 [node name="FinishPopup" type="CanvasLayer"]

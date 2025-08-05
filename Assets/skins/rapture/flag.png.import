@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://f2xkg3r7juht"
-path="res://.godot/imported/flag.png-f2c64f5e8b27f1e50b3603241c918f6b.ctex"
+path="res://.godot/imported/flag.png-409ea36dc54267c979bd55df2e4b7dc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/rapture/flag.png"
-dest_files=["res://.godot/imported/flag.png-f2c64f5e8b27f1e50b3603241c918f6b.ctex"]
+source_file="res://Assets/skins/rapture/flag.png"
+dest_files=["res://.godot/imported/flag.png-409ea36dc54267c979bd55df2e4b7dc8.ctex"]
 
 [params]
 

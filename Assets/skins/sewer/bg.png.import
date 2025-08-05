@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ck6nt0lmfja8c"
-path="res://.godot/imported/bg.png-dcd4644e5a52168f0ccb2124116ee6ab.ctex"
+path="res://.godot/imported/bg.png-a6fe639da27a83db9a19e856c869bc30.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skins/sewer/bg.png"
-dest_files=["res://.godot/imported/bg.png-dcd4644e5a52168f0ccb2124116ee6ab.ctex"]
+source_file="res://Assets/skins/sewer/bg.png"
+dest_files=["res://.godot/imported/bg.png-a6fe639da27a83db9a19e856c869bc30.ctex"]
 
 [params]
 

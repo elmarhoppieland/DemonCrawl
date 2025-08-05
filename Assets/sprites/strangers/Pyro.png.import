@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c86u4huxii17u"
-path="res://.godot/imported/Pyro.png-83ca3c21faa262472f06c57239e0a1e2.ctex"
+path="res://.godot/imported/Pyro.png-3ec4428b3289f96ba746b615d79918b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Strangers/Pyro.png"
-dest_files=["res://.godot/imported/Pyro.png-83ca3c21faa262472f06c57239e0a1e2.ctex"]
+source_file="res://Assets/sprites/strangers/Pyro.png"
+dest_files=["res://.godot/imported/Pyro.png-3ec4428b3289f96ba746b615d79918b5.ctex"]
 
 [params]
 

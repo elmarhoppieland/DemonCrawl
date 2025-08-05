@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://xngqg6hwurpe"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Singletons/OrbLayer.gd" id="1_p8178"]
+[ext_resource type="Script" uid="uid://daclrycd2hwns" path="res://Engine/Resources/Singletons/OrbLayer.gd" id="1_p8178"]
 
 [node name="OrbLayer" type="Control"]
 layout_mode = 3

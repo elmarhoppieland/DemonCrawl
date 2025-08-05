@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="TokenShopItem" load_steps=9 format=3 uid="uid://wv5jht8bndvy"]
+[gd_resource type="Resource" script_class="TokenShopItem" load_steps=10 format=3 uid="uid://wv5jht8bndvy"]
 
+[ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://Engine/Resources/DataContainers/Condition/Condition.gd" id="1_1lhiy"]
 [ext_resource type="Resource" uid="uid://bnceos644ncor" path="res://Assets/Quests/Hard/2-Respite's End.tres" id="1_62mo0"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Condition/QuestCompleteCondition.gd" id="2_tlf32"]
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="3_tul43"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopItem.gd" id="4_mo1g4"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Condition/FlagCondition.gd" id="5_geps5"]
+[ext_resource type="Script" uid="uid://dgc5yi6lu6u70" path="res://Engine/Resources/DataContainers/Condition/QuestCompleteCondition.gd" id="2_tlf32"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="3_tul43"]
+[ext_resource type="Script" uid="uid://c2jr3se2cjy15" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopItem.gd" id="4_mo1g4"]
+[ext_resource type="Script" uid="uid://ddeq2y3c5x2gj" path="res://Engine/Resources/DataContainers/Condition/FlagCondition.gd" id="5_geps5"]
 
 [sub_resource type="Resource" id="Resource_drplq"]
 script = ExtResource("2_tlf32")
@@ -27,5 +28,5 @@ name = "QUEST_ANOTHER_WAY"
 description = "QUEST_UNLOCK_ANOTHER_WAY"
 icon = SubResource("Texture2D_not6g")
 cost = 3
-conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_drplq")])
-unlock_conditions = Array[Resource("res://Engine/Resources/DataContainers/Condition/Condition.gd")]([SubResource("Resource_p4cou")])
+conditions = Array[ExtResource("1_1lhiy")]([SubResource("Resource_drplq")])
+unlock_conditions = Array[ExtResource("1_1lhiy")]([SubResource("Resource_p4cou")])

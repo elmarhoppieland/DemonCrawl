@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bl07eret4ujpn"]
 
-[ext_resource type="Texture2D" uid="uid://co56d710r6qow" path="res://Assets/Sprites/Inventory.png" id="1_0ehd2"]
-[ext_resource type="Script" path="res://Engine/Resources/Scenes/Inventory.gd" id="1_6hkni"]
+[ext_resource type="Texture2D" uid="uid://co56d710r6qow" path="res://Assets/sprites/Inventory.png" id="1_0ehd2"]
+[ext_resource type="Script" uid="uid://bak3r6abwmdql" path="res://Engine/Resources/Scenes/Inventory.gd" id="1_6hkni"]
 
 [node name="Inventory" type="MarginContainer"]
 anchors_preset = -1

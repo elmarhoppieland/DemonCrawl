@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=6 format=3 uid="uid://j0v6qlrgdwp1"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=7 format=3 uid="uid://j0v6qlrgdwp1"]
 
-[ext_resource type="Script" path="res://addons/IconManager/Icon.gd" id="1_u32n8"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="1_wpk54"]
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/StageBase/StageBase.gd" id="3_xjto8"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="1_u32n8"]
+[ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://Engine/Resources/DataContainers/Quest/QuestFile.gd" id="1_wpk54"]
+[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd" id="3_kmxy0"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://Engine/Resources/DataContainers/Stage/StageBase/StageBase.gd" id="3_xjto8"]
 
 [sub_resource type="Texture2D" id="Texture2D_km6i1"]
 resource_local_to_scene = false
@@ -31,4 +32,4 @@ lore = "LORE_TUTORIAL"
 icon = SubResource("Texture2D_km6i1")
 skip_unlock = true
 stages = Array[ExtResource("3_xjto8")]([SubResource("Resource_gumlt")])
-special_stages = Array[Resource("res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd")]([])
+special_stages = Array[ExtResource("3_kmxy0")]([])

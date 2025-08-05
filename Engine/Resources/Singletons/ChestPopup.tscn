@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://cw7neq3b00xg3"]
 
-[ext_resource type="Script" path="res://Engine/Resources/Singletons/ChestPopup.gd" id="1_tf4w1"]
-[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="2_skkm3"]
+[ext_resource type="Script" uid="uid://yacrwrw8yx8d" path="res://Engine/Resources/Singletons/ChestPopup.gd" id="1_tf4w1"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="2_skkm3"]
 [ext_resource type="PackedScene" uid="uid://d3fpf8gbjxsbx" path="res://Engine/Resources/Scenes/CoinValue.tscn" id="4_jcs48"]
-[ext_resource type="Script" path="res://Engine/Resources/UtilityNode/StringTableLabel.gd" id="5_rfrj4"]
+[ext_resource type="Script" uid="uid://b24k0h0ivk3t0" path="res://Engine/Resources/UtilityNode/StringTableLabel.gd" id="5_rfrj4"]
 [ext_resource type="AnimationLibrary" uid="uid://cgc18ruj3xe6x" path="res://Engine/Resources/DCPopupAnimationLibrary.tres" id="5_sbuu8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3ik3a"]
