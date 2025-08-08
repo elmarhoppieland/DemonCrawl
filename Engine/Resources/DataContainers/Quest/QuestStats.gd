@@ -1,4 +1,4 @@
-extends Resource
+extends Node
 class_name QuestStats
 
 # ==============================================================================
@@ -28,6 +28,23 @@ var _dying := false
 var _effects := EffectSignals.new() : get = get_effects
 var _mutable_effects := EffectSignals.new() : get = get_mutable_effects
 # ==============================================================================
+signal changed()
+# ==============================================================================
+
+func emit_changed() -> void:
+	changed.emit()
+
+
+func _init() -> void:
+	name = "Stats"
+
+
+func get_quest() -> Quest:
+	var base := get_parent()
+	while base != null and base is not Quest:
+		base = base.get_parent()
+	return base
+
 
 func get_effects() -> EffectSignals:
 	return _effects
@@ -93,13 +110,17 @@ func die(source: Object) -> void:
 ## Causes the player to immediately lose the quest. If the player has any revives,
 ## they will not be used to revive the player. See also [method die].
 func lose() -> void:
-	pass # TODO
+	EffectManager.propagate(get_effects().lose)
+	
+	# TODO
 
 
 func revive() -> void:
 	if _dying:
 		_dying = false
 		EffectManager.get_priority_tree().interrupt()
+		
+		EffectManager.propagate(get_effects().revive)
 
 
 @warning_ignore("shadowed_variable")
@@ -143,9 +164,9 @@ func gain_coins(coins: int, source: Object) -> int:
 
 
 func damage(amount: int, source: Object) -> int:
-	if StageInstance.has_current() and StageInstance.get_current().has_scene():
-		StageInstance.get_current().get_scene().get_background().flash_red()
-		StageInstance.get_current().get_board().get_camera().shake()
+	if get_quest().has_current_stage() and get_quest().get_current_stage().has_scene():
+		get_quest().get_current_stage().get_scene().get_background().flash_red()
+		get_quest().get_current_stage().get_board().get_camera().shake()
 	
 	amount = EffectManager.propagate(get_mutable_effects().damage, [amount, source], 0)
 	EffectManager.propagate(get_effects().damage, [amount, source])

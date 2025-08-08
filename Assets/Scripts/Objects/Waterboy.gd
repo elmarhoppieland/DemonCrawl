@@ -3,7 +3,7 @@ extends Stranger
 class_name Waterboy
 
 # ==============================================================================
-const DIR_MAP := {
+const DIR_MAP: Dictionary[Direction, Vector2i] = {
 	Direction.UP: Vector2i.UP,
 	Direction.RIGHT: Vector2i.RIGHT,
 	Direction.DOWN: Vector2i.DOWN,
@@ -26,8 +26,11 @@ func _spawn() -> void:
 	direction = Direction.values().pick_random()
 
 
-func _ready() -> void:
-	Effects.Signals.turn.connect(_turn)
+func _enter_tree() -> void:
+	if get_parent() is not CellData:
+		return
+	
+	get_quest().get_stage_effects().turn.connect(_turn)
 	if get_cell().is_visible():
 		get_cell().show_direction_arrow(DIR_MAP[direction])
 
@@ -37,9 +40,12 @@ func _turn() -> void:
 		get_cell().send_projectile(BubbleProjectile, DIR_MAP[direction])
 
 
-func _reset() -> void:
+func _exit_tree() -> void:
+	if get_parent() is not CellData:
+		return
+	
 	get_cell().hide_direction_arrow()
-	Effects.Signals.turn.disconnect(_turn)
+	get_quest().get_stage_effects().turn.disconnect(_turn)
 
 
 func _reveal() -> void:
@@ -63,7 +69,7 @@ func _interact() -> void:
 func _activate() -> void:
 	if can_move():
 		var new_pos: Vector2i = get_cell().get_position() + DIR_MAP[direction]
-		var new_cell := StageInstance.get_current().get_cell(new_pos)
+		var new_cell := get_cell().get_stage_instance().get_cell(new_pos)
 		move_to_cell(new_cell)
 
 
@@ -79,7 +85,7 @@ func _get_annotation_subtext() -> String:
 
 func can_move() -> bool:
 	var new_pos: Vector2i = get_cell().get_position() + DIR_MAP[direction]
-	var new_cell := StageInstance.get_current().get_cell(new_pos)
+	var new_cell := get_cell().get_stage_instance().get_cell(new_pos)
 	return new_cell != null and new_cell.is_empty() and new_cell.is_visible()
 
 

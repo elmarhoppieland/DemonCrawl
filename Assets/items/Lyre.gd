@@ -4,7 +4,7 @@ extends Item
 # ==============================================================================
 
 func _use() -> void:
-	Quest.get_current().get_selected_stage().monsters -= 5
+	get_quest().get_selected_stage().monsters -= 5
 
 
 func _can_use() -> bool:
@@ -12,4 +12,4 @@ func _can_use() -> bool:
 
 
 func _invoke() -> void:
-	Quest.get_current().stages.pick_random().monsters -= 5
+	get_quest().stages.pick_random().monsters -= 5

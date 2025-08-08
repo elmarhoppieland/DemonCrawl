@@ -36,8 +36,8 @@ func _on_quest_changed() -> void:
 		return
 	
 	var peek_counter := 2
-	for i in get_quest().stages.size():
-		var stage := get_quest().stages[i]
+	for i in get_quest().get_stages().size():
+		var stage := get_quest().get_stage(i)
 		if not stage:
 			continue
 		var icon := stage.create_icon()

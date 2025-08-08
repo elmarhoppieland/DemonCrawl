@@ -11,10 +11,10 @@ func _use() -> void:
 
 class Status extends StatusEffect:
 	func _load() -> void:
-		quest.get_stats().get_mutable_effects().damage.connect(_damage)
+		get_quest().get_stats().get_mutable_effects().damage.connect(_damage)
 	
 	func _end() -> void:
-		quest.get_stats().get_mutable_effects().damage.disconnect(_damage)
+		get_quest().get_stats().get_mutable_effects().damage.disconnect(_damage)
 	
 	func _damage(amount: int, _source: Object) -> int:
 		return amount - get_duration()

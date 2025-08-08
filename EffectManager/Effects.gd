@@ -31,14 +31,14 @@ static func change_coins(coins: int) -> int:
 	return coins
 
 
-static func quest_start() -> void:
-	EffectManager.propagate(MutableSignals.quest_start, [])
-	EffectManager.propagate(Signals.quest_start, [])
+static func quest_start(quest: Quest) -> void:
+	EffectManager.propagate(MutableSignals.quest_start, [quest])
+	EffectManager.propagate(Signals.quest_start, [quest])
 
 
-static func quest_finish() -> void:
-	EffectManager.propagate(MutableSignals.quest_finish, [])
-	EffectManager.propagate(Signals.quest_finish, [])
+static func quest_finish(quest: Quest) -> void:
+	EffectManager.propagate(MutableSignals.quest_finish, [quest])
+	EffectManager.propagate(Signals.quest_finish, [quest])
 
 
 static func damage(amount: int, source: Object) -> int:

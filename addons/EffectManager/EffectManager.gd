@@ -77,8 +77,22 @@ static func propagate(effect: Signal, args: Array = [], mutable: int = -1) -> Va
 	var connections: Array[Dictionary] = []
 	connections.assign(effect.get_connections())
 	args = args.duplicate()
-	get_priority_tree().root.propagate(connections, args, mutable)
+	if not connections.is_empty():
+		var previous_mutable := get_priority_tree().current_mutable
+		var previous_args := get_priority_tree().current_args
+		get_priority_tree().current_mutable = mutable
+		get_priority_tree().current_args = args
+		
+		get_priority_tree().root.propagate(connections)
+		
+		get_priority_tree().current_mutable = previous_mutable
+		get_priority_tree().current_args = previous_args
+	
 	return null if mutable < 0 else args[mutable]
+
+
+static func propagate_forward(effect: Signal) -> Variant:
+	return propagate(effect, get_priority_tree().current_args, get_priority_tree().current_mutable)
 
 
 ## Returns the priority tree. This is a [SceneTree]-like object that holds priority
@@ -100,6 +114,8 @@ static func reload_priority_tree() -> void:
 class PriorityTree:
 	var root := PriorityRoot.new()
 	var interrupted := false
+	var current_mutable := -1
+	var current_args := []
 	
 	func _init() -> void:
 		root._tree = weakref(self)
@@ -113,7 +129,7 @@ class PriorityNode:
 	var _parent: WeakRef = null
 	var _tree: WeakRef = null
 	
-	func propagate(connections: Array[Dictionary], args: Array, mutable: int = -1) -> Array[Dictionary]:
+	func propagate(connections: Array[Dictionary]) -> Array[Dictionary]:
 		var unhandled_connections: Array[Dictionary] = []
 		
 		for connection in connections:
@@ -122,15 +138,18 @@ class PriorityNode:
 				return []
 			
 			if handles(connection):
-				if mutable < 0:
-					connection.callable.callv(args)
+				if get_tree().current_mutable < 0:
+					connection.callable.callv(get_tree().current_args)
 				else:
-					args[mutable] = connection.callable.callv(args)
+					get_tree().current_args[get_tree().current_mutable] = connection.callable.callv(get_tree().current_args)
+				
+				if connection.flags & CONNECT_ONE_SHOT:
+					connections.erase(connection)
 			else:
 				unhandled_connections.append(connection)
 		
 		for child in get_children():
-			unhandled_connections = child.propagate(unhandled_connections, args, mutable)
+			unhandled_connections = child.propagate(unhandled_connections)
 		
 		return unhandled_connections
 	
@@ -205,11 +224,11 @@ class PriorityNode:
 	static func unpack(string: String) -> PriorityNode:
 		assert(":" in string.get_slice("\n", 0), "The priority node's first line must contain the node's class name.")
 		
-		if not UserClassDB.class_exists("EffectManager:" + string.get_slice(":", 0)):
-			push_error("Class '%s' does not exist." % ("EffectManager:" + string.get_slice(":", 0)))
+		if not UserClassDB.class_exists("EffectManager::" + string.get_slice("::", 0)):
+			push_error("Class '%s' does not exist." % ("EffectManager::" + string.get_slice("::", 0)))
 			return null
 		
-		var node: PriorityNode = UserClassDB.instantiate("EffectManager:" + string.get_slice(":", 0), true)
+		var node: PriorityNode = UserClassDB.instantiate("EffectManager::" + string.get_slice("::", 0))
 		node.name = string.get_slice("\n", 0).get_slice(":", 1)
 		
 		var data := PackedStringArray()
@@ -349,15 +368,18 @@ class PriorityRoot extends PrioritySection:
 		
 		return string.strip_edges()
 	
-	func propagate(connections: Array[Dictionary], args: Array, mutable: int = -1) -> Array[Dictionary]:
+	func propagate(connections: Array[Dictionary]) -> Array[Dictionary]:
 		for child in get_children():
-			connections = child.propagate(connections, args, mutable)
+			connections = child.propagate(connections)
 		
 		for connection in connections:
-			if mutable < 0:
-				connection.callable.callv(args)
+			if get_tree().current_mutable < 0:
+				connection.callable.callv(get_tree().current_args)
 			else:
-				args[mutable] = connection.callable.callv(args)
+				get_tree().current_args[get_tree().current_mutable] = connection.callable.callv(get_tree().current_args)
+			
+			if connection.flags & CONNECT_ONE_SHOT:
+				connections.erase(connection)
 		
 		get_tree().interrupted = false
 		return connections

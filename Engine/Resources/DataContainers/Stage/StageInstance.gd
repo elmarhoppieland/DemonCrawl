@@ -1,64 +1,80 @@
 @tool
-extends Resource
+extends Node
 class_name StageInstance
 
 # ==============================================================================
-static var _current: StageInstance = Eternal.create(null) : set = _set_current, get = get_current
+#static var _current: StageInstance = Eternal.create(null) : set = _set_current, get = get_current
 
-static var current_changed := Signal() :
-	get:
-		if current_changed.is_null():
-			(StageInstance as GDScript).add_user_signal("_current_changed")
-			current_changed = Signal(StageInstance, "_current_changed")
-		return current_changed
+#static var current_changed := Signal() :
+	#get:
+		#if current_changed.is_null():
+			#(StageInstance as GDScript).add_user_signal("_current_changed")
+			#current_changed = Signal(StageInstance, "_current_changed")
+		#return current_changed
 # ==============================================================================
-@export var cells: Array[CellData] = [] :
-	set(value):
-		cells = value
-		if Engine.is_editor_hint() and get_stage() and value.size() > get_stage().area():
-			value.resize(get_stage().area())
-		for cell in value:
-			cell.changed.connect(emit_changed)
-		emit_changed()
+#@export var cells: Array[CellData] = [] :
+	#set(value):
+		#cells = value
+		#if Engine.is_editor_hint() and get_stage() and value.size() > get_stage().area():
+			#value.resize(get_stage().area())
+		#for cell in value:
+			#cell.changed.connect(emit_changed)
+		#emit_changed()
 # ==============================================================================
-@export var _stage: Stage : set = set_stage, get = get_stage
-
 @export var _3bv := 0 : get = get_3bv
-@export var _timer_paused := true : get = is_timer_paused
 
 @export var _generated := false : get = is_generated
 @export var _flagless := true : get = is_flagless
 @export var _untouchable := true : get = is_untouchable
 
-@export var _timer: StageTimer = null : get = get_timer
-@export var _status_timer: StageTimer = null : get = get_status_timer
+#@export var _timer: StageTimer = null : get = get_timer
+#@export var _status_timer: StageTimer = null : get = get_status_timer
 
-@export var _projectile_manager: ProjectileManager = null : get = get_projectile_manager
+#@export var _projectile_manager: ProjectileManager = null : get = get_projectile_manager
 # ==============================================================================
 var _scene: StageScene : get = get_scene
 
-var _stage_weakref: WeakRef = null
-
-var _timer_last_read_usec := 0
-var _timer_read_on_this_frame := false :
-	set(value):
-		_timer_read_on_this_frame = value
-		if value:
-			await Promise.defer()
-			_timer_read_on_this_frame = false
+var _effects := StageEffects.new() : get = get_effects
+var _immunity := Immunity.create_immunity_list() : get = get_immunity
 # ==============================================================================
 signal finish_pressed()
 signal finished()
 
-signal loaded()
-signal unloaded()
+#signal loaded()
+#signal unloaded()
+
+signal changed()
 # ==============================================================================
 
+func _ready() -> void:
+	if Eternity.get_processing_file() != null:
+		await Eternity.get_processing_file().loaded
+		check_completed()
+		return
+	
+	var stage := get_stage()
+	
+	for i in stage.area():
+		var data := CellData.new()
+		data.changed.connect(emit_changed)
+		get_grid().add_child(data)
+	
+	if get_cells().size() > stage.area():
+		get_cells().resize(stage.area())
+	while get_cells().size() < stage.area():
+		var data := CellData.new()
+		data.set_stage_instance(self)
+		data.changed.connect(emit_changed)
+		get_cells().append(data)
+	
+	emit_changed()
+
+
+func emit_changed() -> void:
+	changed.emit()
+
+
 #region internals
-
-func _init(stage: Stage = null) -> void:
-	load_from_stage(stage)
-
 
 func _bind_idx(idx: int) -> int:
 	if idx < 0:
@@ -66,40 +82,40 @@ func _bind_idx(idx: int) -> int:
 	return idx
 
 
-func _stage_changed() -> void:
-	if Engine.is_editor_hint() and get_stage():
-		if cells.size() > get_stage().area():
-			cells.resize(get_stage().area())
-		while cells.size() < get_stage().area():
-			var data := CellData.new()
-			data.changed.connect(emit_changed) # we CANNOT use a lambda function here - it causes a cyclic reference while a direct connection does not
-			cells.append(data)
-	
-	emit_changed()
+#func _stage_changed() -> void:
+	#if Engine.is_editor_hint() and get_stage():
+		#if get_cells().size() > get_stage().area():
+			#get_cells().resize(get_stage().area())
+		#while get_cells().size() < get_stage().area():
+			#var data := CellData.new()
+			#data.changed.connect(emit_changed) # we CANNOT use a lambda function here - it causes a cyclic reference while a direct connection does not
+			#cells.append(data)
+	#
+	#emit_changed()
 
 #endregion
 
-static func _set_current(value: StageInstance) -> void:
-	var different := _current != value
-	_current = value
-	if different:
-		current_changed.emit()
+#static func _set_current(value: StageInstance) -> void:
+	#var different := _current != value
+	#_current = value
+	#if different:
+		#current_changed.emit()
 
 
-static func get_current() -> StageInstance:
-	return _current
+#static func get_current() -> StageInstance:
+	#return _current
 
 
-static func has_current() -> bool:
-	return get_current() != null
+#static func has_current() -> bool:
+	#return get_current() != null
 
 
-static func clear_current() -> void:
-	_current = null
+#static func clear_current() -> void:
+	#_current = null
 
 
-func set_as_current() -> void:
-	_current = self
+#func set_as_current() -> void:
+	#_current = self
 
 
 ## Generates this [StageInstance], spawning [Monster]s at random [Cell]s.
@@ -129,9 +145,9 @@ func generate(start_cell: CellData) -> void:
 		
 		invalid_indices.insert(invalid_indices.bsearch(idx), idx)
 		
-		cells[idx].object = Monster.new(get_stage())
+		get_cells()[idx].set_object(Monster.new(get_stage()))
 	
-	Effects.stage_generate(self)
+	EffectManager.propagate(get_effects().generated)
 	
 	_generated = true
 	
@@ -157,31 +173,29 @@ func create_cell(idx: int) -> Cell:
 
 
 func finish() -> void:
-	for cell in cells:
-		if cell.object:
-			cell.object.reset()
+	get_stage().completed = true
 	finished.emit()
 
 
-func notify_loaded() -> void:
-	loaded.emit()
-	
-	# make sure the timers get loaded
-	var timer := get_timer()
-	var status_timer := get_status_timer()
-	if _generated:
-		timer.play()
-		status_timer.play()
-	else:
-		timer.pause()
-		status_timer.pause()
+#func notify_loaded() -> void:
+	#loaded.emit()
+	#
+	## make sure the timers get loaded
+	#var timer := get_timer()
+	#var status_timer := get_status_timer()
+	#if _generated:
+		#timer.play()
+		#status_timer.play()
+	#else:
+		#timer.pause()
+		#status_timer.pause()
 
 
-func notify_unloaded() -> void:
-	unloaded.emit()
-	
-	get_timer().pause()
-	get_status_timer().pause()
+#func notify_unloaded() -> void:
+	#unloaded.emit()
+	#
+	#get_timer().pause()
+	#get_status_timer().pause()
 
 
 func get_cell_content_spawn_rate() -> float:
@@ -234,7 +248,7 @@ func get_reward_types() -> PackedStringArray:
 		types.append("untouchable")
 	
 	var thrifty_count := 0
-	for i in Quest.get_current().stages:
+	for i in Quest.get_current().get_stages():
 		if i == get_stage():
 			break
 		if i is SpecialStage:
@@ -249,7 +263,7 @@ func get_reward_types() -> PackedStringArray:
 		if not "heartless" in types and cell.get_object() and cell.get_object() is Heart:
 			types.append("heartless")
 	
-	if Quest.get_current().stages.all(func(a: Stage) -> bool: return a.completed or a is SpecialStage):
+	if Quest.get_current().get_stages().all(func(a: Stage) -> bool: return a.completed or a is SpecialStage):
 		types.append("quest_complete")
 	
 	return types
@@ -262,9 +276,9 @@ func get_cell_data(idx: int) -> CellData:
 	if idx < 0 or idx >= get_stage().area():
 		return null
 	
-	assert(cells.size() == get_stage().area())
+	assert(get_cells().size() == get_stage().area())
 	
-	var data := cells[idx]
+	var data := get_cells()[idx]
 	return data
 
 
@@ -277,42 +291,63 @@ func get_cell(at: Vector2i) -> CellData:
 	if at.x >= get_stage().size.x or at.y >= get_stage().size.y:
 		return null
 	
-	return cells[at.x + at.y * get_stage().size.x]
+	return get_cells()[at.x + at.y * get_stage().size.x]
+
+
+func get_grid() -> Node:
+	if not has_node("Grid"):
+		var grid := Grid.new()
+		grid.name = "Grid"
+		add_child(grid)
+	
+	return get_node("Grid")
 
 
 ## Returns an [Array] of all [Cell]s in the [Stage].
 func get_cells() -> Array[CellData]:
+	var cells: Array[CellData] = []
+	cells.assign(get_grid().get_children())
 	return cells
 
 
 ## Returns the [CellObject] of the [Cell] at the given index. Returns [code]null[/code]
 ## if the index is invalid.
-func get_object(idx: int) -> CellObject:
-	var data := get_cell_data(idx)
-	return data.object if data else null
+#func get_object(idx: int) -> CellObject:
+	#var data := get_cell_data(idx)
+	#return data.get_object() if data else null
 
 
 ## Returns the value of the [Cell] at the given index. Returns [code]-1[/code]
 ## if the index is invalid.
-func get_value(idx: int) -> int:
-	var data := get_cell_data(idx)
-	return data.value if data else -1
+#func get_value(idx: int) -> int:
+	#var data := get_cell_data(idx)
+	#return data.value if data else -1
 
 
 ## Returns the mode of the [Cell] at the given index. Returns [constant Cell.INVALID]
 ## if the index is invalid.
-func get_mode(idx: int) -> Cell.Mode:
-	var data := get_cell_data(idx)
-	return data.mode if data else Cell.Mode.INVALID
+#func get_mode(idx: int) -> Cell.Mode:
+	#var data := get_cell_data(idx)
+	#return data.mode if data else Cell.Mode.INVALID
 
 
 ## Returns whether the get_stage() is finished, i.e. all non-monster [Cell]s are revealed.
-func is_finished() -> bool:
-	for data in cells:
-		if data.mode != Cell.Mode.VISIBLE and not data.object is Monster:
+func is_completed() -> bool:
+	for data in get_cells():
+		if data.mode != Cell.Mode.VISIBLE and not data.has_monster():
 			return false
 	
 	return true
+
+
+func check_completed() -> void:
+	if is_completed():
+		for cell in get_cells():
+			if cell.has_monster():
+				cell.flag()
+			else:
+				cell.open(true)
+		EffectManager.propagate(get_effects().completed)
 
 
 func needs_guess() -> bool:
@@ -328,7 +363,7 @@ func get_progress_cell() -> CellData:
 		
 		var hidden_cells: Array[CellData] = []
 		for neighbor in cell.get_nearby_cells():
-			if neighbor.is_hidden() or neighbor.object is Monster:
+			if neighbor.is_hidden() or neighbor.has_monster():
 				hidden_cells.append(neighbor)
 		if hidden_cells.size() == cell.value:
 			for neighbor in hidden_cells:
@@ -359,7 +394,7 @@ func get_3bv() -> int:
 	var empty_groups: Array[CellData] = []
 	
 	for cell in get_cells():
-		if cell.object is Monster:
+		if cell.has_monster():
 			continue
 		if cell.value == 0:
 			if cell in empty_groups:
@@ -376,7 +411,7 @@ func get_3bv() -> int:
 
 func solve_cell() -> CellData:
 	var unsolved_cells := get_cells().filter(func(cell: CellData) -> bool:
-		return cell.is_hidden() and cell.is_flagged() != cell.object is Monster
+		return cell.is_hidden() and cell.is_flagged() != cell.has_monster()
 	)
 	if unsolved_cells.is_empty():
 		return null
@@ -423,7 +458,7 @@ func get_remaining_monster_count() -> int:
 	var monsters := 0
 	
 	for cell in get_cells():
-		if cell.object is Monster and cell.is_hidden():
+		if cell.has_monster() and cell.is_hidden():
 			monsters += 1
 		if cell.is_flagged():
 			monsters -= 1
@@ -431,38 +466,19 @@ func get_remaining_monster_count() -> int:
 	return monsters
 
 
-func set_stage(stage: Stage) -> void:
-	if _stage and _stage.changed.is_connected(_stage_changed):
-		_stage.changed.disconnect(_stage_changed)
-	
-	_stage_weakref = weakref(stage)
-	
-	if stage:
-		stage.changed.connect(_stage_changed)
-
-
-func load_from_stage(stage: Stage) -> void:
-	set_stage(stage)
-	
-	if stage == null:
-		return
-	
-	if stage:
-		if cells.size() > stage.area():
-			cells.resize(stage.area())
-		while cells.size() < stage.area():
-			var data := CellData.new()
-			data.set_stage_instance(self)
-			data.changed.connect(emit_changed) # we CANNOT use a lambda function here - it causes a cyclic reference while a direct connection does not
-			cells.append(data)
-	
-	emit_changed()
-
-
 func get_stage() -> Stage:
-	if _stage_weakref == null:
-		return null
-	return _stage_weakref.get_ref()
+	return get_parent()
+
+
+func get_quest() -> Quest:
+	var base := get_parent()
+	while base != null and base is not Quest:
+		base = base.get_parent()
+	return base
+
+
+func was_reloaded() -> bool:
+	return false # TODO
 
 
 func get_time() -> int:
@@ -473,14 +489,8 @@ func get_timef() -> float:
 	return get_timer().get_timef()
 
 
-func set_timer_paused(timer_paused: bool) -> void:
-	_timer_paused = timer_paused
-	if not timer_paused:
-		_timer_last_read_usec = Time.get_ticks_usec()
-
-
 func is_timer_paused() -> bool:
-	return _timer_paused
+	return get_timer().is_paused()
 
 
 ## Returns the currently active [StageScene].
@@ -498,6 +508,22 @@ func get_scene() -> StageScene:
 	return _scene
 
 
+func change_to_scene() -> StageScene:
+	return await SceneManager.change_scene_to_custom(create_scene)
+
+
+func create_scene() -> StageScene:
+	if _scene:
+		return _scene
+	
+	_scene = load("res://Engine/Scenes/StageScene/StageScene.tscn").instantiate()
+	_scene.stage_instance = self
+	
+	_scene.finish_pressed.connect(finish_pressed.emit)
+	
+	return _scene
+
+
 func has_scene() -> bool:
 	return _scene != null
 
@@ -507,18 +533,71 @@ func get_board() -> Board:
 
 
 func get_timer() -> StageTimer:
-	if not _timer:
-		_timer = StageTimer.new()
-	return _timer
+	if not has_node("Timer"):
+		var timer := StageTimer.new()
+		timer.name = "Timer"
+		add_child(timer)
+		return timer
+	return get_node("Timer")
 
 
 func get_status_timer() -> StageTimer:
-	if not _status_timer:
-		_status_timer = StageTimer.new()
-	return _status_timer
+	if not has_node("StatusTimer"):
+		var timer := StageTimer.new()
+		timer.name = "StatusTimer"
+		add_child(timer)
+		return timer
+	return get_node("StatusTimer")
 
 
 func get_projectile_manager() -> ProjectileManager:
-	if not _projectile_manager:
-		_projectile_manager = ProjectileManager.new()
-	return _projectile_manager
+	for child in get_children():
+		if child is ProjectileManager:
+			return child
+	
+	var projectile_manager := ProjectileManager.new()
+	add_child(projectile_manager)
+	return projectile_manager
+
+
+func get_effects() -> StageEffects:
+	return _effects
+
+
+func get_immunity() -> Immunity.ImmunityList:
+	return _immunity
+
+
+class Grid extends Node:
+	func _export_children() -> Array[CellData]:
+		var children: Array[CellData] = []
+		children.assign(get_children())
+		return children
+
+
+class StageEffects:
+	@warning_ignore("unused_signal") signal get_object_value(object: CellObject, value: int, value_name: StringName)
+	
+	@warning_ignore("unused_signal") signal turn()
+	
+	@warning_ignore("unused_signal") signal item_used_on_cell(item: Item, cell: CellData)
+	
+	@warning_ignore("unused_signal") signal cell_open(cell: CellData)
+	@warning_ignore("unused_signal") signal cell_interacted(cell: CellData)
+	@warning_ignore("unused_signal") signal cell_second_interacted(cell: CellData)
+	@warning_ignore("unused_signal") signal cell_aura_applied(cell: CellData)
+	@warning_ignore("unused_signal") signal cell_aura_removed(cell: CellData)
+	
+	@warning_ignore("unused_signal") signal object_revealed(object: CellObject, active: bool)
+	@warning_ignore("unused_signal") signal object_killed(object: CellObject)
+	@warning_ignore("unused_signal") signal object_interacted(object: CellObject)
+	@warning_ignore("unused_signal") signal object_second_interacted(object: CellObject)
+	
+	@warning_ignore("unused_signal") signal mistake_made(cell: CellData)
+	
+	@warning_ignore("unused_signal") signal entered()
+	@warning_ignore("unused_signal") signal generated()
+	@warning_ignore("unused_signal") signal started()
+	@warning_ignore("unused_signal") signal completed()
+	@warning_ignore("unused_signal") signal finish_pressed()
+	@warning_ignore("unused_signal") signal exited()

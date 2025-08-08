@@ -1,7 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://bl8bwoewf0m57"]
+[gd_scene load_steps=18 format=3 uid="uid://bl8bwoewf0m57"]
 
 [ext_resource type="Script" uid="uid://bk5gpwf2tbj5e" path="res://Engine/Scenes/StageScene/Board/Cell.gd" id="1_e3wqt"]
-[ext_resource type="Script" uid="uid://c1vtq3edollnk" path="res://Engine/Resources/DataContainers/Cell/CellData.gd" id="3_685kk"]
 [ext_resource type="Script" uid="uid://km0tl3hpf81q" path="res://Engine/Scenes/StageScene/Board/CellTextureRect.gd" id="3_te1nx"]
 [ext_resource type="Script" uid="uid://hddki14im5pk" path="res://Engine/Scenes/StageScene/Board/CellValueLabel.gd" id="4_3k5be"]
 [ext_resource type="Script" uid="uid://b3l1eajfjs5vj" path="res://Engine/Scenes/StageScene/Board/CellAuraModulator.gd" id="4_ocqma"]
@@ -15,11 +14,6 @@
 [ext_resource type="Script" uid="uid://k2n0orq8v38q" path="res://Engine/Resources/UtilityNode/Grabber.gd" id="13_tuktl"]
 [ext_resource type="Shader" uid="uid://dm184lu8cvpj0" path="res://Engine/Resources/Shaders/DirectionArrow.gdshader" id="14_27bf8"]
 [ext_resource type="Texture2D" uid="uid://cx3w4pgpiwi3p" path="res://Assets/sprites/dir_arrow.png" id="14_ffohp"]
-
-[sub_resource type="Resource" id="Resource_fixtg"]
-script = ExtResource("3_685kk")
-mode = 1
-value = 2
 
 [sub_resource type="Curve" id="Curve_0u5ry"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -44,7 +38,6 @@ anchors_preset = 0
 offset_right = 16.0
 offset_bottom = 16.0
 script = ExtResource("1_e3wqt")
-_data = SubResource("Resource_fixtg")
 
 [node name="CellAuraModulator" type="Control" parent="."]
 unique_name_in_owner = true
@@ -56,7 +49,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("4_ocqma")
-mode = 1
 
 [node name="CellTextureRect" type="TextureRect" parent="CellAuraModulator"]
 unique_name_in_owner = true
@@ -66,10 +58,10 @@ offset_bottom = 16.0
 mouse_filter = 2
 texture = ExtResource("4_uiyoy")
 script = ExtResource("3_te1nx")
-mode = 1
 
 [node name="CellValueLabel" type="Label" parent="CellAuraModulator"]
 unique_name_in_owner = true
+visible = false
 z_index = 2
 layout_mode = 1
 anchors_preset = -1
@@ -83,11 +75,9 @@ offset_right = 7.0
 offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "2"
+text = "0"
 horizontal_alignment = 1
 script = ExtResource("4_3k5be")
-mode = 1
-value = 2
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -104,6 +94,7 @@ mouse_filter = 2
 
 [node name="CellObjectTextureRect" type="TextureRect" parent="Control/Anchor"]
 unique_name_in_owner = true
+visible = false
 z_index = 1
 anchors_preset = 8
 anchor_left = 0.5

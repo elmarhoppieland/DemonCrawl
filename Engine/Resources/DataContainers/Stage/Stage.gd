@@ -1,5 +1,5 @@
 @tool
-extends Resource
+extends Node
 class_name Stage
 
 ## A single stage in a [Quest].
@@ -9,27 +9,11 @@ const BG_TEXTURE_PATH := "res://Assets/Skins/%s/bg.png"
 const MUSIC_PATH := "res://Assets/Skins/%s/music.ogg"
 const AMBIENCE_A_PATH := "res://Assets/Skins/%s/ambience_a.ogg"
 const AMBIENCE_B_PATH := "res://Assets/Skins/%s/ambience_b.ogg"
-
 # ==============================================================================
-#static var _current: Stage = Eternal.create(null) : set = _set_current, get = get_current
-
-static var current_changed := Signal() :
-	get:
-		if current_changed.is_null():
-			(Stage as GDScript).add_user_signal("_current_changed")
-			current_changed = Signal(Stage, "_current_changed")
-		return current_changed
+static var music_volume: float = Eternal.create(1.0, "settings")
 
 static var _theme_cache := {}
 # ==============================================================================
-@export var name := "" : ## The name of the stage.
-	set(value):
-		if name == value:
-			return
-		
-		name = value
-		
-		emit_changed()
 @export var size := Vector2i.ZERO : ## The size of the stage.
 	set(value):
 		if size == value:
@@ -89,8 +73,6 @@ static var _theme_cache := {}
 		
 		emit_changed()
 # ==============================================================================
-@export var _instance: StageInstance : get = get_instance
-# ==============================================================================
 var _theme: Theme : get = get_theme
 
 var _icon_large: Texture2D = null : get = get_large_icon
@@ -99,39 +81,18 @@ var _icon_small: Texture2D = null : get = get_small_icon
 var _audio_streams: Array[AudioStreamOggVorbis] = []
 var _audio_players: Array[AudioStreamPlayer] = []
 # ==============================================================================
-signal left()
-signal finished()
-signal finish_pressed()
+signal changed()
 # ==============================================================================
 
 func _init(_name: String = "", _size: Vector2i = Vector2i.ZERO, _monsters: int = 0) -> void:
-	name = _name
+	if not _name.is_empty():
+		name = _name
 	size = _size
 	monsters = _monsters
 
 
-## Returns the currently active [Stage]. Returns [code]null[/code] if there is no
-## active [Stage], for example when the player is on the [StageSelect] scene or
-## no [Quest] is active.
-## [br][br]See also [method has_current].
-static func get_current() -> Stage:
-	if StageInstance.has_current():
-		return StageInstance.get_current().get_stage()
-	return null
-
-
-## Returns whether there is an active [Stage].
-## [br][br]See also [method get_current].
-static func has_current() -> bool:
-	return get_current() != null
-
-
-func finish() -> void:
-	get_instance().finish()
-	finished.emit()
-	left.emit()
-	clear_instance()
-	completed = true
+func emit_changed() -> void:
+	changed.emit()
 
 
 ## Returns the total area of this [Stage], i.e. the number of [Cell]s.
@@ -264,7 +225,7 @@ func _get_large_icon() -> Texture2D:
 func _load_music() -> void:
 	for music_path: String in [MUSIC_PATH, AMBIENCE_A_PATH, AMBIENCE_B_PATH]:
 		var full_music_path := music_path % name
-		if FileAccess.file_exists(full_music_path):
+		if ResourceLoader.exists(full_music_path):
 			var audio_stream := load(full_music_path)
 			if audio_stream is AudioStreamOggVorbis:
 				audio_stream.loop = true
@@ -278,6 +239,7 @@ func _create_audio_players() -> void:
 	for stream in _audio_streams:
 		var audio_player := AudioStreamPlayer.new()
 		audio_player.stream = stream
+		audio_player.volume_linear *= music_volume
 		get_scene().add_child(audio_player)
 		_audio_players.append(audio_player)
 
@@ -292,8 +254,8 @@ func play_music() -> void:
 	_create_audio_players()
 	_start_audio_players()
 
-func stop_music() -> void:
 
+func stop_music() -> void:
 	for player in _audio_players:
 		player.stop()
 		player.queue_free()
@@ -301,33 +263,31 @@ func stop_music() -> void:
 	_audio_streams.clear()
 
 
-## Returns a [StageInstance] for this [Stage]. Reuses the same one if one was already created.
+## Returns a [StageInstance] for this [Stage].
 func get_instance() -> StageInstance:
-	#if self != Stage.get_current():
-		#return null
-	#
-	#if not _instance:
-		#_instance = StageInstance.new()
-		#_instance.set_stage(self)
-	return _instance
+	for child in get_children():
+		if child is StageInstance:
+			return child
+	return null
 
 
 ## Returns a [StageInstance] for this [Stage]. Reuses an existing one if one was already created.
 func create_instance() -> StageInstance:
-	if _instance == null:
-		_instance = StageInstance.new(self)
-	return _instance
+	if has_instance():
+		return get_instance()
+	var instance := StageInstance.new()
+	add_child(instance)
+	return instance
 
 
 ## Returns [code]true[/code] if this [Stage] has a [StageInstance] object.
 func has_instance() -> bool:
-	return _instance != null
+	return get_instance() != null
 
 
-## Clears this [Stage]'s [StageInstance]. The next call to [method get_instance] will
-## create a new instance.
+## Clears this [Stage]'s [StageInstance].
 func clear_instance() -> void:
-	_instance = null
+	get_instance().queue_free()
 
 
 ## Returns whether the specified [code]coord[/code] is inside this [Stage].

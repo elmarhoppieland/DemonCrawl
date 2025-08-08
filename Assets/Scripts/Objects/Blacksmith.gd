@@ -21,8 +21,11 @@ const TAGS := {
 @export var passed_turns := -1 # this is -1 if the blacksmith isn't busy
 # ==============================================================================
 
-func _ready() -> void:
-	Effects.Signals.turn.connect(_turn)
+func _enter_tree() -> void:
+	if get_parent() is not CellData:
+		return
+	
+	get_quest().get_stage_effects().turn.connect(_turn)
 
 
 func _spawn() -> void:
@@ -31,8 +34,11 @@ func _spawn() -> void:
 	turns = randi_range(5, 15)
 
 
-func _reset() -> void:
-	Effects.Signals.turn.disconnect(_turn)
+func _exit_tree() -> void:
+	if get_parent() is not CellData:
+		return
+	
+	get_quest().get_stage_effects().turn.disconnect(_turn)
 
 
 func _interact() -> void:

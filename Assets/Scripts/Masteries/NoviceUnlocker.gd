@@ -4,7 +4,7 @@ class_name NoviceUnlocker
 # ==============================================================================
 
 func _ready() -> void:
-	Effects.Signals.cell_open.connect(_cell_open)
+	get_quest().get_stage_effects().cell_open.connect(_cell_open)
 
 
 func _cell_open(cell: CellData) -> void:

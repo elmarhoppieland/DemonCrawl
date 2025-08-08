@@ -5,6 +5,12 @@ class_name StageCamera
 const DEFAULT_ZOOM := Vector2(3, 3)
 const ZOOM_BEGIN := Vector2(0.75, 0.75)
 # ==============================================================================
+@export var stage_instance: StageInstance = null :
+	get:
+		if stage_instance == null:
+			return StageScene.get_instance().stage_instance
+		return stage_instance
+
 @export var move_speed := 0.0
 @export var shake_magnitude := 2.0
 @export var shake_duration := 0.2
@@ -15,7 +21,7 @@ var _zoom_tween: Tween
 # ==============================================================================
 
 func _ready() -> void:
-	if StageInstance.get_current().get_scene().was_reloaded():
+	if stage_instance.was_reloaded():
 		zoom = DEFAULT_ZOOM
 	else:
 		create_tween().tween_property(self, "zoom", DEFAULT_ZOOM, 4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).from(ZOOM_BEGIN)
@@ -51,4 +57,4 @@ func shake() -> void:
 
 
 func focus_on_cell(cell: CellData) -> void:
-	global_position = StageInstance.get_current().get_board().get_global_at_cell_position(cell.get_position())
+	global_position = stage_instance.get_board().get_global_at_cell_position(cell.get_position())

@@ -14,14 +14,24 @@ func _get_export_properties() -> PackedStringArray:
 	return ["strangers_killed"]
 
 
-func _quest_load() -> void:
-	Effects.Signals.object_interacted.connect(_object_interact)
-	Effects.Signals.object_killed.connect(_object_kill)
+func _enter_tree() -> void:
+	super()
+	
+	if not active:
+		return
+	
+	get_quest().get_stage_effects().object_interacted.connect(_object_interact)
+	get_quest().get_stage_effects().object_killed.connect(_object_kill)
 
 
-func _quest_unload() -> void:
-	Effects.Signals.object_interacted.disconnect(_object_interact)
-	Effects.Signals.object_killed.disconnect(_object_kill)
+func _exit_tree() -> void:
+	super()
+	
+	if not active:
+		return
+	
+	get_quest().get_stage_effects().object_interacted.disconnect(_object_interact)
+	get_quest().get_stage_effects().object_killed.disconnect(_object_kill)
 
 
 func _object_interact(object: CellObject) -> void:

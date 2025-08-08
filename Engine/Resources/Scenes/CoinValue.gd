@@ -28,10 +28,13 @@ class_name CoinValue
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-
+	
 	update_font_color()
 	
-	Effects.Signals.change_coins.connect(update_font_color.unbind(1))
+	while true:
+		if Quest.has_current():
+			Quest.get_current().get_stats().changed.connect(update_font_color)
+		await Quest.current_changed
 
 
 func update_font_color() -> void:

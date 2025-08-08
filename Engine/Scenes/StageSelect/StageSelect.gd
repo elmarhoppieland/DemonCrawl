@@ -25,14 +25,16 @@ func _on_stage_details_interacted() -> void:
 	await tween.finished
 	
 	var stage := get_quest().get_selected_stage()
-	var instance := stage.create_instance()
-	instance.notify_loaded()
-	instance.set_as_current()
 	
 	if stage is SpecialStage:
 		get_tree().change_scene_to_packed(stage.get_dest_scene())
-	else:
-		get_tree().change_scene_to_file("res://Engine/Scenes/StageScene/StageScene.tscn")
+		return
+	
+	var instance := get_quest().start_stage(stage)
+	#instance.notify_loaded()
+	#instance.set_as_current()
+	
+	instance.change_to_scene()
 
 
 func _on_stages_overview_icon_selected(icon: StageIcon) -> void:
@@ -47,7 +49,7 @@ func get_quest() -> Quest:
 
 func _on_abandon_button_pressed() -> void:
 	Quest.get_current().lost.emit()
-	Quest.get_current().notify_unloaded()
+	#Quest.get_current().notify_unloaded()
 	Quest.clear_current()
 	Eternity.save()
 	
@@ -55,5 +57,5 @@ func _on_abandon_button_pressed() -> void:
 
 
 func _on_back_to_menu_button_pressed() -> void:
-	Quest.get_current().notify_unloaded()
+	#Quest.get_current().notify_unloaded()
 	get_tree().change_scene_to_file("res://Engine/Scenes/MainMenu/MainMenu.tscn")

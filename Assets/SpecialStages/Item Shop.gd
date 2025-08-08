@@ -1,3 +1,4 @@
+@tool
 extends SpecialStage
 class_name ItemShop
 

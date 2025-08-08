@@ -21,7 +21,7 @@ static var heirlooms_changed := Signal() :
 
 static var favored_items: Array[Favor] = Eternal.create([] as Array[Favor])
 
-static var selected_mastery: Mastery = Eternal.create(null) :
+static var selected_mastery: Mastery.MasteryData = Eternal.create(null) :
 	set(value):
 		selected_mastery = value
 		selected_mastery_changed.emit()
@@ -29,14 +29,14 @@ static var selected_mastery: Mastery = Eternal.create(null) :
 		if selected_mastery and selected_mastery.level != get_selectable_mastery_level(selected_mastery):
 			selected_mastery.level = get_selectable_mastery_level(selected_mastery)
 		return selected_mastery
-static var selectable_masteries: Array[Mastery] = Eternal.create([] as Array[Mastery])
-static var unlocked_masteries: Array[Mastery] = Eternal.create([] as Array[Mastery])
+static var selectable_masteries: Array[Mastery.MasteryData] = Eternal.create([] as Array[Mastery.MasteryData])
+static var unlocked_masteries: Array[Mastery.MasteryData] = Eternal.create([] as Array[Mastery.MasteryData])
 
 static var selected_mastery_changed := Signal() :
 	get:
 		if selected_mastery_changed.is_null():
-			(Codex as GDScript).add_user_signal("selected_mastery_changed")
-			selected_mastery_changed = Signal(Codex, "selected_mastery_changed")
+			(Codex as GDScript).add_user_signal("_selected_mastery_changed")
+			selected_mastery_changed = Signal(Codex, "_selected_mastery_changed")
 		return selected_mastery_changed
 
 static var tokens: int = Eternal.create(0)
@@ -134,7 +134,7 @@ static func add_profile_slot() -> void:
 	profiles.append(CodexProfile.new())
 
 
-static func get_selectable_mastery(mastery: Variant) -> Mastery:
+static func get_selectable_mastery(mastery: Variant) -> Mastery.MasteryData:
 	return _get_mastery_from_list(mastery, selectable_masteries)
 
 
@@ -145,7 +145,7 @@ static func get_selectable_mastery_level(mastery: Variant) -> int:
 	return 0
 
 
-static func get_unlocked_mastery(mastery: Variant) -> Mastery:
+static func get_unlocked_mastery(mastery: Variant) -> Mastery.MasteryData:
 	return _get_mastery_from_list(mastery, unlocked_masteries)
 
 
@@ -156,8 +156,8 @@ static func get_unlocked_mastery_level(mastery: Variant) -> int:
 	return 0
 
 
-static func _get_mastery_from_list(mastery: Variant, list: Array) -> Mastery:
-	assert(mastery is Mastery or mastery is String or mastery is StringName or mastery is Script, "The parameter must be a Mastery, a Mastery id, or a Mastery Script, but '%s' was found." % type_string(typeof(mastery)))
+static func _get_mastery_from_list(mastery: Variant, list: Array[Mastery.MasteryData]) -> Mastery.MasteryData:
+	assert(mastery is Mastery.MasteryData or mastery is Mastery or mastery is String or mastery is StringName or mastery is Script, "The parameter must be a Mastery, a MasteryData object, a Mastery id, or a Mastery Script, but '%s' was found." % type_string(typeof(mastery)))
 	
 	for i in list:
 		if mastery is String or mastery is StringName:
@@ -168,6 +168,9 @@ static func _get_mastery_from_list(mastery: Variant, list: Array) -> Mastery:
 				return i
 		elif mastery is Mastery:
 			if i.get_script() == mastery.get_script():
+				return i
+		elif mastery is Mastery.MasteryData:
+			if i.mastery == mastery.mastery:
 				return i
 	
 	return null

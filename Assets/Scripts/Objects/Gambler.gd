@@ -26,8 +26,8 @@ func _interact() -> void:
 func _activate() -> void:
 	Toasts.add_toast(tr("STRANGER_GAMBLER_INTERACT"), get_source())
 	
-	var cells := StageInstance.get_current().get_cells().filter(func(cell: CellData) -> bool:
-		return cell.is_hidden() and (not cell.is_occupied() or cell.object is Monster)
+	var cells := get_cell().get_stage_instance().get_cells().filter(func(cell: CellData) -> bool:
+		return cell.is_hidden() and (not cell.is_occupied() or cell.has_monster())
 	)
 	if cells.is_empty():
 		return

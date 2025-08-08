@@ -23,7 +23,7 @@ func _get_texture() -> Texture2D:
 
 
 func _aura_apply() -> void:
-	if get_cell().aura is Burning:
+	if get_cell().get_aura() is Burning:
 		kill()
 
 

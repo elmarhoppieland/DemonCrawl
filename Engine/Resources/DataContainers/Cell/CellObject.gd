@@ -1,28 +1,12 @@
 @tool
-extends AnnotatedTexture
+extends AnnotatedTextureNode
 class_name CellObject
 
 ## A [Cell]'s object.
 
 # ==============================================================================
-@export var _origin_stage: Stage : set = _set_origin_stage, get = get_origin_stage
+@export var _origin_stage: Stage = null : set = _set_origin_stage, get = get_origin_stage
 # ==============================================================================
-var _cell: WeakRef = null :
-	set(value):
-		var old := _cell
-		if old != null and value == null:
-			reset()
-		
-		_cell = value
-		
-		if old == null and value != null:
-			_ready()
-		
-		cell_changed.emit()
-
-var _origin_stage_weakref: WeakRef = null
-
-var _texture: Texture2D = null : get = get_texture
 var _material: Material = null : get = get_material
 
 var _theme: Theme = null :
@@ -31,65 +15,35 @@ var _theme: Theme = null :
 			_theme = _origin_stage.get_theme()
 		return _theme
 
-var _tweens: Array[Tween] = []
-
 var initialized := false
 var reloaded := false
-# ==============================================================================
-signal cell_changed()
 # ==============================================================================
 
 #region internals
 
-@warning_ignore("shadowed_variable")
-func _init(stage: Stage = Stage.get_current()) -> void:
+func _init(stage: Stage = null) -> void:
 	_origin_stage = stage
 
 
-func _notification(what: int) -> void:
-	match what:
-		NOTIFICATION_PREDELETE:
-			for tween in _tweens:
-				tween.kill()
-
-
-func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:
-	_texture.draw(to_canvas_item, pos, modulate * get_modulate(), transpose)
-
-
-func _draw_rect(to_canvas_item: RID, rect: Rect2, tile: bool, modulate: Color, transpose: bool) -> void:
-	_texture.draw_rect(to_canvas_item, rect, tile, modulate * get_modulate(), transpose)
-
-
-func _draw_rect_region(to_canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color, transpose: bool, clip_uv: bool) -> void:
-	_texture.draw_rect_region(to_canvas_item, rect, src_rect, modulate * get_modulate(), transpose, clip_uv)
-
-
-func _get_width() -> int:
-	return _texture.get_width()
-
-
-func _get_height() -> int:
-	return _texture.get_height()
-
-
-func _has_alpha() -> bool:
-	return _texture.has_alpha()
-
-
-func _is_pixel_opaque(x: int, y: int) -> bool:
-	if x < 0 or y < 0:
-		return true
-	if x > get_width() or y > get_width():
-		return true
-	return _texture.get_image().get_pixel(x, y).a8 != 0
+func _ready() -> void:
+	if Eternity.get_processing_file() != null:
+		await Eternity.get_processing_file().loaded
+		_cell_enter()
+		return
+	
+	var contribution := get_value_contribution()
+	for cell in get_cell().get_nearby_cells():
+		cell.value += contribution
+	
+	_cell_enter()
+	_spawn()
 
 
 func _export_packed() -> Array:
 	var args := []
 	
-	var owner := Eternity.get_processing_owner()
-	if not owner.has_method("get_stage") or owner.get_stage() != self.get_origin_stage():
+	var processing_owner := Eternity.get_processing_owner()
+	if not processing_owner.has_method("get_stage") or processing_owner.get_stage() != self.get_origin_stage():
 		args.append(get_origin_stage())
 	
 	if not initialized:
@@ -112,10 +66,10 @@ static func _import_packed_static_v(script: String, args: Array) -> CellObject:
 		object._origin_stage = args[0]
 		i = 1
 	else:
-		var owner := Eternity.get_processing_owner()
-		if owner.has_method("get_stage"):
+		var processing_owner := Eternity.get_processing_owner()
+		if processing_owner.has_method("get_stage"):
 			Eternity.get_processing_file().loaded.connect(func(_path: String) -> void:
-				object._origin_stage = owner.get_stage()
+				object._origin_stage = processing_owner.get_stage()
 			, CONNECT_ONE_SHOT)
 		else:
 			Debug.log_error("Could not obtain the stage for object '%s'." % object)
@@ -167,23 +121,15 @@ func _to_string() -> String:
 
 #endregion
 
-func set_cell(cell: CellData) -> void:
-	_cell = weakref(cell) if cell else null
-
-
 func get_cell() -> CellData:
-	return _cell.get_ref() if _cell else null
-
-
-func get_tree() -> SceneTree:
-	return Engine.get_main_loop()
+	return get_parent()
 
 
 func _set_origin_stage(value: Stage) -> void:
 	if _origin_stage and _origin_stage.changed.is_connected(_on_stage_changed):
 		_origin_stage.changed.disconnect(_on_stage_changed)
 	
-	_origin_stage_weakref = weakref(value)
+	_origin_stage = value
 	
 	_on_stage_changed()
 	if value:
@@ -197,20 +143,24 @@ func _on_stage_changed() -> void:
 	emit_changed()
 
 
+func get_stage() -> Stage:
+	var base := get_parent()
+	while base != null and base is not Stage:
+		base = base.get_parent()
+	return base
+
+
+func get_stage_instance() -> StageInstance:
+	var base := get_parent()
+	while base != null and base is not StageInstance:
+		base = base.get_parent()
+	return base
+
+
 func get_origin_stage() -> Stage:
-	if _origin_stage_weakref == null:
-		return null
-	return _origin_stage_weakref.get_ref()
+	return _origin_stage
 
 #region virtuals
-
-## Virtual method. Called immediately after initializing. Can be overridden to run
-## code every time this object is created, e.g. to connect to effects.
-## [br][br][b]Note:[/b] Is called every time this object is initialized, even when
-## reloading the stage.
-func _ready() -> void:
-	pass
-
 
 ## Returns whether an object of this type can spawn. If this returns [code]false[/code],
 ## a [Cell] that attempts to spawn this object will try again.
@@ -221,24 +171,6 @@ static func can_spawn(object: Script) -> bool:
 ## Virtual method to override the return value of [method can_spawn].
 static func _can_spawn() -> bool:
 	return true
-
-
-## Returns the object's texture.
-## [br][br][b]Note:[/b] Each [CellObject] is a [Texture2D] by itself, so it can be used as
-## a texture. This method simply returns the underlying [Texture2D] instance.
-func get_texture() -> Texture2D:
-	if not _texture:
-		_texture = _get_texture()
-		if _texture:
-			_texture.changed.connect(emit_changed)
-	return _texture
-
-
-## Called when this object's [Texture2D] is queried.
-## [br][br]After this is called, the texture is cached and this method is not called
-## anymore on this object.
-func _get_texture() -> Texture2D:
-	return null
 
 
 ## Returns the object's texture source. This must be a built-in [Texture2D]-derived class.
@@ -310,7 +242,7 @@ func notify_interacted() -> void:
 	
 	_hover()
 	
-	Effects.object_interacted(self)
+	EffectManager.propagate(get_stage_instance().get_effects().object_interacted, [self])
 
 
 ## Virtual method to react to this object being interacted with.
@@ -353,13 +285,13 @@ func _unhover() -> void:
 func kill() -> void:
 	get_cell().shatter(get_source())
 	
-	StageInstance.get_current().get_board().get_camera().shake()
+	get_cell().get_stage_instance().get_board().get_camera().shake()
 	
 	_kill()
 	
 	clear()
 	
-	Effects.object_killed(self)
+	EffectManager.propagate(get_stage_instance().get_effects().object_killed, [self])
 
 
 ## Virtual method to react to being killed.
@@ -396,7 +328,7 @@ func _reveal() -> void:
 func notify_revealed_active() -> void:
 	_reveal_active()
 	
-	Effects.object_revealed(self, true)
+	EffectManager.propagate(get_stage_instance().get_effects().object_revealed, [self, true])
 
 
 ## Virtual method to react to this object being revealed. Called when the player
@@ -411,7 +343,7 @@ func _reveal_active() -> void:
 func notify_revealed_passive() -> void:
 	_reveal_passive()
 	
-	Effects.object_revealed(self, false)
+	EffectManager.propagate(get_stage_instance().get_effects().object_revealed, [self, false])
 
 
 ## Virtual method to react to being passively revealed. Called when the player passively
@@ -476,17 +408,6 @@ func _cell_enter() -> void:
 	pass
 
 
-func notify_cell_entered() -> void:
-	if Eternity.get_processing_file() != null:
-		await Eternity.loaded
-	
-	var contribution := get_value_contribution()
-	for cell in get_cell().get_nearby_cells():
-		cell.value += contribution
-	
-	_cell_enter()
-
-
 ## Virtual method. Called when an [Aura] is applied to this object's [Cell].
 func _aura_apply() -> void:
 	pass
@@ -540,16 +461,6 @@ func clear() -> void:
 	get_cell().clear_object()
 
 
-## Creates a new [Tween].
-## [br][br]The [Tween] will start automatically on the next process frame or physics frame (depending on [enum Tween.TweenProcessMode]).
-## [br][br]The [Tween] will automatically be killed when this [CellObject] gets freed.
-func create_tween() -> Tween:
-	var tween := get_tree().create_tween()
-	_tweens.append(tween)
-	tween.finished.connect(func() -> void: _tweens.erase(tween), CONNECT_ONE_SHOT)
-	return tween
-
-
 @warning_ignore("shadowed_variable")
 func move_to_cell(cell: CellData) -> void:
 	# TODO: this should animate the texture from the old cell to the new one
@@ -562,7 +473,10 @@ func flee() -> void:
 
 
 func get_quest() -> Quest:
-	return Quest.get_current()
+	var base := get_parent()
+	while base != null and base is not Quest:
+		base = base.get_parent()
+	return base
 
 
 func get_inventory() -> QuestInventory:
@@ -589,15 +503,15 @@ func life_lose(life: int, source: Object = self) -> void:
 
 
 func tween_texture_to(position: Vector2, duration: float = 0.4) -> Tween:
-	return GuiLayer.get_texture_tweener().tween_texture(self, get_cell().get_stage_instance().get_board().get_global_at_cell_position(get_cell().get_position()), position, duration, 4.0)
+	return GuiLayer.get_texture_tweener().tween_texture(get_texture(), get_cell().get_stage_instance().get_board().get_global_at_cell_position(get_cell().get_position()), position, duration, 4.0)
 
 
-func get_theme_icon(name: StringName, theme_type: StringName = "Cell") -> Texture2D:
+func get_theme_icon(theme_name: StringName, theme_type: StringName = "Cell") -> Texture2D:
 	var icon: Texture2D
-	if _theme and _theme.has_icon(name, theme_type):
-		icon = _theme.get_icon(name, theme_type)
+	if _theme and _theme.has_icon(theme_name, theme_type):
+		icon = _theme.get_icon(theme_name, theme_type)
 	else:
-		icon = load("res://Engine/Resources/default_theme.tres").get_icon(name, theme_type)
+		icon = load("res://Engine/Resources/default_theme.tres").get_icon(theme_name, theme_type)
 	
 	if icon is CustomTextureBase:
 		return icon.create()

@@ -3,10 +3,14 @@ extends GridContainer
 class_name BoardCellContainer
 
 # ==============================================================================
-var _hovered_cell: Cell : get = get_hovered_cell
-var _pressed_cell: Cell
+@export var stage_instance: StageInstance = null :
+	get:
+		if stage_instance == null and StageScene.get_instance():
+			return StageScene.get_instance().stage_instance
+		return stage_instance
 # ==============================================================================
-signal stage_finished()
+var _hovered_cell: CellData : get = get_hovered_cell
+var _pressed_cell: CellData
 # ==============================================================================
 
 func _validate_property(property: Dictionary) -> void:
@@ -18,15 +22,15 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func _ready() -> void:
-	if not get_stage():
+	if not stage_instance:
 		return
 	
-	columns = get_stage().size.x
+	columns = stage_instance.get_stage().size.x
 	
-	for i in get_stage().area():
-		var cell := get_stage().get_instance().create_cell(i)
+	for i in stage_instance.get_stage().area():
+		var cell := stage_instance.create_cell(i)
 		cell.mouse_entered.connect(func() -> void:
-			_hovered_cell = cell
+			_hovered_cell = cell.get_data()
 		)
 		cell.mouse_exited.connect(func() -> void:
 			if _hovered_cell == cell:
@@ -85,27 +89,20 @@ func _process(_delta: float) -> void:
 			if _hovered_cell.is_flag_solved():
 				for cell in _hovered_cell.get_nearby_cells():
 					if cell.get_mode() == Cell.Mode.HIDDEN:
-						StageInstance.get_current().remove_flagless()
+						stage_instance.remove_flagless()
 					cell.flag()
 		else:
 			if _hovered_cell.get_mode() == Cell.Mode.HIDDEN:
-				StageInstance.get_current().remove_flagless()
+				stage_instance.remove_flagless()
 			_hovered_cell.flag()
-			get_stage().get_instance().remove_flagless()
+			stage_instance.remove_flagless()
 
 
-func get_hovered_cell() -> Cell:
+func get_hovered_cell() -> CellData:
 	return _hovered_cell
 
 
-func get_stage() -> Stage:
-	return Stage.get_current()
-
-
 func _after_open_cell() -> void:
-	if get_stage().get_instance().is_finished():
-		for cell: Cell in get_children():
-			cell.flag()
-		stage_finished.emit()
+	stage_instance.check_completed()
 	
-	Effects.turn()
+	EffectManager.propagate(stage_instance.get_effects().turn)

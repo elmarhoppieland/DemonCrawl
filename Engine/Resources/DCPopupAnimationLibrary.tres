@@ -182,7 +182,7 @@ tracks/4/keys = {
 
 [resource]
 _data = {
-"RESET": SubResource("Animation_jt3bo"),
-"popup_hide": SubResource("Animation_gks8s"),
-"popup_show": SubResource("Animation_7542p")
+&"RESET": SubResource("Animation_jt3bo"),
+&"popup_hide": SubResource("Animation_gks8s"),
+&"popup_show": SubResource("Animation_7542p")
 }

@@ -9,9 +9,8 @@ class_name CellTextureRect
 		_update()
 # ==============================================================================
 
-func _ready() -> void:
+func _init() -> void:
 	theme_changed.connect(_update)
-	_update()
 
 
 func _update() -> void:

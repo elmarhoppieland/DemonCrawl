@@ -1,5 +1,5 @@
 @tool
-extends Resource
+extends Node
 class_name QuestInventory
 
 # ==============================================================================
@@ -15,14 +15,34 @@ class_name QuestInventory
 			
 			if i < value.size():
 				value[i].cleared.connect(item_lose.bind(value[i]))
+				value[i].set_quest(get_quest())
 		
 		items = value
 		emit_changed()
 # ==============================================================================
+var _effects := InventoryEffects.new() : get = get_effects
+# ==============================================================================
 signal item_added(item: Item)
 signal item_removed(item: Item)
 signal item_transformed(old_item: Item, new_item: Item)
+
+signal changed()
 # ==============================================================================
+
+func emit_changed() -> void:
+	changed.emit()
+
+
+func _init() -> void:
+	name = "Inventory"
+
+
+func get_quest() -> Quest:
+	var base := get_parent()
+	while base != null and base is not Quest:
+		base = base.get_parent()
+	return base
+
 
 func get_item_count() -> int:
 	return items.size()
@@ -86,10 +106,7 @@ func item_has(item: Item, exact: bool = false) -> bool:
 
 
 func mana_gain(mana: int, source: Object) -> void:
-	mana = Effects.gain_mana(mana, source)
-	
-	var rng := RandomNumberGenerator.new()
-	rng.seed = rng.randi()
+	mana = EffectManager.propagate(get_effects().mana_gained, [mana, source], 0)
 	
 	var mana_items: Array[Item] = []
 	mana_items.assign(items.filter(func(item: Item) -> bool: return item.can_recieve_mana()))
@@ -98,7 +115,7 @@ func mana_gain(mana: int, source: Object) -> void:
 		return
 	
 	for i in mana:
-		mana_items[rng.randi() % mana_items.size()].gain_mana(1)
+		mana_items.pick_random().gain_mana(1)
 
 
 func get_random_item() -> Item:
@@ -114,3 +131,12 @@ func item_lose_random() -> void:
 
 func is_empty() -> bool:
 	return items.is_empty()
+
+
+func get_effects() -> InventoryEffects:
+	return _effects
+
+
+class InventoryEffects:
+	@warning_ignore("unused_signal") signal item_use(item: Item)
+	@warning_ignore("unused_signal") signal mana_gained(mana: int, source: Object)

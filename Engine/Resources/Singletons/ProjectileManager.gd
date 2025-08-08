@@ -1,24 +1,28 @@
 @tool
-extends Resource
+extends Node
 class_name ProjectileManager
 
 # ==============================================================================
 @export var speed := 96.0
-
-@export var _projectiles: Array[Projectile] = [] : get = get_projectiles
 # ==============================================================================
+
+func _init() -> void:
+	name = "ProjectileManager"
+
 
 func register_projectile(projectile: Projectile) -> void:
 	if projectile in get_projectiles():
 		Debug.log_error("Attempted to register an already-registered projectile.")
 		return
 	
-	_projectiles.append(projectile)
+	add_child(projectile)
 
 
 func clear_projectile(projectile: Projectile) -> void:
-	_projectiles.erase(projectile)
+	projectile.queue_free()
 
 
 func get_projectiles() -> Array[Projectile]:
-	return _projectiles
+	var projectiles: Array[Projectile] = []
+	projectiles.assign(get_children())
+	return projectiles

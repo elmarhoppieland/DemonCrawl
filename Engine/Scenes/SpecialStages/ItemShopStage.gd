@@ -7,6 +7,8 @@ var _selected_display: LargeCollectibleDisplay
 @onready var _offers_container: HBoxContainer = %OffersContainer
 @onready var _buy_button: DCButton = %BuyButton
 # ==============================================================================
+signal finished()
+# ==============================================================================
 
 func _ready() -> void:
 	#Foreground.fade_in(1.0)
@@ -54,6 +56,5 @@ func _on_buy_button_pressed() -> void:
 
 
 func _on_leave_button_pressed() -> void:
-	StageInstance.get_current().finish()
-	StageInstance.clear_current()
+	finished.emit()
 	get_tree().change_scene_to_file("res://Scenes/StageSelect/StageSelect.tscn")

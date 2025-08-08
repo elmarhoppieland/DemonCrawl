@@ -12,20 +12,26 @@ const Apple := preload("res://Assets/items/Apple.gd")
 @export var purchase_count := 0
 # ==============================================================================
 
-func _ready() -> void:
-	Effects.Signals.stage_leave.connect(_stage_leave)
-	Effects.Signals.item_use.connect(_item_use)
+func _enter_tree() -> void:
+	if get_parent() is not CellData:
+		return
+	
+	get_quest().get_stage_effects().exited.connect(_stage_leave)
+	get_quest().get_inventory().get_effects().item_use.connect(_item_use)
+
+
+func _exit_tree() -> void:
+	if get_parent() is not CellData:
+		return
+	
+	get_quest().get_stage_effects().exited.disconnect(_stage_leave)
+	get_quest().get_inventory().get_effects().item_use.disconnect(_item_use)
 
 
 func _spawn() -> void:
 	cost = randi_range(5, 15)
 	extra_fee = randi_range(10, 20)
 	lives = randi_range(1, 3)
-
-
-func _reset() -> void:
-	Effects.Signals.stage_leave.disconnect(_stage_leave)
-	Effects.Signals.item_use.disconnect(_item_use)
 
 
 func _stage_leave() -> void:

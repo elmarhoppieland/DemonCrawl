@@ -11,7 +11,7 @@ class_name UserClassDB
 ## their script path.
 ## [br][br]
 ## If a class has any subclasses defined (using [code]class MySubClass[/code]), that
-## subclass is available under [code]BaseClass:MySubClass[/code]. If the base script
+## subclass is available under [code]BaseClass::MySubClass[/code]. If the base script
 ## does not have a class name defined, the path can be used instead.
 ## [br][br]
 ## [b]Examples:[/b]
@@ -23,10 +23,10 @@ class_name UserClassDB
 ## UserClassDB.class_exists("res://scripts/my_class.gd")
 ##
 ## # Returns true if MyClass exists and has a subclass named 'MySubClass'.
-## UserClassDB.class_exists("MyClass:MySubClass")
+## UserClassDB.class_exists("MyClass::MySubClass")
 ##
 ## # Returns true if my_class.gd exists and has a subclass 'MySubClass' with a subclass 'MySubSubClass'.
-## UserClassDB.class_exists("res://scripts/my_class.gd:MySubClass:MySubSubClass")
+## UserClassDB.class_exists("res://scripts/my_class.gd::MySubClass::MySubSubClass")
 ## [/codeblock]
 ## [codeblock]
 ## # Obtains the class name of the caller's script.
@@ -39,27 +39,27 @@ class_name UserClassDB
 ## available in [ClassDB].
 
 # ==============================================================================
-static var _classes := {}
+static var _classes: Dictionary[String, Script] = {}
 static var _initialized := false
 
-static var _frozen_classes := {}
+static var _frozen_classes: Dictionary[int, Dictionary] = {}
 
-static var _script_id_cache := {}
+static var _script_id_cache: Dictionary[Script, StringName] = {}
 # ==============================================================================
 
 func _init() -> void:
 	assert(false, "Instantiating UserClassDB is not allowed. Instead, call methods on the class directly.")
 
 
-## If [code]name[/code] is the name if a user-defined class, or points to a subclass
-## of a user-defined class name, converts the class name into the path to
-## the class's script.
+## If [param name] is the name if a user-defined class, or points to a subclass
+## of a user-defined class name (recursively), converts the class name into the
+## path to the class's script.
 static func class_get_path(name: StringName) -> StringName:
 	if name.is_absolute_path():
 		return name
 	
-	if ":" in name.trim_prefix("res://"):
-		return class_get_path(name.get_slice(":", 0)) + name.substr(name.find(":"))
+	if "::" in name.trim_prefix("res://"):
+		return class_get_path(name.get_slice("::", 0)) + name.substr(name.find("::"))
 	
 	for class_data in ProjectSettings.get_global_class_list():
 		if class_data.class == name:
@@ -68,18 +68,22 @@ static func class_get_path(name: StringName) -> StringName:
 	return &""
 
 
-## If [code]path[/code] is the path to a script that has a class name, or points
-## to a subclass of a script with a class name, converts the path into the script's
-## class name. If no class name is defined, returns the original path.
-static func class_get_name(path: StringName) -> StringName:
-	if ":" in path.trim_prefix("res://"):
-		return class_get_name(path.substr(0, path.rfind(":"))) + path.substr(path.rfind(":"))
+## If [param name] is the path to a script that has a class name, or points
+## to a subclass of a script with a class name (recursively), converts the path
+## into the script's class name. If no class name is defined, returns the original path.
+static func class_get_name(name: StringName) -> StringName:
+	var path := class_get_path(name)
+	
+	var suffix := ""
+	while "::" in path.trim_prefix("res://"):
+		suffix = path.substr(path.rfind("::")) + suffix
+		path = path.substr(0, path.rfind("::"))
 	
 	for class_data in ProjectSettings.get_global_class_list():
 		if class_data.path == path:
-			return class_data.class
+			return class_data.class + suffix
 	
-	return path
+	return path + suffix
 
 
 ## Returns whether the specified class is available or not.
@@ -96,8 +100,8 @@ static func class_exists(name: StringName) -> bool:
 		_classes[name] = load(String(name))
 		return true
 	
-	if ":" in name.trim_prefix("res://"):
-		return class_exists(name.substr(0, name.rfind(":")))
+	if "::" in name.trim_prefix("res://"):
+		return class_exists(name.substr(0, name.rfind("::")))
 	
 	return false
 
@@ -489,11 +493,11 @@ static func get_parent_class(name: StringName) -> StringName:
 
 
 ## Creates an instance of class [code]name[/code].
-static func instantiate(name: StringName, disable_safety_checks: bool = false) -> Object:
-	if not disable_safety_checks and not class_can_instantiate(name):
+static func instantiate(name: StringName, args: Array = []) -> Object:
+	if not class_can_instantiate(name):
 		return null
 	
-	return class_get_script(name).new()
+	return class_get_script(name).new.callv(args)
 
 
 ## Returns whether class [code]name[/code] is enabled or not.
@@ -519,34 +523,42 @@ static func is_parent_class(name: StringName, inherits: StringName) -> bool:
 	#return class_get_script(name).get_base_script() == class_get_script(inherits) or is_parent_class(name, get_parent_class(inherits))
 
 
-## Returns class [code]name[/code]'s [Script] instance.
+## Returns class [param name]'s [Script] instance.
 static func class_get_script(name: StringName) -> Script:
 	name = class_get_path(name)
 	
 	if not Engine.is_editor_hint() and name in _classes:
-		return _classes[name]
+		var script = _classes.get(String(name))
+		if script != null:
+			return script
+		push_warning("Class '%s' was found in the class cache, but its value could not be retrieved." % name)
 	
 	if not class_exists(name):
 		return null
 	
-	if ":" in name.trim_prefix("res://"):
-		return class_get_script(name.substr(0, name.rfind(":")))[name.get_slice(":", name.count(":"))]
+	if "::" in name.trim_prefix("res://"):
+		return class_get_script(name.substr(0, name.rfind("::")))[name.get_slice("::", name.count("::"))]
 	
-	return ResourceLoader.load(String(name))
-	
-	#return _classes.get(class_get_path(name))
+	var script := ResourceLoader.load(String(name))
+	if script != null:
+		_classes[name] = script
+	return script
 
 
 ## Returns the class name of [code]script[/code].
 ## [br][br][b]Note:[/b] Returns an empty [StringName] if the provided script does not have
 ## a class name defined. If you need an identifier for the script, use [method script_get_identifier].
 static func script_get_class(script: Script) -> StringName:
+	var global_name := script.get_global_name()
+	if not global_name.is_empty():
+		return global_name
+	
 	for class_data in ProjectSettings.get_global_class_list():
 		if class_data.path == script.resource_path:
 			return class_data.class
 		for subclass in class_get_subclasses(class_data.path):
 			if class_get_script(subclass) == script:
-				return class_data.class + subclass.substr(subclass.find(":", 6))
+				return class_data.class + subclass.substr(subclass.find("::", 6))
 	
 	return &""
 
@@ -567,6 +579,17 @@ static func script_get_identifier(script: Script, use_class_if_available: bool =
 	if script in _script_id_cache and not Engine.is_editor_hint():
 		return _script_id_cache[script]
 	
+	if use_class_if_available:
+		var global_name := script.get_global_name()
+		if not global_name.is_empty():
+			_script_id_cache[script] = global_name
+			return global_name
+	else:
+		var path := script.resource_path
+		if not path.is_empty():
+			_script_id_cache[script] = path
+			return path
+	
 	var id := &""
 	
 	for name in get_class_list():
@@ -576,8 +599,8 @@ static func script_get_identifier(script: Script, use_class_if_available: bool =
 	
 	if use_class_if_available:
 		for class_data in ProjectSettings.get_global_class_list():
-			if class_data.path == id.substr(0, id.find(":", 6)):
-				id = class_data.class + id.substr(id.find(":", 6))
+			if class_data.path == id.substr(0, id.find("::", 6)):
+				id = class_data.class + id.substr(id.find("::", 6))
 				_script_id_cache[script] = id
 				return id
 	
@@ -600,7 +623,7 @@ static func class_get_subclasses(name: StringName, recursive: bool = false) -> P
 	
 	if OS.get_thread_caller_id() in _frozen_classes:
 		for c in get_class_list():
-			if c.begins_with(name + ":"):
+			if c.begins_with(name + "::"):
 				subclasses.append(c)
 		
 		return subclasses
@@ -610,11 +633,11 @@ static func class_get_subclasses(name: StringName, recursive: bool = false) -> P
 	for constant: String in constants:
 		var value = constants[constant]
 		if value is Script and value.resource_path.is_empty():
-			_classes[name + ":" + constant] = value
-			subclasses.append(original_name + ":" + constant)
+			_classes[name + "::" + constant] = value
+			subclasses.append(original_name + "::" + constant)
 			
 			if recursive:
-				subclasses.append_array(class_get_subclasses(name + ":" + constant, recursive))
+				subclasses.append_array(class_get_subclasses(name + "::" + constant, recursive))
 	
 	return subclasses
 

@@ -1,16 +1,7 @@
-extends Resource
+extends Node
 class_name MasteryUnlocker
 
 # ==============================================================================
-
-func _init() -> void:
-	_ready()
-
-
-## Virtual method. Called after this [MasteryUnlocker] has been initialized.
-func _ready() -> void:
-	pass
-
 
 ## Notifies the [MasteryUnlocker] that the current [Quest] has been won.
 func notify_quest_won() -> void:
@@ -47,12 +38,21 @@ func _unlock(level: int) -> void:
 		mastery.level = level
 
 
-func get_mastery() -> Mastery:
+func get_quest() -> Quest:
+	var base := get_parent()
+	while base != null and base is not Quest:
+		base = base.get_parent()
+	return base
+
+
+func get_mastery() -> Mastery.MasteryData:
 	return _get_mastery()
 
 
-func _get_mastery() -> Mastery:
-	return UserClassDB.instantiate(get_mastery_class())
+func _get_mastery() -> Mastery.MasteryData:
+	var data := Mastery.MasteryData.new()
+	data.mastery = UserClassDB.class_get_script(get_mastery_class())
+	return data
 
 
 func get_mastery_class() -> StringName:

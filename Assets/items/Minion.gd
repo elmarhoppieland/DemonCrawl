@@ -3,11 +3,11 @@ extends Item
 
 # ==============================================================================
 
-func use() -> void:
-	if not StageInstance.has_current():
+func _use() -> void:
+	if not get_stage_instance():
 		return
 	
-	StageInstance.get_current().solve_cell()
+	get_stage_instance().solve_cell()
 	
 	clear()
 

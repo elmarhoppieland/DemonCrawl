@@ -1,5 +1,5 @@
 @tool
-extends Resource
+extends Node
 class_name StatusEffect
 
 # ==============================================================================
@@ -17,17 +17,17 @@ enum Type {
 		_texture = null
 		emit_changed()
 
-@export var quest: Quest = null :
-	set(value):
-		if quest and quest == Quest.get_current():
-			_disconnect_signals()
-		
-		quest = value
-		
-		if _loaded and value and value == Quest.get_current():
-			_connect_signals()
-		
-		emit_changed()
+#@export var quest: Quest = null :
+	#set(value):
+		#if quest:
+			#_disconnect_signals()
+		#
+		#quest = value
+		#
+		#if _loaded and value and value == Quest.get_current():
+			#_connect_signals()
+		#
+		#emit_changed()
 
 @export var _origin := 0 :
 	set(value):
@@ -49,12 +49,16 @@ var _texture: Texture2D = null : get = get_texture
 
 var _loaded := false
 var _finished := false : get = is_finished
-
-var _sub_timer: StageTimer.SubTimer = null
 # ==============================================================================
 signal loop_finished()
 signal finished()
+
+signal changed()
 # ==============================================================================
+
+func emit_changed() -> void:
+	changed.emit()
+
 
 func start() -> void:
 	_start()
@@ -66,40 +70,30 @@ func kill() -> void:
 	_kill()
 	_end()
 
-
 #region internals
 
 func _connect_signals() -> void:
-	Effects.Signals.mistake.connect(notify_mistake)
+	get_quest().get_stage_effects().mistake_made.connect(notify_mistake)
 	
 	match _type:
 		Type.TURNS:
-			Effects.Signals.turn.connect(notify_turn)
+			get_quest().get_stage_effects().turn.connect(notify_turn)
 		Type.CELLS_OPENED:
-			Effects.Signals.turn.connect(notify_cell_opened)
+			get_quest().get_stage_effects().cell_open.connect(notify_cell_opened)
 		Type.SECONDS:
-			while quest == Quest.get_current():
-				if StageInstance.has_current():
-					_sub_timer = StageInstance.get_current().get_status_timer().create_subtimer()
-					_sub_timer.second_passed.connect(notify_second_passed)
-				else:
-					_sub_timer = null
-				
-				await StageInstance.current_changed
+			get_quest().get_effects().status_effect_second_passed.connect(notify_second_passed)
 
 
 func _disconnect_signals() -> void:
-	Effects.Signals.mistake.disconnect(notify_mistake)
+	get_quest().get_stage_effects().mistake_made.disconnect(notify_mistake)
 	
 	match _type:
 		Type.TURNS:
-			Effects.Signals.turn.disconnect(notify_turn)
+			get_quest().get_stage_effects().turn.disconnect(notify_turn)
 		Type.CELLS_OPENED:
-			Effects.Signals.turn.disconnect(notify_cell_opened)
+			get_quest().get_stage_effects().cell_open.disconnect(notify_cell_opened)
 		Type.SECONDS:
-			if _sub_timer:
-				_sub_timer.second_passed.disconnect(notify_second_passed)
-				_sub_timer = null
+			get_quest().get_effects().status_effect_second_passed.disconnect(notify_second_passed)
 
 #endregion
 
@@ -196,6 +190,13 @@ func _mistake(cell: CellData) -> void:
 #endregion
 
 #region getters
+
+func get_quest() -> Quest:
+	var base := get_parent()
+	while base != null and base is not Quest:
+		base = base.get_parent()
+	return base
+
 
 func get_texture() -> Texture2D:
 	if _texture:

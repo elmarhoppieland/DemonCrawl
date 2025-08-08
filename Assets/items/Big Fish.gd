@@ -1,3 +1,4 @@
+@tool
 extends Item
 
 # ==============================================================================
@@ -7,7 +8,7 @@ func use() -> void:
 	if not target:
 		return
 	
-	if not target.aura is Burning:
+	if not target.get_aura() is Burning:
 		return
 	
 	target.aura = null

@@ -48,7 +48,6 @@ var argument: __EffectsFileManager.Function.Argument :
 var builtin_class_tree: Tree
 var user_class_tree: Tree
 # ==============================================================================
-signal modified()
 signal argument_changed(argument: __EffectsFileManager.Function.Argument)
 #signal deleted()
 # ==============================================================================

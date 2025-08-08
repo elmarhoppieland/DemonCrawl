@@ -15,7 +15,7 @@ func generate() -> Quest:
 	var quest := Quest.new()
 	quest.source_file = self
 	if Codex.selected_mastery:
-		quest.equip_mastery(Codex.selected_mastery.duplicate())
+		quest.equip_mastery(Codex.selected_mastery.create())
 	
 	var stage_index := 0
 	while true:
@@ -25,17 +25,16 @@ func generate() -> Quest:
 		
 		for i in length:
 			var stage := stages[stage_index].generate()
-			stage.locked = true
-			quest.stages.append(stage)
+			stage.locked = stage_index > 0
+			quest.add_stage(stage)
 			stage_index += 1
 			if stage_index >= stages.size():
-				quest.stages[0].locked = false
 				return quest
 		
 		var special_stage := generate_random_special_stage()
 		if special_stage != null:
 			special_stage.locked = true
-			quest.stages.append(special_stage)
+			quest.add_stage(special_stage)
 	
 	return null
 

@@ -1,11 +1,11 @@
 @tool
-extends Resource
+extends Node
 class_name StageTimer
 
 # ==============================================================================
 var _paused := false
 
-var _time := 0.0 : get = get_timef
+var _time := 0.0 : set = _set_timef, get = get_timef
 
 var _blockers: Array[WeakRef] = [] :
 	get:
@@ -19,16 +19,20 @@ var _blockers: Array[WeakRef] = [] :
 		
 		return _blockers
 # ==============================================================================
-
-func _init() -> void:
-	_get_tree().process_frame.connect(func() -> void:
-		_process(_get_tree().root.get_process_delta_time())
-	)
-
+signal second_passed()
+# ==============================================================================
 
 func _process(delta: float) -> void:
 	if not is_paused():
 		_time += delta
+
+
+func _set_timef(time: float) -> void:
+	var old := _time
+	_time = time
+	
+	for i in int(time - old):
+		second_passed.emit()
 
 
 func get_timef() -> float:
@@ -59,7 +63,7 @@ func unblock(blocker: Object) -> void:
 
 
 func is_paused() -> bool:
-	return _paused or not _blockers.is_empty() or _get_tree().paused
+	return _paused or not _blockers.is_empty() or get_tree().paused
 
 
 func create_subtimer() -> SubTimer:
@@ -70,10 +74,6 @@ func _process_subtimer(subtimer: WeakRef) -> void:
 	var timer := subtimer.get_ref() as SubTimer
 	if not timer:
 		return
-
-
-func _get_tree() -> SceneTree:
-	return Engine.get_main_loop()
 
 
 func _export_packed() -> float:
@@ -96,7 +96,7 @@ class SubTimer:
 		_start_time = timer.get_timef()
 		_previous_time = timer.get_timef()
 		
-		timer._get_tree().process_frame.connect(func() -> void:
+		timer.get_tree().process_frame.connect(func() -> void:
 			for i in int(timer.get_timef() - _start_time) - int(_previous_time - _start_time):
 				second_passed.emit()
 			_previous_time = timer.get_timef()

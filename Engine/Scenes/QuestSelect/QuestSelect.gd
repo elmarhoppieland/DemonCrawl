@@ -42,9 +42,9 @@ func _on_begin_button_pressed() -> void:
 	
 	Eternity.save()
 	
-	Effects.quest_start()
+	Effects.quest_start(quest)
 	
-	quest.notify_loaded()
+	#quest.notify_loaded()
 
 
 func _on_quest_select_statbar_edit_equipment() -> void:

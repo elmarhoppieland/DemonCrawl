@@ -4,28 +4,33 @@ class_name Novice
 
 # ==============================================================================
 
-func _quest_load() -> void:
-	Effects.MutableSignals.change_score.connect(_change_score)
+func _enter_tree() -> void:
+	super()
+	
+	if not active:
+		return
+	
+	get_quest().get_attributes().change_property.connect(_change_attribute)
+	get_quest().get_stats().get_mutable_effects().damage.connect(_damage)
+	get_quest().get_stats().get_mutable_effects().death.connect(_death)
 
 
-func _quest_init() -> void:
-	quest.get_stats().get_mutable_effects().damage.connect(_damage)
-	quest.get_stats().get_mutable_effects().death.connect(_death)
+func _exit_tree() -> void:
+	super()
+	
+	if not active:
+		return
+	
+	get_quest().get_attributes().change_property.disconnect(_change_attribute)
+	get_quest().get_stats().get_mutable_effects().damage.disconnect(_damage)
+	get_quest().get_stats().get_mutable_effects().death.disconnect(_death)
 
 
-func _quest_unload() -> void:
-	Effects.MutableSignals.change_score.disconnect(_change_score)
-
-
-func _unequip() -> void:
-	quest.get_stats().get_mutable_effects().damage.disconnect(_damage)
-	quest.get_stats().get_mutable_effects().death.disconnect(_death)
-
-
-func _change_score(value: int) -> int:
+func _change_attribute(attribute: StringName, value: int) -> int:
+	if attribute != &"score":
+		return value
 	if level < 1:
 		return value
-	
 	if value <= get_attributes().score:
 		return value
 	
@@ -40,7 +45,10 @@ func _damage(amount: int, source: Object) -> int:
 	if not source is Monster:
 		return amount
 	
-	if StageInstance.get_current().needs_guess():
+	if not get_quest().has_current_stage():
+		return amount
+	
+	if get_quest().get_current_stage().needs_guess():
 		Toasts.add_toast(tr("NOVICE_UNLUCKY_GUESS"), IconManager.get_icon_data("mastery1/Novice").create_texture())
 		return 1
 	
@@ -57,15 +65,15 @@ func _death(_source: Object) -> void:
 
 
 func _ability() -> void:
-	var progress_cell := StageInstance.get_current().get_progress_cell()
+	var progress_cell := get_quest().get_current_stage().get_progress_cell()
 	if progress_cell:
-		StageInstance.get_current().get_board().get_camera().focus_on_cell(progress_cell)
+		get_quest().get_current_stage().get_board().get_camera().focus_on_cell(progress_cell)
 	else:
 		Toasts.add_toast(tr("MUST_GUESS"), IconManager.get_icon_data("mastery1/Novice").create_texture())
 
 
 func _can_use_ability() -> bool:
-	return StageInstance.has_current() and StageInstance.get_current().has_scene()
+	return get_quest().has_current_stage() and get_quest().get_current_stage().has_scene()
 
 
 func _get_cost() -> int:

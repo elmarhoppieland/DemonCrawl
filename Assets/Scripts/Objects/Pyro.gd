@@ -18,13 +18,7 @@ enum Direction {
 }
 # ==============================================================================
 @export var cost := -1
-@export var direction := Direction.UP :
-	set(value):
-		direction = value
-		
-		while not get_cell():
-			await cell_changed
-		
+@export var direction := Direction.UP
 # ==============================================================================
 
 func _spawn() -> void:
@@ -32,8 +26,11 @@ func _spawn() -> void:
 	direction = Direction.values().pick_random()
 
 
-func _ready() -> void:
-	Effects.Signals.turn.connect(_turn)
+func _enter_tree() -> void:
+	if get_parent() is not CellData:
+		return
+	
+	get_quest().get_stage_effects().turn.connect(_turn)
 	if get_cell().is_visible():
 		get_cell().show_direction_arrow(DIR_MAP[direction])
 
@@ -43,9 +40,12 @@ func _turn() -> void:
 		get_cell().send_projectile(Flare, DIR_MAP[direction])
 
 
-func _reset() -> void:
+func _exit_tree() -> void:
+	if get_parent() is not CellData:
+		return
+	
+	get_quest().get_stage_effects().turn.disconnect(_turn)
 	get_cell().hide_direction_arrow()
-	Effects.Signals.turn.disconnect(_turn)
 
 
 func _reveal() -> void:

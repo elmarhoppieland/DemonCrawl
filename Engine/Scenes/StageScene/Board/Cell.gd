@@ -65,7 +65,7 @@ func open(force: bool = false, allow_loot: bool = true) -> bool:
 		#visited.append(current_cell)
 		#current_cell._open(force, allow_loot)
 		#
-		#if current_cell.get_value() != 0 or current_cell.get_object() is Monster:
+		#if current_cell.get_value() != 0 or current_cell.has_monster():
 			#continue
 		#
 		#for c in current_cell.get_nearby_cells():
@@ -93,7 +93,7 @@ func _open(force: bool = false, allow_loot: bool = true) -> bool:
 	if is_occupied():
 		get_object().notify_revealed(not force)
 	
-	Effects.cell_open(get_data())
+	EffectManager.propagate(get_stage().get_instance().get_effects().cell_open, [get_data()])
 	
 	return true
 
@@ -266,7 +266,7 @@ func get_nearby_cells() -> Array[Cell]:
 	
 	var cells: Array[Cell] = []
 	for dir in DIRECTIONS:
-		var cell := StageInstance.get_current().get_board().get_cell(get_board_position() + dir)
+		var cell := get_data().get_stage_instance().get_board().get_cell(get_board_position() + dir)
 		if cell:
 			cells.append(cell)
 	return cells
@@ -432,7 +432,7 @@ func get_data() -> CellData:
 func _set_object(value: CellObject) -> void:
 	if value:
 		value._cell_position = _board_position
-	_data.object = value
+	_data.set_object(value)
 
 
 ## Returns this [Cell]'s [CellObject], if it has one. Returns [code]null[/code] if
@@ -440,7 +440,7 @@ func _set_object(value: CellObject) -> void:
 ## [br][br]See also [method is_occupied].
 func get_object() -> CellObject:
 	if get_data():
-		return get_data().object
+		return get_data().get_object()
 	return null
 
 
@@ -495,7 +495,7 @@ func _set_aura(aura: Aura) -> void:
 ## Returns this [Cell]'s [Aura], if it has one. See also [method has_aura].
 func get_aura() -> Aura:
 	if get_data():
-		return get_data().aura
+		return get_data().get_aura()
 	return null
 
 

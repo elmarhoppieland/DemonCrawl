@@ -1,21 +1,28 @@
-[gd_resource type="Resource" script_class="Registry" load_steps=12 format=3 uid="uid://dbtam61joj2mf"]
+[gd_resource type="Resource" script_class="Registry" load_steps=19 format=3 uid="uid://dbtam61joj2mf"]
 
 [ext_resource type="Script" uid="uid://pefpigd10fyq" path="res://Engine/Resources/DataContainers/Registry.gd" id="1_8420k"]
-[ext_resource type="Script" uid="uid://dji00yrjkhu20" path="res://Engine/Resources/HelperObjects/Aura.gd" id="1_rvup1"]
 [ext_resource type="Resource" uid="uid://caiig2eupe0vb" path="res://Assets/Quests/Casual/Casual.tres" id="1_srnaq"]
+[ext_resource type="Script" uid="uid://bk3q4kpv0inpn" path="res://Assets/scripts/Auras/Burning.gd" id="1_vmrn0"]
 [ext_resource type="Resource" uid="uid://c8r0jgj2jdnl" path="res://Assets/Quests/Normal/Normal.tres" id="2_chtep"]
+[ext_resource type="Script" uid="uid://rsacscnpkr1d" path="res://Assets/scripts/Auras/Sanctified.gd" id="2_kbcm6"]
 [ext_resource type="Script" uid="uid://dx8sic8p7f7lp" path="res://Engine/Resources/DataContainers/Difficulty.gd" id="2_vmrn0"]
 [ext_resource type="Resource" uid="uid://im6g8j5omb54" path="res://Assets/Quests/Hard/Hard.tres" id="3_g8edj"]
-[ext_resource type="Script" uid="uid://cbi3mcqua71te" path="res://Engine/Resources/DataContainers/Mastery/Mastery.gd" id="6_kbcm6"]
-[ext_resource type="Script" uid="uid://2gl6bc111a36" path="res://Engine/Resources/DataContainers/Mastery/MasteryUnlocker.gd" id="7_0gfp7"]
+[ext_resource type="Script" uid="uid://bibwehyvfiqos" path="res://Assets/scripts/masteries/Novice.gd" id="7_hfiaq"]
+[ext_resource type="Script" uid="uid://blda7x8frmo4j" path="res://Assets/scripts/masteries/Survivor.gd" id="8_4jk0f"]
 [ext_resource type="Script" uid="uid://8w1o6q4hces" path="res://Engine/Resources/DataContainers/TokenShop/TokenShopCategoryBase.gd" id="9_hfiaq"]
+[ext_resource type="Script" uid="uid://dcp6mapv4a1ca" path="res://Assets/scripts/masteries/Auramancer.gd" id="9_pv58b"]
+[ext_resource type="Script" uid="uid://dwpxqvbtpkwkf" path="res://Assets/scripts/masteries/Banker.gd" id="10_kcnwd"]
+[ext_resource type="Script" uid="uid://vkqlhi2xpisl" path="res://Assets/scripts/masteries/NoviceUnlocker.gd" id="11_kcnwd"]
+[ext_resource type="Script" uid="uid://5roo2onn78ne" path="res://Assets/scripts/masteries/SurvivorUnlocker.gd" id="12_j6a80"]
 [ext_resource type="Resource" uid="uid://3rduhwvlqb1q" path="res://Assets/TokenShop/Upgrades/Upgrades.tres" id="13_0b80u"]
+[ext_resource type="Script" uid="uid://byl6tfyhlv6a7" path="res://Assets/scripts/masteries/AuramancerUnlocker.gd" id="13_su4vw"]
+[ext_resource type="Script" uid="uid://cb133n1etxhqt" path="res://Assets/scripts/masteries/BankerUnlocker.gd" id="14_o4rkj"]
 [ext_resource type="Resource" uid="uid://b36mx2wkxsnll" path="res://Assets/TokenShop/Masteries/Masteries.tres" id="14_ov03c"]
 
 [resource]
 script = ExtResource("1_8420k")
-masteries = Array[ExtResource("6_kbcm6")]([])
-mastery_unlockers = Array[ExtResource("7_0gfp7")]([])
+masteries = Array[Script]([ExtResource("7_hfiaq"), ExtResource("8_4jk0f"), ExtResource("9_pv58b"), ExtResource("10_kcnwd")])
+mastery_unlockers = Array[Script]([ExtResource("11_kcnwd"), ExtResource("12_j6a80"), ExtResource("13_su4vw"), ExtResource("14_o4rkj")])
 difficulties = Array[ExtResource("2_vmrn0")]([ExtResource("1_srnaq"), ExtResource("2_chtep"), ExtResource("3_g8edj")])
 token_shop_categories = Array[ExtResource("9_hfiaq")]([ExtResource("13_0b80u"), ExtResource("14_ov03c")])
-auras = Array[ExtResource("1_rvup1")]([])
+auras = Array[Script]([ExtResource("1_vmrn0"), ExtResource("2_kbcm6")])

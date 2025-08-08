@@ -15,9 +15,9 @@ enum Type {
 	MAX ## Constant used internally for the total number of item types.
 }
 # ==============================================================================
-const TYPE_COLORS := {
+const TYPE_COLORS: Dictionary[Type, Color] = {
 	Type.PASSIVE: Color.TRANSPARENT,
-	Type.CONSUMABLE: Color("14a464"),
+	Type.CONSUMABLE: 0x14a464,
 	Type.MAGIC: Color("2a6eb0"),
 	Type.OMEN: Color("bc3838"),
 	Type.LEGENDARY: Color("b3871a")
@@ -40,6 +40,8 @@ const TYPE_COLORS := {
 # ==============================================================================
 var _current_mana := 0 : set = set_mana, get = get_mana
 var _in_inventory := false
+
+var _quest_weakref: WeakRef = null
 # ==============================================================================
 signal cleared()
 # ==============================================================================
@@ -301,8 +303,12 @@ static func from_path(path: String) -> Item:
 
 #region utilities
 
+func set_quest(quest: Quest) -> void:
+	_quest_weakref = weakref(quest)
+
+
 func get_quest() -> Quest:
-	return Quest.get_current()
+	return _quest_weakref.get_ref() if _quest_weakref else null
 
 
 func get_inventory() -> QuestInventory:
@@ -318,11 +324,11 @@ func get_attributes() -> QuestPlayerAttributes:
 
 
 func get_stage() -> Stage:
-	return Stage.get_current()
+	return get_quest().get_current_stage().get_stage()
 
 
 func get_stage_instance() -> StageInstance:
-	return StageInstance.get_current()
+	return get_quest().get_current_stage()
 
 
 func get_board() -> Board:
@@ -349,28 +355,28 @@ func transform(new_item: Item) -> void:
 ## This method is a coroutine, so it should be called with [code]await[/code].
 ## See also [method target_cells].
 func target_cell() -> CellData:
-	return await StageInstance.get_current().cast(self)
+	return await get_quest().get_current_stage().get_scene().cast(self)
 
 
 ## Targets multiple [Cell]s. Waits for the player to select a [Cell] and then
 ## returns all [Cell]s within the given [code]radius[/code] of the selected cell.
 func target_cells(radius: int) -> Array[CellData]:
-	if not StageInstance.has_current():
+	if not get_quest().has_current_stage():
 		return []
 	
-	var origin := await StageInstance.get_current().get_scene().cast(self)
+	var origin := await get_quest().get_current_stage().get_scene().cast(self)
 	
 	if not origin:
 		return []
 	
 	var cells: Array[CellData] = []
-	var topleft := origin.get_board_position() - (radius - 1) * Vector2i.ONE
+	var topleft := origin.get_position() - (radius - 1) * Vector2i.ONE
 	for offset_y in radius * 2 - 1:
 		var y := topleft.y + offset_y
 		for offset_x in radius * 2 - 1:
 			var x := topleft.x + offset_x
 			var pos := Vector2i(x, y)
-			var cell := StageInstance.get_current().get_cell(pos)
+			var cell := get_quest().get_current_stage().get_cell(pos)
 			if cell:
 				cells.append(cell)
 	

@@ -33,8 +33,8 @@ func _show_items(chest: TreasureChest) -> void:
 	_rewards_container.show()
 	_coin_value.hide()
 	
-	var count := Effects.get_chest_reward_count(1, chest)
-	var max_cost := Effects.get_chest_item_max_cost(4 * Quest.get_current().get_selected_stage().max_power + 3, chest)
+	var count: int = EffectManager.propagate(chest.get_stage_instance().get_effects().get_object_value, [chest, 1, &"reward_count"], 1)
+	var max_cost: int = EffectManager.propagate(chest.get_stage_instance().get_effects().get_object_value, [chest, 4 * Quest.get_current().get_selected_stage().max_power + 3, &"reward_max_cost"], 1)
 	
 	var has_omen := false
 	var rewards: Array[Collectible] = []
@@ -52,7 +52,7 @@ func _show_items(chest: TreasureChest) -> void:
 	
 	_string_table_label.generate()
 	
-	rewards = Effects.get_chest_rewards(rewards, chest)
+	rewards = EffectManager.propagate(chest.get_stage_instance().get_effects().get_object_value, [chest, rewards, &"rewards"], 1)
 	
 	for reward in rewards:
 		var display := LargeCollectibleDisplay.create(reward)
@@ -73,7 +73,7 @@ func _show_coins(chest: TreasureChest) -> void:
 	
 	_string_table_label.table = load("res://Assets/StringTables/Chest/Coins.tres")
 	
-	var coins := Effects.get_chest_coins(randi_range(6, 2 * Quest.get_current().get_selected_stage().max_power + 6), chest)
+	var coins: int = EffectManager.propagate(chest.get_stage_instance().get_effects().get_object_value, [chest, randi_range(6, 2 * Quest.get_current().get_selected_stage().max_power + 6), &"coins"], 1)
 	
 	_string_table_label.generate({"coins": coins})
 	

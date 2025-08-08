@@ -11,8 +11,7 @@ func _quest_start() -> void:
 
 
 func _quest_load() -> void:
-	Promise.dynamic_signal(StageInstance.get_current, "finish_pressed", StageInstance.current_changed).connect(_stage_finish)
-	#Effects.Signals.stage_leave.connect(_stage_leave)
+	Promise.dynamic_signal(get_quest().get_current_stage, "finish_pressed", get_quest().current_stage_changed).connect(_stage_finish)
 
 
 func _stage_finish() -> void:
@@ -20,15 +19,15 @@ func _stage_finish() -> void:
 		return
 	
 	if get_stats().life < get_stats().max_life:
-		get_stats().max_life += Stage.get_current().min_power
+		get_stats().max_life += get_quest().get_current_stage().get_stage().min_power
 
 
 func _ability() -> void:
 	var missing_life := get_stats().max_life - get_stats().life
 	
-	if StageInstance.has_current():
+	if get_quest().has_current_stage():
 		for i in missing_life:
-			StageInstance.get_current().solve_cell()
+			get_quest().get_current_stage().solve_cell()
 	
 	get_stats().life_restore(missing_life, self)
 

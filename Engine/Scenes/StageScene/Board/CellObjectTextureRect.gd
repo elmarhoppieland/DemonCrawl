@@ -7,7 +7,7 @@ class_name CellObjectTextureRect
 	set(value):
 		object = value
 		
-		texture = value
+		texture = value.get_texture() if value else null
 		
 		_update()
 # ==============================================================================

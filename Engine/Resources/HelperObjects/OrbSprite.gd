@@ -2,8 +2,8 @@ extends Node2D
 class_name OrbSprite
 
 # ==============================================================================
-var orb: Orb = null
-
+@export var orb: Orb = null
+# ==============================================================================
 var direction := 0.0
 
 var half_bounds := Rect2()

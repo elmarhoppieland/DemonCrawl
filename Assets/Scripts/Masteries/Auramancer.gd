@@ -1,3 +1,4 @@
+@tool
 extends Mastery
 class_name Auramancer
 
@@ -5,18 +6,28 @@ class_name Auramancer
 const AURA_COUNT := 3
 # ==============================================================================
 
-func _quest_load() -> void:
-	Immunity.add_blocker(Aura, &"negative_effect", _negative_effect)
-	Effects.Signals.stage_generate.connect(_stage_generate)
-	Effects.Signals.cell_second_interact.connect(_cell_second_interact)
-	Effects.Signals.aura_remove.connect(_aura_remove)
+func _enter_tree() -> void:
+	super()
+	
+	if not active:
+		return
+	
+	get_quest().get_immunity().add_blocker(Aura, &"negative_effect", _negative_effect)
+	get_quest().get_stage_effects().generated.connect(_stage_generate)
+	get_quest().get_stage_effects().cell_second_interacted.connect(_cell_second_interact)
+	get_quest().get_stage_effects().cell_aura_removed.connect(_aura_remove)
 
 
-func _quest_unload() -> void:
-	Immunity.remove_blocker(Aura, &"negative_effect", _negative_effect)
-	Effects.Signals.stage_generate.disconnect(_stage_generate)
-	Effects.Signals.cell_second_interact.disconnect(_cell_second_interact)
-	Effects.Signals.aura_remove.disconnect(_aura_remove)
+func _exit_tree() -> void:
+	super()
+	
+	if not active:
+		return
+	
+	get_quest().get_immunity().remove_blocker(Aura, &"negative_effect", _negative_effect)
+	get_quest().get_stage_effects().generated.disconnect(_stage_generate)
+	get_quest().get_stage_effects().cell_second_interacted.disconnect(_cell_second_interact)
+	get_quest().get_stage_effects().cell_aura_removed.disconnect(_aura_remove)
 
 
 func _negative_effect(_effect: Callable) -> bool:
@@ -25,9 +36,11 @@ func _negative_effect(_effect: Callable) -> bool:
 	return false
 
 
-func _stage_generate(stage: StageInstance) -> void:
+func _stage_generate() -> void:
 	if level < 1:
 		return
+	
+	var stage := get_quest().get_current_stage()
 	
 	var cells: Array[CellData] = []
 	cells.assign(stage.cells.filter(func(cell: CellData) -> bool: return cell.is_empty() and not cell.aura))
@@ -60,7 +73,7 @@ func _aura_remove(cell: CellData, aura: Aura) -> void:
 
 
 func _ability() -> void:
-	for cell in StageInstance.get_current().cells:
+	for cell in get_quest().get_current_stage().get_cells():
 		if cell.aura and cell.is_visible():
 			apply_repeated_effect(cell.aura, cell.value + get_attributes().mastery_activations)
 
@@ -70,7 +83,7 @@ func _get_max_charges() -> int:
 
 
 func _can_use_ability() -> bool:
-	return StageInstance.has_current()
+	return get_quest().has_current_stage()
 
 
 func apply_effect(aura: Aura) -> void:
@@ -78,8 +91,8 @@ func apply_effect(aura: Aura) -> void:
 		Sanctified:
 			Quest.get_current().get_stats().gain_souls(1, self)
 		Burning:
-			StageInstance.get_current().cells.filter(func(cell: CellData) -> bool:
-				return cell.is_occupied() and cell.is_hidden() and cell.object is Monster
+			get_quest().get_current_stage().get_cells().filter(func(cell: CellData) -> bool:
+				return cell.is_occupied() and cell.is_hidden() and cell.has_monster()
 			).pick_random().open(true)
 
 

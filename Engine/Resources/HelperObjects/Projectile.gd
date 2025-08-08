@@ -1,16 +1,16 @@
 @tool
-extends Texture2D
+extends TextureNode
 class_name Projectile
 
 # ==============================================================================
 @export var position: Vector2 :
 	set(value):
 		position = value
-		if sprite:
-			sprite.global_position = StageInstance.get_current().get_board().get_global_at_cell_position(value)
+		if sprite and is_inside_tree():
+			sprite.global_position = get_quest().get_current_stage().get_board().get_global_at_cell_position(value)
 	get:
-		if sprite:
-			return StageInstance.get_current().get_board().get_cell_position_at_global(sprite.global_position)
+		if sprite and is_inside_tree():
+			return get_quest().get_current_stage().get_board().get_cell_position_at_global(sprite.global_position)
 		return position
 
 @export var direction := Vector2i.ZERO
@@ -18,13 +18,21 @@ class_name Projectile
 @export var _speed_override := NAN
 # ==============================================================================
 var sprite: ProjectileSprite
-
-var _texture: Texture2D :
-	get:
-		if not _texture:
-			_texture = _get_texture()
-		return _texture
 # ==============================================================================
+
+func get_quest() -> Quest:
+	var base := get_parent()
+	while base != null and base is not Quest:
+		base = base.get_parent()
+	return base
+
+
+func get_stage_instance() -> StageInstance:
+	var base := get_parent()
+	while base != null and base is not StageInstance:
+		base = base.get_parent()
+	return base
+
 
 @warning_ignore("shadowed_variable")
 func _init(cell_pos: Vector2i = Vector2i.ZERO, direction: Vector2i = Vector2i.ZERO) -> void:
@@ -38,7 +46,7 @@ func _init(cell_pos: Vector2i = Vector2i.ZERO, direction: Vector2i = Vector2i.ZE
 
 
 func register() -> void:
-	sprite = StageInstance.get_current().get_scene().register_projectile(self)
+	sprite = get_stage_instance().get_scene().register_projectile(self)
 
 
 func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:
@@ -81,7 +89,7 @@ func _get_texture() -> Texture2D:
 
 func get_speed() -> float:
 	if is_nan(_speed_override):
-		return StageInstance.get_current().get_projectile_manager().speed
+		return get_quest().get_current_stage().get_projectile_manager().speed
 	return _speed_override
 
 
@@ -91,7 +99,7 @@ func screen_wrap() -> void:
 
 func clear() -> void:
 	sprite.queue_free()
-	StageInstance.get_current().get_projectile_manager().clear_projectile(self)
+	get_quest().get_current_stage().get_projectile_manager().clear_projectile(self)
 
 
 func notify_screen_exited() -> void:

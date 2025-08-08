@@ -1,5 +1,5 @@
 @tool
-extends Resource
+extends Node
 class_name Mastery
 
 # ==============================================================================
@@ -7,13 +7,19 @@ class_name Mastery
 	set(value):
 		level = mini(value, get_max_level())
 		emit_changed()
-@export var charges := -1 :
+@export var _charges := -1 :
 	set(value):
-		charges = value
+		_charges = value
 		emit_changed()
+
+@export var active := true
 # ==============================================================================
-var quest: Quest = null : set = set_quest, get = get_quest
+signal changed()
 # ==============================================================================
+
+func emit_changed() -> void:
+	changed.emit()
+
 
 #region virtuals
 
@@ -36,15 +42,15 @@ func _quest_lose() -> void:
 ## the [StageSelect] or [StageScene] from the [MainMenu] or [QuestSelect]). Also called
 ## when the player starts the [Quest].
 ## [br][br]Can be used to connect to effect [Signal]s.
-func _quest_load() -> void:
-	pass
+#func _quest_load() -> void:
+	#pass
 
 
 ## Virtual method. Called every time the player exits the [Quest] (usually before entering
 ## the [MainMenu]). Also called when the player wins, loses or abandons the [Quest].
 ## [br][br]Can be used to disconnect from effect [Signal]s.
-func _quest_unload() -> void:
-	pass
+#func _quest_unload() -> void:
+	#pass
 
 
 ## Initializes this [Mastery] on the selected [member quest].
@@ -78,6 +84,12 @@ func _unequip() -> void:
 
 #endregion
 
+func get_data() -> MasteryData:
+	var data := MasteryData.new()
+	data.mastery = get_script()
+	data.level = level
+	return data
+
 #region decription & visualization
 
 ## Returns this [Mastery]'s name.
@@ -89,10 +101,10 @@ func get_display_name() -> String:
 ## to generate a translatable string:
 ## [br][code]MASTERY_{id}[/code]
 func _get_name() -> String:
-	var name := tr("MASTERY_" + _get_identifier())
+	var mastery_name := tr("MASTERY_" + _get_identifier())
 	if level > 0:
-		name += " " + RomanNumeral.convert_to_roman(level)
-	return name
+		mastery_name += " " + RomanNumeral.convert_to_roman(level)
+	return mastery_name
 
 
 ## Returns this [Mastery]'s full description. Each level is one element in the returned array.
@@ -177,7 +189,7 @@ func get_conditions() -> Array[Condition]:
 @warning_ignore("shadowed_variable")
 func _get_conditions() -> Array[Condition]:
 	var condition := MasteryUnlockConditon.new()
-	condition.mastery = self
+	condition.mastery = get_data()
 	return [condition]
 
 
@@ -201,16 +213,16 @@ func _get_max_charges() -> int:
 
 
 func get_charges() -> int:
-	return charges
+	return _charges
 
 
 func is_charged() -> bool:
-	return charges >= 0 and get_charges() >= get_max_charges()
+	return _charges >= 0 and get_charges() >= get_max_charges()
 
 
 func gain_charge() -> void:
-	if charges >= 0 and charges < get_max_charges():
-		charges += 1
+	if _charges >= 0 and _charges < get_max_charges():
+		_charges += 1
 
 
 func get_max_level() -> int:
@@ -224,26 +236,29 @@ func _get_max_level() -> int:
 
 #region utilities
 
-func set_quest(value: Quest) -> void:
-	if quest:
-		quest.loaded.disconnect(_quest_load)
-		quest.unloaded.disconnect(_quest_unload)
-		quest.started.disconnect(_quest_start)
-		quest.lost.disconnect(_quest_lose)
-		quest.won.disconnect(_quest_win)
+func _enter_tree() -> void:
+	if not active:
+		return
 	
-	quest = value
+	get_quest().started.connect(_quest_start)
+	get_quest().lost.connect(_quest_lose)
+	get_quest().won.connect(_quest_win)
+
+
+func _exit_tree() -> void:
+	if not active:
+		return
 	
-	if value:
-		value.loaded.connect(_quest_load)
-		value.unloaded.connect(_quest_unload)
-		value.started.connect(_quest_start)
-		value.lost.connect(_quest_lose)
-		value.won.connect(_quest_win)
+	get_quest().started.disconnect(_quest_start)
+	get_quest().lost.disconnect(_quest_lose)
+	get_quest().won.disconnect(_quest_win)
 
 
 func get_quest() -> Quest:
-	return quest
+	var base := get_parent()
+	while base != null and base is not Quest:
+		base = base.get_parent()
+	return base
 
 
 func get_inventory() -> QuestInventory:
@@ -287,7 +302,7 @@ func activate_ability() -> void:
 func use_ability() -> void:
 	if is_charged() and can_use_ability():
 		activate_ability()
-		charges = 0
+		_charges = 0
 
 
 ## Returns whether this [Mastery]'s ability can currently be used. Does [b]not[/b]
@@ -338,8 +353,8 @@ func _export_packed_enabled() -> bool:
 
 
 func _export_packed() -> Array:
-	if charges >= 0:
-		return [level, charges]
+	if get_charges() >= 0:
+		return [level, get_charges()]
 	return [level]
 
 
@@ -349,3 +364,22 @@ static func _import_packed_static(script_name: String, level: int, charges: int 
 	mastery.level = level
 	mastery.charges = charges
 	return mastery
+
+
+class MasteryData extends Resource:
+	@export var mastery: Script = null
+	@export var level := 0
+	# ==========================================================================
+	var _temp_mastery: Mastery = null
+	# ==========================================================================
+	
+	func create() -> Mastery:
+		var instance: Mastery = mastery.new()
+		instance.level = level
+		return instance
+	
+	func create_temp() -> Mastery:
+		if not _temp_mastery or not is_instance_valid(_temp_mastery):
+			_temp_mastery = create()
+			_temp_mastery.queue_free()
+		return _temp_mastery

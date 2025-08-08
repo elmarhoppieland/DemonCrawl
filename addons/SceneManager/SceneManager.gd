@@ -1,15 +1,22 @@
 extends StaticClass
 class_name SceneManager
 
+## Manages the current scene.
+
 # ==============================================================================
+
+## Changes the current scene to the given [param node].
+static func change_scene_to_node(node: Node) -> void:
+	await change_scene_to_custom(func() -> Node: return node)
+
 
 ## Changes the current scene to the specified [code]file[/code]. Returns the created
 ## [Node] after instantiating it.
 ## [br][br][b]Note:[/b] The scene will be instantiated at the end of the current frame.
-## therefore, this is a coroutine and should be called with [code]await[/code] if
+## Therefore, this is a coroutine and should be called with [code]await[/code] if
 ## the return value is needed.
 static func change_scene_to_file(file: String) -> Node:
-	return await change_scene_to_packed(load(file))
+	return await change_scene_to_custom(func() -> Node: return load(file).instantiate())
 
 
 ## Changes the current scene to the specified [code]packed_scene[/code]. Returns the
@@ -18,6 +25,17 @@ static func change_scene_to_file(file: String) -> Node:
 ## therefore, this is a coroutine and should be called with [code]await[/code] if
 ## the return value is needed.
 static func change_scene_to_packed(packed_scene: PackedScene) -> Node:
+	return await change_scene_to_custom(packed_scene.instantiate)
+
+
+## Changes the current scene a new [Node], in the following way:
+## [br][br]First, the current scene is removed from the scene tree.
+## [br][br]At the end of the current frame (see [method Promsise.defer]), the
+## [param instantiator] is called. Its return value is then added to the scene tree.
+## [br][br][b]Note:[/b] The instantiator is called at the end of the current frame.
+## Therefore, this is a coroutine and should be called with [code]await[/code] if
+## the return value is needed.
+static func change_scene_to_custom(instantiator: Callable) -> Node:
 	if Engine.is_editor_hint():
 		return null
 	
@@ -27,7 +45,7 @@ static func change_scene_to_packed(packed_scene: PackedScene) -> Node:
 	
 	await Promise.defer()
 	
-	var scene := packed_scene.instantiate()
+	var scene := instantiator.call() as Node
 	tree.root.add_child(scene)
 	tree.current_scene = scene
 	return scene

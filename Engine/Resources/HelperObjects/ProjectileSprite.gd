@@ -5,7 +5,13 @@ class_name ProjectileSprite
 # ==============================================================================
 const Z_INDEX := 20
 # ==============================================================================
-@export var projectile: Projectile
+@export var projectile: Projectile = null :
+	set(value):
+		if projectile:
+			projectile.sprite = null
+		projectile = value
+		if value:
+			value.sprite = self
 # ==============================================================================
 var _was_in_bounds := false
 # ==============================================================================
@@ -27,21 +33,21 @@ func _process(delta: float) -> void:
 	
 	position += projectile.get_speed() * projectile.direction * delta
 	
-	var board := StageInstance.get_current().get_board()
+	var board := projectile.get_quest().get_current_stage().get_board()
 	var old_cell := board.get_cell_at_global(old_global_position)
 	var new_cell := board.get_cell_at_global(global_position)
-	
-	if old_cell != new_cell and new_cell != null:
-		projectile.notify_cell_entered(new_cell.get_data())
 	
 	if _has_left_bounds():
 		projectile.notify_screen_exited()
 	
 	_was_in_bounds = is_in_bounds()
+	
+	if old_cell != new_cell and new_cell != null:
+		projectile.notify_cell_entered(new_cell.get_data())
 
 
 func get_bounds() -> Rect2:
-	var board := StageInstance.get_current().get_board()
+	var board := projectile.get_quest().get_current_stage().get_board()
 	var camera := board.get_camera()
 	
 	var camera_center := camera.get_screen_center_position()

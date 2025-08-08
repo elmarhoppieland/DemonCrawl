@@ -1,5 +1,5 @@
 @tool
-extends Resource
+extends Node
 class_name CellData
 
 # ==============================================================================
@@ -9,39 +9,37 @@ const Mode := Cell.Mode
 	set(new_mode):
 		mode = new_mode
 		emit_changed()
-@export var object: CellObject = null :
-	set(new_object):
-		if object:
-			object.set_cell(null)
-		
-		object = new_object
-		
-		if new_object:
-			assert(new_object.get_cell() == null, "A CellObject cannot be assigned to multiple cells at once.")
-			new_object.set_cell(self)
-			if not new_object.reloaded:
-				new_object.notify_cell_entered()
-			if not new_object.initialized:
-				new_object.notify_spawned()
-			new_object.reloaded = false
-		
-		emit_changed()
+#@export var object: CellObject = null :
+	#set(new_object):
+		#if object:
+			#object.set_cell(null)
+		#
+		#object = new_object
+		#
+		#if new_object:
+			#assert(new_object.get_cell() == null, "A CellObject cannot be assigned to multiple cells at once.")
+			#new_object.set_cell(self)
+			#if not new_object.reloaded:
+				#new_object.notify_cell_entered()
+			#if not new_object.initialized:
+				#new_object.notify_spawned()
+			#new_object.reloaded = false
+		#
+		#emit_changed()
 @export var value := 0 :
 	set(new_value):
 		value = new_value
 		emit_changed()
-@export var aura: Aura = null :
-	set(new_aura):
-		var old := aura
-		aura = new_aura
-		if old:
-			old.notify_removed(self)
-			Effects.aura_remove(self, old)
-		emit_changed()
+#@export var aura: Aura = null :
+	#set(new_aura):
+		#var old := aura
+		#aura = new_aura
+		#if old:
+			#old.notify_removed(self)
+			#Effects.aura_remove(self, old)
+		#emit_changed()
 # ==============================================================================
 var direction_arrow := Vector2i.ZERO
-
-var _stage_instance_weakref: WeakRef = null
 # ==============================================================================
 signal shatter_requested(texture: Texture2D)
 signal show_direction_arrow_requested(direction: Vector2i)
@@ -52,9 +50,19 @@ signal move_object_requested(source: CellData)
 
 signal interacted()
 signal second_interacted()
+
+signal changed()
 # ==============================================================================
 
+func emit_changed() -> void:
+	changed.emit()
+
+
 #region internals
+
+func _enter_tree() -> void:
+	child_order_changed.connect(emit_changed)
+
 
 @warning_ignore("shadowed_variable")
 static func _import_packed_v(args: Array) -> CellData:
@@ -62,35 +70,30 @@ static func _import_packed_v(args: Array) -> CellData:
 	assert(args[0] is int, "The first argument of a CellData must be of type \"int\".")
 	cell.value = args.pop_front()
 	
-	var mode := Mode.VISIBLE
-	var object: CellObject = null
-	var aura: Aura = null
+	var cell_mode := Mode.VISIBLE
+	var cell_object: CellObject = null
+	var cell_aura: Aura = null
 	var stage: StageInstance = null
 	for arg in args:
 		if arg is int:
-			mode = arg
+			cell_mode = arg
 		elif arg is CellObject:
-			object = arg
+			cell_object = arg
 		elif arg is Aura:
-			aura = arg
+			cell_aura = arg
 		elif arg is StageInstance:
 			stage = arg
 	
-	cell.mode = mode
-	cell.object = object
-	cell.aura = aura
+	cell.mode = cell_mode
+	cell.set_object(cell_object)
+	cell.set_aura(cell_aura)
 	
-	var owner := Eternity.get_processing_owner()
-	if owner is StageInstance:
-		if stage != null and stage != owner:
+	var processing_owner := Eternity.get_processing_owner()
+	if processing_owner is StageInstance:
+		if stage != null and stage != processing_owner:
 			Debug.log_warning("A CellData object was created under a StageInstance, but a different StageInstance was provided in the constructor. Ignoring the argument...")
 		
-		stage = owner
-	
-	cell.set_stage_instance(stage)
-	
-	if aura:
-		stage.loaded.connect(aura.initialize_on_cell.bind(cell), CONNECT_ONE_SHOT)
+		stage = processing_owner
 	
 	return cell
 
@@ -99,10 +102,10 @@ func _export_packed() -> Array:
 	var args := [value]
 	if mode != Mode.VISIBLE:
 		args.append(mode)
-	if object != null:
-		args.append(object)
-	if aura != null:
-		args.append(aura)
+	if is_occupied():
+		args.append(get_object())
+	if has_aura():
+		args.append(get_aura())
 	return args
 
 
@@ -139,7 +142,7 @@ func open(force: bool = false, allow_loot: bool = true) -> bool:
 		visited.append(current_cell)
 		current_cell._open(force)
 		
-		if current_cell.value != 0 or current_cell.object is Monster:
+		if current_cell.value != 0 or current_cell.has_monster():
 			continue
 		
 		for c in current_cell.get_nearby_cells():
@@ -164,9 +167,9 @@ func _open(force: bool = false, allow_loot: bool = true) -> bool:
 		spawn_base(get_stage_instance().generate_cell_content(Quest.get_current().get_attributes().rare_loot_modifier))
 	
 	if is_occupied():
-		object.notify_revealed(not force)
+		get_object().notify_revealed(not force)
 	
-	Effects.cell_open(self)
+	EffectManager.propagate(get_stage_instance().get_effects().cell_open, [self])
 	
 	return true
 
@@ -205,35 +208,71 @@ func unflag() -> void:
 
 
 func clear_object() -> void:
-	object = null
+	get_object().queue_free()
 
 
 @warning_ignore("shadowed_variable")
 func set_object(object: CellObject) -> void:
-	self.object = object
+	if is_occupied():
+		clear_object()
+	if object:
+		add_child(object)
+
+
+func get_object() -> CellObject:
+	for child in get_children():
+		if child is CellObject:
+			return child
+	return null
 
 
 func move_object_to(cell: CellData) -> void:
-	var obj := object
-	set_object(null)
-	cell.set_object(obj)
+	if cell.is_occupied():
+		return
+	
+	var object := get_object()
+	remove_child(object)
+	cell.set_object(object)
 	cell.move_object_requested.emit(self)
+
+
+func has_monster() -> bool:
+	for child in get_children():
+		if child is Monster:
+			return true
+	return false
+
+
+func set_aura(aura: Aura) -> void:
+	if has_aura():
+		clear_aura()
+	if aura:
+		add_child(aura)
+
+
+func get_aura() -> Aura:
+	for child in get_children():
+		if child is Aura:
+			return child
+	return null
+
+
+func has_aura() -> bool:
+	return get_aura() != null
 
 
 @warning_ignore("shadowed_variable")
 func apply_aura(aura: Variant) -> Aura:
-	self.aura = aura.new() if aura is Script else aura
-	self.aura.notify_applied(self)
+	aura = aura.new() if aura is Script else aura
+	set_aura(aura)
 	if is_occupied():
-		object.notify_aura_applied()
-	Effects.aura_apply(self)
-	return self.aura
+		get_object().notify_aura_applied()
+	EffectManager.propagate(get_stage_instance().get_effects().cell_aura_applied, [aura])
+	return aura
 
 
 func clear_aura() -> void:
-	self.aura = null
-	if is_occupied():
-		object.notify_aura_removed()
+	get_aura().queue_free()
 
 
 func spawn(base: Script, visible_only: bool = true) -> CellObject:
@@ -246,7 +285,7 @@ func spawn_base(base: CellObjectBase, visible_only: bool = true) -> CellObject:
 	
 	if not is_occupied() and (not visible_only or is_visible()):
 		var instance := base.create(get_stage())
-		object = instance
+		set_object(instance)
 		return instance
 	
 	var visited: Array[CellData] = []
@@ -271,21 +310,13 @@ func spawn_base(base: CellObjectBase, visible_only: bool = true) -> CellObject:
 		if not unoccupied.is_empty():
 			var cell: CellData = unoccupied.pick_random()
 			var instance := base.create(get_stage())
-			cell.object = instance
+			cell.set_object(instance)
 			return instance
 		
 		queue = next_queue
 		next_queue = []
 	
 	return null
-
-
-func create_tween() -> Tween:
-	var board := get_stage_instance().get_board()
-	assert(board != null, "Cannot create a Tween on a Stage that doesn't have a board.")
-	
-	var position := get_position()
-	return board.get_cell(position).create_tween()
 
 
 func show_direction_arrow(direcion: Vector2i) -> void:
@@ -332,19 +363,46 @@ func is_flagged() -> bool:
 
 
 func is_occupied() -> bool:
-	return object != null
+	return get_object() != null
 
 
 func is_empty() -> bool:
-	return object == null
+	return get_object() == null
 
 
-func set_stage_instance(stage_instance: StageInstance) -> void:
-	_stage_instance_weakref = weakref(stage_instance) if stage_instance else null
+## Returns whether this [CellData] is solved. This can mean 2 things:
+## [br][br]If this cell is hidden, this returns true if this cell has a monster and
+## is flagged, or if this cell does not have a monster and is not flagged.
+## [br][br]If this cell is visible, this returns true if this cell's value is at most
+## the number of nearby flags + monsters.
+func is_solved() -> bool:
+	if is_hidden():
+		return is_flagged() == has_monster()
+	
+	var count := 0
+	for cell in get_nearby_cells():
+		if cell.is_flagged() or (cell.is_revealed() and cell.has_monster()):
+			count += 1
+	
+	return count >= value
+
+
+## Returns whether this [Cell] has at most as many nearby hidden [Cell]s and visible
+## monsters as this cell's value.
+func is_flag_solved() -> bool:
+	var count := 0
+	for cell in get_nearby_cells():
+		if cell.is_hidden() or cell.has_monster():
+			count += 1
+	
+	return count == value
 
 
 func get_stage_instance() -> StageInstance:
-	return _stage_instance_weakref.get_ref() if _stage_instance_weakref else StageInstance.get_current()
+	var base := get_parent()
+	while base != null and base is not StageInstance:
+		base = base.get_parent()
+	return base
 
 
 func get_stage() -> Stage:
@@ -353,7 +411,7 @@ func get_stage() -> Stage:
 
 
 func get_position() -> Vector2i:
-	var idx := get_stage_instance().cells.find(self)
+	var idx := get_index()
 	assert(idx >= 0, "The provided StageInstance does not contain this cell.")
 	return Vector2i(idx % get_stage_instance().get_stage().size.x, idx / get_stage_instance().get_stage().size.x)
 
@@ -380,7 +438,7 @@ func get_real_value() -> int:
 	var real_value := 0
 	for cell in get_nearby_cells():
 		if cell.is_occupied():
-			real_value += cell.object.get_value_contribution()
+			real_value += cell.get_object().get_value_contribution()
 	return real_value
 
 
@@ -413,21 +471,21 @@ func get_mode() -> Mode:
 
 func notify_interacted() -> void:
 	interacted.emit()
-	if object and is_visible():
-		object.notify_interacted()
-	if aura:
-		aura.notify_interacted(self)
+	if is_occupied() and is_visible():
+		get_object().notify_interacted()
+	if has_aura():
+		get_aura().notify_interacted(self)
 	
-	Effects.cell_interact(self)
+	EffectManager.propagate(get_stage_instance().get_effects().cell_interacted, [self])
 
 
 func notify_second_interacted() -> void:
 	second_interacted.emit()
-	if object and is_visible():
-		object.notify_second_interacted()
-	if aura:
-		aura.notify_second_interacted(self)
+	if is_occupied() and is_visible():
+		get_object().notify_second_interacted()
+	if has_aura():
+		get_aura().notify_second_interacted(self)
 	
-	Effects.cell_second_interact(self)
+	EffectManager.propagate(get_stage_instance().get_effects().cell_second_interacted, [self])
 
 #endregion

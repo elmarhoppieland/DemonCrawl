@@ -22,7 +22,7 @@ func _load_from_current_quest() -> void:
 	
 	var orb_manager := Quest.get_current().get_orb_manager()
 	
-	for orb in orb_manager.orbs:
+	for orb in orb_manager.get_orbs():
 		_register_orb(orb)
 	
 	orb_manager.orb_registered.connect(_register_orb)

@@ -1,5 +1,5 @@
 @tool
-extends Resource
+extends Node
 class_name StatusEffectsManager
 
 # ==============================================================================
@@ -21,6 +21,23 @@ class_name StatusEffectsManager
 		
 		emit_changed()
 # ==============================================================================
+signal changed()
+# ==============================================================================
+
+func emit_changed() -> void:
+	changed.emit()
+
+
+func _init() -> void:
+	name = "StatusManager"
+
+
+func get_quest() -> Quest:
+	var base := get_parent()
+	while base != null and base is not Quest:
+		base = base.get_parent()
+	return base
+
 
 func get_status_effects() -> Array[StatusEffect]:
 	return _status_effects

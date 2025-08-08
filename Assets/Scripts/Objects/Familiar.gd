@@ -23,27 +23,31 @@ func _get_modulate() -> Color:
 	return Color.GREEN
 
 
-func _ready() -> void:
-	Effects.Signals.turn.connect(_turn)
+func _enter_tree() -> void:
+	if get_parent() is not CellData:
+		return
+
+	get_quest().get_stage_effects().turn.connect(_turn)
 
 
-func _reset() -> void:
-	Effects.Signals.turn.disconnect(_turn)
+func _exit_tree() -> void:
+	if get_parent() is not CellData:
+		return
+	
+	get_quest().get_stage_effects().turn.disconnect(_turn)
 
 
 func _turn() -> void:
-	const DIRS: Array[Vector2i] = [Vector2i.UP, Vector2i.LEFT, Vector2i.DOWN, Vector2i.RIGHT]
-	
 	var position := get_cell().get_position()
-	var dirs: Array[Vector2i] = DIRS.duplicate()
+	var dirs: Array[Vector2i] = [Vector2i.UP, Vector2i.LEFT, Vector2i.DOWN, Vector2i.RIGHT]
 	dirs.shuffle()
 	for dir in dirs:
-		var new_cell := StageInstance.get_current().get_cell(position + dir)
+		var new_cell := get_cell().get_stage_instance().get_cell(position + dir)
 		if not can_move_to(new_cell):
 			continue
 		
 		new_cell.open(true)
-		if new_cell.object is Monster:
+		if new_cell.has_monster():
 			if strong:
 				new_cell.object.kill()
 				move_to_cell(new_cell)
@@ -67,7 +71,7 @@ func can_move_to(cell: CellData) -> bool:
 		return false
 	if not cell.is_occupied():
 		return true
-	if cell.object is Monster:
+	if cell.has_monster():
 		return strong or (cell.is_hidden() and not cell.is_flagged())
 	return cell.object.get_script() in [Coin, Diamond, Heart]
 
@@ -83,7 +87,7 @@ func _get_annotation_subtext() -> String:
 
 
 func _aura_apply() -> void:
-	if get_cell().aura is Burning:
+	if get_cell().get_aura() is Burning:
 		kill()
 
 

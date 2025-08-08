@@ -44,5 +44,3 @@ grow_vertical = 2
 unique_name_in_owner = true
 script = ExtResource("3_coe5m")
 move_speed = 650.0
-
-[connection signal="stage_finished" from="BoardCellContainer" to="." method="_on_board_cell_container_stage_finished"]

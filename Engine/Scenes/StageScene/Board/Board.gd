@@ -5,6 +5,12 @@ class_name Board
 # ==============================================================================
 const CELL_SEPARATION := Vector2i(1, 1)
 # ==============================================================================
+@export var stage_instance: StageInstance = null :
+	get:
+		if stage_instance == null and StageScene.get_instance():
+			return StageScene.get_instance().stage_instance
+		return stage_instance
+# ==============================================================================
 @onready var _cell_container: BoardCellContainer = %BoardCellContainer :
 	get:
 		if not _cell_container and has_node("%BoardCellContainer"):
@@ -12,17 +18,10 @@ const CELL_SEPARATION := Vector2i(1, 1)
 		return _cell_container
 @onready var _camera: StageCamera = %StageCamera : get = get_camera
 # ==============================================================================
-signal stage_finished()
-# ==============================================================================
 
 func _validate_property(property: Dictionary) -> void:
-	if property.name == "_stage_instance" and owner is StageScene:
+	if property.name == "stage_instance" and owner is StageScene:
 		property.usage |= PROPERTY_USAGE_READ_ONLY
-
-
-## Returns this [Board]'s [Stage].
-func get_stage() -> Stage:
-	return Stage.get_current()
 
 
 ## Returns whether any [Cell] is currently hovered.
@@ -31,7 +30,7 @@ func has_hovered_cell() -> bool:
 
 
 ## Returns the currently hovered [Cell]. Returns [code]null[/code] if no [Cell] is hovered.
-func get_hovered_cell() -> Cell:
+func get_hovered_cell() -> CellData:
 	return _cell_container.get_hovered_cell()
 
 
@@ -39,9 +38,9 @@ func get_hovered_cell() -> Cell:
 func get_cell(at: Vector2i) -> Cell:
 	if at.x < 0 or at.y < 0:
 		return null
-	if at.x >= get_stage().size.x or at.y >= get_stage().size.y:
+	if at.x >= stage_instance.get_stage().size.x or at.y >= stage_instance.get_stage().size.y:
 		return null
-	return _cell_container.get_child(at.x + at.y * get_stage().size.x)
+	return _cell_container.get_child(at.x + at.y * stage_instance.get_stage().size.x)
 
 
 ## Returns the [Cell] at the given [code]global[/code] position.
@@ -80,7 +79,3 @@ func needs_guess() -> bool:
 
 func _get_minimum_size() -> Vector2:
 	return _cell_container.get_minimum_size()
-
-
-func _on_board_cell_container_stage_finished() -> void:
-	stage_finished.emit()

@@ -6,7 +6,7 @@ class_name BarbarianUnlocker
 # ==============================================================================
 
 func _ready() -> void:
-	Effects.Signals.object_killed.connect(_object_kill)
+	get_quest().get_stage_effects().object_killed.connect(_object_kill)
 
 
 func _quest_win() -> void:

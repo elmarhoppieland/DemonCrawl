@@ -177,4 +177,3 @@ script = ExtResource("19_kjs20")
 _disabled = 0
 
 [connection signal="pressed" from="ForegroundCanvas/FinishButton" to="." method="_on_finish_button_pressed"]
-[connection signal="stage_finished" from="Board" to="." method="_on_board_stage_finished"]

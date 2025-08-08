@@ -5,13 +5,10 @@ class_name Monster
 ## A monster that attacks the player when revealed.
 
 # ==============================================================================
-@export var name := "" :
-	get:
-		if name.is_empty() and get_origin_stage():
-			var names: PackedStringArray = get_origin_stage().get_property("monsters", "names", ["???"])
-			name = names[randi() % names.size()]
-		return name
-# ==============================================================================
+
+func _spawn() -> void:
+	name = get_origin_stage().get_property("monsters", "names", ["???"]).pick_random()
+
 
 func _get_texture() -> Texture2D:
 	return get_theme_icon("monster").duplicate()
