@@ -43,7 +43,7 @@ func _stage_generate() -> void:
 	var stage := get_quest().get_current_stage()
 	
 	var cells: Array[CellData] = []
-	cells.assign(stage.cells.filter(func(cell: CellData) -> bool: return cell.is_empty() and not cell.aura))
+	cells.assign(stage.get_cells().filter(func(cell: CellData) -> bool: return not cell.has_aura()))
 	var picked := PackedInt32Array()
 	for i in get_attributes().mastery_activations + AURA_COUNT:
 		var idx := randi() % (cells.size() - picked.size())
@@ -53,29 +53,27 @@ func _stage_generate() -> void:
 		
 		picked.insert(picked.bsearch(idx), idx)
 		
-		cells[idx].apply_aura(DemonCrawl.get_full_registry().auras.pick_random().duplicate())
+		cells[idx].apply_aura(DemonCrawl.get_full_registry().auras.pick_random().new())
 
 
 func _cell_second_interact(cell: CellData) -> void:
-	if not cell.aura:
-		return
 	if level < 1:
 		return
 	
-	cell.aura = null
+	cell.clear_aura()
 
 
-func _aura_remove(cell: CellData, aura: Aura) -> void:
+func _aura_remove(aura: Aura) -> void:
 	if level < 2:
 		return
 	
-	apply_repeated_effect(aura, cell.value + get_attributes().mastery_activations)
+	apply_repeated_effect(aura, aura.get_cell().value + get_attributes().mastery_activations)
 
 
 func _ability() -> void:
 	for cell in get_quest().get_current_stage().get_cells():
-		if cell.aura and cell.is_visible():
-			apply_repeated_effect(cell.aura, cell.value + get_attributes().mastery_activations)
+		if cell.has_aura() and cell.is_visible():
+			apply_repeated_effect(cell.get_aura(), cell.value + get_attributes().mastery_activations)
 
 
 func _get_max_charges() -> int:
@@ -89,7 +87,7 @@ func _can_use_ability() -> bool:
 func apply_effect(aura: Aura) -> void:
 	match aura.get_script():
 		Sanctified:
-			Quest.get_current().get_stats().gain_souls(1, self)
+			get_stats().gain_souls(1, self)
 		Burning:
 			get_quest().get_current_stage().get_cells().filter(func(cell: CellData) -> bool:
 				return cell.is_occupied() and cell.is_hidden() and cell.has_monster()

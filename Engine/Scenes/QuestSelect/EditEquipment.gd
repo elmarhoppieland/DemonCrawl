@@ -42,38 +42,42 @@ func _on_masteries_button_interacted() -> void:
 		data.level = Codex.get_selectable_mastery_level(mastery)
 		if data.level == 0:
 			data.level = 1
-		add_mastery(data)
+		add_mastery(data.create())
 
 
-func add_mastery(mastery: Mastery.MasteryData) -> void:
+func add_mastery(mastery: Mastery) -> void:
 	const LOCK_ALPHA := 0.5
 	
-	var icon := mastery.create_temp().create_icon() if mastery else IconManager.get_icon_data("mastery/none").create_texture()
+	var icon := mastery.create_icon() if mastery else IconManager.get_icon_data("mastery/none").create_texture()
 	
 	var locked := (Codex.get_selectable_mastery_level(mastery) < mastery.level) if mastery else false
 	
 	var texture_rect := TextureRect.new()
 	texture_rect.texture = icon
 	
+	if mastery:
+		mastery.active = false
+		texture_rect.add_child(mastery)
+	
 	if not locked:
 		var grabber := CheckmarkGrabber.new()
 		if mastery:
-			grabber.main = Codex.selected_mastery.mastery == mastery.mastery
+			grabber.main = Codex.selected_mastery != null and Codex.selected_mastery.mastery.instance_has(mastery)
 		else:
 			grabber.main = Codex.selected_mastery == null
 		texture_rect.add_child(grabber)
 		
-		grabber.interacted.connect(func():
-			Codex.selected_mastery = mastery
+		grabber.interacted.connect(func() -> void:
+			Codex.selected_mastery = mastery.get_data() if mastery else null
 		)
 	
 	var tooltip_grabber := TooltipGrabber.new()
-	tooltip_grabber.text = mastery.create_temp().get_display_name() if mastery else "MASTERY_NONE"
+	tooltip_grabber.text = mastery.get_display_name() if mastery else "MASTERY_NONE"
 	
 	if locked:
-		tooltip_grabber.subtext = "(" + mastery.create_temp().get_condition_text() + ")"
+		tooltip_grabber.subtext = "(" + mastery.get_condition_text() + ")"
 	else:
-		var description := mastery.create_temp().get_description_text() if mastery else ""
+		var description := mastery.get_description_text() if mastery else ""
 		tooltip_grabber.subtext = description
 	
 	if not locked:

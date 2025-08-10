@@ -4,6 +4,18 @@ class_name Aura
 
 # ==============================================================================
 
+func _ready() -> void:
+	if Eternity.get_processing_file() != null:
+		return
+	
+	_spawn()
+
+
+## Virtual method. Called when this [Aura] first spawns into a [CellData].
+func _spawn() -> void:
+	pass
+
+
 func get_cell() -> CellData:
 	return get_parent()
 
@@ -73,7 +85,3 @@ func _second_interacted(cell: CellData) -> void:
 
 func negative_effect(effect: Callable) -> void:
 	get_stage_instance().get_immunity().try_call(func() -> void: effect.call(), "negative_effect")
-
-
-func _export_packed() -> Array:
-	return []

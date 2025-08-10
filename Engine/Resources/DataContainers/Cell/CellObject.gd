@@ -458,6 +458,8 @@ func get_value_contribution() -> int:
 func clear() -> void:
 	_clear()
 	
+	reset()
+	
 	get_cell().clear_object()
 
 

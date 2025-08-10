@@ -7,9 +7,9 @@ class_name Mastery
 	set(value):
 		level = mini(value, get_max_level())
 		emit_changed()
-@export var _charges := -1 :
+@export var charges := -1 :
 	set(value):
-		_charges = value
+		charges = value
 		emit_changed()
 
 @export var active := true :
@@ -135,7 +135,6 @@ func _get_description(level: int) -> String:
 	if max_charges <= 0:
 		return description
 	
-	var charges := get_charges()
 	if charges >= 0:
 		return "[%d/%d] %s" % [
 			charges,
@@ -161,6 +160,11 @@ func get_description_text() -> String:
 ## Creates and returns a new icon for this [Mastery].
 func create_icon() -> Texture2D:
 	return IconManager.get_icon_data("mastery%d/%s" % [level if level > 0 else 1, UserClassDB.script_get_class(get_script())]).create_texture()
+
+
+## Returns this [Mastery]'s identifier.
+func get_identifier() -> String:
+	return _get_identifier()
 
 
 ## Virtual method to override this [Mastery]'s identifier. If not overridden, converts
@@ -216,16 +220,16 @@ func _get_max_charges() -> int:
 
 
 func get_charges() -> int:
-	return _charges
+	return charges
 
 
 func is_charged() -> bool:
-	return _charges >= 0 and get_charges() >= get_max_charges()
+	return charges >= 0 and get_charges() >= get_max_charges()
 
 
 func gain_charge() -> void:
-	if _charges >= 0 and _charges < get_max_charges():
-		_charges += 1
+	if charges >= 0 and charges < get_max_charges():
+		charges += 1
 
 
 func get_max_level() -> int:
@@ -305,7 +309,7 @@ func activate_ability() -> void:
 func use_ability() -> void:
 	if is_charged() and can_use_ability():
 		activate_ability()
-		_charges = 0
+		charges = 0
 
 
 ## Returns whether this [Mastery]'s ability can currently be used. Does [b]not[/b]
@@ -351,30 +355,17 @@ func _validate_property(property: Dictionary) -> void:
 		property.usage |= PROPERTY_USAGE_STORAGE
 
 
-func _export_packed_enabled() -> bool:
-	return _get_export_properties().is_empty()
-
-
-func _export_packed() -> Array:
-	if get_charges() >= 0:
-		return [level, get_charges()]
-	return [level]
-
-
-@warning_ignore("shadowed_variable")
-static func _import_packed_static(script_name: String, level: int, charges: int = -1) -> Mastery:
-	var mastery: Mastery = UserClassDB.instantiate(script_name)
-	mastery.level = level
-	mastery.charges = charges
-	return mastery
-
-
 class MasteryData extends Resource:
 	@export var mastery: Script = null
 	@export var level := 0
 	# ==========================================================================
 	var _temp_mastery: Mastery = null
 	# ==========================================================================
+	
+	@warning_ignore("shadowed_variable")
+	func _init(mastery: Script = null, level: int = 0) -> void:
+		self.mastery = mastery
+		self.level = level
 	
 	func create() -> Mastery:
 		var instance: Mastery = mastery.new()
@@ -386,3 +377,6 @@ class MasteryData extends Resource:
 			_temp_mastery = create()
 			_temp_mastery.queue_free()
 		return _temp_mastery
+	
+	func _export_packed() -> Array:
+		return [mastery, level]

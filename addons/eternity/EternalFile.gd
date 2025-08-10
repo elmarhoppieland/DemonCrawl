@@ -262,6 +262,10 @@ func _prepare_variant(variant: Variant, resources: Array[Object]) -> void:
 		_prepare_variant(variant._export_packed(), resources)
 		processing_owner_stack.pop_back()
 	elif variant is Object and variant not in resources:
+		if variant is Script:
+			var name := UserClassDB.script_get_class(variant)
+			if not name.is_empty():
+				return
 		resources.append(variant)
 	elif variant is Array:
 		_prepare_array(variant, resources)
@@ -601,6 +605,9 @@ func _parse_value(value: String) -> Variant:
 			return PendingResourceDictionary.new(dict)
 		return dict
 	
+	if UserClassDB.class_exists(value):
+		return UserClassDB.class_get_script(value)
+	
 	return Stringifier.parse(value)
 
 
@@ -862,6 +869,10 @@ func _serialize_value(value: Variant) -> String:
 			]
 		return "%s(%s)" % [script, r]
 	
+	if value is Script:
+		var name := UserClassDB.script_get_class(value)
+		if not name.is_empty():
+			return name
 	if value is Resource:
 		return "Resource(\"%s\")" % _stringify_uid(_resource_get_uid(value))
 	if value is Node:

@@ -167,7 +167,7 @@ max_line_length = 48
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 
-[node name="QuestMastery" parent="MarginContainer/HBoxContainer" instance=ExtResource("5_upqp3")]
+[node name="MasteryDisplay" parent="MarginContainer/HBoxContainer" instance=ExtResource("5_upqp3")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
@@ -287,7 +287,6 @@ color = Color(1, 1, 1, 0)
 [node name="Inventory" parent="InventoryCanvas" instance=ExtResource("15_6x8ea")]
 unique_name_in_owner = true
 offset_left = 0.0
-offset_right = 77.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

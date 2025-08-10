@@ -40,6 +40,7 @@ func _get_items() -> Array[TokenShopItemBase]:
 		var data := Mastery.MasteryData.new()
 		data.mastery = mastery
 		data.level = Codex.get_selectable_mastery_level(mastery) + 1
+		item.mastery = data
 		
 		items.append(item)
 	
@@ -50,11 +51,11 @@ class MasteryItem extends TokenShopItemBase:
 	@export var mastery: Mastery.MasteryData = null
 	
 	func _get_name() -> String:
-		return mastery.get_display_name()
+		return mastery.create_temp().get_display_name()
 	
 	func _get_description() -> String:
 		var unlock_text := mastery.create_temp().get_condition_text()
-		var text := "• " + "\n• ".join(mastery.get_description())
+		var text := "• " + "\n• ".join(mastery.create_temp().get_description())
 		if not unlock_text.is_empty() and not is_purchased():
 			text += "\n\n(%s)" % unlock_text
 		return text
@@ -73,4 +74,4 @@ class MasteryItem extends TokenShopItemBase:
 		return false
 	
 	func _is_purchased() -> bool:
-		return Codex.get_selectable_mastery_level(mastery) >= mastery.get_max_level()
+		return Codex.get_selectable_mastery_level(mastery) >= mastery.create().get_max_level()

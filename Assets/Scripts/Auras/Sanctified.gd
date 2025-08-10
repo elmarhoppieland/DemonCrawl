@@ -6,9 +6,10 @@ class_name Sanctified
 
 func _ready() -> void:
 	Quest.get_current().get_stats().get_mutable_effects().life_restore.connect(_restore_life)
-	
-	if not get_stage_instance().is_reloading():
-		Quest.get_current().get_attributes().morality += 1
+
+
+func _spawn() -> void:
+	Quest.get_current().get_attributes().morality += 1
 
 
 func _exit_tree() -> void:

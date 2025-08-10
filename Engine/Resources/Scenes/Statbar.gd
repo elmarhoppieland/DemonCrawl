@@ -12,7 +12,7 @@ const _INVENTORY_OPEN_CLOSE_ANIM_DURATION := 0.2
 	set(value):
 		quest = value
 		
-		_quest_mastery.mastery = value.get_mastery() if value else null
+		_mastery_display.mastery = value.get_mastery() if value else null
 		_stats.stats = value.get_stats() if value else null
 		_inventory.inventory = value.get_inventory() if value else null
 # ==============================================================================
@@ -20,7 +20,7 @@ const _INVENTORY_OPEN_CLOSE_ANIM_DURATION := 0.2
 var _inventory_open := false
 # ==============================================================================
 @onready var _stats_tooltip_grabber: TooltipGrabber = %StatsTooltipGrabber
-@onready var _quest_mastery: QuestMastery = %QuestMastery
+@onready var _mastery_display: MasteryDisplay = %MasteryDisplay
 @onready var _stats: StatsDisplay = %StatsDisplay
 #@onready var _inventory_icon_hover: TextureRect = %Hover
 @onready var _heirloom_displays: Array[HeirloomDisplay] = [%HeirloomDisplay1, %HeirloomDisplay2, %HeirloomDisplay3]

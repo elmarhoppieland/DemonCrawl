@@ -161,13 +161,13 @@ static func _get_mastery_from_list(mastery: Variant, list: Array[Mastery.Mastery
 	
 	for i in list:
 		if mastery is String or mastery is StringName:
-			if mastery in [i._get_identifier(), UserClassDB.class_get_name(i.get_script())]:
+			if mastery in [i.create_temp().get_identifier(), UserClassDB.script_get_identifier(i.mastery)]:
 				return i
 		elif mastery is Script:
-			if i.get_script() == mastery:
+			if i.mastery == mastery:
 				return i
 		elif mastery is Mastery:
-			if i.get_script() == mastery.get_script():
+			if i.mastery.instance_has(mastery):
 				return i
 		elif mastery is Mastery.MasteryData:
 			if i.mastery == mastery.mastery:

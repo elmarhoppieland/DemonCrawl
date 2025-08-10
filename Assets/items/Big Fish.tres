@@ -14,6 +14,6 @@ description = "ITEM_BIG_FISH_DESCRIPTION"
 type = 1
 mana = 0
 cost = 0
-tags = Array[String](["meat", "summer"])
+tags = Array[String](["meat", "summer", "_targeted"])
 icon = SubResource("AtlasTexture_2tsew")
 metadata/_custom_type_script = "uid://d3icmltrt12ld"

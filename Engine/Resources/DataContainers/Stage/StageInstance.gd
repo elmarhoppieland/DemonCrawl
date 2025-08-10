@@ -147,6 +147,20 @@ func generate(start_cell: CellData) -> void:
 		
 		get_cells()[idx].set_object(Monster.new(get_stage()))
 	
+	var objects: Array[CellObject] = EffectManager.propagate(get_effects().get_guaranteed_objects, [[] as Array[CellObject]], 0)
+	var cells: Array[CellData] = []
+	cells.assign(get_cells().filter(func(cell: CellData) -> bool: return cell.is_empty()))
+	var picked := PackedInt32Array()
+	for object in objects:
+		var idx := randi() % (cells.size() - picked.size())
+		for j in picked:
+			if j <= idx:
+				idx += 1
+		
+		picked.insert(picked.bsearch(idx), idx)
+		
+		cells[idx].set_object(object)
+	
 	EffectManager.propagate(get_effects().generated)
 	
 	_generated = true
@@ -576,6 +590,8 @@ class Grid extends Node:
 
 
 class StageEffects:
+	@warning_ignore("unused_signal") signal get_guaranteed_objects(objects: Array[CellObject])
+	
 	@warning_ignore("unused_signal") signal get_object_value(object: CellObject, value: int, value_name: StringName)
 	
 	@warning_ignore("unused_signal") signal turn()

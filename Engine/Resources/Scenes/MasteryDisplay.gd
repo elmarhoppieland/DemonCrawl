@@ -1,6 +1,6 @@
 @tool
 extends Control
-class_name QuestMastery
+class_name MasteryDisplay
 
 # ==============================================================================
 @export var charge_color := Color(0.235, 0.624, 0.984)
@@ -27,6 +27,15 @@ var _blink_tween: Tween = null :
 @onready var _charges_container: HBoxContainer = %ChargesContainer
 @onready var _tooltip_grabber: TooltipGrabber = %TooltipGrabber
 # ==============================================================================
+
+@warning_ignore("shadowed_variable")
+static func create(mastery: Mastery, add_as_child: bool = false) -> MasteryDisplay:
+	var instance: MasteryDisplay = load("res://Engine/Resources/Scenes/MasteryDisplay.tscn").instantiate()
+	instance.mastery = mastery
+	if add_as_child:
+		instance.add_child(mastery)
+	return instance
+
 
 func _update() -> void:
 	if not is_node_ready():

@@ -60,7 +60,7 @@ func emit_changed() -> void:
 
 #region internals
 
-func _enter_tree() -> void:
+func _init() -> void:
 	child_order_changed.connect(emit_changed)
 
 
@@ -258,7 +258,7 @@ func get_aura() -> Aura:
 
 
 func has_aura() -> bool:
-	return get_aura() != null
+	return get_aura() != null and not get_aura().is_queued_for_deletion()
 
 
 @warning_ignore("shadowed_variable")
@@ -272,7 +272,9 @@ func apply_aura(aura: Variant) -> Aura:
 
 
 func clear_aura() -> void:
-	get_aura().queue_free()
+	if has_aura():
+		get_aura().queue_free()
+		EffectManager.propagate(get_stage_instance().get_effects().cell_aura_removed, [get_aura()])
 
 
 func spawn(base: Script, visible_only: bool = true) -> CellObject:

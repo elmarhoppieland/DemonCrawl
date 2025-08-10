@@ -2,16 +2,17 @@ extends DCPopup
 class_name MasteryAchievedPopup
 
 # ==============================================================================
-@onready var _mastery_texture_rect: TextureRect = %MasteryTextureRect
-@onready var _tooltip_grabber: TooltipGrabber = %TooltipGrabber
+@onready var _mastery_display: MasteryDisplay = %MasteryDisplay
 # ==============================================================================
 
 func show_mastery(mastery: Mastery.MasteryData) -> void:
 	while _popup_visible:
 		await popup_hidden
 	
-	_mastery_texture_rect.texture = mastery.create_temp().create_icon()
-	_tooltip_grabber.text = mastery.create_temp().get_display_name()
-	_tooltip_grabber.subtext = mastery.create_temp().get_description_text()
+	var instance := mastery.create()
+	instance.active = false
+	_mastery_display.mastery = instance
+	_mastery_display.add_child(instance)
+	
 	popup_show()
 	await popup_hidden

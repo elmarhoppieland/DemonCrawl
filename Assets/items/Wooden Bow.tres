@@ -14,6 +14,6 @@ description = "ITEM_WOODEN_BOW_DESCRIPTION"
 type = 2
 mana = 80
 cost = 13
-tags = Array[String](["weapon"])
+tags = Array[String](["weapon", "_targeted"])
 icon = SubResource("AtlasTexture_lo0s7")
 metadata/_custom_type_script = "uid://d3icmltrt12ld"

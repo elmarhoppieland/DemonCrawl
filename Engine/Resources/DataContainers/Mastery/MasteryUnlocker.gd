@@ -16,7 +16,7 @@ func _quest_win() -> void:
 func unlock(level: int) -> void:
 	var mastery := get_mastery()
 	mastery.level = level
-	for condition in mastery.get_conditions():
+	for condition in mastery.create_temp().get_conditions():
 		if not condition.is_met():
 			_unlock(level)
 			await GuiLayer.get_mastery_achieved_popup().show_mastery(mastery)

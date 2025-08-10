@@ -13,7 +13,7 @@ const MANA_MODIFIER_MAX := 0.15
 
 func _spawn() -> void:
 	cost = randi_range(COST_MIN, COST_MAX)
-	var item := ItemDB.create_filter(get_inventory()).filter_tag("_targeted").disallow_all_types().allow_type(Item.Type.MAGIC).get_random_item().create()
+	var item := ItemDB.create_filter(get_inventory()).filter_tag("_targeted").disallow_all_types().allow_type(Item.Type.MAGIC).set_allow_items_in_inventory().get_random_item().create()
 	item.add_override("mana", item.get_max_mana() * randf_range(MANA_MODIFIER_MIN, MANA_MODIFIER_MAX))
 	item.charge()
 	add_child(item)

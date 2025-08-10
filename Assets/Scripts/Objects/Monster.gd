@@ -27,7 +27,7 @@ func _get_annotation_title() -> String:
 
 
 func _aura_apply() -> void:
-	if get_cell().aura is Burning:
+	if get_cell().get_aura() is Burning:
 		kill()
 
 

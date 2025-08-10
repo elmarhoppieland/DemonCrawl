@@ -14,6 +14,6 @@ description = "ITEM_BANANA_PEEL_DESCRIPTION"
 type = 1
 mana = 0
 cost = 0
-tags = Array[String]([])
+tags = Array[String](["_targeted"])
 icon = SubResource("AtlasTexture_kpt0i")
 metadata/_custom_type_script = "uid://d3icmltrt12ld"
