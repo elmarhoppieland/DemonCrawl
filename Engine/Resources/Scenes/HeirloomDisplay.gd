@@ -32,10 +32,17 @@ func _ready() -> void:
 
 
 func _update() -> void:
-	var item := Codex.get_heirloom(slot_idx)
-	collectible_display.collectible = item
 	lock.visible = Codex.get_heirloom_slots() <= slot_idx
-	count_label.visible = item != null
+	
+	var item_data := Codex.get_heirloom(slot_idx)
+	if not item_data:
+		count_label.hide()
+		return
+	
+	var item := item_data.create()
+	collectible_display.collectible = item
+	collectible_display.add_child(item)
+	count_label.show()
 	count_label.text = str(Codex.get_heirloom_count(slot_idx))
 
 

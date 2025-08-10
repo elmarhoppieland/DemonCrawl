@@ -40,10 +40,10 @@ func _show_items(chest: TreasureChest) -> void:
 	var rewards: Array[Collectible] = []
 	for i in count:
 		if randi() % 9 == 0:
-			rewards.append(ItemDB.create_filter().disallow_all_types().allow_type(Item.Type.OMEN).get_random_item())
+			rewards.append(ItemDB.create_filter(chest.get_quest().get_inventory()).disallow_all_types().allow_type(Item.Type.OMEN).get_random_item().create())
 			has_omen = true
 		else:
-			rewards.append(ItemDB.create_filter().disallow_type(Item.Type.OMEN).set_min_cost(1).set_max_cost(max_cost).get_random_item())
+			rewards.append(ItemDB.create_filter(chest.get_quest().get_inventory()).disallow_type(Item.Type.OMEN).set_min_cost(1).set_max_cost(max_cost).get_random_item().create())
 	
 	if has_omen:
 		_string_table_label.table = load("res://Assets/StringTables/Chest/Omen.tres")
@@ -55,16 +55,17 @@ func _show_items(chest: TreasureChest) -> void:
 	rewards = EffectManager.propagate(chest.get_stage_instance().get_effects().get_object_value, [chest, rewards, &"rewards"], 1)
 	
 	for reward in rewards:
-		var display := LargeCollectibleDisplay.create(reward)
-		display.show_focus = false
-		_rewards_container.add_child(display)
+		var frame := Frame.create(CollectibleDisplay.create(reward, true))
+		frame.show_focus = false
+		_rewards_container.add_child(frame)
 	
 	popup_show()
 	await popup_hidden
 	
 	for reward in rewards:
 		if reward is Item:
-			Quest.get_current().get_inventory().item_gain(reward.duplicate())
+			reward.get_parent().remove_child(reward)
+			chest.get_quest().get_inventory().item_gain(reward)
 
 
 func _show_coins(chest: TreasureChest) -> void:

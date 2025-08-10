@@ -5,10 +5,10 @@ extends Item
 
 func spend_coins(amount: int, _dest: Object) -> void:
 	while true:
-		var filter := ItemDB.create_filter().set_cost(amount).disallow_type(Type.OMEN)
+		var filter := ItemDB.create_filter(get_inventory()).set_cost(amount).disallow_type(Type.OMEN)
 		if filter.is_empty():
 			amount -= 1
 			continue
 		
-		transform(filter.get_random_item())
+		transform(filter.get_random_item().create())
 		return

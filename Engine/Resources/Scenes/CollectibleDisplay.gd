@@ -3,17 +3,36 @@ extends Control
 class_name CollectibleDisplay
 
 # ==============================================================================
-@export var texture: Texture2D :
+#@export var texture: Texture2D = null :
+	#set(value):
+		#if texture == value:
+			#return
+		#
+		#if texture and texture.changed.is_connected(_update):
+			#texture.changed.disconnect(_update)
+		#
+		#texture = value
+		#
+		#if not is_node_ready():
+			#await ready
+		#
+		#_collectible_texture.texture = value
+		#_update()
+		#if value:
+			#value.changed.connect(_update)
+@export var collectible: Collectible :
 	set(value):
-		if texture and texture.changed.is_connected(_update):
-			texture.changed.disconnect(_update)
+		if collectible == value:
+			return
 		
-		texture = value
+		if collectible and collectible.changed.is_connected(_update):
+			collectible.changed.disconnect(_update)
+		
+		collectible = value
 		
 		if not is_node_ready():
 			await ready
 		
-		_collectible_texture.texture = value
 		_update()
 		if value:
 			value.changed.connect(_update)
@@ -36,11 +55,6 @@ class_name CollectibleDisplay
 			await ready
 		_tooltip_grabber.subtext = value
 # ==============================================================================
-var collectible: Collectible :
-	set(value):
-		texture = value
-	get:
-		return texture if texture is Collectible else null
 
 var _hovered := false
 
@@ -97,6 +111,10 @@ func _update() -> void:
 		await ready
 	
 	if not collectible:
+		_collectible_texture.texture = null
+		
+		update_minimum_size()
+		
 		_bg_rect.color = Color.TRANSPARENT
 		_tooltip_grabber.text = description_text
 		_tooltip_grabber.subtext = description_subtext
@@ -108,6 +126,10 @@ func _update() -> void:
 		
 		_collectible_texture.material.set_shader_parameter("glow", 0)
 		return
+	
+	_collectible_texture.texture = collectible.get_texture()
+	
+	update_minimum_size()
 	
 	_bg_rect.color = collectible.get_texture_bg_color()
 	if not _hovered or not collectible.is_active():
@@ -121,7 +143,7 @@ func _update() -> void:
 		var max_progress := collectible.get_max_progress()
 		_progress_bar.value = progress
 		_progress_bar.max_value = max_progress
-		_progress_bar.modulate = progress_full_color if progress == max_progress else progress_partial_color
+		_progress_bar.modulate = progress_full_color if progress >= max_progress else progress_partial_color
 	
 	if not collectible.is_active():
 		_collectible_texture.material.set_shader_parameter("glow", 0)
@@ -149,9 +171,11 @@ func _update() -> void:
 
 
 @warning_ignore("shadowed_variable")
-static func create(texture: Texture2D) -> CollectibleDisplay:
+static func create(collectible: Collectible = null, add_as_child: bool = false) -> CollectibleDisplay:
 	var display := load("res://Engine/Resources/Scenes/CollectibleDisplay.tscn").instantiate() as CollectibleDisplay
-	display.texture = texture
+	display.collectible = collectible
+	if add_as_child:
+		display.add_child(collectible)
 	return display
 
 

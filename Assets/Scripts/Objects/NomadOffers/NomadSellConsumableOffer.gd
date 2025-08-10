@@ -2,11 +2,11 @@ extends NomadSellOffer
 class_name NomadSellConsumableOffer
 
 # ==============================================================================
-@export var item: Item
+@export var item: ItemData
 # ==============================================================================
 
 func _spawn() -> void:
-	item = ItemDB.create_filter()\
+	item = ItemDB.create_filter(_nomad.get_quest().get_inventory())\
 		.disallow_all_types()\
 		.allow_type(Item.Type.CONSUMABLE)\
 		.set_min_cost(1)\
@@ -18,4 +18,4 @@ func _spawn() -> void:
 func _perform() -> void:
 	super()
 	
-	Quest.get_current().get_inventory().item_gain(item.duplicate())
+	_nomad.get_quest().get_inventory().item_gain(Item.new(item))

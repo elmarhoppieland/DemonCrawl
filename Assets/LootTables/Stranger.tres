@@ -91,7 +91,6 @@ resource_name = "Mage"
 script = ExtResource("2_x6567")
 base_script = ExtResource("10_q7fij")
 cost = null
-item_lost = null
 
 [sub_resource type="Resource" id="Resource_0a85g"]
 resource_name = "Scribe"

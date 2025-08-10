@@ -40,7 +40,7 @@ func _interact() -> void:
 
 
 func _activate() -> void:
-	Quest.get_current().get_inventory().item_lose_random()
+	get_quest().get_inventory().get_random_item().clear()
 	current += 1
 	if current >= maximum:
 		current = 0
@@ -48,14 +48,14 @@ func _activate() -> void:
 		
 		match type:
 			RewardType.COINS:
-				Quest.get_current().get_stats().coins += reward_amount
+				get_quest().get_stats().coins += reward_amount
 			RewardType.SOULS:
-				Quest.get_current().get_stats().gain_souls(reward_amount, self)
+				get_quest().get_stats().gain_souls(reward_amount, self)
 			RewardType.MANA:
-				Quest.get_current().get_inventory().mana_gain(reward_amount, self)
+				get_quest().get_inventory().mana_gain(reward_amount, self)
 			RewardType.PRESENT:
-				const PRESENT = preload("res://Assets/Items/Present.tres")
-				Quest.get_current().get_inventory().item_gain(PRESENT.duplicate())
+				const PRESENT := preload("res://Assets/Items/Present.tres")
+				get_quest().get_inventory().item_gain(PRESENT.create())
 	
 	Toasts.add_toast(tr("STRANGER_PLANT_USE"), get_source())
 

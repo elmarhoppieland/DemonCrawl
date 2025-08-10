@@ -37,7 +37,7 @@ func _activate() -> void:
 					data.count = mini(data.count + 1, 10)
 		Type.COPY:
 			for i in Codex.get_heirloom_slots():
-				Codex.set_heirloom(i, get_inventory().get_item(i))
+				Codex.set_heirloom(i, get_inventory().get_item(i).data)
 		Type.REACTIVATE:
 			Quest.get_current().heirlooms_active = true
 

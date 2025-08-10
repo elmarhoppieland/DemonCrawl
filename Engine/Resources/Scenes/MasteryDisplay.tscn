@@ -1,19 +1,19 @@
 [gd_scene load_steps=5 format=3 uid="uid://l26wus4d320"]
 
-[ext_resource type="Script" uid="uid://cfr747xc3ca41" path="res://Engine/Resources/Scenes/QuestMastery.gd" id="1_yfm4h"]
-[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="2_uxhc0"]
-[ext_resource type="Shader" uid="uid://bkn3o0cujs67t" path="res://Engine/Resources/Scenes/CollectibleTexture.gdshader" id="8_7q17g"]
+[ext_resource type="Script" uid="uid://cfr747xc3ca41" path="res://Engine/Resources/Scenes/MasteryDisplay.gd" id="1_xs0tm"]
+[ext_resource type="Shader" uid="uid://bkn3o0cujs67t" path="res://Engine/Resources/Scenes/CollectibleTexture.gdshader" id="2_s3yij"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="3_d1xq6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pypo4"]
-shader = ExtResource("8_7q17g")
+shader = ExtResource("2_s3yij")
 shader_parameter/glow = 0.0
 
-[node name="QuestMastery" type="Control"]
+[node name="MasteryDisplay" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 16.0
 offset_bottom = 16.0
-script = ExtResource("1_yfm4h")
+script = ExtResource("1_xs0tm")
 charge_color = Color(0.235294, 0.623529, 0.984314, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -56,10 +56,10 @@ theme_override_constants/separation = 4
 
 [node name="TooltipGrabber" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2_uxhc0")
-text = "MASTERY_NOVICE III"
-subtext = "• MASTERY_NOVICE_DESCRIPTION_1
-• MASTERY_NOVICE_DESCRIPTION_2
-• [1/1] MASTERY_NOVICE_DESCRIPTION_3"
+script = ExtResource("3_d1xq6")
+text = "MASTERY_SURVIVOR III"
+subtext = "• MASTERY_SURVIVOR_DESCRIPTION_1
+• MASTERY_SURVIVOR_DESCRIPTION_2
+• [3/3] MASTERY_SURVIVOR_DESCRIPTION_3"
 
 [connection signal="interacted" from="TooltipGrabber" to="." method="_on_interacted"]

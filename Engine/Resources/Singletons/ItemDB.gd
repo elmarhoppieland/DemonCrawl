@@ -5,9 +5,9 @@ class_name ItemDB
 const BASE_DIR := "res://Assets/items/"
 # ==============================================================================
 
-## Returns an [Item] [Resource] for all items in the database.
-static func get_items() -> Array[Item]:
-	var items: Array[Item] = []
+## Returns an [ItemData] [Resource] for all items in the database.
+static func get_items() -> Array[ItemData]:
+	var items: Array[ItemData] = []
 	for file in DirAccess.get_files_at(BASE_DIR):
 		file = file.trim_suffix(".remap") # for exported builds
 		if file.get_extension() == "tres":
@@ -16,23 +16,28 @@ static func get_items() -> Array[Item]:
 
 
 ## Creates a new [ItemDB.ItemFilter]. Use it to generate random items based on certain filters.
-static func create_filter() -> ItemFilter:
-	return ItemFilter.new()
+static func create_filter(inventory: QuestInventory) -> ItemFilter:
+	return ItemFilter.new(inventory)
 
 
 ## Filters items in the database.
 class ItemFilter:
 	var _max_cost := (1 << 63) - 1 # maximum signed 64-bit int (allow any cost)
 	var _min_cost := -1 # all items have a cost of at least -1 (allow any cost)
-	var _types: int = (1 << Item.Type.MAX) - 1
+	var _types: int = (1 << ItemData.Type.MAX) - 1
 	var _ignore_items_in_inventory := true# :
 		#get:
-			#if Inventory.items.any(func(item: Item) -> bool: return item.data == preload("res://Assets/Items/Extra Pocket.tres")):
+			#if Inventory.items.any(func(item: ItemData) -> bool: return item.data == preload("res://Assets/Items/Extra Pocket.tres")):
 				#return false
 			#return _ignore_items_in_inventory
 	var _tags := PackedStringArray()
 	#var _rng: RandomNumberGenerator
 	
+	var _inventory: QuestInventory
+	
+	
+	func _init(inventory: QuestInventory) -> void:
+		_inventory = inventory
 	
 	## Only allow items with a cost of [code]max_cost[/code] or less.
 	func set_max_cost(max_cost: int) -> ItemFilter:
@@ -58,12 +63,12 @@ class ItemFilter:
 		return self
 	
 	## Allow items with the given type, in addition to types already given.
-	func allow_type(type: Item.Type) -> ItemFilter:
+	func allow_type(type: ItemData.Type) -> ItemFilter:
 		_types |= (1 << type)
 		return self
 	
 	## Do not allow items with the given type.
-	func disallow_type(type: Item.Type) -> ItemFilter:
+	func disallow_type(type: ItemData.Type) -> ItemFilter:
 		_types &= ~(1 << type)
 		return self
 	
@@ -103,16 +108,16 @@ class ItemFilter:
 		#return self
 	
 	## Returns a random item that matches this filter.
-	func get_random_item() -> Item:
+	func get_random_item() -> ItemData:
 		var options := get_items()
 		if options.is_empty():
 			Debug.log_error("Could not find any items with filter %s." % self)
 			return null
 		
-		return options[randi() % options.size()].duplicate()
+		return options.pick_random()
 	
 	## Returns [code]count[/code] random different items that match this filter.
-	func get_random_item_set(count: int) -> Array[Item]:
+	func get_random_item_set(count: int) -> Array[ItemData]:
 		var options := get_items()
 		
 		if options.is_empty():
@@ -120,7 +125,7 @@ class ItemFilter:
 			return []
 		
 		var indexes := PackedInt32Array()
-		var items: Array[Item] = []
+		var items: Array[ItemData] = []
 		for i in count:
 			if options.size() == indexes.size():
 				Debug.log_error("Could not find more than %d items with filter %s." % [indexes.size(), self])
@@ -140,30 +145,32 @@ class ItemFilter:
 		return items
 	
 	## Returns all items that match this filter.
-	func get_items() -> Array[Item]:
-		return Array(ItemDB.get_items().filter(matches), TYPE_OBJECT, &"Texture2D", Item)
+	func get_items() -> Array[ItemData]:
+		var items: Array[ItemData] = []
+		items.assign(ItemDB.get_items().filter(matches))
+		return items
 	
 	## Returns [code]true[/code] if no items match this filter.
 	func is_empty() -> bool:
 		return not ItemDB.get_items().any(matches)
 	
 	## Returns whether the given [code]data[/code] matches this filter.
-	func matches(item: Item) -> bool:
-		if item.get_cost() > _max_cost:
+	func matches(item: ItemData) -> bool:
+		if item.cost > _max_cost:
 			return false
-		if item.get_cost() < _min_cost:
+		if item.cost < _min_cost:
 			return false
-		if not (1 << item.get_type()) & _types:
+		if not (1 << item.type) & _types:
 			return false
-		if _ignore_items_in_inventory and item.get_type() != Item.Type.CONSUMABLE and Quest.get_current().get_inventory().item_has(item):
+		if _ignore_items_in_inventory and item.type != Item.Type.CONSUMABLE and _inventory.has_item_data(item):
 			return false
-		if not _tags.is_empty() and Array(_tags).all(func(tag: String) -> bool: return not item.has_tag(tag)):
+		if not _tags.is_empty() and Array(_tags).all(func(tag: String) -> bool: return not tag in item.tags):
 			return false
 		
 		return true
 	
 	func _to_string() -> String:
 		return "<ItemDB.ItemFilter(%s)>" % ", ".join(get_property_list()\
-			.filter(func(prop: Dictionary): return prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and prop.class_name.is_empty())\
-			.map(func(prop: Dictionary): return "%s: %s" % [prop.name.capitalize(), get(prop.name)])
+			.filter(func(prop: Dictionary) -> bool: return prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and prop.class_name.is_empty())\
+			.map(func(prop: Dictionary) -> String: return "%s: %s" % [prop.name.capitalize(), get(prop.name)])
 		)

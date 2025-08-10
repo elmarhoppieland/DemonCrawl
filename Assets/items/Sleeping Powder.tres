@@ -1,17 +1,19 @@
-[gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://dtcj5i5va55m7"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://bq0vgdhfkbbrd"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_csv0w"]
-[ext_resource type="Script" path="res://Assets/Items/Sleeping Powder.gd" id="1_h41l3"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_csv0w"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_yx5sa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skfqe"]
+atlas = ExtResource("1_csv0w")
+region = Rect2(192, 64, 16, 16)
 
 [resource]
-resource_local_to_scene = false
-resource_name = "ITEM_SLEEPING_POWDER"
-script = ExtResource("1_h41l3")
-_name = "ITEM_SLEEPING_POWDER"
-_description = "ITEM_SLEEPING_POWDER_DESCRIPTION"
-_type = 1
-_mana = 0
-_cost = 4
-_atlas_region = Rect2(192, 64, 16, 16)
-_atlas = ExtResource("1_csv0w")
-_current_mana = 0
+script = ExtResource("1_yx5sa")
+name = "ITEM_SLEEPING_POWDER"
+description = "ITEM_SLEEPING_POWDER_DESCRIPTION"
+type = 1
+mana = 0
+cost = 4
+tags = Array[String]([])
+icon = SubResource("AtlasTexture_skfqe")
+metadata/_custom_type_script = "uid://d3icmltrt12ld"

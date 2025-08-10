@@ -21,4 +21,4 @@ func _get_small_icon() -> Texture2D:
 
 
 func _get_dest_scene() -> PackedScene:
-	return preload("res://Engine/Scenes/SpecialStages/Item Shop.tscn")
+	return preload("res://Engine/Scenes/SpecialStages/Item Shop/Item Shop.tscn")

@@ -11,10 +11,9 @@ func _ready() -> void:
 		if not Quest.has_current():
 			get_tree().change_scene_to_file("res://Engine/Scenes/QuestSelect/QuestSelect.tscn")
 		elif Quest.get_current().has_current_stage():
-			#Quest.get_current().notify_loaded()
-			#Quest.get_current().get_current_stage().notify_loaded()
+			GuiLayer.get_statbar().quest = Quest.get_current()
 			Quest.get_current().get_current_stage().change_to_scene()
 		else:
-			#Quest.get_current().notify_loaded()
+			GuiLayer.get_statbar().quest = Quest.get_current()
 			get_tree().change_scene_to_file("res://Engine/Scenes/StageSelect/StageSelect.tscn")
 	)

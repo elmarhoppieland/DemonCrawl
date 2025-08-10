@@ -3,8 +3,6 @@ extends Node
 class_name GuiEnabler
 
 # ==============================================================================
-const GUI_LAYER_SCENE := preload("res://Engine/Resources/Singletons/GuiLayer.tscn")
-# ==============================================================================
 @export var enabled := 0 :
 	set(value):
 		_disabled = GuiEnabler.invert_bits(value, GuiEnabler.get_gui_list().size())

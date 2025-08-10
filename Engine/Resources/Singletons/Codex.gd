@@ -53,7 +53,7 @@ static func get_heirloom_slots() -> int:
 	return _heirlooms.size()
 
 
-static func set_heirloom(index: int, item: Item, count: int = 1) -> void:
+static func set_heirloom(index: int, item: ItemData, count: int = 1) -> void:
 	if index >= _heirlooms.size():
 		Debug.log_error("Attempted to set an heirloom to '%s' at locked or nonexistent slot #%d." % [item, index])
 		return
@@ -97,7 +97,7 @@ static func use_heirloom(index: int) -> Item:
 	return item
 
 
-static func get_heirloom(index: int) -> Item:
+static func get_heirloom(index: int) -> ItemData:
 	if not has_heirloom(index):
 		return null
 	
@@ -177,8 +177,7 @@ static func _get_mastery_from_list(mastery: Variant, list: Array[Mastery.Mastery
 
 
 class Heirloom extends Resource:
-	# ==========================================================================
-	@export var item: Item = null :
+	@export var item: ItemData = null :
 		set(value):
 			if value and value.resource_path.is_empty():
 				value = load(value.get_origin_path())
@@ -195,21 +194,21 @@ class Heirloom extends Resource:
 	# ==========================================================================
 	
 	@warning_ignore("shadowed_variable")
-	func _init(item: Item = null, count: int = 1) -> void:
+	func _init(item: ItemData = null, count: int = 1) -> void:
 		self.item = item
 		self.count = count
 	
 	func use() -> Item:
 		if count <= 0:
 			Debug.log_error("Attempted to use an empty heirloom (of item '%s')." % item.resource_path)
-			return item
+			return item.create()
 		
 		count -= 1
-		return item
+		return item.create()
 
 
 class Favor extends Resource:
-	@export var item: Item = null :
+	@export var item: ItemData = null :
 		set(value):
 			if value and value.resource_path.is_empty():
 				value = load(value.get_origin_path())

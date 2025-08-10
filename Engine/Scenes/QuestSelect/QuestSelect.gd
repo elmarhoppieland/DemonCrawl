@@ -36,6 +36,8 @@ func _on_begin_button_pressed() -> void:
 	
 	QuestsManager.selected_difficulty.apply_starting_values(quest)
 	
+	GuiLayer.get_statbar().quest = quest
+	
 	quest.start()
 	
 	get_tree().change_scene_to_file("res://Engine/Scenes/StageSelect/StageSelect.tscn")

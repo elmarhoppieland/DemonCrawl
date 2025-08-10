@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dppdeqskdv8hc"]
+[gd_scene load_steps=7 format=3 uid="uid://dppdeqskdv8hc"]
 
 [ext_resource type="Script" uid="uid://cx3bhmrancadt" path="res://Engine/Resources/Scenes/CollectibleDisplay.gd" id="1_mhrok"]
-[ext_resource type="Texture2D" uid="uid://cfevdrefpiq4l" path="res://Assets/items/Lyre.tres" id="2_mx77s"]
 [ext_resource type="Shader" uid="uid://bkn3o0cujs67t" path="res://Engine/Resources/Scenes/CollectibleTexture.gdshader" id="3_g7q54"]
 [ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_qke8a"]
 
@@ -23,8 +22,8 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 16.0
 offset_bottom = 16.0
+mouse_filter = 1
 script = ExtResource("1_mhrok")
-texture = ExtResource("2_mx77s")
 
 [node name="BGRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -34,7 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.164706, 0.431373, 0.690196, 0.5)
+color = Color(1, 1, 1, 0)
 
 [node name="CollectibleTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -45,11 +44,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_mx77s")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.968627, 0.807843, 0.309804, 1)
+visible = false
+modulate = Color(0.0627451, 0.87451, 0.501961, 1)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -60,14 +59,12 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_sncxu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_kwqat")
-max_value = 300.0
+max_value = 80.0
+value = 80.0
 show_percentage = false
 
 [node name="TooltipGrabber" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_qke8a")
-text = "[color=#2a6eb0]ITEM_LYRE[/color]
-[0/300 MANA]
-[color=gray]ITEM_LYRE_DESCRIPTION[/color]"
 
 [connection signal="interacted" from="TooltipGrabber" to="." method="_on_interacted"]

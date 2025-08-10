@@ -1,17 +1,19 @@
-[gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://csmtq4s2licjx"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://bux1gkrhqbmqy"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_oyfek"]
-[ext_resource type="Script" path="res://Assets/Items/Wooden Bow.gd" id="2_v60xu"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_3mh0f"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_oyfek"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo0s7"]
+atlas = ExtResource("1_oyfek")
+region = Rect2(320, 64, 16, 16)
 
 [resource]
-resource_local_to_scene = false
-resource_name = "ITEM_WOODEN_BOW"
-script = ExtResource("2_v60xu")
-_name = "ITEM_WOODEN_BOW"
-_description = "ITEM_WOODEN_BOW_DESCRIPTION"
-_type = 2
-_mana = 80
-_cost = 13
-_tags = PackedStringArray("_targeted")
-_atlas_region = Rect2(320, 64, 16, 16)
-_atlas = ExtResource("1_oyfek")
+script = ExtResource("1_3mh0f")
+name = "ITEM_WOODEN_BOW"
+description = "ITEM_WOODEN_BOW_DESCRIPTION"
+type = 2
+mana = 80
+cost = 13
+tags = Array[String](["weapon"])
+icon = SubResource("AtlasTexture_lo0s7")
+metadata/_custom_type_script = "uid://d3icmltrt12ld"

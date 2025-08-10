@@ -1,17 +1,19 @@
-[gd_resource type="Texture2D" load_steps=3 format=3 uid="uid://8db7utolqq7s"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://be0trl6ly4wv2"]
 
-[ext_resource type="Script" path="res://Assets/Items/Apple.gd" id="1_4wbc2"]
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_na8ie"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_huwnm"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_na8ie"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qlun"]
+atlas = ExtResource("1_na8ie")
+region = Rect2(224, 64, 16, 16)
 
 [resource]
-resource_local_to_scene = false
-resource_name = "ITEM_APPLE"
-script = ExtResource("1_4wbc2")
-_name = "ITEM_APPLE"
-_description = "ITEM_APPLE_DESCRIPTION"
-_type = 1
-_mana = 0
-_cost = 0
-_tags = PackedStringArray()
-_atlas_region = Rect2(224, 64, 16, 16)
-_atlas = ExtResource("1_na8ie")
+script = ExtResource("1_huwnm")
+name = "ITEM_APPLE"
+description = "ITEM_APPLE_DESCRIPTION"
+type = 1
+mana = 0
+cost = 5
+tags = Array[String](["easter"])
+icon = SubResource("AtlasTexture_1qlun")
+metadata/_custom_type_script = "uid://d3icmltrt12ld"

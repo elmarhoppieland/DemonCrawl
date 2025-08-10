@@ -10,5 +10,5 @@ func _spawn() -> void:
 func _perform() -> void:
 	super()
 	
-	var item := ItemDB.create_filter().disallow_all_types().allow_type(Item.Type.LEGENDARY).get_random_item()
-	Quest.get_current().get_inventory().item_gain(item)
+	var item := ItemDB.create_filter(_nomad.get_inventory()).disallow_all_types().allow_type(Item.Type.LEGENDARY).get_random_item()
+	_nomad.get_inventory().item_gain(item.create())

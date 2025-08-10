@@ -1,20 +1,10 @@
 @tool
-extends AnnotatedTexture
+extends AnnotatedTextureNode
 class_name Collectible
 
 ## An abstract object that can be collected by the player.
 
 # ==============================================================================
-var _texture: ImageTexture : get = get_texture
-# ==============================================================================
-@export var _origin_path := "" : get = get_origin_path
-# ==============================================================================
-
-func _init() -> void:
-	changed.connect(func() -> void:
-		_texture = null
-	)
-
 
 ## Creates a new [StatusEffect] for this [Collectible].
 func create_status(status_script: Script = null) -> StatusEffect.Initializer:
@@ -49,23 +39,6 @@ func _has_alpha() -> bool:
 
 #region getters
 
-## Returns the main [SceneTree].
-func get_tree() -> SceneTree:
-	return Engine.get_main_loop()
-
-
-## Virtual method to override this texture's atlas to be read from.
-func _get_atlas() -> Texture2D:
-	return null
-
-
-## Virtual method to override this texture's atlas region to read the atlas from.
-## [br][br][b]Note:[/b] [method _get_atlas] must be overridden and return a valid
-## [Texture2D] for this method to be called.
-func _get_atlas_region() -> Rect2:
-	return Rect2()
-
-
 ## Returns this collectible's background [Color].
 func get_texture_bg_color() -> Color:
 	return _get_texture_bg_color()
@@ -76,30 +49,7 @@ func get_texture_bg_color() -> Color:
 func _get_texture_bg_color() -> Color:
 	return Color.TRANSPARENT
 
-
-func get_texture() -> ImageTexture:
-	if _texture:
-		return _texture
-	
-	var texture := _get_atlas()
-	if not texture:
-		return null
-	var region := _get_atlas_region()
-	if not region:
-		_texture = ImageTexture.create_from_image(texture.get_image())
-		return _texture
-	
-	var image := texture.get_image().get_region(_get_atlas_region())
-	_texture = ImageTexture.create_from_image(_parse_image(image))
-	return _texture
-
 #endregion
-
-## Virtual method to make final modifications to this collectible's [Image],
-## after cropping it and applying a background. Should return the final [Image].
-func _parse_image(image: Image) -> Image:
-	return image
-
 
 ## Uses this [Collectible], if possible. First calls [method _use], and then [method _post].
 func use() -> void:
@@ -205,12 +155,3 @@ func get_max_progress() -> int:
 
 func _get_max_progress() -> int:
 	return 0
-
-
-## Returns the original path that this [Collectible] was stored at on the filesystem.
-## If this is a duplicate of a saved [Collectible], this returns the path of the
-## original [Collectible].
-func get_origin_path() -> String:
-	if _origin_path.is_empty() and not resource_path.is_empty():
-		_origin_path = resource_path
-	return _origin_path

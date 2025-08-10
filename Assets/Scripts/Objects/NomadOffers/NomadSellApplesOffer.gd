@@ -11,9 +11,9 @@ func _spawn() -> void:
 
 
 func _perform() -> void:
-	const APPLE = preload("res://Assets/Items/Apple.tres")
-	
 	super()
 	
+	const APPLE = preload("res://Assets/Items/Apple.tres")
+	
 	for i in amount:
-		Quest.get_current().get_inventory().item_gain(APPLE.duplicate())
+		_nomad.get_inventory().item_gain(APPLE.create())

@@ -14,7 +14,7 @@ func emit_changed() -> void:
 func get_texture() -> Texture2D:
 	if not _texture:
 		_texture = _get_texture()
-		if _texture:
+		if _texture and not _texture.changed.is_connected(emit_changed):
 			_texture.changed.connect(emit_changed)
 	return _texture
 
@@ -24,6 +24,10 @@ func get_texture() -> Texture2D:
 ## anymore on this node.
 func _get_texture() -> Texture2D:
 	return null
+
+
+func clear_texture_cache() -> void:
+	_texture = null
 
 
 func get_width() -> int:

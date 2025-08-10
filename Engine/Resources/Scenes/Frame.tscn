@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://kwco715ga5g0"]
+
+[ext_resource type="Script" uid="uid://b2o6vxxglfsfr" path="res://Engine/Resources/Scenes/Frame.gd" id="1_6vjry"]
+[ext_resource type="Script" uid="uid://k2n0orq8v38q" path="res://Engine/Resources/UtilityNode/Grabber.gd" id="2_fxvcn"]
+
+[node name="Frame" type="MarginContainer"]
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+script = ExtResource("1_6vjry")
+
+[node name="Grabber" type="Node" parent="."]
+script = ExtResource("2_fxvcn")
+metadata/_custom_type_script = "uid://k2n0orq8v38q"
+
+[node name="CollectibleContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = -3
+theme_override_constants/margin_top = -3
+theme_override_constants/margin_right = -3
+theme_override_constants/margin_bottom = -3
+
+[node name="ColorRect" type="ColorRect" parent="CollectibleContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CollectibleContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.545098, 0.545098, 0.545098, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CollectibleContainer/ColorRect/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="interacted" from="Grabber" to="." method="_on_interacted"]

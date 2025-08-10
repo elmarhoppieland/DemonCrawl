@@ -7,6 +7,7 @@ class_name Item
 # ==============================================================================
 ## The various types of items available.
 enum Type {
+	INVALID = -1, ## Used when an item's type cannot be retrieved (e.g. when it has no data).
 	PASSIVE, ## An item that has passive effects that may repeatedly occur.
 	CONSUMABLE, ## A single-use item that takes effect once, when the player uses it.
 	MAGIC, ## An item that can be repeatedly used by the player, taking mana each time.
@@ -16,51 +17,37 @@ enum Type {
 }
 # ==============================================================================
 const TYPE_COLORS: Dictionary[Type, Color] = {
+	Type.INVALID: Color.RED,
 	Type.PASSIVE: Color.TRANSPARENT,
-	Type.CONSUMABLE: 0x14a464,
-	Type.MAGIC: Color("2a6eb0"),
-	Type.OMEN: Color("bc3838"),
-	Type.LEGENDARY: Color("b3871a")
+	Type.CONSUMABLE: 0x14a464ff,
+	Type.MAGIC: 0x2a6eb0ff,
+	Type.OMEN: 0xbc3838ff,
+	Type.LEGENDARY: 0xb3871aff,
+	Type.MAX: Color.BLUE
 }
 # ==============================================================================
-@export var _name := "" : set = _set_name
-@export_multiline var _description := ""
-@export var _type := Type.PASSIVE : set = _set_type, get = get_type
-@export var _mana := 0 : set = set_max_mana, get = get_max_mana
-@export var _cost := 0 : get = get_cost
-@export var _tags: PackedStringArray : get = get_tags
-@export var _atlas_region := Rect2(0, 0, 16, 16) :
+@export var data: ItemData = null :
 	set(value):
-		_atlas_region = value
+		data = value
+		clear_texture_cache()
 		emit_changed()
-@export var _atlas: Texture2D = preload("res://Assets/Sprites/items.png") :
-	set(value):
-		_atlas = value
-		emit_changed()
-# ==============================================================================
-var _current_mana := 0 : set = set_mana, get = get_mana
-var _in_inventory := false
 
-var _quest_weakref: WeakRef = null
+@export var _current_mana := 0 : set = set_mana, get = get_mana
+# ==============================================================================
+var _overrides: Dictionary[String, Variant] = {}
 # ==============================================================================
 signal cleared()
 # ==============================================================================
 
 #region internals
 
-func _init() -> void:
-	super()
-	
-	if _name.is_empty() and Engine.is_editor_hint():
-		(func() -> void: _name = "ITEM_" + resource_path.get_file().get_basename().to_snake_case().to_upper()).call_deferred()
+@warning_ignore("shadowed_variable")
+func _init(data: ItemData = null) -> void:
+	self.data = data
 
 
-func _get_atlas() -> CompressedTexture2D:
-	return _atlas
-
-
-func _get_atlas_region() -> Rect2:
-	return _atlas_region
+func _get_texture() -> Texture2D:
+	return data.icon if data else null
 
 
 func _get_annotation_text() -> String:
@@ -77,11 +64,19 @@ func _get_annotation_text() -> String:
 
 
 func _get_annotation_title() -> String:
-	return "[color=#" + get_texture_bg_color().to_html(false) + "]" + tr(_name).to_upper() + "[/color]"
+	var item_name := get_item_name()
+	if item_name.is_empty():
+		return ""
+	
+	return "[color=#" + get_texture_bg_color().to_html(false) + "]" + tr(item_name).to_upper() + "[/color]"
 
 
 func _get_annotation_subtext() -> String:
-	return tr(_description)
+	var description := get_description()
+	if description.is_empty():
+		return ""
+	
+	return tr(description) if data else ""
 
 
 func _get_texture_bg_color() -> Color:
@@ -93,7 +88,7 @@ func _is_blinking() -> bool:
 
 
 func _has_progress_bar() -> bool:
-	return has_mana()
+	return has_mana() and is_active()
 
 
 func _get_progress() -> int:
@@ -113,72 +108,41 @@ func _post() -> void:
 		clear_mana()
 
 
-func _export() -> Dictionary:
-	var dict := {
-		"path": get_path()
-	}
-	
-	if _mana:
-		dict._mana = _current_mana
-	
-	return dict
-
-
-static func _import(value: Dictionary) -> Item:
-	assert("path" in value)
-	
-	var item := Item.from_path(value.path)
-	if "_mana" in value:
-		item._current_mana = value._mana
-	return item
-
-
 func _to_string() -> String:
-	return tr(get_name())
-
-
-func _property_can_revert(property: StringName) -> bool:
-	return property in [&"_description", &"_name", &"_atlas"]
-
-
-func _property_get_revert(property: StringName) -> Variant:
-	if property == &"_description":
-		if _name.is_empty():
-			return ""
-		return _name.to_snake_case().to_upper() + "_DESCRIPTION"
-	if property == &"_name":
-		return "ITEM_" + resource_path.get_file().get_basename().to_snake_case().to_upper()
-	if property == &"_atlas":
-		return preload("res://Assets/Sprites/items.png")
+	var item_name := ""
+	if "name" in _overrides:
+		item_name = _overrides.name
+	elif not data:
+		return "<Item#null>"
+	else:
+		item_name = data.name
 	
+	return "<Item#%s>" % item_name
+
+
+func _get_property_list() -> Array[Dictionary]:
+	var props: Array[Dictionary] = []
+	for override in _overrides:
+		props.append({
+			"name": override,
+			"type": typeof(_overrides[override]),
+			"usage": PROPERTY_USAGE_STORAGE
+		})
+	return props
+
+
+func _get(property: StringName) -> Variant:
+	if property in _overrides:
+		return _overrides[property]
 	return null
 
 
-func _validate_property(property: Dictionary) -> void:
-	match property.name:
-		"_in_inventory", "_current_mana" when not Engine.is_editor_hint():
-			property.usage |= PROPERTY_USAGE_STORAGE
-
-
-func _set_name(name: String) -> void:
-	if _description.is_empty() or _description == _name.to_snake_case().to_upper() + "_DESCRIPTION":
-		if name.is_empty():
-			_description = ""
-		else:
-			_description = name.to_snake_case().to_upper() + "_DESCRIPTION"
-	_name = name
-	resource_name = name
-	emit_changed()
-
-
-func _set_type(type: Type) -> void:
-	_type = type
-	emit_changed()
-
-
-func set_max_mana(mana: int) -> void:
-	_mana = mana
-	emit_changed()
+func _set(property: StringName, value: Variant) -> bool:
+	if (ItemData as Script).get_script_property_list().any(func(prop: Dictionary) -> bool: return prop.name == property):
+		_overrides[property] = value
+		return true
+	
+	return false
 
 #endregion
 
@@ -186,32 +150,32 @@ func set_max_mana(mana: int) -> void:
 
 ## Notifies this item that it has been added to the inventory. This method will
 ## first initialize the item and then call [method _inventory_add].
-func notify_inventory_added() -> void:
-	_in_inventory = true
-	_inventory_add()
+#func notify_inventory_added() -> void:
+	#_in_inventory = true
+	#_inventory_add()
 
 
 ## Virtual method to add custom events when the item is added to the inventory.
 ## [br][br]This method is called every time the item is added to the inventory,
 ## i.e. every time the inventory gets reloaded, or directly before the item is gained.
 ## See also [method _gain].
-func _inventory_add() -> void:
-	pass
+#func _inventory_add() -> void:
+	#pass
 
 
 ## Notifies this item that it has been removed from the inventory. This method will
 ## first uninitialize the item and then call [method _inventory_remove].
-func notify_inventory_removed() -> void:
-	_in_inventory = false
-	_inventory_remove()
+#func notify_inventory_removed() -> void:
+	#_in_inventory = false
+	#_inventory_remove()
 
 
 ## Virtual method to add custom events when the item is removed from the inventory.
 ## [br][br]This method is called every time the item is removed from the inventory,
 ## i.e. every time the inventory gets removed from the scene tree, or directly after
 ## the item is lost. See also [method _lose].
-func _inventory_remove() -> void:
-	pass
+#func _inventory_remove() -> void:
+	#pass
 
 
 ## Notifies the item that it has been gained. This method will call [method _gain]
@@ -247,7 +211,7 @@ func _lose() -> void:
 #region usability
 
 func _can_use() -> bool:
-	if _type == Type.CONSUMABLE:
+	if data.type == Type.CONSUMABLE:
 		return true
 	if has_mana() and is_charged():
 		return true
@@ -258,21 +222,21 @@ func _can_use() -> bool:
 ## Returns whether this item can recieve _mana (i.e. it uses mana and the maximum
 ## mana is not yet reached).
 func can_recieve_mana() -> bool:
-	return has_mana() and _current_mana < _mana
+	return has_mana() and get_mana() < get_max_mana()
 
 
 ## Returns whether this item uses mana.
 func has_mana() -> bool:
-	return _mana != 0
+	return get_max_mana() != 0
 
 
 ## Returns whether this item is charged, i.e. it uses mana and is at its maximum mana.
 func is_charged() -> bool:
-	return has_mana() and _current_mana >= _mana
+	return has_mana() and get_mana() >= get_max_mana()
 
 
 func _is_active() -> bool:
-	return _in_inventory
+	return get_inventory() != null
 
 
 ## Fully charges this [Item]'s mana. Does nothing if the item does not have mana.
@@ -282,7 +246,6 @@ func charge() -> void:
 
 ## Sets this item's current mana to [code]mana[/code].
 func set_mana(mana: int) -> void:
-	mana = clampi(mana, 0, get_max_mana())
 	_current_mana = mana
 	emit_changed()
 
@@ -299,20 +262,29 @@ static func from_path(path: String) -> Item:
 	if path.is_relative_path():
 		path = "res://Assets/items/".path_join(path)
 	
-	return load(path.get_basename() + ".tres").duplicate()
+	var item_data := load(path.get_basename() + ".tres")
+	var item := Item.new()
+	item.data = item_data
+	return item
+
+
+func add_override(property: String, value: Variant) -> void:
+	_overrides[property] = value
 
 #region utilities
 
-func set_quest(quest: Quest) -> void:
-	_quest_weakref = weakref(quest)
-
-
 func get_quest() -> Quest:
-	return _quest_weakref.get_ref() if _quest_weakref else null
+	var base := get_parent()
+	while base != null and base is not Quest:
+		base = base.get_parent()
+	return base
 
 
 func get_inventory() -> QuestInventory:
-	return get_quest().get_inventory()
+	var base := get_parent()
+	while base != null and base is not QuestInventory:
+		base = base.get_parent()
+	return base
 
 
 func get_stats() -> QuestStats:
@@ -413,12 +385,28 @@ func life_lose(life: int, source: Object = self) -> void:
 
 #region getters
 
+func get_item_name() -> String:
+	if "name" in _overrides:
+		return _overrides.name
+	return data.name if data else ""
+
+
+func get_description() -> String:
+	if "description" in _overrides:
+		return _overrides.description
+	return data.description if data else ""
+
+
 func get_type() -> Type:
-	return _type
+	if "type" in _overrides:
+		return _overrides.type
+	return data.type if data else Type.INVALID
 
 
 func get_max_mana() -> int:
-	return _mana
+	if "mana" in _overrides:
+		return _overrides.mana
+	return data.mana if data else 0
 
 
 func is_mana_enabled() -> bool:
@@ -426,20 +414,22 @@ func is_mana_enabled() -> bool:
 
 
 func get_mana() -> int:
-	if not Engine.is_editor_hint() and not resource_path.is_empty():
-		return get_max_mana()
 	return _current_mana
 
 
 func get_cost() -> int:
-	return _cost
+	if "cost" in _overrides:
+		return _overrides.cost
+	return data.cost if data else 0
 
 
-func get_tags() -> PackedStringArray:
-	return _tags
+func get_tags() -> Array[String]:
+	if "tags" in _overrides:
+		return _overrides.tags
+	return data.tags if data else []
 
 
 func has_tag(tag: String) -> bool:
-	return tag in _tags
+	return tag in get_tags()
 
 #endregion

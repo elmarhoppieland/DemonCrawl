@@ -12,7 +12,10 @@ class_name Mastery
 		_charges = value
 		emit_changed()
 
-@export var active := true
+@export var active := true :
+	set(value):
+		active = value
+		emit_changed()
 # ==============================================================================
 signal changed()
 # ==============================================================================

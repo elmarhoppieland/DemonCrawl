@@ -11,7 +11,7 @@ func use() -> void:
 	if not target.get_aura() is Burning:
 		return
 	
-	target.aura = null
+	target.clear_aura()
 	life_restore(3, self)
 	
 	clear()

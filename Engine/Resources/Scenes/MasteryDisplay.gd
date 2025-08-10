@@ -5,14 +5,16 @@ class_name QuestMastery
 # ==============================================================================
 @export var charge_color := Color(0.235, 0.624, 0.984)
 
-@export var quest: Quest = null :
+@export var mastery: Mastery = null :
 	set(value):
-		if quest and quest.get_mastery():
-			quest.get_mastery().changed.disconnect(_update)
-		quest = value
+		if mastery and mastery.changed.is_connected(_update):
+			mastery.changed.disconnect(_update)
+		
+		mastery = value
+		
 		_update()
-		if value and value.get_mastery():
-			value.get_mastery().changed.connect(_update)
+		if value and not value.changed.is_connected(_update):
+			value.changed.connect(_update)
 # ==============================================================================
 var _blink_tween: Tween = null :
 	set(value):
@@ -26,25 +28,7 @@ var _blink_tween: Tween = null :
 @onready var _tooltip_grabber: TooltipGrabber = %TooltipGrabber
 # ==============================================================================
 
-func _ready() -> void:
-	if not quest:
-		quest = Quest.get_current()
-		Quest.current_changed.connect(func() -> void:
-			quest = Quest.get_current()
-		)
-
-
 func _update() -> void:
-	if not is_node_ready():
-		await ready
-	
-	if quest and quest.get_mastery():
-		_update_mastery(quest.get_mastery())
-	else:
-		_update_mastery(null)
-
-
-func _update_mastery(mastery: Mastery) -> void:
 	if not is_node_ready():
 		await ready
 	
@@ -77,7 +61,7 @@ func _update_mastery(mastery: Mastery) -> void:
 		for i in range(mastery.get_max_charges(), _charges_container.get_child_count()):
 			_charges_container.get_child(i).queue_free()
 		
-		if mastery.is_charged():
+		if mastery.is_charged() and mastery.active:
 			if not _blink_tween:
 				const GLOW_DURATION := 0.3
 				const GLOW_WAIT := 0.5
@@ -110,5 +94,5 @@ func _get_minimum_size() -> Vector2:
 
 
 func _on_interacted() -> void:
-	if quest and quest.get_mastery():
-		quest.get_mastery().use_ability()
+	if mastery and mastery.active:
+		mastery.use_ability()

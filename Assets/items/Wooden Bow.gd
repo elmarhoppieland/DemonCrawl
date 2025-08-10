@@ -4,14 +4,14 @@ extends Item
 # ==============================================================================
 
 func _use() -> void:
-	_process(await target_cell())
+	_target(await target_cell())
 
 
 func _invoke() -> void:
-	_process(get_stage_instance().get_cells().pick_random())
+	_target(get_stage_instance().get_cells().pick_random())
 
 
-func _process(cell: CellData) -> void:
+func _target(cell: CellData) -> void:
 	if not cell.is_revealed():
 		cell.open(true)
 	

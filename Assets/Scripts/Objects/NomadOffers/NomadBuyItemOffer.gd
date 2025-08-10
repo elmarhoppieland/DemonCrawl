@@ -2,13 +2,13 @@ extends NomadOffer
 class_name NomadBuyItemOffer
 
 # ==============================================================================
-@export var item: Item
+@export var item: ItemData
 @export var price := 0
 # ==============================================================================
 
 func _spawn() -> void:
-	item = Quest.get_current().get_inventory().get_item(randi() % Quest.get_current().get_inventory().get_item_count())
-	price = maxi(1, roundi(randf_range(0.8, 1.2) * item.get_cost()))
+	item = _nomad.get_quest().get_inventory().get_random_item().data
+	price = maxi(1, roundi(randf_range(0.8, 1.2) * item.cost))
 
 
 func _can_perform(_free: bool = false) -> bool:

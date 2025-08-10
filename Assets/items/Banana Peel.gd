@@ -3,7 +3,7 @@ extends Item
 
 # ==============================================================================
 
-func use() -> void:
+func _use() -> void:
 	var target := await target_cell()
 	if not target:
 		return
