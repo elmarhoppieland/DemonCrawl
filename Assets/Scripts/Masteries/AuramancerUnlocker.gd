@@ -12,18 +12,19 @@ func _exit_tree() -> void:
 
 
 func _stage_completed() -> void:
-	var auras: Array[Script] = []
+	var aura_counts: Dictionary[Script, int] = {}
+	
+	for aura in DemonCrawl.get_full_registry().auras:
+		aura_counts[aura] = 0
+	
 	for cell in get_quest().get_current_stage().get_cells():
 		if cell.has_aura():
-			var aura: Script = cell.get_aura().get_script()
-			if aura not in auras:
-				auras.append(aura)
-				if auras.size() >= 10:
-					break
+			aura_counts[cell.get_aura().get_script()] += 1
 	
-	if auras.size() >= 1:
+	var count: int = aura_counts.values().min()
+	if count >= 1:
 		unlock(1)
-	if auras.size() >= 5:
+	if count >= 5:
 		unlock(2)
-	if auras.size() >= 10:
+	if count >= 10:
 		unlock(3)
