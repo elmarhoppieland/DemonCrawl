@@ -137,7 +137,7 @@ class PriorityNode:
 				get_tree().interrupted = false
 				return []
 			
-			if handles(connection):
+			if handles(connection.callable):
 				if get_tree().current_mutable < 0:
 					connection.callable.callv(get_tree().current_args)
 				else:
@@ -153,8 +153,11 @@ class PriorityNode:
 		
 		return unhandled_connections
 	
+	func handles(callable: Callable) -> bool:
+		return _handles(callable)
+	
 	@warning_ignore("unused_parameter")
-	func handles(connection: Dictionary) -> bool:
+	func _handles(callable: Callable) -> bool:
 		return false
 	
 	func has_children() -> bool:
@@ -272,14 +275,13 @@ class PriorityGroup extends PriorityNode:
 	var type := Type.SCRIPT_INSTANCES
 	var data := ""
 	
-	func handles(connection: Dictionary) -> bool:
+	func _handles(callable: Callable) -> bool:
 		match type:
 			Type.SCRIPT_INSTANCES:
 				var script := UserClassDB.class_get_script(data)
 				if not script:
 					return false
 				
-				var callable := connection.callable as Callable
 				var object := callable.get_object()
 				if callable.is_custom() and script == object:
 					# this is probably a lambda function on the class
@@ -288,10 +290,10 @@ class PriorityGroup extends PriorityNode:
 				
 				return script.instance_has(object)
 			Type.NODE_CHILDREN:
-				var object := (connection.callable as Callable).get_object()
+				var object := callable.get_object()
 				return object is Node and (object as Node).get_node(data).is_ancestor_of(object)
 			Type.SCRIPT_SINGLETON:
-				return (connection.callable as Callable).get_object() == UserClassDB.class_get_script(data)
+				return callable.get_object() == UserClassDB.class_get_script(data)
 		
 		return false
 	

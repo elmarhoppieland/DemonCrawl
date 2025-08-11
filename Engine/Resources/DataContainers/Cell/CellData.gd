@@ -150,6 +150,8 @@ func open(force: bool = false, allow_loot: bool = true) -> bool:
 				continue
 			to_explore.append(c)
 	
+	get_stage_instance().check_completed()
+	
 	return true
 
 
@@ -343,6 +345,121 @@ func send_projectile(projectile: Script, direction: Vector2i = Vector2i.ZERO) ->
 
 func scale_object(scale: float) -> void:
 	scale_object_requested.emit(scale)
+
+
+func get_actions() -> Array[Callable]:
+	var actions: Array[Callable] = []
+	var action_manager := get_stage_instance().get_quest().get_action_manager()
+	
+	if is_hidden():
+		if not is_flagged():
+			actions.append(func() -> void:
+				check()
+			)
+		
+		actions.append_array(action_manager.get_actions(self))
+		
+		if actions.is_empty():
+			actions.append(func() -> void: pass)
+		
+		actions.insert(1, func() -> void:
+			if is_flagged():
+				unflag()
+			else:
+				flag()
+		)
+		
+		return actions
+	
+	if is_occupied():
+		if get_object().can_interact():
+			actions.append(get_object().interact)
+		else:
+			actions.append(func() -> void: pass)
+		
+		if get_object().can_second_interact():
+			actions.append(get_object().second_interact)
+		
+		actions.append_array(action_manager.get_actions(self))
+		
+		return actions
+	
+	actions.append(func() -> void: # left click (chord)
+		for cell in get_nearby_cells():
+			if cell.is_hidden() and not cell.is_flagged():
+				cell.check()
+	)
+	actions.append_array(action_manager.get_actions(self))
+	actions.append(func() -> void: # right-click (flag-chord)
+		var monsters := 0
+		for cell in get_nearby_cells():
+			if cell.is_hidden() or (cell.has_monster() and cell.is_visible()):
+				monsters += 1
+		
+		if value < monsters:
+			return
+		
+		for cell in get_nearby_cells():
+			if cell.is_hidden():
+				cell.flag()
+	)
+	
+	return actions
+
+
+func get_release_actions() -> Array[Callable]:
+	var action_manager := get_stage_instance().get_quest().get_action_manager()
+	var actions: Array[Callable] = []
+	
+	if is_hidden():
+		if not is_flagged():
+			actions.append(func() -> void:
+				if get_stage_instance().get_board().get_hovered_cell() != self:
+					uncheck()
+				else:
+					open()
+					
+					EffectManager.propagate(get_stage_instance().get_effects().turn)
+			)
+		
+		actions.append_array(action_manager.get_release_actions(self))
+		
+		return actions
+	
+	if is_occupied():
+		if get_object().can_interact():
+			actions.append(func() -> void: pass)
+		
+		actions.append_array(action_manager.get_release_actions(self))
+		
+		if get_object().can_second_interact():
+			if actions.is_empty():
+				actions.append(func() -> void: pass)
+			actions.insert(1, func() -> void: pass)
+		
+		return actions
+	
+	actions.append(func() -> void: # left click (chord)
+		var monsters := 0
+		for cell in get_nearby_cells():
+			if cell.is_flagged() or (cell.has_monster() and cell.is_visible()):
+				monsters += 1
+		
+		var is_still_hovered := get_stage_instance().get_board().get_hovered_cell() == self
+		
+		for cell in get_nearby_cells():
+			if cell.is_hidden() and not cell.is_flagged():
+				if value > monsters or not is_still_hovered:
+					cell.uncheck()
+				else:
+					cell.open()
+		
+		if is_still_hovered:
+			EffectManager.propagate(get_stage_instance().get_effects().turn)
+	)
+	actions.append_array(action_manager.get_release_actions(self))
+	
+	return actions
 
 #endregion
 

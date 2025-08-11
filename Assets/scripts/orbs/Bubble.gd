@@ -6,9 +6,13 @@ class_name Bubble
 const BUBBLE_SPRITE := preload("res://Assets/Scripts/Orbs/BubbleSprite.tscn")
 # ==============================================================================
 
-@warning_ignore("shadowed_variable")
 func _init(object: CellObject = null) -> void:
-	add_child(object)
+	if object.is_inside_tree():
+		var board := object.get_stage_instance().get_board()
+		position = board.get_viewport_transform() * board.get_global_at_cell_position(object.get_cell().get_position())
+		object.reparent(self)
+	else:
+		add_child(object)
 
 
 func _export_packed() -> Array:

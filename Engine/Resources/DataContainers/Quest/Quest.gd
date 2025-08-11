@@ -452,6 +452,16 @@ func get_status_manager() -> StatusEffectsManager:
 	return status_manager
 
 
+func get_action_manager() -> ActionManager:
+	for child in get_components_parent().get_children():
+		if child is ActionManager:
+			return child
+	
+	var action_manager := ActionManager.new()
+	get_components_parent().add_child(action_manager)
+	return action_manager
+
+
 func get_mastery_unlockers_parent() -> Node:
 	if not has_node("MasteryUnlockers"):
 		var unlockers_parent := Node.new()

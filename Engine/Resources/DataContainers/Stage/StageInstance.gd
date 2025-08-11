@@ -347,8 +347,8 @@ func get_cells() -> Array[CellData]:
 
 ## Returns whether the get_stage() is finished, i.e. all non-monster [Cell]s are revealed.
 func is_completed() -> bool:
-	for data in get_cells():
-		if data.mode != Cell.Mode.VISIBLE and not data.has_monster():
+	for cell in get_cells():
+		if cell.is_hidden() and not cell.has_monster():
 			return false
 	
 	return true

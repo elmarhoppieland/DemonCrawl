@@ -37,3 +37,7 @@ func can_afford() -> bool:
 
 func _can_afford() -> bool:
 	return true
+
+
+func _can_interact() -> bool:
+	return true

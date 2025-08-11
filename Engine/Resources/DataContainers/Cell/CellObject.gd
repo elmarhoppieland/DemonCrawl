@@ -238,11 +238,16 @@ func _get_palette() -> Texture2D:
 
 ## Notifies this object that the player has interacted (left-click or Q) with it.
 func notify_interacted() -> void:
-	_interact()
+	interact()
 	
 	_hover()
 	
 	EffectManager.propagate(get_stage_instance().get_effects().object_interacted, [self])
+
+
+## Interacts with this object.
+func interact() -> void:
+	_interact()
 
 
 ## Virtual method to react to this object being interacted with.
@@ -252,10 +257,15 @@ func _interact() -> void:
 
 ## Notifies this object aht the player used secondary interact (right-click or E) on this object.
 func notify_second_interacted() -> void:
+	second_interact()
+
+
+## Secondary-interacts with this object.
+func second_interact() -> void:
 	_second_interact()
 
 
-## Virtual method to react to this object being second interacted with.
+## Virtual method to react to this object being secondary-interacted with.
 func _second_interact() -> void:
 	pass
 
@@ -449,6 +459,22 @@ func _contribute_value() -> int:
 ## nearby cell should be increased by.
 func get_value_contribution() -> int:
 	return _contribute_value()
+
+
+func _can_interact() -> bool:
+	return false
+
+
+func can_interact() -> bool:
+	return _can_interact()
+
+
+func _can_second_interact() -> bool:
+	return false
+
+
+func can_second_interact() -> bool:
+	return _can_second_interact()
 
 #endregion
 

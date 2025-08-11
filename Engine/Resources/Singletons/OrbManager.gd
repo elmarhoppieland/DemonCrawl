@@ -19,7 +19,7 @@ func _init() -> void:
 	name = "OrbManager"
 
 
-func register_orb(orb: Orb, global_position: Vector2 = Vector2.ZERO) -> void:
+func register_orb(orb: Orb, global_position: Vector2 = orb.position) -> void:
 	add_child(orb)
 	
 	orb_registered.emit(orb, global_position)
