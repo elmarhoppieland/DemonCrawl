@@ -46,3 +46,7 @@ func _interact() -> void:
 	get_cell().add_text_particle("+" + str(life), TextParticles.ColorPreset.LIFE)
 	tween_texture_to(GuiLayer.get_statbar().get_heart_position())
 	clear()
+
+
+func _can_interact() -> bool:
+	return true

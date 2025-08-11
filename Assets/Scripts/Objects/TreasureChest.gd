@@ -33,3 +33,7 @@ func _interact() -> void:
 
 func _get_charitable_amount() -> int:
 	return 5
+
+
+func _can_interact() -> bool:
+	return true

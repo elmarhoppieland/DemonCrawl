@@ -129,8 +129,11 @@ func open(force: bool = false, allow_loot: bool = true) -> bool:
 	if not get_stage_instance().is_generated():
 		get_stage_instance().generate(self)
 	
+	
 	if value != 0:
-		return _open(force, allow_loot)
+		var r := _open(force, allow_loot)
+		get_stage_instance().check_completed()
+		return r
 	
 	_open(force, allow_loot)
 	

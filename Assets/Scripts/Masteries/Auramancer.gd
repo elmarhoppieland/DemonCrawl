@@ -41,7 +41,7 @@ func _action(object: Object) -> Array[Callable]:
 		return []
 	if not object.has_aura():
 		return []
-	return [_cell_second_interact.bind(object)]
+	return [object.clear_aura]
 
 
 func _negative_effect(_effect: Callable) -> bool:
@@ -70,11 +70,8 @@ func _stage_generate() -> void:
 		cells[idx].apply_aura(DemonCrawl.get_full_registry().auras.pick_random().new())
 
 
-func _cell_second_interact(cell: CellData) -> void:
-	if level < 1:
-		return
-	
-	cell.clear_aura()
+#func _cell_second_interact(cell: CellData) -> void:
+	#cell.clear_aura()
 
 
 func _aura_remove(aura: Aura) -> void:

@@ -68,3 +68,4 @@ unique_name_in_owner = true
 script = ExtResource("4_qke8a")
 
 [connection signal="interacted" from="TooltipGrabber" to="." method="_on_interacted"]
+[connection signal="second_interacted" from="TooltipGrabber" to="." method="_on_second_interacted"]

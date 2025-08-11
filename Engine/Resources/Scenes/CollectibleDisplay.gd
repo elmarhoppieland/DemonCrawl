@@ -66,6 +66,7 @@ var _blink_tween: Tween
 @onready var _tooltip_grabber: TooltipGrabber = %TooltipGrabber
 # ==============================================================================
 signal interacted()
+signal second_interacted()
 # ==============================================================================
 
 func _enter_tree() -> void:
@@ -182,4 +183,14 @@ static func create(collectible: Collectible = null, add_as_child: bool = false) 
 func _on_interacted() -> void:
 	if collectible:
 		collectible.use()
-		interacted.emit()
+	
+	interacted.emit()
+
+
+func _on_second_interacted() -> void:
+	if collectible:
+		var actions := collectible.get_quest().get_action_manager().get_actions(collectible)
+		if actions.size() > 0:
+			actions[0].call()
+	
+	second_interacted.emit()

@@ -155,3 +155,10 @@ func get_max_progress() -> int:
 
 func _get_max_progress() -> int:
 	return 0
+
+
+func get_quest() -> Quest:
+	var base := get_parent()
+	while base != null and base is not Quest:
+		base = base.get_parent()
+	return base
