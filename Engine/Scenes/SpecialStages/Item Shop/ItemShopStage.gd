@@ -39,7 +39,10 @@ func _ready() -> void:
 
 
 func _get_items() -> Array[ItemData]:
-	return ItemDB.create_filter(Quest.get_current().get_inventory()).set_max_cost(maxi(Quest.get_current().get_stats().coins, 10)).set_min_cost(1).get_random_item_set(Effects.get_shop_item_count(3))
+	return Quest.get_current().get_item_pool().create_filter()\
+		.set_max_cost(maxi(Quest.get_current().get_stats().coins, 10))\
+		.set_min_cost(1)\
+		.get_random_item_set(Effects.get_shop_item_count(3))
 
 
 func _on_buy_button_pressed() -> void:

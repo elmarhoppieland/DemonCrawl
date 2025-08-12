@@ -2,6 +2,8 @@ extends Node
 class_name QuestPlayerAttributes
 
 # ==============================================================================
+const RESEARCH_WEIGHT_MULT := 5.0
+# ==============================================================================
 @export var score := 0 :
 	set(value):
 		score = EffectManager.propagate(change_property, [&"score", value], 1)
@@ -53,6 +55,11 @@ class_name QuestPlayerAttributes
 		chain_length = EffectManager.propagate(change_property, [&"chain_length", value], 1)
 		EffectManager.propagate(property_changed, [&"chain_length", score])
 		emit_changed()
+
+@export var research_subject := "" :
+	set(value):
+		research_subject = value
+		emit_changed()
 # ==============================================================================
 signal changed()
 
@@ -93,4 +100,22 @@ func get_overview_text() -> String:
 	text += "• " + tr("OVERVIEW_CHESTS_OPENED").format({"chests": chests_opened}) + "\n" \
 		+ "• " + tr("OVERVIEW_MONSTERS_KILLED").format({"monsters": monsters_killed}) + "\n"
 	
+	if not research_subject.is_empty():
+		text += "\n" + tr("OVERVIEW_RESEARCH_SUBJECT").format({"subject": tr("RESEARCH_" + research_subject.to_snake_case().to_upper())})
+	
 	return text.strip_edges()
+
+
+func _ready() -> void:
+	get_quest().get_item_pool().add_modifier(func(item: ItemData) -> float:
+		if research_subject.is_empty():
+			return 1.0
+		
+		var locale := TranslationServer.get_locale()
+		TranslationServer.set_locale("en")
+		var description := TranslationServer.translate(item.description)
+		TranslationServer.set_locale(locale)
+		if research_subject.to_lower() in description.to_lower():
+			return RESEARCH_WEIGHT_MULT
+		return 1.0
+	)

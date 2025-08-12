@@ -41,3 +41,7 @@ func _property_get_revert(property: StringName) -> Variant:
 ## Creates a new [Item] for this [ItemData].
 func create() -> Item:
 	return Item.new(self)
+
+
+func _to_string() -> String:
+	return "<ItemData#%s>" % name

@@ -10,5 +10,5 @@ func _spawn() -> void:
 func _perform() -> void:
 	super()
 	
-	var item := ItemDB.create_filter(_nomad.get_inventory()).filter_tag("weapon").set_min_cost(1).get_random_item()
+	var item := _nomad.get_quest().get_item_pool().create_filter().filter_tag("weapon").set_min_cost(1).get_random_item()
 	Quest.get_current().get_inventory().item_gain(item.create())

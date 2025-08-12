@@ -462,6 +462,16 @@ func get_action_manager() -> ActionManager:
 	return action_manager
 
 
+func get_item_pool() -> ItemPool:
+	for child in get_components_parent().get_children():
+		if child is ItemPool:
+			return child
+	
+	var item_pool := ItemPool.new()
+	get_components_parent().add_child(item_pool)
+	return item_pool
+
+
 func get_mastery_unlockers_parent() -> Node:
 	if not has_node("MasteryUnlockers"):
 		var unlockers_parent := Node.new()

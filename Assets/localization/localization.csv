@@ -163,6 +163,8 @@ OBJECT_TYPE_CELL_CHEST;chest
 ARMOR_TYPE_HEAD;head
 ARMOR_TYPE_BODY;body
 ARMOR_TYPE_LEG;leg
+OVERVIEW_RESEARCH_SUBJECT;"You are an expert at finding ""{subject}"" items."
+RESEARCH_KILL;KILL
 FAMILIAR;Familiar
 FAMILIAR_DESCRIPTION;Moves in a random direction each turn, revealing cells and picking up loot for you. Avoids flagged cells.
 FAMILIAR_STRONG_DESCRIPTION;Moves in a random direction each turn, revealing cells and picking up loot for you. This familiar is also strong enough to kill monsters!

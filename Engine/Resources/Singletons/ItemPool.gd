@@ -1,32 +1,31 @@
-extends StaticClass
-class_name ItemDB
+extends Node
+class_name ItemPool
 
 # ==============================================================================
-const BASE_DIR := "res://Assets/items/"
-# ==============================================================================
-static var _items_cache: Array[ItemData] = []
+var _modifiers: Array[Callable] = []
 # ==============================================================================
 
-## Returns an [ItemData] [Resource] for all items in the database.
-static func get_items() -> Array[ItemData]:
-	if not _items_cache.is_empty():
-		return _items_cache
-	
-	for file in DirAccess.get_files_at(BASE_DIR):
-		if ResourceLoader.exists(BASE_DIR.path_join(file)):
-			var resource := load(BASE_DIR.path_join(file))
-			if resource is ItemData:
-				_items_cache.append(resource)
-	return _items_cache
+## Creates a new [ItemPool.ItemFilter]. Use it to generate random items based on certain filters.
+func create_filter() -> ItemFilter:
+	var quest := get_parent()
+	while quest != null and quest is not Quest:
+		quest = quest.get_parent()
+	return ItemFilter.new(quest.get_inventory(), _modifiers)
 
 
-## Creates a new [ItemDB.ItemFilter]. Use it to generate random items based on certain filters.
-static func create_filter(inventory: QuestInventory) -> ItemFilter:
-	return ItemFilter.new(inventory)
+## Adds a [param modifier] [Callable] to the pool. The [Callable] should take in
+## one [ItemData] argument, and should return the item's weight modifier, or
+## [code]1.0[/code] to leave the weight untouched.
+func add_modifier(modifier: Callable) -> void:
+	if modifier.get_argument_count() == 0:
+		Debug.log_error("Cannot add modifier '%s': Expected 1 argument, found 0." % modifier)
+		return
+	_modifiers.append(modifier)
 
 
-static func clear_cache() -> void:
-	_items_cache.clear()
+## Removes a [param modifier] from the pool.
+func remove_modifier(modifier: Callable) -> void:
+	_modifiers.erase(modifier)
 
 
 ## Filters items in the database.
@@ -43,10 +42,12 @@ class ItemFilter:
 	#var _rng: RandomNumberGenerator
 	
 	var _inventory: QuestInventory
+	var _modifiers: Array[Callable] = []
 	
 	
-	func _init(inventory: QuestInventory) -> void:
+	func _init(inventory: QuestInventory, modifiers: Array[Callable]) -> void:
 		_inventory = inventory
+		_modifiers = modifiers
 	
 	## Only allow items with a cost of [code]max_cost[/code] or less.
 	func set_max_cost(max_cost: int) -> ItemFilter:
@@ -118,38 +119,56 @@ class ItemFilter:
 	
 	## Returns a random item that matches this filter.
 	func get_random_item() -> ItemData:
-		var options := get_items()
-		if options.is_empty():
+		var pool := _get_pool()
+		if pool.is_empty():
 			Debug.log_error("Could not find any items with filter %s." % self)
 			return null
 		
-		return options.pick_random()
+		var cumulative_weights := PackedFloat32Array()
+		for item in pool:
+			if cumulative_weights.is_empty():
+				cumulative_weights.append(pool[item])
+			else:
+				cumulative_weights.append(cumulative_weights[-1] + pool[item])
+		
+		var rolled := randf() * cumulative_weights[-1]
+		var idx := cumulative_weights.bsearch(rolled)
+		
+		return pool.keys()[idx]
 	
 	## Returns [code]count[/code] random different items that match this filter.
 	func get_random_item_set(count: int) -> Array[ItemData]:
-		var options := get_items()
-		
-		if options.is_empty():
+		var pool := _get_pool()
+		if pool.is_empty():
 			Debug.log_error("Could not find any items with filter %s." % self)
 			return []
 		
+		var cumulative_weights := PackedFloat32Array()
+		for item in pool:
+			if cumulative_weights.is_empty():
+				cumulative_weights.append(pool[item])
+			else:
+				cumulative_weights.append(cumulative_weights[-1] + pool[item])
+		
 		var indexes := PackedInt32Array()
 		var items: Array[ItemData] = []
+		items.resize(count)
 		for i in count:
-			if options.size() == indexes.size():
+			if pool.size() == indexes.size():
 				Debug.log_error("Could not find more than %d items with filter %s." % [indexes.size(), self])
 				return items
 			
-			var index := randi() % (options.size() - indexes.size())
-			
-			for j in indexes:
-				if j <= index:
-					index += 1
-			
-			indexes.append(index)
-			indexes.sort()
-			
-			items.append(options[index].duplicate())
+			while true:
+				var rolled := randf() * cumulative_weights[-1]
+				var index := cumulative_weights.bsearch(rolled)
+				
+				if index in indexes:
+					continue
+				
+				indexes.insert(indexes.bsearch(index), index)
+				
+				items[i] = pool.keys()[index]
+				break
 		
 		return items
 	
@@ -177,6 +196,30 @@ class ItemFilter:
 			return false
 		
 		return true
+	
+	func _get_pool() -> Dictionary[ItemData, float]:
+		_validate_modifiers()
+		
+		var pool: Dictionary[ItemData, float] = {}
+		
+		for item in ItemDB.get_items().filter(matches):
+			pool[item] = _get_weight(item)
+		
+		return pool
+	
+	func _get_weight(item: ItemData) -> float:
+		var weight := 1.0
+		for callable in _modifiers:
+			weight *= callable.call(item)
+		return weight
+	
+	
+	func _validate_modifiers() -> void:
+		var invalid_count := 0
+		for i in _modifiers.size():
+			if not _modifiers[i - invalid_count].is_valid():
+				_modifiers.remove_at(i - invalid_count)
+				invalid_count += 1
 	
 	func _to_string() -> String:
 		return "<ItemDB.ItemFilter(%s)>" % ", ".join(get_property_list()\

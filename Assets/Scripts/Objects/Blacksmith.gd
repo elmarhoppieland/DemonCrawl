@@ -87,7 +87,7 @@ func _turn() -> void:
 	passed_turns += 1
 	
 	if passed_turns >= turns:
-		var item := ItemDB.create_filter(get_inventory()).filter_tag(TAGS[type]).set_min_cost(1).get_random_item()
+		var item := get_quest().get_item_pool().create_filter().filter_tag(TAGS[type]).set_min_cost(1).get_random_item()
 		get_inventory().item_gain(item.create())
 		passed_turns = -1
 

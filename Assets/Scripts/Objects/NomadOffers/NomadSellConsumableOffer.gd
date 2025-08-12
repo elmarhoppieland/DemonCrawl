@@ -6,7 +6,7 @@ class_name NomadSellConsumableOffer
 # ==============================================================================
 
 func _spawn() -> void:
-	item = ItemDB.create_filter(_nomad.get_quest().get_inventory())\
+	item = _nomad.get_quest().get_item_pool().create_filter()\
 		.disallow_all_types()\
 		.allow_type(Item.Type.CONSUMABLE)\
 		.set_min_cost(1)\
