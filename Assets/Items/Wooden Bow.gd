@@ -12,7 +12,7 @@ func _invoke() -> void:
 
 
 func _target(cell: CellData) -> void:
-	if not cell.is_revealed():
+	if not cell.is_visible():
 		cell.open(true)
 	
 	if cell.has_monster():

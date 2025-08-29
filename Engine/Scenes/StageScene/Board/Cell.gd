@@ -6,14 +6,8 @@ class_name Cell
 
 # ==============================================================================
 ## The various states a [Cell] can be in.
-enum Mode {
-	INVALID = -1, ## Used as an invalid mode. A [Cell] may never have this mode.
-	HIDDEN, ## The [Cell] is hidden, i.e. not yet revealed, but the cell is not flagged.
-	VISIBLE, ## The [Cell] is visible.
-	FLAGGED, ## The [Cell] is hidden and flagged.
-	CHECKING ## The player is currently checking this [Cell], i.e. the cell is visually pressed down. It is still considered hidden.
-}
-# ==============================================================================
+const Mode := CellData.Mode
+
 const CELL_SIZE := Vector2i(16, 16) ## The size of a [Cell] in pixels.
 # ==============================================================================
 @export var _data: CellData : set = set_data, get = get_data
@@ -28,6 +22,8 @@ signal mode_changed(mode: Mode) ## Emitted when the [enum Mode] (see [method get
 signal value_changed(value: int) ## Emitted when the value (see [method get_value]) of this [Cell] changes.
 signal object_changed(object: CellObject) ## Emitted when the object (see [method get_object]) of this [Cell] changes.
 signal aura_changed(aura: Aura) ## Emitted when the [Aura] (see [method get_aura]) of this [Cell] changes.
+
+signal data_assigned()
 
 signal changed() ## Emitted when any of this [Cell]'s properties changes.
 # ==============================================================================
@@ -76,26 +72,26 @@ func open(force: bool = false, allow_loot: bool = true) -> bool:
 	#return true
 
 
-func _open(force: bool = false, allow_loot: bool = true) -> bool:
-	if get_mode() == Mode.VISIBLE:
-		return false
-	if not force and get_mode() == Mode.FLAGGED:
-		return false
-	
-	set_mode(Mode.VISIBLE)
-	
-	Quest.get_current().get_inventory().mana_gain(get_value(), self)
-	
-	if allow_loot and not is_occupied() and get_value() == 0 and randf() > 0.8 * (1 - get_stage().get_density()):
-		_generate_content()
-		spawn(preload("res://Assets/LootTables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
-	
-	if is_occupied():
-		get_object().notify_revealed(not force)
-	
-	EffectManager.propagate(get_stage().get_instance().get_effects().cell_open, [get_data()])
-	
-	return true
+#func _open(force: bool = false, allow_loot: bool = true) -> bool:
+	#if get_mode() == Mode.VISIBLE:
+		#return false
+	#if not force and get_mode() == Mode.FLAGGED:
+		#return false
+	#
+	#set_mode(Mode.VISIBLE)
+	#
+	#Quest.get_current().get_inventory().mana_gain(get_value(), self)
+	#
+	#if allow_loot and not is_occupied() and get_value() == 0 and randf() > 0.8 * (1 - get_stage().get_density()):
+		#_generate_content()
+		#spawn(preload("res://Assets/LootTables/Loot.tres").generate(1 / (1 - get_stage().get_density())))
+	#
+	#if is_occupied():
+		#get_object().notify_revealed(not force)
+	#
+	#EffectManager.propagate(get_stage().get_instance().get_effects().cell_open, [get_data()])
+	#
+	#return true
 
 
 func _generate_content() -> void:
@@ -295,7 +291,7 @@ func get_group() -> Array[Cell]:
 ## Returns whether this [Cell] is revealed, i.e. its mode (see [method get_mode])
 ## is set to [constant VISIBLE].
 func is_revealed() -> bool:
-	return get_mode() == Mode.VISIBLE
+	return get_data().is_visible()
 
 
 ## Returns whether this [Cell] is hidden, i.e. not revealed.
@@ -351,7 +347,7 @@ func is_flag_solved() -> bool:
 
 ## Sets the [CellData] instance of this [Cell] to [code]data[/code].
 func set_data(data: CellData) -> void:
-	const CONNECTIONS := {
+	const CONNECTIONS: Dictionary[String, String] = {
 		"changed": "_data_changed",
 		"shatter_requested": "shatter",
 		"text_particle_requested": "add_text_particle",
@@ -379,6 +375,8 @@ func set_data(data: CellData) -> void:
 	
 	if data.direction_arrow != Vector2i.ZERO:
 		show_direction_arrow(data.direction_arrow)
+	
+	data_assigned.emit()
 
 
 func _data_changed() -> void:
@@ -388,21 +386,6 @@ func _data_changed() -> void:
 	aura_changed.emit(get_aura())
 	
 	changed.emit()
-	
-	if not is_node_ready():
-		await ready
-	
-	get_object_texture_rect().visible = get_mode() == Mode.VISIBLE
-	get_object_texture_rect().object = get_object()
-	
-	get_value_label().mode = get_mode()
-	get_value_label().value = get_value()
-	get_value_label().occupied = is_occupied()
-	
-	get_texture_rect().mode = get_mode()
-	
-	get_aura_modulator().mode = get_mode()
-	get_aura_modulator().aura = get_aura()
 
 
 func shatter(texture: Texture2D) -> void:
@@ -461,7 +444,7 @@ func set_mode(mode: Cell.Mode) -> void:
 ## [br][br][b]Note:[/b] Prefer using [method is_revealed], [method is_hidden], [method is_flagged]
 ## and [method is_checking] over this method, as some [enum Mode] constants are used
 ## for multiple states and can therefore behave unexpectedly.
-func get_mode() -> Cell.Mode:
+func get_mode() -> int:
 	if _data:
 		return _data.mode
 	return Cell.Mode.INVALID

@@ -3,9 +3,24 @@ extends Node
 class_name CellData
 
 # ==============================================================================
-const Mode := Cell.Mode
+enum ModeFlags {
+	VISIBLE = 0b0001,
+	CHECKING = 0b0010,
+	FLAGGED = 0b0100,
+	VALUE_VISIBLE = 0b1000,
+}
+enum Mode {
+	INVALID = -1, ## Used as an invalid mode. A cell may never have this mode.
+	HIDDEN = 0, ## The cell is hidden, i.e. not yet revealed, but the cell is not flagged.
+	GLEANED = ModeFlags.VALUE_VISIBLE, ## The cell is hidden and has been gleaned, but is not flagged.
+	GLEANED_FLAGGED = ModeFlags.FLAGGED | ModeFlags.VALUE_VISIBLE, ## The cell is hidden and gleaned and has been flagged.
+	VISIBLE_EMPTY = ModeFlags.VISIBLE | ModeFlags.VALUE_VISIBLE, ## The cell is visible and not occupied.
+	VISIBLE_OCCUPIED = ModeFlags.VISIBLE, ## The cell is visible and occupied.
+	CHECKING = ModeFlags.CHECKING, ## The player is currently checking this cell, i.e. the cell is visually pressed down. It is still considered hidden.
+	FLAGGED = ModeFlags.FLAGGED, ## The cell is hidden and flagged.
+}
 # ==============================================================================
-@export var mode := Mode.HIDDEN :
+@export var mode: int = Mode.HIDDEN :
 	set(new_mode):
 		mode = new_mode
 		emit_changed()
@@ -70,7 +85,7 @@ static func _import_packed_v(args: Array) -> CellData:
 	assert(args[0] is int, "The first argument of a CellData must be of type \"int\".")
 	cell.value = args.pop_front()
 	
-	var cell_mode := Mode.VISIBLE
+	var cell_mode := Mode.VISIBLE_EMPTY
 	var cell_object: CellObject = null
 	var cell_aura: Aura = null
 	var stage: StageInstance = null
@@ -100,13 +115,19 @@ static func _import_packed_v(args: Array) -> CellData:
 
 func _export_packed() -> Array:
 	var args := [value]
-	if mode != Mode.VISIBLE:
+	if mode != Mode.VISIBLE_EMPTY:
 		args.append(mode)
 	if is_occupied():
 		args.append(get_object())
 	if has_aura():
 		args.append(get_aura())
 	return args
+
+
+func _validate_property(property: Dictionary) -> void:
+	if property.name == "mode":
+		property.hint = PROPERTY_HINT_FLAGS
+		property.hint_string = ",".join(ModeFlags.keys().map(func(key: String) -> String: return key.capitalize()))
 
 
 func _set_mode(new_mode: Mode) -> void:
@@ -149,7 +170,7 @@ func open(force: bool = false, allow_loot: bool = true) -> bool:
 			continue
 		
 		for c in current_cell.get_nearby_cells():
-			if c in visited or c in to_explore or c.is_revealed() or c.is_flagged():
+			if c in visited or c in to_explore or c.is_visible() or c.is_flagged():
 				continue
 			to_explore.append(c)
 	
@@ -159,12 +180,13 @@ func open(force: bool = false, allow_loot: bool = true) -> bool:
 
 
 func _open(force: bool = false, allow_loot: bool = true) -> bool:
-	if mode == Mode.VISIBLE:
+	if is_visible():
 		return false
-	if not force and mode == Mode.FLAGGED:
+	if not force and is_flagged():
 		return false
 	
-	mode = Mode.VISIBLE
+	mode &= ~ModeFlags.FLAGGED & ~ModeFlags.CHECKING
+	mode |= ModeFlags.VISIBLE
 	
 	Quest.get_current().get_inventory().mana_gain(value, self)
 	
@@ -190,26 +212,35 @@ func reset_value() -> int:
 
 ## Checks this [CellData], visually pressing it down, if this [CellData] is hidden and not flagged.
 func check() -> void:
-	if mode == Cell.Mode.HIDDEN:
-		mode = Cell.Mode.CHECKING
+	if is_hidden() and not is_flagged():
+		mode |= ModeFlags.CHECKING
 
 
 ## Unchecks this [CellData], resetting it to [constant Cell.HIDDEN].
 func uncheck() -> void:
-	if mode == Cell.Mode.CHECKING:
-		mode = Cell.Mode.HIDDEN
+	mode &= ~ModeFlags.CHECKING
 
 
 ## Flags this [CellData]. This prevents it from being opened.
 func flag() -> void:
-	if mode != Cell.Mode.FLAGGED and not is_revealed():
-		mode = Cell.Mode.FLAGGED
+	if is_hidden():
+		mode |= ModeFlags.FLAGGED
 
 
 ## Unflags this [CellData], resetting it to [constant Cell.HIDDEN].
 func unflag() -> void:
-	if mode == Cell.Mode.FLAGGED:
-		mode = Cell.Mode.HIDDEN
+	mode &= ~ModeFlags.FLAGGED
+
+
+## Makes this [CellData]'s value visible.
+func glean() -> void:
+	mode |= ModeFlags.VALUE_VISIBLE
+
+
+## Makes this [CellData]'s value invisible, if it was made visible using [method glean].
+## [br][br][b]Note:[/b] If this [CellData] is visible and empty, its value is always visible.
+func unglean() -> void:
+	mode &= ~ModeFlags.VALUE_VISIBLE
 
 
 func clear_object() -> void:
@@ -473,19 +504,27 @@ func get_screen_position(centered: bool = true) -> Vector2:
 
 
 func is_revealed() -> bool:
-	return mode == Mode.VISIBLE
+	return is_visible()
 
 
 func is_visible() -> bool:
-	return is_revealed()
+	return mode & ModeFlags.VISIBLE
 
 
 func is_hidden() -> bool:
-	return not is_revealed()
+	return not is_visible()
 
 
 func is_flagged() -> bool:
-	return mode == Mode.FLAGGED
+	return mode & ModeFlags.FLAGGED
+
+
+func is_checking() -> bool:
+	return mode & ModeFlags.CHECKING
+
+
+func is_value_visible() -> bool:
+	return mode & ModeFlags.VALUE_VISIBLE or (is_visible() and is_empty())
 
 
 func is_occupied() -> bool:
@@ -507,7 +546,7 @@ func is_solved() -> bool:
 	
 	var count := 0
 	for cell in get_nearby_cells():
-		if cell.is_flagged() or (cell.is_revealed() and cell.has_monster()):
+		if cell.is_flagged() or (cell.is_visible() and cell.has_monster()):
 			count += 1
 	
 	return count >= value
@@ -588,7 +627,7 @@ func get_group() -> Array[CellData]:
 	return group
 
 
-func get_mode() -> Mode:
+func get_mode() -> int:
 	return mode
 
 #endregion

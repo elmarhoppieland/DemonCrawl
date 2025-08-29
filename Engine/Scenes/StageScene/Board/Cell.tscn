@@ -1,11 +1,11 @@
 [gd_scene load_steps=18 format=3 uid="uid://bl8bwoewf0m57"]
 
 [ext_resource type="Script" uid="uid://bk5gpwf2tbj5e" path="res://Engine/Scenes/StageScene/Board/Cell.gd" id="1_e3wqt"]
+[ext_resource type="Texture2D" uid="uid://k86wg0t4q2c1" path="res://Assets/Skins/prefecture/flag.png" id="2_jgq8l"]
 [ext_resource type="Script" uid="uid://km0tl3hpf81q" path="res://Engine/Scenes/StageScene/Board/CellTextureRect.gd" id="3_te1nx"]
 [ext_resource type="Script" uid="uid://hddki14im5pk" path="res://Engine/Scenes/StageScene/Board/CellValueLabel.gd" id="4_3k5be"]
+[ext_resource type="Texture2D" uid="uid://c0gdjw1wjajhs" path="res://Assets/Skins/prefecture/full.png" id="4_hbd27"]
 [ext_resource type="Script" uid="uid://b3l1eajfjs5vj" path="res://Engine/Scenes/StageScene/Board/CellAuraModulator.gd" id="4_ocqma"]
-[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://Assets/skins/default/empty.png" id="4_uiyoy"]
-[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/skins/default/flag.png" id="5_3kk2r"]
 [ext_resource type="Script" uid="uid://bc8y26f6y6t1q" path="res://Engine/Scenes/StageScene/Board/CellFlagSprite.gd" id="6_ty2a2"]
 [ext_resource type="Script" uid="uid://dmnt7qof86lgs" path="res://Engine/Scenes/StageScene/Board/CellObjectTextureRect.gd" id="7_3xaxv"]
 [ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="7_ggwll"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cn8gaau2ecden" path="res://Engine/Resources/Scenes/TextureShatter.tscn" id="13_mfvjy"]
 [ext_resource type="Script" uid="uid://k2n0orq8v38q" path="res://Engine/Resources/UtilityNode/Grabber.gd" id="13_tuktl"]
 [ext_resource type="Shader" uid="uid://dm184lu8cvpj0" path="res://Engine/Resources/Shaders/DirectionArrow.gdshader" id="14_27bf8"]
-[ext_resource type="Texture2D" uid="uid://cx3w4pgpiwi3p" path="res://Assets/sprites/dir_arrow.png" id="14_ffohp"]
+[ext_resource type="Texture2D" uid="uid://cx3w4pgpiwi3p" path="res://Assets/Sprites/dir_arrow.png" id="14_ffohp"]
 
 [sub_resource type="Curve" id="Curve_0u5ry"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -56,12 +56,12 @@ layout_mode = 2
 offset_right = 16.0
 offset_bottom = 16.0
 mouse_filter = 2
-texture = ExtResource("4_uiyoy")
+texture = ExtResource("4_hbd27")
 script = ExtResource("3_te1nx")
 
 [node name="CellValueLabel" type="Label" parent="CellAuraModulator"]
 unique_name_in_owner = true
-visible = false
+modulate = Color(1, 1, 1, 0.8)
 z_index = 2
 layout_mode = 1
 anchors_preset = -1
@@ -75,7 +75,7 @@ offset_right = 7.0
 offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "0"
+text = "1"
 horizontal_alignment = 1
 script = ExtResource("4_3k5be")
 
@@ -118,7 +118,7 @@ enabled = false
 [node name="CellFlagSprite" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(8, 8)
-texture = ExtResource("5_3kk2r")
+texture = ExtResource("2_jgq8l")
 script = ExtResource("6_ty2a2")
 
 [node name="TextParticles" type="CPUParticles2D" parent="." node_paths=PackedStringArray("particle_viewport", "particle_label")]
