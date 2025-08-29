@@ -524,6 +524,8 @@ func is_checking() -> bool:
 
 
 func is_value_visible() -> bool:
+	if is_visible() and value == 0:
+		return false
 	return mode & ModeFlags.VALUE_VISIBLE or (is_visible() and is_empty())
 
 
