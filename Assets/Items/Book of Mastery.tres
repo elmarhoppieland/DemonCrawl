@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://dahs6nugts4y5"]
+
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_ah1xq"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_bcgmc"]
+[ext_resource type="Script" uid="uid://6guefvipuo2u" path="res://Assets/Items/Book of Mastery.gd" id="2_qe6ly"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2bq5"]
+atlas = ExtResource("1_bcgmc")
+region = Rect2(480, 160, 16, 16)
+
+[resource]
+script = ExtResource("1_ah1xq")
+name = "ITEM_BOOK_OF_MASTERY"
+description = "ITEM_BOOK_OF_MASTERY_DESCRIPTION"
+type = 3
+mana = 0
+cost = 50
+tags = Array[String](["book"])
+icon = SubResource("AtlasTexture_u2bq5")
+item_script = ExtResource("2_qe6ly")
+metadata/_custom_type_script = "uid://d3icmltrt12ld"
