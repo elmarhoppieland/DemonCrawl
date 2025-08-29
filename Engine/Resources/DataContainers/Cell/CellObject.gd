@@ -15,8 +15,8 @@ var _theme: Theme = null :
 			_theme = _origin_stage.get_theme()
 		return _theme
 
-var initialized := false
-var reloaded := false
+#var initialized := false
+#var reloaded := false
 # ==============================================================================
 
 #region internals
@@ -32,8 +32,9 @@ func _ready() -> void:
 		return
 	
 	var contribution := get_value_contribution()
-	for cell in get_cell().get_nearby_cells():
-		cell.value += contribution
+	if contribution:
+		for cell in get_cell().get_nearby_cells():
+			cell.value += contribution
 	
 	_cell_enter()
 	_spawn()
@@ -46,8 +47,8 @@ func _export_packed() -> Array:
 	if not processing_owner.has_method("get_stage") or processing_owner.get_stage() != self.get_origin_stage():
 		args.append(get_origin_stage())
 	
-	if not initialized:
-		args.append(false)
+	#if not initialized:
+		#args.append(false)
 	
 	for prop in get_property_list():
 		if prop.name == "CellObject.gd":
@@ -77,29 +78,29 @@ static func _import_packed_static_v(script: String, args: Array) -> CellObject:
 	if i >= args.size():
 		return object
 	
-	if args[i] is bool and args[i] == false:
-		var bool_count := 0
-		while args.size() > i + bool_count:
-			if not args[i + bool_count] is bool:
-				break
-			bool_count += 1
+	#if args[i] is bool and args[i] == false:
+		#var bool_count := 0
+		#while args.size() > i + bool_count:
+			#if not args[i + bool_count] is bool:
+				#break
+			#bool_count += 1
 		
-		var bool_count_in_props := 0
-		for prop in object.get_property_list():
-			if prop.name == "CellObject.gd":
-				break
-			if prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and prop.usage & PROPERTY_USAGE_STORAGE:
-				if prop.type != TYPE_BOOL and prop.type != TYPE_NIL:
-					break
-				bool_count_in_props += 1
+		#var bool_count_in_props := 0
+		#for prop in object.get_property_list():
+			#if prop.name == "CellObject.gd":
+				#break
+			#if prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and prop.usage & PROPERTY_USAGE_STORAGE:
+				#if prop.type != TYPE_BOOL and prop.type != TYPE_NIL:
+					#break
+				#bool_count_in_props += 1
 		
-		if bool_count_in_props < bool_count:
-			object.initialized = true
-			i += 1
-	else:
-		object.initialized = true
+		#if bool_count_in_props < bool_count:
+			#object.initialized = true
+			#i += 1
+	#else:
+		#object.initialized = true
 	
-	object.reloaded = true
+	#object.reloaded = true
 	
 	if i >= args.size():
 		return object
@@ -390,8 +391,9 @@ func _is_charitable() -> bool:
 ## is removed from its [Cell].
 func reset() -> void:
 	var contribution := get_value_contribution()
-	for cell in get_cell().get_nearby_cells():
-		cell.value -= contribution
+	if contribution:
+		for cell in get_cell().get_nearby_cells():
+			cell.value -= contribution
 	
 	_reset()
 
@@ -410,7 +412,7 @@ func _spawn() -> void:
 
 ## Notifies the object that is has just been spawned.
 func notify_spawned() -> void:
-	initialized = true
+	#initialized = true
 	_spawn()
 
 
@@ -549,7 +551,6 @@ func life_lose(life: int, source: Object = self) -> void:
 
 
 func tween_texture_to(position: Vector2, duration: float = 0.4) -> Tween:
-	return GuiLayer.get_texture_tweener().tween_texture(get_texture(), get_cell().get_screen_position(), position, duration, 4.0)
 	return GuiLayer.get_texture_tweener().tween_texture(get_texture(), get_cell().get_screen_position(), position, duration, 4.0, get_material())
 
 
