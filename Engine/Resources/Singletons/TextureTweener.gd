@@ -3,11 +3,12 @@ class_name TextureTweener
 
 # ==============================================================================
 
-func tween_texture(texture: Texture2D, from: Vector2, to: Vector2, duration: float, scale: float = 1.0) -> Tween:
+func tween_texture(texture: Texture2D, from: Vector2, to: Vector2, duration: float, scale: float = 1.0, material: Material = null) -> Tween:
 	var sprite := Sprite2D.new()
 	sprite.scale = scale * Vector2.ONE
 	
 	sprite.texture = texture
+	sprite.material = material
 	if texture.has_method("get_material"):
 		sprite.material = texture.get_material()
 	
