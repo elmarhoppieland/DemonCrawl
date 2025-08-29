@@ -57,11 +57,13 @@ func _update() -> void:
 	visible = _cell.is_visible()
 	
 	if _cell.is_occupied():
+		texture = _cell.get_object().get_texture()
 		material = _cell.get_object().get_material()
 		
 		if _tooltip_grabber:
 			_tooltip_grabber.enabled = _cell.get_object().has_annotation_text()
 	else:
+		texture = null
 		material = null
 		
 		if _tooltip_grabber:
