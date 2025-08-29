@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crg6mneiipsus"
-path="res://.godot/imported/full.png-ca5800347a5c8d786d92d5812c8f78ee.ctex"
+path="res://.godot/imported/full.png-ddfd25586ebb198f112a9343e7a5b1be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/vale/full.png"
-dest_files=["res://.godot/imported/full.png-ca5800347a5c8d786d92d5812c8f78ee.ctex"]
+source_file="res://Assets/Skins/vale/full.png"
+dest_files=["res://.godot/imported/full.png-ddfd25586ebb198f112a9343e7a5b1be.ctex"]
 
 [params]
 

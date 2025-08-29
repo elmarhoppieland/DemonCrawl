@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4g8elig1ldk3"
-path="res://.godot/imported/Masteries.png-440f8df5992036f0051b9484be01acf6.ctex"
+path="res://.godot/imported/Masteries.png-becdf5120bf9fff34d5a6710ae12f47a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/Masteries.png"
-dest_files=["res://.godot/imported/Masteries.png-440f8df5992036f0051b9484be01acf6.ctex"]
+source_file="res://Assets/Sprites/Masteries.png"
+dest_files=["res://.godot/imported/Masteries.png-becdf5120bf9fff34d5a6710ae12f47a.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgkf525tl6n30"
-path="res://.godot/imported/flag_bg.png-46c5a87971ee86113b9c5e6d087ad880.ctex"
+path="res://.godot/imported/flag_bg.png-d5220cbcc863a4b795fc5d6b40e7a051.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/quarry/flag_bg.png"
-dest_files=["res://.godot/imported/flag_bg.png-46c5a87971ee86113b9c5e6d087ad880.ctex"]
+source_file="res://Assets/Skins/quarry/flag_bg.png"
+dest_files=["res://.godot/imported/flag_bg.png-d5220cbcc863a4b795fc5d6b40e7a051.ctex"]
 
 [params]
 

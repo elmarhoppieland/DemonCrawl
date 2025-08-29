@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhqvl0bbnx61j"
-path="res://.godot/imported/flag.png-53f803399826af16aa6f222d6c30d81c.ctex"
+path="res://.godot/imported/flag.png-0a48af8567da1c56de3b3ee62d923917.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/shrine/flag.png"
-dest_files=["res://.godot/imported/flag.png-53f803399826af16aa6f222d6c30d81c.ctex"]
+source_file="res://Assets/Skins/shrine/flag.png"
+dest_files=["res://.godot/imported/flag.png-0a48af8567da1c56de3b3ee62d923917.ctex"]
 
 [params]
 

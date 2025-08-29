@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b87affc8vd8sp"
-path="res://.godot/imported/Mercenary.png-e3ee9b950e36e1ca022556d09ea20ee6.ctex"
+path="res://.godot/imported/Mercenary.png-51ee1b3f8d4c610f37eda5775bf267fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/strangers/Mercenary.png"
-dest_files=["res://.godot/imported/Mercenary.png-e3ee9b950e36e1ca022556d09ea20ee6.ctex"]
+source_file="res://Assets/Sprites/strangers/Mercenary.png"
+dest_files=["res://.godot/imported/Mercenary.png-51ee1b3f8d4c610f37eda5775bf267fb.ctex"]
 
 [params]
 

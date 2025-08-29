@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://rqr4y7dyff0a"
-path="res://.godot/imported/ambience_a.ogg-b5c680d00819a96aaaa0dd4731aa83b7.oggvorbisstr"
+path="res://.godot/imported/ambience_a.ogg-e56d9df06ece1cd61aa0a7bcb0dd127f.oggvorbisstr"
 
 [deps]
 
-source_file="res://Assets/skins/forest/ambience_a.ogg"
-dest_files=["res://.godot/imported/ambience_a.ogg-b5c680d00819a96aaaa0dd4731aa83b7.oggvorbisstr"]
+source_file="res://Assets/Skins/forest/ambience_a.ogg"
+dest_files=["res://.godot/imported/ambience_a.ogg-e56d9df06ece1cd61aa0a7bcb0dd127f.oggvorbisstr"]
 
 [params]
 

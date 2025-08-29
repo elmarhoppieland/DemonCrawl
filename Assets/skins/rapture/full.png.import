@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6qtrgv73hpns"
-path="res://.godot/imported/full.png-11a3abcd2792c55aaf35dfb25f9914a5.ctex"
+path="res://.godot/imported/full.png-f9909e4a1843fe41a26c4ce059704219.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/rapture/full.png"
-dest_files=["res://.godot/imported/full.png-11a3abcd2792c55aaf35dfb25f9914a5.ctex"]
+source_file="res://Assets/Skins/rapture/full.png"
+dest_files=["res://.godot/imported/full.png-f9909e4a1843fe41a26c4ce059704219.ctex"]
 
 [params]
 

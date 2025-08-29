@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dc05b3l7uy6j"
-path="res://.godot/imported/full.png-246079f5527d3e6835689657d3164d78.ctex"
+path="res://.godot/imported/full.png-9275dd023f1a337b47d83642f6cf3932.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/garden/full.png"
-dest_files=["res://.godot/imported/full.png-246079f5527d3e6835689657d3164d78.ctex"]
+source_file="res://Assets/Skins/garden/full.png"
+dest_files=["res://.godot/imported/full.png-9275dd023f1a337b47d83642f6cf3932.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1dflngu6flp4"
-path="res://.godot/imported/abandon.png-ccaf0380ed4a819baade0961d891fb2f.ctex"
+path="res://.godot/imported/abandon.png-40cd5a62f193bdf690072bc2127f4fe2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/abandon.png"
-dest_files=["res://.godot/imported/abandon.png-ccaf0380ed4a819baade0961d891fb2f.ctex"]
+source_file="res://Assets/Sprites/abandon.png"
+dest_files=["res://.godot/imported/abandon.png-40cd5a62f193bdf690072bc2127f4fe2.ctex"]
 
 [params]
 

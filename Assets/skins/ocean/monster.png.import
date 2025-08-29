@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7rnjll7ldlyo"
-path="res://.godot/imported/monster.png-3e7de97b0edd0044d55c4e0eb6397475.ctex"
+path="res://.godot/imported/monster.png-c9c462eb8f6be37568d3bfed19e61876.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/ocean/monster.png"
-dest_files=["res://.godot/imported/monster.png-3e7de97b0edd0044d55c4e0eb6397475.ctex"]
+source_file="res://Assets/Skins/ocean/monster.png"
+dest_files=["res://.godot/imported/monster.png-c9c462eb8f6be37568d3bfed19e61876.ctex"]
 
 [params]
 

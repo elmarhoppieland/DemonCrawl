@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgb8yf8mfwiof"
-path="res://.godot/imported/empty.png-ca1c2123e073727d086c5a4856dc2f7c.ctex"
+path="res://.godot/imported/empty.png-1a30de2ced2ae53b28d18d81489be668.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/skins/grotto/empty.png"
-dest_files=["res://.godot/imported/empty.png-ca1c2123e073727d086c5a4856dc2f7c.ctex"]
+source_file="res://Assets/Skins/grotto/empty.png"
+dest_files=["res://.godot/imported/empty.png-1a30de2ced2ae53b28d18d81489be668.ctex"]
 
 [params]
 
