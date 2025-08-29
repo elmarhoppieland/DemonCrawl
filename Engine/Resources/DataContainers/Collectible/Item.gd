@@ -263,9 +263,7 @@ static func from_path(path: String) -> Item:
 		path = "res://Assets/items/".path_join(path)
 	
 	var item_data := load(path.get_basename() + ".tres")
-	var item := Item.new()
-	item.data = item_data
-	return item
+	return item_data.create()
 
 
 func add_override(property: String, value: Variant) -> void:

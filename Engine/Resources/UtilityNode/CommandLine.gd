@@ -121,3 +121,7 @@ func inspect(object: Variant, side: String = "l") -> String:
 
 func inspectr(object: Variant) -> String:
 	return inspect(object, "r")
+
+
+func load(path: String) -> Resource:
+	return load(path)

@@ -36,17 +36,27 @@ func _get_palette() -> Texture2D:
 
 
 func _interact() -> void:
-	if get_stats().life >= get_stats().max_life:
-		Toasts.add_toast("You're already at max life!", null)
-		return
+	var success := true
 	
-	var life: int = EffectManager.propagate(get_quest().get_stage_effects().get_object_value, [self, 1, &"heal"], 1)
+	if get_stats().life < get_stats().max_life:
+		var life: int = EffectManager.propagate(get_quest().get_stage_effects().get_object_value, [self, 1, &"heal"], 1)
+		life = get_stats().life_restore(life, self)
+		get_cell().add_text_particle("+" + str(life), TextParticles.ColorPreset.LIFE)
+	else:
+		success = EffectManager.propagate(get_quest().get_stage_effects().handle_object_interact_failed, [self, false], 1)
+		EffectManager.propagate(get_quest().get_stage_effects().object_interact_failed, [self, success])
+		
+		if not success:
+			Toasts.add_toast("You're already at max life!", null)
 	
-	life = get_stats().life_restore(life, self)
-	get_cell().add_text_particle("+" + str(life), TextParticles.ColorPreset.LIFE)
-	tween_texture_to(GuiLayer.get_statbar().get_heart_position())
-	clear()
+	if success:
+		use()
 
 
 func _can_interact() -> bool:
 	return true
+
+
+func use() -> void:
+	tween_texture_to(GuiLayer.get_statbar().get_heart_position())
+	clear()

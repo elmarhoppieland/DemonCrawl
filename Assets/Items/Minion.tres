@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://rq2qyvvrovqi"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://rq2qyvvrovqi"]
 
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_8wfyb"]
 [ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_sag85"]
+[ext_resource type="Script" uid="uid://bbasa37fxyraq" path="res://Assets/items/Minion.gd" id="2_6v20k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oq1gt"]
 atlas = ExtResource("1_sag85")
@@ -16,4 +17,5 @@ mana = 0
 cost = 0
 tags = Array[String](["meat"])
 icon = SubResource("AtlasTexture_oq1gt")
+item_script = ExtResource("2_6v20k")
 metadata/_custom_type_script = "uid://d3icmltrt12ld"

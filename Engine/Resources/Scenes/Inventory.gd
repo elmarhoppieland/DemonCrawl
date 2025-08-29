@@ -58,18 +58,17 @@ func _update() -> void:
 	if not is_node_ready():
 		await ready
 	
-	var item_count := inventory.get_item_count() if inventory else 0
+	var items := inventory.get_items()
 	
-	while _item_grid.get_child_count() > item_count:
-		var child := _item_grid.get_child(-1)
-		_item_grid.remove_child(child)
-		child.queue_free()
-	
-	while _item_grid.get_child_count() < item_count:
-		var display := CollectibleDisplay.create()
-		_item_grid.add_child(display)
-	
-	for i in item_count:
-		var item := inventory.get_item(i)
-		var display := _item_grid.get_child(i) as CollectibleDisplay
-		display.collectible = item
+	for i in maxi(items.size(), _item_grid.get_child_count()):
+		var display: CollectibleDisplay
+		if i < _item_grid.get_child_count():
+			display = _item_grid.get_child(i)
+		else:
+			display = CollectibleDisplay.create()
+			_item_grid.add_child(display)
+		
+		if i < items.size():
+			display.collectible = items[i]
+		else:
+			display.queue_free()

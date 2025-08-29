@@ -49,6 +49,10 @@ signal changed()
 func _ready() -> void:
 	if Eternity.get_processing_file() != null:
 		await Eternity.get_processing_file().loaded
+		if not is_generated():
+			get_timer().pause()
+			get_status_timer().pause()
+		
 		check_completed()
 		return
 	
@@ -59,20 +63,14 @@ func _ready() -> void:
 		data.changed.connect(emit_changed)
 		get_grid().add_child(data)
 	
-	if get_cells().size() > stage.area():
-		get_cells().resize(stage.area())
-	while get_cells().size() < stage.area():
-		var data := CellData.new()
-		data.set_stage_instance(self)
-		data.changed.connect(emit_changed)
-		get_cells().append(data)
+	get_timer().pause()
+	get_status_timer().pause()
 	
 	emit_changed()
 
 
 func emit_changed() -> void:
 	changed.emit()
-
 
 #region internals
 
@@ -593,6 +591,10 @@ class StageEffects:
 	@warning_ignore("unused_signal") signal get_guaranteed_objects(objects: Array[CellObject])
 	
 	@warning_ignore("unused_signal") signal get_object_value(object: CellObject, value: int, value_name: StringName)
+	@warning_ignore("unused_signal") signal handle_object_interact_failed(object: CellObject, handled: bool)
+	@warning_ignore("unused_signal") signal object_interact_failed(object: CellObject, handled: bool)
+	@warning_ignore("unused_signal") signal handle_object_second_interact_failed(object: CellObject, handled: bool)
+	@warning_ignore("unused_signal") signal object_second_interact_failed(object: CellObject)
 	
 	@warning_ignore("unused_signal") signal turn()
 	

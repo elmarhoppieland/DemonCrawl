@@ -16,6 +16,29 @@ enum Type {
 		source = value
 		_texture = null
 		emit_changed()
+		
+		# TODO: this method of preserving the source may somtimes cause problems
+		# we need a different system where it never gets queue_free()-ed
+		# though starting at 4.5 (hopefully, otherwise 4.6), this should work fine.
+		source.predelete.connect(func() -> void:
+			if is_ancestor_of(source) or self.is_queued_for_deletion():
+				return
+			
+			source.cancel_free()
+			
+			if source.get_parent() != null:
+				# the source was removed together with its parent
+				source.get_parent().remove_child(source)
+			
+			add_child(source)
+			await source.tree_exited
+			add_child(source)
+		)
+		#source.tree_exiting.connect(func() -> void:
+			#if is_ancestor_of(source):
+				#await source.tree_exited
+				#add_child(source)
+		#)
 
 #@export var quest: Quest = null :
 	#set(value):
@@ -315,9 +338,6 @@ class Initializer:
 		return self
 	
 	func start() -> StatusEffect:
-		if not _quest:
-			_quest = Quest.get_current()
-		
 		var manager := _quest.get_status_manager()
 		
 		if _joined and _source:
@@ -340,7 +360,6 @@ class Initializer:
 				break
 		
 		var status := _status_script.new() as StatusEffect
-		status.quest = _quest
 		status._duration = _duration
 		status._origin = _origin
 		status._type = _type

@@ -21,6 +21,7 @@ const Type := Item.Type
 @export var cost := 0
 @export var tags: Array[String] = []
 @export var icon: Texture2D = null
+@export var item_script: Script = null
 # ==============================================================================
 
 func _property_can_revert(property: StringName) -> bool:
@@ -40,7 +41,7 @@ func _property_get_revert(property: StringName) -> Variant:
 
 ## Creates a new [Item] for this [ItemData].
 func create() -> Item:
-	return Item.new(self)
+	return item_script.new(self)
 
 
 func _to_string() -> String:

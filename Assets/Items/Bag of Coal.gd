@@ -11,7 +11,7 @@ func change_morality(morality: int) -> void:
 	if not is_charged():
 		return
 	
-	gain_item(Item.new(COAL))
+	gain_item(COAL.create())
 	
 	for item in get_items():
 		if item.get_script() != COAL.get_script():

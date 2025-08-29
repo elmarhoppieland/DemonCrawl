@@ -3,23 +3,6 @@ extends Node
 class_name QuestInventory
 
 # ==============================================================================
-#@export var items: Array[Item] = [] :
-	#set(value):
-		#for i in maxi(value.size(), items.size()):
-			#if items.size() <= i:
-				#item_added.emit(value[i])
-			#elif value.size() <= i:
-				#item_removed.emit(items[i])
-			#elif items[i].get_script() != value[i].get_script():
-				#item_transformed.emit(items[i], value[i])
-			#
-			#if i < value.size():
-				#value[i].cleared.connect(item_lose.bind(value[i]))
-				#value[i].set_quest(get_quest())
-		#
-		#items = value
-		#emit_changed()
-# ==============================================================================
 var _effects := InventoryEffects.new() : get = get_effects
 # ==============================================================================
 #signal item_added(item: Item)
@@ -35,6 +18,13 @@ func emit_changed() -> void:
 
 func _init() -> void:
 	name = "Inventory"
+	
+	child_entered_tree.connect(func(child: Item) -> void:
+		child.cleared.connect(item_lose.bind(child))
+	)
+	child_exiting_tree.connect(func(child: Item) -> void:
+		child.cleared.disconnect(item_lose.bind(child))
+	)
 
 
 func get_quest() -> Quest:
@@ -65,13 +55,11 @@ func item_gain(item: Item) -> void:
 	add_child(item)
 	emit_changed()
 	item.notify_gained()
-	
-	item.cleared.connect(item_lose.bind(item))
 
 
 func item_lose(item: Item) -> void:
-	remove_child(item)
 	item.queue_free()
+	remove_child(item)
 	emit_changed()
 	item.notify_lost()
 
@@ -85,8 +73,6 @@ func item_transform(old_item: Item, new_item: Item) -> void:
 	remove_child(old_item)
 	old_item.notify_lost()
 	new_item.notify_gained()
-	
-	new_item.cleared.connect(item_lose.bind(new_item))
 	
 	old_item.queue_free()
 

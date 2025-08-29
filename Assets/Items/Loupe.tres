@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://wcd7pvneslni"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://wcd7pvneslni"]
 
 [ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_6k6cb"]
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_d8h7x"]
+[ext_resource type="Script" uid="uid://c351rqaqvosx5" path="res://Assets/items/Loupe.gd" id="2_ptder"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vi1i1"]
 atlas = ExtResource("1_6k6cb")
@@ -16,4 +17,5 @@ mana = 0
 cost = 4
 tags = Array[String]([])
 icon = SubResource("AtlasTexture_vi1i1")
+item_script = ExtResource("2_ptder")
 metadata/_custom_type_script = "uid://d3icmltrt12ld"

@@ -8,8 +8,7 @@ const BUBBLE_SPRITE := preload("res://Assets/Scripts/Orbs/BubbleSprite.tscn")
 
 func _init(object: CellObject = null) -> void:
 	if object.is_inside_tree():
-		var board := object.get_stage_instance().get_board()
-		position = board.get_viewport_transform() * board.get_global_at_cell_position(object.get_cell().get_position())
+		position = object.get_cell().get_screen_position()
 		object.reparent(self)
 	else:
 		add_child(object)

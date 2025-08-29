@@ -375,13 +375,9 @@ func get_actions() -> Array[Callable]:
 		return actions
 	
 	if is_occupied():
-		if get_object().can_interact():
-			actions.append(get_object().interact)
-		else:
+		actions.append_array(get_object().get_actions())
+		if actions.is_empty():
 			actions.append(func() -> void: pass)
-		
-		if get_object().can_second_interact():
-			actions.append(get_object().second_interact)
 		
 		actions.append_array(action_manager.get_actions(self))
 		
@@ -444,21 +440,24 @@ func get_release_actions() -> Array[Callable]:
 	
 	actions.append(func() -> void: # left click (chord)
 		var monsters := 0
+		var checked_cells: Array[CellData] = []
 		for cell in get_nearby_cells():
 			if cell.is_flagged() or (cell.has_monster() and cell.is_visible()):
 				monsters += 1
+			elif cell.get_mode() == Mode.CHECKING:
+				checked_cells.append(cell)
 		
 		var is_still_hovered := get_stage_instance().get_board().get_hovered_cell() == self
 		
-		for cell in get_nearby_cells():
-			if cell.is_hidden() and not cell.is_flagged():
-				if value > monsters or not is_still_hovered:
-					cell.uncheck()
-				else:
-					cell.open()
-		
-		if is_still_hovered:
-			EffectManager.propagate(get_stage_instance().get_effects().turn)
+		if not is_still_hovered or value > monsters:
+			for cell in checked_cells:
+				cell.uncheck()
+		else:
+			for cell in checked_cells:
+				cell.open()
+			
+			if not checked_cells.is_empty():
+				EffectManager.propagate(get_stage_instance().get_effects().turn)
 	)
 	actions.append_array(action_manager.get_release_actions(self))
 	
@@ -467,6 +466,11 @@ func get_release_actions() -> Array[Callable]:
 #endregion
 
 #region getters
+
+func get_screen_position(centered: bool = true) -> Vector2:
+	var board := get_stage_instance().get_board()
+	return board.get_viewport_transform() * board.get_global_at_cell_position(get_position(), centered)
+
 
 func is_revealed() -> bool:
 	return mode == Mode.VISIBLE

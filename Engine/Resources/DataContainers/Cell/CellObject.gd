@@ -476,6 +476,24 @@ func _can_second_interact() -> bool:
 func can_second_interact() -> bool:
 	return _can_second_interact()
 
+
+func get_actions() -> Array[Callable]:
+	return _get_actions()
+
+
+func _get_actions() -> Array[Callable]:
+	if not can_interact():
+		return get_quest().get_action_manager().get_actions(self)
+	
+	var actions: Array[Callable] = [interact]
+	
+	if can_second_interact():
+		actions.append(second_interact)
+	
+	actions.append_array(get_quest().get_action_manager().get_actions(self))
+	
+	return actions
+
 #endregion
 
 #region utilities
@@ -531,7 +549,7 @@ func life_lose(life: int, source: Object = self) -> void:
 
 
 func tween_texture_to(position: Vector2, duration: float = 0.4) -> Tween:
-	return GuiLayer.get_texture_tweener().tween_texture(get_texture(), get_cell().get_stage_instance().get_board().get_global_at_cell_position(get_cell().get_position()), position, duration, 4.0)
+	return GuiLayer.get_texture_tweener().tween_texture(get_texture(), get_cell().get_screen_position(), position, duration, 4.0)
 
 
 func get_theme_icon(theme_name: StringName, theme_type: StringName = "Cell") -> Texture2D:

@@ -7,6 +7,9 @@ const TIMER_SECONDS_COLOR := Color(0.972549, 0.705882, 0.0705882, 1)
 # ==============================================================================
 @export var status_effect: StatusEffect = null :
 	set(value):
+		if status_effect == value:
+			return
+		
 		if status_effect and status_effect.changed.is_connected(_update):
 			status_effect.changed.disconnect(_update)
 		

@@ -3,9 +3,18 @@ extends Node
 class_name StageTimer
 
 # ==============================================================================
+const _TIME_SECOND_FACTOR := 1e-6
+# ==============================================================================
 var _paused := false
 
-var _time := 0.0 : set = _set_timef, get = get_timef
+var _time_usec := 0 :
+	set(value):
+		var old := _time_usec
+		_time_usec = value
+		
+		for i in (value - old) * _TIME_SECOND_FACTOR:
+			second_passed.emit()
+var _last_read_time_usec := Time.get_ticks_usec()
 
 var _blockers: Array[WeakRef] = [] :
 	get:
@@ -22,21 +31,15 @@ var _blockers: Array[WeakRef] = [] :
 signal second_passed()
 # ==============================================================================
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	var curr_usec := Time.get_ticks_usec()
 	if not is_paused():
-		_time += delta
-
-
-func _set_timef(time: float) -> void:
-	var old := _time
-	_time = time
-	
-	for i in int(time - old):
-		second_passed.emit()
+		_time_usec += curr_usec - _last_read_time_usec
+	_last_read_time_usec = curr_usec
 
 
 func get_timef() -> float:
-	return _time
+	return _time_usec * _TIME_SECOND_FACTOR
 
 
 func get_time() -> int:

@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://ou5eyedemksy"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://ou5eyedemksy"]
 
 [ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_r4ggt"]
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_rd8fn"]
+[ext_resource type="Script" uid="uid://vlhi5od0ehku" path="res://Assets/items/Wallet.gd" id="2_s5227"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0redk"]
 atlas = ExtResource("1_r4ggt")
@@ -16,4 +17,5 @@ mana = 0
 cost = 4
 tags = Array[String]([])
 icon = SubResource("AtlasTexture_0redk")
+item_script = ExtResource("2_s5227")
 metadata/_custom_type_script = "uid://d3icmltrt12ld"

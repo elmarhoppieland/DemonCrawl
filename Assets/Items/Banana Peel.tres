@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://ciheon4tqi8f6"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://ciheon4tqi8f6"]
 
 [ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_ha2he"]
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_tqhbl"]
+[ext_resource type="Script" uid="uid://b6ah5ip23oi" path="res://Assets/items/Banana Peel.gd" id="2_ayerx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kpt0i"]
 atlas = ExtResource("1_ha2he")
@@ -16,4 +17,5 @@ mana = 0
 cost = 0
 tags = Array[String](["_targeted"])
 icon = SubResource("AtlasTexture_kpt0i")
+item_script = ExtResource("2_ayerx")
 metadata/_custom_type_script = "uid://d3icmltrt12ld"
