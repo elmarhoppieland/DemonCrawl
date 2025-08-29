@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bcymo5keobmrl"
-path="res://.godot/imported/orb_bubble.png-dfec66702e311e60825e6da5ffbc6493.ctex"
+path="res://.godot/imported/orb_bubble.png-aeae9a4750c71d9fdeaa6ad20e283176.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/orbs/orb_bubble.png"
-dest_files=["res://.godot/imported/orb_bubble.png-dfec66702e311e60825e6da5ffbc6493.ctex"]
+source_file="res://Assets/Sprites/Orbs/orb_bubble.png"
+dest_files=["res://.godot/imported/orb_bubble.png-aeae9a4750c71d9fdeaa6ad20e283176.ctex"]
 
 [params]
 

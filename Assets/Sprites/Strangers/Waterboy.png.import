@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d33ghy844534u"
-path="res://.godot/imported/Waterboy.png-d8e02c76f75207fca5ed42c8e87ec259.ctex"
+path="res://.godot/imported/Waterboy.png-dde279f4856e8df7173c0c5e606ffab7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/strangers/Waterboy.png"
-dest_files=["res://.godot/imported/Waterboy.png-d8e02c76f75207fca5ed42c8e87ec259.ctex"]
+source_file="res://Assets/Sprites/Strangers/Waterboy.png"
+dest_files=["res://.godot/imported/Waterboy.png-dde279f4856e8df7173c0c5e606ffab7.ctex"]
 
 [params]
 

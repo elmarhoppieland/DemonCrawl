@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cg8iob270yorm"
-path="res://.godot/imported/Bagman.png-4e6a91b3755f01e2969976efe852dfe0.ctex"
+path="res://.godot/imported/Bagman.png-da791909c3a8c4b416d5fefccaea8a28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/strangers/Bagman.png"
-dest_files=["res://.godot/imported/Bagman.png-4e6a91b3755f01e2969976efe852dfe0.ctex"]
+source_file="res://Assets/Sprites/Strangers/Bagman.png"
+dest_files=["res://.godot/imported/Bagman.png-da791909c3a8c4b416d5fefccaea8a28.ctex"]
 
 [params]
 
