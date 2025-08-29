@@ -15,9 +15,22 @@ var _cell: CellData = null :
 			value.changed.connect(_update)
 
 var _initialized := false
+
+var _parent_control: Control = null :
+	get:
+		if not _parent_control:
+			var parent := get_parent()
+			while parent != null and parent is not Control:
+				parent = parent.get_parent()
+			if parent:
+				_parent_control = parent
+		
+		return _parent_control
 # ==============================================================================
 
 func _enter_tree() -> void:
+	_parent_control.theme_changed.connect(_update)
+	
 	var cell := get_parent()
 	while cell != null and cell is not Cell:
 		cell = cell.get_parent()
@@ -45,7 +58,7 @@ func _set_cell(cell: Cell) -> void:
 func _update() -> void:
 	const FLAG_ANIM_DURATION := 0.1
 	
-	texture = owner.get_theme_icon("flag", "Cell")
+	texture = _parent_control.get_theme_icon("flag", "Cell")
 	
 	if not _initialized:
 		visible = _cell.is_flagged()
