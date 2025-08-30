@@ -531,7 +531,7 @@ static func class_get_script(name: StringName) -> Script:
 		var script = _classes.get(String(name))
 		if script != null:
 			return script
-		push_warning("Class '%s' was found in the class cache, but its value could not be retrieved." % name)
+		push_warning("Class '%s' was found in the class cache, but its value could not be retrieved. (Ignore this warning if you don't know what it means)" % name)
 	
 	if not class_exists(name):
 		return null

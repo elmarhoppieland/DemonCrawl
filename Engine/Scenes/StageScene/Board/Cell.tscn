@@ -1,7 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bl8bwoewf0m57"]
 
 [ext_resource type="Script" uid="uid://bk5gpwf2tbj5e" path="res://Engine/Scenes/StageScene/Board/Cell.gd" id="1_e3wqt"]
-[ext_resource type="Texture2D" uid="uid://k86wg0t4q2c1" path="res://Assets/Skins/prefecture/flag.png" id="2_jgq8l"]
 [ext_resource type="Script" uid="uid://km0tl3hpf81q" path="res://Engine/Scenes/StageScene/Board/CellTextureRect.gd" id="3_te1nx"]
 [ext_resource type="Script" uid="uid://hddki14im5pk" path="res://Engine/Scenes/StageScene/Board/CellValueLabel.gd" id="4_3k5be"]
 [ext_resource type="Texture2D" uid="uid://c0gdjw1wjajhs" path="res://Assets/Skins/prefecture/full.png" id="4_hbd27"]
@@ -9,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bc8y26f6y6t1q" path="res://Engine/Scenes/StageScene/Board/CellFlagSprite.gd" id="6_ty2a2"]
 [ext_resource type="Script" uid="uid://dmnt7qof86lgs" path="res://Engine/Scenes/StageScene/Board/CellObjectTextureRect.gd" id="7_3xaxv"]
 [ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="7_ggwll"]
+[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/Skins/default/flag.png" id="8_cbs4h"]
 [ext_resource type="Script" uid="uid://l8pdgdp8v741" path="res://Engine/Resources/UtilityNode/TextParticles.gd" id="12_4ov3c"]
 [ext_resource type="PackedScene" uid="uid://cn8gaau2ecden" path="res://Engine/Resources/Scenes/TextureShatter.tscn" id="13_mfvjy"]
 [ext_resource type="Script" uid="uid://k2n0orq8v38q" path="res://Engine/Resources/UtilityNode/Grabber.gd" id="13_tuktl"]
@@ -118,7 +118,7 @@ enabled = false
 [node name="CellFlagSprite" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(8, 8)
-texture = ExtResource("2_jgq8l")
+texture = ExtResource("8_cbs4h")
 script = ExtResource("6_ty2a2")
 
 [node name="TextParticles" type="CPUParticles2D" parent="." node_paths=PackedStringArray("particle_viewport", "particle_label")]

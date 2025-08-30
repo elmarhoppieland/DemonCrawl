@@ -1,5 +1,5 @@
 @tool
-extends Item
+extends PassiveItem
 class_name Book
 
 # ==============================================================================

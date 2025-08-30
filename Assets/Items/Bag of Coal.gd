@@ -1,11 +1,21 @@
 @tool
-extends Item
+extends OmenItem
 
 # ==============================================================================
 const COAL := preload("res://Assets/items/Coal.tres")
 # ==============================================================================
 
-func change_morality(morality: int) -> void:
+func _enter_tree() -> void:
+	if is_active():
+		get_quest().get_attributes().property_changed.connect(_attribute_changed)
+
+
+func _attribute_changed(attribute: StringName, value: Variant) -> void:
+	if attribute == &"morality":
+		_change_morality(value)
+
+
+func _change_morality(morality: int) -> void:
 	if morality >= get_quest().get_attributes().morality:
 		return
 	if not is_charged():

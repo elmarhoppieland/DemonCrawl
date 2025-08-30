@@ -1,12 +1,9 @@
 @tool
-extends Item
+extends ConsumableItem
 
 # ==============================================================================
 
 func _use() -> void:
-	if not get_quest().has_current_stage():
-		return
-	
 	var cells := get_quest().get_current_stage().get_cells().filter(func(c: CellData): return c.is_visible() and not c.get_aura() is Sanctified)
 	if cells.is_empty():
 		return
@@ -18,3 +15,7 @@ func _use() -> void:
 	EffectManager.propagate(get_quest().get_current_stage().get_effects().item_used_on_cell, [self, cell])
 	
 	clear()
+
+
+func _can_use() -> bool:
+	return super() and get_quest().has_current_stage()

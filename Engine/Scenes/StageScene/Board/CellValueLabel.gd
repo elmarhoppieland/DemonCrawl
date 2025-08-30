@@ -43,6 +43,9 @@ func _set_cell(cell: Cell) -> void:
 
 
 func _update() -> void:
+	if not _cell:
+		return
+	
 	if _cell.is_value_visible():
 		show()
 		text = str(_cell.value)

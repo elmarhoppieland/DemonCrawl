@@ -19,7 +19,6 @@ enum Type {
 		
 		# TODO: this method of preserving the source may somtimes cause problems
 		# we need a different system where it never gets queue_free()-ed
-		# though starting at 4.5 (hopefully, otherwise 4.6), this should work fine.
 		source.predelete.connect(func() -> void:
 			if is_ancestor_of(source) or self.is_queued_for_deletion():
 				return
@@ -31,32 +30,15 @@ enum Type {
 				source.get_parent().remove_child(source)
 			
 			add_child(source)
-			await source.tree_exited
+			await source.tree_exited # for some reason it leaves the tree anyway
 			add_child(source)
 		)
-		#source.tree_exiting.connect(func() -> void:
-			#if is_ancestor_of(source):
-				#await source.tree_exited
-				#add_child(source)
-		#)
-
-#@export var quest: Quest = null :
-	#set(value):
-		#if quest:
-			#_disconnect_signals()
-		#
-		#quest = value
-		#
-		#if _loaded and value and value == Quest.get_current():
-			#_connect_signals()
-		#
-		#emit_changed()
 
 @export var _origin := 0 :
 	set(value):
 		_origin = value
 		emit_changed()
-@export var _duration := 0 : set = _set_duration, get = get_duration
+@export var duration := 0 : set = _set_duration, get = get_duration
 
 @export var _type := Type.TURNS : set = _set_type, get = get_type
 @export var _reset_on_mistake := false :
@@ -94,6 +76,14 @@ func kill() -> void:
 	_end()
 
 #region internals
+
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_ENTER_TREE:
+			_connect_signals()
+		NOTIFICATION_EXIT_TREE:
+			_disconnect_signals()
+
 
 func _connect_signals() -> void:
 	get_quest().get_stage_effects().mistake_made.connect(notify_mistake)
@@ -161,7 +151,7 @@ func _finish() -> void:
 ## Notifies this [StatusEffect] that the player has passed a turn.
 func notify_turn() -> void:
 	if _type == Type.TURNS:
-		_duration -= 1
+		duration -= 1
 		_turn()
 
 
@@ -174,7 +164,7 @@ func _turn() -> void:
 ## Notifies this [StatusEffect] that the player has opened a cell.
 func notify_cell_opened(cell: CellData = null) -> void:
 	if _type == Type.CELLS_OPENED:
-		_duration -= 1
+		duration -= 1
 		_cell_open(cell)
 
 
@@ -188,7 +178,7 @@ func _cell_open(cell: CellData) -> void:
 ## Notifies this [StatusEffect] that a second has passed.
 func notify_second_passed() -> void:
 	if _type == Type.SECONDS:
-		_duration -= 1
+		duration -= 1
 		_second_passed()
 
 
@@ -201,7 +191,7 @@ func _second_passed() -> void:
 ## Notifies this [StatusEffect] that the player has made a mistake.
 func notify_mistake(cell: CellData = null) -> void:
 	if _reset_on_mistake:
-		_duration = _origin
+		duration = _origin
 	_mistake(cell)
 
 
@@ -237,9 +227,9 @@ func is_finished() -> bool:
 
 
 func _set_duration(value: int) -> void:
-	_duration = value
+	duration = value
 	
-	while _duration <= 0 and _origin > 0:
+	while duration <= 0 and _origin > 0:
 		if _loops == 1:
 			_finished = true
 			
@@ -251,7 +241,7 @@ func _set_duration(value: int) -> void:
 			finished.emit()
 			break
 		
-		_duration += _origin
+		duration += _origin
 		if _loops > 1:
 			_loops -= 1
 		
@@ -261,7 +251,7 @@ func _set_duration(value: int) -> void:
 
 
 func get_duration() -> int:
-	return _duration
+	return duration
 
 
 func _set_type(value: Type) -> void:
@@ -360,7 +350,7 @@ class Initializer:
 				break
 		
 		var status := _status_script.new() as StatusEffect
-		status._duration = _duration
+		status.duration = _duration
 		status._origin = _origin
 		status._type = _type
 		status._reset_on_mistake = _reset_on_mistake

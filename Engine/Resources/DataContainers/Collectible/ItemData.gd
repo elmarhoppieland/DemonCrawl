@@ -3,8 +3,6 @@ extends Resource
 class_name ItemData
 
 # ==============================================================================
-const Type := Item.Type
-# ==============================================================================
 @export var name := "" :
 	set(value):
 		if description.is_empty() or description == name.to_snake_case().to_upper() + "_DESCRIPTION":
@@ -16,7 +14,6 @@ const Type := Item.Type
 		emit_changed()
 
 @export_multiline var description := ""
-@export var type := Type.PASSIVE
 @export var mana := 0
 @export var cost := 0
 @export var tags: Array[String] = []
@@ -42,6 +39,23 @@ func _property_get_revert(property: StringName) -> Variant:
 ## Creates a new [Item] for this [ItemData].
 func create() -> Item:
 	return item_script.new(self)
+
+
+func can_find(quest: Quest, ignore_items_in_inventory: bool) -> bool:
+	if ignore_items_in_inventory:
+		return true
+	
+	var base := item_script.get_base_script()
+	while base != null and base != ConsumableItem:
+		base = base.get_base_script()
+	if base == ConsumableItem:
+		return true
+	
+	for item in quest.get_inventory().get_items():
+		if item.get_script() == item_script:
+			return false
+	
+	return true
 
 
 func _to_string() -> String:

@@ -54,6 +54,9 @@ func _set_cell(cell: Cell) -> void:
 
 
 func _update() -> void:
+	if not _cell:
+		return
+	
 	visible = _cell.is_visible()
 	
 	if _cell.is_occupied():

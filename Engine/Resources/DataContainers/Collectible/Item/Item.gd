@@ -6,25 +6,25 @@ class_name Item
 
 # ==============================================================================
 ## The various types of items available.
-enum Type {
-	INVALID = -1, ## Used when an item's type cannot be retrieved (e.g. when it has no data).
-	PASSIVE, ## An item that has passive effects that may repeatedly occur.
-	CONSUMABLE, ## A single-use item that takes effect once, when the player uses it.
-	MAGIC, ## An item that can be repeatedly used by the player, taking mana each time.
-	LEGENDARY, ## Similar to a passive item, but more powerful. Only a single legendary item can be in the inventory at a time.
-	OMEN, ## Similar to a passive item, but provides a negative effect.
-	MAX ## Constant used internally for the total number of item types.
-}
+#enum Type {
+	#INVALID = -1, ## Used when an item's type cannot be retrieved (e.g. when it has no data).
+	#PASSIVE, ## An item that has passive effects that may repeatedly occur.
+	#CONSUMABLE, ## A single-use item that takes effect once, when the player uses it.
+	#MAGIC, ## An item that can be repeatedly used by the player, taking mana each time.
+	#LEGENDARY, ## Similar to a passive item, but more powerful. Only a single legendary item can be in the inventory at a time.
+	#OMEN, ## Similar to a passive item, but provides a negative effect.
+	#MAX ## Constant used internally for the total number of item types.
+#}
 # ==============================================================================
-const TYPE_COLORS: Dictionary[Type, Color] = {
-	Type.INVALID: Color.RED,
-	Type.PASSIVE: Color.TRANSPARENT,
-	Type.CONSUMABLE: 0x14a464ff,
-	Type.MAGIC: 0x2a6eb0ff,
-	Type.OMEN: 0xbc3838ff,
-	Type.LEGENDARY: 0xb3871aff,
-	Type.MAX: Color.BLUE
-}
+#const TYPE_COLORS: Dictionary[Type, Color] = {
+	#Type.INVALID: Color.RED,
+	#Type.PASSIVE: Color.TRANSPARENT,
+	#Type.CONSUMABLE: 0x14a464ff,
+	#Type.MAGIC: 0x2a6eb0ff,
+	#Type.OMEN: 0xbc3838ff,
+	#Type.LEGENDARY: 0xb3871aff,
+	#Type.MAX: Color.BLUE
+#}
 # ==============================================================================
 @export var data: ItemData = null :
 	set(value):
@@ -80,7 +80,7 @@ func _get_annotation_subtext() -> String:
 
 
 func _get_texture_bg_color() -> Color:
-	return TYPE_COLORS.get(get_type(), Color.TRANSPARENT)
+	return Color.RED # used as invalid color
 
 
 func _is_blinking() -> bool:
@@ -100,9 +100,9 @@ func _get_max_progress() -> int:
 
 
 func _post() -> void:
-	if get_type() == Type.CONSUMABLE:
-		clear()
-		return
+	#if get_type() == Type.CONSUMABLE:
+		#clear()
+		#return
 	
 	if has_mana():
 		clear_mana()
@@ -210,13 +210,13 @@ func _lose() -> void:
 
 #region usability
 
-func _can_use() -> bool:
-	if data.type == Type.CONSUMABLE:
-		return true
-	if has_mana() and is_charged():
-		return true
-	
-	return false
+#func _can_use() -> bool:
+	#if data.type == Type.CONSUMABLE:
+		#return true
+	#if has_mana() and is_charged():
+		#return true
+	#
+	#return false
 
 
 ## Returns whether this item can recieve _mana (i.e. it uses mana and the maximum
@@ -388,10 +388,10 @@ func get_description() -> String:
 	return data.description if data else ""
 
 
-func get_type() -> Type:
-	if "type" in _overrides:
-		return _overrides.type
-	return data.type if data else Type.INVALID
+#func get_type() -> Type:
+	#if "type" in _overrides:
+		#return _overrides.type
+	#return data.type if data else Type.INVALID
 
 
 func get_max_mana() -> int:

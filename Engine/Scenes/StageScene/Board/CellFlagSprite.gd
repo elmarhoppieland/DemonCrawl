@@ -56,6 +56,9 @@ func _set_cell(cell: Cell) -> void:
 
 
 func _update() -> void:
+	if not _cell:
+		return
+	
 	const FLAG_ANIM_DURATION := 0.1
 	
 	texture = _parent_control.get_theme_icon("flag", "Cell")

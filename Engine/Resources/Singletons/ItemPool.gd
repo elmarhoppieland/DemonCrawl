@@ -32,7 +32,8 @@ func remove_modifier(modifier: Callable) -> void:
 class ItemFilter:
 	var _max_cost := (1 << 63) - 1 # maximum signed 64-bit int (allow any cost)
 	var _min_cost := -1 # all items have a cost of at least -1 (allow any cost)
-	var _types: int = (1 << ItemData.Type.MAX) - 1
+	var _types: Array[Script] = []
+	var _type_whitelist := false
 	var _ignore_items_in_inventory := true# :
 		#get:
 			#if Inventory.items.any(func(item: ItemData) -> bool: return item.data == preload("res://Assets/Items/Extra Pocket.tres")):
@@ -68,24 +69,42 @@ class ItemFilter:
 	## Only allow items with a type in the given bitmask. Use [code]1 << type[/code]
 	## to get the bit for a specific type.
 	## [br][br]See also [method allow_type].
-	func set_types(types: int) -> ItemFilter:
+	func set_types(types: Array[Script]) -> ItemFilter:
+		_type_whitelist = true
 		_types = types
 		return self
 	
 	## Allow items with the given type, in addition to types already given.
-	func allow_type(type: ItemData.Type) -> ItemFilter:
-		_types |= (1 << type)
+	func allow_type(type: Script) -> ItemFilter:
+		if _type_whitelist:
+			if type not in _types:
+				_types.append(type)
+		else:
+			if type in _types:
+				_types.erase(type)
 		return self
 	
 	## Do not allow items with the given type.
-	func disallow_type(type: ItemData.Type) -> ItemFilter:
-		_types &= ~(1 << type)
+	func disallow_type(type: Script) -> ItemFilter:
+		if _type_whitelist:
+			if type in _types:
+				_types.erase(type)
+		else:
+			if type not in _types:
+				_types.append(type)
 		return self
 	
 	## Do not allow any item types. Use this in combination with [method allow_type]
 	## to only allow a specific type.
 	func disallow_all_types() -> ItemFilter:
-		_types = 0
+		_type_whitelist = true
+		_types.clear()
+		return self
+	
+	## Allows all item types.
+	func allow_all_types() -> ItemFilter:
+		_type_whitelist = false
+		_types.clear()
 		return self
 	
 	## Specify whether items in the player's inventory should be excluded. If
@@ -188,9 +207,9 @@ class ItemFilter:
 			return false
 		if item.cost < _min_cost:
 			return false
-		if not (1 << item.type) & _types:
+		if (item.item_script in _types) != _type_whitelist:
 			return false
-		if _ignore_items_in_inventory and item.type != Item.Type.CONSUMABLE and _inventory.has_item_data(item):
+		if not item.can_find(_inventory.get_quest(), _ignore_items_in_inventory):
 			return false
 		if not _tags.is_empty() and Array(_tags).all(func(tag: String) -> bool: return not tag in item.tags):
 			return false

@@ -41,6 +41,9 @@ func _set_cell(cell: Cell) -> void:
 
 
 func _update() -> void:
+	if not _cell:
+		return
+	
 	if _cell.is_visible() and _cell.has_aura():
 		modulate = _cell.get_aura().get_modulate()
 	else:

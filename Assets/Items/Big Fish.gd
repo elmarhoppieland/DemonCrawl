@@ -1,9 +1,9 @@
 @tool
-extends Item
+extends ConsumableItem
 
 # ==============================================================================
 
-func use() -> void:
+func _use() -> void:
 	var target := await target_cell()
 	if not target:
 		return
@@ -13,5 +13,3 @@ func use() -> void:
 	
 	target.clear_aura()
 	life_restore(3, self)
-	
-	clear()
