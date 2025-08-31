@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://hvvjdj6n7b1e"]
 
 [ext_resource type="Script" uid="uid://bg5ql5657jitc" path="res://Engine/Resources/BackToQuestsButton.gd" id="1_w5nf1"]
-[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="2_iqmwq"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="2_iqmwq"]
 [ext_resource type="Script" uid="uid://ben8tak1q6fly" path="res://Engine/Resources/UtilityNode/HoverGrabber.gd" id="3_0bs02"]
 [ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_6ac5e"]
 
@@ -31,3 +31,4 @@ script = ExtResource("3_0bs02")
 [node name="TooltipGrabber" type="Node" parent="Hovered"]
 unique_name_in_owner = true
 script = ExtResource("4_6ac5e")
+context_mode = 0

@@ -42,10 +42,10 @@ func _show_items(chest: TreasureChest) -> void:
 	var rewards: Array[Collectible] = []
 	for i in count:
 		if randi() % 9 == 0:
-			rewards.append(quest.get_item_pool().create_filter().disallow_all_types().allow_type(Item.Type.OMEN).get_random_item().create())
+			rewards.append(quest.get_item_pool().create_filter().disallow_all_types().allow_type(OmenItem).get_random_item().create())
 			has_omen = true
 		else:
-			rewards.append(quest.get_item_pool().create_filter().disallow_type(Item.Type.OMEN).set_min_cost(1).set_max_cost(max_cost).get_random_item().create())
+			rewards.append(quest.get_item_pool().create_filter().disallow_type(OmenItem).set_min_cost(1).set_max_cost(max_cost).get_random_item().create())
 	
 	if has_omen:
 		_string_table_label.table = load("res://Assets/StringTables/Chest/Omen.tres")

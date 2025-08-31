@@ -86,22 +86,19 @@ static func _import_packed_v(args: Array) -> CellData:
 	cell.value = args.pop_front()
 	
 	var cell_mode := Mode.VISIBLE_EMPTY
-	var cell_object: CellObject = null
-	var cell_aura: Aura = null
+	var children: Array[Node] = []
 	var stage: StageInstance = null
 	for arg in args:
 		if arg is int:
 			cell_mode = arg
-		elif arg is CellObject:
-			cell_object = arg
-		elif arg is Aura:
-			cell_aura = arg
+		elif arg is Node:
+			children.append(arg)
 		elif arg is StageInstance:
 			stage = arg
 	
 	cell.mode = cell_mode
-	cell.set_object(cell_object)
-	cell.set_aura(cell_aura)
+	for child in children:
+		cell.add_child(child)
 	
 	var processing_owner := Eternity.get_processing_owner()
 	if processing_owner is StageInstance:
@@ -114,13 +111,8 @@ static func _import_packed_v(args: Array) -> CellData:
 
 
 func _export_packed() -> Array:
-	var args := [value]
-	if mode != Mode.VISIBLE_EMPTY:
-		args.append(mode)
-	if is_occupied():
-		args.append(get_object())
-	if has_aura():
-		args.append(get_aura())
+	var args := [value, mode]
+	args.append_array(get_children())
 	return args
 
 

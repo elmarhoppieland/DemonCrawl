@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dqqqo4430laq0" path="res://Engine/Scenes/QuestSelect/EditEquipment.gd" id="1_78tgn"]
 [ext_resource type="PackedScene" uid="uid://hvvjdj6n7b1e" path="res://Engine/Resources/BackButton.tscn" id="2_fslyj"]
-[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="3_1tjlh"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="3_1tjlh"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="4_hcstr"]
 [ext_resource type="Script" uid="uid://631a8dlwe7ms" path="res://Engine/Resources/UtilityNode/FocusGrabber.gd" id="5_w562y"]
 [ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="6_i6q32"]
@@ -104,6 +104,7 @@ script = ExtResource("5_w562y")
 script = ExtResource("6_i6q32")
 text = "MASTERIES"
 subtext = "MASTERY_EDIT_SUBTEXT"
+context_mode = 0
 
 [node name="ChestsButton" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -131,6 +132,7 @@ main = true
 script = ExtResource("6_i6q32")
 text = "SPECIAL_CHESTS"
 subtext = "SPECIAL_CHESTS_EDIT_SUBTEXT"
+context_mode = 0
 
 [node name="SigilsButton" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -158,6 +160,7 @@ main = true
 script = ExtResource("6_i6q32")
 text = "SIGILS"
 subtext = "SIGILS_EDIT_SUBTEXT"
+context_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

@@ -42,6 +42,8 @@ func _enter_tree() -> void:
 
 
 func _exit_tree() -> void:
+	_parent_control.theme_changed.disconnect(_update)
+	
 	var cell := get_parent()
 	while cell != null and cell is not Cell:
 		cell = cell.get_parent()

@@ -34,6 +34,38 @@ func _get_texture_bg_color() -> Color:
 
 #endregion
 
+func _ready() -> void:
+	if is_active():
+		var base := get_parent()
+		while base != null:
+			if not base.is_node_ready():
+				await base.ready
+			base = base.get_parent()
+		
+		_enable()
+
+
+func _exit_tree() -> void:
+	if is_active():
+		_disable()
+
+
+func enable() -> void:
+	_enable()
+
+
+func _enable() -> void:
+	pass
+
+
+func disable() -> void:
+	_disable()
+
+
+func _disable() -> void:
+	pass
+
+
 ## Uses this [Collectible], if possible. First calls [method _use], and then [method _post].
 func use() -> void:
 	if can_use():

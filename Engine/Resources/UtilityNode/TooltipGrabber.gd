@@ -3,8 +3,14 @@ extends Grabber
 class_name TooltipGrabber
 
 # ==============================================================================
+enum ContextMode {
+	DISABLED, ## Do not use a [TooltipContext].
+	CURRENT ## Use the current globally active [TooltipContext].
+}
+# ==============================================================================
 @export_multiline var text := "" ## The text to be displayed (in white) as the first line in the tooltip. If this is empty, no tooltip will be shown.
 @export_multiline var subtext := "" ## The subtext to be displayed (in gray) underneath the [member text]. If this is empty, only the [member text] will be shown.
+@export var context_mode := ContextMode.CURRENT ## The [enum ContextMode] to use.
 @export var translate := true ## Whether both the [member text] and the [member subtext] should be translated before being shown.
 @export var c_unescape := false ## Whether all escape sequences (e.g. [code]\n[/code]) should be unescaped before showing the tooltip.
 @export var max_line_length := 32 ## The maximum number of characters on each line of the tooltip. If more characters are on the line, a newline is inserted.
@@ -18,12 +24,19 @@ func hover() -> void:
 	if text.is_empty():
 		return
 	
+	var context: TooltipContext
+	match context_mode:
+		ContextMode.DISABLED:
+			context = null
+		ContextMode.CURRENT:
+			context = TooltipContext.get_current()
+	
 	var formatted_text := Tooltip.limit_line_length(tr(text) if translate else text, max_line_length)
 	if c_unescape:
 		formatted_text = formatted_text.c_unescape()
 	
 	if subtext.is_empty():
-		Tooltip.show_text(formatted_text)
+		Tooltip.show_text(formatted_text, context)
 		return
 	
 	var formatted_subtext := Tooltip.limit_line_length(tr(subtext) if translate else subtext, max_line_length)
@@ -33,7 +46,7 @@ func hover() -> void:
 	Tooltip.show_text("%s\n[color=gray]%s[/color]" % [
 		formatted_text,
 		formatted_subtext
-	])
+	], context)
 
 
 func unhover() -> void:

@@ -9,7 +9,8 @@ func _run() -> void:
 func call_on_root() -> void:
 	var root := get_tree().edited_scene_root
 	var function := "_run_" + UserClassDB.script_get_class(root.get_script()).to_snake_case().to_lower()
-	call(function, root)
+	if has_method(function):
+		call(function, root)
 
 
 func get_tree() -> SceneTree:

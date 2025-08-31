@@ -372,9 +372,9 @@ func set_data(data: CellData) -> void:
 	if data:
 		for signal_name in CONNECTIONS:
 			data.connect(signal_name, get(CONNECTIONS[signal_name]))
-	
-	if data.direction_arrow != Vector2i.ZERO:
-		show_direction_arrow(data.direction_arrow)
+		
+		if data.direction_arrow != Vector2i.ZERO:
+			show_direction_arrow(data.direction_arrow)
 	
 	data_assigned.emit()
 

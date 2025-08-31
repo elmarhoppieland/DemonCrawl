@@ -20,3 +20,4 @@ main = true
 [node name="TooltipGrabber" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_j82o3")
+context_mode = 0

@@ -794,6 +794,8 @@ func _stream_encode(stream: ValueStream) -> void:
 				continue
 			if property.usage & PROPERTY_USAGE_STORAGE:
 				var value = sub_resource[property.name]
+				if not is_same(ClassDB.class_get_property(sub_resource, property.name), null) and value == ClassDB.class_get_property_default_value(sub_resource.get_class(), property.name):
+					continue
 				await stream.step("%s = %s\n" % [property.name, _serialize_value(value)])
 		
 		await stream.step("\n")
@@ -830,6 +832,8 @@ func _stream_encode(stream: ValueStream) -> void:
 				continue
 			if property.usage & PROPERTY_USAGE_STORAGE:
 				var value = node[property.name]
+				if not is_same(ClassDB.class_get_property(node, property.name), null) and value == ClassDB.class_get_property_default_value(node.get_class(), property.name):
+					continue
 				await stream.step("%s = %s\n" % [property.name, _serialize_value(value)])
 		
 		await stream.step("\n")

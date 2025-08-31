@@ -15,7 +15,7 @@ func _ready() -> void:
 	
 	for class_data in ProjectSettings.get_global_class_list():
 		if ResourceLoader.exists(class_data.path):
-			added_vars[class_data.class] = ResourceLoader.load(class_data.path)
+			added_vars[class_data.class] = load(class_data.path)
 			syntax_highlighter.add_member_keyword_color(class_data.class, CLASS_COLOR)
 
 

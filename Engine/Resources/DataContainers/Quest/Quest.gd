@@ -17,36 +17,6 @@ static var current_changed := Signal() :
 @export var source_file: QuestFile = null
 @export var source_difficulty: Difficulty = null
 
-#@export var stages: Array[Stage] = [] : ## The stages in the quest.
-	#set(value):
-		#var stages_parent: Node
-		#if has_node("Stages"):
-			#stages_parent = get_node("Stages")
-		#else:
-			#stages_parent = Node.new()
-			#stages_parent.name = "Stages"
-			#add_child(stages_parent)
-		#
-		#for stage in stages:
-			#if stage in value:
-				#continue
-			#if stage.changed.is_connected(emit_changed):
-				#stage.changed.disconnect(emit_changed)
-			#
-			#stages_parent.remove_child(stage)
-			#stage.queue_free()
-		#
-		#var old := stages
-		#
-		#stages = value
-		#
-		#for stage in value:
-			#if stage in old:
-				#continue
-			#stage.changed.connect(emit_changed)
-			#stages_parent.add_child(stage)
-		#
-		#emit_changed()
 @export var selected_stage_idx := 0 :
 	set(value):
 		selected_stage_idx = value
@@ -102,11 +72,20 @@ func _ready() -> void:
 static func _set_current(value: Quest) -> void:
 	var old := _current
 	_current = value
-	if old != _current:
+	if old != value:
 		if old and old.is_inside_tree():
 			old.queue_free()
 		if value:
-			Engine.get_main_loop().root.add_child(value)
+			if not value.is_inside_tree():
+				Engine.get_main_loop().root.add_child(value)
+			
+			(func() -> void:
+				if not value.is_node_ready():
+					await value.ready
+				value.get_tooltip_context().set_as_current()
+			).call()
+		else:
+			TooltipContext.clear_current()
 		
 		current_changed.emit()
 
@@ -470,6 +449,16 @@ func get_item_pool() -> ItemPool:
 	var item_pool := ItemPool.new()
 	get_components_parent().add_child(item_pool)
 	return item_pool
+
+
+func get_tooltip_context() -> TooltipContext:
+	for child in get_components_parent().get_children():
+		if child is TooltipContext:
+			return child
+	
+	var context := TooltipContext.new()
+	get_components_parent().add_child(context)
+	return context
 
 
 func get_mastery_unlockers_parent() -> Node:

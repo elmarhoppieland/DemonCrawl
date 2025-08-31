@@ -44,6 +44,11 @@ const RESEARCH_WEIGHT_MULT := 5.0
 		pathfinding = EffectManager.propagate(change_property, [&"pathfinding", value], 1)
 		EffectManager.propagate(property_changed, [&"pathfinding", score])
 		emit_changed()
+@export var powerchording := 0 :
+	set(value):
+		powerchording = EffectManager.propagate(change_property, [&"powerchording", value], 1)
+		EffectManager.propagate(property_changed, [&"powerchording", score])
+		emit_changed()
 @export_subgroup("Chain", "chain_")
 @export var chain_value := 0 :
 	set(value):
@@ -93,6 +98,8 @@ func get_overview_text() -> String:
 	
 	if pathfinding > 0:
 		text += "• " + (tr("OVERVIEW_PATHFINDING").format({"pathfinding": pathfinding})) + "\n"
+	if powerchording > 0:
+		text += "• " + (tr("OVERVIEW_PATHFINDING").format({"powerchording": powerchording})) + "\n"
 	
 	if not is_equal_approx(rare_loot_modifier, 1.0):
 		text += "• " + (tr("OVERVIEW_RARE_LOOT_MODIFIER").format({"modifier": roundi(100 * rare_loot_modifier)})) + "\n"

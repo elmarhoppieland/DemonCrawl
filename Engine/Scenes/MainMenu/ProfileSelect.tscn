@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Engine/Resources/UtilityNode/Avatar_atlas.tres" id="1_1vjny"]
 [ext_resource type="Script" uid="uid://lbfq8siua0xq" path="res://Engine/Scenes/MainMenu/MainMenuAvatar.gd" id="2_7b5x2"]
-[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="3_7isr5"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="3_7isr5"]
 [ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://Engine/Resources/UtilityNode/XPBar.gd" id="3_s4lan"]
 [ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://Engine/Resources/UtilityNode/ProfileNameLabel.gd" id="4_ggtkl"]
 [ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_vjit2"]
@@ -70,6 +70,7 @@ texture = SubResource("AtlasTexture_h3nds")
 [node name="TooltipGrabber" type="Node" parent="HBoxContainer/Avatar"]
 script = ExtResource("4_vjit2")
 text = "CLICK_TO_CHANGE_PROFILE"
+context_mode = 0
 
 [node name="XPBar" type="ProgressBar" parent="HBoxContainer"]
 custom_minimum_size = Vector2(0, 16)

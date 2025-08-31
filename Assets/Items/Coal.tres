@@ -12,7 +12,6 @@ region = Rect2(608, 64, 16, 16)
 script = ExtResource("1_00w6q")
 name = "ITEM_COAL"
 description = "ITEM_COAL_DESCRIPTION"
-type = 4
 mana = 0
 cost = 0
 tags = Array[String]([])

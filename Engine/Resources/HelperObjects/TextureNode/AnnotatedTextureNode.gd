@@ -56,6 +56,5 @@ func has_annotation_text() -> bool:
 
 
 ## Virtual method to override the return value of [method has_annotation_text].
-## Return [code]super()[/code] to use the default behaviour.
 func _has_annotation_text() -> bool:
-	return not get_annotation_text().is_empty()
+	return true

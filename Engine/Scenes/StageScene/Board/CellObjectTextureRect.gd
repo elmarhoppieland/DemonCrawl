@@ -63,6 +63,7 @@ func _update() -> void:
 		texture = _cell.get_object().get_texture()
 		material = _cell.get_object().get_material()
 		
+		print(_cell.get_object().has_annotation_text())
 		if _tooltip_grabber:
 			_tooltip_grabber.enabled = _cell.get_object().has_annotation_text()
 	else:

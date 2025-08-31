@@ -8,7 +8,7 @@ class_name NomadSellConsumableOffer
 func _spawn() -> void:
 	item = _nomad.get_quest().get_item_pool().create_filter()\
 		.disallow_all_types()\
-		.allow_type(Item.Type.CONSUMABLE)\
+		.allow_type(ConsumableItem)\
 		.set_min_cost(1)\
 		.get_random_item()
 	

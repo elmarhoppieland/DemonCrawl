@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://ou5eyedemksy"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_r4ggt"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_r4ggt"]
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_rd8fn"]
-[ext_resource type="Script" uid="uid://vlhi5od0ehku" path="res://Assets/items/Wallet.gd" id="2_s5227"]
+[ext_resource type="Script" uid="uid://vlhi5od0ehku" path="res://Assets/Items/Wallet.gd" id="2_s5227"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0redk"]
 atlas = ExtResource("1_r4ggt")
@@ -12,7 +12,6 @@ region = Rect2(80, 32, 16, 16)
 script = ExtResource("1_rd8fn")
 name = "ITEM_WALLET"
 description = "ITEM_WALLET_DESCRIPTION"
-type = 0
 mana = 0
 cost = 4
 tags = Array[String]([])

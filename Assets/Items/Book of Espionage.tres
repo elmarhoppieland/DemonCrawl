@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://rf6sntw12l5u"]
+
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_8x3g5"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_aftxu"]
+[ext_resource type="Script" uid="uid://b74llv5mcj7fj" path="res://Assets/Items/Book of Espionage.gd" id="2_jvbba"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny8ar"]
+atlas = ExtResource("1_aftxu")
+region = Rect2(80, 192, 16, 16)
+
+[resource]
+script = ExtResource("1_8x3g5")
+name = "ITEM_BOOK_OF_ESPIONAGE"
+description = "ITEM_BOOK_OF_ESPIONAGE_DESCRIPTION"
+type = 0
+mana = 0
+cost = 15
+tags = Array[String](["book"])
+icon = SubResource("AtlasTexture_ny8ar")
+item_script = ExtResource("2_jvbba")
+metadata/_custom_type_script = "uid://d3icmltrt12ld"

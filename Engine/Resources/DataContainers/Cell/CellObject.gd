@@ -40,6 +40,10 @@ func _ready() -> void:
 	_spawn()
 
 
+func _export_packed_enabled() -> bool:
+	return get_child_count() == 0
+
+
 func _export_packed() -> Array:
 	var args := []
 	

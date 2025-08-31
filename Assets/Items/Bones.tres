@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://dg4l2vbpdrk5l"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_c5afs"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_c5afs"]
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_xs42r"]
-[ext_resource type="Script" uid="uid://bm1yv2m78tpab" path="res://Assets/items/Bones.gd" id="2_emf82"]
+[ext_resource type="Script" uid="uid://bm1yv2m78tpab" path="res://Assets/Items/Bones.gd" id="2_emf82"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4xl63"]
 atlas = ExtResource("1_c5afs")
@@ -12,7 +12,6 @@ region = Rect2(192, 16, 16, 16)
 script = ExtResource("1_xs42r")
 name = "ITEM_BONES"
 description = "ITEM_BONES_DESCRIPTION"
-type = 1
 mana = 0
 cost = 0
 tags = Array[String]([])

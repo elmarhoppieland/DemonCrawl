@@ -3,8 +3,6 @@ class_name Tooltip
 
 # ==============================================================================
 static var _instance: Tooltip
-
-static var max_length := 32
 # ==============================================================================
 @onready var panel: PanelContainer = %Panel
 @onready var rich_text_label: RichTextLabel = %RichTextLabel
@@ -19,7 +17,11 @@ func _ready() -> void:
 	Tooltip.hide_text()
 
 
-static func show_text(text: String) -> void:
+@warning_ignore("shadowed_variable_base_class")
+static func show_text(text: String, context: TooltipContext = null) -> void:
+	if context:
+		text = context.get_text(text)
+	
 	_instance.rich_text_label.text = text.strip_edges()
 	
 	_instance.panel.reset_size.call_deferred()

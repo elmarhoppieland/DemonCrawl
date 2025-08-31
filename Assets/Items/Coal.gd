@@ -3,9 +3,12 @@ extends OmenItem
 
 # ==============================================================================
 
-func _enter_tree() -> void:
-	if is_active():
-		get_quest().get_attributes().change_property.connect(_change_attribute)
+func _enable() -> void:
+	get_quest().get_attributes().change_property.connect(_change_attribute)
+
+
+func _disable() -> void:
+	get_quest().get_attributes().change_property.disconnect(_change_attribute)
 
 
 func _change_attribute(attribute: StringName, value: Variant) -> Variant:
