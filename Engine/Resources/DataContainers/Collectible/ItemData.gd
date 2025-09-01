@@ -22,7 +22,7 @@ class_name ItemData
 # ==============================================================================
 
 func _property_can_revert(property: StringName) -> bool:
-	return property in [&"description", &"name"]
+	return property in [&"description", &"name", &"item_script"]
 
 
 func _property_get_revert(property: StringName) -> Variant:
@@ -32,6 +32,13 @@ func _property_get_revert(property: StringName) -> Variant:
 		return name.to_snake_case().replace("_", "-") + ".description"
 	if property == &"name":
 		return "item." + resource_path.get_file().get_basename().to_snake_case().replace("_", "-")
+	if property == &"item_script":
+		if item_script:
+			return null
+		
+		var path := resource_path.get_basename() + ".gd"
+		if ResourceLoader.exists(path):
+			return load(path)
 	
 	return null
 
