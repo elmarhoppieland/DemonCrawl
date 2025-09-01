@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://wcd7pvneslni"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_6k6cb"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_6k6cb"]
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_d8h7x"]
-[ext_resource type="Script" uid="uid://c351rqaqvosx5" path="res://Assets/items/Loupe.gd" id="2_ptder"]
+[ext_resource type="Script" uid="uid://c351rqaqvosx5" path="res://Assets/Items/Loupe.gd" id="2_ptder"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vi1i1"]
 atlas = ExtResource("1_6k6cb")
@@ -10,9 +10,8 @@ region = Rect2(64, 32, 16, 16)
 
 [resource]
 script = ExtResource("1_d8h7x")
-name = "ITEM_LOUPE"
-description = "ITEM_LOUPE_DESCRIPTION"
-type = 0
+name = "item.loupe"
+description = "item.loupe.description"
 mana = 0
 cost = 4
 tags = Array[String]([])

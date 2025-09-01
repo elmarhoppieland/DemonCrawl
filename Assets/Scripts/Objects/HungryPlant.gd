@@ -33,7 +33,7 @@ func _spawn() -> void:
 
 func _interact() -> void:
 	if Quest.get_current().get_inventory().is_empty():
-		Toasts.add_toast(tr("STRANGER_PLANT_FAIL"), get_source())
+		Toasts.add_toast(tr("stranger.plant.fail"), get_source())
 		return
 	
 	activate()
@@ -56,19 +56,17 @@ func _activate() -> void:
 			RewardType.PRESENT:
 				const PRESENT := preload("res://Assets/Items/Present.tres")
 				get_quest().get_inventory().item_gain(PRESENT.create())
-	
-	Toasts.add_toast(tr("STRANGER_PLANT_USE"), get_source())
 
 
 func _get_annotation_title() -> String:
-	return tr("STRANGER_PLANT").to_upper()
+	return tr("stranger.plant").to_upper()
 
 
 func _get_annotation_subtext() -> String:
-	return "\"" + tr("STRANGER_PLANT_DESCRIPTION") + "\"\n" + tr("STRANGER_PLANT_REWARD").format({
+	return "\"" + tr("stranger.plant.description") + "\"\n" + tr("stranger.plant.reward").format({
 		"v": current,
 		"max": maximum,
-		"reward": tr_n("STRANGER_PLANT_REWARD_" + RewardType.find_key(type), "STRANGER_PLANT_REWARD_" + RewardType.find_key(type) + "_PLURAL", reward_amount).format({
+		"reward": tr_n("stranger.plant.reward." + RewardType.find_key(type).to_lower(), "stranger.plant.reward." + RewardType.find_key(type).to_lower() + ".plural", reward_amount).format({
 			"amount": reward_amount
 		})
 	})

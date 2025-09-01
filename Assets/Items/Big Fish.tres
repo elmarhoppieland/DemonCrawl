@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://b3dv1jytedeqi"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_8u2nd"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_8u2nd"]
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_51vdk"]
-[ext_resource type="Script" uid="uid://ba5vk1o57jeu7" path="res://Assets/items/Big Fish.gd" id="2_38fpg"]
+[ext_resource type="Script" uid="uid://ba5vk1o57jeu7" path="res://Assets/Items/Big Fish.gd" id="2_38fpg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2tsew"]
 atlas = ExtResource("1_8u2nd")
@@ -10,9 +10,8 @@ region = Rect2(160, 16, 16, 16)
 
 [resource]
 script = ExtResource("1_51vdk")
-name = "ITEM_BIG_FISH"
-description = "ITEM_BIG_FISH_DESCRIPTION"
-type = 1
+name = "item.big-fish"
+description = "item.big-fish.description"
 mana = 0
 cost = 0
 tags = Array[String](["meat", "summer", "_targeted"])

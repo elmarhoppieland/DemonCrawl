@@ -10,8 +10,8 @@ region = Rect2(96, 32, 16, 16)
 
 [resource]
 script = ExtResource("2_d1pec")
-name = "ITEM_LIQUID_GOLD"
-description = "ITEM_LIQUID_GOLD_DESCRIPTION"
+name = "item.liquid-gold"
+description = "item.liquid-gold.description"
 mana = 0
 cost = 5
 tags = Array[String]([])

@@ -11,5 +11,5 @@ name = "tokenshop/category_masteries"
 
 [resource]
 script = ExtResource("1_vgdhh")
-name = "TOKEN_SHOP_CATEGORY_MASTERIES"
+name = "token-shop.category.masteries"
 icon = SubResource("Texture2D_hk8i5")

@@ -23,7 +23,7 @@ class_name MainMenuProfile
 		if value < 0:
 			level_label.text = ""
 			return
-		level_label.text = (tr("LEVEL") if "%" in tr("LEVEL") else "Lv%d") % (value + 1)
+		level_label.text = (tr("player.level") if "%" in tr("player.level") else "Lv%d") % (value + 1)
 # ==============================================================================
 var mouse_is_inside := false
 # ==============================================================================

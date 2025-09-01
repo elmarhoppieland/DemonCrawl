@@ -5,7 +5,7 @@ class_name ItemShop
 # ==============================================================================
 
 func _get_name() -> String:
-	return tr("STAGE_ITEM_SHOP")
+	return tr("stages.special.item-shop")
 
 
 func _get_bg() -> Texture2D:

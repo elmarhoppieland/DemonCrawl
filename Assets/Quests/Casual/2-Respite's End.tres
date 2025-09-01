@@ -154,8 +154,8 @@ mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("2_12ux7")
-name = "QUEST_RESPITES_END"
-lore = "LORE_RESPITES_END"
+name = "quest.respites-end"
+lore = "quest.respites-end.lore"
 icon = SubResource("Texture2D_ah532")
 skip_unlock = false
 stages = Array[ExtResource("4_1ncdf")]([SubResource("Resource_5387s"), SubResource("Resource_kvqxj"), SubResource("Resource_nrcjf"), SubResource("Resource_8u0ev"), SubResource("Resource_m124s"), SubResource("Resource_y85rx"), SubResource("Resource_qyh3i"), SubResource("Resource_ir8ee"), SubResource("Resource_o1x01"), SubResource("Resource_suxme")])

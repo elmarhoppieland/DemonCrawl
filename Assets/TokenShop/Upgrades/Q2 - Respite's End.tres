@@ -24,8 +24,8 @@ invert = true
 
 [resource]
 script = ExtResource("2_sb6x5")
-name = "QUEST_RESPITES_END"
-description = "QUEST_UNLOCK_RESPITES_END"
+name = "token-shop.category.upgrades.quest.2"
+description = "token-shop.category.upgrades.quest.2.description"
 icon = SubResource("Texture2D_not6g")
 cost = 1
 conditions = Array[ExtResource("1_404gj")]([SubResource("Resource_6fwrc")])

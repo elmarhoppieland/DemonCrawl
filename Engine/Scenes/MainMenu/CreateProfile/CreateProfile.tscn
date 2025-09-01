@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c0xuhqy23ofnt"]
 
-[ext_resource type="Texture2D" uid="uid://t6f814mrrtwh" path="res://Assets/sprites/avatar.png" id="1_73b04"]
+[ext_resource type="Texture2D" uid="uid://t6f814mrrtwh" path="res://Assets/Sprites/avatar.png" id="1_73b04"]
 [ext_resource type="Script" uid="uid://s3kkq7wypxeg" path="res://Engine/Scenes/MainMenu/CreateProfile/CreateProfile.gd" id="1_wmvix"]
 [ext_resource type="Script" uid="uid://0dvg6vecmv8w" path="res://Engine/Resources/UtilityNode/DCButton.gd" id="1_wpoxc"]
 [ext_resource type="Script" uid="uid://wfbymt7ph35t" path="res://Engine/Scenes/MainMenu/CreateProfile/CreateProfileLineEdit.gd" id="3_kf0gw"]
@@ -235,7 +235,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "PROFILE_CREATE_HEADER"
+text = "menu.select-profile.header"
 
 [node name="Control2" type="Control" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -259,6 +259,8 @@ process_mode = 0
 process_priority = 0
 process_physics_priority = 0
 process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 1
 editor_description = ""
 visible = true
 modulate = Color(0.0627451, 0.87451, 0.501961, 1)
@@ -282,9 +284,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 size_flags_stretch_ratio = 1.0
-auto_translate = true
 localize_numeral_system = true
 tooltip_text = ""
+tooltip_auto_translate_mode = 0
 focus_neighbor_left = NodePath("")
 focus_neighbor_top = NodePath("")
 focus_neighbor_right = NodePath("")
@@ -309,12 +311,12 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("1_wpoxc")
 type = 1
-text = "PROFILE_CREATE_CONFIRM"
+text = "menu.create-profile.confirm"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_x74cr")
+&"": SubResource("AnimationLibrary_x74cr")
 }
 
 [connection signal="pressed" from="ContentsAnchor/MarginContainer/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

@@ -166,7 +166,7 @@ debug_overlay_toggle={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Assets/localization/localization.en.translation", "res://Assets/localization/localization-strangers.en.translation", "res://Assets/localization/localization-items.en.translation")
+locale/translations=PackedStringArray("res://Assets/localization/localization.en.translation", "res://Assets/localization/localization-strangers.en.translation", "res://Assets/localization/localization-items.en.translation", "res://Assets/Localization/localization-masteries.en.translation", "res://Assets/Localization/localization-stages.en.translation")
 
 [rendering]
 

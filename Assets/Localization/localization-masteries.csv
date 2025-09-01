@@ -1,0 +1,64 @@
+key;en
+
+mastery.none;No mastery
+
+mastery.novice;Novice
+mastery.novice.description.1;Reduce your score by half. If you make a mistake on a necessary guess, reduce incoming damage to 1.
+mastery.novice.description.2;If you die with 300 or more points, revive and reduce your score to 0.
+mastery.novice.description.3;Focus an area where you can make progress.
+mastery.novice.unlock.1;Unlock by discovering a 4 or greater.
+mastery.novice.unlock.2;Unlock II by discovering a 5 or greater.
+mastery.novice.unlock.3;Unlock III by discovering a 6 or greater.
+mastery.novice.ability;Focus an area where you can make progress.
+mastery.novice.ability.fail;You must make a guess to proceed.
+mastery.novice.guess_fail;Unlucky guess! Damage reduced to 1.
+
+mastery.survivor;Survivor
+mastery.survivor.description.1;Begin the quest with 1 extra max life.
+mastery.survivor.description.2;At the end of each stage, gain max life equal to the minimum power if you are injured.
+mastery.survivor.description.3;Solve a number of cells equal to your missing life, then heal to full.
+mastery.survivor.ability;Solve a number of cells equal to your missing life, then heal to full.
+mastery.survivor.unlock.1;Unlock by completing a quest with 10 or more lives.
+mastery.survivor.unlock.2;Unlock II by completing a quest with 20 or more lives.
+mastery.survivor.unlock.3;Unlock III by completing a quest with 30 or more lives.
+
+mastery.guardian;GUARDIAN
+mastery.knight;KNIGHT
+mastery.hunter;HUNTER
+mastery.wizard;WIZARD
+mastery.witch;WITCH
+mastery.warlock;WARLOCK
+mastery.spy;SPY
+mastery.barbarian;BARBARIAN
+mastery.commander;COMMANDER
+mastery.firefly;FIREFLY
+mastery.snowflake;SNOWFLAKE
+mastery.spark;SPARK
+mastery.scholar;SCHOLAR
+mastery.bubbler;BUBBLER
+mastery.mutant;MUTANT
+mastery.detective;DETECTIVE
+mastery.scout;SCOUT
+mastery.banker;BANKER
+mastery.banker.description.1;Begin the quest with 15 extra coins.
+mastery.banker.description.2;Chests contain double coins.
+mastery.banker.description.3;Double your coins.
+mastery.banker.ability;Double your coins.
+mastery.banker.unlock.1;Unlock by completing a quest on Normal or above with 100 or more coins
+mastery.banker.unlock.2;Unlock II by completing a quest on Normal or above with 200 or more coins
+mastery.banker.unlock.3;Unlock III by completing a quest on Normal or above with 300 or more coins
+mastery.marksman;MARKSMAN
+mastery.lumberjack;LUMBERJACK
+mastery.exorcist;EXORCIST
+mastery.undertaker;UNDERTAKER
+mastery.demolitionist;DEMOLITIONIST
+mastery.protagonist;PROTAGONIST
+mastery.human;HUMAN
+mastery.hypnotist;HYPNOTIST
+mastery.ninja;NINJA
+mastery.bookworm;BOOKWORM
+mastery.auramancer;AURAMANCER
+mastery.immortal;IMMORTAL
+mastery.poisoner;POISONER
+mastery.ghost;GHOST
+mastery.prophet;PROPHET

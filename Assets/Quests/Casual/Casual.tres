@@ -19,7 +19,7 @@ name = "Difficulties/Casual"
 
 [resource]
 script = ExtResource("1_vkdlg")
-name = "DIFFICULTY_CASUAL"
+name = "difficulty.casual"
 icon = SubResource("Texture2D_fnfsu")
 conditions = Array[ExtResource("1_p3vmn")]([])
 quests = Array[ExtResource("3_p3sx6")]([ExtResource("2_75g8k"), ExtResource("3_bnqm1"), ExtResource("4_rq7lq"), ExtResource("5_lm3xo"), ExtResource("5_dfi1x"), ExtResource("7_whyy3")])

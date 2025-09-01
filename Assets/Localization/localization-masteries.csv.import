@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://l7n8fj4x1aj7"
+
+[deps]
+
+files=["res://Assets/Localization/localization-masteries.en.translation"]
+
+source_file="res://Assets/Localization/localization-masteries.csv"
+dest_files=["res://Assets/Localization/localization-masteries.en.translation"]
+
+[params]
+
+compress=true
+delimiter=1

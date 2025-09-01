@@ -77,13 +77,13 @@ func can_move_to(cell: CellData) -> bool:
 
 
 func _get_annotation_title() -> String:
-	return tr("FAMILIAR").to_upper()
+	return tr("object.familiar").to_upper()
 
 
 func _get_annotation_subtext() -> String:
 	if strong:
-		return tr("FAMILIAR_STRONG_DESCRIPTION")
-	return tr("FAMILIAR_DESCRIPTION")
+		return tr("object.familiar.strong.description")
+	return tr("object.familiar.description")
 
 
 func _aura_apply() -> void:

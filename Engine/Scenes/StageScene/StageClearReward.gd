@@ -39,9 +39,9 @@ static func create(_reward_name: String = "") -> StageClearReward:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == &"show":
 		tooltip_grabber.text = "%s +%d%s" % [
-			tr("STAGE_REWARD_" + reward_name.to_upper()),
+			tr("stage.reward." + reward_name.to_snake_case().to_lower().replace("_", "-")),
 			amount,
-			tr("XP")
+			tr("generic.xp")
 		]
-		tooltip_grabber.subtext = tr("STAGE_REWARD_" + reward_name.to_upper() + "_SUBTEXT")
+		tooltip_grabber.subtext = tr("stage.reward." + reward_name.to_snake_case().to_lower().replace("_", "-") + ".subtext")
 		shown = true

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dhymmrd8j6du3" path="res://Engine/Resources/Scenes/DCPopup.tscn" id="1_iin5w"]
 [ext_resource type="Script" uid="uid://bw6y1ekoixlwm" path="res://Engine/Resources/Singletons/MasteryAchievedPopup.gd" id="2_1c2e2"]
-[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="3_wuen5"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="3_wuen5"]
 [ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://Engine/Resources/Scenes/Frame.tscn" id="4_wc757"]
 [ext_resource type="PackedScene" uid="uid://l26wus4d320" path="res://Engine/Resources/Scenes/MasteryDisplay.tscn" id="7_eiw5j"]
 
@@ -20,14 +20,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="ContentsAnchor/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "MASTERY_ACHIEVED"
+text = "popup.mastery-achieved.title"
 label_settings = SubResource("LabelSettings_7aahr")
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="ContentsAnchor/MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "MASTERY_AVAILABLE"
+text = "popup.mastery-achieved.text"
 horizontal_alignment = 1
 
 [node name="Frame" parent="ContentsAnchor/MarginContainer/VBoxContainer" index="2" instance=ExtResource("4_wc757")]

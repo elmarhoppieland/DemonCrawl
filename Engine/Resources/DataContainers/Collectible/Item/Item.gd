@@ -58,7 +58,7 @@ func _get_annotation_text() -> String:
 		get_annotation_title(),
 		get_mana(),
 		get_max_mana(),
-		tr("MANA"),
+		tr("generic.mana"),
 		get_annotation_subtext()
 	]
 

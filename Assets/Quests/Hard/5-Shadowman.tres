@@ -155,8 +155,8 @@ mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("2_18dfo")
-name = "QUEST_SHADOWMAN"
-lore = "LORE_SHADOWMAN"
+name = "quest.shadowman"
+lore = "quest.shadowman.lore"
 token_shop_purchase = ExtResource("5_2qvfl")
 icon = SubResource("Texture2D_bpcax")
 skip_unlock = false

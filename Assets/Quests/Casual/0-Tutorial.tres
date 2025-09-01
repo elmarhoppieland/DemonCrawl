@@ -27,8 +27,8 @@ mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("1_wpk54")
-name = "QUEST_TUTORIAL"
-lore = "LORE_TUTORIAL"
+name = "quest.tutorial"
+lore = "quest.tutorial.lore"
 icon = SubResource("Texture2D_km6i1")
 skip_unlock = true
 stages = Array[ExtResource("3_xjto8")]([SubResource("Resource_gumlt")])

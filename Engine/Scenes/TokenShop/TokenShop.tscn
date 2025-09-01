@@ -82,7 +82,7 @@ texture_hover = SubResource("AtlasTexture_c7xjk")
 
 [node name="TooltipGrabber" type="Node" parent="BackToMenuButton"]
 script = ExtResource("6_f5ovn")
-text = "RETURN_TO_MAIN_MENU"
+text = "scene-return.main"
 context_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

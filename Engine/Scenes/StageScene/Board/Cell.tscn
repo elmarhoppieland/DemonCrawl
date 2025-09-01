@@ -32,13 +32,12 @@ shader_parameter/wait_time = 0.1
 shader_parameter/start_offset = -2.0
 shader_parameter/end_offset = 1.0
 
-[node name="Cell" type="Control" node_paths=PackedStringArray("_data")]
+[node name="Cell" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 16.0
 offset_bottom = 16.0
 script = ExtResource("1_e3wqt")
-_data = NodePath("")
 
 [node name="CellAuraModulator" type="Control" parent="."]
 unique_name_in_owner = true

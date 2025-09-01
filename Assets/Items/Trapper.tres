@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://d434v42k7jhj"]
 
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_04hpc"]
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_odwvl"]
-[ext_resource type="Script" uid="uid://cgh0s0onjv2cq" path="res://Assets/items/Trapper.gd" id="2_afatv"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_odwvl"]
+[ext_resource type="Script" uid="uid://cgh0s0onjv2cq" path="res://Assets/Items/Trapper.gd" id="2_afatv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kqd6e"]
 atlas = ExtResource("1_odwvl")
@@ -10,9 +10,8 @@ region = Rect2(32, 32, 16, 16)
 
 [resource]
 script = ExtResource("1_04hpc")
-name = "ITEM_TRAPPER"
-description = "ITEM_TRAPPER_DESCRIPTION"
-type = 0
+name = "item.trapper"
+description = "item.trapper.description"
 mana = 0
 cost = 2
 tags = Array[String]([])

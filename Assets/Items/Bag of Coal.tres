@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://c2e5q3krfyiw8"]
 
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_5wo7v"]
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_pu0av"]
-[ext_resource type="Script" uid="uid://dq6wubkyyqqeo" path="res://Assets/items/Bag of Coal.gd" id="2_p4324"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_pu0av"]
+[ext_resource type="Script" uid="uid://dq6wubkyyqqeo" path="res://Assets/Items/Bag of Coal.gd" id="2_p4324"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ncikj"]
 atlas = ExtResource("1_pu0av")
@@ -10,9 +10,8 @@ region = Rect2(304, 16, 16, 16)
 
 [resource]
 script = ExtResource("1_5wo7v")
-name = "ITEM_BAG_OF_COAL"
-description = "ITEM_BAG_OF_COAL_DESCRIPTION"
-type = 2
+name = "item.bag-of-coal"
+description = "item.bag-of-coal.description"
 mana = 100
 cost = 0
 tags = Array[String]([])

@@ -12,8 +12,8 @@ name = "tokenshop/xp_boost"
 
 [resource]
 script = ExtResource("1_tl66k")
-name = "XP_BOOST"
-description = "XP_BOOST_DESCRIPTION"
+name = "token-shop.category.upgrades.xp-boost"
+description = "token-shop.category.upgrades.xp-boost.description"
 icon = SubResource("Texture2D_oyf6t")
 cost = 5
 conditions = Array[ExtResource("1_58s2e")]([])

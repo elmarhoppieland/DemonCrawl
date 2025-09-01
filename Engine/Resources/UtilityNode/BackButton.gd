@@ -8,7 +8,7 @@ func _ready() -> void:
 	const ANIM_DURATION := 0.1
 	mouse_entered.connect(func():
 		create_tween().tween_property($Hovered, "modulate:a", 1.0, ANIM_DURATION)
-		Tooltip.show_text(tr("RETURN_TO_MAIN_MENU"))
+		Tooltip.show_text(tr("scene-return.main"))
 		mouse_is_inside = true
 	)
 	mouse_exited.connect(func():

@@ -10,8 +10,8 @@ region = Rect2(144, 192, 16, 16)
 
 [resource]
 script = ExtResource("1_ia7ir")
-name = "ITEM_ROTTING_HEAD"
-description = "ITEM_ROTTING_HEAD_DESCRIPTION"
+name = "item.rotting-head"
+description = "item.rotting-head.description"
 mana = 0
 cost = 11
 tags = Array[String](["meat", "halloween"])

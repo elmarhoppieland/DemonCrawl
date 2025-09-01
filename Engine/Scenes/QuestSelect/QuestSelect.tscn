@@ -501,7 +501,7 @@ metadata/_custom_type_script = "uid://bp8kqfn8liwqp"
 
 [node name="TooltipGrabber" type="Node" parent="MainContent/MarginContainer/MarginContainer3/BackButton"]
 script = ExtResource("8_ce8b2")
-text = "BACK_TO_MENU"
+text = "scene-return.main"
 context_mode = 0
 metadata/_custom_type_script = "uid://fhgkw1iml6g3"
 

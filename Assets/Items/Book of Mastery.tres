@@ -10,9 +10,8 @@ region = Rect2(480, 160, 16, 16)
 
 [resource]
 script = ExtResource("1_ah1xq")
-name = "ITEM_BOOK_OF_MASTERY"
-description = "ITEM_BOOK_OF_MASTERY_DESCRIPTION"
-type = 3
+name = "item.book-of-mastery"
+description = "item.book-of-mastery.description"
 mana = 0
 cost = 50
 tags = Array[String](["book"])

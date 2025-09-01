@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://Engine/Resources/UtilityNode/XPBar.gd" id="6_fmgjo"]
 [ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://Engine/Resources/UtilityNode/ProfileNameLabel.gd" id="7_8d5yt"]
 [ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://Engine/Resources/UtilityNode/ProfileLevelLabel.gd" id="8_flfi7"]
-[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="9_15a5f"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="9_15a5f"]
 [ext_resource type="PackedScene" uid="uid://db1krtggvj6tl" path="res://Engine/Resources/Scenes/StatsDisplay.tscn" id="9_eg8cx"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="10_0f8tq"]
 [ext_resource type="PackedScene" uid="uid://qyb7vtjc4d6o" path="res://Engine/Resources/Scenes/HeirloomDisplay.tscn" id="10_j6p5i"]
@@ -160,7 +160,7 @@ script = ExtResource("2_kk3qc")
 [node name="StatsTooltipGrabber" type="Node" parent="MarginContainer/HBoxContainer/Avatar"]
 unique_name_in_owner = true
 script = ExtResource("4_gcjxo")
-text = "STATS_YOUR_OVERVIEW"
+text = "stats.overview.header"
 max_line_length = 48
 
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
@@ -287,6 +287,7 @@ color = Color(1, 1, 1, 0)
 [node name="Inventory" parent="InventoryCanvas" instance=ExtResource("15_6x8ea")]
 unique_name_in_owner = true
 offset_left = 0.0
+offset_right = 77.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

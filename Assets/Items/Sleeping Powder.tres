@@ -10,9 +10,8 @@ region = Rect2(192, 64, 16, 16)
 
 [resource]
 script = ExtResource("1_yx5sa")
-name = "ITEM_SLEEPING_POWDER"
-description = "ITEM_SLEEPING_POWDER_DESCRIPTION"
-type = 1
+name = "item.sleeping-powder"
+description = "item.sleeping-powder.description"
 mana = 0
 cost = 4
 tags = Array[String]([])

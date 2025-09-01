@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://cxn3q6eomkwwi"]
 
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_6ckc4"]
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_k2ei0"]
-[ext_resource type="Script" uid="uid://bwt5teaqgnp7l" path="res://Assets/items/Extra Pocket.gd" id="2_tuwl7"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_k2ei0"]
+[ext_resource type="Script" uid="uid://bwt5teaqgnp7l" path="res://Assets/Items/Extra Pocket.gd" id="2_tuwl7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8vq1i"]
 atlas = ExtResource("1_k2ei0")
@@ -10,9 +10,8 @@ region = Rect2(48, 32, 16, 16)
 
 [resource]
 script = ExtResource("1_6ckc4")
-name = "ITEM_EXTRA_POCKET"
-description = "ITEM_EXTRA_POCKET_DESCRIPTION"
-type = 0
+name = "item.extra-pocket"
+description = "item.extra-pocket.description"
 mana = 0
 cost = 4
 tags = Array[String]([])

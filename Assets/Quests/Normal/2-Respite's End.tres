@@ -155,8 +155,8 @@ mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("2_s5c0a")
-name = "QUEST_RESPITES_END"
-lore = "LORE_RESPITES_END"
+name = "quest.respites-end"
+lore = "quest.respites-end.lore"
 token_shop_purchase = ExtResource("5_u05ok")
 icon = SubResource("Texture2D_ah532")
 skip_unlock = false

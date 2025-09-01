@@ -26,6 +26,6 @@ name = "tokenshop/category_upgrades"
 
 [resource]
 script = ExtResource("3_chlul")
-name = "TOKEN_SHOP_CATEGORY_UPGRADES"
+name = "token-shop.category.upgrades"
 icon = SubResource("Texture2D_0f4lc")
 items = Array[ExtResource("2_6mwvg")]([ExtResource("2_k7bdy"), ExtResource("3_8qfev"), ExtResource("4_gv6f5"), ExtResource("5_tp2cj"), ExtResource("7_6rgus"), ExtResource("14_5pwke"), ExtResource("4_sklqb"), ExtResource("5_x2vp2"), ExtResource("6_pgb1v"), ExtResource("7_s1qwk"), ExtResource("9_2218y"), ExtResource("10_61hjr"), ExtResource("11_omlok"), ExtResource("12_4fylt")])

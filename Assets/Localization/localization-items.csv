@@ -1,19 +1,2066 @@
 key;en
-ITEM_BANANA_PEEL;Banana Peel
-ITEM_BANANA_PEEL_DESCRIPTION;Enchant target visible cell: each turn, kill any living object in this cell.
-ITEM_BONES;Bones
-ITEM_BONES_DESCRIPTION;Bury in a random cell to give it Sanctified, then restore lives equal to the cell's value.
-ITEM_APPLE;Apple
-ITEM_APPLE_DESCRIPTION;Restore 1 life.
-ITEM_TRAPPER;Trapper
-ITEM_TRAPPER_DESCRIPTION;Flag a monster when you begin a stage.
-ITEM_EXTRA_POCKET;Extra Pocket
-ITEM_EXTRA_POCKET_DESCRIPTION;You may find duplicate items. When you enter a stage, reduce the minimum power by your highest number of duplicates.
-ITEM_LOUPE;Loupe
-ITEM_LOUPE_DESCRIPTION;Diamonds are worth 1 more coin.
-ITEM_WALLET;Wallet
-ITEM_WALLET_DESCRIPTION;Item Shops have 1 extra item.
-ITEM_LIQUID_GOLD;Liquid Gold
-ITEM_LIQUID_GOLD_DESCRIPTION;When you spend coins, this transforms into an item worth the amount spent.
-ITEM_WOODEN_BOW;Wooden Bow
-ITEM_WOODEN_BOW_DESCRIPTION;Reveal target cell if it's not already open. If the cell has a monster, kill it, otherwise you lose this item.
+
+item.abacus;Abacus
+item.abacus.description;If you have to guess, solve a random cell. Repeat until you no longer have to guess.
+item.ace-of-spades;Ace of Spades
+item.ace-of-spades.description;If the sum value of target visible 3x3 area is exactly 21, gain a revive.
+item.acupuncture;Acupuncture
+item.acupuncture.description;Lose 1 life and gain 2 defense.
+item.adrenaline;Adrenaline
+item.adrenaline.description;Gain 5 defense. Every 30 turns, lose 1 defense until you have none.
+item.adventurer's-hat;Adventurer's Hat
+item.adventurer's-hat.description;[1 Head Armor] Fortify by 5 whenever you gain a legendary or divine item.
+item.alchemize;Alchemize
+item.alchemize.description;Transform all of your items into 10 coins each.
+item.alcohol;Alcohol
+item.alcohol.description;Full heal, then gain souls equal to your life. Every 5 turns, you lose 1 life.
+item.alien-blaster;Alien Blaster
+item.alien-blaster.description;Does weird things to a target living object. Maybe we shouldn't mess with this?
+item.allgem;Allgem
+item.allgem.description;Enchant target cell: apply a random aura to this cell each turn.
+item.altar-of-blood;Altar of Blood
+item.altar-of-blood.description;Automatically discharges whenever you take less damage than the max stage power. The max stage power becomes the amount of damage taken.
+item.amber-of-healing;Amber of Healing
+item.amber-of-healing.description;Target cell gains or loses Sanctified.
+item.ambrosia;Ambrosia
+item.ambrosia.description;Every 400 cells opened, you win the current stage.
+item.ancient-coin;Ancient Coin
+item.ancient-coin.description;Gain coins equal to the combined value of the visible cells with the highest value.
+item.ancient-evil;Ancient Evil
+item.ancient-evil.description;When you enter the final stage, lose this item and gain two omens.
+item.angel-of-stone;Angel of Stone
+item.angel-of-stone.description;Guarantees 1 Mystic Statue per stage. Whenever you activate a Mystic Statue, restore 5 lives.
+item.ankh.divine;Divine Ankh
+item.ankh.divine.description;Negates death once. At the end of the stage, if you've opened at least 50 cells without making a mistake and have no revives, gain a revive.
+item.ankh;Ankh
+item.ankh.description;Negates death once.
+item.antipoison;Antipoison
+item.antipoison.description;Destroy all of your status effect omens. For the next 10 turns, you are immune to omens.
+item.anvil;Anvil
+item.anvil.description;Gain a random armor item whenever you enter a special stage. Whenever you gain defense, fortify all of your armor by the same amount.
+item.appetizer;Appetizer
+item.appetizer.description;Restore 1 life whenever you spend at least 5 coins.
+item.apple;Apple
+item.apple.description;Restore 1 life.
+item.apple-bonsai;Apple Bonsai
+item.apple-bonsai.description;After 10 turns, gain an Apple.
+item.arcane-barrier;Arcane Barrier
+item.arcane-barrier.description;Whenever a monster is revealed, activate a random targeted magic item on its cell before taking damage.
+item.arcane-staff;Arcane Staff
+item.arcane-staff.description;The first diamond you collect each turn will fully charge a random magic item.
+item.archmage-sceptre;Archmage Sceptre
+item.archmage-sceptre.description;Whenever a heart is collected, duplicast your magic items.
+item.archon-shield;Archon Shield
+item.archon-shield.description;Monsters roll five times for damage and use the weakest result.
+item.aspect-of-the-bear;Aspect of the Bear
+item.aspect-of-the-bear.description;Every 100 cells you open, restore your life to max.
+item.aspect-of-the-owl;Aspect of the Owl
+item.aspect-of-the-owl.description;Every 100 cells you open, fully charge your magic items.
+item.astral-spike;Astral Spike
+item.astral-spike.description;Targeted items affect the entire column of cells.
+item.astrolabe;Astrolabe
+item.astrolabe.description;At the start of each stage, reveal any cells that have guaranteed objects in a 3x3 area.
+item.auramancer-doll;Auramancer Doll
+item.auramancer-doll.description;Apply random auras to a number of cells equal to triple your mastery charges at the start of each stage, and when your mastery ability is activated.
+item.auramancer's-memento;Auramancer's Memento
+item.auramancer's-memento.description;Increase your life cap for the next dimension by 3 for each different type of aura in the Metagate.
+item.badge-of-honor;Badge of Honor
+item.badge-of-honor.description;Every 15 cells you open without making a mistake, reduce the monster count of all other stages by 1.
+item.badge-of-infamy;Badge of Infamy
+item.badge-of-infamy.description;Whenever a monster dies or flees, reduce the monster count of all other stages.
+item.bag-of-coal;Bag of Coal
+item.bag-of-coal.description;Automatically discharges when you lose morality. Gain Coal, then apply Burning to a random cell for each Coal you have.
+item.bag-of-tricks;Bag of Tricks
+item.bag-of-tricks.description;Use random targeted magic effect on target 3x3 area. Do you feel lucky, punk?
+item.bag-of-tricks.divine;Divine Bag of Tricks
+item.bag-of-tricks.divine.description;Use random targeted magic effects on target 3x3 area. This could get messy.
+item.bagman-medal;Bagman Medal
+item.bagman-medal.description;Stages have an additional Bagman.
+item.ball-and-chain;Ball and Chain
+item.ball-and-chain.description;You will not discover landmarks.
+item.banana;Banana
+item.banana.description;Gain 2 defense, then transform this into Banana Peel.
+item.banana-peel;Banana Peel
+item.banana-peel.description;Enchant target visible cell: each turn, kill any living object in this cell.
+item.bandana;Bandana
+item.bandana.description;[2 Head Armor] Instead of spending coins, reduce the durability of this armor by 1.
+item.bank-roll;Bank Roll
+item.bank-roll.description;Automatically discharges when you spend coins. Gain the amount of coins spent.
+item.banker-doll;Banker Doll
+item.banker-doll.description;Gain 5 coins times your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.banker's-memento;Banker's Memento
+item.banker's-memento.description;If you step through the Dimensional Portal with at least 100 coins, you will start the next dimension with 30 coins.
+item.banner.divine;Divine Banner
+item.banner.divine.description;Spawn a familiar in target empty cell, the value of which then determines the number of additional Familiars to spawn.
+item.banner;Banner
+item.banner.description;Spawn a familiar in target empty cell.
+item.barbarian-doll;Barbarian Doll
+item.barbarian-doll.description;Activate Rotting Head for every 2 mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.barbarian's-memento;Barbarian's Memento
+item.barbarian's-memento.description;Whenever a Guide is killed, reduce the cost of other visible Guides by 10.
+item.barbecue.divine;Divine Barbecue
+item.barbecue.divine.description;Destroy all of your Minions and spawn 2 souls for each.
+item.barbecue;Barbecue
+item.barbecue.description;Consume a random meat item to gain a soul.
+item.barricade;Barricade
+item.barricade.description;Spawn a familiar near target visible cell, then enchant the target cell: block living objects and disperse projectiles.
+item.baseball-bat;Baseball Bat
+item.baseball-bat.description;You may left click a projectile to rotate its direction of travel, clockwise.
+item.basilisk-eye;Basilisk Eye
+item.basilisk-eye.description;Solve a number of random cells equal to your sealed inventory slots plus 1.
+item.battering-ram;Battering Ram
+item.battering-ram.description;At the start of each stage, reveal all cells near visible cells and kill any monsters within.
+item.battery;Battery
+item.battery.description;Fully charge your mastery.
+item.battleaxe;Battleaxe
+item.battleaxe.description;You can powerchord any cell of value 4 or greater.
+item.batwing-boots;Batwing Boots
+item.batwing-boots.description;[3 Leg Armor] Every 50 turns, gain a random omen if you just clicked on a 3 or greater.
+item.beach-ball.divine;Divine Beach Ball
+item.beach-ball.divine.description;Made of indestructible materials.
+item.beach-ball;Beach Ball
+item.beach-ball.description;Throw at target stranger and be prepared to have a radical time, dude!
+item.beacon;Beacon
+item.beacon.description;Whenever a monster is revealed by an effect, it has a 50% chance to flee.
+item.beaker;Beaker
+item.beaker.description;Scientists are more common and cost half as much. You may right click a Scientist to change his effect for 1 coin.
+item.beggar's-cup;Beggar's Cup
+item.beggar's-cup.description;Activate all visible strangers for free.
+item.bellows;Bellows
+item.bellows.description;Whenever you discover a 5 or greater, it gains Burning. Burning cells have a 5% chance to send a Flare in a random direction each turn.
+item.berserker-necklace;Berserker Necklace
+item.berserker-necklace.description;You have an additional 5% chance to powerchord.
+item.berserker-ring;Berserker Ring
+item.berserker-ring.description;You have an additional 3% chance to powerchord.
+item.big-candy;Big Candy
+item.big-candy.description;50% chance to spawn a heart during the next 100 turns.
+item.big-fish;Big Fish
+item.big-fish.description;Cook by removing Burning from target visible cell, then restore 3 lives. Or sell raw at an Item Shop for 30 coins.
+item.big-minion;Big Minion
+item.big-minion.description;Whenever you discover a 5 or greater, reveal a random nearby 3x3 area and kill any monsters within. If you're about to take damage, this Minion will sacrifice itself to deflect 10 damage.
+item.big-wallet;Big Wallet
+item.big-wallet.description;Shops have 3 extra items.
+item.bindle;Bindle
+item.bindle.description;Nomads are more common and cost half as much. You may right click a Nomad to refresh his inventory for 3 coins.
+item.binoculars;Binoculars
+item.binoculars.description;Minions spawn in the wild.
+item.binoculars.divine;Divine Binoculars
+item.binoculars.divine.description;Lots of Minions spawn in the wild.
+item.birthright;Birthright
+item.birthright.description;Gain a random favored item at the start of each stage. You are even more likely to find favored items.
+item.black-belt;Black Belt
+item.black-belt.description;When you enter a stage, gain souls equal to the number of times your mastery's ultimate ability has been activated.
+item.black-rose;Black Rose
+item.black-rose.description;Every 20 turns, convert all visible loot to omens.
+item.blackmail;Blackmail
+item.blackmail.description;When you would gain an item, lose this item instead.
+item.blacksmith-medal;Blacksmith Medal
+item.blacksmith-medal.description;Stages have an additional Blacksmith.
+item.bleeding-heart;Bleeding Heart
+item.bleeding-heart.description;Whenever you lose life, lose the same amount of life after 50 turns.
+item.blessed-clasp;Blessed Clasp
+item.blessed-clasp.description;Each stage, negate incoming damage until after your first mistake.
+item.blighted-totem;Blighted Totem
+item.blighted-totem.description;Every 50 turns, increase the power of all stages by 1.
+item.blind-justice;Blind Justice
+item.blind-justice.description;Whenever you gain an omen, destroy it as well as the first item in your inventory.
+item.blindfold;Blindfold
+item.blindfold.description;When you enter a stage, it gains a random stage mod.
+item.blissful-amulet;Blissful Amulet
+item.blissful-amulet.description;40% chance to spawn a heart whenever you pick up a coin.
+item.blissful-gut;Blissful Gut
+item.blissful-gut.description;Right-click to consume the first item in your inventory and restore 1 life.
+item.blissful-ring;Blissful Ring
+item.blissful-ring.description;20% chance to spawn a heart whenever you pick up a coin.
+item.blood-compass;Blood Compass
+item.blood-compass.description;Solve a cell and lose 1 life. This item has a 90% chance to remain charged after use.
+item.blood-golem;Blood Golem
+item.blood-golem.description;Every 100 cells you open, gain 1 soul.
+item.blood-magic.divine;Divine Blood Magic
+item.blood-magic.divine.description;Kill a random visible monster and gain 200 mana.
+item.blood-magic;Blood Magic
+item.blood-magic.description;Gain 50 mana and lose 1 life.
+item.blood-oil;Blood Oil
+item.blood-oil.description;When you enter a stage, increase the monster count by 10.
+item.bloodbank;Bloodbank
+item.bloodbank.description;When you complete a stage, gain 1 max life for every diamond or chest left behind.
+item.bloodcoil;Bloodcoil
+item.bloodcoil.description;For 3 turns, any monster damage you would take heals you instead.
+item.bloomberries.divine;Divine Bloomberries
+item.bloomberries.divine.description;Gain 3 max lives.
+item.bloomberries;Bloomberries
+item.bloomberries.description;Gain 1 max life.
+item.blowpipe;Blowpipe
+item.blowpipe.description;Kill target visible monster. It will drop an item.
+item.blue-dye;Blue Dye
+item.blue-dye.description;You will only find magic items until you gain a magic item.
+item.blue-egg;Blue Egg
+item.blue-egg.description;You must have 3 or more magic items to open this egg!
+item.blueberry;Blueberry
+item.blueberry.description;Duplicast your magic items, then manalock them for 20 turns.
+item.bomb;Bomb
+item.bomb.description;Explode target numbered cell in a 3x3 area.
+item.bomb.divine;Divine Bomb
+item.bomb.divine.description;Explode all visible cells of value 5 and greater, and all nearby cells.
+item.bone-baton;Bone Baton
+item.bone-baton.description;Convert all visible loot to Bones.
+item.bone-baton.divine;Divine Bone Baton
+item.bone-baton.divine.description;Gain Bones. While charged, you can bury Bones in hidden cells to reveal them.
+item.bone-casket;Bone Casket
+item.bone-casket.description;Item chests also contain Bones. If you are not injured when you bury Bones, gain souls instead of restoring life.
+item.bones;Bones
+item.bones.description;Bury in a random cell to give it Sanctified, then restore lives equal to the cell's value.
+item.bonfire;Bonfire
+item.bonfire.description;Burn target sign, then fully heal by passing a number of turns equal to your missing lives, restoring 1 life per turn.
+item.bonfire.divine;Divine Bonfire
+item.bonfire.divine.description;Burn target sign and gain 3 souls.
+item.book-of-combat;Book of Combat
+item.book-of-combat.description;Pick up hearts at full life to kill a random monster, revealing it if necessary.
+item.book-of-defense;Book of Defense
+item.book-of-defense.description;Pick up hearts at full life to gain defense.
+item.book-of-espionage;Book of Espionage
+item.book-of-espionage.description;Pick up hearts at full life to glean a random hidden cell.
+item.book-of-faith;Book of Faith
+item.book-of-faith.description;You are immune to omens. Destroy this item after 333 turns. Pick up hearts at full life to extend this effect by 50 turns.
+item.book-of-ghosts;Book of Ghosts
+item.book-of-ghosts.description;Pick up hearts at full life to spawn 3 Spookers.
+item.book-of-gold;Book of Gold
+item.book-of-gold.description;Pick up hearts at full life to gain 10 coins.
+item.book-of-husbandry;Book of Husbandry
+item.book-of-husbandry.description;Pick up hearts at full life to gain a Minion.
+item.book-of-love;Book of Love
+item.book-of-love.description;Pick up hearts at full life to gain a soul.
+item.book-of-maps;Book of Maps
+item.book-of-maps.description;Pick up hearts at full life to gain 1% pathfinding.
+item.book-of-mastery;Book of Mastery
+item.book-of-mastery.description;Collect hearts at full life to gain a mastery charge.
+item.book-of-maths;Book of Maths
+item.book-of-maths.description;Randomizes all numbers shown in tooltips.
+item.book-of-necromancy;Book of Necromancy
+item.book-of-necromancy.description;Pick up hearts at full life to gain Bones.
+item.book-of-rage;Book of Rage
+item.book-of-rage.description;Pick up hearts at full life to gain 1% powerchording.
+item.book-of-spells;Book of Spells
+item.book-of-spells.description;Pick up hearts at full life to gain 100 mana.
+item.book-of-truth;Book of Truth
+item.book-of-truth.description;Pick up hearts at full life to solve a random cell.
+item.bookworm-doll;Bookworm Doll
+item.bookworm-doll.description;Gain a random Book item for every 3 mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.bookworm's-memento;Bookworm's Memento
+item.bookworm's-memento.description;Keep your research subject and any items related to it for the next dimension.
+item.boom-bow;Boom Bow
+item.boom-bow.description;Reveal target cell if it's not already open. If the cell has a monster, 300 mana is returned to this item and the monster will explode in a 5x5 area after 10 turns.
+item.boomerang;Boomerang
+item.boomerang.description;Solve a random cell. It explodes. After you open 40 cells, gain Boomerang.
+item.boomerang.divine;Divine Boomerang
+item.boomerang.divine.description;Blow up a 3x3 area around a random hidden cell. After you open 50 cells, gain Boomerang.
+item.borrowed-time;Borrowed Time
+item.borrowed-time.description;Every 5 minutes, lose half of your lives.
+item.brain-in-a-vat.divine;Divine Brain in a Vat
+item.brain-in-a-vat.divine.description;Automatically discharges when you have to guess.
+item.brain-in-a-vat;Brain in a Vat
+item.brain-in-a-vat.description;Tells you whether you must make a guess to proceed.
+item.brainsap;Brainsap
+item.brainsap.description;Lose 5 coins whenever a cell becomes unflagged.
+item.brainwash;Brainwash
+item.brainwash.description;Convert all visible monsters to familiars.
+item.brass-knuckles;Brass Knuckles
+item.brass-knuckles.description;For the next 10 turns, you can powerchord any cell.
+item.breadcrumbs;Breadcrumbs
+item.breadcrumbs.description;Gain 3% pathfinding. Solve all cells near visible cells with a value equal to one-tenth of your pathfinding or less.
+item.broken-chain;Broken Chain
+item.broken-chain.description;50% chance to break your chain each turn.
+item.broken-heart;Broken Heart
+item.broken-heart.description;Your restore life effects are reduced by 1.
+item.broken-mirror;Broken Mirror
+item.broken-mirror.description;50% chance to negate item effects.
+item.broken-pocket;Broken Pocket
+item.broken-pocket.description;You cannot use items that you have more than one of.
+item.broken-rib;Broken Rib
+item.broken-rib.description;Your defense is capped to the minimum stage power.
+item.broken-sawblade;Broken Sawblade
+item.broken-sawblade.description;After opening 50 cells, spawn a Sawblade.
+item.bronze-boots;Bronze Boots
+item.bronze-boots.description;[2 Leg Armor] Basic leg armor.
+item.bronze-chestplate;Bronze Chestplate
+item.bronze-chestplate.description;[5 Body Armor] Basic body armor.
+item.bronze-helmet;Bronze Helmet
+item.bronze-helmet.description;[3 Head Armor] Basic head armor.
+item.brotherhood-crest;Brotherhood Crest
+item.brotherhood-crest.description;Mercenaries are more common and cost half as much. Before hiring, you may right click on a Mercenary to relocate him to a random cell for 1 coin.
+item.bubble-boots;Bubble Boots
+item.bubble-boots.description;[1 Leg Armor] Every 50 cells opened, bubble all of your armor if you just clicked on a 3 or greater.
+item.bubble-chestplate;Bubble Chestplate
+item.bubble-chestplate.description;[6 Body Armor] Fortify whenever you pop a bubble.
+item.bubble-helmet;Bubble Helmet
+item.bubble-helmet.description;[2 Head Armor] Fortify whenever you pop a bubble. If this armor survives damage, bubble it.
+item.bubble-rod;Bubble Rod
+item.bubble-rod.description;Trap all visible objects in bubbles.
+item.bubble-solution;Bubble Solution
+item.bubble-solution.description;Trap all visible objects on numbered cells in bubbles, then restore 1 life for each object trapped this way.
+item.bubble-wrap;Bubble Wrap
+item.bubble-wrap.description;Bubble the last item in your inventory, as long as it isn't Bubble Wrap.
+item.bubble-wrap.divine;Divine Bubble Wrap
+item.bubble-wrap.divine.description;Bubble 5 random items that aren't Bubble Wrap.
+item.bubbler-doll;Bubbler Doll
+item.bubbler-doll.description;Duplicate random bubbles equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.bubbler's-memento;Bubbler's Memento
+item.bubbler's-memento.description;Bring up to 5 bubbles into the next dimension.
+item.buckshot;Buckshot
+item.buckshot.description;Projectiles have a 50% chance to pierce.
+item.bugle;Bugle
+item.bugle.description;Spawn familiars on the visible cell or cells with the highest value.
+item.bugle.divine;Divine Bugle
+item.bugle.divine.description;Spawn familiars on all visible cells of value 3 or greater and pass a turn.
+item.bullet-time;Bullet Time
+item.bullet-time.description;Projectiles and orbs travel slowly.
+item.bunny-doll;Bunny Doll
+item.bunny-doll.description;Spawn a Rabbit when your ultimate ability is activated.
+item.bunny-ears;Bunny Ears
+item.bunny-ears.description;[1 Head Armor] When equipped, fortify by your number of Easter eggs. Gain an additional token for every egg you put into an Egg Basket.
+item.burning-boots;Burning Boots
+item.burning-boots.description;[2 Leg Armor] Burning cells do not hurt you. Fortify whenever an object is destroyed by Burning.
+item.burnt-marshmallow;Burnt Marshmallow
+item.burnt-marshmallow.description;Burning cells deal 1 additional point of life loss. Every 50 turns, lose your first consumable item and apply Burning to a random cell.
+item.bust;Bust
+item.bust.description;Spawners are more common. Strangers are no longer killed when a Spawner breaks.
+item.butter;Butter
+item.butter.description;Drop all of your items on the ground.
+item.butterfly-amulet;Butterfly Amulet
+item.butterfly-amulet.description;Whenever you take monster damage, gain 3% evasion.
+item.caliper;Caliper
+item.caliper.description;You can see information about locked stages.
+item.calling-card;Calling Card
+item.calling-card.description;Spawn a random stranger. If you have at least 50 coins, spawn 3 random strangers instead.
+item.caltrops;Caltrops
+item.caltrops.description;Spawn a Sawblade. Until your next mistake, your Sawblades can reveal flagged cells. If the flagged cell was empty, your Sawblade loses 1 lifespan.
+item.candelabra;Candelabra
+item.candelabra.description;Automatically discharges when the sum of your chain is 5 or greater. Gain a Candle, then reveal cells equal to your number of Candles.
+item.candle;Candle
+item.candle.description;Reveal a number of random cells equal to the visible cell with the highest value.
+item.candy;Candy
+item.candy.description;25% chance to spawn a heart during the next 10 turns.
+item.canteen;Canteen
+item.canteen.description;Remove all status effects.
+item.capitalism;Capitalism
+item.capitalism.description;If you spend at least 25 coins in an Item Shop, it remains open.
+item.capitalism.divine;Divine Capitalism
+item.capitalism.divine.description;If you spend coins in an Item Shop, it remains open.
+item.cardboard-box;Cardboard Box
+item.cardboard-box.description;Lose your mastery, coins, and all of your items. Get them back at the start of the next stage.
+item.cardiac-arrest;Cardiac Arrest
+item.cardiac-arrest.description;When you enter a stage, set your max lives to your lives.
+item.cattle-prod;Cattle Prod
+item.cattle-prod.description;Relocate target object to a random visible cell.
+item.cauldron.divine;Divine Cauldron
+item.cauldron.divine.description;Destroy a random omen and gain Witches Brew.
+item.cauldron;Cauldron
+item.cauldron.description;Destroy 2 random omens and gain a random magic item.
+item.caustic-wand;Caustic Wand
+item.caustic-wand.description;Whenever you target a cell with an item, take damage equal to the value of the cell.
+item.celestial-scarab;Celestial Scarab
+item.celestial-scarab.description;Whenever you discover a cell of value 6 or greater, gain 2 souls.
+item.chain-whip;Chain Whip
+item.chain-whip.description;Your familiars move extra times equal to the length of your chain. You can powerchord any cell as long as the length of your chain is 6 turns or greater.
+item.chainmail;Chainmail
+item.chainmail.description;[1 Body Armor] Fortify whenever the length of your chain becomes greater than this item's durability.
+item.chainsaw.divine;Divine Chainsaw
+item.chainsaw.divine.description;Kill target visible monster or stranger, spawn a number of Sawblades equal to the cell's value, then set the lifespan of your Sawblades to your chain length.
+item.chainsaw;Chainsaw
+item.chainsaw.description;Spawn a Sawblade on target empty cell and set its lifespan to the length of your chain.
+item.chaos-portal;Chaos Portal
+item.chaos-portal.description;Uncompletes or unlocks a random stage. Manalock for 50 turns.
+item.charge-coin;Charge Coin
+item.charge-coin.description;When you enter an Item Shop, cut the prices in half.
+item.chastity-belt;Chastity Belt
+item.chastity-belt.description;You cannot gain max life.
+item.cheap-imitation;Cheap Imitation
+item.cheap-imitation.description;All legendary items are transformed into passive items that are worth less.
+item.chef's-hat;Chef's Hat
+item.chef's-hat.description;[1 Head Armor] Whenever you consume an item, gain coins equal to half its value.
+item.chemical-rainbow;Chemical Rainbow
+item.chemical-rainbow.description;Aura types are randomized.
+item.chew-toy;Chew Toy
+item.chew-toy.description;Every 60 turns, transform a Minion into a Big Minion or gain a Minion if you don't have any.
+item.chisel;Chisel
+item.chisel.description;Upgrade target loot.
+item.chocolate;Chocolate
+item.chocolate.description;25% chance to gain 50 mana during the next 10 turns.
+item.chocolate.divine;Divine Chocolate
+item.chocolate.divine.description;25% chance to fully charge a random magic item during the next 10 turns.
+item.chromatic-boots;Chromatic Boots
+item.chromatic-boots.description;[3 Leg Armor] Every 30 turns, fortify by 1 if you just clicked on a cell with a value equal to the number of stage mods.
+item.chromatic-chestplate;Chromatic Chestplate
+item.chromatic-chestplate.description;[7 Body Armor] When you enter a stage, fortify by the number of stage mods.
+item.chromatic-choker;Chromatic Choker
+item.chromatic-choker.description;Monsters attack additional times equal to the number of stage mods.
+item.chromatic-helmet;Chromatic Helmet
+item.chromatic-helmet.description;[4 Head Armor] Whenever this takes damage, fortify by 1 if there are any stage mods.
+item.clarity;Clarity
+item.clarity.description;Flag a number of monsters equal to the current stage's max power.
+item.claw;Claw
+item.claw.description;Monsters have a 50% chance to attack an extra time.
+item.clay-figurine;Clay Figurine
+item.clay-figurine.description;While charged, all chests contain Soft Clay.
+item.cleansing-bell;Cleansing Bell
+item.cleansing-bell.description;When you complete a stage, your omens have a 50% chance to transform into a random item.
+item.climbing-claws;Climbing Claws
+item.climbing-claws.description;Whenever you discover a cell of value 6 or greater, gain 2% evasion.
+item.cloning-chamber;Cloning Chamber
+item.cloning-chamber.description;At the end of each stage, duplicate all visible objects.
+item.closed-sign;Closed Sign
+item.closed-sign.description;After you purchase an item from an Item Shop, immediately leave.
+item.cloud-dagger;Cloud Dagger
+item.cloud-dagger.description;Gain 5% evasion. When you evade a monster, kill it.
+item.clusterbang;Clusterbang
+item.clusterbang.description;Launch 3 Sawblades.
+item.coal;Coal
+item.coal.description;You cannot gain morality. Whenever you lose morality, you get burnt.
+item.cobra-totem;Cobra Totem
+item.cobra-totem.description;Enchant target visible cell, apply Toxic to it: each turn, increase the value by 1. If it's 10 or greater, kill monsters in this quadrant equal to the number of Toxic cells in this quadrant, then reset the value.
+item.coffee;Coffee
+item.coffee.description;Every 10 turns, restore 1 life until you have full life.
+item.coffee.divine;Divine Coffee
+item.coffee.divine.description;Until you make a mistake, restore 2 lives whenever you discover a cell of value 4 or greater.
+item.comeuppance;Comeuppance
+item.comeuppance.description;Whenever you collect loot, spawn a Canker in its place.
+item.comforter;Comforter
+item.comforter.description;Before entering a stage, remove a random stage mod.
+item.commander-doll;Commander Doll
+item.commander-doll.description;Spawn familiars equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.commander's-memento;Commander's Memento
+item.commander's-memento.description;Increase your life cap for the next dimensions by the number of Familiars in the Metagate.
+item.compass;Compass
+item.compass.description;Solve a random cell.
+item.contagion;Contagion
+item.contagion.description;Chests have an additional 10% chance to contain Contagion.
+item.cooties;Cooties
+item.cooties.description;Enchant target visible cell: each turn, kill any living object in this cell and apply this enchantment to a random nearby cell.
+item.cornucopia;Cornucopia
+item.cornucopia.description;If you are injured, loot may drop in cells with a value greater than 0.
+item.crown-of-thorns;Crown of Thorns
+item.crown-of-thorns.description;[6 Head Armor] Whenever this takes damage, kill the attacking monster.
+item.crucible;Crucible
+item.crucible.description;Automatically discharges when you spend coins. Gain one-tenth of the coins spent as defense, rounded down.
+item.crucifix;Crucifix
+item.crucifix.description;Whenever damage reduces your life to 1, gain a revive.
+item.cryomancy;Cryomancy
+item.cryomancy.description;When you target a cell with an item, it gains Frozen. When you complete a stage, gain 1 soul for each Frozen cell of value 5 or greater.
+item.crystal-ball;Crystal Ball
+item.crystal-ball.description;Convert target chest into an item.
+item.crystal-veins;Crystal Veins
+item.crystal-veins.description;Whenever you pick up a diamond, gain 1 soul.
+item.cudgel.divine;Divine Cudgel
+item.cudgel.divine.description;Kill strangers and landmarks in target visible 3x3 area.
+item.cudgel;Cudgel
+item.cudgel.description;Kill target stranger.
+item.cullstone;Cullstone
+item.cullstone.description;You can use uncharged magic items, consuming them after use.
+item.dagger;Dagger
+item.dagger.description;Kill visible monsters. If the monster is standing on a 3 or greater, this dagger breaks.
+item.dark-amulet;Dark Amulet
+item.dark-amulet.description;Guarantees 3 additional Dark Hearts per stage. Collect Dark Hearts to restore 3 lives and gain a random omen.
+item.dark-cloud;Dark Cloud
+item.dark-cloud.description;Solve 10 cells whenever you gain or lose an omen.
+item.dark-idol;Dark Idol
+item.dark-idol.description;50% chance to lose 1 life at the end of each stage.
+item.dark-ink;Dark Ink
+item.dark-ink.description;Transform a random omen into a random omen.
+item.dark-ink.divine;Divine Dark Ink
+item.dark-ink.divine.description;Destroy a random omen and lose lives equal to its position in your inventory.
+item.dawn-binder;Dawn Binder
+item.dawn-binder.description;The top half of each stage is Sanctified.
+item.dead-rodent;Dead Rodent
+item.dead-rodent.description;Hearts no longer drop.
+item.deciphering-rune;Deciphering Rune
+item.deciphering-rune.description;Whenever you target a visible cell with an item, solve a number of random cells equal to the value of the target.
+item.deck-of-cards;Deck of Cards
+item.deck-of-cards.description;Gain a random card item that you don't already have.
+item.deerstalker;Deerstalker
+item.deerstalker.description;[1 Head Armor] Remove all fake cell values. Cell values are always correct.
+item.demolitionist-doll;Demolitionist Doll
+item.demolitionist-doll.description;Spawn Barrels equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.demolitionist's-memento;Demolitionist's Memento
+item.demolitionist's-memento.description;Whenever you blow up an object in the Metagate, spawn a Guide.
+item.demon-seed.divine;Divine Demon Seed
+item.demon-seed.divine.description;Add a random stage mod to the selected stage for each of your omens. Then, lose all omens.
+item.demon-seed;Demon Seed
+item.demon-seed.description;Add a random stage mod to the selected stage. Then, gain souls equal to your number of omens.
+item.demon-snare;Demon Snare
+item.demon-snare.description;Flag all hidden monsters in target 7x7 area. Kill all visible monsters in this area. Remove the last boss mod from each boss in this area.
+item.dentures;Dentures
+item.dentures.description;Elders are more common. You may right click an Elder to charge your mastery instead.
+item.dessert;Dessert
+item.dessert.description;Automatically discharges whenever a status effect expires. Gain the same status effect.
+item.detective-doll;Detective Doll
+item.detective-doll.description;Solve 3 cells times your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.detective's-memento;Detective's Memento
+item.detective's-memento.description;Spawn a Guide when you activate your mastery.
+item.diamond-amulet;Diamond Amulet
+item.diamond-amulet.description;Doubles your chance to find diamonds.
+item.diamond-boots;Diamond Boots
+item.diamond-boots.description;[6 Leg Armor] Every 30 turns, spawn a number of diamonds equal to the value of the cell you just clicked on.
+item.diamond-chalice;Diamond Chalice
+item.diamond-chalice.description;Every 50 cells opened, spawn a diamond.
+item.diamond-chestplate;Diamond Chestplate
+item.diamond-chestplate.description;[14 Body Armor] Fortify by 2 whenever you collect a diamond.
+item.diamond-helmet;Diamond Helmet
+item.diamond-helmet.description;[8 Head Armor] Spawn a diamond whenever this armor takes 2 or more damage. Fortify by 1 whenever you collect a diamond.
+item.diamond-ring;Diamond Ring
+item.diamond-ring.description;Slightly increases your chance to find diamonds.
+item.diamond-rod;Diamond Rod
+item.diamond-rod.description;Convert all visible loot to diamonds.
+item.dice;Dice
+item.dice.description;Rerolls the mods on a selected stage, guaranteeing at least one stage mod.
+item.dice.divine;Divine Dice
+item.dice.divine.description;Rerolls the mods of all stages.
+item.dire-potion;Dire Potion
+item.dire-potion.description;25% chance to gain a revive. Otherwise, well... you don't want to know.
+item.directions;Directions
+item.directions.description;Gain 2% pathfinding whenever a sign spawns.
+item.dirty-soap;Dirty Soap
+item.dirty-soap.description;Orbs explode in a 3x3 area when clicked. Spawn 3 Cankers when you gain this item.
+item.disco-ball;Disco Ball
+item.disco-ball.description;Gain 30% evasion. When you successfully evade, relocate visible monsters to random cells and pass 3 turns.
+item.dizzy-stars;Dizzy Stars
+item.dizzy-stars.description;Double the value of a random cell each stage.
+item.doctor-medal;Doctor Medal
+item.doctor-medal.description;Stages have an additional Doctor.
+item.dog-food;Dog Food
+item.dog-food.description;Upgrade your Minions, or gain a Minion if you don't have any.
+item.dog-tag;Dog Tag
+item.dog-tag.description;When you enter a stage, gain souls equal to your number of Minions. If you don't have any, gain a Minion instead.
+item.doomcall;Doomcall
+item.doomcall.description;When you open half of all empty cells, spawn a Harbinger. Harbingers activate an additional time.
+item.doomcall.divine;Divine Doomcall
+item.doomcall.divine.description;Each stage has an additional Harbinger. Pay a Harbingers to make its effect beneficial.
+item.doughnut;Doughnut
+item.doughnut.description;You cannot lose other omens.
+item.dove;Dove
+item.dove.description;Every 100 cells opened, gain 1 morality. If your morality is 10 or greater, gain a soul.
+item.dowsing-rod;Dowsing Rod
+item.dowsing-rod.description;Spawn a coin whenever you discover a cell of value 4 or greater.
+item.dragon-boots;Dragon Boots
+item.dragon-boots.description;[12 Leg Armor] Ultimate leg armor.
+item.dragon-chestplate;Dragon Chestplate
+item.dragon-chestplate.description;[30 Body Armor] Ultimate body armor.
+item.dragon-helmet;Dragon Helmet
+item.dragon-helmet.description;[20 Head Armor] Ultimate head armor.
+item.dragon-knuckles;Dragon Knuckles
+item.dragon-knuckles.description;For a number of turns equal to the monsters you have killed plus 1, you can powerchord any cell.
+item.dragon-scale;Dragon Scale
+item.dragon-scale.description;Magic items will keep 50% of their mana after use.
+item.dreamborne;Dreamborne
+item.dreamborne.description;Complete the current stage. Manalock for 100 turns.
+item.dreamcatcher;Dreamcatcher
+item.dreamcatcher.description;When you start a stage, your guaranteed objects spawn inside Bubbles.
+item.drill;Drill
+item.drill.description;Enchant target visible cell: each turn, increase this cell's value by 1. If it's 10 or greater, upgrade the loot in this cell or spawn a coin here, then reset the cell value.
+item.drinking-straw;Drinking Straw
+item.drinking-straw.description;Waterboys are more common and cost half as much. You may right click to move them for free.
+item.drone;Drone
+item.drone.description;Every 20 turns, reveal a number of monsters equal to the length of your chain. Cancel this effect if you don't have a chain.
+item.drugs;Drugs
+item.drugs.description;Cells generate triple mana for the next 20 turns. Just be careful, ok?
+item.drugs.divine;Divine Drugs
+item.drugs.divine.description;Cells generate double mana until you make a mistake. Far out, man.
+item.druid-staff;Druid Staff
+item.druid-staff.description;Tame monsters into Minions.
+item.drum-of-war;Drum of War
+item.drum-of-war.description;Whenever you discover a 5 or greater, gain 1 defense.
+item.dry-spell;Dry Spell
+item.dry-spell.description;At the end of each stage, lose half of your mana.
+item.dumbbell;Dumbbell
+item.dumbbell.description;Reduce your next source of life loss by 1 plus the number of monsters you have killed.
+item.dumpster;Dumpster
+item.dumpster.description;Lose all items with a position in your inventory greater than sum of target 3x3 visible area.
+item.dusk-binder;Dusk Binder
+item.dusk-binder.description;The bottom half of each stage is Cursed.
+item.duster;Duster
+item.duster.description;Activate items that would trigger when you discover a cell of a certain value.
+item.dynamite;Dynamite
+item.dynamite.description;Explode target 3x3 area.
+item.earthblock;Earthblock
+item.earthblock.description;Stage mods cannot be created nor removed.
+item.echo-chamber;Echo Chamber
+item.echo-chamber.description;When you target a cell with an item, enchant the cell: increase the value of this cell by 1 each turn. If it's 10 or greater, use the original item here then reset the cell value.
+item.ectodrop;Ectodrop
+item.ectodrop.description;You can become a ghost. After 20 turns as a ghost, you lose.
+item.ectoplasm;Ectoplasm
+item.ectoplasm.description;You can become a ghost. After opening 200 cells as a ghost, you lose.
+item.edict-of-the-old-gods;Edict of the Old Gods
+item.edict-of-the-old-gods.description;Guarantees one Obelisk every stage. Improves the quality of your Tablets.
+item.egg-basket;Egg Basket
+item.egg-basket.description;Lose all of your Easter eggs and gain a Token for each egg lost this way.
+item.electric-chestplate;Electric Chestplate
+item.electric-chestplate.description;[5 Body Armor] Monsters in Electric cells deal normal damage. Fortify whenever you collect loot from an Electric cell.
+item.electric-eel;Electric Eel
+item.electric-eel.description;At the start of each stage, all monsters on cells of value 3 or greater gain Electric.
+item.electro-pulse;Electro Pulse
+item.electro-pulse.description;Apply Electric to all cells. After 1 turn, all cells lose their auras.
+item.electromancy;Electromancy
+item.electromancy.description;When you target a cell with an item, it gains Electric. When you complete a stage, gain 1 soul for each Electric cell of value 5 or greater.
+item.electroscope;Electroscope
+item.electroscope.description;At the start of each stage, all 0-value cells gain Electric.
+item.elemental-bullet;Elemental Bullet
+item.elemental-bullet.description;Your projectiles create aura trails.
+item.elemental-fuel;Elemental Fuel
+item.elemental-fuel.description;Spread all auras to nearby cells.
+item.elemental-knuckles;Elemental Knuckles
+item.elemental-knuckles.description;For a number of turns equal to the sum of target visible 3x3 area, you can powerchord any cell that has an aura.
+item.elfnip;Elfnip
+item.elfnip.description;Known for its powerful intoxicating properties among the Elf folk. Banned in the North Pole. Do not give to children.
+item.elixir;Elixir
+item.elixir.description;Gain between 1 and 3 souls.
+item.elven-whistle;Elven Whistle
+item.elven-whistle.description;For 5 turns, solve a cell each turn. This effect lasts an additional turn for each of your Minions.
+item.emergency-rations;Emergency Rations
+item.emergency-rations.description;If you have to guess, gain a revive. If not, you die.
+item.empty-chest;Empty Chest
+item.empty-chest.description;Stages no longer have a guaranteed chest.
+item.enchanted-blade;Enchanted Blade
+item.enchanted-blade.description;Kill target living object and enchant its cell: each turn, increase this cell's value by 1. If it's 10 or greater, spawn and kill the same living object, then reset the cell value.
+item.enchanted-boots;Enchanted Boots
+item.enchanted-boots.description;[2 Leg Armor] Every 30 turns, enchant the last cell you opened: increase the value of this cell by 1 each turn. If it's 10 or greater, reset its value and fortify all of your armor by the value.
+item.enchanted-chestplate;Enchanted Chestplate
+item.enchanted-chestplate.description;[5 Body Armor] Fortify by the cell value whenever you enchant a cell.
+item.enchanted-helmet;Enchanted Helmet
+item.enchanted-helmet.description;[3 Head Armor] When equipped, fortify by the number of enchanted cells.
+item.enchanting-rune;Enchanting Rune
+item.enchanting-rune.description;Magic items will trigger an extra time.
+item.essence-of-affluence;Essence of Affluence
+item.essence-of-affluence.description;Gain coins in increments of 5 equal to one-tenth the sum of target visible 3x3 area, rounded down.
+item.essence-of-creation;Essence of Creation
+item.essence-of-creation.description;Gain Minions equal to one-tenth the sum of target visible 3x3 area, rounded down.
+item.essence-of-death;Essence of Death
+item.essence-of-death.description;Gain Bones equal to one-tenth the sum of target visible 3x3 area, rounded down.
+item.essence-of-motion;Essence of Motion
+item.essence-of-motion.description;Gain pathfinding equal to one-tenth the sum of target visible 3x3 area, rounded down.
+item.essence-of-security;Essence of Security
+item.essence-of-security.description;Gain defense equal to one-tenth the sum of target visible 3x3 area, rounded down.
+item.essence-of-strength;Essence of Strength
+item.essence-of-strength.description;Gain souls equal to one-tenth the sum of target visible 3x3 area, rounded down.
+item.eternal-jelly;Eternal Jelly
+item.eternal-jelly.description;Convert a random duplicate item into an item worth around twice as much, then gain a copy of this item.
+item.ether-totem;Ether Totem
+item.ether-totem.description;Enchant target visible cell, apply Ethereal to it: each turn, increase the value by 1. If it's 10 or greater, kill monsters in this quadrant equal to the number of Ethereal cells in this quadrant, then reset the value.
+item.ethermancy;Ethermancy
+item.ethermancy.description;When you target a cell with an item, it gains Ethereal.
+item.event-horizon;Event Horizon
+item.event-horizon.description;Targeted items affect the entire row of cells.
+item.evermetal;Evermetal
+item.evermetal.description;Gain 1 defense.
+item.evil-container.divine;Divine Evil Container
+item.evil-container.divine.description;Lose all of your omens. 10% chance to get them back at the start of each stage.
+item.evil-container;Evil Container
+item.evil-container.description;Lose all of your omens. Get them back at the start of the next stage.
+item.excalibur;Excalibur
+item.excalibur.description;You can kill monsters and bosses if your morality is 30 or greater. Lose this item if you are immoral.
+item.exorcist-doll;Exorcist Doll
+item.exorcist-doll.description;Lose an omen for every 2 mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.exorcist's-memento;Exorcist's Memento
+item.exorcist's-memento.description;If you have no omens when a Guide spawns, increase his reward amount by 1.
+item.explosive-gut;Explosive Gut
+item.explosive-gut.description;Whenever you lose an item, explode 4 random cells.
+item.extortion;Extortion
+item.extortion.description;Lose a random item every 20 turns.
+item.extra-pocket;Extra Pocket
+item.extra-pocket.description;You may find duplicate items. When you enter a stage, reduce the minimum power by your highest number of duplicates.
+item.extravagance;Extravagance
+item.extravagance.description;Gain 3 copies of the next item you consume, then lose this item.
+item.eye-of-the-tiger;Eye of the Tiger
+item.eye-of-the-tiger.description;Automatically discharges when you discover a cell of value 5 or greater and correctly flags the surrounding cells.
+item.eyepatch;Eyepatch
+item.eyepatch.description;Chance to find treasure increases with missing life.
+item.fairy;Fairy
+item.fairy.description;Reduce the current stage's max power to its min power.
+item.fairy.divine;Divine Fairy
+item.fairy.divine.description;Reduce the current stage's power to 1.
+item.fairy-queen;Fairy Queen
+item.fairy-queen.description;When you enter a stage, reduce the minimum stage power to 1.
+item.fake-candy;Fake Candy
+item.fake-candy.description;Spawn a Dark Heart every 10 turns. Whenever a heart is collected, increase the stage power.
+item.fake-moustache;Fake Moustache
+item.fake-moustache.description;Whenever you discover a 3 or greater, glean all nearby hidden cells.
+item.false-lamb;False Lamb
+item.false-lamb.description;Stages have 2 Cursed cells for each of your omens. Monsters are empowered by empty Cursed cells.
+item.false-map;False Map
+item.false-map.description;Lose 5% pathfinding at the end of each stage.
+item.fan;Fan
+item.fan.description;Auras and enchantments move.
+item.fancy-ring;Fancy Ring
+item.fancy-ring.description;Triples your chance to find coins.
+item.faulty-bomb;Faulty Bomb
+item.faulty-bomb.description;After 500 turns, this item will blow up and kill you.
+item.faulty-firecracker;Faulty Firecracker
+item.faulty-firecracker.description;Your targeted items have a 50% chance to explode the target instead, burning you and destroying the item in the process.
+item.feather;Feather
+item.feather.description;Monster damage is capped to your number of items.
+item.fel-bracers;Fel Bracers
+item.fel-bracers.description;Monsters roll extra times for damage equal to your number of omens, and use the weakest result.
+item.feral-fibers;Feral Fibers
+item.feral-fibers.description;Gain Minions equal to the current stage's minimum power.
+item.fig-leaf;Fig Leaf
+item.fig-leaf.description;Unequip your armor. You cannot wear armor.
+item.finality;Finality
+item.finality.description;You cannot be revived.
+item.fire-bomb;Fire Bomb
+item.fire-bomb.description;Apply Burning to a 3x3 area around target cell.
+item.fire-totem;Fire Totem
+item.fire-totem.description;Enchant target visible cell, apply Burning to it: each turn, increase the value by 1. If it's 10 or greater, kill monsters in this quadrant equal to the number of Burning cells in this quadrant, then reset the value.
+item.fireball;Fireball
+item.fireball.description;Send Flares in all directions from target visible cell.
+item.firefly-doll;Firefly Doll
+item.firefly-doll.description;Burn random monsters equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.firefly's-memento;Firefly's Memento
+item.firefly's-memento.description;Increase your life cap for the next dimension by the number of Burning cells in the Metagate.
+item.fireplace;Fireplace
+item.fireplace.description;Every 30 turns, each stage gains a Burning cell. Glean cells near Burning cells.
+item.firm-fibers;Firm Fibers
+item.firm-fibers.description;Gain defense equal to the current stage's minimum power.
+item.first-aid;First Aid
+item.first-aid.description;When you enter a stage, restore 1 life each turn until you make a mistake.
+item.fish;Fish
+item.fish.description;Cook by removing Burning from target visible cell, then restore 2 lives. Or sell raw at an Item Shop for 10 coins.
+item.fishing-pole.divine;Divine Fishing Pole
+item.fishing-pole.divine.description;You can go fishing at Wishpools. Guarantees 1 Wishpool per stage. Wishpools spawn with 3 additional charges.
+item.fishing-pole;Fishing Pole
+item.fishing-pole.description;Guarantees 1 Wishpool per stage. You may right click a Wishpool to go fishing: reduce its charges by 1, pass a turn, and see what you reel in!
+item.flashbang;Flashbang
+item.flashbang.description;Reveal quadrant around target cell.
+item.flashlight;Flashlight
+item.flashlight.description;Reveal target cell causing its monster to flee, then remove Dark mod from the current stage.
+item.flavor-enhancer;Flavor Enhancer
+item.flavor-enhancer.description;Whenever you consume an item, activate its effect again.
+item.flower-fibers;Flower Fibers
+item.flower-fibers.description;Gain max life equal to the current stage's minimum power.
+item.flying-carpet;Flying Carpet
+item.flying-carpet.description;Gain 20% pathfinding and manalock for 100 turns. Lose the same amount of pathfinding after 100 turns.
+item.fool's-gold;Fool's Gold
+item.fool's-gold.description;Coin chests will instead steal your money.
+item.forge-hammer.divine;Divine Forge Hammer
+item.forge-hammer.divine.description;Fortify each armor by 100% of its current durability. If you are not wearing armor, gain 3 defense instead.
+item.forge-hammer;Forge Hammer
+item.forge-hammer.description;Fortify your leftmost armor by 100% of its current durability.
+item.fortune-cookie;Fortune Cookie
+item.fortune-cookie.description;Adds the Trusty mod to the selected stage.
+item.fossil;Fossil
+item.fossil.description;Convert target stranger or monster into a landmark.
+item.friendly-fire;Friendly Fire
+item.friendly-fire.description;Strangers send a Flare in a random direction each turn.
+item.friendly-mimic;Friendly Mimic
+item.friendly-mimic.description;Your chests are strong familiars. You can still open them.
+item.friendship-amulet;Friendship Amulet
+item.friendship-amulet.description;Doubles your chance to find strangers.
+item.friendship-ring;Friendship Ring
+item.friendship-ring.description;Slightly increases your chance to find strangers.
+item.frost-blade;Frost Blade
+item.frost-blade.description;Freeze target visible living object or explode target Frozen cell in a 5x5 area.
+item.frostbite;Frostbite
+item.frostbite.description;Automatically discharges whenever you discover a 4 or greater and freezes 1 to 3 random monsters.
+item.frozen-asset;Frozen Asset
+item.frozen-asset.description;You cannot gain more than 1 coin at a time. 50% chance to apply Frozen to coin drops.
+item.frozen-helmet;Frozen Helmet
+item.frozen-helmet.description;[3 Head Armor] All Frozen cells are gleaned. Fortify whenever a monster becomes frozen.
+item.fruit-of-labor;Fruit of Labor
+item.fruit-of-labor.description;After 50 turns without making a mistake, you win the current stage.
+item.gambler-medal;Gambler Medal
+item.gambler-medal.description;Stages have an additional Gambler.
+item.garlic;Garlic
+item.garlic.description;You are immune to omens until your next mistake.
+item.garlic.divine;Divine Garlic
+item.garlic.divine.description;You are immune to omens until your next mistake. Lose a random omen when this status effect expires.
+item.gearcheck.divine;Divine Gearcheck
+item.gearcheck.divine.description;Items from chests will drop on the ground.
+item.gearcheck;Gearcheck
+item.gearcheck.description;Non-omen items from chests will drop on the ground.
+item.gemcut-glove;Gemcut Glove
+item.gemcut-glove.description;Many of your diamonds will be purple diamonds.
+item.genie-lamp;Genie Lamp
+item.genie-lamp.description;After each stage, you will visit a random special stage.
+item.ghillie-suit;Ghillie Suit
+item.ghillie-suit.description;[3 Body Armor] At the start of each stage, obscure all visible numbered cells. Negate damage from monsters near obscured cells.
+item.ghost-doll;Ghost Doll
+item.ghost-doll.description;Activate Ectoplasm and set its counter to 30 times your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.ghost's-memento;Ghost's Memento
+item.ghost's-memento.description;Gain Ectoplasm when you enter the Dimensional Portal. Keep it for the next dimension.
+item.gift-card;Gift Card
+item.gift-card.description;Receive a random shop item for free.
+item.gift-card.divine;Divine Gift Card
+item.gift-card.divine.description;Receive selected shop item for free.
+item.giftwrap;Giftwrap
+item.giftwrap.description;Transform a random item into a Present.
+item.giga-health-potion;Giga Health Potion
+item.giga-health-potion.description;When you gain this item, restore your life to max and gain 10 souls. When you lose this item, cut your max lives in half.
+item.giga-mana-potion;Giga Mana Potion
+item.giga-mana-potion.description;When you gain this item, fully charge and duplicast your magic items. When you lose this item, deplete your mana.
+item.glass-knuckles;Glass Knuckles
+item.glass-knuckles.description;You cannot powerchord. Whenever you chord a 1, lose 1 life.
+item.glasses;Glasses
+item.glasses.description;Gain 10% pathfinding. Lose the same amount if you lose this item.
+item.glasses.divine;Divine Glasses
+item.glasses.divine.description;Gain 15% pathfinding. Lose all of your pathfinding if you lose this item.
+item.glitch;Glitch
+item.glitch.description;Spawn a Canker. Your orbs move erratically.
+item.glowspore;Glowspore
+item.glowspore.description;Each point of mana replenishes all of your magic items.
+item.gluttony;Gluttony
+item.gluttony.description;Whenever you gain a consumable item, use it right away.
+item.gnarled-branch;Gnarled Branch
+item.gnarled-branch.description;If you use a magic item, you lose that item.
+item.god-potion;God Potion
+item.god-potion.description;Gain 1 revive.
+item.god-rays;God Rays
+item.god-rays.description;Double your morality. If your absolute morality is 30 or greater, reduce the stage power to 1.
+item.godly-goblet;Godly Goblet
+item.godly-goblet.description;Lose a legendary item and gain a revive.
+item.godmonger;Godmonger
+item.godmonger.description;You may have multiple legendary items.
+item.gold-digger;Gold Digger
+item.gold-digger.description;Items you find will be worth at least 30 coins.
+item.golden-amulet;Golden Amulet
+item.golden-amulet.description;Doubles your chance to find coins.
+item.golden-apple;Golden Apple
+item.golden-apple.description;Gain 3 souls and lose all of your coins.
+item.golden-boots;Golden Boots
+item.golden-boots.description;[3 Leg Armor] Every 10 turns, spawn 10 coins if you just clicked on a 4 or greater.
+item.golden-chalice;Golden Chalice
+item.golden-chalice.description;Gain between 1 and 5 coins.
+item.golden-chestplate;Golden Chestplate
+item.golden-chestplate.description;[9 Body Armor] If this armor would break, lose all of your coins and fortify by 1 for every 5 coins lost this way.
+item.golden-flea;Golden Flea
+item.golden-flea.description;When you enter a stage, increase the monster count for every 10 coins you have.
+item.golden-goose;Golden Goose
+item.golden-goose.description;Every 50 cells opened, gain between 25 and 100 coins.
+item.golden-helmet;Golden Helmet
+item.golden-helmet.description;[5 Head Armor] Spawn 5 coins whenever this armor takes damage. Fortify by 1 whenever you collect a coin from a cell with a value of 3 or greater.
+item.golden-ring;Golden Ring
+item.golden-ring.description;Slightly increases your chance to find coins.
+item.golden-rose;Golden Rose
+item.golden-rose.description;Take 1 damage and gain 10 coins.
+item.golem-glove;Golem Glove
+item.golem-glove.description;Coin drops are converted to monsters.
+item.gospel;Gospel
+item.gospel.description;Priests are more common and cost half as much. They will remove all of your omens at once.
+item.grapes;Grapes
+item.grapes.description;Gain souls equal to your defense and gain defense equal to your lives, up to a maximum of 5 each.
+item.grappling-hook;Grappling Hook
+item.grappling-hook.description;Reveal the corner cells.
+item.gravedigger;Gravedigger
+item.gravedigger.description;Whenever you lose an item, get it back after 100 turns.
+item.gray-dye;Gray Dye
+item.gray-dye.description;You will only find passive items until you gain a passive item.
+item.gray-egg;Gray Egg
+item.gray-egg.description;You must have 4 or more passive items to open this egg!
+item.grease;Grease
+item.grease.description;Every 20 turns, all visible monsters that are not in the quadrant of the cell you open will flee. Whenever a monster flees, add it to the next stage.
+item.greedy-pig;Greedy Pig
+item.greedy-pig.description;Lose up to half your coins at the end of each stage.
+item.green-dye;Green Dye
+item.green-dye.description;You will only find consumable items until you gain a consumable item.
+item.green-egg;Green Egg
+item.green-egg.description;You must have 5 or more consumable items to open this egg!
+item.grim-pump;Grim Pump
+item.grim-pump.description;Whenever you gain an orb, increase size and speed of all orbs.
+item.groupie;Groupie
+item.groupie.description;Each turn you click on an empty cell, a random visible stranger relocates to that cell.
+item.growing-pains;Growing Pains
+item.growing-pains.description;Monsters deal extra damage equal to your number of omens.
+item.guardian-doll;Guardian Doll
+item.guardian-doll.description;Gain defense equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.guardian's-memento;Guardian's Memento
+item.guardian's-memento.description;If you step through the Dimensional Portal with at least 20 defense, you will start the next dimension with 5 defense.
+item.guild-bond;Guild Bond
+item.guild-bond.description;For 25 seconds, whenever you spend coins on a stranger, gain a soul.
+item.gumshoes;Gumshoes
+item.gumshoes.description;[2 Leg Armor] Every 30 turns, glean all hidden cells in a 5x5 area around the cell you just clicked on.
+item.halo.divine;Divine Halo
+item.halo.divine.description;At the end of each stage, gain 1 revive and cut your max life in half. Consume the Halo when enough is enough!
+item.halo;Halo
+item.halo.description;Set your max life to 1. Gain 3 revives.
+item.hand-of-glory;Hand of Glory
+item.hand-of-glory.description;Whenever you leave a stage, steal coins from all visible strangers equal to their price.
+item.handaxe;Handaxe
+item.handaxe.description;Chop down signs.
+item.handaxe.divine;Divine Handaxe
+item.handaxe.divine.description;Chop wood.
+item.handbell;Handbell
+item.handbell.description;Spawn a random stranger in target empty cell.
+item.handcuffs;Handcuffs
+item.handcuffs.description;When you leave a stage, bubble your familiars. When a monster tries to flee, it becomes your familiar instead.
+item.happy-cloud;Happy Cloud
+item.happy-cloud.description;Gain 15% evasion. Your evasion also gives you a chance to avoid omen effects.
+item.happy-little-tree;Happy Little Tree
+item.happy-little-tree.description;Mistakes have a 75% chance to be considered happy accidents (thereby ignoring 'on mistake' effects).
+item.harbinger-medal;Harbinger Medal
+item.harbinger-medal.description;Stages have an additional Harbinger.
+item.hatchling-scale;Hatchling Scale
+item.hatchling-scale.description;Magic items will keep 25% of their mana after use.
+item.health-potion;Health Potion
+item.health-potion.description;Restores 3 lives.
+item.healthy-heart;Healthy Heart
+item.healthy-heart.description;Whenever you restore life, restore the same amount of life after 50 turns.
+item.heart-key;Heart Key
+item.heart-key.description;Whenever you collect a heart, a random visible monster becomes your familiar. Whenever a familiar dies, spawn a heart.
+item.heart-plug;Heart Plug
+item.heart-plug.description;You cannot restore more than 1 life at a time.
+item.heart-rod;Heart Rod
+item.heart-rod.description;Convert all visible loot to hearts.
+item.heart-of-steel;Heart of Steel
+item.heart-of-steel.description;Every 50 turns, gain 1 defense if you are not injured.
+item.heavy-burden;Heavy Burden
+item.heavy-burden.description;Your inventory is considered full at half capacity.
+item.hellspire;Hellspire
+item.hellspire.description;When you enter a stage, triple its minimum power.
+item.hellstone-chestplate;Hellstone Chestplate
+item.hellstone-chestplate.description;[4 Body Armor] Fortify by 3 whenever you gain an omen.
+item.helm;Helm
+item.helm.description;Treasure chests may contain more valuable items.
+item.hematic-crystal;Hematic Crystal
+item.hematic-crystal.description;Gain 30 mana for each damage taken.
+item.herbs;Herbs
+item.herbs.description;Item chests also contain a random potion.
+item.hero-brooch;Hero Brooch
+item.hero-brooch.description;When you enter a stage, reduce the max power by 1. If you have a legendary item, cut the max power in half instead.
+item.hieroglyph;Hieroglyph
+item.hieroglyph.description;Some coins will become Ancient Coins.
+item.hobo-cap;Hobo Cap
+item.hobo-cap.description;When you enter an Item Shop, increase the prices.
+item.holy-pendant;Holy Pendant
+item.holy-pendant.description;Immunity to omens.
+item.holy-ring;Holy Ring
+item.holy-ring.description;50% chance to negate the effect of an omen when it triggers.
+item.holy-ring.divine;Divine Holy Ring
+item.holy-ring.divine.description;You are immune to omens while you are injured.
+item.holy-totem;Holy Totem
+item.holy-totem.description;Enchant target visible cell, apply Sanctified to it: each turn, increase the value by 1. If it's 10 or greater, kill monsters in this quadrant equal to the number of Sanctified cells in this quadrant, then reset the value.
+item.holy-water;Holy Water
+item.holy-water.description;Lose a random omen.
+item.hook-hand;Hook Hand
+item.hook-hand.description;Your guaranteed chests will be Special Chests. Activate Special Chest effects twice.
+item.horoscope;Horoscope
+item.horoscope.description;If your morality is positive, lose a random omen. If you are immoral, gain a random omen.
+item.horseshoe;Horseshoe
+item.horseshoe.description;You will find twice as much loot until your next mistake.
+item.horseshoe.divine;Divine Horseshoe
+item.horseshoe.divine.description;Until your next mistake, you have omen immunity, chests cannot contain omens, and coins are worth 1 more.
+item.hot-sauce;Hot Sauce
+item.hot-sauce.description;Lose 1 life when you consume an item.
+item.hourglass;Hourglass
+item.hourglass.description;Double the duration of your status effects.
+item.human-cannonball;Human Cannonball
+item.human-cannonball.description;[20 Head Armor] Does not repair automatically. Whenever this takes damage, explode a number of random cells equal to the damage taken.
+item.human-doll;Human Doll
+item.human-doll.description;Gain morality equal to your mastery charges at the start of each stage, and when your ultimate ability is activated. If you are immoral, lose morality instead.
+item.human's-memento;Human's Memento
+item.human's-memento.description;Start the next dimension with half of your morality.
+item.hungry-plant-medal;Hungry Plant Medal
+item.hungry-plant-medal.description;Stages have an additional Hungry Plant.
+item.hunter-doll;Hunter Doll
+item.hunter-doll.description;Gain Minions equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.hunter's-memento;Hunter's Memento
+item.hunter's-memento.description;You will not lose your Minions when stepping through the Dimensional Portal.
+item.hunting-whistle;Hunting Whistle
+item.hunting-whistle.description;Whenever you use a Minion, gain a Minion after 50 turns.
+item.hurricane;Hurricane
+item.hurricane.description;Each stage has an additional Wishpool. You cannot activate Wishpools. Whenever a Wishpool gains a charge, drop your other items on the ground then destroy visible objects in the same quadrant as the Wishpool.
+item.hydra-tail;Hydra Tail
+item.hydra-tail.description;Whenever you gain an item, gain a copy of that item.
+item.hypertrap;Hypertrap
+item.hypertrap.description;Flag 25% of all monsters when you begin a stage.
+item.hypnotist-doll;Hypnotist Doll
+item.hypnotist-doll.description;Increase your status effect counters by 5 times your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.hypnotist's-memento;Hypnotist's Memento
+item.hypnotist's-memento.description;Increase your life cap for the next dimension by your number of status effects.
+item.hypnowatch;Hypnowatch
+item.hypnowatch.description;Delay monster damage by 1 turn.
+item.ice-bomb;Ice Bomb
+item.ice-bomb.description;Apply Frozen to a 3x3 area around target cell.
+item.ice-scraper;Ice Scraper
+item.ice-scraper.description;If target cell has Frozen, remove the aura, then solve it and all nearby cells.
+item.ice-totem;Ice Totem
+item.ice-totem.description;Enchant target visible cell, apply Frozen to it: each turn, increase the value by 1. If it's 10 or greater, kill monsters in this quadrant equal to the number of Frozen cells in this quadrant, then reset the value.
+item.immortal-doll;Immortal Doll
+item.immortal-doll.description;Gain a revive for every 3 mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.immortal's-memento;Immortal's Memento
+item.immortal's-memento.description;If you step through the Dimensional Portal with at least 3 revives, start the next dimension with a revive.
+item.infernal-scarab;Infernal Scarab
+item.infernal-scarab.description;Whenever you discover a cell of value 6 or greater, lose 1 max life.
+item.infinity-key;Infinity Key
+item.infinity-key.description;Complete the selected stage and uncomplete the surrounding stages.
+item.instant-familiar;Instant Familiar
+item.instant-familiar.description;Spawn a familiar on target empty cell and pass a turn.
+item.iron-sceptre;Iron Sceptre
+item.iron-sceptre.description;Convert all visible heart drops into defense.
+item.iron-will;Iron Will
+item.iron-will.description;Gain 3 defense whenever your armor breaks.
+item.ironbank;Ironbank
+item.ironbank.description;When you complete a stage, gain 1 defense for every diamond or chest left behind.
+item.ivory-boots;Ivory Boots
+item.ivory-boots.description;[3 Leg Armor] Every 50 turns, gain Bones equal to the value of the cell you just clicked on.
+item.ivory-chestplate;Ivory Chestplate
+item.ivory-chestplate.description;[7 Body Armor] Whenever you bury Bones, fortify by the value of the cell the Bones are buried in.
+item.jack-of-clubs;Jack of Clubs
+item.jack-of-clubs.description;Replace your mastery with another random mastery. It starts fully charged.
+item.jack-o-lantern;Jack-o-Lantern
+item.jack-o-lantern.description;Reveal target cell and gain a random omen.
+item.jack-o-lantern.divine;Divine Jack-o-Lantern
+item.jack-o-lantern.divine.description;Reveal target cell, then manalock for 50 turns. Expand the radius of this item by your number of omens.
+item.jade-of-poison;Jade of Poison
+item.jade-of-poison.description;Target cell gains or loses Toxic.
+item.jester-hat;Jester Hat
+item.jester-hat.description;Monsters always deal max damage.
+item.juice;Juice
+item.juice.description;Gain a mastery charge. If you have activated your ultimate ability before, activate it now for free.
+item.jumprope;Jumprope
+item.jumprope.description;Whenever you discover a 4 or greater, pass a turn.
+item.junk;Junk
+item.junk.description;Every 100 turns, gain Junk.
+item.justice-juice;Justice Juice
+item.justice-juice.description;If you open 10 cells within 10 seconds of gaining an omen, lose the omen.
+item.key;Key
+item.key.description;Unlock the selected stage.
+item.key-of-undoing;Key of Undoing
+item.key-of-undoing.description;Uncompletes the selected stage.
+item.king-of-diamonds;King of Diamonds
+item.king-of-diamonds.description;Spawn diamonds on visible cells in target 3x3 area. Convert any diamonds that were already in this area into purple diamonds.
+item.kingmaker;Kingmaker
+item.kingmaker.description;Every 20 cells opened without making a mistake, spawn a familiar then solve all cells near your familiars.
+item.knight-doll;Knight Doll
+item.knight-doll.description;Fortify all of your armor by your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.knight's-memento;Knight's Memento
+item.knight's-memento.description;Start the next dimension with your leftmost armor. It loses any durability above its base durability.
+item.knuckle-wraps;Knuckle Wraps
+item.knuckle-wraps.description;Your next chord becomes a powerchord.
+item.kunai;Kunai
+item.kunai.description;Kill target visible monster and reveal any monsters nearby.
+item.ladybug;Ladybug
+item.ladybug.description;For a number of turns equal to your total mana plus 1, you cannot take damage from failed guesses.
+item.lance;Lance
+item.lance.description;Destroy monsters in target column.
+item.landmine;Landmine
+item.landmine.description;Enchant 10 random cells each stage: when you chord or target this cell with an item, blow up the nearby 3x3 area and remove the enchantment.
+item.lantern.divine;Divine Lantern
+item.lantern.divine.description;Glean target hidden cell. If it's a 2 or greater, this item retains its mana.
+item.lantern;Lantern
+item.lantern.description;Glean hidden cells in target 3x3 area.
+item.last-supper;Last Supper
+item.last-supper.description;Gain 1 soul for each consumable item you have. For the next 300 turns, you cannot restore life.
+item.lead-balloon;Lead Balloon
+item.lead-balloon.description;Lose 5% evasion at the end of each stage.
+item.leash;Leash
+item.leash.description;You cannot pan the board outside of view.
+item.leather-boots;Leather Boots
+item.leather-boots.description;[1 Leg Armor] Every 10 turns, gain a Minion if you just clicked on a 4 or greater.
+item.leather-coif;Leather Coif
+item.leather-coif.description;[2 Head Armor] Fortify by 1 whenever a Minion dies.
+item.leather-vest;Leather Vest
+item.leather-vest.description;[3 Body Armor] Fortify by 2 whenever a Minion dies.
+item.leeches.divine;Divine Leeches
+item.leeches.divine.description;Remove all status effects and any items they are related to. Gain a revive if you removed 3 or more status effects this way.
+item.leeches;Leeches
+item.leeches.description;Remove all status effects and any items they are related to. Restore 1 life for each status effect removed this way.
+item.leftovers;Leftovers
+item.leftovers.description;Whenever a status effect expires, gain the same status effect.
+item.library-card;Library Card
+item.library-card.description;Visit a Library from the overworld. Libraries will have an additional research subject.
+item.life-amulet;Life Amulet
+item.life-amulet.description;Doubles your chance to find hearts.
+item.life-ring;Life Ring
+item.life-ring.description;Slightly increases your chance to find lives.
+item.lightning-bug;Lightning Bug
+item.lightning-bug.description;Every 5 turns, apply electric to a random visible cell.
+item.lightning-rod;Lightning Rod
+item.lightning-rod.description;Fully discharge a random magic item instead of taking damage.
+item.lightning-totem;Lightning Totem
+item.lightning-totem.description;Enchant target visible cell, apply Electric to it: each turn, increase the value by 1. If it's 10 or greater, kill monsters in this quadrant equal to the number of Electric cells in this quadrant, then reset the value.
+item.lightpost;Lightpost
+item.lightpost.description;Enchant 10 random cells each stage: when you chord or target this cell with an item, reveal the nearby 5x5 area and remove the enchantment.
+item.lightstone-boots;Lightstone Boots
+item.lightstone-boots.description;[1 Leg Armor] Every 10 turns, reveal all cells around the cell you open.
+item.lightstone-chestplate;Lightstone Chestplate
+item.lightstone-chestplate.description;[5 Body Armor] Fortify by 2 whenever a monster is revealed by an effect.
+item.lightstone-helmet;Lightstone Helmet
+item.lightstone-helmet.description;[1 Head Armor] When equipped, reveal target column. Fortify whenever a monster is revealed by an effect.
+item.lion-tail;Lion Tail
+item.lion-tail.description;When you enter a stage, gain Minions equal to the maximum power.
+item.liquid-gold;Liquid Gold
+item.liquid-gold.description;When you spend coins, this transforms into an item worth the amount spent.
+item.loan;Loan
+item.loan.description;Gain 40 coins. Every 20 turns, spend 10 coins on debt.
+item.longbow;Longbow
+item.longbow.description;Reveal target row. Kill all monsters in the row and return 20 mana to this item for each monster killed this way.
+item.lotus;Lotus
+item.lotus.description;Restore lives equal to the value of target numbered cell.
+item.loudhailer;Loudhailer
+item.loudhailer.description;Spawn random strangers on 0-value cells within target visible 3x3 area.
+item.loupe;Loupe
+item.loupe.description;Diamonds are worth 1 more coin.
+item.lucky-bamboo;Lucky Bamboo
+item.lucky-bamboo.description;Triples your chance to find legendary and divine items.
+item.lucky-leaf;Lucky Leaf
+item.lucky-leaf.description;50% chance to negate damage.
+item.lumberjack-doll;Lumberjack Doll
+item.lumberjack-doll.description;Spawn a sawblade then reveal a number of monsters equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.lumberjack's-memento;Lumberjack's Memento
+item.lumberjack's-memento.description;Spawn a Sawblade at the start of the next dimension and set its lifespan equal to the number of orbs you had.
+item.lycan-snag;Lycan Snag
+item.lycan-snag.description;Every 20 turns, convert all strangers into monsters.
+item.lyre;Lyre
+item.lyre.description;Reduce the selected stage's monster count by 5.
+item.lyre.divine;Divine Lyre
+item.lyre.divine.description;Add 10 monsters to the selected uncompleted stage. Remove 5 monsters from all other stages.
+item.mage-medal;Mage Medal
+item.mage-medal.description;Stages have an additional Mage.
+item.magic-amulet;Magic Amulet
+item.magic-amulet.description;Cells provide 1 extra mana.
+item.magic-bones;Magic Bones
+item.magic-bones.description;Bury Bones.
+item.magic-dark-ink;Magic Dark Ink
+item.magic-dark-ink.description;Lose a number of omens equal to the value of target numbered cell, then gain that many random omens.
+item.magic-dice;Magic Dice
+item.magic-dice.description;Rerolls the mods on a selected stage, guaranteeing at least one stage mod.
+item.magic-hammer;Magic Hammer
+item.magic-hammer.description;Fortify all of your armor by 100% of their current durability.
+item.magic-minion;Magic Minion
+item.magic-minion.description;Use Minion. If you're about to take damage, this item will discharge to deflect 1 damage.
+item.magic-munchies;Magic Munchies
+item.magic-munchies.description;Gain a soul, plus 1 soul for every 200 mana you have.
+item.magic-smoke-bomb;Magic Smoke Bomb
+item.magic-smoke-bomb.description;Exit the current stage without completing. Manalock for 20 turns.
+item.magic-spoon;Magic Spoon
+item.magic-spoon.description;Whenever you consume an item, gain 50 mana.
+item.magic-totem;Magic Totem
+item.magic-totem.description;Reduce the stage power by 1.
+item.magical-bean;Magical Bean
+item.magical-bean.description;For 1 turn, your targeted items affect the entire column and row of cells.
+item.magnet;Magnet
+item.magnet.description;Relocate the closest visible object to target visible cell.
+item.magnifying-glass;Magnifying Glass
+item.magnifying-glass.description;Cell values are visible even when the cell is occupied.
+item.makeshift-weapon;Makeshift Weapon
+item.makeshift-weapon.description;Reveal and kill any monsters in target area, then lose a random weapon. The radius of this item is equal to your number of weapons.
+item.mana-lung;Mana Lung
+item.mana-lung.description;Each turn, gain mana equal to the sum of your chain.
+item.mana-potion;Mana Potion
+item.mana-potion.description;Gain 100 mana.
+item.mana-signet;Mana Signet
+item.mana-signet.description;Stages have additional Ethereal cells equal to the minimum power. When you complete a stage, gain 50 mana for each visible Ethereal cell.
+item.mana-tank;Mana Tank
+item.mana-tank.description;Gain 200 mana.
+item.manabank;Manabank
+item.manabank.description;When you complete a stage, gain 100 mana for every diamond or chest left behind.
+item.manaboard;Manaboard
+item.manaboard.description;Every 10 turns, if it's possible to fully discharge a random magic item, do so and lose 1 life.
+item.maniac's-mask;Maniac's Mask
+item.maniac's-mask.description;[1 Head Armor] Must... kill... strangers...
+item.mantis;Mantis
+item.mantis.description;When you enter a stage, gain 2 souls for every stage mod.
+item.mantis.divine;Divine Mantis
+item.mantis.divine.description;When you enter a stage with 3 or more stage mods, gain a revive.
+item.map-marker;Map Marker
+item.map-marker.description;Whenever you discover a cell of value 6 or greater, gain 2% pathfinding.
+item.mark-of-exile;Mark of Exile
+item.mark-of-exile.description;You will not discover strangers.
+item.marksman-doll;Marksman Doll
+item.marksman-doll.description;Increase the length of your chain by 3 times your mastery charges at the start of each stage, and when you activate your ultimate ability.
+item.marksman's-memento;Marksman's Memento
+item.marksman's-memento.description;Increase your life and defense cap for the next dimension by the length of your chain when you entered the portal.
+item.marshmallow.divine;Divine Marshmallow
+item.marshmallow.divine.description;Remove Burning from target 7x7 area and gain 1% pathfinding for each aura removed this way. If you removed fewer than 5, transform into Toasted Marshmallow. Otherwise, transform into Burnt Marshmallow.
+item.marshmallow;Marshmallow
+item.marshmallow.description;Remove Burning from target visible cell. If the cell has a value of 3, transform this item into Toasted Marshmallow. If the cell has a value of 4 or greater, transform this item into Burnt Marshmallow.
+item.master's-degree;Master's Degree
+item.master's-degree.description;Activate your mastery's ultimate ability, then manalock for 100 turns.
+item.matchbook.divine;Divine Matchbook
+item.matchbook.divine.description;Pyros are more common and cost half as much. They will send flares in all directions.
+item.matchbook;Matchbook
+item.matchbook.description;Pyros are more common and cost half as much. They will also send flares in the opposite direction.
+item.maul;Maul
+item.maul.description;When you enter a stage, the first cell you chord becomes a powerchord. Every 10 monsters you kill, gain a soul.
+item.medusa-head;Medusa Head
+item.medusa-head.description;Convert all visible strangers into spawners of the same type, then unseal an inventory slot for each stranger converted this way.
+item.melted-clock;Melted Clock
+item.melted-clock.description;Triple the duration of your status effects.
+item.mercenary-medal;Mercenary Medal
+item.mercenary-medal.description;Stages have an additional Mercenary.
+item.merchant-amulet;Merchant Amulet
+item.merchant-amulet.description;Strangers activate two additional times.
+item.merchant-ring;Merchant Ring
+item.merchant-ring.description;You may sell items at Item Shops
+item.metal-detector;Metal Detector
+item.metal-detector.description;While charged, all chests will contain coins.
+item.midas-glove;Midas Glove
+item.midas-glove.description;Heart drops are converted to diamonds if you are not injured.
+item.mildew;Mildew
+item.mildew.description;Bubble the first 3 other items in your inventory. When you pop a bubble, destroy its contents.
+item.milk;Milk
+item.milk.description;Gain 1 defense. For the next 300 turns, you can powerchord Sanctified cells.
+item.millstone;Millstone
+item.millstone.description;Decrease the lifespan of your Sawblades each turn. Spawn a Sawblade whenever a status effect is completed.
+item.mimic;Mimic
+item.mimic.description;When you open a chest on a 1 or greater, take monster damage.
+item.mind-gut;Mind Gut
+item.mind-gut.description;Right-click items with ongoing status effects to consume them and activate their completion.
+item.minion;Minion
+item.minion.description;Solve a random cell. If you're about to take damage, this Minion will sacrifice itself to negate 1 damage.
+item.miracle-seed;Miracle Seed
+item.miracle-seed.description;Increase the size of the selected stage.
+item.miracle-seed.divine;Divine Miracle Seed
+item.miracle-seed.divine.description;Massively increase the size of selected stage.
+item.mirror;Mirror
+item.mirror.description;Randomly use one of your consumable items without losing it. Manalock for 40 turns.
+item.mirror.divine;Divine Mirror
+item.mirror.divine.description;Use all of your consumable items without losing them. Manalock for 50 turns.
+item.misgiving-eye;Misgiving Eye
+item.misgiving-eye.description;Halves chances of finding loot.
+item.mithril-boots;Mithril Boots
+item.mithril-boots.description;[7 Leg Armor] Strong leg armor.
+item.mithril-chestplate;Mithril Chestplate
+item.mithril-chestplate.description;[15 Body Armor] Strong body armor.
+item.mithril-helmet;Mithril Helmet
+item.mithril-helmet.description;[10 Head Armor] Strong head armor.
+item.mjolnir;Mjolnir
+item.mjolnir.description;Reduce the monster count of all other stages by the value of target numbered cell. If the cell has a monster, kill it.
+item.molotov;Molotov
+item.molotov.description;Reveal and apply Burning to random hidden cells until it lands on one without a monster.
+item.monocle;Monocle
+item.monocle.description;Flag 3 monsters whenever you spend coins.
+item.monster-spray;Monster Spray
+item.monster-spray.description;For 100 turns, monsters have a chance to flee instead of attacking. The chance is equal to the number of turns left on this effect.
+item.moon;Moon
+item.moon.description;Whenever a monster is revealed, reduce the stage's max power by 1.
+item.moonflower;Moonflower
+item.moonflower.description;Increase your status effect counters by 20.
+item.morel;Morel
+item.morel.description;Cells provide 1 less mana.
+item.morning-glory;Morning Glory
+item.morning-glory.description;Pass 30 turns.
+item.mortal-root;Mortal Root
+item.mortal-root.description;Set your lives and max lives to the value of target numbered cell.
+item.mortar.divine;Divine Mortar
+item.mortar.divine.description;Whenever a monster dies, it explodes in a 3x3 area.
+item.mortar;Mortar
+item.mortar.description;Whenever a visible monster dies, it explodes in a 3x3 area.
+item.mortify;Mortify
+item.mortify.description;If you take damage, for the next 10 turns any amount of damage will kill you.
+item.mosquito;Mosquito
+item.mosquito.description;Lose 1 life every 40 turns. Reset this status counter when you leave a stage.
+item.mucilage;Mucilage
+item.mucilage.description;Hungry Plants are more common. You may right click a Hungry Plant to feed it the last item in your inventory. Gain 1 coin when you activate a Hungry Plant.
+item.mud.divine;Divine Mud
+item.mud.divine.description;For the next 500 turns, gain a Minion whenever you use a magic item. The next time this activates, get an additional Minion.
+item.mud;Mud
+item.mud.description;For the next 100 turns, gain a Minion whenever you use a magic item.
+item.muscle;Muscle
+item.muscle.description;Spawn a strong familiar at the start of each stage.
+item.muscle.divine;Divine Muscle
+item.muscle.divine.description;At the start of a stage, spawn a number of strong familiars equal to the minimum power.
+item.mutant-doll;Mutant Doll
+item.mutant-doll.description;Spawn mutated Cankers equal to your mastery charges at the start of each stage, and when you activate your ultimate ability.
+item.mutant's-memento;Mutant's Memento
+item.mutant's-memento.description;Increase your life cap for the next dimension by your number of Cankers.
+item.mutton;Mutton
+item.mutton.description;Guarantees one additional heart drop per stage.
+item.mystery-meat;Mystery Meat
+item.mystery-meat.description;Your consumable item effects are randomized.
+item.nanobot;Nanobot
+item.nanobot.description;Whenever you lose life, restore that much life after opening 100 cells.
+item.nanobot.divine;Divine Nanobot
+item.nanobot.divine.description;Whenever you lose life, gain that many souls after opening 50 cells.
+item.nemes;Nemes
+item.nemes.description;Whenever you spend coins on a stranger, their cell gains Cursed.
+item.neoplasm;Neoplasm
+item.neoplasm.description;Add a random mutation to each of your Cankers, plus a mutation for each of your Poisons.
+item.nervewrecker;Nervewrecker
+item.nervewrecker.description;Whenever a monster is revealed, your passive items are disabled for 20 turns.
+item.nightcap;Nightcap
+item.nightcap.description;[1 Head Armor] Fortify whenever you pass 1 or more turns.
+item.nightmare-gut;Nightmare Gut
+item.nightmare-gut.description;You may consume omens at the cost of 1 life each.
+item.ninja-doll;Ninja Doll
+item.ninja-doll.description;At the start of the stage and when you activate your mastery ability, gain Shuriken equal to the number of times your ability has been activated.
+item.ninja's-memento;Ninja's Memento
+item.ninja's-memento.description;Increase your life cap for the next dimension by 3 times the number of stages since you last took damage.
+item.nitrogen;Nitrogen
+item.nitrogen.description;Apply Frozen to random hidden cells until it lands on one without a monster.
+item.nomad-medal;Nomad Medal
+item.nomad-medal.description;Stages have an additional Nomad.
+item.novice-doll;Novice Doll
+item.novice-doll.description;If you have to guess at the start of each stage or when your ultimate mastery ability is activated, set your mastery charges to half full.
+item.nuclear-waste;Nuclear Waste
+item.nuclear-waste.description;Whenever you lose an item that isn't Poison, gain Poison.
+item.nunchucks;Nunchucks
+item.nunchucks.description;Reveal target 3x3 area. If the sum of that area is less than the sum of your chain, kill all monsters in that area. Otherwise, you take 3 damage.
+item.occultic-pendant;Occultic Pendant
+item.occultic-pendant.description;Whenever a monster would spawn, a stranger spawns instead.
+item.ointment;Ointment
+item.ointment.description;Whenever you discover a 4 or greater, pacify a Canker. If there are no Cankers to pacify, spawn one instead.
+item.onyx-of-agony;Onyx of Agony
+item.onyx-of-agony.description;Target cell gains or loses Cursed.
+item.opal-of-mana;Opal of Mana
+item.opal-of-mana.description;Target cell gains or loses Ethereal.
+item.ouroboros;Ouroboros
+item.ouroboros.description;Swap the selected stage's monster count with its maximum power. Manalock for 50 turns.
+item.overgrowth;Overgrowth
+item.overgrowth.description;Spawn a Hungry Plant every 3 turns. You must spend 10 coins to feed a Hungry Plant.
+item.pacemaker;Pacemaker
+item.pacemaker.description;Whenever you lose exactly 1 life, spawn a Sawblade. Whenever a Sawblade explodes, restore 1 life.
+item.pacifier;Pacifier
+item.pacifier.description;Replace the stage mods on the selected stage with less difficult stage mods.
+item.pact-of-nature;Pact of Nature
+item.pact-of-nature.description;Solve a random cell for each of your Minions. If you don't have any, gain a Minion instead. Different minion types will cause different effects.
+item.padlock;Padlock
+item.padlock.description;Every 50 turns, seal or unseal your entire inventory.
+item.pan-flute;Pan Flute
+item.pan-flute.description;Whenever you discover a 4 or greater, spawn a familiar.
+item.pandora's-box;Pandora's Box
+item.pandora's-box.description;When you complete a stage, gain a random item.
+item.paper-golem;Paper Golem
+item.paper-golem.description;Every 100 cells you open, gain a random Quest item.
+item.paragon-rod;Paragon Rod
+item.paragon-rod.description;Convert all visible loot to items.
+item.paragon-stone;Paragon Stone
+item.paragon-stone.description;Enchant target visible cell: each turn, increase this cell's value by 1. If it's 10 or greater, transform the cell's object into a random item, then reset the cell value.
+item.parasol;Parasol
+item.parasol.description;Whenever you discover a 5 or greater, solve a random cell.
+item.parrot;Parrot
+item.parrot.description;Treasure chests contain two rewards.
+item.parting-gift;Parting Gift
+item.parting-gift.description;Whenever a stranger would die, activate his or her effect first.
+item.patron-saint;Patron Saint
+item.patron-saint.description;Spend 5 coins on target stranger and convert it to a strong familiar.
+item.peach;Peach
+item.peach.description;Heart drops are worth 1 extra life.
+item.pendulum;Pendulum
+item.pendulum.description;Solve 3 cells. Recharge this item whenever an orb is destroyed.
+item.pennypincher;Pennypincher
+item.pennypincher.description;You cannot find items worth more than 20 coins.
+item.pennywise;Pennywise
+item.pennywise.description;For 100 turns, collecting a coin flags a random monster instead of lining your wallet.
+item.pentagram;Pentagram
+item.pentagram.description;Fill target visible 3x3 area with monsters.
+item.perennial-splendor;Perennial Splendor
+item.perennial-splendor.description;When you enter a stage, gain a random legendary item.
+item.perfume;Perfume
+item.perfume.description;Every 20 turns, spawn a heart.
+item.pet-rock;Pet Rock
+item.pet-rock.description;Good company.
+item.pheromones;Pheromones
+item.pheromones.description;Every 300 cells opened, gain a copy of an item that you have two or more of.
+item.philosopher's-stone;Philosopher's Stone
+item.philosopher's-stone.description;Spend 20 coins instead of taking damage.
+item.phoenix-feather;Phoenix Feather
+item.phoenix-feather.description;Automatically discharges to prevent death.
+item.pickaxe.divine;Divine Pickaxe
+item.pickaxe.divine.description;Doubles the value of currency drops.
+item.pickaxe;Pickaxe
+item.pickaxe.description;Doubles the value of diamonds.
+item.pillow;Pillow
+item.pillow.description;Whenever you break a chain, pass a number of turns equal to the chain's length.
+item.pipe-bomb;Pipe Bomb
+item.pipe-bomb.description;Explode target cell. Increase the radius of this item by the number of special stages you have completed.
+item.pitchfork;Pitchfork
+item.pitchfork.description;Whenever you collect loot, send a Flare in a random direction from the looted cell.
+item.planned-obsolescence;Planned Obsolescence
+item.planned-obsolescence.description;Whenever you gain an item, lose it after 101 turns.
+item.plum;Plum
+item.plum.description;Expand the radius of your next targetable item by 1.
+item.poison;Poison
+item.poison.description;Every 60 turns, you lose 1 life.
+item.poison-blade;Poison Blade
+item.poison-blade.description;Kill target monster or stranger in 5 turns, applying Toxic to its cell after it dies. Cancel the cast to poison yourself.
+item.poisoner-doll;Poisoner Doll
+item.poisoner-doll.description;Cast Poison Blade a number of times equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.poisoner's-memento;Poisoner's Memento
+item.poisoner's-memento.description;At the start of the next dimension, activate a number of Spider Fangs equal to your number of Poison.
+item.poker-chip;Poker Chip
+item.poker-chip.description;Gamblers are more common and cost half as much. You may right click a Gambler to move him 3 times for the price of one, but all of his coins are lost.
+item.police-boots;Police Boots
+item.police-boots.description;[2 Leg Armor] Visible monsters near the cells you open will flee.
+item.police-hat;Police Hat
+item.police-hat.description;[1 Head Armor] Fortify whenever a monster flees. When equipped, all visible monsters flee.
+item.police-vest;Police Vest
+item.police-vest.description;[6 Body Armor] Fortify by 2 whenever a monster flees. After taking monster damage, all nearby visible monsters flee.
+item.poltergeist;Poltergeist
+item.poltergeist.description;When you enter a stage, spawn a number of Cankers equal to the minimum power.
+item.ponderer's-pipe;Ponderer's Pipe
+item.ponderer's-pipe.description;When you complete a stage, gain 1 soul if you took no damage.
+item.postbox;Postbox
+item.postbox.description;Spend coins to order a random item. After 10 turns, the item is added to your inventory.
+item.pound-of-flesh;Pound of Flesh
+item.pound-of-flesh.description;Lose a random item instead of taking damage.
+item.pound-of-flesh.divine;Divine Pound of Flesh
+item.pound-of-flesh.divine.description;Seal your last active inventory slot instead of taking damage. When you lose this item, unseal all of your inventory slots.
+item.powder-keg;Powder Keg
+item.powder-keg.description;Spawn a Barrel on target empty cell. It will explode in 5 seconds.
+item.present;Present
+item.present.description;Contains a random non-omen item.
+item.present.divine;Divine Present
+item.present.divine.description;Contains a random legendary or divine item.
+item.price-gouger;Price Gouger
+item.price-gouger.description;Item Shop prices are unknown.
+item.priest-medal;Priest Medal
+item.priest-medal.description;Stages have an additional Priest.
+item.primordial-bangle;Primordial Bangle
+item.primordial-bangle.description;At the start of each stage, gain a random magic item if you have less than 200 mana.
+item.primordial-gate;Primordial Gate
+item.primordial-gate.description;Whenever you discover a cell of value 5 or greater, gain a random magic item.
+item.prism-of-chaos;Prism of Chaos
+item.prism-of-chaos.description;Whenever a cell gains an aura, apply the same aura to another random cell.
+item.prism-of-intellect;Prism of Intellect
+item.prism-of-intellect.description;Your targeted magic items will target an additional random cell.
+item.prism-of-light;Prism of Light
+item.prism-of-light.description;Your reveal effects will reveal an additional cell.
+item.profane-staff;Profane Staff
+item.profane-staff.description;Whenever you collect a diamond, manalock a random magic item for a number of turns equal to its mana cost.
+item.propane;Propane
+item.propane.description;Enchant target visible cell: increase the value of this cell by 1 each turn. If it's 10 or greater, send flares in all directions then reset its value.
+item.prophet-doll;Prophet Doll
+item.prophet-doll.description;Gain Tokens equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.prophet's-memento;Prophet's Memento
+item.prophet's-memento.description;Spawn a Guide whenever you collect a Token.
+item.protagonist-doll;Protagonist Doll
+item.protagonist-doll.description;Spawn legendary items equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.protagonist's-memento;Protagonist's Memento
+item.protagonist's-memento.description;At the start of the next dimension, gain random legendary items equal to your number of Mementos.
+item.pufferfish;Pufferfish
+item.pufferfish.description;Automatically discharges when damage reduces your life to 1. Kill 20 random monsters.
+item.punchbag;Punchbag
+item.punchbag.description;Whenever you finish an item shop, uncomplete the first stage of the quest.
+item.puppet-strings;Puppet Strings
+item.puppet-strings.description;Transform all visible strangers into Dolls.
+item.purify;Purify
+item.purify.description;Remove all stage mods from selected stage.
+item.pursecutter;Pursecutter
+item.pursecutter.description;Steal coins from target stranger equal to his or her price.
+item.puzzle;Puzzle
+item.puzzle.description;When you lose this item, gain a random legendary item.
+item.puzzle.divine;Divine Puzzle
+item.puzzle.divine.description;When you lose this item, gain 3 Presents.
+item.pyro-medal;Pyro Medal
+item.pyro-medal.description;Stages have an additional Pyro.
+item.pyromancy;Pyromancy
+item.pyromancy.description;When you target a cell with an item, it gains Burning. When you complete a stage, gain 1 soul for each Burning cell of value 5 or greater.
+item.queen-of-hearts;Queen of Hearts
+item.queen-of-hearts.description;Spawn hearts on visible cells in target 3x3 area. Convert any hearts that were already in this area into souls.
+item.quest-for-commerce;Quest for Commerce
+item.quest-for-commerce.description;After opening 100 cells without making a mistake, spawn 10 strangers.
+item.quest-for-mythos;Quest for Mythos
+item.quest-for-mythos.description;After opening 100 cells without making a mistake, spawn 3 legendary items.
+item.quest-for-necrosis;Quest for Necrosis
+item.quest-for-necrosis.description;After opening 100 cells without making a mistake, fill your inventory with Bones.
+item.quest-for-pets;Quest for Pets
+item.quest-for-pets.description;After opening 100 cells without making a mistake, gain 8 Minions.
+item.quest-for-piety;Quest for Piety
+item.quest-for-piety.description;After opening 100 cells without making a mistake, destroy all omens.
+item.quest-for-prosperity;Quest for Prosperity
+item.quest-for-prosperity.description;After opening 100 cells without making a mistake, gain 4 souls.
+item.quest-for-quests;Quest for Quests
+item.quest-for-quests.description;After opening 50 cells without making a mistake, gain 2 Quest items.
+item.quest-for-rest;Quest for Rest
+item.quest-for-rest.description;After opening 100 cells without making a mistake, pass 100 turns.
+item.quest-for-riches;Quest for Riches
+item.quest-for-riches.description;After opening 100 cells without making a mistake, gain 50 coins.
+item.quest-for-sin;Quest for Sin
+item.quest-for-sin.description;After opening 100 cells without making a mistake, lose this item and gain 4 omens.
+item.quest-for-sorcery;Quest for Sorcery
+item.quest-for-sorcery.description;After opening 100 cells without making a mistake, gain 3 uncharged magic items.
+item.quest-for-valor;Quest for Valor
+item.quest-for-valor.description;After opening 100 cells without making a mistake, gain 3 defense.
+item.rabbit-foot;Rabbit Foot
+item.rabbit-foot.description;Every 20 cells opened, reveal a random cell.
+item.rabid-minion;Rabid Minion
+item.rabid-minion.description;When you gain this as well as every 10 turns, reveal and kill a random monster. If you're about to take damage, this Minion will sacrifice itself to increase the damage by 1.
+item.rainbow-dust;Rainbow Dust
+item.rainbow-dust.description;Reveal all cells that have auras.
+item.rainbow-egg;Rainbow Egg
+item.rainbow-egg.description;You must have at least 5 consumable items, 4 passive items, 3 magic items, 2 omens, and a legendary item to open this egg!
+item.rainbow-iris;Rainbow Iris
+item.rainbow-iris.description;Solve a random cell, plus a number of cells equal to the different types of visible auras.
+item.rainbow-lens;Rainbow Lens
+item.rainbow-lens.description;Remove auras from target 5x5 area. Flag a monster for each aura removed this way.
+item.rainbow-rope;Rainbow Rope
+item.rainbow-rope.description;Gain 1% pathfinding at the end of each stage for each different type of aura present.
+item.rainbow-trout;Rainbow Trout
+item.rainbow-trout.description;Gain souls equal to the different types of visible auras.
+item.rasp;Rasp
+item.rasp.description;Mystic Statues are more common. Statue stages no longer increase difficulty.
+item.raven;Raven
+item.raven.description;Every 100 cells opened, lose 1 morality. If your morality is -10 or less, lose 1 max life.
+item.reaper-scythe;Reaper Scythe
+item.reaper-scythe.description;Destroy a random omen instead of taking fatal damage.
+item.recycle-bin;Recycle Bin
+item.recycle-bin.description;Enchant target visible cell: increase the value of this cell by 1 each turn. If it's 10 or greater, drop a random item into this cell then reset its value.
+item.red-dye;Red Dye
+item.red-dye.description;You will only find omens. Lose this item when you gain an omen.
+item.red-egg;Red Egg
+item.red-egg.description;You must have 2 or more omens to open this egg!
+item.red-flag;Red Flag
+item.red-flag.description;Automatically discharges to prevent an empty cell from becoming flagged.
+item.reflector-blade;Reflector Blade
+item.reflector-blade.description;Other visible monsters will be killed to reduce incoming monster damage by 2 each.
+item.regift.divine;Divine Regift
+item.regift.divine.description;Consume passive items to spawn a chest, applying Sanctified in a 3x3 area around the chest.
+item.regift;Regift
+item.regift.description;Consume passive items to spawn a chest.
+item.resolute-horn;Resolute Horn
+item.resolute-horn.description;When you complete a stage, gain 2 souls for each heart you leave behind.
+item.rewards-card;Rewards Card
+item.rewards-card.description;Reduce the prices of Item Shops and strangers by 3 coins. Whenever you spend at least 20 coins, gain a Present.
+item.rewind.divine;Divine Rewind
+item.rewind.divine.description;Every 100 turns, set your stats to their current values.
+item.rewind;Rewind
+item.rewind.description;After 20 turns, set your stats to their current values.
+item.ripped-pants;Ripped Pants
+item.ripped-pants.description;Whenever you make a mistake, all visible strangers and familiars flee.
+item.ritual-chalk;Ritual Chalk
+item.ritual-chalk.description;Enchant target empty cell: until you make a mistake, spawn a familiar in this cell each turn.
+item.rocket-boots;Rocket Boots
+item.rocket-boots.description;[2 Leg Armor] Gain 5% pathfinding. Lose all pathfinding if these boots are removed.
+item.rocking-chair;Rocking Chair
+item.rocking-chair.description;When your mastery's ultimate ability is activated, lose your mastery.
+item.rosary;Rosary
+item.rosary.description;If you are missing more than half of your lives when you complete a stage, restore your life to max.
+item.rosin;Rosin
+item.rosin.description;After you use a magic item, your next chord will be a powerchord.
+item.rotting-head;Rotting Head
+item.rotting-head.description;For 5 seconds, reduce incoming damage by the number of seconds left.
+item.rotting-head.divine;Divine Rotting Head
+item.rotting-head.divine.description;For 10 seconds, reduce incoming damage by the number of seconds left. Extend the duration by 1 second whenever you increase the length of your chain.
+item.royal-crown;Royal Crown
+item.royal-crown.description;[1 Head Armor] Whenever you would gain coins, gain twice the amount instead.
+item.royal-glove;Royal Glove
+item.royal-glove.description;Spawn a familiar whenever you collect a diamond.
+item.ruby-of-flame;Ruby of Flame
+item.ruby-of-flame.description;Target cell gains or loses Burning.
+item.rust;Rust
+item.rust.description;At the start of each stage, cut the durability of your armors in half.
+item.sabertooth-amulet;Sabertooth Amulet
+item.sabertooth-amulet.description;When you complete a stage, gain a Minion. Your Minions can survive an extra point of damage.
+item.sage;Sage
+item.sage.description;Stages grant an additional mastery charge.
+item.salamander;Salamander
+item.salamander.description;Send Flares in all directions from the first cell you open each stage.
+item.salt;Salt
+item.salt.description;The next time an omen effect would activate, negate it and lose the omen.
+item.santa-boots;Santa Boots
+item.santa-boots.description;[3 Leg Armor] Every 40 turns, gain a Present if you just clicked a cell with a value equal to the number of visible strangers wearing santa hats.
+item.santa-doll;Santa Doll
+item.santa-doll.description;Spawn Santa when your ultimate ability is activated.
+item.santa-hat;Santa Hat
+item.santa-hat.description;[1 Head Armor] When equipped, fortify by the number of visible strangers wearing santa hats. Gain an additional token whenever you donate a Present to a stranger.
+item.santa-robe;Santa Robe
+item.santa-robe.description;[6 Body Armor] Fortify whenever you donate a Present to a stranger.
+item.sapling;Sapling
+item.sapling.description;Stages have 1 additional Hungry Plant. Every 50 cells opened without a mistake, gain either a Miracle Seed or a Demon Seed.
+item.sapphire-of-frost;Sapphire of Frost
+item.sapphire-of-frost.description;Target cell gains or loses Frozen.
+item.scalpel;Scalpel
+item.scalpel.description;Whenever you lose exactly 1 life, lose a random omen.
+item.scary-mask;Scary Mask
+item.scary-mask.description;When you enter a stage, reduce the monster count by the minimum power.
+item.scholar-doll;Scholar Doll
+item.scholar-doll.description;Gain Quest for Quests for every 2 mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.scholar's-memento;Scholar's Memento
+item.scholar's-memento.description;Start the next dimension with your first 5 status effects.
+item.scientist-medal;Scientist Medal
+item.scientist-medal.description;Stages have an additional Scientist.
+item.scorpion-tail;Scorpion Tail
+item.scorpion-tail.description;Kill all visible living objects at the end of each stage, applying Toxic to their cells.
+item.scout-doll;Scout Doll
+item.scout-doll.description;Gain pathfinding equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.scout's-memento;Scout's Memento
+item.scout's-memento.description;If you step through the Dimensional Portal with at least 20% pathfinding, start the next dimension with 10% pathfinding.
+item.scrap-hopper;Scrap Hopper
+item.scrap-hopper.description;Destroy target chest. The next time you open a chest, gain souls equal to your number of Scrap Hopper status effects.
+item.scythe;Scythe
+item.scythe.description;When you complete a stage, gain 1 soul for each omen you have.
+item.scythe.divine;Divine Scythe
+item.scythe.divine.description;Gain 1 soul whenever you gain an omen. At the end of each stage, restore your life to max if you have at least 3 omens.
+item.second-wind;Second Wind
+item.second-wind.description;50% chance to revive on death.
+item.secret-decoder;Secret Decoder
+item.secret-decoder.description;Learn the true meaning of signs. Each stage has an additional sign.
+item.sentry-gnome;Sentry Gnome
+item.sentry-gnome.description;Monsters cannot kill you in one shot as long as you are at full life, and have more than 1 max life.
+item.shadow-siphon;Shadow Siphon
+item.shadow-siphon.description;Gain souls equal to the value of target visible occupied cell, then destroy its contents without triggering kill effects.
+item.shadow-totem;Shadow Totem
+item.shadow-totem.description;Enchant target visible cell, apply Cursed to it: each turn, increase the value by 1. If it's 10 or greater, kill monsters in this quadrant equal to the number of Cursed cells in this quadrant, then reset the value.
+item.shadowbind.divine;Divine Shadowbind
+item.shadowbind.divine.description;When you lose this item, lose all of your other omens.
+item.shadowbind;Shadowbind
+item.shadowbind.description;If you lose this item, you also lose 5 lives.
+item.shark;Shark
+item.shark.description;Cook by removing Burning from target visible cell, then gain the ability to powerchord any cell until the end of the stage. Or sell raw at an Item Shop for 40 coins.
+item.sherbet;Sherbet
+item.sherbet.description;Gain souls equal to the different types of items you have.
+item.shield;Shield
+item.shield.description;Monsters roll twice for damage and use the weaker result.
+item.shinobi-sandals;Shinobi Sandals
+item.shinobi-sandals.description;[1 Leg Armor] Monster reveal effects are negated.
+item.shinobi-veil;Shinobi Veil
+item.shinobi-veil.description;[1 Head Armor] When this breaks, gain souls and defense equal to the number of special stages you have completed.
+item.shiny-minion;Shiny Minion
+item.shiny-minion.description;Each turn you must guess, this will solve a random cell. This Minion will sacrifice itself to deflect fatal damage.
+item.shop-key;Shop Key
+item.shop-key.description;Spend 5 coins to uncomplete the selected item shop.
+item.shopping-bag;Shopping Bag
+item.shopping-bag.description;Item Shops never run out of items.
+item.shoulder-angel;Shoulder Angel
+item.shoulder-angel.description;Whenever you restore life, spawn a familiar. Your familiars create a Sanctified trail.
+item.shoulder-devil;Shoulder Devil
+item.shoulder-devil.description;Whenever you make a mistake, spawn a familiar. Your familiars create a Cursed trail.
+item.shrine-tag;Shrine Tag
+item.shrine-tag.description;Enchant target visible cell: reduce incoming damage by the value of this cell.
+item.shuriken;Shuriken
+item.shuriken.description;Automatically discharges when a monster spawns. Kill the monster before taking damage.
+item.silver-bullet;Silver Bullet
+item.silver-bullet.description;Your projectiles have a small chance to become a Blessing. This chance decreases with your number of omens.
+item.silver-platter;Silver Platter
+item.silver-platter.description;Enchant target visible cell: each turn, increase this cell's value by 1. If it's 10 or greater, activate the stranger in this cell for free, then reset the cell value.
+item.simple-robe;Simple Robe
+item.simple-robe.description;[1 Body Armor] Better than nothing.
+item.simple-robe.divine;Divine Simple Robe
+item.simple-robe.divine.description;[1 Body Armor] Double the durability whenever you complete a stage that has 2 or more stage mods.
+item.singing-bowl;Singing Bowl
+item.singing-bowl.description;Whenever you pick up an item with a full inventory, clear your inventory and triple your stats.
+item.skull;Skull
+item.skull.description;[3 Head Armor] Fortify by 1 whenever you bury Bones.
+item.skull-ring;Skull Ring
+item.skull-ring.description;Gain Bones for each life you are missing.
+item.sky-net;Sky Net
+item.sky-net.description;Whenever you discover a cell of value 5 or greater, destroy a random orb.
+item.sledgehammer;Sledgehammer
+item.sledgehammer.description;Blacksmiths are more common and cost half as much. You may right click a Blacksmith to purchase armor instantly for double the price.
+item.sleeping-powder;Sleeping Powder
+item.sleeping-powder.description;Pause the stage timer for 5 minutes.
+item.slimeball;Slimeball
+item.slimeball.description;Enchant target visible cell: nearby monsters have a 50% chance to miss.
+item.slingshot;Slingshot
+item.slingshot.description;For 30 turns, reveal a random cell each turn. If the cell contains a monster, kill it.
+item.slingshot.divine;Divine Slingshot
+item.slingshot.divine.description;For 20 turns, reveal 3 random cells each turn. Kill any monsters found in these cells.
+item.small-fish;Small Fish
+item.small-fish.description;Cook by removing Burning from target visible cell, then restore 1 life. Or sell raw at an Item Shop for 3 coins.
+item.small-star;Small Star
+item.small-star.description;Launch a Blessing in a random direction from target visible cell.
+item.smog;Smog
+item.smog.description;Every 150 turns, exit the current stage without completing.
+item.smoke-bomb;Smoke Bomb
+item.smoke-bomb.description;Exit the current stage without completing.
+item.snake-skin;Snake Skin
+item.snake-skin.description;At the start of each stage, drop half of your inventory on the ground.
+item.snow-shoes;Snow Shoes
+item.snow-shoes.description;[3 Leg Armor] Whenever you open a cell, remove all nearby Frozen auras.
+item.snowflake-doll;Snowflake Doll
+item.snowflake-doll.description;Freeze random monsters equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.snowflake's-memento;Snowflake's Memento
+item.snowflake's-memento.description;Increase your life cap for the next dimension by the number of Frozen cells in the Metagate.
+item.snowglobe;Snowglobe
+item.snowglobe.description;Target cell gains Frozen. For the next 5 turns, relocate all Frozen cells and their contents, revealing their original cells.
+item.soft-clay;Soft Clay
+item.soft-clay.description;Transforms into a random item from your inventory.
+item.soft-snow;Soft Snow
+item.soft-snow.description;Transforms into a random "frozen" item.
+item.soothing-shell;Soothing Shell
+item.soothing-shell.description;The stage power becomes 1 for 5 turns.
+item.soothing-shell.divine;Divine Soothing Shell
+item.soothing-shell.divine.description;The stage power becomes 1 for 35 turns.
+item.soulsludge;Soulsludge
+item.soulsludge.description;Every 80 turns, you lose 1 max life.
+item.spade;Spade
+item.spade.description;Small chance to dig up new loot in cells.
+item.spark-doll;Spark Doll
+item.spark-doll.description;Apply Electric to random visible objects equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.spark's-memento;Spark's Memento
+item.spark's-memento.description;Increase your life cap for the next dimension by the number of Electric cells in the Metagate.
+item.spatula;Spatula
+item.spatula.description;Whenever you gain a consumable item, you will lose it after 30 turns and gain a more valuable consumable item.
+item.sphere-of-influence;Sphere of Influence
+item.sphere-of-influence.description;Expands the radius of your targetable items by 1.
+item.spider-fang;Spider Fang
+item.spider-fang.description;The next time a monster is revealed, kill it before you can take damage.
+item.spike-collar;Spike Collar
+item.spike-collar.description;Automatically discharges when you would lose life. Gain the same amount of souls instead.
+item.spindle;Spindle
+item.spindle.description;Equip a Simple Robe and fortify it by the sum of the highest visible value(s) in target 3x3 area.
+item.spirit-jar;Spirit Jar
+item.spirit-jar.description;Gain souls equal to the number of stages you have completed.
+item.spirit-robe;Spirit Robe
+item.spirit-robe.description;[5 Body Armor] Fortify by 2 whenever you restore life.
+item.spitwad;Spitwad
+item.spitwad.description;Strangers send a Bubble in a random direction each turn.
+item.splintering-wand;Splintering Wand
+item.splintering-wand.description;Targeted items affect random cells.
+item.spooky-doll;Spooky Doll
+item.spooky-doll.description;Probably not even cursed.
+item.spooky-key;Spooky Key
+item.spooky-key.description;Permits mere mortals to enter The Basement for 30 seconds...
+item.spring;Spring
+item.spring.description;Double the length of your chain, then solve a number of cells equal to the length of your chain.
+item.spy-doll;Spy Doll
+item.spy-doll.description;Glean random cells equal to your mastery charges at the start of each stage, and when you activate your ultimate ability.
+item.spy's-memento;Spy's Memento
+item.spy's-memento.description;Increase your life cap for the next dimension by 3 for each gleaned cell of value 3 or greater in the Metagate.
+item.spybug;Spybug
+item.spybug.description;Glean all hidden cells near visible cells.
+item.spyglass.divine;Divine Spyglass
+item.spyglass.divine.description;Chests cannot contain omens.
+item.spyglass;Spyglass
+item.spyglass.description;Chests are half as likely to contain omens.
+item.stake;Stake
+item.stake.description;Every 50 turns without making a mistake, double the stage power.
+item.starfruit;Starfruit
+item.starfruit.description;Apply Ethereal to the visible cell or cells with the highest value.
+item.starlight;Starlight
+item.starlight.description;Send a Blessing to the north of target visible cell.
+item.steel-boots;Steel Boots
+item.steel-boots.description;[4 Leg Armor] Decent leg armor.
+item.steel-chestplate;Steel Chestplate
+item.steel-chestplate.description;[8 Body Armor] Decent body armor.
+item.steel-golem;Steel Golem
+item.steel-golem.description;Every 100 cells you open, gain 1 defense.
+item.steel-helmet;Steel Helmet
+item.steel-helmet.description;[6 Head Armor] Decent head armor.
+item.stethoscope;Stethoscope
+item.stethoscope.description;Doctors are more common and cost half as much. You may right click a Doctor to restore all of your lives by paying her full cost upfront.
+item.stick;Stick
+item.stick.description;Reveal target cell. If it has a monster, kill it.
+item.stinging-nettle;Stinging Nettle
+item.stinging-nettle.description;Take 1 damage whenever you gain an item.
+item.stocking.divine;Divine Stocking
+item.stocking.divine.description;Gain a Present for each Item Shop you have completed.
+item.stocking;Stocking
+item.stocking.description;If your morality is positive, gain a Present. Otherwise, gain Coal.
+item.stolen-relic;Stolen Relic
+item.stolen-relic.description;Whenever you open a chest, you are afflicted with a random curse.
+item.stopwatch;Stopwatch
+item.stopwatch.description;Pass a number of turns equal to the number of counters on your most recent status effect.
+item.straitjacket;Straitjacket
+item.straitjacket.description;[6 Body Armor] You cannot collect loot.
+item.strange-egg;Strange Egg
+item.strange-egg.description;You might gain a Minion.
+item.strange-egg.divine;Divine Strange Egg
+item.strange-egg.divine.description;Gain between 1 to 3 Minions.
+item.sturdy-bow;Sturdy Bow
+item.sturdy-bow.description;Reveal target cell if it's not already open. If the cell has a monster, kill it and return 100 mana to this item.
+item.sturdy-bow.divine;Divine Sturdy Bow
+item.sturdy-bow.divine.description;Target 3x3 area is revealed and all monsters in the area are killed. If at least 5 monsters were killed this way, return 100 mana to this item.
+item.substitute;Substitute
+item.substitute.description;Whenever you would lose an item, lose this item instead.
+item.substitute.divine;Divine Substitute
+item.substitute.divine.description;Whenever you would lose an item, explode a random cell. If anything is destroyed by the blast, keep your item.
+item.suds;Suds
+item.suds.description;Send Bubbles in all directions from target visible cell.
+item.sun-bomb;Sun Bomb
+item.sun-bomb.description;Reveal monsters in target 3x3 area.
+item.sun-burn;Sun Burn
+item.sun-burn.description;Every 100 turns, remove all Frozen auras and get burnt.
+item.sundial;Sundial
+item.sundial.description;Take the sum value of target 3x3 area. After that many turns, reveal that many random cells.
+item.sundrop;Sundrop
+item.sundrop.description;Randomly reveals 1-3 monsters.
+item.sunglasses;Sunglasses
+item.sunglasses.description;Gain 30% pathfinding. Lose the same amount if you lose this item.
+item.sunken-coin;Sunken Coin
+item.sunken-coin.description;Gain 10 coins and dangerously open a random cell. If it doesn't have a monster, this item remains charged.
+item.sunken-shield;Sunken Shield
+item.sunken-shield.description;Gain 1 defense and dangerously open a random cell. If it doesn't have a monster, this item remains charged.
+item.sunken-soul;Sunken Soul
+item.sunken-soul.description;Gain a soul and dangerously open a random cell. If it doesn't have a monster, this item remains charged.
+item.sunscreen;Sunscreen
+item.sunscreen.description;For 100 turns, you are immune to burns.
+item.super-health-potion;Super Health Potion
+item.super-health-potion.description;Heal to full life.
+item.super-mana-potion;Super Mana Potion
+item.super-mana-potion.description;Recharge all of your magic items.
+item.supply-and-diamond;Supply and Diamond
+item.supply-and-diamond.description;Whenever you gain a diamond, spawn a Nomad.
+item.surgical-saw;Surgical Saw
+item.surgical-saw.description;Lose 1 life and spawn a heart on target empty cell.
+item.survivor-doll;Survivor Doll
+item.survivor-doll.description;Gain souls equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.survivor's-memento;Survivor's Memento
+item.survivor's-memento.description;If you step through the Dimensional Portal with at least 30 lives, you will start the next dimension with 10 lives.
+item.swelling-rune;Swelling Rune
+item.swelling-rune.description;Whenever you target an empty cell with an item, double the value of the cell.
+item.sword;Sword
+item.sword.description;Kill visible monsters. (They deserve it.)
+item.tablet-of-lairetam;Tablet of Lairetam
+item.tablet-of-lairetam.description;Gain a random artifact at the end of each stage, and a stack of 10 artifacts at the end of the quest.
+item.tablet-of-ne'kot;Tablet of Ne'kot
+item.tablet-of-ne'kot.description;Gain a Token at the end of each stage, and 50 Tokens at the end of the quest.
+item.tablet-of-pyxe;Tablet of Pyxe
+item.tablet-of-pyxe.description;Gain 100 XP at the end of each stage, and 1000 XP at the end of the quest.
+item.tablet-of-yunnub;Tablet of Yunnub
+item.tablet-of-yunnub.description;Gain an Egg at the end of each stage, and open 10 Eggs at the end of the quest.
+item.tabula-rasa;Tabula Rasa
+item.tabula-rasa.description;Activate items that would trigger when you enter or begin a stage.
+item.talisman;Talisman
+item.talisman.description;Each stage contains 5 Ethereal cells.
+item.tangleweed;Tangleweed
+item.tangleweed.description;When you enter a stage at full life, it has a 50% chance to gain the Double mod if it doesn't already have it.
+item.tapeworm;Tapeworm
+item.tapeworm.description;Whenever you restore life, lose 1 max life.
+item.tarot-card;Tarot Card
+item.tarot-card.description;Convert all loot, landmarks, and strangers into new objects of the same category.
+item.tattered-flag;Tattered Flag
+item.tattered-flag.description;Every 10 turns, take 1 damage for each cell that is incorrectly flagged.
+item.taxes;Taxes
+item.taxes.description;Whenever you spend coins, lose an equal amount of coins.
+item.tea-leaves;Tea Leaves
+item.tea-leaves.description;Gain 5% evasion. If you have to guess, gain 10% evasion instead.
+item.tear-gas;Tear Gas
+item.tear-gas.description;Cell values are unknown. Lose this item after 3 turns.
+item.teleporter;Teleporter
+item.teleporter.description;Enchant target visible cell: each turn, relocate the object in this cell to a random cell.
+item.tesla-coil;Tesla Coil
+item.tesla-coil.description;Reveal a number of cells in target 5x5 area equal to the smallest visible value in that area.
+item.the-devil's-share;The Devil's Share
+item.the-devil's-share.description;You must pay 5 coins to open chests.
+item.the-joker;The Joker
+item.the-joker.description;If you use an item to target visible cells with a sum of 13 or greater, you lose.
+item.the-plague;The Plague
+item.the-plague.description;Omens everywhere.
+item.thicker-skin;Thicker Skin
+item.thicker-skin.description;Defense can reduce damage to 0. Whenever it does, you lose 1 defense.
+item.thief-bag.divine;Divine Thief Bag
+item.thief-bag.divine.description;Steal the selected shop item. 50% chance you will need to escape!
+item.thief-bag;Thief Bag
+item.thief-bag.description;50% chance to steal the selected shop item and make a clean escape.
+item.third-eye;Third Eye
+item.third-eye.description;When you open half of all empty cells, unobscure any values and destroy all objects on numbered cells.
+item.thornseeker.divine;Divine Thornseeker
+item.thornseeker.divine.description;Gain Minions equal to the highest-value hidden cell in target 3x3 area.
+item.thornseeker;Thornseeker
+item.thornseeker.description;If target hidden cell has a value of 3 or greater, gain 3 Minions.
+item.thought-bubble;Thought Bubble
+item.thought-bubble.description;Your orbs cannot bounce off walls. Every 10 turns, spawn an object inside a bubble.
+item.thresher;Thresher
+item.thresher.description;Whenever you gain an item, destroy another item of the same type.
+item.thunder-bomb;Thunder Bomb
+item.thunder-bomb.description;Apply Electric to a 3x3 area around target cell.
+item.time-capsule;Time Capsule
+item.time-capsule.description;Lose a random item. After 50 turns, gain 3 copies of that item.
+item.time-capsule.divine;Divine Time Capsule
+item.time-capsule.divine.description;Gain 3 copies of a random inventory item. After 50 turns, lose all copies of that item.
+item.timepiece;Timepiece
+item.timepiece.description;Cut the duration of your status effects in half.
+item.timepiece.divine;Divine Timepiece
+item.timepiece.divine.description;Set the duration of your status effects to 50.
+item.tithing-plate;Tithing Plate
+item.tithing-plate.description;Whenever you spend coins, gain twice the amount in mana.
+item.toad;Toad
+item.toad.description;Mages are more common and cost half as much. For 20 coins, you may right click a Mage to gain his magic item. He will learn a different item.
+item.toasted-marshmallow;Toasted Marshmallow
+item.toasted-marshmallow.description;Gain a soul. If you have any pathfinding, gain 3 souls instead.
+item.tofu;Tofu
+item.tofu.description;Negate meat items.
+item.tongs;Tongs
+item.tongs.description;Unequip and repair all of your armor.
+item.tongue-of-dog;Tongue of Dog
+item.tongue-of-dog.description;You cannot interact with strangers.
+item.top-hat;Top Hat
+item.top-hat.description;[2 Head Armor] If you have no magic items when you enter a stage, gain a random uncharged magic item. Whenever you use a magic item, it transforms into a different magic item.
+item.topaz-of-lightning;Topaz of Lightning
+item.topaz-of-lightning.description;Target cell gains or loses Electric.
+item.torch;Torch
+item.torch.description;Reveal target cell.
+item.totem;Totem
+item.totem.description;Every 30 cells opened without making a mistake, reduce the stage power by 1.
+item.totem.divine;Divine Totem
+item.totem.divine.description;Every 40 cells opened, reduce the stage power by 1 and gain a Soothing Shell.
+item.touchstone;Touchstone
+item.touchstone.description;Coin drops are now worth 1 more, but diamonds are worth 2 less.
+item.traffic-cone;Traffic Cone
+item.traffic-cone.description;Moving objects and projectiles always travel in the direction of the last cell you opened.
+item.transcendence;Transcendence
+item.transcendence.description;Heart drops become souls.
+item.transmogrify;Transmogrify
+item.transmogrify.description;Randomizes your inventory.
+item.trapper;Trapper
+item.trapper.description;Flag a monster when you begin a stage.
+item.trapper.divine;Divine Trapper
+item.trapper.divine.description;At the start of each stage, flag a number of monsters equal to the stage's max power.
+item.trash-bin;Trash Bin
+item.trash-bin.description;Lose an item whose position in your inventory equals value of target numbered cell.
+item.travelog;Travelog
+item.travelog.description;Gain 1% pathfinding for each stage you have completed.
+item.treasure-amulet;Treasure Amulet
+item.treasure-amulet.description;Stages have an additional treasure chest.
+item.treasure-key;Treasure Key
+item.treasure-key.description;A mysterious key... what does it open?
+item.treasure-map;Treasure Map
+item.treasure-map.description;Increases your chance to find treasure chests.
+item.treasure-pouch;Treasure Pouch
+item.treasure-pouch.description;Spawn a random number of chests between the stage's minimum and maximum power.
+item.tree-of-life;Tree of Life
+item.tree-of-life.description;Enchant target visible cell: increase the value of this cell by 1 each turn. If it's 10 or greater, spawn a soul here and reset its value.
+item.tree-of-life.divine;Divine Tree of Life
+item.tree-of-life.divine.description;Enchant target visible cell: increase the value of this cell by 1 each turn. If it's 10 or greater, reset its value and spawn souls in all visible enchanted cells.
+item.tricorne;Tricorne
+item.tricorne.description;[1 Head Armor] Fortify whenever you open a chest.
+item.tripwire;Tripwire
+item.tripwire.description;Enchant 10 random cells each stage: when you chord or target this cell with an item, take monster damage and remove the enchantment.
+item.troll-cross;Troll Cross
+item.troll-cross.description;Reduce the stage power by the value of target numbered cell, then spawn that many Cankers.
+item.trump-card;Trump Card
+item.trump-card.description;If you fail a guess, activate your mastery's ultimate ability before taking damage.
+item.trust-buster;Trust Buster
+item.trust-buster.description;Whenever you spend coins on a stranger, activate all other strangers.
+item.truthsayer-quill;Truthsayer Quill
+item.truthsayer-quill.description;At the start of each stage, gain a 10-second timer. After it expires, reveal random cells equal to the number of turns made during the timer.
+item.undertaker-doll;Undertaker Doll
+item.undertaker-doll.description;Gain Bones equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.undertaker's-memento;Undertaker's Memento
+item.undertaker's-memento.description;Increase your life cap for the next dimension by the number of Sanctified cells in the Metagate.
+item.underwing;Underwing
+item.underwing.description;Every 40 turns, lose a random item and gain a random omen.
+item.unstable-compound.divine;Divine Unstable Compound
+item.unstable-compound.divine.description;Every 10 turns, apply one of each elemental aura to random cells. Whenever an aura is removed, the cell explodes in a 3x3 area.
+item.unstable-compound;Unstable Compound
+item.unstable-compound.description;Every 20 turns, all cell auras are converted to a random elemental aura. Whenever an aura is removed, the cell explodes in a 3x3 area.
+item.urn;Urn
+item.urn.description;Gain a soul whenever you lose an item.
+item.valentine-bow;Valentine Bow
+item.valentine-bow.description;Reveal target cell if it's not already open. If the cell has a monster, 200 mana is returned to this item and the monster becomes your familiar.
+item.valiant-shield;Valiant Shield
+item.valiant-shield.description;Monsters roll three times for damage and use the weakest result.
+item.vampire-fang;Vampire Fang
+item.vampire-fang.description;Restore 1 life whenever you take damage.
+item.vampiric-blade;Vampiric Blade
+item.vampiric-blade.description;Kill target visible monster or stranger and spawn a heart in its place. If you are not injured, spawn a soul instead.
+item.vampiric-boots;Vampiric Boots
+item.vampiric-boots.description;[4 Armor] Every 40 cells opened, lose life equal to the value of the cell you just clicked, then fortify by twice the amount.
+item.vampiric-chestplate;Vampiric Chestplate
+item.vampiric-chestplate.description;[13 Body Armor] Whenever you lose life, fortify by triple the amount lost.
+item.vampiric-helmet;Vampiric Helmet
+item.vampiric-helmet.description;[7 Head Armor] Fortify by 2 whenever you lose life.
+item.varnish;Varnish
+item.varnish.description;Favor all armor items. Whenever you equip armor, fortify it by 3.
+item.venomancy;Venomancy
+item.venomancy.description;When you target a cell with a magic item, it gains Toxic. When you complete a stage, lose 1 max life for each Toxic cell of value 5 or greater.
+item.viking-helmet;Viking Helmet
+item.viking-helmet.description;[6 Head Armor] Fortify by 2 whenever a stranger dies.
+item.virtue-signal;Virtue Signal
+item.virtue-signal.description;Whenever your morality increases, increase the stage power by an equal amount.
+item.vitality-sprig;Vitality Sprig
+item.vitality-sprig.description;Restores 1 life.
+item.wager.divine;Divine Wager
+item.wager.divine.description;50% chance to double your coins.
+item.wager;Wager
+item.wager.description;Randomly double your coins or lose them all.
+item.walking-stick;Walking Stick
+item.walking-stick.description;At the start of each stage, glean all hidden cells along the perimeter of the stage.
+item.wallet;Wallet
+item.wallet.description;Item Shops have 1 extra item.
+item.wand-of-embers;Wand of Embers
+item.wand-of-embers.description;Burn all visible monsters.
+item.wand-of-light;Wand of Light
+item.wand-of-light.description;Reveal target row and column of cells.
+item.wand-of-retribution;Wand of Retribution
+item.wand-of-retribution.description;Automatically discharges after you take monster damage and kills all visible monsters. Gain 1 soul for each monster killed.
+item.wanted-poster;Wanted Poster
+item.wanted-poster.description;The next time you would lose lives, lose triple the amount and lose this item.
+item.war-hawk;War Hawk
+item.war-hawk.description;Whenever a familiar dies or kills a monster, gain a soul. Spawn two familiars at the start of each stage.
+item.war-paint;War Paint
+item.war-paint.description;Whenever a living object dies, solve 3 cells.
+item.warlock-doll;Warlock Doll
+item.warlock-doll.description;Apply Cursed to a number of visible cells with objects equal to your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.warlock's-memento;Warlock's Memento
+item.warlock's-memento.description;Start the next dimension with a random magic item for every empty Cursed cell in the Metagate.
+item.warning-sign;Warning Sign
+item.warning-sign.description;Spawn a sign on target visible cell, then move nearby monsters to random hidden cells.
+item.water;Water
+item.water.description;Gain 50 mana.
+item.waterboy-medal;Waterboy Medal
+item.waterboy-medal.description;Stages have an additional Waterboy.
+item.watering-can;Watering Can
+item.watering-can.description;Spawn random loot on 0-value cells within target visible 3x3 area.
+item.watering-can.divine;Divine Watering Can
+item.watering-can.divine.description;Spawn random loot in all empty visible cells.
+item.welding-mask;Welding Mask
+item.welding-mask.description;[2 Head Armor] Every 100 cells opened, equip a random armor.
+item.whetstone;Whetstone
+item.whetstone.description;Favor all weapon items. Whenever you gain a weapon, you can powerchord any cell for 5 turns.
+item.whip.divine;Divine Whip
+item.whip.divine.description;Your familiars move an extra space each turn. Whenever you gain a familiar, pass a turn.
+item.whip;Whip
+item.whip.description;Your familiars move an extra space per turn.
+item.whittling-knife;Whittling Knife
+item.whittling-knife.description;Favor all Doll items. Whenever you gain a Doll, gain a mastery charge.
+item.wild-bracers;Wild Bracers
+item.wild-bracers.description;Monsters roll extra times for damage equal to your number of Minions, and use the weakest result.
+item.wildbank;Wildbank
+item.wildbank.description;When you complete a stage, gain 1 Minion for every diamond or chest left behind.
+item.wildcard;Wildcard
+item.wildcard.description;Randomize your card items, including this one.
+item.wisdom-tooth;Wisdom Tooth
+item.wisdom-tooth.description;Gain a mastery charge whenever you consume an item that isn't a consumable item. Automatically consume this item when you enter the final stage.
+item.wishbone.divine;Divine Wishbone
+item.wishbone.divine.description;33% chance to revive on death.
+item.wishbone;Wishbone
+item.wishbone.description;25% chance to revive on death.
+item.wishing-coin;Wishing Coin
+item.wishing-coin.description;Guarantees 3 Wishpools per stage. You may right click to throw this item into a Wishpool, increasing its charges by 5.
+item.wishlist;Wishlist
+item.wishlist.description;Activate the completion of all of your status effects. The status timers are unaffected.
+item.witch-doll;Witch Doll
+item.witch-doll.description;Gain an omen for every 2 mastery charges at the start of each stage, and when you activate your ultimate ability.
+item.witch-hat;Witch Hat
+item.witch-hat.description;[2 Head Armor] When equipped, fortify by 1 for each of your omens. Gain 50 mana whenever this takes damage.
+item.witch-hat.divine;Divine Witch Hat
+item.witch-hat.divine.description;[2 Head Armor] When equipped, double your omens then fortify by 1 for each of your omens. Gain 66 mana whenever this takes damage.
+item.witch's-memento;Witch's Memento
+item.witch's-memento.description;When you enter the Metagate, remove 1 portal mod for each of your omens.
+item.witchcraft;Witchcraft
+item.witchcraft.description;Restore 5 lives and gain an omen.
+item.witchcraft.divine;Divine Witchcraft
+item.witchcraft.divine.description;Restore your life to max, gain 1 defense and gain 2 omens.
+item.witches-brew;Witches Brew
+item.witches-brew.description;Restore 1 life and gain 25 mana for each omen you have.
+item.wizard-boots;Wizard Boots
+item.wizard-boots.description;[1 Leg Armor] Every 10 turns, gain 50 mana if you just clicked on a 4 or greater.
+item.wizard-bracers;Wizard Bracers
+item.wizard-bracers.description;Monsters roll extra times for damage equal to your number of charged magic items, and use the weakest result.
+item.wizard-doll;Wizard Doll
+item.wizard-doll.description;Gain 40 mana times your mastery charges at the start of each stage, and when your ultimate ability is activated.
+item.wizard-hat;Wizard Hat
+item.wizard-hat.description;[2 Head Armor] Fortify by 1 whenever you use a magic item. Gain 50 mana whenever this takes damage.
+item.wizard-robe;Wizard Robe
+item.wizard-robe.description;[3 Body Armor] Fortify by 1 for every 50 mana spent.
+item.wizard's-memento;Wizard's Memento
+item.wizard's-memento.description;Increase your life cap for the next dimension by 3 for each of your charged magic items.
+item.wolf-pelt;Wolf Pelt
+item.wolf-pelt.description;Whenever you gain an item, a random visible monster flees.
+item.wooden-bow;Wooden Bow
+item.wooden-bow.description;Reveal target cell if it's not already open. If the cell has a monster, kill it, otherwise you lose this item.
+item.world-map.divine;Divine World Map
+item.world-map.divine.description;Unlocks and uncompletes all stages.
+item.world-map;World Map
+item.world-map.description;Unlocks all stages.
+item.world-wonder;World Wonder
+item.world-wonder.description;Spawn a landmark at the start of each stage and whenever you discover a 5 or greater.
+item.wrecking-ball;Wrecking Ball
+item.wrecking-ball.description;Every 10 seconds, destroy a random visible object.
+item.wyrm-scale;Wyrm Scale
+item.wyrm-scale.description;When you use a magic item, gain up to 30 mana per omen.
+item.yarn-of-life;Yarn of Life
+item.yarn-of-life.description;Whenever you create a 5-turn chain of value 2 or greater, gain 1 soul.
+item.yarn-of-war;Yarn of War
+item.yarn-of-war.description;Whenever you create a 5-turn chain of value 2 or greater, gain 1 defense.
+item.yellow-dye;Yellow Dye
+item.yellow-dye.description;You will only find legendary items until you gain a legendary item.
+item.yellow-egg;Yellow Egg
+item.yellow-egg.description;You must have a legendary item to open this egg!
+item.zeal-of-hate;Zeal of Hate
+item.zeal-of-hate.description;Spawn a monster. If you have to guess, convert all visible monsters to Minions.
+item.zeal-of-love;Zeal of Love
+item.zeal-of-love.description;Spawn a heart. If you have to guess, convert all visible hearts to souls.
+item.zombie-charm;Zombie Charm
+item.zombie-charm.description;When you bury Bones, spawn a familiar in the same cell.
+item.zombie-paw;Zombie Paw
+item.zombie-paw.description;Whenever a familiar dies, spawn a familiar.

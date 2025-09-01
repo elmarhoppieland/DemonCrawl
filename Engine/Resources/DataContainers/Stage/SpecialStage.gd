@@ -14,6 +14,25 @@ func _get_theme() -> Theme:
 	return null
 
 
+func _get_name_id() -> String:
+	return "stage.special." + name.to_snake_case().replace("_", "-")
+
+
+func _get_description_id() -> String:
+	return "stage.special." + name.to_snake_case().replace("_", "-") + ".description"
+
+
+func _get_info() -> Array:
+	if completed:
+		return super()
+	
+	return [
+		11,
+		Color("ffd700"),
+		"stage-select.details.property.special"
+	]
+
+
 func get_bg() -> Texture2D:
 	if not _bg:
 		_bg = _get_bg()

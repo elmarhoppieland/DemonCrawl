@@ -1,73 +1,75 @@
 key;en
 
-STRANGER_NOMAD;Nomad
-STRANGER_NOMAD_PRICE;Price: {cost} coins
-STRANGER_NOMAD_SELL_CONSUMABLE;Selling {item}!
-STRANGER_NOMAD_SELL_MAGIC;Selling magic items!
-STRANGER_NOMAD_SELL_LEGENDARY;Selling legendary items!
-STRANGER_NOMAD_SELL_MANA;Selling {mana} mana!
-STRANGER_NOMAD_SELL_TREASURE;Selling treasure chests!
-STRANGER_NOMAD_SELL_APPLES;Selling {amount} apples!
-STRANGER_NOMAD_BUY_ITEM;Buying {item}!
-STRANGER_NOMAD_TOO_EXPENSIVE;You don't have enough coins!
-STRANGER_NOMAD_FAIL_BUY_ITEM;Right, you don't have {item}!
+stranger.nomad;Nomad
+stranger.nomad.price;Price: {cost} coins
+stranger.nomad.sell.consumable;Selling {item}!
+stranger.nomad.sell.magic;Selling magic items!
+stranger.nomad.sell.legendary;Selling legendary items!
+stranger.nomad.sell.mana;Selling {mana} mana!
+stranger.nomad.sell.treasure;Selling treasure chests!
+stranger.nomad.sell.apples;Selling {amount} apples!
+stranger.nomad.sell.fail;You don't have enough coins!
+stranger.nomad.buy.item;Buying {item}!
+stranger.nomad.buy.item.fail;Right, you don't have {item}!
 
-STRANGER_PLANT;Hungry Plant
-STRANGER_PLANT_DESCRIPTION;Feed me your items!
-STRANGER_PLANT_REWARD;[{v}/{max}] Reward: {reward}
-STRANGER_PLANT_REWARD_COINS;{amount} coin
-STRANGER_PLANT_REWARD_COINS_PLURAL;{amount} coins
-STRANGER_PLANT_REWARD_SOULS;{amount} soul
-STRANGER_PLANT_REWARD_SOULS_PLURAL;{amount} souls
-STRANGER_PLANT_REWARD_MANA;{amount} mana
-STRANGER_PLANT_REWARD_MANA_PLURAL;{amount} mana
-STRANGER_PLANT_REWARD_PRESENT;Gain a Present
+stranger.plant;Hungry Plant
+stranger.plant.description;Feed me your items!
+stranger.plant.reward;[{v}/{max}] Reward: {reward}
+stranger.plant.reward.coins;{amount} coin
+stranger.plant.reward.coins.plural;{amount} coins
+stranger.plant.reward.souls;{amount} soul
+stranger.plant.reward.souls.plural;{amount} souls
+stranger.plant.reward.mana;{amount} mana
+stranger.plant.reward.mana.plural;{amount} mana
+stranger.plant.reward.present;Gain a Present
 
-STRANGER_BLACKSMITH;Blacksmith
-STRANGER_BLACKSMITH_DESCRIPTION;Got {cost} coins? I'll forge you some {type} armor in {turns} turns!
-STRANGER_BLACKSMITH_BUSY;Still hammerin' away!
-STRANGER_BLACKSMITH_PROGRESS;[{passed_turns}/{turns}]
+stranger.blacksmith;Blacksmith
+stranger.blacksmith.description;Got {cost} coins? I'll forge you some {type} armor in {turns} turns!
+stranger.blacksmith.busy;Still hammerin' away!
+stranger.blacksmith.progress;[{passed.turns}/{turns}]
 
-STRANGER_PRIEST;Priest
-STRANGER_PRIEST_DESCRIPTION;I can remove an Omen and get rid of your negative morality for {cost} coins!
-STRANGER_PRIEST_FAIL;Even soldiers of God need to eat!
+stranger.priest;Priest
+stranger.priest.description;I can remove an Omen and get rid of your negative morality for {cost} coins!
+stranger.priest.fail;Even soldiers of God need to eat!
 
-STRANGER_BAGMAN;Bagman
-STRANGER_BAGMAN_DESCRIPTION_EMPOWER;I empower monsters by {power}!
-STRANGER_BAGMAN_DESCRIPTION_WEAKEN;I weaken monsters by {power}!
-STRANGER_BAGMAN_DESCRIPTION_NEUTRAL;Having trouble with those monsters?
-STRANGER_BAGMAN_DESCRIPTION_PROMPT;Give me {cost} coins and I'll help you out...
-STRANGER_BAGMAN_INTERACT;You got it...
+stranger.bagman;Bagman
+stranger.bagman.description.empower;I empower monsters by {power}!
+stranger.bagman.description.weaken;I weaken monsters by {power}!
+stranger.bagman.description.neutral;Having trouble with those monsters?
+stranger.bagman.description.prompt;Give me {cost} coins and I'll help you out...
+stranger.bagman.interact;You got it...
 
-STRANGER_ELDER;Elder
-STRANGER_ELDER_DESCRIPTION;I can activate your mastery's ultimate ability for {cost} coins...
+stranger.elder;Elder
+stranger.elder.description;I can activate your mastery's ultimate ability for {cost} coins...
 
-STRANGER_GAMBLER;Gambler
-STRANGER_GAMBLER_DESCRIPTION;I'll bet you {cost} coins that I can move to a hidden cell without getting hurt! If I'm wrong, well, you can have whatever I've got.
-STRANGER_GAMBLER_BALANCE;Currently has: {coins} coins
+stranger.gambler;Gambler
+stranger.gambler.description;I'll bet you {cost} coins that I can move to a hidden cell without getting hurt! If I'm wrong, well, you can have whatever I've got.
+stranger.gambler.balance;Currently has: {coins} coins
 
-STRANGER_DOCTOR;Doctor
-STRANGER_DOCTOR_DESCRIPTION;I will restore {lives} <1:life|lives> for {cost} coins, but you'll owe me {fee} more when you leave.
-STRANGER_DOCTOR_DESCRIPTION_EXTRA;Don't forget, you still owe me {fee} coins! Need another heal? I will restore {lives} <1:life|lives> for {cost} coins, but then you'll owe a total of {new_fee} coins later.
-STRANGER_DOCTOR_BALANCE;Currently has: {coins} coins
+stranger.doctor;Doctor
+stranger.doctor.description;I will restore {lives} life for {cost} coins, but you'll owe me {fee} more when you leave.
+stranger.doctor.description.plural;I will restore {lives} lives for {cost} coins, but you'll owe me {fee} more when you leave.
+stranger.doctor.description.extra;Don't forget, you still owe me {fee} coins! Need another heal? I will restore {lives} life for {cost} coins, but then you'll owe a total of {new_fee} coins later.
+stranger.doctor.description.extra.plural;Don't forget, you still owe me {fee} coins! Need another heal? I will restore {lives} lives for {cost} coins, but then you'll owe a total of {new_fee} coins later.
+stranger.doctor.balance;Currently has: {coins} coins
 
-STRANGER_MAGE;Mage
-STRANGER_MAGE_DESCRIPTION;I will cast {item} on a random cell for {cost} coins!
-STRANGER_MAGE_LOST_ITEM;Oh no! I lost my {item}!
-STRANGER_MAGE_NO_ITEM;I seem to have lost my {item}!
-STRANGER_MAGE_CHARGING;I need {mana} more mana before I can cast {item} again!
+stranger.mage;Mage
+stranger.mage.description;I will cast {item} on a random cell for {cost} coins!
+stranger.mage.description.no-item;I seem to have lost my {item}!
+stranger.mage.description.charging;I need {mana} more mana before I can cast {item} again!
+stranger.mage.lost-item;Oh no! I lost my {item}!
 
-STRANGER_SCRIBE;Scribe
-STRANGER_SCRIBE_INCREASE_DESCRIPTION;I will add 1 to each of your heirlooms for {cost} coins!
-STRANGER_SCRIBE_COPY_DESCRIPTION;I will copy your first {slot_count} items into their heirloom slots for {cost} coins!
-STRANGER_SCRIBE_REACTIVATE_DESCRIPTION;I will reactivate your heirloom slots for {cost} coins!
+stranger.scribe;Scribe
+stranger.scribe.increase.description;I will add 1 to each of your heirlooms for {cost} coins!
+stranger.scribe.copy.description;I will copy your first {slot.count} items into their heirloom slots for {cost} coins!
+stranger.scribe.reactivate.description;I will reactivate your heirloom slots for {cost} coins!
 
-STRANGER_PYRO;Pyro
-STRANGER_PYRO_DESCRIPTION;Flares are my thing!! Give me {cost} coins and I'll rotate clockwise!
+stranger.pyro;Pyro
+stranger.pyro.description;Flares are my thing!! Give me {cost} coins and I'll rotate clockwise!
 
-STRANGER_WATERBOY;Pyro
-STRANGER_WATERBOY_DESCRIPTION;I love bubbles! Pay me {cost} coins and I'll move over one cell.
-STRANGER_WATERBOY_CANNOT_MOVE;I cannot move there!
+stranger.waterboy;Waterboy
+stranger.waterboy.description;I love bubbles! Pay me {cost} coins and I'll move over one cell.
+stranger.waterboy.move.fail;I cannot move there!
 
-STRANGER_MERCENARY;Mercenary
-STRANGER_MERCENARY_DESCRIPTION;Give me {cost} coins and I will fight for you!
+stranger.mercenary;Mercenary
+stranger.mercenary.description;Give me {cost} coins and I will fight for you!

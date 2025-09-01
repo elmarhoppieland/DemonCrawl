@@ -33,7 +33,7 @@ theme_override_constants/margin_left = 1
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
-text = "SELECT_QUEST"
+text = "quest-select.overview.header"
 label_settings = SubResource("LabelSettings_dyfx5")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

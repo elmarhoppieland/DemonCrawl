@@ -10,9 +10,8 @@ region = Rect2(64, 128, 16, 16)
 
 [resource]
 script = ExtResource("1_redvf")
-name = "ITEM_BOOK_OF_COMBAT"
-description = "ITEM_BOOK_OF_COMBAT_DESCRIPTION"
-type = 0
+name = "item.book-of-combat"
+description = "item.book-of-combat.description"
 mana = 0
 cost = 12
 tags = Array[String](["book"])

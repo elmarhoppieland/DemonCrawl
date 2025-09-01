@@ -100,11 +100,10 @@ func get_display_name() -> String:
 	return _get_name()
 
 
-## Virtual method to override this [Mastery]'s name. If not overridden, uses the identifier
-## to generate a translatable string:
-## [br][code]MASTERY_{id}[/code]
+## Virtual method to override this [Mastery]'s name. If not overridden, translates
+## the identifier.
 func _get_name() -> String:
-	var mastery_name := tr("MASTERY_" + _get_identifier())
+	var mastery_name := tr(get_identifier())
 	if level > 0:
 		mastery_name += " " + RomanNumeral.convert_to_roman(level)
 	return mastery_name
@@ -126,7 +125,7 @@ func get_description() -> PackedStringArray:
 ## [br][code]MASTERY_{id}_DESCRIPTION_{level}[/code].
 @warning_ignore("shadowed_variable")
 func _get_description(level: int) -> String:
-	var description := tr("MASTERY_%s_DESCRIPTION_%d" % [_get_identifier(), level])
+	var description := tr("%s.description.%d" % [get_identifier(), level])
 	
 	if level != 3:
 		return description
@@ -144,7 +143,7 @@ func _get_description(level: int) -> String:
 	
 	return "[%d %s] %s" % [
 		max_charges,
-		Translator.translate("CHARGES", max_charges),
+		tr_n("generic.charges", "generic.charges.plural", max_charges),
 		description
 	]
 
@@ -170,7 +169,7 @@ func get_identifier() -> String:
 ## Virtual method to override this [Mastery]'s identifier. If not overridden, converts
 ## the [Mastery]'s class name into an identifier.
 func _get_identifier() -> String:
-	return UserClassDB.script_get_class(get_script()).to_snake_case().to_upper()
+	return "mastery." + UserClassDB.script_get_class(get_script()).to_snake_case().to_lower().replace("_", "-")
 
 
 ## Returns the [Token] cost for this [Mastery] at the given [code]level[/code].
@@ -208,7 +207,7 @@ func get_condition_text() -> String:
 ## Virtual method to explain how to unlock this [Mastery]'s level. If not overridden,
 ## returns a translatable [String]: [code]MASTERY_{id}_UNLOCK_{level}[/code].
 func _get_condition_text() -> String:
-	return tr("MASTERY_%s_UNLOCK_%d" % [_get_identifier(), level])
+	return tr("%s.unlock.%d" % [get_identifier(), level])
 
 
 func get_max_charges() -> int:
@@ -334,7 +333,7 @@ func _ability() -> void:
 ## Returns the description of this [Mastery]'s ability.
 func get_ability_description() -> String:
 	var override := _get_ability_description()
-	return tr("MASTERY_%s_ABILITY" % _get_identifier()) if override.is_empty() else override
+	return tr("%s.ability" % get_identifier()) if override.is_empty() else override
 
 
 ## Virtual method to override the return value of [method get_ability_description].

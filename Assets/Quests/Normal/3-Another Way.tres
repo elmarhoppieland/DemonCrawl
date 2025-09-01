@@ -155,8 +155,8 @@ mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("2_sj12g")
-name = "QUEST_ANOTHER_WAY"
-lore = "LORE_ANOTHER_WAY"
+name = "quest.another-way"
+lore = "quest.another-way.lore"
 token_shop_purchase = ExtResource("5_k8pwy")
 icon = SubResource("Texture2D_utex0")
 skip_unlock = false

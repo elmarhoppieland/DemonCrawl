@@ -57,9 +57,5 @@ theme_override_constants/separation = 4
 [node name="TooltipGrabber" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_d1xq6")
-text = "MASTERY_SURVIVOR III"
-subtext = "• MASTERY_SURVIVOR_DESCRIPTION_1
-• MASTERY_SURVIVOR_DESCRIPTION_2
-• [3/3] MASTERY_SURVIVOR_DESCRIPTION_3"
 
 [connection signal="interacted" from="TooltipGrabber" to="." method="_on_interacted"]

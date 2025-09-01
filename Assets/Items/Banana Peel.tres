@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://ciheon4tqi8f6"]
 
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_ha2he"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_ha2he"]
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_tqhbl"]
-[ext_resource type="Script" uid="uid://b6ah5ip23oi" path="res://Assets/items/Banana Peel.gd" id="2_ayerx"]
+[ext_resource type="Script" uid="uid://b6ah5ip23oi" path="res://Assets/Items/Banana Peel.gd" id="2_ayerx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kpt0i"]
 atlas = ExtResource("1_ha2he")
@@ -10,9 +10,8 @@ region = Rect2(144, 16, 16, 16)
 
 [resource]
 script = ExtResource("1_tqhbl")
-name = "ITEM_BANANA_PEEL"
-description = "ITEM_BANANA_PEEL_DESCRIPTION"
-type = 1
+name = "item.banana-peel"
+description = "item.banana-peel.description"
 mana = 0
 cost = 0
 tags = Array[String](["_targeted"])

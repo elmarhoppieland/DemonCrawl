@@ -54,7 +54,7 @@ func _reveal() -> void:
 
 func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("STRANGER_PYRO_FAIL"), get_source())
+		Toasts.add_toast(tr("stranger.pyro.fail"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -68,11 +68,11 @@ func _activate() -> void:
 
 
 func _get_annotation_title() -> String:
-	return tr("STRANGER_PYRO").to_upper()
+	return tr("stranger.pyro").to_upper()
 
 
 func _get_annotation_subtext() -> String:
-	return "\"" + tr("STRANGER_PYRO_DESCRIPTION").format({
+	return "\"" + tr("stranger.pyro.description").format({
 		"cost": cost
 	}) + "\""
 

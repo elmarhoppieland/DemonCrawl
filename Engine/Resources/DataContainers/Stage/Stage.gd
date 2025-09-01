@@ -100,6 +100,64 @@ func area() -> int:
 	return size.x * size.y
 
 
+## Returns this [Stage]'s name as a translatable [String].
+func get_name_id() -> String:
+	var override := _get_name_id()
+	if not override.is_empty():
+		return override
+	return "stage." + name.to_snake_case().replace("_", "-")
+
+
+## Virtual method to override the return value of [method get_name_id].
+func _get_name_id() -> String:
+	return ""
+
+
+func get_info() -> Array:
+	var override := _get_info()
+	if not override.is_empty():
+		return override
+	
+	if completed:
+		return [
+			5,
+			Color("10df80"),
+			"stage-select.details.property.complete"
+		]
+	
+	return [
+		4,
+		IconManager.get_icon_data("icons/power5").create_texture(),
+		2,
+		"%d-%d" % [min_power, max_power],
+		6,
+		IconManager.get_icon_data("icons/monster5").create_texture(),
+		3,
+		str(monsters),
+		7,
+		IconManager.get_icon_data("icons/size5").create_texture(),
+		3,
+		str(area())
+	]
+
+
+func _get_info() -> Array:
+	return []
+
+
+## Returns this [Stage]'s description as a translatable [String].
+func get_description_id() -> String:
+	var override := _get_description_id()
+	if not override.is_empty():
+		return override
+	return "stage." + name.to_snake_case().replace("_", "-") + ".description"
+
+
+## Virtual method to override the return value of [method get_description_id].
+func _get_description_id() -> String:
+	return ""
+
+
 ## Returns a [Theme] instance for this [Stage], with all relevant properties set
 ## to this [Stage]'s theme.
 func get_theme() -> Theme:

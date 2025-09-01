@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dlk23qy0u2xwh" path="res://Engine/Scenes/SpecialStages/Item Shop/ItemShopStage.gd" id="1_3moa5"]
 [ext_resource type="Texture2D" uid="uid://bgg7dvorx22m1" path="res://Assets/Backgrounds/item_shop.png" id="1_hllyk"]
-[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="2_7h07o"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="2_7h07o"]
 [ext_resource type="Shader" uid="uid://dg3b7w8v3tf2r" path="res://Engine/Scenes/SpecialStages/Item Shop/Item Shop.gdshader" id="4_6l62f"]
 [ext_resource type="PackedScene" uid="uid://d1v0qvvw8dwe0" path="res://Engine/Resources/Scenes/DCButton.tscn" id="5_3qi0c"]
-[ext_resource type="Texture2D" uid="uid://cq175wtkgma0r" path="res://Assets/sprites/item_shop_present_logo.png" id="5_gc6dr"]
+[ext_resource type="Texture2D" uid="uid://cq175wtkgma0r" path="res://Assets/Sprites/item_shop_present_logo.png" id="5_gc6dr"]
 [ext_resource type="Script" uid="uid://d1c6fxxsk1ugt" path="res://Engine/Resources/Singletons/GuiEnabler.gd" id="7_57vr3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g72nf"]
@@ -83,13 +83,13 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer"]
 layout_mode = 2
-text = "Item Shop"
+text = "stage.special.item-shop"
 label_settings = SubResource("LabelSettings_g72nf")
 
 [node name="Label2" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer"]
 material = SubResource("ShaderMaterial_by0ps")
 layout_mode = 2
-text = "Item Shop"
+text = "stage.special.item-shop"
 label_settings = SubResource("LabelSettings_w6k33")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
@@ -141,7 +141,7 @@ theme_override_constants/separation = 0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "CHOOSE_ITEM"
+text = "stage.special.item-shop.text"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="VBoxContainer"]
@@ -171,6 +171,7 @@ size_flags_horizontal = 4
 tooltip_auto_translate_mode = 0
 color = Color(0.0627451, 0.87451, 0.501961, 1)
 bg_color = Color(0, 0, 0, 1)
+text = "stage.special.item-shop.confirm"
 
 [node name="Control3" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 2)
@@ -185,7 +186,7 @@ size_flags_horizontal = 4
 tooltip_auto_translate_mode = 0
 color = Color(0.862745, 0.121569, 0.121569, 1)
 bg_color = Color(0, 0, 0, 1)
-text = "LEAVE"
+text = "stage.special.item-shop.leave"
 
 [node name="GuiEnabler" type="Node" parent="."]
 script = ExtResource("7_57vr3")

@@ -154,8 +154,8 @@ mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("2_lbchf")
-name = "QUEST_GLORY_DAYS"
-lore = "LORE_GLORY_DAYS"
+name = "quest.glory-days"
+lore = "quest.glory-days.lore"
 icon = SubResource("Texture2D_kpscn")
 skip_unlock = false
 stages = Array[ExtResource("4_12a3h")]([SubResource("Resource_arluq"), SubResource("Resource_0fprk"), SubResource("Resource_7sity"), SubResource("Resource_avld4"), SubResource("Resource_ccxup"), SubResource("Resource_4lmxs"), SubResource("Resource_sivim"), SubResource("Resource_3jn66"), SubResource("Resource_72pru"), SubResource("Resource_c8ijh")])

@@ -5,11 +5,11 @@ class_name ItemData
 # ==============================================================================
 @export var name := "" :
 	set(value):
-		if description.is_empty() or description == name.to_snake_case().to_upper() + "_DESCRIPTION":
+		if description.is_empty() or name.to_snake_case().replace("_", "-") + ".description":
 			if value.is_empty():
 				description = ""
 			else:
-				description = value.to_snake_case().to_upper() + "_DESCRIPTION"
+				description = value.to_snake_case().replace("_", "-") + ".description"
 		name = value
 		emit_changed()
 
@@ -29,9 +29,9 @@ func _property_get_revert(property: StringName) -> Variant:
 	if property == &"description":
 		if name.is_empty():
 			return ""
-		return name.to_snake_case().to_upper() + "_DESCRIPTION"
+		return name.to_snake_case().replace("_", "-") + ".description"
 	if property == &"name":
-		return "ITEM_" + resource_path.get_file().get_basename().to_snake_case().to_upper()
+		return "item." + resource_path.get_file().get_basename().to_snake_case().replace("_", "-")
 	
 	return null
 

@@ -24,8 +24,8 @@ invert = false
 
 [resource]
 script = ExtResource("4_2344n")
-name = "QUEST_SHADOWMAN"
-description = "QUEST_UNLOCK_SHADOWMAN"
+name = "token-shop.category.upgrades.quest.5.hard"
+description = "token-shop.category.upgrades.quest.5.hard.description"
 icon = SubResource("Texture2D_not6g")
 cost = 3
 conditions = Array[ExtResource("1_r2igy")]([SubResource("Resource_drplq")])

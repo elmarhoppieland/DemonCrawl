@@ -145,8 +145,8 @@ mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("2_wrs1r")
-name = "QUEST_HERO_TRIALS"
-lore = "LORE_HERO_TRIALS"
+name = "quest.hero-trials"
+lore = "quest.hero-trials.lore"
 icon = SubResource("Texture2D_bpcax")
 skip_unlock = false
 stages = Array[ExtResource("5_6vdyp")]([SubResource("Resource_xniog"), SubResource("Resource_p5u11"), SubResource("Resource_thi6w"), SubResource("Resource_hxiju"), SubResource("Resource_gwavl"), SubResource("Resource_t2hxq"), SubResource("Resource_xvww4"), SubResource("Resource_3f7c8"), SubResource("Resource_rk7nb"), SubResource("Resource_gq67k")])

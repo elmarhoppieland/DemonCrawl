@@ -16,7 +16,7 @@ func _spawn() -> void:
 
 func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("STRANGER_ELDER_FAIL"), get_source())
+		Toasts.add_toast(tr("stranger.elder.fail"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -30,11 +30,11 @@ func _activate() -> void:
 
 
 func _get_annotation_title() -> String:
-	return tr("STRANGER_ELDER").to_upper()
+	return tr("stranger.elder").to_upper()
 
 
 func _get_annotation_subtext() -> String:
-	return "\"" + tr("STRANGER_ELDER_DESCRIPTION").format({
+	return "\"" + tr("stranger.elder.description").format({
 		"cost": cost
 	}) + "\"\n(" + Quest.get_current().get_mastery().get_ability_description() + ")"
 

@@ -45,7 +45,7 @@ func _item_use(item: Item) -> void:
 
 func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("STRANGER_DOCTOR_FAIL"), get_source())
+		Toasts.add_toast(tr("stranger.doctor.fail"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -54,25 +54,25 @@ func _interact() -> void:
 
 
 func _activate() -> void:
-	Toasts.add_toast(tr("STRANGER_DOCTOR_INTERACT"), get_source())
+	Toasts.add_toast(tr("stranger.doctor.interact"), get_source())
 	
 	purchase_count += 1
 	Quest.get_current().get_stats().life_restore(lives, self)
 
 
 func _get_annotation_title() -> String:
-	return tr("STRANGER_DOCTOR").to_upper()
+	return tr("stranger.doctor").to_upper()
 
 
 func _get_annotation_subtext() -> String:
 	if purchase_count == 0:
-		return "\"" + Translator.translate("STRANGER_DOCTOR_DESCRIPTION", lives).format({
+		return "\"" + tr_n("stranger.doctor.description", "stranger.doctor.description.plural", lives).format({
 			"cost": cost,
 			"fee": extra_fee,
 			"lives": lives
 		}) + "\""
 	
-	return "\"" + Translator.translate("STRANGER_DOCTOR_DESCRIPTION_EXTRA", lives).format({
+	return "\"" + tr_n("stranger.doctor.description.extra", "stranger.doctor.description.extra.plural", lives).format({
 		"cost": cost,
 		"fee": extra_fee * purchase_count,
 		"lives": lives,

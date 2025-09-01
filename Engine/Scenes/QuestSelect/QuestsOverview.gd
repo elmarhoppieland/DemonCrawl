@@ -51,9 +51,9 @@ func add_quest(quest: QuestFile) -> void:
 		var completions := data.completion_count
 		var best := data.best_score
 		player_data_label.text = ("%s: x%d\n%s: %s" % [
-			tr("QUEST_COMPLETIONS"),
+			tr("quest-select.overview.quest-completions"),
 			completions,
-			tr("QUEST_BEST"),
+			tr("quest-select.overview.best"),
 			str(best) if completions > 0 else "-"
 		])
 		

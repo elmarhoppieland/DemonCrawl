@@ -37,7 +37,7 @@ func _activate() -> void:
 
 
 func _get_annotation_title() -> String:
-	return tr("STRANGER_NOMAD").to_upper()
+	return tr("stranger.nomad").to_upper()
 
 
 func _get_annotation_subtext() -> String:

@@ -9,8 +9,8 @@ region = Rect2(64, 224, 16, 16)
 
 [resource]
 script = ExtResource("1_1edwi")
-name = "ITEM_BOOK_OF_NECROMANCY"
-description = "ITEM_BOOK_OF_NECROMANCY_DESCRIPTION"
+name = "item.book-of-necromancy"
+description = "item.book-of-necromancy.description"
 mana = 0
 cost = 16
 tags = Array[String](["book"])

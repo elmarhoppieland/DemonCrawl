@@ -20,15 +20,15 @@ func _can_perform(_free: bool = false) -> bool:
 
 
 func _get_fail_message() -> String:
-	return tr("STRANGER_NOMAD_MISSING_ITEM").format({
+	return tr("stranger.nomad.buy.item.fail").format({
 		"item": tr(item.get_name())
 	})
 
 
 func _get_description() -> String:
-	return "\"" + tr("STRANGER_NOMAD_BUY_ITEM").format({
+	return "\"" + tr("stranger.nomad.buy.item").format({
 		"item": tr(item.get_name())
-	}) + "\"\n" + tr("STRANGER_NOMAD_PRICE").format({
+	}) + "\"\n" + tr("stranger.nomad.price").format({
 		"cost": price
 	})
 

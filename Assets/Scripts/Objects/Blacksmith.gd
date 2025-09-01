@@ -46,7 +46,7 @@ func _interact() -> void:
 		return
 	
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("STRANGER_BLACKSMITH_FAIL"), get_source())
+		Toasts.add_toast(tr("stranger.blacksmith.fail"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -61,18 +61,18 @@ func _activate() -> void:
 
 
 func _get_annotation_title() -> String:
-	return tr("STRANGER_BLACKSMITH").to_upper()
+	return tr("stranger.blacksmith").to_upper()
 
 
 func _get_annotation_subtext() -> String:
 	if passed_turns < 0:
-		return "\"" + tr("STRANGER_BLACKSMITH_DESCRIPTION").format({
-			"type": tr("ARMOR_TYPE_" + Type.find_key(type)),
+		return "\"" + tr("stranger.blacksmith.description").format({
+			"type": tr("generic.armor." + Type.find_key(type).to_lower()),
 			"cost": cost,
 			"turns": turns
 		}) + "\""
 	
-	return "\"" + tr("STRANGER_BLACKSMITH_BUSY") + "\"\n" + tr("STRANGER_BLACKSMITH_PROGRESS").format({
+	return "\"" + tr("stranger.blacksmith.busy") + "\"\n" + tr("stranger.blacksmith.progress").format({
 		"passed_turns": passed_turns,
 		"turns": turns
 	})

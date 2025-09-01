@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://dqe6i8xvwotle" path="res://Assets/Backgrounds/stages0.png" id="1_6aai7"]
 [ext_resource type="PackedScene" uid="uid://bho6th882qje0" path="res://Engine/Scenes/StageSelect/StagesOverview.tscn" id="2_nrtxk"]
 [ext_resource type="PackedScene" uid="uid://c3vf0fdejs72s" path="res://Engine/Scenes/StageSelect/StageDetails.tscn" id="4_26rrt"]
-[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/fonts/Lady Radical.ttf" id="6_asf3s"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://Assets/Fonts/Lady Radical.ttf" id="6_asf3s"]
 [ext_resource type="Script" uid="uid://d1c6fxxsk1ugt" path="res://Engine/Resources/Singletons/GuiEnabler.gd" id="9_a0qlk"]
-[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/sprites/icons.png" id="9_l3xwp"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="9_l3xwp"]
 [ext_resource type="Script" uid="uid://bp8kqfn8liwqp" path="res://Engine/Resources/UtilityNode/FadeButton.gd" id="9_xkiay"]
-[ext_resource type="Texture2D" uid="uid://c1dflngu6flp4" path="res://Assets/sprites/abandon.png" id="10_0nt55"]
+[ext_resource type="Texture2D" uid="uid://c1dflngu6flp4" path="res://Assets/Sprites/abandon.png" id="10_0nt55"]
 [ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="11_dcp1b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pehmt"]
@@ -83,7 +83,7 @@ offset_top = 10.0
 offset_right = -10.0
 grow_horizontal = 0
 size_flags_vertical = 1
-text = "QUEST_GLORY_DAYS"
+text = "quest.glory-days"
 label_settings = SubResource("LabelSettings_pehmt")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -100,7 +100,7 @@ texture_hover = SubResource("AtlasTexture_yjf3c")
 
 [node name="TooltipGrabber" type="Node" parent="HBoxContainer/BackToMenuButton"]
 script = ExtResource("11_dcp1b")
-text = "RETURN_TO_MAIN_MENU"
+text = "scene-return.main"
 
 [node name="AbandonButton" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -110,7 +110,8 @@ texture_hover = SubResource("AtlasTexture_t66ta")
 
 [node name="TooltipGrabber" type="Node" parent="HBoxContainer/AbandonButton"]
 script = ExtResource("11_dcp1b")
-text = "QUEST_ABANDON"
+text = "stage-select.button.abandon.title"
+subtext = "stage-select.button.abandon.subtext"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)

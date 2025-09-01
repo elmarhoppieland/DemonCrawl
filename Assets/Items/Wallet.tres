@@ -10,8 +10,8 @@ region = Rect2(80, 32, 16, 16)
 
 [resource]
 script = ExtResource("1_rd8fn")
-name = "ITEM_WALLET"
-description = "ITEM_WALLET_DESCRIPTION"
+name = "item.wallet"
+description = "item.wallet.description"
 mana = 0
 cost = 4
 tags = Array[String]([])

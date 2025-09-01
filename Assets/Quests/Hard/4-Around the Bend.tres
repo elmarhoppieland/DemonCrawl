@@ -155,8 +155,8 @@ mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("2_s6hu1")
-name = "QUEST_AROUND_THE_BEND"
-lore = "LORE_AROUND_THE_BEND"
+name = "quest.around-the-bend"
+lore = "quest.around-the-bend.lore"
 token_shop_purchase = ExtResource("5_ygfj7")
 icon = SubResource("Texture2D_axt8q")
 skip_unlock = false

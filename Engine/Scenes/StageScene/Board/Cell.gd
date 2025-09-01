@@ -138,7 +138,7 @@ func spawn(base: CellObjectBase, visible_only: bool = false) -> CellObject:
 		
 		radius += 1
 	
-	Toasts.add_toast(tr("OBJECT_OFF_WORLD").format({"object": tr("OBJECT_TYPE_" + UserClassDB.script_get_class(base.base_script).to_snake_case().to_upper())}), IconManager.get_icon_data("mastery/none").create_texture())
+	Toasts.add_toast(tr("generic.object.fell-off-world").format({"object": tr("object." + UserClassDB.script_get_class(base.base_script).to_snake_case().to_lower().replace("_", "-"))}), IconManager.get_icon_data("mastery/none").create_texture())
 	return
 
 

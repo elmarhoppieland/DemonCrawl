@@ -49,7 +49,7 @@ func _damage(amount: int, source: Object) -> int:
 		return amount
 	
 	if get_quest().get_current_stage().needs_guess():
-		Toasts.add_toast(tr("NOVICE_UNLUCKY_GUESS"), IconManager.get_icon_data("mastery1/Novice").create_texture())
+		Toasts.add_toast(tr("mastery.novice.guess_fail"), IconManager.get_icon_data("mastery1/Novice").create_texture())
 		return 1
 	
 	return amount
@@ -69,7 +69,7 @@ func _ability() -> void:
 	if progress_cell:
 		get_quest().get_current_stage().get_board().get_camera().focus_on_cell(progress_cell)
 	else:
-		Toasts.add_toast(tr("MUST_GUESS"), IconManager.get_icon_data("mastery1/Novice").create_texture())
+		Toasts.add_toast(tr("mastery.novice.ability.fail"), IconManager.get_icon_data("mastery1/Novice").create_texture())
 
 
 func _can_use_ability() -> bool:

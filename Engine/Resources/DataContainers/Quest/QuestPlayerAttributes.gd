@@ -86,29 +86,29 @@ func get_quest() -> Quest:
 func get_overview_text() -> String:
 	var text := ""
 	
-	text += "• " + (tr("OVERVIEW_SCORE").format({"score": score})) + "\n" \
-		+ "• " + (tr("OVERVIEW_CELLS_OPENED_SINCE_MISTAKE").format({"cells": cells_opened_since_mistake})) + "\n" \
-		+ "• " + (tr("OVERVIEW_MORALITY").format({"morality": morality})) + "\n" \
-		+ "• " + (tr("OVERVIEW_MASTERY_ACTIVATIONS").format({"activations": mastery_activations})) + "\n"
+	text += "• " + (tr("stats.overview.score").format({"score": score})) + "\n" \
+		+ "• " + (tr("stats.overview.cells-opened-since-mistake").format({"cells": cells_opened_since_mistake})) + "\n" \
+		+ "• " + (tr("stats.overview.morality").format({"morality": morality})) + "\n" \
+		+ "• " + (tr("stats.overview.mastery-activations").format({"activations": mastery_activations})) + "\n"
 	
 	if chain_length > 1:
-		text += "• " + (tr("OVERVIEW_CHAIN_LENGTH").format({"length": chain_length})) + "\n" \
-			+ "• " + (tr("OVERVIEW_CHAIN_VALUE").format({"value": chain_value})) + "\n" \
-			+ "• " + (tr("OVERVIEW_CHAIN_SUM").format({"sum": chain_length * chain_value})) + "\n"
+		text += "• " + (tr("stats.overview.chain.length").format({"length": chain_length})) + "\n" \
+			+ "• " + (tr("stats.overview.chain.value").format({"value": chain_value})) + "\n" \
+			+ "• " + (tr("stats.overview.chain.sum").format({"sum": chain_length * chain_value})) + "\n"
 	
 	if pathfinding > 0:
-		text += "• " + (tr("OVERVIEW_PATHFINDING").format({"pathfinding": pathfinding})) + "\n"
+		text += "• " + (tr("stats.overview.pathfinding").format({"pathfinding": pathfinding})) + "\n"
 	if powerchording > 0:
-		text += "• " + (tr("OVERVIEW_PATHFINDING").format({"powerchording": powerchording})) + "\n"
+		text += "• " + (tr("stats.overview.pathfinding").format({"powerchording": powerchording})) + "\n"
 	
 	if not is_equal_approx(rare_loot_modifier, 1.0):
-		text += "• " + (tr("OVERVIEW_RARE_LOOT_MODIFIER").format({"modifier": roundi(100 * rare_loot_modifier)})) + "\n"
+		text += "• " + (tr("stats.overview.rare-loot-modifier").format({"modifier": roundi(100 * rare_loot_modifier)})) + "\n"
 	
-	text += "• " + tr("OVERVIEW_CHESTS_OPENED").format({"chests": chests_opened}) + "\n" \
-		+ "• " + tr("OVERVIEW_MONSTERS_KILLED").format({"monsters": monsters_killed}) + "\n"
+	text += "• " + tr("stats.overview.chests-opened").format({"chests": chests_opened}) + "\n" \
+		+ "• " + tr("stats.overview.monsters-killed").format({"monsters": monsters_killed}) + "\n"
 	
 	if not research_subject.is_empty():
-		text += "\n" + tr("OVERVIEW_RESEARCH_SUBJECT").format({"subject": tr("RESEARCH_" + research_subject.to_snake_case().to_upper())})
+		text += "\n" + tr("stats.overview.research-subject").format({"subject": tr("research." + research_subject.to_snake_case().to_lower().replace("_", "-")).to_upper()})
 	
 	return text.strip_edges()
 

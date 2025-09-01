@@ -5,7 +5,7 @@ class_name ProfileLevelLabel
 # ==============================================================================
 
 func _enter_tree() -> void:
-	text = (tr("LEVEL") if "%" in tr("LEVEL") else "Lv%d") % (XPBar.level + 1)
+	text = (tr("player.level") if "%" in tr("player.level") else "Lv%d") % (XPBar.level + 1)
 	
 	if not label_settings:
 		label_settings = LabelSettings.new()

@@ -69,7 +69,7 @@ texture = SubResource("AtlasTexture_h3nds")
 
 [node name="TooltipGrabber" type="Node" parent="HBoxContainer/Avatar"]
 script = ExtResource("4_vjit2")
-text = "CLICK_TO_CHANGE_PROFILE"
+text = "menu.button.change-profile"
 context_mode = 0
 
 [node name="XPBar" type="ProgressBar" parent="HBoxContainer"]
@@ -117,7 +117,7 @@ theme_override_constants/separation = 1
 
 [node name="Label" type="Label" parent="ProfileListContainer"]
 layout_mode = 2
-text = "SELECT_PROFILE"
+text = "menu.select-profile.title"
 
 [node name="ProfileList" type="MarginContainer" parent="ProfileListContainer"]
 unique_name_in_owner = true

@@ -22,4 +22,4 @@ func _update() -> void:
 		_tooltip_grabber.subtext = Codex.selected_mastery.create_temp().get_description_text()
 	else:
 		texture = IconManager.get_icon_data("mastery/none").create_texture()
-		_tooltip_grabber.text = tr("MASTERY_NONE")
+		_tooltip_grabber.text = tr("mastery.none")

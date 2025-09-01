@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://bcbkii3c3k0wk"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://0te5kap26kxe"]
 
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://Engine/Resources/DataContainers/Collectible/ItemData.gd" id="1_ca528"]
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/sprites/items.png" id="1_k6e6f"]
-[ext_resource type="Script" uid="uid://bowk7v7tek3lv" path="res://Assets/items/Book of Defense.gd" id="2_3qm0a"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://Assets/Sprites/items.png" id="1_k6e6f"]
+[ext_resource type="Script" uid="uid://bowk7v7tek3lv" path="res://Assets/Items/Book of Defense.gd" id="2_3qm0a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3qm0a"]
 atlas = ExtResource("1_k6e6f")
@@ -10,9 +10,8 @@ region = Rect2(112, 240, 16, 16)
 
 [resource]
 script = ExtResource("1_ca528")
-name = "ITEM_BOOK_OF_DEFENSE"
-description = "ITEM_BOOK_OF_DEFENSE_DESCRIPTION"
-type = 0
+name = "item.book-of-defense"
+description = "item.book-of-defense.description"
 mana = 0
 cost = 17
 tags = Array[String](["book"])

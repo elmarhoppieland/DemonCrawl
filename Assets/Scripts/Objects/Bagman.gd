@@ -37,7 +37,7 @@ func _interact() -> void:
 		return
 	
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("STRANGER_BAGMAN_FAIL"), get_source())
+		Toasts.add_toast(tr("stranger.bagman.fail"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)
@@ -46,29 +46,29 @@ func _interact() -> void:
 
 func _activate() -> void:
 	power -= 1
-	Toasts.add_toast(tr("STRANGER_BAGMAN_INTERACT"), get_source())
+	Toasts.add_toast(tr("stranger.bagman.interact"), get_source())
 
 
 func _get_annotation_title() -> String:
-	return tr("STRANGER_BAGMAN").to_upper()
+	return tr("stranger.bagman").to_upper()
 
 
 func _get_annotation_subtext() -> String:
 	var msg := ""
 	
 	if power > 0:
-		msg += tr("STRANGER_BAGMAN_DESCRIPTION_EMPOWER").format({
+		msg += tr("stranger.bagman.description.empower").format({
 			"power": power
 		}) + "\n"
 	elif power == 0:
-		msg += tr("STRANGER_BAGMAN_DESCRIPTION_NEUTRAL") + "\n"
+		msg += tr("stranger.bagman.description.neutral") + "\n"
 	else:
-		msg += tr("STRANGER_BAGMAN_DESCRIPTION_WEAKEN").format({
+		msg += tr("stranger.bagman.description.weaken").format({
 			"power": -power
 		}) + "\n"
 	
 	if power > -3:
-		msg += tr("STRANGER_BAGMAN_DESCRIPTION_PROMPT").format({
+		msg += tr("stranger.bagman.description.prompt").format({
 			"cost": cost
 		})
 	
