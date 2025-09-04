@@ -21,16 +21,12 @@ static var heirlooms_changed := Signal() :
 
 static var favored_items: Array[Favor] = Eternal.create([] as Array[Favor])
 
-static var selected_mastery: Mastery.MasteryData = Eternal.create(null) :
+static var selected_mastery: MasteryData = Eternal.create(null) :
 	set(value):
 		selected_mastery = value
 		selected_mastery_changed.emit()
-	get:
-		if selected_mastery and selected_mastery.level != get_selectable_mastery_level(selected_mastery):
-			selected_mastery.level = get_selectable_mastery_level(selected_mastery)
-		return selected_mastery
-static var selectable_masteries: Array[Mastery.MasteryData] = Eternal.create([] as Array[Mastery.MasteryData])
-static var unlocked_masteries: Array[Mastery.MasteryData] = Eternal.create([] as Array[Mastery.MasteryData])
+static var selectable_masteries: Array[MasteryInstanceData] = Eternal.create([] as Array[MasteryInstanceData])
+static var unlocked_masteries: Array[MasteryInstanceData] = Eternal.create([] as Array[MasteryInstanceData])
 
 static var selected_mastery_changed := Signal() :
 	get:
@@ -134,7 +130,7 @@ static func add_profile_slot() -> void:
 	profiles.append(CodexProfile.new())
 
 
-static func get_selectable_mastery(mastery: Variant) -> Mastery.MasteryData:
+static func get_selectable_mastery(mastery: Variant) -> MasteryInstanceData:
 	return _get_mastery_from_list(mastery, selectable_masteries)
 
 
@@ -145,7 +141,7 @@ static func get_selectable_mastery_level(mastery: Variant) -> int:
 	return 0
 
 
-static func get_unlocked_mastery(mastery: Variant) -> Mastery.MasteryData:
+static func get_unlocked_mastery(mastery: Variant) -> MasteryInstanceData:
 	return _get_mastery_from_list(mastery, unlocked_masteries)
 
 
@@ -156,22 +152,23 @@ static func get_unlocked_mastery_level(mastery: Variant) -> int:
 	return 0
 
 
-static func _get_mastery_from_list(mastery: Variant, list: Array[Mastery.MasteryData]) -> Mastery.MasteryData:
-	assert(mastery is Mastery.MasteryData or mastery is Mastery or mastery is String or mastery is StringName or mastery is Script, "The parameter must be a Mastery, a MasteryData object, a Mastery id, or a Mastery Script, but '%s' was found." % type_string(typeof(mastery)))
-	
+static func _get_mastery_from_list(mastery: Variant, list: Array[MasteryInstanceData]) -> MasteryInstanceData:
 	for i in list:
-		if mastery is String or mastery is StringName:
-			if mastery in [i.create_temp().get_identifier(), UserClassDB.script_get_identifier(i.mastery)]:
-				return i
-		elif mastery is Script:
-			if i.mastery == mastery:
+		if mastery is Script:
+			if i.mastery_script == mastery:
 				return i
 		elif mastery is Mastery:
-			if i.mastery.instance_has(mastery):
+			if i.mastery_script.instance_has(mastery):
 				return i
-		elif mastery is Mastery.MasteryData:
-			if i.mastery == mastery.mastery:
+		elif mastery is MasteryData:
+			if i.data == mastery:
 				return i
+		elif mastery is MasteryInstanceData:
+			if i.data == mastery.data:
+				return i
+		else:
+			Debug.log_error("Cannot find mastery in list: Invalid type '%s'." % Stringifier.get_type_string(mastery))
+			return null
 	
 	return null
 

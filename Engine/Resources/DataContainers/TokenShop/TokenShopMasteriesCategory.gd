@@ -35,43 +35,31 @@ func _get_icon() -> Texture2D:
 func _get_items() -> Array[TokenShopItemBase]:
 	var items: Array[TokenShopItemBase] = []
 	
-	for mastery in DemonCrawl.get_full_registry().masteries:
+	for data in DemonCrawl.get_full_registry().masteries:
 		var item := MasteryItem.new()
-		var data := Mastery.MasteryData.new()
-		data.mastery = mastery
-		data.level = Codex.get_selectable_mastery_level(mastery) + 1
-		item.mastery = data
-		
+		item.mastery = data.instantiate(Codex.get_selectable_mastery_level(data) + 1)
 		items.append(item)
 	
 	return items
 
 
 class MasteryItem extends TokenShopItemBase:
-	@export var mastery: Mastery.MasteryData = null
+	@export var mastery: MasteryInstanceData = null
 	
 	func _get_name() -> String:
-		return mastery.create_temp().get_display_name()
+		return mastery.get_name_text()
 	
 	func _get_description() -> String:
-		var unlock_text := mastery.create_temp().get_condition_text()
-		var text := "• " + "\n• ".join(mastery.create_temp().get_description())
-		if not unlock_text.is_empty() and not is_purchased():
-			text += "\n\n(%s)" % unlock_text
-		return text
+		return mastery.get_description_text(true)
 	
 	func _get_icon() -> Texture2D:
-		return mastery.create_temp().create_icon()
+		return mastery.get_icon()
 	
 	func _get_cost() -> int:
-		return mastery.create_temp().get_cost()
+		return mastery.get_cost()
 	
 	func _is_locked() -> bool:
-		for condition in mastery.create_temp().get_conditions():
-			if not condition.is_met():
-				return true
-		
-		return false
+		return Codex.get_unlocked_mastery_level(mastery) < mastery.level
 	
 	func _is_purchased() -> bool:
-		return Codex.get_selectable_mastery_level(mastery) >= mastery.create().get_max_level()
+		return Codex.get_selectable_mastery_level(mastery) >= mastery.get_max_level()

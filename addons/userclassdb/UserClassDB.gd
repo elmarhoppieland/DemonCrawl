@@ -101,7 +101,10 @@ static func class_exists(name: StringName) -> bool:
 		return true
 	
 	if "::" in name.trim_prefix("res://"):
-		return class_exists(name.substr(0, name.rfind("::")))
+		if not class_exists(name.substr(0, name.rfind("::"))):
+			return false
+		var base := class_get_script(name.substr(0, name.rfind("::")))
+		return name.substr(name.rfind("::") + 2) in base
 	
 	return false
 

@@ -51,7 +51,7 @@ func _ready() -> void:
 	
 	Eternity.saved.connect(func(path: String) -> void:
 		Debug._flush_log_file()
-		Debug.log_event("Saved the current data to disk (to path '%s')" % path, Color.DARK_SALMON, true, false)
+		Debug.log_event("Saved data to disk (to path '%s')" % path, Color.DARK_SALMON, true, false)
 	)
 	Eternity.loaded.connect(func(path: String):
 		Debug.log_event("Loaded data from disk (from path '%s')" % path, Color.CORAL, true, false)

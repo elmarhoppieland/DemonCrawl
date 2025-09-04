@@ -12,10 +12,18 @@ var _script_name := "" :
 
 func activate() -> void:
 	_activate()
+	
+	EffectManager.propagate(get_stage_instance().get_effects().object_used, [self])
 
 
 func _activate() -> void:
 	pass
+
+
+func handle_fail() -> bool:
+	var handled: bool = EffectManager.propagate(get_stage_instance().get_effects().handle_object_interact_failed, [self, false])
+	EffectManager.propagate(get_stage_instance().get_effects().object_interact_failed, [self, handled])
+	return handled
 
 
 func _get_texture() -> Texture2D:

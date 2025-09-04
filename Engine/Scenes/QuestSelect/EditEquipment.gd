@@ -6,7 +6,7 @@ enum Page {
 	NONE,
 	MASTERIES,
 	CHESTS,
-	SIGILS
+	SIGILS,
 }
 # ==============================================================================
 var current_page := Page.NONE
@@ -32,19 +32,18 @@ func _on_masteries_button_interacted() -> void:
 	
 	add_mastery(null)
 	
-	for mastery in DemonCrawl.get_full_registry().masteries:
-		var data := Mastery.MasteryData.new()
-		data.mastery = mastery
-		data.level = Codex.get_selectable_mastery_level(mastery)
-		if data.level == 0:
-			data.level = 1
-		add_mastery(data.create())
+	for data in DemonCrawl.get_full_registry().masteries:
+		var mastery := data.create()
+		mastery.level = Codex.get_selectable_mastery_level(mastery)
+		if mastery.level == 0:
+			mastery.level = 1
+		add_mastery(mastery)
 
 
 func add_mastery(mastery: Mastery) -> void:
 	const LOCK_ALPHA := 0.5
 	
-	var icon := mastery.create_icon() if mastery else IconManager.get_icon_data("mastery/none").create_texture()
+	var icon := mastery.get_icon() if mastery else IconManager.get_icon_data("mastery/none").create_texture()
 	
 	var locked := (Codex.get_selectable_mastery_level(mastery) < mastery.level) if mastery else false
 	
@@ -68,13 +67,12 @@ func add_mastery(mastery: Mastery) -> void:
 		)
 	
 	var tooltip_grabber := TooltipGrabber.new()
-	tooltip_grabber.text = mastery.get_display_name() if mastery else "MASTERY_NONE"
+	tooltip_grabber.text = mastery.get_name_text() if mastery else "mastery.none"
 	
 	if locked:
-		tooltip_grabber.subtext = "(" + mastery.get_condition_text() + ")"
+		tooltip_grabber.subtext = "(" + tr(mastery.get_condition_text()) + ")"
 	else:
-		var description := mastery.get_description_text() if mastery else ""
-		tooltip_grabber.subtext = description
+		tooltip_grabber.subtext = mastery.get_description_text(true) if mastery else ""
 	
 	if not locked:
 		texture_rect.add_child(tooltip_grabber)

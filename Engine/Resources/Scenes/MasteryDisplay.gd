@@ -46,13 +46,13 @@ func _update() -> void:
 		_charges_anchor.hide()
 		return
 	
-	_texture_rect.texture = mastery.create_icon()
-	_tooltip_grabber.text = mastery.get_display_name()
+	_texture_rect.texture = mastery.get_icon()
+	_tooltip_grabber.text = mastery.get_name_text()
 	_tooltip_grabber.subtext = mastery.get_description_text()
-	if mastery.level >= 3 and mastery.get_max_charges() > 0 and mastery.get_charges() > 0:
+	if mastery.level >= 3 and mastery.get_data().ability_charges > 0 and mastery.get_charges() > 0:
 		_charges_anchor.show()
 		
-		for i in mastery.get_max_charges():
+		for i in mastery.get_data().ability_charges:
 			var charge: ColorRect
 			if i < _charges_container.get_child_count():
 				charge = _charges_container.get_child(i)
@@ -67,7 +67,7 @@ func _update() -> void:
 			else:
 				charge.modulate.a = 0
 		
-		for i in range(mastery.get_max_charges(), _charges_container.get_child_count()):
+		for i in range(mastery.get_data().ability_charges, _charges_container.get_child_count()):
 			_charges_container.get_child(i).queue_free()
 		
 		if mastery.is_charged() and mastery.active:

@@ -28,6 +28,8 @@ func _handle_object_interact_failed(object: CellObject, handled: bool) -> bool:
 
 func activate() -> void:
 	_activate()
+	
+	EffectManager.propagate(get_stage_instance().get_effects().item_activated, [self])
 
 
 func _activate() -> void:

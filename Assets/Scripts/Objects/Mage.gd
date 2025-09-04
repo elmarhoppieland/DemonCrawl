@@ -30,7 +30,9 @@ func _interact() -> void:
 	if not get_item().is_charged():
 		return
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("stranger.mage.fail"), get_source())
+		var handled := handle_fail()
+		if not handled:
+			Toasts.add_toast(tr("stranger.mage.fail"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)

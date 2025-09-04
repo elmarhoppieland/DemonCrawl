@@ -44,6 +44,7 @@ class ItemFilter:
 	
 	var _inventory: QuestInventory
 	var _modifiers: Array[Callable] = []
+	var _custom_filters: Array[Callable] = []
 	
 	
 	func _init(inventory: QuestInventory, modifiers: Array[Callable]) -> void:
@@ -124,11 +125,17 @@ class ItemFilter:
 		_ignore_items_in_inventory = not allow_items_in_inventory
 		return self
 	
-	## Only allow items with the specified [code]tag[/code]. If multiple tags are
+	## Only allow items with the specified [param tag]. If multiple tags are
 	## filtered, this filter will match items with any of the specified tags.
 	func filter_tag(tag: String) -> ItemFilter:
 		if tag not in _tags:
 			_tags.append(tag)
+		return self
+	
+	## Adds a custom [param filter]. This filter should take an [ItemData] as an
+	## argument and return whether the item should be included.
+	func filter_custom(filter: Callable) -> ItemFilter:
+		_custom_filters.append(filter)
 		return self
 	
 	## Sets the [RandomNumberGenerator] used for randomizing.
@@ -212,6 +219,8 @@ class ItemFilter:
 		if not item.can_find(_inventory.get_quest(), _ignore_items_in_inventory):
 			return false
 		if not _tags.is_empty() and Array(_tags).all(func(tag: String) -> bool: return not tag in item.tags):
+			return false
+		if not _custom_filters.all(func(callable: Callable) -> bool: return callable.call()):
 			return false
 		
 		return true

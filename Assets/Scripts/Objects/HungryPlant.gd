@@ -33,7 +33,9 @@ func _spawn() -> void:
 
 func _interact() -> void:
 	if Quest.get_current().get_inventory().is_empty():
-		Toasts.add_toast(tr("stranger.plant.fail"), get_source())
+		var handled := handle_fail()
+		if not handled:
+			Toasts.add_toast(tr("stranger.plant.fail"), get_source())
 		return
 	
 	activate()

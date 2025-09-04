@@ -45,7 +45,9 @@ func _item_use(item: Item) -> void:
 
 func _interact() -> void:
 	if Quest.get_current().get_stats().coins < cost:
-		Toasts.add_toast(tr("stranger.doctor.fail"), get_source())
+		var handled := handle_fail()
+		if not handled:
+			Toasts.add_toast(tr("stranger.doctor.fail"), get_source())
 		return
 	
 	Quest.get_current().get_stats().spend_coins(cost, self)

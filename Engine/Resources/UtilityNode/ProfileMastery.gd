@@ -17,9 +17,10 @@ func _ready() -> void:
 
 func _update() -> void:
 	if Codex.selected_mastery:
-		texture = Codex.selected_mastery.create_temp().create_icon()
-		_tooltip_grabber.text = Codex.selected_mastery.create_temp().get_display_name()
-		_tooltip_grabber.subtext = Codex.selected_mastery.create_temp().get_description_text()
+		var mastery := Codex.selected_mastery.instantiate(Codex.get_selectable_mastery_level(Codex.selected_mastery))
+		texture = mastery.get_icon()
+		_tooltip_grabber.text = mastery.get_name_text()
+		_tooltip_grabber.subtext = mastery.get_description_text()
 	else:
 		texture = IconManager.get_icon_data("mastery/none").create_texture()
 		_tooltip_grabber.text = tr("mastery.none")

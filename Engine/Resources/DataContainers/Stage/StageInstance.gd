@@ -599,6 +599,7 @@ class StageEffects:
 	@warning_ignore("unused_signal") signal turn()
 	
 	@warning_ignore("unused_signal") signal item_used_on_cell(item: Item, cell: CellData)
+	@warning_ignore("unused_signal") signal item_activated(item: Item)
 	
 	@warning_ignore("unused_signal") signal cell_open(cell: CellData)
 	@warning_ignore("unused_signal") signal cell_interacted(cell: CellData)
@@ -610,6 +611,9 @@ class StageEffects:
 	@warning_ignore("unused_signal") signal object_killed(object: CellObject)
 	@warning_ignore("unused_signal") signal object_interacted(object: CellObject)
 	@warning_ignore("unused_signal") signal object_second_interacted(object: CellObject)
+	
+	@warning_ignore("unused_signal") signal object_used(object: CellObject)
+	@warning_ignore("unused_signal") signal object_second_used(object: CellObject)
 	
 	@warning_ignore("unused_signal") signal mistake_made(cell: CellData)
 	

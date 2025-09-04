@@ -214,6 +214,16 @@ static func split_ignoring_nested(s: String, delimiter: String) -> PackedStringA
 	return parts
 
 
+static func get_type_string(value: Variant) -> String:
+	if value is Object:
+		var script := value.get_script() as Script
+		if script:
+			return UserClassDB.script_get_identifier(script)
+		return value.get_class()
+	
+	return type_string(typeof(value))
+
+
 static func get_depth(s: String, opening_char: String, closing_char: String) -> int:
 	var inside_string := false
 	var depth := 0

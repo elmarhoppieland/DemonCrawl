@@ -21,7 +21,9 @@ func _spawn() -> void:
 
 func _interact() -> void:
 	if not offer.can_afford():
-		Toasts.add_toast(offer.get_fail_message(), get_source())
+		var handled := handle_fail()
+		if not handled:
+			Toasts.add_toast(offer.get_fail_message(), get_source())
 		return
 	
 	offer.pay()

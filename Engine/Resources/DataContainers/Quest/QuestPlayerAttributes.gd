@@ -126,3 +126,13 @@ func _ready() -> void:
 			return RESEARCH_WEIGHT_MULT
 		return 1.0
 	)
+
+
+## Returns whether the current [member research_subject] matches the given [ItemData].
+## [br][br][b]Note:[/b] This method temporarily changes the locale, so use this sparingly.
+func item_matches_research(item: ItemData) -> bool:
+	var locale := TranslationServer.get_locale()
+	TranslationServer.set_locale("en")
+	var description := TranslationServer.translate(item.description)
+	TranslationServer.set_locale(locale)
+	return research_subject.to_lower() in description.to_lower()

@@ -1,7 +1,5 @@
 ﻿key;en
 
-player.level;Lv%d
-
 scene-return.main;RETURN TO MAIN MENU
 scene-return.quests;RETURN TO QUESTS
 
@@ -78,6 +76,7 @@ stage-select.locked;Locked
 stage-select.locked.lore;Play more stages to reveal this stage.
 
 generic.xp;XP
+generic.level.abbr;Lv%d
 generic.mana;Mana
 generic.charges;charge
 generic.charges.plural;charges

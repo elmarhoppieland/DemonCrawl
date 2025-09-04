@@ -2,6 +2,7 @@ extends CodeEdit
 class_name CommandLine
 
 # ==============================================================================
+const SINGLETON_COLOR := Color("8fffdb")
 const CLASS_COLOR := Color("c7ffed")
 # ==============================================================================
 static var added_vars := {}
@@ -17,6 +18,10 @@ func _ready() -> void:
 		if ResourceLoader.exists(class_data.path):
 			added_vars[class_data.class] = load(class_data.path)
 			syntax_highlighter.add_member_keyword_color(class_data.class, CLASS_COLOR)
+	
+	for singleton in Engine.get_singleton_list():
+		added_vars[singleton] = Engine.get_singleton(singleton)
+		syntax_highlighter.add_member_keyword_color(singleton, SINGLETON_COLOR)
 
 
 func _text_changed() -> void:

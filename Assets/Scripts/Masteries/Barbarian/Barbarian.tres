@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MasteryData" load_steps=6 format=3 uid="uid://cvucnduma4hau"]
+
+[ext_resource type="Script" uid="uid://bnlir86u22tr3" path="res://Assets/Scripts/Masteries/Barbarian/Barbarian.gd" id="1_27kl3"]
+[ext_resource type="Texture2D" uid="uid://br5qo702k26r3" path="res://Assets/Scripts/Masteries/Barbarian/barbarian_0.png" id="1_actof"]
+[ext_resource type="Script" uid="uid://8hcwgbxnbkuw" path="res://Engine/Resources/DataContainers/Mastery/MasteryData.gd" id="1_nmjob"]
+[ext_resource type="Texture2D" uid="uid://ca3w2ask0fs4c" path="res://Assets/Scripts/Masteries/Barbarian/barbarian_1.png" id="2_ivbyp"]
+[ext_resource type="Texture2D" uid="uid://g7r50dmxr0mk" path="res://Assets/Scripts/Masteries/Barbarian/barbarian_2.png" id="3_oyx1c"]
+
+[resource]
+script = ExtResource("1_nmjob")
+name = "mastery.barbarian"
+description = Array[String](["mastery.barbarian.description.1", "mastery.barbarian.description.2", "mastery.barbarian.description.3"])
+unlock_text = Array[String](["mastery.barbarian.unlock.1", "mastery.barbarian.unlock.2", "mastery.barbarian.unlock.3"])
+icon = Array[Texture2D]([ExtResource("1_actof"), ExtResource("2_ivbyp"), ExtResource("3_oyx1c")])
+cost = Array[int]([10, 20, 30])
+ability_charges = 3
+mastery_script = ExtResource("1_27kl3")
+metadata/_custom_type_script = "uid://8hcwgbxnbkuw"

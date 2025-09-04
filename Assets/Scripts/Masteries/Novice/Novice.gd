@@ -4,23 +4,13 @@ class_name Novice
 
 # ==============================================================================
 
-func _enter_tree() -> void:
-	super()
-	
-	if not active:
-		return
-	
+func _enable() -> void:
 	get_quest().get_attributes().change_property.connect(_change_attribute)
 	get_quest().get_stats().get_mutable_effects().damage.connect(_damage)
 	get_quest().get_stats().get_mutable_effects().death.connect(_death)
 
 
-func _exit_tree() -> void:
-	super()
-	
-	if not active:
-		return
-	
+func _disable() -> void:
 	get_quest().get_attributes().change_property.disconnect(_change_attribute)
 	get_quest().get_stats().get_mutable_effects().damage.disconnect(_damage)
 	get_quest().get_stats().get_mutable_effects().death.disconnect(_death)
@@ -49,7 +39,7 @@ func _damage(amount: int, source: Object) -> int:
 		return amount
 	
 	if get_quest().get_current_stage().needs_guess():
-		Toasts.add_toast(tr("mastery.novice.guess_fail"), IconManager.get_icon_data("mastery1/Novice").create_texture())
+		Toasts.add_toast(tr("mastery.novice.guess_fail"), get_data().icon[0])
 		return 1
 	
 	return amount
@@ -69,7 +59,7 @@ func _ability() -> void:
 	if progress_cell:
 		get_quest().get_current_stage().get_board().get_camera().focus_on_cell(progress_cell)
 	else:
-		Toasts.add_toast(tr("mastery.novice.ability.fail"), IconManager.get_icon_data("mastery1/Novice").create_texture())
+		Toasts.add_toast(tr("mastery.novice.ability.fail"), get_data().icon[0])
 
 
 func _can_use_ability() -> bool:
@@ -78,7 +68,3 @@ func _can_use_ability() -> bool:
 
 func _get_cost() -> int:
 	return level
-
-
-func _get_max_charges() -> int:
-	return 1

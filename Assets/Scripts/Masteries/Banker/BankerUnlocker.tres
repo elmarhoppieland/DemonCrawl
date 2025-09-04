@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MasteryUnlockerData" load_steps=4 format=3 uid="uid://b5ja37ka3o0mn"]
+
+[ext_resource type="Resource" uid="uid://d1wj4onrfr1s2" path="res://Assets/Scripts/Masteries/Banker/Banker.tres" id="1_ak6ex"]
+[ext_resource type="Script" uid="uid://dpylrkh0r76lw" path="res://Engine/Resources/DataContainers/Mastery/MasteryUnlockerData.gd" id="1_hquic"]
+[ext_resource type="Script" uid="uid://cb133n1etxhqt" path="res://Assets/Scripts/Masteries/Banker/BankerUnlocker.gd" id="3_nu6ui"]
+
+[resource]
+script = ExtResource("1_hquic")
+data = ExtResource("1_ak6ex")
+unlocker_script = ExtResource("3_nu6ui")
+metadata/_custom_type_script = "uid://dpylrkh0r76lw"

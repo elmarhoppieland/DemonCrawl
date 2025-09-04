@@ -6,29 +6,17 @@ class_name Auramancer
 const AURA_COUNT := 3
 # ==============================================================================
 
-func _enter_tree() -> void:
-	super()
-	
-	if not active:
-		return
-	
+func _enable() -> void:
 	get_quest().get_immunity().add_blocker(Aura, &"negative_effect", _negative_effect)
 	get_quest().get_stage_effects().generated.connect(_stage_generate)
-	#get_quest().get_stage_effects().cell_second_interacted.connect(_cell_second_interact)
 	get_quest().get_stage_effects().cell_aura_removed.connect(_aura_remove)
 	
 	get_quest().get_action_manager().register(_action)
 
 
-func _exit_tree() -> void:
-	super()
-	
-	if not active:
-		return
-	
+func _disable() -> void:
 	get_quest().get_immunity().remove_blocker(Aura, &"negative_effect", _negative_effect)
 	get_quest().get_stage_effects().generated.disconnect(_stage_generate)
-	#get_quest().get_stage_effects().cell_second_interacted.disconnect(_cell_second_interact)
 	get_quest().get_stage_effects().cell_aura_removed.disconnect(_aura_remove)
 	
 	get_quest().get_action_manager().unregister(_action)
@@ -85,10 +73,6 @@ func _ability() -> void:
 	for cell in get_quest().get_current_stage().get_cells():
 		if cell.has_aura() and cell.is_visible():
 			apply_repeated_effect(cell.get_aura(), cell.value + get_attributes().mastery_activations)
-
-
-func _get_max_charges() -> int:
-	return 3
 
 
 func _can_use_ability() -> bool:

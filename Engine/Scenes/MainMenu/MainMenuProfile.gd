@@ -23,7 +23,14 @@ class_name MainMenuProfile
 		if value < 0:
 			level_label.text = ""
 			return
-		level_label.text = (tr("player.level") if "%" in tr("player.level") else "Lv%d") % (value + 1)
+		
+		var text := tr("generic.level.abbr")
+		if "%" in text:
+			text %= XPBar.level
+		else:
+			text += "." + str(XPBar.level)
+		
+		level_label.text = text
 # ==============================================================================
 var mouse_is_inside := false
 # ==============================================================================

@@ -42,9 +42,11 @@ func _interact() -> void:
 		var life: int = EffectManager.propagate(get_quest().get_stage_effects().get_object_value, [self, 1, &"heal"], 1)
 		life = get_stats().life_restore(life, self)
 		get_cell().add_text_particle("+" + str(life), TextParticles.ColorPreset.LIFE)
+		
+		EffectManager.propagate(get_stage_instance().get_effects().object_used, [self])
 	else:
-		success = EffectManager.propagate(get_quest().get_stage_effects().handle_object_interact_failed, [self, false], 1)
-		EffectManager.propagate(get_quest().get_stage_effects().object_interact_failed, [self, success])
+		success = EffectManager.propagate(get_stage_instance().get_effects().handle_object_interact_failed, [self, false], 1)
+		EffectManager.propagate(get_stage_instance().get_effects().object_interact_failed, [self, success])
 		
 		if not success:
 			Toasts.add_toast("You're already at max life!", null)

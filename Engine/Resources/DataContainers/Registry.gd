@@ -3,8 +3,8 @@ extends Resource
 class_name Registry
 
 # ==============================================================================
-@export var masteries: Array[Script] = []
-@export var mastery_unlockers: Array[Script] = []
+@export var masteries: Array[MasteryData] = []
+@export var mastery_unlockers: Array[MasteryUnlockerData] = []
 
 @export var difficulties: Array[Difficulty] = []
 

@@ -30,7 +30,3 @@ func _ability() -> void:
 			get_quest().get_current_stage().solve_cell()
 	
 	get_stats().life_restore(missing_life, self)
-
-
-func _get_max_charges() -> int:
-	return 3
