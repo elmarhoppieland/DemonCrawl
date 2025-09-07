@@ -524,6 +524,12 @@ func flee() -> void:
 	clear()
 
 
+func handle_fail() -> bool:
+	var handled: bool = EffectManager.propagate(get_stage_instance().get_effects().handle_object_interact_failed, [self, false], 1)
+	EffectManager.propagate(get_stage_instance().get_effects().object_interact_failed, [self, handled])
+	return handled
+
+
 func get_quest() -> Quest:
 	var base := get_parent()
 	while base != null and base is not Quest:

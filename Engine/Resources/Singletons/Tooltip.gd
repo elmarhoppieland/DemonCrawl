@@ -38,46 +38,7 @@ static func limit_line_length(text: String, max_line_length: int) -> String:
 	if text.length() <= max_line_length:
 		return text
 	
-	var i := 0
-	var line_length := 0
-	var last_space := -1
-	var bullet := false
-	while i < text.length():
-		var c := text[i]
-		
-		line_length += 1
-		
-		match c:
-			"\n":
-				line_length = 0
-				last_space = -1
-				bullet = false
-			" " when i > 0 and text[i - 1] != "•":
-				last_space = i
-			"•": # U+2022
-				bullet = true
-				line_length -= 2
-		
-		if line_length > max_line_length:
-			if last_space < 0:
-				var added_sequence := "\n"
-				if bullet:
-					added_sequence += "  "
-				text = text.insert(i + 1, added_sequence)
-				i += added_sequence.length()
-			else:
-				text[last_space] = "\n"
-				i = last_space
-				if bullet:
-					text = text.insert(i + 1, "  ")
-					i += 2
-			
-			last_space = -1
-			line_length = 0
-		
-		i += 1
-	
-	return text
+	return _LineLengthLimiter.new(text, max_line_length).get_result()
 
 
 func _process(_delta: float) -> void:
@@ -92,3 +53,75 @@ func get_viewport_size() -> Vector2:
 		ProjectSettings.get_setting("display/window/size/viewport_width"),
 		ProjectSettings.get_setting("display/window/size/viewport_height")
 	)
+
+
+class _LineLengthLimiter:
+	var text := ""
+	var max_line_length := 0
+	var result := ""
+	var line_length := 0
+	var word_buffer := ""
+	var in_tag := false
+	var in_bullet := false
+	
+	@warning_ignore("shadowed_variable")
+	func _init(text: String, max_line_length: int) -> void:
+		self.text = text
+		self.max_line_length = max_line_length
+	
+	func get_result() -> String:
+		result = ""
+		line_length = 0
+		word_buffer = ""
+		in_tag = false
+		in_bullet = false
+		
+		for c in text:
+			match c:
+				"]" when in_tag:
+					in_tag = false
+					result += c
+				_ when in_tag:
+					result += c
+				" ":
+					_add_word()
+					result += c
+					line_length += 1
+				"\n":
+					_add_word()
+					result += c
+					line_length = 0
+					in_bullet = false
+				"[":
+					_add_word()
+					result += c
+					in_tag = true
+				"•" when word_buffer.is_empty() and (result.is_empty() or result[-1] == "\n"):
+					in_bullet = true
+					result += c
+				_:
+					word_buffer += c
+		
+		_add_word()
+		return result
+	
+	func _add_word() -> void:
+		if word_buffer.is_empty():
+			return
+		
+		if line_length + word_buffer.length() < max_line_length:
+			result += word_buffer
+			line_length += word_buffer.length()
+			word_buffer = ""
+			return
+		
+		result = result.rstrip(" ")
+		if not result.is_empty():
+			result += "\n"
+		if in_bullet:
+			result += "  "
+		result += word_buffer
+		line_length = word_buffer.length()
+		if in_bullet:
+			line_length += 2
+		word_buffer = ""

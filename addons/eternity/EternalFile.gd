@@ -242,13 +242,15 @@ func _prepare_resource_list() -> Array[Object]:
 				continue
 			if property.usage & PROPERTY_USAGE_STORAGE:
 				var value = resource.get(property.name)
+				if _is_native_default_property(resource, property.name, value):
+					continue
 				_prepare_variant(value, resources)
 		
 		if resource is Node and not resource.has_method("_export_children"):
 			for child: Node in resource.get_children():
 				if child.is_queued_for_deletion():
 					continue
-				_prepare_variant(child, resources)
+				_prepare_variant(child, resources, false)
 		
 		_resource_get_uid(resource)
 		i += 1
@@ -256,8 +258,8 @@ func _prepare_resource_list() -> Array[Object]:
 	return resources
 
 
-func _prepare_variant(variant: Variant, resources: Array[Object]) -> void:
-	if variant is Object and _is_object_packable(variant):
+func _prepare_variant(variant: Variant, resources: Array[Object], allow_packing: bool = true) -> void:
+	if allow_packing and variant is Object and _is_object_packable(variant):
 		processing_owner_stack.append(variant)
 		_prepare_variant(variant._export_packed(), resources)
 		processing_owner_stack.pop_back()
@@ -268,26 +270,26 @@ func _prepare_variant(variant: Variant, resources: Array[Object]) -> void:
 				return
 		resources.append(variant)
 	elif variant is Array:
-		_prepare_array(variant, resources)
+		_prepare_array(variant, resources, allow_packing)
 	elif variant is Dictionary:
-		_prepare_dictionary(variant, resources)
+		_prepare_dictionary(variant, resources, allow_packing)
 
 
-func _prepare_array(array: Array, resources: Array[Object]) -> void:
-	if _is_packable(array):
+func _prepare_array(array: Array, resources: Array[Object], allow_packing: bool = true) -> void:
+	if allow_packing and _is_packable(array):
 		for v in array:
 			if v != null:
 				_prepare_variant(v._export_packed(), resources)
 		return
 	
 	for v in array:
-		_prepare_variant(v, resources)
+		_prepare_variant(v, resources, allow_packing)
 
 
-func _prepare_dictionary(dict: Dictionary, resources: Array[Object]) -> void:
+func _prepare_dictionary(dict: Dictionary, resources: Array[Object], allow_packing: bool = true) -> void:
 	for key in dict:
-		_prepare_variant(key, resources)
-		_prepare_variant(dict[key], resources)
+		_prepare_variant(key, resources, allow_packing)
+		_prepare_variant(dict[key], resources, allow_packing)
 
 
 func _is_object_packable(object: Object) -> bool:
@@ -794,7 +796,7 @@ func _stream_encode(stream: ValueStream) -> void:
 				continue
 			if property.usage & PROPERTY_USAGE_STORAGE:
 				var value = sub_resource[property.name]
-				if not is_same(ClassDB.class_get_property(sub_resource, property.name), null) and value == ClassDB.class_get_property_default_value(sub_resource.get_class(), property.name):
+				if _is_native_default_property(sub_resource, property.name, value):
 					continue
 				await stream.step("%s = %s\n" % [property.name, _serialize_value(value)])
 		
@@ -832,7 +834,7 @@ func _stream_encode(stream: ValueStream) -> void:
 				continue
 			if property.usage & PROPERTY_USAGE_STORAGE:
 				var value = node[property.name]
-				if not is_same(ClassDB.class_get_property(node, property.name), null) and value == ClassDB.class_get_property_default_value(node.get_class(), property.name):
+				if _is_native_default_property(node, property.name, value):
 					continue
 				await stream.step("%s = %s\n" % [property.name, _serialize_value(value)])
 		
@@ -858,12 +860,12 @@ func _stream_encode(stream: ValueStream) -> void:
 
 func _serialize_header(header_name: String, properties: Dictionary[String, Variant]) -> String:
 	return "[" + header_name + " " + " ".join(properties.keys().map(func(key: String) -> String:
-		return key + "=" + _serialize_value(properties[key])
+		return key + "=" + _serialize_value(properties[key], false)
 	)) + "]\n"
 
 
-func _serialize_value(value: Variant) -> String:
-	if value is Object and _is_object_packable(value):
+func _serialize_value(value: Variant, allow_packing: bool = true) -> String:
+	if allow_packing and value is Object and _is_object_packable(value):
 		var script := UserClassDB.script_get_identifier(value.get_script())
 		var r = value._export_packed()
 		if r is Array:
@@ -883,7 +885,7 @@ func _serialize_value(value: Variant) -> String:
 		return "Node(\"%s\")" % _stringify_uid(_resource_get_uid(value))
 	if value is Array:
 		if not value.is_typed():
-			return "[" + ", ".join(value.map(_serialize_value)) + "]"
+			return "[" + ", ".join(value.map(_serialize_value.bind(allow_packing))) + "]"
 		
 		var type := value.get_typed_builtin() as Variant.Type
 		if type == TYPE_OBJECT:
@@ -891,7 +893,7 @@ func _serialize_value(value: Variant) -> String:
 			if not script:
 				return "Array[%s]([%s])" % [
 					value.get_typed_class_name(),
-					", ".join(value.map(_serialize_value))
+					", ".join(value.map(_serialize_value.bind(allow_packing)))
 				]
 			else:
 				var script_id := UserClassDB.script_get_identifier(script)
@@ -915,18 +917,18 @@ func _serialize_value(value: Variant) -> String:
 				
 				return "Array[%s]([%s])" % [
 					UserClassDB.script_get_identifier(script),
-					", ".join(value.map(_serialize_value))
+					", ".join(value.map(_serialize_value.bind(allow_packing)))
 				]
 		else:
 			return "Array[%s]([%s])" % [
 				type_string(type),
-				", ".join(value.map(_serialize_value))
+				", ".join(value.map(_serialize_value.bind(allow_packing)))
 			]
 	if value is Dictionary:
 		if value.is_empty():
 			return "{}"
 		return "{\n" + ",\n".join(value.keys().map(func(key: Variant) -> String:
-			return _serialize_value(key) + ": " + _serialize_value(value[key])
+			return _serialize_value(key, allow_packing) + ": " + _serialize_value(value[key], allow_packing)
 		)) + "\n}"
 	return Stringifier.stringify(value)
 
@@ -947,6 +949,12 @@ func _pack(value: Object) -> String:
 	return "(%s)" % [
 		", ".join(pack.map(_serialize_value))
 	]
+
+
+func _is_native_default_property(object: Object, property: StringName, value: Variant) -> bool:
+	if is_same(ClassDB.class_get_property(object, property), null):
+		return false
+	return value == ClassDB.class_get_property_default_value(object.get_class(), property)
 
 
 func _resource_get_uid(resource: Object) -> int:

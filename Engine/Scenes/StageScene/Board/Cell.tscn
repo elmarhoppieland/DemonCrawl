@@ -92,20 +92,20 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Anchor" type="Node2D" parent="Control"]
-scale = Vector2(1.12884, 1.12884)
 
 [node name="CellObjectTextureRect" type="TextureRect" parent="Control/Anchor"]
 unique_name_in_owner = true
+visible = false
 z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 5.0
-offset_bottom = 5.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 3
@@ -114,7 +114,6 @@ script = ExtResource("7_3xaxv")
 [node name="TooltipGrabber" type="Node" parent="Control/Anchor/CellObjectTextureRect"]
 script = ExtResource("7_ggwll")
 text = "STRANGER_MAGE"
-enabled = false
 
 [node name="CellFlagSprite" type="Sprite2D" parent="."]
 visible = false

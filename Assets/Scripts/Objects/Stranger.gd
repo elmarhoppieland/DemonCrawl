@@ -20,12 +20,6 @@ func _activate() -> void:
 	pass
 
 
-func handle_fail() -> bool:
-	var handled: bool = EffectManager.propagate(get_stage_instance().get_effects().handle_object_interact_failed, [self, false])
-	EffectManager.propagate(get_stage_instance().get_effects().object_interact_failed, [self, handled])
-	return handled
-
-
 func _get_texture() -> Texture2D:
 	return get_theme_icon(_script_name.to_snake_case(), "Stranger").duplicate()
 

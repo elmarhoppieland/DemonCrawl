@@ -56,14 +56,15 @@ func _init() -> void:
 
 func _ready() -> void:
 	var parent := get_mastery_unlockers_parent()
-	var unlocker_count := DemonCrawl.get_full_registry().mastery_unlockers.size()
+	var unlockers := DemonCrawl.get_full_registry().mastery_unlockers
+	var unlocker_count := unlockers.size()
 	for i in unlocker_count:
-		var unlocker := DemonCrawl.get_full_registry().mastery_unlockers[i]
+		var unlocker := unlockers[i]
 		
-		if get_mastery_unlockers().any(unlocker.instance_has):
+		if get_mastery_unlockers().any(unlocker.unlocker_script.instance_has):
 			continue
 		
-		parent.add_child(unlocker.new())
+		parent.add_child(unlocker.create())
 
 #endregion
 
@@ -181,9 +182,6 @@ func get_stage(index: int) -> Stage:
 
 
 func start() -> void:
-	if get_mastery() and get_mastery().level >= 3:
-		get_mastery().charges = 0
-	
 	started.emit()
 
 

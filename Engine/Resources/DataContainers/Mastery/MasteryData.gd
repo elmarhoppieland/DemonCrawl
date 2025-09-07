@@ -74,3 +74,7 @@ func _name_to_description(name: String, level: int) -> String:
 @warning_ignore("shadowed_variable")
 func _name_to_unlock_text(name: String, level: int) -> String:
 	return name.to_snake_case().replace("_", "-") + ".unlock." + str(level)
+
+
+func get_max_level() -> int:
+	return description.size()

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Registry" load_steps=25 format=3 uid="uid://dbtam61joj2mf"]
+[gd_resource type="Resource" script_class="Registry" load_steps=26 format=3 uid="uid://dbtam61joj2mf"]
 
 [ext_resource type="Script" uid="uid://pefpigd10fyq" path="res://Engine/Resources/DataContainers/Registry.gd" id="1_8420k"]
 [ext_resource type="Resource" uid="uid://caiig2eupe0vb" path="res://Assets/Quests/Casual/Casual.tres" id="1_srnaq"]
@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://drilv0kg264wg" path="res://Assets/Scripts/Masteries/Survivor/Survivor.tres" id="12_wl3g3"]
 [ext_resource type="Resource" uid="uid://3rduhwvlqb1q" path="res://Assets/TokenShop/Upgrades/Upgrades.tres" id="13_0b80u"]
 [ext_resource type="Resource" uid="uid://c2r6yowu50dek" path="res://Assets/Scripts/Masteries/Bookworm/Bookworm.tres" id="13_h4rlr"]
+[ext_resource type="Resource" uid="uid://bqik2twslngev" path="res://Assets/Scripts/Masteries/Bubbler/Bubbler.tres" id="14_2tckn"]
 [ext_resource type="Resource" uid="uid://b5ja37ka3o0mn" path="res://Assets/Scripts/Masteries/Banker/BankerUnlocker.tres" id="14_j6a80"]
 [ext_resource type="Resource" uid="uid://b36mx2wkxsnll" path="res://Assets/TokenShop/Masteries/Masteries.tres" id="14_ov03c"]
 [ext_resource type="Resource" uid="uid://cre88so1bo5xc" path="res://Assets/Scripts/Masteries/Barbarian/BarbarianUnlocker.tres" id="16_o4rkj"]
@@ -27,7 +28,7 @@
 
 [resource]
 script = ExtResource("1_8420k")
-masteries = Array[ExtResource("7_vmrn0")]([ExtResource("8_0gfp7"), ExtResource("9_4jk0f"), ExtResource("10_kcnwd"), ExtResource("11_su4vw"), ExtResource("12_wl3g3"), ExtResource("13_h4rlr")])
+masteries = Array[ExtResource("7_vmrn0")]([ExtResource("8_0gfp7"), ExtResource("9_4jk0f"), ExtResource("10_kcnwd"), ExtResource("11_su4vw"), ExtResource("12_wl3g3"), ExtResource("13_h4rlr"), ExtResource("14_2tckn")])
 mastery_unlockers = Array[ExtResource("8_kbcm6")]([ExtResource("10_hfiaq"), ExtResource("12_pv58b"), ExtResource("14_j6a80"), ExtResource("16_o4rkj"), ExtResource("18_uxe8y"), ExtResource("20_2tckn")])
 difficulties = Array[ExtResource("2_vmrn0")]([ExtResource("1_srnaq"), ExtResource("2_chtep"), ExtResource("3_g8edj")])
 token_shop_categories = Array[ExtResource("9_hfiaq")]([ExtResource("13_0b80u"), ExtResource("14_ov03c")])

@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="LootTable" load_steps=11 format=3 uid="uid://c2gh03qbscoec"]
 
-[ext_resource type="Script" uid="uid://cb865s5vxrp2b" path="res://Assets/Scripts/Objects/Coin.gd" id="1_m74u1"]
+[ext_resource type="Script" uid="uid://cb865s5vxrp2b" path="res://Assets/Scripts/Objects/Loot/Coin.gd" id="1_m74u1"]
 [ext_resource type="Script" uid="uid://b2fl50hmn6rix" path="res://Engine/Resources/DataContainers/Cell/CellObjectBase.gd" id="2_kkdfu"]
-[ext_resource type="Script" uid="uid://b6lc4rka1r6im" path="res://Assets/Scripts/Objects/Diamond.gd" id="3_mme3m"]
-[ext_resource type="Script" uid="uid://bmq4dvud4876n" path="res://Assets/Scripts/Objects/TreasureChest.gd" id="4_ttf5a"]
-[ext_resource type="Script" uid="uid://co2os8hn78bo6" path="res://Assets/Scripts/Objects/Heart.gd" id="5_7ye48"]
+[ext_resource type="Script" uid="uid://b6lc4rka1r6im" path="res://Assets/Scripts/Objects/Loot/Diamond.gd" id="3_mme3m"]
+[ext_resource type="Script" uid="uid://bmq4dvud4876n" path="res://Assets/Scripts/Objects/Loot/TreasureChest.gd" id="4_ttf5a"]
+[ext_resource type="Script" uid="uid://co2os8hn78bo6" path="res://Assets/Scripts/Objects/Loot/Heart.gd" id="5_7ye48"]
 [ext_resource type="Script" uid="uid://cntvip8m67kjy" path="res://Engine/Resources/DataContainers/LootTable.gd" id="6_fjjuy"]
 
 [sub_resource type="Resource" id="Resource_ja4qr"]

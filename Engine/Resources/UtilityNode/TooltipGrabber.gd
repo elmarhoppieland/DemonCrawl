@@ -5,7 +5,8 @@ class_name TooltipGrabber
 # ==============================================================================
 enum ContextMode {
 	DISABLED, ## Do not use a [TooltipContext].
-	CURRENT ## Use the current globally active [TooltipContext].
+	CURRENT, ## Use the current globally active [TooltipContext].
+	ANCESTOR, ## Use a [TooltipContext] that is an ancestor of this node.
 }
 # ==============================================================================
 @export_multiline var text := "" ## The text to be displayed (in white) as the first line in the tooltip. If this is empty, no tooltip will be shown.
@@ -30,6 +31,11 @@ func hover() -> void:
 			context = null
 		ContextMode.CURRENT:
 			context = TooltipContext.get_current()
+		ContextMode.ANCESTOR:
+			var base := get_parent()
+			while base != null and base is not TooltipContext:
+				base = base.get_parent()
+			context = base as TooltipContext
 	
 	var formatted_text := Tooltip.limit_line_length(tr(text) if translate else text, max_line_length)
 	if c_unescape:

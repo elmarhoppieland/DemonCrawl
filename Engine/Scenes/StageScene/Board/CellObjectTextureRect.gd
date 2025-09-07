@@ -1,5 +1,5 @@
 @tool
-extends TextureRect
+extends CellObjectTextureRectBase
 class_name CellObjectTextureRect
 
 # ==============================================================================
@@ -14,19 +14,6 @@ var _cell: CellData = null :
 		if value:
 			value.changed.connect(_update)
 # ==============================================================================
-@onready var _tooltip_grabber: TooltipGrabber = null :
-	set(value):
-		_tooltip_grabber = value
-		
-		if value:
-			value.about_to_show.connect(_on_tooltip_grabber_about_to_show)
-# ==============================================================================
-
-func _ready() -> void:
-	for child in get_children():
-		if child is TooltipGrabber:
-			_tooltip_grabber = child
-
 
 func _enter_tree() -> void:
 	var cell := get_parent()
@@ -53,39 +40,21 @@ func _set_cell(cell: Cell) -> void:
 	_cell = cell.get_data()
 
 
-func _update() -> void:
-	if not _cell:
-		return
-	
-	visible = _cell.is_visible()
-	
-	if _cell.is_occupied():
-		texture = _cell.get_object().get_texture()
-		material = _cell.get_object().get_material()
-		
-		if _tooltip_grabber:
-			_tooltip_grabber.enabled = _cell.get_object().has_annotation_text()
-	else:
-		texture = null
-		material = null
-		
-		if _tooltip_grabber:
-			_tooltip_grabber.enabled = false
+func _is_visible() -> bool:
+	return _cell and _cell.is_occupied() and _cell.is_visible()
+
+
+func _get_texture() -> Texture2D:
+	return _cell.get_object().get_texture()
+
+
+func _get_material() -> Material:
+	return _cell.get_object().get_material()
+
+
+func _get_annotation_text() -> String:
+	return _cell.get_object().get_annotation_text()
 
 
 func get_2d_anchor() -> Node2D:
 	return get_parent()
-
-
-func _validate_property(property: Dictionary) -> void:
-	match property.name:
-		&"texture":
-			property.usage |= PROPERTY_USAGE_READ_ONLY
-
-
-func _on_tooltip_grabber_about_to_show() -> void:
-	if not _cell or _cell.is_empty():
-		_tooltip_grabber.text = ""
-		return
-	
-	_tooltip_grabber.text = _cell.get_object().get_annotation_text()

@@ -1,5 +1,5 @@
 @tool
-extends CellObject
+extends Loot
 class_name Diamond
 
 # ==============================================================================
@@ -8,8 +8,8 @@ func _get_texture() -> CompressedTexture2D:
 	return preload("res://Assets/Sprites/diamond.png")
 
 
-func _interact() -> void:
-	var value: int = EffectManager.propagate(get_quest().get_stage_effects().get_object_value, [self, 5, &"coins"], 1)
+func _collect() -> bool:
+	var value := get_value(5, &"coins")
 	get_stats().coins += value
 	
 	get_cell().add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)
@@ -17,6 +17,8 @@ func _interact() -> void:
 	tween_texture_to(GuiLayer.get_statbar().get_coin_position())
 	
 	clear()
+	
+	return true
 
 
 func _get_charitable_amount() -> int:

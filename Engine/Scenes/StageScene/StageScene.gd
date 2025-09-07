@@ -122,6 +122,8 @@ func _on_finish_button_pressed() -> void:
 	_finish_button.hide()
 	finish_pressed.emit()
 	
+	stage_instance.notify_finish_pressed()
+	
 	await _finish_popup.popup()
 	
 	stage_instance.finish()

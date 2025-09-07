@@ -158,7 +158,7 @@ static func _get_mastery_from_list(mastery: Variant, list: Array[MasteryInstance
 			if i.mastery_script == mastery:
 				return i
 		elif mastery is Mastery:
-			if i.mastery_script.instance_has(mastery):
+			if i.data.mastery_script.instance_has(mastery):
 				return i
 		elif mastery is MasteryData:
 			if i.data == mastery:

@@ -1,5 +1,5 @@
 @tool
-extends CellObject
+extends Loot
 class_name Heart
 
 # ==============================================================================
@@ -35,7 +35,7 @@ func _get_palette() -> Texture2D:
 	return get_theme_icon("heart_palette", "Cell")
 
 
-func _interact() -> void:
+func _collect() -> bool:
 	var success := true
 	
 	if get_stats().life < get_stats().max_life:
@@ -45,14 +45,15 @@ func _interact() -> void:
 		
 		EffectManager.propagate(get_stage_instance().get_effects().object_used, [self])
 	else:
-		success = EffectManager.propagate(get_stage_instance().get_effects().handle_object_interact_failed, [self, false], 1)
-		EffectManager.propagate(get_stage_instance().get_effects().object_interact_failed, [self, success])
+		success = handle_fail()
 		
 		if not success:
-			Toasts.add_toast("You're already at max life!", null)
+			Toasts.add_toast("object.heart.fail", null)
 	
 	if success:
 		use()
+	
+	return success
 
 
 func _can_interact() -> bool:

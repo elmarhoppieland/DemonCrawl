@@ -31,7 +31,7 @@ func _export_packed() -> Array:
 
 
 func create() -> Mastery:
-	return data.create()
+	return data.create(level, charges)
 
 
 func get_name_text() -> String:
@@ -77,4 +77,4 @@ func get_cost() -> int:
 
 
 func get_max_level() -> int:
-	return data.description.size()
+	return data.get_max_level()

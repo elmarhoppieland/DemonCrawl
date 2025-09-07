@@ -173,7 +173,7 @@ func _after_generating() -> void:
 	get_status_timer().play()
 
 
-## Creates and returns a new [Cell] for the [CellData] at the given [code]idx[/code].
+## Creates and returns a new [Cell] for the [CellData] at the given [param idx].
 func create_cell(idx: int) -> Cell:
 	var data := get_cell_data(idx)
 	if not data:
@@ -182,6 +182,10 @@ func create_cell(idx: int) -> Cell:
 	var cell := Cell.create(Vector2i(idx % get_stage().size.x, idx / get_stage().size.x))
 	cell.set_data(data)
 	return cell
+
+
+func notify_finish_pressed() -> void:
+	EffectManager.propagate(get_effects().finish_pressed)
 
 
 func finish() -> void:
@@ -614,6 +618,8 @@ class StageEffects:
 	
 	@warning_ignore("unused_signal") signal object_used(object: CellObject)
 	@warning_ignore("unused_signal") signal object_second_used(object: CellObject)
+	
+	@warning_ignore("unused_signal") signal orb_clicked(orb: Orb, handled: bool)
 	
 	@warning_ignore("unused_signal") signal mistake_made(cell: CellData)
 	

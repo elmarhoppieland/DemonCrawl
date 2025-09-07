@@ -214,7 +214,7 @@ class ItemFilter:
 			return false
 		if item.cost < _min_cost:
 			return false
-		if (item.item_script in _types) != _type_whitelist:
+		if not _matches_type(item):
 			return false
 		if not item.can_find(_inventory.get_quest(), _ignore_items_in_inventory):
 			return false
@@ -222,6 +222,16 @@ class ItemFilter:
 			return false
 		if not _custom_filters.all(func(callable: Callable) -> bool: return callable.call()):
 			return false
+		
+		return true
+	
+	func _matches_type(item: ItemData) -> bool:
+		for type in _types:
+			var base := item.get_script() as Script
+			while base != null and base != type:
+				base = base.get_base_script()
+			if _type_whitelist != (base != null):
+				return false
 		
 		return true
 	

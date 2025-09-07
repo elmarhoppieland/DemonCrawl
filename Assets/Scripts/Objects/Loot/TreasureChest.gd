@@ -1,5 +1,5 @@
 @tool
-extends CellObject
+extends Loot
 class_name TreasureChest
 
 # ==============================================================================
@@ -10,9 +10,9 @@ func _get_texture() -> Icon:
 	return IconManager.get_icon_data("chests/default").create_texture()
 
 
-func _interact() -> void:
+func _collect() -> bool:
 	if tween:
-		return
+		return false
 	
 	const CHEST_OPEN_ANIM_DURATION := 0.2
 	const CHEST_OPEN_WAIT_DURATION := 0.5
@@ -29,6 +29,8 @@ func _interact() -> void:
 	tween.tween_interval(CHEST_OPEN_WAIT_DURATION)
 	tween.tween_callback(ChestPopup.show_rewards.bind(self))
 	tween.tween_callback(clear)
+	
+	return true
 
 
 func _get_charitable_amount() -> int:

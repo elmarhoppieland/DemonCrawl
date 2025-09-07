@@ -3,22 +3,22 @@ extends Control
 class_name OrbLayer
 
 # ==============================================================================
-var _loaded_orbs: Array[Orb] = []
+var _loaded_orbs: Dictionary[Orb, OrbSprite] = {}
 # ==============================================================================
 @onready var _orb_parent: Control = %OrbParent
 # ==============================================================================
 
 func _ready() -> void:
 	while true:
-		if Quest.has_current():
-			_load_from_current_quest()
-		else:
-			_clear()
+		_load_from_current_quest()
 		await Quest.current_changed
 
 
 func _load_from_current_quest() -> void:
-	_loaded_orbs.clear()
+	_clear()
+	
+	if not Quest.has_current():
+		return
 	
 	var orb_manager := Quest.get_current().get_orb_manager()
 	
@@ -36,9 +36,11 @@ func _register_orb(orb: Orb, screen_position: Vector2 = _orb_parent.position) ->
 		var sprite := orb.create_sprite()
 		sprite.position = _orb_parent.get_global_transform().affine_inverse() * screen_position
 		_orb_parent.add_child(sprite)
-		_loaded_orbs.append(orb)
+		_loaded_orbs[orb] = sprite
 		
 		sprite.half_bounds = Rect2(Vector2.ZERO, size * 0.5 / _orb_parent.scale)
+		
+		orb.cleared.connect(sprite.queue_free)
 
 
 func _clear() -> void:

@@ -12,6 +12,7 @@ var half_bounds := Rect2()
 func _process(delta: float) -> void:
 	if not is_visible_in_tree():
 		return
+	DCPopup
 	
 	position += delta * Vector2.RIGHT.rotated(direction) * orb.get_speed()
 	
@@ -37,6 +38,7 @@ func _input(event: InputEvent) -> void:
 
 func notify_clicked() -> void:
 	_clicked()
+	orb.notify_clicked()
 
 
 func _clicked() -> void:

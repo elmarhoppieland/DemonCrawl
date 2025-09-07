@@ -37,7 +37,7 @@ func _get_items() -> Array[TokenShopItemBase]:
 	
 	for data in DemonCrawl.get_full_registry().masteries:
 		var item := MasteryItem.new()
-		item.mastery = data.instantiate(Codex.get_selectable_mastery_level(data) + 1)
+		item.mastery = data.instantiate(clampi(Codex.get_selectable_mastery_level(data) + 1, 1, data.get_max_level()))
 		items.append(item)
 	
 	return items

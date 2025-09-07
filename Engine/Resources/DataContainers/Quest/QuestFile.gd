@@ -15,7 +15,9 @@ func generate() -> Quest:
 	var quest := Quest.new()
 	quest.source_file = self
 	if Codex.selected_mastery:
-		quest.equip_mastery(Codex.selected_mastery.create())
+		var selected_mastery := Codex.selected_mastery
+		var level := Codex.get_selectable_mastery_level(selected_mastery)
+		quest.equip_mastery(selected_mastery.create(level))
 	
 	var stage_index := 0
 	while true:

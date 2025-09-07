@@ -17,6 +17,11 @@ func get_quest() -> Quest:
 
 func _init() -> void:
 	name = "OrbManager"
+	
+	child_entered_tree.connect(func(child: Node) -> void:
+		if child is Orb:
+			child.cleared.connect(child.queue_free)
+	)
 
 
 func register_orb(orb: Orb, global_position: Vector2 = orb.position) -> void:
