@@ -21,7 +21,7 @@ Tooltip="res://Engine/Resources/Singletons/Tooltip.tscn"
 Focus="res://Engine/Resources/Singletons/Focus.tscn"
 Debug="res://Engine/Resources/Singletons/Debug.tscn"
 Toasts="res://Engine/Resources/Singletons/Toasts.tscn"
-ChestPopup="res://Engine/Resources/Singletons/ChestPopup.tscn"
+DCPopup="res://Engine/Resources/Scenes/DCPopup.tscn"
 GuiLayer="res://Engine/Resources/Singletons/GuiLayer.tscn"
 
 [debug]

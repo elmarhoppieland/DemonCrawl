@@ -2,37 +2,61 @@ extends CanvasLayer
 class_name DCPopup
 
 # ==============================================================================
-var _popup_visible := false : get = is_popup_visible
+static var _instance: DCPopup
+
+var _popup_visible := false
 # ==============================================================================
+@onready var _contents_container: MarginContainer = %ContentsContainer
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 # ==============================================================================
-signal popup_shown()
-signal popup_hidden()
+signal _popup_shown()
+signal _popup_hidden()
 # ==============================================================================
 
 func _enter_tree() -> void:
-	hide()
 	_popup_visible = false
+	
+	_instance = self
+
+
+func _exit_tree() -> void:
+	if _instance == self:
+		_instance = null
 
 
 func _process(_delta: float) -> void:
 	if visible and _popup_visible and not _animation_player.is_playing() and Input.is_action_just_pressed("interact"):
-		popup_hide()
+		_popup_hide()
 
 
-func popup_show() -> void:
+static func popup_show(popup: PackedScene) -> void:
+	var instance := popup.instantiate()
+	await popup_show_instance(instance)
+	instance.queue_free()
+
+
+static func popup_show_instance(instance: Node) -> void:
+	while is_popup_visible():
+		await _instance._popup_hidden
+	
+	_instance._contents_container.add_child(instance)
+	await _instance._popup_show()
+	await _instance._popup_hidden
+
+
+func _popup_show() -> void:
 	_popup_visible = true
 	_animation_player.play("popup_show")
 	await _animation_player.animation_finished
-	popup_shown.emit()
+	_popup_shown.emit()
 
 
-func popup_hide() -> void:
+func _popup_hide() -> void:
 	_animation_player.play("popup_hide")
 	await _animation_player.animation_finished
 	_popup_visible = false
-	popup_hidden.emit()
+	_popup_hidden.emit()
 
 
-func is_popup_visible() -> bool:
-	return _popup_visible
+static func is_popup_visible() -> bool:
+	return _instance._popup_visible

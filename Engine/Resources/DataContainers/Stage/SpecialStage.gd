@@ -5,6 +5,8 @@ class_name SpecialStage
 ## A stage that gives the player rewards in return for coins.
 
 # ==============================================================================
+@export var base: SpecialStageBase
+# ==============================================================================
 var _bg: Texture2D = null : get = get_bg
 
 var _dest_scene: PackedScene = null : get = get_dest_scene
@@ -15,7 +17,7 @@ func _get_theme() -> Theme:
 
 
 func _get_name_id() -> String:
-	return "stage.special." + name.to_snake_case().replace("_", "-")
+	return base.name if base else "stage.special." + name.to_snake_case().replace("_", "-")
 
 
 func _get_description_id() -> String:

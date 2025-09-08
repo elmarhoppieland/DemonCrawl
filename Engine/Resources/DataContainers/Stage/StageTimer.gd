@@ -12,7 +12,7 @@ var _time_usec := 0 :
 		var old := _time_usec
 		_time_usec = value
 		
-		for i in (value - old) * _TIME_SECOND_FACTOR:
+		for i in int(value * _TIME_SECOND_FACTOR) - int(old * _TIME_SECOND_FACTOR):
 			second_passed.emit()
 var _last_read_time_usec := Time.get_ticks_usec()
 

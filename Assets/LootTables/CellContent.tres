@@ -12,6 +12,6 @@ auto_sort = true
 use_modifier = false
 item_count = 2
 item_0/value = ExtResource("1_uv75e")
-item_0/weight = 2.0
+item_0/weight = 5.0
 item_1/value = ExtResource("2_t67py")
 item_1/weight = 1.0

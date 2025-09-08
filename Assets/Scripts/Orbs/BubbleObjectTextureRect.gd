@@ -10,15 +10,12 @@ class_name BubbleObjectTextureRect
 		if not is_node_ready():
 			await ready
 		reset_size()
+		position = -object.get_size() * 0.5 if object else Vector2.ZERO
 # ==============================================================================
 
-func _is_visible() -> bool:
-	return object != null
-
-
 func _get_texture() -> Texture2D:
-	return object.get_texture()
+	return object.get_texture() if object else null
 
 
 func _get_material() -> Material:
-	return object.get_material()
+	return object.get_material() if object else null

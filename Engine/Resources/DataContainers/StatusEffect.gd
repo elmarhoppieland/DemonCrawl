@@ -98,15 +98,19 @@ func _connect_signals() -> void:
 
 
 func _disconnect_signals() -> void:
-	get_quest().get_stage_effects().mistake_made.disconnect(notify_mistake)
+	if get_quest().get_stage_effects().mistake_made.is_connected(notify_mistake):
+		get_quest().get_stage_effects().mistake_made.disconnect(notify_mistake)
 	
 	match _type:
 		Type.TURNS:
-			get_quest().get_stage_effects().turn.disconnect(notify_turn)
+			if get_quest().get_stage_effects().turn.is_connected(notify_turn):
+				get_quest().get_stage_effects().turn.disconnect(notify_turn)
 		Type.CELLS_OPENED:
-			get_quest().get_stage_effects().cell_open.disconnect(notify_cell_opened)
+			if get_quest().get_stage_effects().cell_open.is_connected(notify_cell_opened):
+				get_quest().get_stage_effects().cell_open.disconnect(notify_cell_opened)
 		Type.SECONDS:
-			get_quest().get_effects().status_effect_second_passed.disconnect(notify_second_passed)
+			if get_quest().get_effects().status_effect_second_passed.is_connected(notify_second_passed):
+				get_quest().get_effects().status_effect_second_passed.disconnect(notify_second_passed)
 
 #endregion
 

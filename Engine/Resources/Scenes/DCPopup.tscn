@@ -5,7 +5,6 @@
 
 [node name="DCPopup" type="CanvasLayer"]
 layer = 20
-visible = false
 offset = Vector2(640, 360)
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 640, 360)
@@ -48,7 +47,8 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 8)
 
-[node name="MarginContainer" type="MarginContainer" parent="ContentsAnchor"]
+[node name="ContentsContainer" type="MarginContainer" parent="ContentsAnchor"]
+unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -66,5 +66,5 @@ theme_override_constants/margin_bottom = 7
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": ExtResource("5_5yx61")
+&"": ExtResource("5_5yx61")
 }

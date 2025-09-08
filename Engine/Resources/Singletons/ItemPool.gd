@@ -227,7 +227,7 @@ class ItemFilter:
 	
 	func _matches_type(item: ItemData) -> bool:
 		for type in _types:
-			var base := item.get_script() as Script
+			var base := item.item_script as Script
 			while base != null and base != type:
 				base = base.get_base_script()
 			if _type_whitelist != (base != null):

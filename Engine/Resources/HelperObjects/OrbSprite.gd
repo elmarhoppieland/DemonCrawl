@@ -12,7 +12,6 @@ var half_bounds := Rect2()
 func _process(delta: float) -> void:
 	if not is_visible_in_tree():
 		return
-	DCPopup
 	
 	position += delta * Vector2.RIGHT.rotated(direction) * orb.get_speed()
 	
@@ -54,7 +53,7 @@ func _get_size() -> Vector2:
 
 
 func is_hovered() -> bool:
-	return _is_hovered()
+	return not DCPopup.is_popup_visible() and _is_hovered()
 
 
 func _is_hovered() -> bool:

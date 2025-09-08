@@ -23,7 +23,7 @@ func _quest_win() -> void:
 func unlock(level: int) -> void:
 	if Codex.get_unlocked_mastery_level(data) < level:
 		_unlock(level)
-		await GuiLayer.get_mastery_achieved_popup().show_mastery(data.instantiate(level))
+		await MasteryAchievedPopup.show_mastery(data.instantiate(level))
 
 
 func _unlock(level: int) -> void:
