@@ -39,3 +39,7 @@ func _clicked() -> bool:
 	clear()
 	
 	return true
+
+
+func _export_packed() -> Array:
+	return [get_object()]

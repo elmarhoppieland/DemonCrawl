@@ -34,3 +34,7 @@ func get_orbs() -> Array[Orb]:
 	var orbs: Array[Orb] = []
 	orbs.assign(get_children())
 	return orbs
+
+
+func _export_children() -> Array[Orb]:
+	return get_orbs()
