@@ -86,7 +86,7 @@ func apply_effect(aura: Aura) -> void:
 		Burning:
 			get_quest().get_current_stage().get_cells().filter(func(cell: CellData) -> bool:
 				return cell.is_occupied() and cell.is_hidden() and cell.has_monster()
-			).pick_random().open(true)
+			).pick_random().reveal()
 
 
 func apply_repeated_effect(aura: Aura, repeats: int) -> void:

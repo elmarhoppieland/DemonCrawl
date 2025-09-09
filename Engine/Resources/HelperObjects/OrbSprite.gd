@@ -27,6 +27,8 @@ func _process(delta: float) -> void:
 			direction = PI - direction
 		else:
 			direction = -direction
+	
+	orb.position = (get_parent() as CanvasItem).get_global_transform() * position
 
 
 func _input(event: InputEvent) -> void:

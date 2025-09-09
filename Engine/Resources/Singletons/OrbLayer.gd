@@ -9,9 +9,8 @@ var _loaded_orbs: Dictionary[Orb, OrbSprite] = {}
 # ==============================================================================
 
 func _ready() -> void:
-	while true:
-		_load_from_current_quest()
-		await Quest.current_changed
+	_load_from_current_quest()
+	Quest.current_changed.connect(_load_from_current_quest)
 
 
 func _load_from_current_quest() -> void:

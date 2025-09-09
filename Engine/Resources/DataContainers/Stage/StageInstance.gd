@@ -362,7 +362,7 @@ func check_completed() -> void:
 			if cell.has_monster():
 				cell.flag()
 			else:
-				cell.open(true)
+				cell.reveal()
 		EffectManager.propagate(get_effects().completed)
 
 

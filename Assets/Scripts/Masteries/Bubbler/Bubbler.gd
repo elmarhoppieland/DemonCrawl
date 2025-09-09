@@ -38,10 +38,10 @@ func _orb_clicked(orb: Orb, handled: bool) -> void:
 	if hidden_cells.size() > cell.value:
 		hidden_cells.resize(cell.value)
 	for i in hidden_cells:
-		i.open(true)
+		i.reveal()
 
 
 func _ability() -> void:
 	for orb in get_quest().get_orb_manager().get_orbs():
 		var new_orb: Orb = orb.duplicate()
-		get_quest().get_orb_manager().register_orb(new_orb)
+		get_quest().get_orb_manager().register_orb(new_orb, orb.position)

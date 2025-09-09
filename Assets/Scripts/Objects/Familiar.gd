@@ -46,10 +46,10 @@ func _turn() -> void:
 		if not can_move_to(new_cell):
 			continue
 		
-		new_cell.open(true)
+		new_cell.reveal()
 		if new_cell.has_monster():
 			if strong:
-				new_cell.object.kill()
+				new_cell.get_object().kill()
 				move_to_cell(new_cell)
 			else:
 				clear()

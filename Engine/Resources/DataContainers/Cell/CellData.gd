@@ -132,51 +132,37 @@ func _set_mode(new_mode: Mode) -> void:
 
 ## Opens this [CellData], showing its contents. Returns [code]true[/code] if the [CellData]
 ## could be opened, and [code]false[/code] otherwise.
-## [br][br]Calls [method Effects.cell_open] immediately after opening the [CellData].
-func open(force: bool = false, allow_loot: bool = true) -> bool:
+func open(allow_loot: bool = true) -> bool:
 	if is_visible():
 		return false
-	if not force and is_flagged():
+	if is_flagged():
 		return false
 	
 	if not get_stage_instance().is_generated():
 		get_stage_instance().generate(self)
 	
-	
-	if value != 0:
-		var r := _open(force, allow_loot)
-		get_stage_instance().check_completed()
-		return r
-	
-	_open(force, allow_loot)
-	
-	var to_explore: Array[CellData] = [self]
-	var visited: Array[CellData] = []
-	while not to_explore.is_empty():
-		var current_cell := to_explore.pop_back() as CellData
-		
-		visited.append(current_cell)
-		current_cell._open(force)
-		
-		if current_cell.value != 0 or current_cell.has_monster():
-			continue
-		
-		for c in current_cell.get_nearby_cells():
-			if c in visited or c in to_explore or c.is_visible() or c.is_flagged():
-				continue
-			to_explore.append(c)
+	_propagate_open(true, allow_loot)
 	
 	get_stage_instance().check_completed()
 	
 	return true
 
 
-func _open(force: bool = false, allow_loot: bool = true) -> bool:
+func reveal(allow_loot: bool = true) -> bool:
 	if is_visible():
 		return false
-	if not force and is_flagged():
-		return false
 	
+	if not get_stage_instance().is_generated():
+		get_stage_instance().generate(self)
+	
+	_propagate_open(false, allow_loot)
+	
+	get_stage_instance().check_completed()
+	
+	return true
+
+
+func _open(active: bool = true, allow_loot: bool = true) -> bool:
 	mode &= ~ModeFlags.FLAGGED & ~ModeFlags.CHECKING
 	mode |= ModeFlags.VISIBLE
 	
@@ -186,11 +172,29 @@ func _open(force: bool = false, allow_loot: bool = true) -> bool:
 		spawn_base(get_stage_instance().generate_cell_content(Quest.get_current().get_attributes().rare_loot_modifier))
 	
 	if is_occupied():
-		get_object().notify_revealed(not force)
+		get_object().notify_revealed(active)
 	
 	EffectManager.propagate(get_stage_instance().get_effects().cell_open, [self])
 	
 	return true
+
+
+func _propagate_open(active: bool = true, allow_loot: bool = true) -> void:
+	var to_explore: Array[CellData] = [self]
+	var visited: Array[CellData] = []
+	while not to_explore.is_empty():
+		var current_cell := to_explore.pop_back() as CellData
+		
+		visited.append(current_cell)
+		current_cell._open(active, allow_loot)
+		
+		if current_cell.value != 0 or current_cell.has_monster():
+			continue
+		
+		for c in current_cell.get_nearby_cells():
+			if c in visited or c in to_explore or c.is_visible() or c.is_flagged():
+				continue
+			to_explore.append(c)
 
 
 func shatter(texture: Texture2D) -> void:

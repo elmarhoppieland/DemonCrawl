@@ -36,7 +36,7 @@ func _activate() -> void:
 	
 	var cell := cells.pick_random() as CellData
 	
-	cell.open(true, false)
+	cell.reveal(false)
 	
 	if cell.is_occupied():
 		# this cell must contain a monster since we filter for this

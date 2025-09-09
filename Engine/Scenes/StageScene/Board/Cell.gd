@@ -38,8 +38,8 @@ static func create(board_position: Vector2i = Vector2i.ZERO) -> Cell:
 ## Opens this [Cell], showing its contents. Returns [code]true[/code] if the [Cell]
 ## could be opened, and [code]false[/code] otherwise.
 ## [br][br]Calls [method Effects.cell_open] immediately after opening the [Cell].
-func open(force: bool = false, allow_loot: bool = true) -> bool:
-	return get_data().open(force, allow_loot)
+#func open(force: bool = false, allow_loot: bool = true) -> bool:
+	#return get_data().open(force, allow_loot)
 	
 	#if get_mode() == Mode.VISIBLE:
 		#return false

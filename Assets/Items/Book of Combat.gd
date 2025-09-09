@@ -13,7 +13,5 @@ func _activate() -> void:
 	
 	var cell := monsters.pick_random() as CellData
 	
-	if cell.is_hidden():
-		cell.open(true)
-	
+	cell.reveal()
 	cell.get_object().kill()
