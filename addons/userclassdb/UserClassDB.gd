@@ -45,6 +45,8 @@ static var _initialized := false
 static var _frozen_classes: Dictionary[int, Dictionary] = {}
 
 static var _script_id_cache: Dictionary[Script, StringName] = {}
+
+static var _load_mutex := Mutex.new()
 # ==============================================================================
 
 func _init() -> void:
@@ -93,8 +95,12 @@ static func class_exists(name: StringName) -> bool:
 	if OS.get_thread_caller_id() in _frozen_classes:
 		return name in _frozen_classes[OS.get_thread_caller_id()]
 	
-	if not Engine.is_editor_hint() and name in _classes:
-		return true
+	if not Engine.is_editor_hint():
+		_load_mutex.lock()
+		var exists := name in _classes
+		_load_mutex.unlock()
+		if exists:
+			return true
 	
 	if ResourceLoader.exists(name):
 		_classes[name] = load(String(name))
@@ -420,14 +426,18 @@ static func class_set_property(object: Object, property: StringName, value: Vari
 ## classes so that the class list is always updated. This is not needed during runtime
 ## as long as no scripts are created during runtime.
 static func get_class_list() -> PackedStringArray:
+	if OS.get_thread_caller_id() in _frozen_classes:
+		return _frozen_classes[OS.get_thread_caller_id()].keys()
+	
+	_load_mutex.lock()
+	
 	if not _initialized:
 		reload_classes()
 		
 		if Engine.is_editor_hint():
-			(func(): UserClassDB._initialized = false).call_deferred()
+			(func() -> void: UserClassDB._initialized = false).call_deferred()
 	
-	if OS.get_thread_caller_id() in _frozen_classes:
-		return _frozen_classes[OS.get_thread_caller_id()].keys()
+	_load_mutex.unlock()
 	
 	return _classes.keys()
 
@@ -435,6 +445,8 @@ static func get_class_list() -> PackedStringArray:
 static func reload_classes() -> void:
 	if OS.get_thread_caller_id() in _frozen_classes:
 		return
+	
+	_load_mutex.lock()
 	
 	_classes.clear()
 	
@@ -445,6 +457,8 @@ static func reload_classes() -> void:
 			_classes[subclass] = class_get_script(subclass)
 	
 	_initialized = true
+	
+	_load_mutex.unlock()
 
 
 static func _get_files_in_dir_recursive(dir: String, pattern: String = "*") -> PackedStringArray:
@@ -486,6 +500,9 @@ static func get_inheriters_from_class(name: StringName) -> PackedStringArray:
 
 
 ## Returns the parent class of the given class.
+## [br][br][b]Note:[/b] If the given class does not extend from another user-defined
+## class, this method will return the native class name (which can be handled in
+## [ClassDB].
 static func get_parent_class(name: StringName) -> StringName:
 	if not class_exists(name):
 		return &""
