@@ -29,9 +29,6 @@ static var current_changed := Signal() :
 		heirlooms_active = value
 		emit_changed()
 # ==============================================================================
-var _stage_effects := StageInstance.StageEffects.new() : get = get_stage_effects
-var _effects := QuestEffects.new() : get = get_effects
-
 var _immunity := Immunity.create_immunity_list() : get = get_immunity
 # ==============================================================================
 signal current_stage_changed()
@@ -119,11 +116,6 @@ func _set_current_stage(current_stage: StageInstance) -> void:
 		return
 	
 	if _current_stage:
-		for effect in (StageInstance.StageEffects as Script).get_script_signal_list():
-			var effect_signal: Signal = _current_stage.get_effects().get(effect.name)
-			var callable := EffectManager.propagate_forward(get_stage_effects().get(effect.name))
-			effect_signal.disconnect(callable)
-		
 		_current_stage.get_immunity().remove_forwarded_immunity(get_immunity())
 		
 		_current_stage.get_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().stage_second_passed))
@@ -134,11 +126,6 @@ func _set_current_stage(current_stage: StageInstance) -> void:
 	_current_stage = current_stage
 	
 	if current_stage:
-		for effect in (StageInstance.StageEffects as Script).get_script_signal_list():
-			var effect_signal: Signal = current_stage.get_effects().get(effect.name)
-			var callable := EffectManager.propagate_forward(get_stage_effects().get(effect.name))
-			effect_signal.connect(callable)
-		
 		current_stage.get_immunity().add_forwarded_immunity(get_immunity())
 		
 		current_stage.get_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().stage_second_passed))
@@ -458,11 +445,23 @@ func get_mastery_unlockers() -> Array[MasteryUnlocker]:
 
 
 func get_stage_effects() -> StageInstance.StageEffects:
-	return _stage_effects
+	return get_event_bus(StageInstance.StageEffects)
 
 
 func get_effects() -> QuestEffects:
-	return _effects
+	return get_event_bus(QuestEffects)
+
+
+func get_cell_effects() -> CellData.CellEffects:
+	return get_event_bus(CellData.CellEffects)
+
+
+func get_object_effects() -> CellObject.ObjectEffects:
+	return get_event_bus(CellObject.ObjectEffects)
+
+
+func get_item_effects() -> Item.ItemEffects:
+	return get_event_bus(Item.ItemEffects)
 
 
 func get_immunity() -> Immunity.ImmunityList:
@@ -471,6 +470,6 @@ func get_immunity() -> Immunity.ImmunityList:
 #endregion
 
 
-class QuestEffects:
-	@warning_ignore("unused_signal") signal status_effect_second_passed()
-	@warning_ignore("unused_signal") signal stage_second_passed()
+class QuestEffects extends EventBus:
+	signal status_effect_second_passed()
+	signal stage_second_passed()

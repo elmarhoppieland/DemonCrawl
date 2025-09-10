@@ -9,7 +9,7 @@ func _get_texture() -> CompressedTexture2D:
 
 
 func _collect() -> bool:
-	var value := get_value(5, &"coins")
+	var value: int = EffectManager.propagate((get_quest().get_event_bus(DiamondEffects) as DiamondEffects).get_diamond_value, [self, 5], 1)
 	get_stats().coins += value
 	
 	get_cell().add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)
@@ -31,3 +31,7 @@ func _is_charitable() -> bool:
 
 func _can_interact() -> bool:
 	return true
+
+
+class DiamondEffects extends EventBus:
+	signal get_diamond_value(diamond: Diamond, value: int)

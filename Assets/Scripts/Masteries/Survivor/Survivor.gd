@@ -10,8 +10,12 @@ func _quest_start() -> void:
 	get_stats().max_life += 1
 
 
-func _quest_load() -> void:
-	Promise.dynamic_signal(get_quest().get_current_stage, "finish_pressed", get_quest().current_stage_changed).connect(_stage_finish)
+func _enable() -> void:
+	get_quest().get_stage_effects().finish_pressed.connect(_stage_finish)
+
+
+func _disable() -> void:
+	get_quest().get_stage_effects().finish_pressed.disconnect(_stage_finish)
 
 
 func _stage_finish() -> void:

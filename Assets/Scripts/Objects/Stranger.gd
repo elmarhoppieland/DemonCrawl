@@ -13,7 +13,7 @@ var _script_name := "" :
 func activate() -> void:
 	_activate()
 	
-	EffectManager.propagate(get_stage_instance().get_effects().object_used, [self])
+	EffectManager.propagate(get_quest().get_object_effects().used, [self])
 
 
 func _activate() -> void:

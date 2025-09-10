@@ -6,12 +6,12 @@ class_name Bubbler
 
 func _enable() -> void:
 	get_quest().get_stage_effects().finish_pressed.connect(_stage_finish)
-	get_quest().get_stage_effects().orb_clicked.connect(_orb_clicked)
+	(get_quest().get_event_bus(Orb.OrbEffects) as Orb.OrbEffects).clicked.connect(_orb_clicked)
 
 
 func _disable() -> void:
 	get_quest().get_stage_effects().finish_pressed.disconnect(_stage_finish)
-	get_quest().get_stage_effects().orb_clicked.disconnect(_orb_clicked)
+	(get_quest().get_event_bus(Orb.OrbEffects) as Orb.OrbEffects).clicked.disconnect(_orb_clicked)
 
 
 func _stage_finish() -> void:

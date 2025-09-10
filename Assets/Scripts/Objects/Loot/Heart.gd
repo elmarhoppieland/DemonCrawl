@@ -39,11 +39,11 @@ func _collect() -> bool:
 	var success := true
 	
 	if get_stats().life < get_stats().max_life:
-		var life: int = EffectManager.propagate(get_quest().get_stage_effects().get_object_value, [self, 1, &"heal"], 1)
+		var life: int = EffectManager.propagate((get_quest().get_event_bus(HeartEffects) as HeartEffects).get_heal_amount, [self, 1], 1)
 		life = get_stats().life_restore(life, self)
 		get_cell().add_text_particle("+" + str(life), TextParticles.ColorPreset.LIFE)
 		
-		EffectManager.propagate(get_stage_instance().get_effects().object_used, [self])
+		EffectManager.propagate(get_quest().get_object_effects().used, [self])
 	else:
 		success = handle_fail()
 		
@@ -63,3 +63,7 @@ func _can_interact() -> bool:
 func use() -> void:
 	tween_texture_to(GuiLayer.get_statbar().get_heart_position())
 	clear()
+
+
+class HeartEffects extends EventBus:
+	signal get_heal_amount(heart: Heart, value: int)

@@ -13,11 +13,11 @@ extends MasteryUnlocker
 # ==============================================================================
 
 func _enter_tree() -> void:
-	get_quest().get_stage_effects().item_activated.connect(_item_activated)
+	get_quest().get_item_effects().used.connect(_item_activated)
 
 
 func _exit_tree() -> void:
-	get_quest().get_stage_effects().item_activated.disconnect(_item_activated)
+	get_quest().get_item_effects().used.disconnect(_item_activated)
 
 
 func _item_activated(item: Item) -> void:

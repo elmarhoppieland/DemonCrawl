@@ -12,7 +12,7 @@ func _use() -> void:
 	
 	cell.apply_aura(Sanctified)
 	life_restore(cell.value)
-	EffectManager.propagate(get_quest().get_current_stage().get_effects().item_used_on_cell, [self, cell])
+	EffectManager.propagate(get_quest().get_item_effects().item_used_on_cell, [self, cell])
 	
 	clear()
 

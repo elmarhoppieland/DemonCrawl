@@ -3,8 +3,6 @@ extends Node
 class_name QuestInventory
 
 # ==============================================================================
-var _effects := InventoryEffects.new() : get = get_effects
-# ==============================================================================
 #signal item_added(item: Item)
 #signal item_removed(item: Item)
 #signal item_transformed(old_item: Item, new_item: Item)
@@ -111,10 +109,9 @@ func is_empty() -> bool:
 
 
 func get_effects() -> InventoryEffects:
-	return _effects
+	return get_quest().get_event_bus(InventoryEffects)
 
 
-class InventoryEffects:
-	@warning_ignore("unused_signal") signal item_use(item: Item)
-	@warning_ignore("unused_signal") signal gain_mana(mana: int, source: Object)
-	@warning_ignore("unused_signal") signal mana_gained(mana: int, source: Object)
+class InventoryEffects extends EventBus:
+	signal gain_mana(mana: int, source: Object)
+	signal mana_gained(mana: int, source: Object)

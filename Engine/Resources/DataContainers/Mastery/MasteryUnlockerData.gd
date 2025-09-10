@@ -24,4 +24,4 @@ func _property_get_revert(property: StringName) -> Variant:
 
 
 func create() -> MasteryUnlocker:
-	return MasteryUnlocker.new(self)
+	return unlocker_script.new(self)

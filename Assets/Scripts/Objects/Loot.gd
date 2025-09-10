@@ -11,16 +11,12 @@ func _interact() -> void:
 func collect() -> void:
 	var handled := _collect()
 	if handled:
-		EffectManager.propagate(get_stage_instance().get_effects().object_used, [self])
+		EffectManager.propagate(get_quest().get_object_effects().used, [self])
 		return
 	
-	handled = EffectManager.propagate(get_stage_instance().get_effects().handle_object_interact_failed, [self, handled], 1)
-	EffectManager.propagate(get_stage_instance().get_effects().object_interact_failed, [self, handled])
+	handled = EffectManager.propagate(get_quest().get_object_effects().handle_interact_failed, [self, handled])
+	EffectManager.propagate(get_quest().get_object_effects().interact_failed, [self, handled])
 
 
 func _collect() -> bool:
 	return false
-
-
-func get_value(default: int, value_name: StringName) -> int:
-	return EffectManager.propagate(get_stage_instance().get_effects().get_object_value, [self, default, value_name], 1)

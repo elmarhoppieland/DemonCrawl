@@ -42,7 +42,7 @@ func _child_entered_tree(child: Node) -> void:
 		if not parent_bus:
 			parent_bus = child.get_script().new()
 			manager.add_child(parent_bus)
-			Debug.log_event("Added EventBus to '%s': %s" % [manager.event_owner.name, UserClassDB.script_get_identifier(child.get_script())])
+			Debug.log_event_verbose("Added EventBus to %s: %s" % [Stringifier.get_type_string(manager.event_owner), UserClassDB.script_get_identifier(child.get_script())])
 		
 		for s in child.get_script().get_script_signal_list():
 			var this_signal := Signal(child, s.name)
@@ -75,7 +75,7 @@ func _connect_event_forwards() -> void:
 			if not parent_bus:
 				parent_bus = bus.get_script().new()
 				manager.add_child(parent_bus)
-				Debug.log_event("Added EventBus to '%s': %s" % [manager.event_owner.name, UserClassDB.script_get_identifier(bus.get_script())])
+				Debug.log_event_verbose("Added EventBus to %s: %s" % [Stringifier.get_type_string(manager.event_owner), UserClassDB.script_get_identifier(bus.get_script())])
 			
 			for s in bus.get_signal_list():
 				var this_signal := Signal(bus, s.name)
@@ -127,5 +127,5 @@ func get_event_bus(script: Script) -> EventBus:
 	
 	var instance: EventBus = script.new()
 	add_child(instance)
-	Debug.log_event("Added EventBus to '%s': %s" % [event_owner.name, UserClassDB.script_get_identifier(script)])
+	Debug.log_event_verbose("Added EventBus to %s: %s" % [Stringifier.get_type_string(event_owner), UserClassDB.script_get_identifier(script)])
 	return instance

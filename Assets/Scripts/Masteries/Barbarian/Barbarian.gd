@@ -8,18 +8,14 @@ const RottingHead := preload("res://Assets/Items/Rotting Head.gd")
 @export var strangers_killed := 0
 # ==============================================================================
 
-func _ready() -> void:
-	add_child(preload("res://Assets/Items/Rotting Head.tres").create())
-
-
 func _enable() -> void:
-	get_quest().get_stage_effects().handle_object_interact_failed.connect(_object_interact_failed)
-	get_quest().get_stage_effects().object_killed.connect(_object_kill)
+	get_quest().get_object_effects().handle_interact_failed.connect(_object_interact_failed)
+	get_quest().get_object_effects().killed.connect(_object_kill)
 
 
 func _disable() -> void:
-	get_quest().get_stage_effects().handle_object_interact_failed.disconnect(_object_interact_failed)
-	get_quest().get_stage_effects().object_killed.disconnect(_object_kill)
+	get_quest().get_object_effects().handle_interact_failed.disconnect(_object_interact_failed)
+	get_quest().get_object_effects().killed.disconnect(_object_kill)
 
 
 func _object_interact_failed(object: CellObject, handled: bool) -> bool:
@@ -60,4 +56,7 @@ func get_rotting_head() -> RottingHead:
 	for child in get_children():
 		if child is RottingHead:
 			return child
-	return null
+	
+	var rotting_head := RottingHead.new()
+	add_child(rotting_head)
+	return rotting_head

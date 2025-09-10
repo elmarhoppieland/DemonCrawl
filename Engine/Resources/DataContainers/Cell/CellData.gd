@@ -174,7 +174,7 @@ func _open(active: bool = true, allow_loot: bool = true) -> bool:
 	if is_occupied():
 		get_object().notify_revealed(active)
 	
-	EffectManager.propagate(get_stage_instance().get_effects().cell_open, [self])
+	EffectManager.propagate(get_stage_instance().get_cell_effects().opened, [self])
 	
 	return true
 
@@ -221,6 +221,7 @@ func uncheck() -> void:
 func flag() -> void:
 	if is_hidden():
 		mode |= ModeFlags.FLAGGED
+		mode &= ~ModeFlags.CHECKING
 
 
 ## Unflags this [CellData], resetting it to [constant Cell.HIDDEN].
@@ -299,14 +300,14 @@ func apply_aura(aura: Variant) -> Aura:
 	set_aura(aura)
 	if is_occupied():
 		get_object().notify_aura_applied()
-	EffectManager.propagate(get_stage_instance().get_effects().cell_aura_applied, [aura])
+	EffectManager.propagate(get_stage_instance().get_cell_effects().aura_applied, [aura])
 	return aura
 
 
 func clear_aura() -> void:
 	if has_aura():
 		get_aura().queue_free()
-		EffectManager.propagate(get_stage_instance().get_effects().cell_aura_removed, [get_aura()])
+		EffectManager.propagate(get_stage_instance().get_cell_effects().aura_removed, [get_aura()])
 
 
 func spawn(base: Script, visible_only: bool = true) -> CellObject:
@@ -392,7 +393,7 @@ func get_actions() -> Array[Callable]:
 		if actions.is_empty():
 			actions.append(func() -> void: pass)
 		
-		actions.insert(1, func() -> void:
+		actions.append(func() -> void:
 			if is_flagged():
 				unflag()
 			else:
@@ -639,7 +640,7 @@ func notify_interacted() -> void:
 	if has_aura():
 		get_aura().notify_interacted(self)
 	
-	EffectManager.propagate(get_stage_instance().get_effects().cell_interacted, [self])
+	EffectManager.propagate(get_stage_instance().get_cell_effects().interacted, [self])
 
 
 func notify_second_interacted() -> void:
@@ -649,6 +650,21 @@ func notify_second_interacted() -> void:
 	if has_aura():
 		get_aura().notify_second_interacted(self)
 	
-	EffectManager.propagate(get_stage_instance().get_effects().cell_second_interacted, [self])
+	EffectManager.propagate(get_stage_instance().get_cell_effects().second_interacted, [self])
 
 #endregion
+
+@warning_ignore_start("unused_signal")
+
+class CellEffects extends EventBus:
+	signal opened(cell: CellData)
+	
+	signal aura_applied(aura: Aura)
+	signal aura_removed(aura: Aura)
+	
+	signal interacted(cell: CellData)
+	signal second_interacted(cell: CellData)
+	
+	signal mistake_made(cell: CellData)
+
+@warning_ignore_restore("unused_signal")

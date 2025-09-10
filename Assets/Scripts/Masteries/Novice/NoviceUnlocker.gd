@@ -3,8 +3,12 @@ class_name NoviceUnlocker
 
 # ==============================================================================
 
-func _ready() -> void:
-	get_quest().get_stage_effects().cell_open.connect(_cell_open)
+func _enter_tree() -> void:
+	get_quest().get_event_bus(CellData.CellEffects).opened.connect(_cell_open)
+
+
+func _exit_tree() -> void:
+	get_quest().get_event_bus(CellData.CellEffects).opened.disconnect(_cell_open)
 
 
 func _cell_open(cell: CellData) -> void:

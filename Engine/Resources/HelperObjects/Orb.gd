@@ -41,9 +41,11 @@ func notify_clicked() -> void:
 	var handled := _clicked()
 	
 	if get_quest().has_current_stage():
-		EffectManager.propagate(get_quest().get_current_stage().get_effects().orb_clicked, [self, handled])
+		handled = EffectManager.propagate((get_quest().get_current_stage().get_event_bus(OrbEffects) as OrbEffects).click, [self, handled], 1)
+		EffectManager.propagate((get_quest().get_current_stage().get_event_bus(OrbEffects) as OrbEffects).clicked, [self, handled])
 	else:
-		EffectManager.propagate(get_quest().get_stage_effects().orb_clicked, [self, handled])
+		handled = EffectManager.propagate((get_quest().get_event_bus(OrbEffects) as OrbEffects).click, [self, handled], 1)
+		EffectManager.propagate((get_quest().get_event_bus(OrbEffects) as OrbEffects).clicked, [self, handled])
 
 
 func _clicked() -> bool:
@@ -61,3 +63,8 @@ func get_hovering_cell() -> CellData:
 	var board := get_quest().get_current_stage().get_board()
 	var cell_node := board.get_cell_at_global(board.get_global_mouse_position())
 	return cell_node.get_data() if cell_node else null
+
+
+class OrbEffects extends EventBus:
+	signal click(orb: Orb, handled: bool)
+	signal clicked(orb: Orb, handled: bool)

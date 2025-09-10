@@ -11,14 +11,14 @@ static func show_rewards(chest: TreasureChest) -> void:
 	
 	if randi() % 2:
 		var instance: ChestCoinsPopup = load(COINS_SCENE).instantiate()
-		var coins := chest.get_value(randi_range(6, 2 * Quest.get_current().get_selected_stage().max_power + 6), &"coins")
+		var coins := chest.get_coin_reward()
 		instance.coins = coins
 		await DCPopup.popup_show_instance(instance)
 		quest.get_stats().coins += coins
 		instance.queue_free()
 	else:
-		var item_count := chest.get_value(1, &"item_count")
-		var max_cost := chest.get_value(4 * Quest.get_current().get_selected_stage().max_power + 3, &"item_max_cost")
+		var item_count := chest.get_item_reward_amount()
+		var max_cost := chest.get_item_reward_max_cost()
 		
 		var rewards: Array[Collectible] = []
 		for i in item_count:

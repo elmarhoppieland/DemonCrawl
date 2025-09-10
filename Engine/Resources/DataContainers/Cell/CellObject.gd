@@ -247,7 +247,7 @@ func notify_interacted() -> void:
 	
 	_hover()
 	
-	EffectManager.propagate(get_stage_instance().get_effects().object_interacted, [self])
+	EffectManager.propagate(get_stage_instance().get_object_effects().interacted, [self])
 
 
 ## Interacts with this object.
@@ -306,7 +306,7 @@ func kill() -> void:
 	
 	clear()
 	
-	EffectManager.propagate(get_stage_instance().get_effects().object_killed, [self])
+	EffectManager.propagate(get_stage_instance().get_object_effects().killed, [self])
 
 
 ## Virtual method to react to being killed.
@@ -342,8 +342,6 @@ func _reveal() -> void:
 ## by directly opening this cell or chording an adjacent cell.
 func notify_revealed_active() -> void:
 	_reveal_active()
-	
-	EffectManager.propagate(get_stage_instance().get_effects().object_revealed, [self, true])
 
 
 ## Virtual method to react to this object being revealed. Called when the player
@@ -357,8 +355,6 @@ func _reveal_active() -> void:
 ## items or other abilities.
 func notify_revealed_passive() -> void:
 	_reveal_passive()
-	
-	EffectManager.propagate(get_stage_instance().get_effects().object_revealed, [self, false])
 
 
 ## Virtual method to react to being passively revealed. Called when the player passively
@@ -525,8 +521,8 @@ func flee() -> void:
 
 
 func handle_fail() -> bool:
-	var handled: bool = EffectManager.propagate(get_stage_instance().get_effects().handle_object_interact_failed, [self, false], 1)
-	EffectManager.propagate(get_stage_instance().get_effects().object_interact_failed, [self, handled])
+	var handled: bool = EffectManager.propagate(get_stage_instance().get_object_effects().handle_interact_failed, [self, false], 1)
+	EffectManager.propagate(get_stage_instance().get_object_effects().interact_failed, [self, handled])
 	return handled
 
 
@@ -576,3 +572,20 @@ func get_theme_icon(theme_name: StringName, theme_type: StringName = "Cell") -> 
 	return icon
 
 #endregion
+
+@warning_ignore_start("unused_signal")
+
+class ObjectEffects extends EventBus:
+	signal used(object: CellObject)
+	
+	signal interacted(object: CellObject)
+	signal handle_interact_failed(object: CellObject, handled: bool)
+	signal interact_failed(object: CellObject, handled: bool)
+	
+	signal second_interacted(object: CellObject)
+	signal handle_second_interact_failed(object: CellObject, handled: bool)
+	signal second_interact_failed(object: CellObject, handled: bool)
+	
+	signal killed(object: CellObject)
+
+@warning_ignore_restore("unused_signal")

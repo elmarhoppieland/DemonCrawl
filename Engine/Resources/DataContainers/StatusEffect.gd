@@ -86,28 +86,28 @@ func _notification(what: int) -> void:
 
 
 func _connect_signals() -> void:
-	get_quest().get_stage_effects().mistake_made.connect(notify_mistake)
+	get_quest().get_cell_effects().mistake_made.connect(notify_mistake)
 	
 	match _type:
 		Type.TURNS:
 			get_quest().get_stage_effects().turn.connect(notify_turn)
 		Type.CELLS_OPENED:
-			get_quest().get_stage_effects().cell_open.connect(notify_cell_opened)
+			get_quest().get_cell_effects().opened.connect(notify_cell_opened)
 		Type.SECONDS:
 			get_quest().get_effects().status_effect_second_passed.connect(notify_second_passed)
 
 
 func _disconnect_signals() -> void:
-	if get_quest().get_stage_effects().mistake_made.is_connected(notify_mistake):
-		get_quest().get_stage_effects().mistake_made.disconnect(notify_mistake)
+	if get_quest().get_cell_effects().mistake_made.is_connected(notify_mistake):
+		get_quest().get_cell_effects().mistake_made.disconnect(notify_mistake)
 	
 	match _type:
 		Type.TURNS:
 			if get_quest().get_stage_effects().turn.is_connected(notify_turn):
 				get_quest().get_stage_effects().turn.disconnect(notify_turn)
 		Type.CELLS_OPENED:
-			if get_quest().get_stage_effects().cell_open.is_connected(notify_cell_opened):
-				get_quest().get_stage_effects().cell_open.disconnect(notify_cell_opened)
+			if get_quest().get_cell_effects().opened.is_connected(notify_cell_opened):
+				get_quest().get_cell_effects().opened.disconnect(notify_cell_opened)
 		Type.SECONDS:
 			if get_quest().get_effects().status_effect_second_passed.is_connected(notify_second_passed):
 				get_quest().get_effects().status_effect_second_passed.disconnect(notify_second_passed)

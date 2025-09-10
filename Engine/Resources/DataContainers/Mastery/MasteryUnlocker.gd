@@ -21,20 +21,20 @@ func _quest_win() -> void:
 
 
 func unlock(level: int) -> void:
-	if Codex.get_unlocked_mastery_level(data) < level:
+	if Codex.get_unlocked_mastery_level(data.data) < level:
 		_unlock(level)
-		await MasteryAchievedPopup.show_mastery(data.instantiate(level))
+		await MasteryAchievedPopup.show_mastery(data.data.instantiate(level))
 
 
 func _unlock(level: int) -> void:
-	if Codex.get_unlocked_mastery_level(data) >= level:
+	if Codex.get_unlocked_mastery_level(data.data) >= level:
 		return
 	
-	var mastery := Codex.get_unlocked_mastery(data)
+	var mastery := Codex.get_unlocked_mastery(data.data)
 	if not mastery:
 		if level > 1:
 			return
-		mastery = data.instantiate(level)
+		mastery = data.data.instantiate(level)
 		Codex.unlocked_masteries.append(mastery)
 	
 	if mastery.level == level - 1:

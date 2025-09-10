@@ -424,3 +424,11 @@ func has_tag(tag: String) -> bool:
 	return tag in get_tags()
 
 #endregion
+
+@warning_ignore_start("unused_signal")
+
+class ItemEffects extends EventBus:
+	signal used(item: Item)
+	signal used_on_cell(item: Item, cell: CellData)
+
+@warning_ignore_restore("unused_signal")

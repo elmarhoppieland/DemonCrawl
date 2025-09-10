@@ -17,7 +17,7 @@ func _enter_tree() -> void:
 		return
 	
 	get_quest().get_stage_effects().exited.connect(_stage_leave)
-	get_quest().get_inventory().get_effects().item_use.connect(_item_use)
+	get_quest().get_item_effects().used.connect(_item_use)
 
 
 func _exit_tree() -> void:
@@ -25,7 +25,7 @@ func _exit_tree() -> void:
 		return
 	
 	get_quest().get_stage_effects().exited.disconnect(_stage_leave)
-	get_quest().get_inventory().get_effects().item_use.disconnect(_item_use)
+	get_quest().get_item_effects().used.disconnect(_item_use)
 
 
 func _spawn() -> void:

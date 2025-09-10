@@ -60,7 +60,12 @@ func _turn() -> void:
 			return
 		
 		if new_cell.is_occupied():
-			new_cell.object.notify_interacted()
+			var object := new_cell.get_object()
+			if object is Loot:
+				(object as Loot).collect()
+				EffectManager.propagate((get_stage_instance().get_event_bus(FamiliarEffects) as FamiliarEffects).loot_collected, [self, object])
+			else:
+				object.notify_interacted()
 		
 		move_to_cell(new_cell)
 		return
@@ -69,11 +74,11 @@ func _turn() -> void:
 func can_move_to(cell: CellData) -> bool:
 	if cell == null:
 		return false
-	if not cell.is_occupied():
+	if cell.is_empty():
 		return true
 	if cell.has_monster():
 		return strong or (cell.is_hidden() and not cell.is_flagged())
-	return cell.object.get_script() in [Coin, Diamond, Heart]
+	return cell.get_object().get_script() in [Coin, Diamond, Heart]
 
 
 func _get_annotation_title() -> String:
@@ -93,3 +98,7 @@ func _aura_apply() -> void:
 
 func _cell_enter() -> void:
 	_aura_apply()
+
+
+class FamiliarEffects extends EventBus:
+	signal loot_collected(familiar: Familiar, loot: Loot)

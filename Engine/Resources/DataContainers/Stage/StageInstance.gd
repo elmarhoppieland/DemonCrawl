@@ -34,7 +34,6 @@ class_name StageInstance
 # ==============================================================================
 var _scene: StageScene : get = get_scene
 
-var _effects := StageEffects.new() : get = get_effects
 var _immunity := Immunity.create_immunity_list() : get = get_immunity
 # ==============================================================================
 signal finish_pressed()
@@ -598,7 +597,19 @@ func _add_component(component_script: Script, parent: Node = self) -> Node:
 
 
 func get_effects() -> StageEffects:
-	return _effects
+	return get_event_bus(StageEffects)
+
+
+func get_cell_effects() -> CellData.CellEffects:
+	return get_event_bus(CellData.CellEffects)
+
+
+func get_object_effects() -> CellObject.ObjectEffects:
+	return get_event_bus(CellObject.ObjectEffects)
+
+
+func get_item_effects() -> Item.ItemEffects:
+	return get_event_bus(Item.ItemEffects)
 
 
 func get_immunity() -> Immunity.ImmunityList:
@@ -611,42 +622,18 @@ class Grid extends Node:
 		children.assign(get_children())
 		return children
 
+@warning_ignore_start("unused_signal")
 
-class StageEffects:
-	@warning_ignore("unused_signal") signal get_guaranteed_objects(objects: Array[CellObject])
+class StageEffects extends EventBus:
+	signal get_guaranteed_objects(objects: Array[CellObject])
 	
-	@warning_ignore("unused_signal") signal get_object_value(object: CellObject, value: int, value_name: StringName)
-	@warning_ignore("unused_signal") signal handle_object_interact_failed(object: CellObject, handled: bool)
-	@warning_ignore("unused_signal") signal object_interact_failed(object: CellObject, handled: bool)
-	@warning_ignore("unused_signal") signal handle_object_second_interact_failed(object: CellObject, handled: bool)
-	@warning_ignore("unused_signal") signal object_second_interact_failed(object: CellObject)
+	signal turn()
 	
-	@warning_ignore("unused_signal") signal turn()
-	
-	@warning_ignore("unused_signal") signal item_used_on_cell(item: Item, cell: CellData)
-	@warning_ignore("unused_signal") signal item_activated(item: Item)
-	
-	@warning_ignore("unused_signal") signal cell_open(cell: CellData)
-	@warning_ignore("unused_signal") signal cell_interacted(cell: CellData)
-	@warning_ignore("unused_signal") signal cell_second_interacted(cell: CellData)
-	@warning_ignore("unused_signal") signal cell_aura_applied(cell: CellData)
-	@warning_ignore("unused_signal") signal cell_aura_removed(cell: CellData)
-	
-	@warning_ignore("unused_signal") signal object_revealed(object: CellObject, active: bool)
-	@warning_ignore("unused_signal") signal object_killed(object: CellObject)
-	@warning_ignore("unused_signal") signal object_interacted(object: CellObject)
-	@warning_ignore("unused_signal") signal object_second_interacted(object: CellObject)
-	
-	@warning_ignore("unused_signal") signal object_used(object: CellObject)
-	@warning_ignore("unused_signal") signal object_second_used(object: CellObject)
-	
-	@warning_ignore("unused_signal") signal orb_clicked(orb: Orb, handled: bool)
-	
-	@warning_ignore("unused_signal") signal mistake_made(cell: CellData)
-	
-	@warning_ignore("unused_signal") signal entered()
-	@warning_ignore("unused_signal") signal generated()
-	@warning_ignore("unused_signal") signal started()
-	@warning_ignore("unused_signal") signal completed()
-	@warning_ignore("unused_signal") signal finish_pressed()
-	@warning_ignore("unused_signal") signal exited()
+	signal entered()
+	signal generated()
+	signal started()
+	signal completed()
+	signal finish_pressed()
+	signal exited()
+
+@warning_ignore_restore("unused_signal")

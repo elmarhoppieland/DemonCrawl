@@ -5,25 +5,21 @@ class_name Banker
 # ==============================================================================
 
 func _enable() -> void:
-	get_quest().get_stage_effects().get_object_value.connect(_get_object_value)
+	(get_quest().get_event_bus(TreasureChest.ChestEffects) as TreasureChest.ChestEffects).get_coin_reward.connect(_get_coin_reward)
 
 
 func _disable() -> void:
-	get_quest().get_stage_effects().get_object_value.disconnect(_get_object_value)
+	(get_quest().get_event_bus(TreasureChest.ChestEffects) as TreasureChest.ChestEffects).get_coin_reward.disconnect(_get_coin_reward)
 
 
 func _quest_start() -> void:
 	get_stats().coins += 15
 
 
-func _get_object_value(object: CellObject, value: int, value_name: StringName) -> int:
-	if object is not TreasureChest:
-		return value
-	if value_name != &"coins":
-		return value
+func _get_coin_reward(_chest: TreasureChest, reward: int) -> int:
 	if level < 2:
-		return value
-	return 2 * value
+		return reward
+	return 2 * reward
 
 
 func _ability() -> void:

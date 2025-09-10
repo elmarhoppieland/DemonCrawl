@@ -16,6 +16,7 @@ const LOG_DIR := "user://logs"
 const LOG_FILE_PATH_BASE := LOG_DIR + "/log%d.txt"
 # ==============================================================================
 static var max_log_count: int = Eternal.create(100, "settings")
+static var verbose_logging: bool = Eternal.create(false, "settings")
 
 static var all_objects: Array[Object] = []
 static var left_object: Object
@@ -86,6 +87,11 @@ static func log_event(message: String, color: Color = Color.AQUA, print_to_conso
 	
 	if show_toast:
 		Toasts.add_debug_toast(message)
+
+
+static func log_event_verbose(message: String, color: Color = Color.AQUA, print_to_console: bool = true, show_toast: bool = true) -> void:
+	if verbose_logging:
+		log_event(message, color, print_to_console, show_toast)
 
 
 static func log_stack_event(message: String, color: Color = Color.WHITE, prefix: String = "", print_to_console: bool = true, show_toast: bool = true) -> void:

@@ -23,12 +23,13 @@ const RESEARCH_SUBJECTS: Dictionary[ItemData, String] = {
 func _enable() -> void:
 	get_quest().get_stage_effects().entered.connect(_stage_enter)
 	get_quest().get_action_manager().register(_get_actions)
-	get_quest().get_stage_effects().object_used.connect(_object_use)
+	get_quest().get_object_effects().used.connect(_object_use)
 
 
 func _disable() -> void:
 	get_quest().get_stage_effects().entered.disconnect(_stage_enter)
 	get_quest().get_action_manager().unregister(_get_actions)
+	get_quest().get_object_effects().used.disconnect(_object_use)
 
 
 func _stage_enter() -> void:
