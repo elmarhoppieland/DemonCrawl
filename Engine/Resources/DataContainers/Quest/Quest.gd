@@ -65,6 +65,8 @@ func _ready() -> void:
 			continue
 		
 		parent.add_child(unlocker.create())
+	
+	get_event_bus_manager()
 
 #endregion
 
@@ -119,9 +121,7 @@ func _set_current_stage(current_stage: StageInstance) -> void:
 	if _current_stage:
 		for effect in (StageInstance.StageEffects as Script).get_script_signal_list():
 			var effect_signal: Signal = _current_stage.get_effects().get(effect.name)
-			var callable := EffectManager.propagate_forward.bind(get_stage_effects().get(effect.name))
-			if not effect.args.is_empty():
-				callable = callable.unbind(effect.args.size())
+			var callable := EffectManager.propagate_forward(get_stage_effects().get(effect.name))
 			effect_signal.disconnect(callable)
 		
 		_current_stage.get_immunity().remove_forwarded_immunity(get_immunity())
@@ -136,9 +136,7 @@ func _set_current_stage(current_stage: StageInstance) -> void:
 	if current_stage:
 		for effect in (StageInstance.StageEffects as Script).get_script_signal_list():
 			var effect_signal: Signal = current_stage.get_effects().get(effect.name)
-			var callable := EffectManager.propagate_forward.bind(get_stage_effects().get(effect.name))
-			if not effect.args.is_empty():
-				callable = callable.unbind(effect.args.size())
+			var callable := EffectManager.propagate_forward(get_stage_effects().get(effect.name))
 			effect_signal.connect(callable)
 		
 		current_stage.get_immunity().add_forwarded_immunity(get_immunity())
@@ -399,64 +397,50 @@ func has_mastery() -> bool:
 	return get_mastery() != null
 
 
-#func _set_orb_manager(orb_manager: OrbManager) -> void:
-	#_orb_manager = orb_manager
-	#orb_manager.set_quest(self)
-
-
 func get_orb_manager() -> OrbManager:
-	for child in get_components_parent().get_children():
-		if child is OrbManager:
-			return child
-	
-	var orb_manager := OrbManager.new()
-	get_components_parent().add_child(orb_manager)
-	return orb_manager
-
-
-#func _set_status_manager(status_manager: StatusEffectsManager) -> void:
-	#_status_manager = status_manager
-	#status_manager.set_quest(self)
+	return _get_component(OrbManager)
 
 
 func get_status_manager() -> StatusEffectsManager:
-	for child in get_components_parent().get_children():
-		if child is StatusEffectsManager:
-			return child
-	
-	var status_manager := StatusEffectsManager.new()
-	get_components_parent().add_child(status_manager)
-	return status_manager
+	return _get_component(StatusEffectsManager)
 
 
 func get_action_manager() -> ActionManager:
-	for child in get_components_parent().get_children():
-		if child is ActionManager:
-			return child
-	
-	var action_manager := ActionManager.new()
-	get_components_parent().add_child(action_manager)
-	return action_manager
+	return _get_component(ActionManager)
 
 
 func get_item_pool() -> ItemPool:
-	for child in get_components_parent().get_children():
-		if child is ItemPool:
-			return child
-	
-	var item_pool := ItemPool.new()
-	get_components_parent().add_child(item_pool)
-	return item_pool
+	return _get_component(ItemPool)
 
 
 func get_tooltip_context() -> TooltipContext:
-	for child in get_components_parent().get_children():
-		if child is TooltipContext:
+	return _get_component(TooltipContext)
+
+
+func get_event_bus_manager() -> EventBusManager:
+	return _get_component(EventBusManager, self, func() -> EventBusManager:
+		var instance: EventBusManager = _add_component(EventBusManager, self)
+		instance.event_owner = self
+		return instance
+	)
+
+
+func get_event_bus(script: Script) -> EventBus:
+	return get_event_bus_manager().get_event_bus(script)
+
+
+func _get_component(component_script: Script, parent: Node = get_components_parent(), add_method: Callable = _add_component.bind(component_script, parent)) -> Node:
+	for child in parent.get_children():
+		if component_script.instance_has(child):
 			return child
 	
-	var context := TooltipContext.new()
-	get_components_parent().add_child(context)
-	return context
+	return add_method.call()
+
+
+func _add_component(component_script: Script, parent: Node = get_components_parent()) -> Node:
+	var instance: Node = component_script.new()
+	parent.add_child(instance)
+	return instance
 
 
 func get_mastery_unlockers_parent() -> Node:

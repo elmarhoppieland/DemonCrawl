@@ -567,13 +567,34 @@ func get_status_timer() -> StageTimer:
 
 
 func get_projectile_manager() -> ProjectileManager:
-	for child in get_children():
-		if child is ProjectileManager:
+	return _get_component(ProjectileManager)
+
+
+func get_event_bus_manager() -> EventBusManager:
+	return _get_component(EventBusManager, self, func() -> EventBusManager:
+		var instance: EventBusManager = _add_component(EventBusManager)
+		instance.event_owner = self
+		instance.event_owner_parent = get_quest()
+		return instance
+	)
+
+
+func get_event_bus(script: Script) -> EventBus:
+	return get_event_bus_manager().get_event_bus(script)
+
+
+func _get_component(component_script: Script, parent: Node = self, add_method: Callable = _add_component.bind(component_script, parent)) -> Node:
+	for child in parent.get_children():
+		if component_script.instance_has(child):
 			return child
 	
-	var projectile_manager := ProjectileManager.new()
-	add_child(projectile_manager)
-	return projectile_manager
+	return add_method.call()
+
+
+func _add_component(component_script: Script, parent: Node = self) -> Node:
+	var instance: Node = component_script.new()
+	parent.add_child(instance)
+	return instance
 
 
 func get_effects() -> StageEffects:
