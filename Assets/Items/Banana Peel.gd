@@ -4,13 +4,19 @@ extends ConsumableItem
 # ==============================================================================
 
 func _use() -> void:
-	var target := await target_cell()
-	if not target:
-		return
-	
-	#target.enchant(BananaPeelEnchant)
-	
-	clear()
+	for cell in await target_cell():
+		#target.enchant(BananaPeelEnchant)
+		pass
+
+
+func _invoke() -> void:
+	for cell in target_random(1):
+		#target.enchant(BananaPeelEnchant)
+		pass
+
+
+func _can_use() -> bool:
+	return super() and get_quest().has_current_stage()
 
 
 #class BananaPeelEnchant extends CellEnchantment:

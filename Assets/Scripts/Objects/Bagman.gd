@@ -11,7 +11,7 @@ func _enter_tree() -> void:
 	if get_parent() is not CellData:
 		return
 	
-	get_quest().get_stats().get_mutable_effects().damage.connect(_damage)
+	get_quest().get_stats().get_effects().take_damage.connect(_damage)
 
 
 func _spawn() -> void:
@@ -23,7 +23,7 @@ func _exit_tree() -> void:
 	if get_parent() is not CellData:
 		return
 	
-	get_quest().get_stats().get_mutable_effects().damage.disconnect(_damage)
+	get_quest().get_stats().get_effects().take_damage.disconnect(_damage)
 
 
 func _damage(amount: int, source: Object) -> int:

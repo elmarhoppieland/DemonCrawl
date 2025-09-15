@@ -315,22 +315,47 @@ func transform(new_item: Item) -> void:
 
 
 ## Targets a [Cell]. Waits for the player to select a [Cell] and then return it.
-## This method is a coroutine, so it should be called with [code]await[/code].
-## See also [method target_cells].
-func target_cell() -> CellData:
-	return await get_quest().get_current_stage().get_scene().cast(self)
+## This returns an [Array][[CellData]] since the player may increase the range
+## or add more cells to target. See also [method target_cells].
+## [br][br]Calling this method is equivalent to calling [method target_cells]
+## with a radius of 1.
+## [br][br][b]Note:[/b] This method is a coroutine, so it should be called with [code]await[/code].
+func target_cell() -> Array[CellData]:
+	return await target_cells(1)
 
 
 ## Targets multiple [Cell]s. Waits for the player to select a [Cell] and then
-## returns all [Cell]s within the given [code]radius[/code] of the selected cell.
+## returns all [Cell]s within the given [param radius] of the selected cell.
 func target_cells(radius: int) -> Array[CellData]:
 	if not get_quest().has_current_stage():
 		return []
 	
-	var origin := await get_quest().get_current_stage().get_scene().cast(self)
+	var origin := await get_quest().get_current_stage().get_scene().cast(data.icon)
 	
 	if not origin:
+		cancel_use()
 		return []
+	
+	return _get_target_area(origin, radius)
+
+
+## Targets a random area of cells. Similar to [method target_cells], but does not
+## wait for the player to select a cell and instead picks the origin randomly.
+func target_random(radius: int, filter: Callable = Callable()) -> Array[CellData]:
+	if not get_quest().has_current_stage():
+		return []
+	
+	var cells := get_stage_instance().get_cells()
+	if filter.is_valid():
+		cells.assign(cells.filter(filter))
+	cells.assign(_get_target_area(cells.pick_random(), radius))
+	if filter.is_valid():
+		cells.assign(cells.filter(filter))
+	return cells
+
+
+func _get_target_area(origin: CellData, radius: int) -> Array[CellData]:
+	radius = EffectManager.propagate(get_quest().get_item_effects().get_target_radius, [self, radius], 1)
 	
 	var cells: Array[CellData] = []
 	var topleft := origin.get_position() - (radius - 1) * Vector2i.ONE
@@ -342,6 +367,9 @@ func target_cells(radius: int) -> Array[CellData]:
 			var cell := get_quest().get_current_stage().get_cell(pos)
 			if cell:
 				cells.append(cell)
+	
+	cells = EffectManager.propagate(get_quest().get_item_effects().target_cells, [self, cells], 1)
+	EffectManager.propagate(get_quest().get_item_effects().cells_targeted, [self, cells])
 	
 	return cells
 
@@ -430,5 +458,9 @@ func has_tag(tag: String) -> bool:
 class ItemEffects extends EventBus:
 	signal used(item: Item)
 	signal used_on_cell(item: Item, cell: CellData)
+	
+	signal get_target_radius(item: Item, radius: int)
+	signal target_cells(item: Item, cells: Array[CellData])
+	signal cells_targeted(item: Item, cells: Array[CellData])
 
 @warning_ignore_restore("unused_signal")

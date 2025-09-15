@@ -270,6 +270,9 @@ func enable() -> void:
 	get_quest().lost.connect(_quest_lose)
 	get_quest().won.connect(_quest_win)
 	
+	if not get_quest().is_node_ready():
+		await get_quest().ready
+	
 	_enable()
 
 

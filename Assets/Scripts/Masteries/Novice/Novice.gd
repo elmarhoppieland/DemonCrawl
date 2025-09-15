@@ -6,14 +6,14 @@ class_name Novice
 
 func _enable() -> void:
 	get_quest().get_attributes().change_property.connect(_change_attribute)
-	get_quest().get_stats().get_mutable_effects().damage.connect(_damage)
-	get_quest().get_stats().get_mutable_effects().death.connect(_death)
+	get_quest().get_stats().get_effects().take_damage.connect(_damage)
+	get_quest().get_stats().get_effects().die.connect(_death)
 
 
 func _disable() -> void:
 	get_quest().get_attributes().change_property.disconnect(_change_attribute)
-	get_quest().get_stats().get_mutable_effects().damage.disconnect(_damage)
-	get_quest().get_stats().get_mutable_effects().death.disconnect(_death)
+	get_quest().get_stats().get_effects().take_damage.disconnect(_damage)
+	get_quest().get_stats().get_effects().die.disconnect(_death)
 
 
 func _change_attribute(attribute: StringName, value: int) -> int:

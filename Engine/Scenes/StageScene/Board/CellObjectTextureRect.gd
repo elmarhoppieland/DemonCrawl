@@ -56,5 +56,9 @@ func _get_annotation_text() -> String:
 	return _cell.get_object().get_annotation_text()
 
 
+func _get_modulate() -> Color:
+	return _cell.get_object().get_modulate()
+
+
 func get_2d_anchor() -> Node2D:
 	return get_parent()

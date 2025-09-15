@@ -25,8 +25,6 @@ func _collect() -> bool:
 	
 	tween_texture_to(GuiLayer.get_statbar().get_coin_position())
 	
-	clear()
-	
 	return true
 
 

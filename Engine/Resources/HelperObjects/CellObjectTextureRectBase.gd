@@ -26,12 +26,14 @@ func _update() -> void:
 	if visible:
 		texture = _get_texture()
 		material = _get_material()
+		modulate = _get_modulate()
 		
 		if _tooltip_grabber:
 			_tooltip_grabber.enabled = _has_annotation_text() or Engine.is_editor_hint()
 	else:
 		texture = null
 		material = null
+		modulate = Color.WHITE
 		
 		if _tooltip_grabber:
 			_tooltip_grabber.enabled = Engine.is_editor_hint()
@@ -47,6 +49,10 @@ func _get_texture() -> Texture2D:
 
 func _get_material() -> Material:
 	return null
+
+
+func _get_modulate() -> Color:
+	return Color.WHITE
 
 
 func _has_annotation_text() -> bool:

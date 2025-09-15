@@ -46,7 +46,9 @@ func _text_entered() -> void:
 		command_line_feedback.text = "[color=red]There was an error executing the command: %s[/color]" % expression.get_error_text()
 		Debug.log_event("Command '%s' failed: %s" % [text, expression.get_error_text()], Color.RED)
 		return
-	if not value is String:
+	if value is not String:
+		if value is Object and not value.has_method(&"_to_string"):
+			value = "<%s#%d>" % [Stringifier.get_type_string(value), value.get_instance_id()]
 		value = ">> " + str(value)
 	
 	command_line_feedback.text = value

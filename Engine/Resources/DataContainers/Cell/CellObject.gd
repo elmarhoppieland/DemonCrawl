@@ -120,10 +120,6 @@ static func _import_packed_static_v(script: String, args: Array) -> CellObject:
 	
 	return object
 
-
-func _to_string() -> String:
-	return "<%s#%d>" % [UserClassDB.script_get_identifier(get_script()), get_instance_id()]
-
 #endregion
 
 func get_cell() -> CellData:

@@ -102,7 +102,7 @@ static func has_current() -> bool:
 
 ## Sets the currently active [Quest] to [code]null[/code].
 static func clear_current() -> void:
-	_current = null
+	_current = null  # the setter calls Node.queue_free on _current
 
 
 ## Sets this [Quest] as the current quest. Future calls to [method get_current] will
@@ -116,22 +116,32 @@ func _set_current_stage(current_stage: StageInstance) -> void:
 		return
 	
 	if _current_stage:
-		_current_stage.get_immunity().remove_forwarded_immunity(get_immunity())
-		
-		_current_stage.get_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().stage_second_passed))
-		_current_stage.get_status_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().status_effect_second_passed))
-		
-		_current_stage.finished.disconnect(_on_stage_finished.bind(_current_stage))
+		(func() -> void:
+			if not is_node_ready():
+				await ready
+			
+			_current_stage.get_immunity().remove_forwarded_immunity(get_immunity())
+			
+			_current_stage.get_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().stage_second_passed))
+			_current_stage.get_status_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().status_effect_second_passed))
+			
+			_current_stage.finished.disconnect(_on_stage_finished.bind(_current_stage))
+		).call()
 	
 	_current_stage = current_stage
 	
 	if current_stage:
-		current_stage.get_immunity().add_forwarded_immunity(get_immunity())
-		
-		current_stage.get_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().stage_second_passed))
-		current_stage.get_status_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().status_effect_second_passed))
-		
-		current_stage.finished.connect(_on_stage_finished.bind(_current_stage))
+		(func() -> void:
+			if not is_node_ready():
+				await ready
+			
+			current_stage.get_immunity().add_forwarded_immunity(get_immunity())
+			
+			current_stage.get_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().stage_second_passed))
+			current_stage.get_status_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().status_effect_second_passed))
+			
+			current_stage.finished.connect(_on_stage_finished.bind(_current_stage))
+		).call()
 	
 	current_stage_changed.emit()
 
@@ -168,34 +178,6 @@ func get_stage(index: int) -> Stage:
 
 func start() -> void:
 	started.emit()
-
-
-#func notify_loaded() -> void:
-	#_mastery_unlockers.clear()
-	#
-	#var unlockers: Array[MasteryUnlocker] = []
-	#var unlocker_count := DemonCrawl.get_full_registry().mastery_unlockers.size()
-	#unlockers.resize(unlocker_count)
-	#for i in unlocker_count:
-		#var unlocker := DemonCrawl.get_full_registry().mastery_unlockers[i]
-		#
-		#for exported_unlocker in _exported_mastery_unlockers:
-			#if exported_unlocker.get_script() == unlocker.get_script():
-				#unlockers[i] = exported_unlocker
-				#unlocker = null
-		#
-		#if unlocker:
-			#unlockers[i] = unlocker.duplicate()
-	#
-	#_mastery_unlockers = unlockers
-	#
-	#loaded.emit()
-
-
-#func notify_unloaded() -> void:
-	#_mastery_unlockers.clear()
-	#
-	#unloaded.emit()
 
 
 ## Unlocks the next stage of the quest, starting at [code]stage[/code].
@@ -236,6 +218,13 @@ func finish() -> void:
 	#notify_unloaded()
 
 
+func pass_turn() -> void:
+	if has_current_stage():
+		EffectManager.propagate(get_current_stage().get_effects().turn)
+	else:
+		EffectManager.propagate(get_stage_effects().turn)
+
+
 func _on_stage_finished(stage_instance: StageInstance) -> void:
 	if get_mastery():
 		get_mastery().gain_charge()
@@ -257,8 +246,6 @@ func _on_stage_finished(stage_instance: StageInstance) -> void:
 			if Quest.get_current() == self:
 				Quest.clear_current()
 			
-			Eternity.save()
-			
 			# TODO: send player to "quest finished" scene
 			SceneManager.change_scene_to_file("res://Engine/Scenes/MainMenu/MainMenu.tscn")
 			
@@ -268,8 +255,6 @@ func _on_stage_finished(stage_instance: StageInstance) -> void:
 		_current_stage = null
 	
 	stage_instance.queue_free()
-	
-	Eternity.save()
 	
 	SceneManager.change_scene_to_file("res://Engine/Scenes/StageSelect/StageSelect.tscn")
 

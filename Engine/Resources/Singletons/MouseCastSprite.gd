@@ -6,6 +6,7 @@ class_name MouseCastSprite
 @onready var foreground: Sprite2D = %Foreground
 # ==============================================================================
 signal cast_finished()
+signal cast_cancelled()
 # ==============================================================================
 
 func _ready() -> void:
@@ -19,19 +20,22 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("interact"):
 			cast_finished.emit()
 		elif Input.is_action_just_pressed("secondary_interact"):
-			cast_finished.emit()
+			cast_cancelled.emit()
 
 
-func cast(item: Item) -> void:
-	foreground.texture.item = item
-	show()
+func cast(icon: Texture2D) -> bool:
+	foreground.texture = icon
+	show.call_deferred()
 	anchor.position = anchor.get_global_mouse_position()
 	
-	GuiLayer.get_statbar().inventory_toggle()
+	if GuiLayer.get_statbar().is_inventory_open():
+		GuiLayer.get_statbar().inventory_toggle()
 	
-	await cast_finished
+	var r: bool = await Promise.new({ cast_finished: true, cast_cancelled: false }).any()
 	
 	hide()
+	
+	return r
 
 
 func get_position() -> Vector2:

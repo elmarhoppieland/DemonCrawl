@@ -36,6 +36,8 @@ func _exit_tree() -> void:
 	
 	if stage_instance:
 		stage_instance.get_stage().stop_music()
+	
+	Eternity.save()
 
 
 func _ready() -> void:
@@ -101,10 +103,13 @@ func register_projectile(projectile: Projectile) -> ProjectileSprite:
 
 
 ## Casts an item.
-func cast(item: Item) -> CellData:
+func cast(icon: Texture2D) -> CellData:
 	# TODO: freeze & unfreeze board
-	await _mouse_cast_sprite.cast(item)
-	return get_board().get_hovered_cell().get_data()
+	var r := await _mouse_cast_sprite.cast(icon)
+	if not r:
+		return null
+	var cell := get_board().get_cell_at_global(get_board().get_global_mouse_position())
+	return cell.get_data() if cell else null
 
 
 func _on_stage_completed() -> void:

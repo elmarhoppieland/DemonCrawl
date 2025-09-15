@@ -46,6 +46,7 @@ func _turn() -> void:
 		if not can_move_to(new_cell):
 			continue
 		
+		var was_hidden := new_cell.is_hidden()
 		new_cell.reveal()
 		if new_cell.has_monster():
 			if strong:
@@ -62,7 +63,11 @@ func _turn() -> void:
 		if new_cell.is_occupied():
 			var object := new_cell.get_object()
 			if object is Loot:
-				(object as Loot).collect()
+				var collected := (object as Loot).try_collect()
+				if not collected:
+					if was_hidden:
+						return  # some loot has spawned in our way that we cannot collect
+					continue
 				EffectManager.propagate((get_stage_instance().get_event_bus(FamiliarEffects) as FamiliarEffects).loot_collected, [self, object])
 			else:
 				object.notify_interacted()

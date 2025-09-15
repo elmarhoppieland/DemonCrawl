@@ -441,6 +441,10 @@ func solve_cell() -> CellData:
 	return cell
 
 
+func pass_turn() -> void:
+	EffectManager.propagate(get_effects().turn)
+
+
 ## Returns whether this [StageInstance] has been generated. If this is not the
 ## case, [method get_cell] will return the correct instances of [CellData],
 ## but their properties may be changed when the first [Cell] gets opened.

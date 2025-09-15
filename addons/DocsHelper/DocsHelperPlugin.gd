@@ -3,6 +3,8 @@ extends EditorPlugin
 
 
 func _enter_tree() -> void:
+	await get_tree().process_frame
+	
 	var queue := PackedStringArray(["res://"])
 	
 	while not queue.is_empty():

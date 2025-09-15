@@ -7,7 +7,11 @@ static var _event_owner_list: Dictionary[EventBusManager, Node] = {}
 @export var event_owner: Node :
 	set(value):
 		event_owner = value
-		_event_owner_list[self] = value
+		if is_inside_tree():
+			if is_instance_valid(value):
+				_event_owner_list[self] = value
+			elif self in _event_owner_list:
+				_event_owner_list.erase(self)
 @export var event_owner_parent: Node :
 	set(value):
 		_disconnect_event_forwards()
@@ -17,13 +21,21 @@ static var _event_owner_list: Dictionary[EventBusManager, Node] = {}
 
 func _enter_tree() -> void:
 	child_entered_tree.connect(_child_entered_tree)
+	
+	if event_owner:
+		_event_owner_list[self] = event_owner
 
 
 func _exit_tree() -> void:
 	child_entered_tree.disconnect(_child_entered_tree)
+	
+	if self in _event_owner_list:
+		_event_owner_list.erase(self)
 
 
 func _child_entered_tree(child: Node) -> void:
+	EventBusManager._validate_event_owner_list()
+	
 	if child is not EventBus:
 		return
 	if event_owner_parent not in _event_owner_list.values():
@@ -55,6 +67,8 @@ func _child_entered_tree(child: Node) -> void:
 
 
 func _connect_event_forwards() -> void:
+	EventBusManager._validate_event_owner_list()
+	
 	if event_owner_parent not in _event_owner_list.values():
 		return
 	
@@ -88,6 +102,8 @@ func _connect_event_forwards() -> void:
 
 
 func _disconnect_event_forwards() -> void:
+	EventBusManager._validate_event_owner_list()
+	
 	if event_owner_parent not in _event_owner_list.values():
 		return
 	
@@ -129,3 +145,9 @@ func get_event_bus(script: Script) -> EventBus:
 	add_child(instance)
 	Debug.log_event_verbose("Added EventBus to %s: %s" % [Stringifier.get_type_string(event_owner), UserClassDB.script_get_identifier(script)])
 	return instance
+
+
+static func _validate_event_owner_list() -> void:
+	for manager in _event_owner_list.keys():
+		if not is_instance_valid(manager):
+			_event_owner_list.erase(manager)

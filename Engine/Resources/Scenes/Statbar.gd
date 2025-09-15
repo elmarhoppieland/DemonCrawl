@@ -17,7 +17,7 @@ const _INVENTORY_OPEN_CLOSE_ANIM_DURATION := 0.2
 		_inventory.inventory = value.get_inventory() if value else null
 # ==============================================================================
 #var _inventory_button_hovered := false
-var _inventory_open := false
+var _inventory_open := false : get = is_inventory_open
 # ==============================================================================
 @onready var _stats_tooltip_grabber: TooltipGrabber = %StatsTooltipGrabber
 @onready var _mastery_display: MasteryDisplay = %MasteryDisplay
@@ -96,3 +96,7 @@ func _on_heirloom_display_interacted(slot_idx: int) -> void:
 	var item := Codex.use_heirloom(slot_idx).duplicate()
 	Quest.get_current().heirlooms_active = false
 	Quest.get_current().get_inventory().item_gain(item)
+
+
+func is_inventory_open() -> bool:
+	return _inventory_open

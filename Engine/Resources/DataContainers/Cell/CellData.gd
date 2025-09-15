@@ -527,11 +527,11 @@ func is_value_visible() -> bool:
 
 
 func is_occupied() -> bool:
-	return get_object() != null
+	return not is_empty()
 
 
 func is_empty() -> bool:
-	return get_object() == null
+	return get_object() == null or get_object().is_queued_for_deletion()
 
 
 ## Returns whether this [CellData] is solved. This can mean 2 things:

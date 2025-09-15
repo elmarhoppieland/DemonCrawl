@@ -45,6 +45,7 @@ static var _initialized := false
 static var _frozen_classes: Dictionary[int, Dictionary] = {}
 
 static var _script_id_cache: Dictionary[Script, StringName] = {}
+static var _script_id_class_cache: Dictionary[Script, StringName] = {}
 
 static var _load_mutex := Mutex.new()
 # ==============================================================================
@@ -569,6 +570,9 @@ static func class_get_script(name: StringName) -> Script:
 ## [br][br][b]Note:[/b] Returns an empty [StringName] if the provided script does not have
 ## a class name defined. If you need an identifier for the script, use [method script_get_identifier].
 static func script_get_class(script: Script) -> StringName:
+	if not is_instance_valid(script):
+		return &""
+	
 	var global_name := script.get_global_name()
 	if not global_name.is_empty():
 		return global_name
@@ -585,24 +589,33 @@ static func script_get_class(script: Script) -> StringName:
 
 ## Returns an identifier for [code]script[/code]. The identifier can then be used in
 ## UserClassDB's functions.
-## [br][br]If [code]use_class_if_available[/code] is [code]true[/code], will use
+## [br][br]If [param use_class_if_available] is [code]true[/code], will use
 ## the script's class name (or the class name of its base script if it is a subclass),
 ## if it is defined.
 ## [br][br][b]Note:[/b] If the script has a defined class name, this method will return
 ## the same value as [method script_get_class].
-## [br][br][b]Note:[/b] This method is a slower version of [method script_get_class]
-## if [code]script[/code] has a class name, so prefer using [method script_get_class]
-## over this method if the script is guaranteed to have a class name. This is because
-## this method needs to fetch all classes, while [method script_get_class] can use
+## [br][br][b]Note:[/b] In the editor, this method cannot cache the result and is
+## therefore often slower than [method script_get_class] if [code]script[/code]
+## has a class name, so prefer using [method script_get_class] over this method
+## if the script is guaranteed to have a class name. This is because this method
+## needs to fetch all classes, while [method script_get_class] can use
 ## [ProjectSettings]'s global class list.
 static func script_get_identifier(script: Script, use_class_if_available: bool = true) -> StringName:
-	if script in _script_id_cache and not Engine.is_editor_hint():
-		return _script_id_cache[script]
+	if not is_instance_valid(script):
+		return &""
+	
+	if not Engine.is_editor_hint():
+		if use_class_if_available:
+			if script in _script_id_class_cache:
+				return _script_id_class_cache[script]
+		else:
+			if script in _script_id_cache:
+				return _script_id_cache[script]
 	
 	if use_class_if_available:
 		var global_name := script.get_global_name()
 		if not global_name.is_empty():
-			_script_id_cache[script] = global_name
+			_script_id_class_cache[script] = global_name
 			return global_name
 	else:
 		var path := script.resource_path
@@ -617,14 +630,16 @@ static func script_get_identifier(script: Script, use_class_if_available: bool =
 			id = name
 			break
 	
+	_script_id_cache[script] = id
+	
 	if use_class_if_available:
 		for class_data in ProjectSettings.get_global_class_list():
 			if class_data.path == id.substr(0, id.find("::", 6)):
 				id = class_data.class + id.substr(id.find("::", 6))
-				_script_id_cache[script] = id
-				return id
+				break
+		
+		_script_id_class_cache[script] = id
 	
-	_script_id_cache[script] = id
 	return id
 
 

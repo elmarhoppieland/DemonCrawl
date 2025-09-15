@@ -49,14 +49,14 @@ func _ready() -> void:
 			
 			profile.selected.connect(func():
 				ProfileList.selected_profile = profile_name
-				get_tree().change_scene_to_file("res://Scenes/MainMenu/MainMenu.tscn")
+				get_tree().change_scene_to_file("res://Engine/Scenes/MainMenu/MainMenu.tscn")
 			)
 		
 		var create_profile := MainMenuProfile.create("Create Profile", Vector2i.ZERO, -1)
 		page.add_child(create_profile)
 		create_profile.selected.connect(func():
 			ProfileList.selected_profile = ""
-			get_tree().change_scene_to_file("res://Scenes/MainMenu/MainMenu.tscn")
+			get_tree().change_scene_to_file("res://Engine/Scenes/MainMenu/MainMenu.tscn")
 		)
 	)
 

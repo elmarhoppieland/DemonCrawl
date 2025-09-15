@@ -89,6 +89,8 @@ static func log_event(message: String, color: Color = Color.AQUA, print_to_conso
 		Toasts.add_debug_toast(message)
 
 
+## Logs [param message], if [member verbose_logging] is [code]true[/code].
+## See [method log_event].
 static func log_event_verbose(message: String, color: Color = Color.AQUA, print_to_console: bool = true, show_toast: bool = true) -> void:
 	if verbose_logging:
 		log_event(message, color, print_to_console, show_toast)

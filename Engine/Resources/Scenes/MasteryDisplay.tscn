@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="3_d1xq6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pypo4"]
+resource_local_to_scene = true
 shader = ExtResource("2_s3yij")
 shader_parameter/glow = 0.0
 

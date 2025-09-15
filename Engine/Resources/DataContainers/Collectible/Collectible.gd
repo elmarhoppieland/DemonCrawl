@@ -5,6 +5,8 @@ class_name Collectible
 ## An abstract object that can be collected by the player.
 
 # ==============================================================================
+var _use_success := true
+# ==============================================================================
 signal predelete()
 # ==============================================================================
 
@@ -69,8 +71,11 @@ func _disable() -> void:
 ## Uses this [Collectible], if possible. First calls [method _use], and then [method _post].
 func use() -> void:
 	if can_use():
-		_use()
-		post()
+		_use_success = true
+		@warning_ignore("redundant_await")
+		await _use()
+		if _use_success:
+			post()
 
 
 ## Virtual method to add an effect for when the [Collectible] is used. Note that, by default,
@@ -82,6 +87,19 @@ func use() -> void:
 ## [method _use] is called when the [Collectible] is invoked.
 func _use() -> void:
 	pass
+
+
+## Cancels the [method _use] action. This effectively lets the engine know that
+## the use action was unsuccessful and that [method post] should not be called.
+## [br][br][b]Note:[/b] when called outside of a [Callable]'s [method _use] function,
+## this has no effect.
+func cancel_use() -> void:
+	_use_success = false
+
+
+## Returns whether the current use action has been cancelled using [method cancel_use].
+func is_use_cancelled() -> bool:
+	return not _use_success
 
 
 ## Posts this [Collectible]. This usally means performing its cost, like losing it.

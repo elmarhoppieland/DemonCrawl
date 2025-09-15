@@ -42,13 +42,8 @@ func _collect() -> bool:
 		var life: int = EffectManager.propagate((get_quest().get_event_bus(HeartEffects) as HeartEffects).get_heal_amount, [self, 1], 1)
 		life = get_stats().life_restore(life, self)
 		get_cell().add_text_particle("+" + str(life), TextParticles.ColorPreset.LIFE)
-		
-		EffectManager.propagate(get_quest().get_object_effects().used, [self])
 	else:
 		success = handle_fail()
-		
-		if not success:
-			Toasts.add_toast("object.heart.fail", null)
 	
 	if success:
 		use()
@@ -60,9 +55,13 @@ func _can_interact() -> bool:
 	return true
 
 
+func _collect_failed() -> void:
+	Toasts.add_toast("object.heart.fail", null)
+
+
 func use() -> void:
 	tween_texture_to(GuiLayer.get_statbar().get_heart_position())
-	clear()
+	EffectManager.propagate(get_quest().get_object_effects().used, [self])
 
 
 class HeartEffects extends EventBus:
