@@ -199,7 +199,7 @@ func finish() -> void:
 	
 	won.emit()
 	
-	Effects.quest_finish(self)
+	#Effects.quest_finish(self)
 	
 	#PlayerFlags.add_flag("%s/%s" % [
 		#source_difficulty.name,

@@ -22,8 +22,6 @@ density_minimum = 0.2
 density_maximum = 0.2
 size_minimum = 6
 size_maximum = 6
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("1_wpk54")
@@ -32,4 +30,3 @@ lore = "quest.tutorial.lore"
 icon = SubResource("Texture2D_km6i1")
 skip_unlock = true
 stages = Array[ExtResource("3_xjto8")]([SubResource("Resource_gumlt")])
-special_stages = Array[ExtResource("3_kmxy0")]([])

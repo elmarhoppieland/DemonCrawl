@@ -44,7 +44,7 @@ func _on_begin_button_pressed() -> void:
 	
 	Eternity.save()
 	
-	Effects.quest_start(quest)
+	#Effects.quest_start(quest)
 	
 	#quest.notify_loaded()
 

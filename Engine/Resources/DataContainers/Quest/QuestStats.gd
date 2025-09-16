@@ -3,6 +3,8 @@ extends Node
 class_name QuestStats
 
 # ==============================================================================
+const REVIVE_TEXTURE: Texture2D = null # TODO
+# ==============================================================================
 @export var max_life := 0 :
 	set(value):
 		max_life = value
@@ -54,7 +56,7 @@ func life_restore(life: int, source: Object) -> int:
 	if life <= 0:
 		return 0
 	
-	life = EffectManager.propagate(get_effects().restore_life, [life, source], 0)
+	life = EffectManager.propagate_mutable(get_effects().restore_life, 0, life, source)
 	EffectManager.propagate(get_effects().life_restored, [life, source])
 	self.life = mini(self.life + life, max_life)
 	return life
@@ -66,7 +68,7 @@ func life_lose(life: int, source: Object) -> int:
 	if life <= 0:
 		return 0
 	
-	life = EffectManager.propagate(get_effects().lose_life, [life, source], 0)
+	life = EffectManager.propagate_mutable(get_effects().lose_life, 0, life, source)
 	EffectManager.propagate(get_effects().life_lost, [life, source])
 	if life <= 0:
 		return 0
@@ -95,7 +97,7 @@ func die(source: Object) -> void:
 	if revives > 0:
 		revives -= 1
 		life = max_life
-		Toasts.add_toast("You now have %d revives..." % revives, IconManager.get_icon_data("icons/revive").create_texture())
+		Toasts.add_toast("You now have %d revives..." % revives, REVIVE_TEXTURE)
 		return
 	
 	lose()
@@ -124,7 +126,7 @@ func spend_coins(coins: int, destination: Object) -> int:
 	if coins <= 0:
 		return 0
 	
-	coins = EffectManager.propagate(get_effects().spend_coins, [coins, destination], 0)
+	coins = EffectManager.propagate_mutable(get_effects().spend_coins, 0, coins, destination)
 	EffectManager.propagate(get_effects().coins_spent, [coins, destination])
 	if coins <= 0:
 		return 0
@@ -138,7 +140,7 @@ func lose_coins(coins: int, source: Object) -> int:
 	if coins < 0:
 		return 0
 	
-	coins = EffectManager.propagate(get_effects().lose_coins, [coins, source], 0)
+	coins = EffectManager.propagate_mutable(get_effects().lose_coins, 0, coins, source)
 	EffectManager.propagate(get_effects().coins_lost, [coins, source])
 	coins = mini(coins, self.coins)
 	self.coins -= coins
@@ -150,7 +152,7 @@ func gain_coins(coins: int, source: Object) -> int:
 	if coins <= 0:
 		return 0
 	
-	coins = EffectManager.propagate(get_effects().gain_coins, [coins, source], 0)
+	coins = EffectManager.propagate_mutable(get_effects().gain_coins, 0, coins, source)
 	EffectManager.propagate(get_effects().coins_gained, [coins, source])
 	if coins <= 0:
 		return 0
@@ -164,7 +166,7 @@ func damage(amount: int, source: Object) -> int:
 		get_quest().get_current_stage().get_scene().get_background().flash_red()
 		get_quest().get_current_stage().get_board().get_camera().shake()
 	
-	amount = EffectManager.propagate(get_effects().take_damage, [amount, source], 0)
+	amount = EffectManager.propagate_mutable(get_effects().take_damage, 0, amount, source)
 	EffectManager.propagate(get_effects().damage_taken, [amount, source])
 	
 	if amount <= 0:
@@ -179,7 +181,7 @@ func gain_souls(souls: int, source: Object) -> int:
 	if souls <= 0:
 		return 0
 	
-	souls = EffectManager.propagate(get_effects().gain_souls, [souls, source], 0)
+	souls = EffectManager.propagate_mutable(get_effects().gain_souls, 0, souls, source)
 	EffectManager.propagate(get_effects().souls_gained, [souls, source])
 	
 	if souls <= 0:

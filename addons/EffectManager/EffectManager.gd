@@ -68,12 +68,25 @@ static func unregister_object(object: Object) -> void:
 			Effects.MutableSignals[name].disconnect(object[name])
 
 
-## Propagates the given [code]effect[/code], calling all [Callable]s that are connected
+## Propagates the given [param effect], calling all [Callable]s that are connected
 ## to the [Signal] in the order that the priority groups give. An [Array] of arguments
-## can optionally be passed into each [Callable]. If [code]mutable[/code] is at least
-## zero, the return value of each [Callable] will replace the value at the index
-## the value of [code]mutable[/code] specifies.
-static func propagate(effect: Signal, args: Array = [], mutable: int = -1) -> Variant:
+## can optionally be passed into each [Callable].
+static func propagate(effect: Signal, ...args: Array) -> void:
+	_propagate.callv([effect, -1] + args)
+
+
+## Propagates the given [param effect], calling all [Callable]s that are connected
+## to the [Signal] in the order that the priority groups give. An [Array] of arguments
+## can optionally be passed into each [Callable]. The return value of each [Callable]
+## will replace the value at the index the value of [param mutable] specifies.
+static func propagate_mutable(effect: Signal, mutable: int, ...args: Array) -> Variant:
+	assert(mutable >= 0, "Cannot mutate from a negative index.")
+	assert(args.size() > mutable, "Cannot use the mutable index since not enough arguments were provided.")
+	
+	return _propagate.callv([effect, mutable] + args)
+
+
+static func _propagate(effect: Signal, mutable: int, ...args: Array) -> Variant:
 	var connections: Array[Dictionary] = []
 	connections.assign(effect.get_connections())
 	args = args.duplicate()
@@ -101,7 +114,7 @@ static func propagate_forward(effect: Signal) -> Callable:
 	assert(arg_count >= 0, "Could not find the effect signal on its object.")
 	
 	var callable := func propagate_forward_lambda() -> Variant:
-		return propagate(effect, get_priority_tree().current_args, get_priority_tree().current_mutable)
+		return _propagate.callv([effect, get_priority_tree().current_mutable] + get_priority_tree().current_args)
 	if arg_count > 0:
 		callable = callable.unbind(arg_count)
 	return callable

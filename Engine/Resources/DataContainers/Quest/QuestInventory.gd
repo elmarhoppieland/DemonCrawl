@@ -86,7 +86,7 @@ func has_item_data(item_data: ItemData) -> bool:
 
 
 func mana_gain(mana: int, source: Object) -> void:
-	mana = EffectManager.propagate(get_effects().gain_mana, [mana, source], 0)
+	mana = EffectManager.propagate_mutable(get_effects().gain_mana, 0, mana, source)
 	
 	var mana_items: Array[Item] = []
 	mana_items.assign(get_items().filter(func(item: Item) -> bool: return item.can_recieve_mana()))

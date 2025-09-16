@@ -24,8 +24,6 @@ density_minimum = 0.14
 density_maximum = 0.19
 size_minimum = 6
 size_maximum = 8
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_tla61"]
 script = ExtResource("4_tk50n")
@@ -38,8 +36,6 @@ density_minimum = 0.15
 density_maximum = 0.2
 size_minimum = 6
 size_maximum = 8
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_2hp6w"]
 script = ExtResource("4_tk50n")
@@ -52,8 +48,6 @@ density_minimum = 0.16
 density_maximum = 0.21
 size_minimum = 6
 size_maximum = 10
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_wkeh8"]
 script = ExtResource("4_tk50n")
@@ -66,8 +60,6 @@ density_minimum = 0.17
 density_maximum = 0.22
 size_minimum = 9
 size_maximum = 11
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_kacdp"]
 script = ExtResource("4_tk50n")
@@ -80,8 +72,6 @@ density_minimum = 0.18
 density_maximum = 0.24
 size_minimum = 10
 size_maximum = 13
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_kuu0j"]
 script = ExtResource("4_tk50n")
@@ -94,8 +84,6 @@ density_minimum = 0.19
 density_maximum = 0.25
 size_minimum = 11
 size_maximum = 12
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_sj86w"]
 script = ExtResource("4_tk50n")
@@ -108,8 +96,6 @@ density_minimum = 0.2
 density_maximum = 0.26
 size_minimum = 11
 size_maximum = 15
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_n7fvn"]
 script = ExtResource("4_tk50n")
@@ -122,8 +108,6 @@ density_minimum = 0.21
 density_maximum = 0.27
 size_minimum = 13
 size_maximum = 15
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_3vq3j"]
 script = ExtResource("4_tk50n")
@@ -136,8 +120,6 @@ density_minimum = 0.22
 density_maximum = 0.28
 size_minimum = 14
 size_maximum = 16
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_yywuu"]
 script = ExtResource("4_tk50n")
@@ -150,8 +132,6 @@ density_minimum = 0.23
 density_maximum = 0.29
 size_minimum = 16
 size_maximum = 18
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("2_tgd6p")
@@ -159,6 +139,5 @@ name = "quest.another-way"
 lore = "quest.another-way.lore"
 token_shop_purchase = ExtResource("5_3o0np")
 icon = SubResource("Texture2D_utex0")
-skip_unlock = false
 stages = Array[ExtResource("4_tk50n")]([SubResource("Resource_tvu10"), SubResource("Resource_tla61"), SubResource("Resource_2hp6w"), SubResource("Resource_wkeh8"), SubResource("Resource_kacdp"), SubResource("Resource_kuu0j"), SubResource("Resource_sj86w"), SubResource("Resource_n7fvn"), SubResource("Resource_3vq3j"), SubResource("Resource_yywuu")])
 special_stages = Array[ExtResource("3_ql0p4")]([ExtResource("3_pg2j1")])

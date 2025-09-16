@@ -20,7 +20,6 @@ name = "tokenshop/upgrade_quest"
 [sub_resource type="Resource" id="Resource_0xp88"]
 script = ExtResource("5_jyhd1")
 flag = "hard"
-invert = false
 
 [resource]
 script = ExtResource("4_a50dv")

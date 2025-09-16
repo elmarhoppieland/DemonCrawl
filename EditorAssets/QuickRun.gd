@@ -3,10 +3,37 @@ extends EditorScript
 
 
 func _run() -> void:
-	var obj := T.new()
-	obj.function(func() -> void:
-		get_tree().queue_delete(obj)
-	)
+	var errors := get_tree().root.find_child("Errors*", true, false)
+	var errors_tree := errors.get_child(1) as Tree
+	var tab_container := errors.get_parent() as TabContainer
+	
+	var removed_item_count := 0
+	var removed_all := true
+	for item in errors_tree.get_root().get_children():
+		if item.get_text(1).match("*Parameter \"SceneTree::get_singleton()\" is null.*"):
+			errors_tree.get_root().remove_child(item)
+			removed_item_count += 1
+		else:
+			removed_all = false
+	
+	var debugger: Button = null
+	var queue: Array[Node] = [get_tree().root]
+	while not queue.is_empty():
+		var node := queue.pop_back() as Node
+		if node is Button and node.text.match("Debugger*"):
+			debugger = node
+		
+		queue.append_array(node.get_children())
+	
+	if removed_all:
+		errors.name = "Errors"
+		tab_container.set_tab_icon(errors.get_index(), null)
+		debugger.text = "Debugger"
+		debugger.icon = null
+		debugger.add_theme_color_override("font_color", tab_container.get_theme_color("font_selected_color"))
+	else:
+		errors.name = "Errors (%d)" % (errors.name.to_int() - removed_item_count)
+		debugger.text = "Debugger (%d)" % (debugger.text.to_int() - removed_item_count)
 
 
 func call_on_root() -> void:

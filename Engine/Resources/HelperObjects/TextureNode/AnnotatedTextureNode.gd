@@ -1,3 +1,4 @@
+@abstract
 extends TextureNode
 class_name AnnotatedTextureNode
 

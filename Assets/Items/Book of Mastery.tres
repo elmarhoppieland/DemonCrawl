@@ -12,7 +12,6 @@ region = Rect2(480, 160, 16, 16)
 script = ExtResource("1_ah1xq")
 name = "item.book-of-mastery"
 description = "item.book-of-mastery.description"
-mana = 0
 cost = 50
 tags = Array[String](["book"])
 icon = SubResource("AtlasTexture_u2bq5")

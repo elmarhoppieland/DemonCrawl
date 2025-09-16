@@ -20,4 +20,4 @@ func set_as_current() -> void:
 
 
 func get_text(text: String) -> String:
-	return EffectManager.propagate(process_text, [text], 0)
+	return EffectManager.propagate_mutable(process_text, 0, text)

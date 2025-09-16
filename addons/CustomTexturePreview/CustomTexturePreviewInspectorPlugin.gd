@@ -3,7 +3,7 @@ extends EditorInspectorPlugin
 class_name __CustomTexturePreviewInspectorPlugin
 
 # ==============================================================================
-static var _remaps := {}
+var _remaps := {}
 # ==============================================================================
 
 func _can_handle(object: Object) -> bool:

@@ -1,11 +1,11 @@
 @tool
-extends Object
+extends StaticClass
 class_name IconManager
 
 ## A manager for icons.
 
 # ==============================================================================
-static var _icon_cache := {}
+static var _icon_cache: Dictionary[String, IconData] = {}
 # ==============================================================================
 
 ## Returns an [IconManager.IconData] object for the icon with the given [code]name[/code].

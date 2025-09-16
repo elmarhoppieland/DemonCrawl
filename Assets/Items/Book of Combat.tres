@@ -12,7 +12,6 @@ region = Rect2(64, 128, 16, 16)
 script = ExtResource("1_redvf")
 name = "item.book-of-combat"
 description = "item.book-of-combat.description"
-mana = 0
 cost = 12
 tags = Array[String](["book"])
 icon = SubResource("AtlasTexture_wqir8")

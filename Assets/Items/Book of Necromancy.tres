@@ -12,7 +12,6 @@ region = Rect2(64, 224, 16, 16)
 script = ExtResource("1_1edwi")
 name = "item.book-of-necromancy"
 description = "item.book-of-necromancy.description"
-mana = 0
 cost = 16
 tags = Array[String](["book"])
 icon = SubResource("AtlasTexture_o1ipf")

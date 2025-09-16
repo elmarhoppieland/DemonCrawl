@@ -41,10 +41,10 @@ func notify_clicked() -> void:
 	var handled := _clicked()
 	
 	if get_quest().has_current_stage():
-		handled = EffectManager.propagate((get_quest().get_current_stage().get_event_bus(OrbEffects) as OrbEffects).click, [self, handled], 1)
+		handled = EffectManager.propagate_mutable((get_quest().get_current_stage().get_event_bus(OrbEffects) as OrbEffects).click, 1, self, handled)
 		EffectManager.propagate((get_quest().get_current_stage().get_event_bus(OrbEffects) as OrbEffects).clicked, [self, handled])
 	else:
-		handled = EffectManager.propagate((get_quest().get_event_bus(OrbEffects) as OrbEffects).click, [self, handled], 1)
+		handled = EffectManager.propagate_mutable((get_quest().get_event_bus(OrbEffects) as OrbEffects).click, 1, self, handled)
 		EffectManager.propagate((get_quest().get_event_bus(OrbEffects) as OrbEffects).clicked, [self, handled])
 
 

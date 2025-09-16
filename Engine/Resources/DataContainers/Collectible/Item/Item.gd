@@ -355,7 +355,7 @@ func target_random(radius: int, filter: Callable = Callable()) -> Array[CellData
 
 
 func _get_target_area(origin: CellData, radius: int) -> Array[CellData]:
-	radius = EffectManager.propagate(get_quest().get_item_effects().get_target_radius, [self, radius], 1)
+	radius = EffectManager.propagate_mutable(get_quest().get_item_effects().get_target_radius, 1, self, radius)
 	
 	var cells: Array[CellData] = []
 	var topleft := origin.get_position() - (radius - 1) * Vector2i.ONE
@@ -368,7 +368,7 @@ func _get_target_area(origin: CellData, radius: int) -> Array[CellData]:
 			if cell:
 				cells.append(cell)
 	
-	cells = EffectManager.propagate(get_quest().get_item_effects().target_cells, [self, cells], 1)
+	cells = EffectManager.propagate_mutable(get_quest().get_item_effects().target_cells, 1, self, cells)
 	EffectManager.propagate(get_quest().get_item_effects().cells_targeted, [self, cells])
 	
 	return cells

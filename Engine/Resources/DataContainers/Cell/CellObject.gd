@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends AnnotatedTextureNode
 class_name CellObject
 
@@ -517,7 +518,7 @@ func flee() -> void:
 
 
 func handle_fail() -> bool:
-	var handled: bool = EffectManager.propagate(get_stage_instance().get_object_effects().handle_interact_failed, [self, false], 1)
+	var handled: bool = EffectManager.propagate_mutable(get_stage_instance().get_object_effects().handle_interact_failed, 1, self, false)
 	EffectManager.propagate(get_stage_instance().get_object_effects().interact_failed, [self, handled])
 	return handled
 

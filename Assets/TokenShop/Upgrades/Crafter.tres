@@ -22,7 +22,6 @@ reward_script = ExtResource("2_hhni1")
 [sub_resource type="Resource" id="Resource_60vxu"]
 script = ExtResource("4_ymp7h")
 flag = "hard"
-invert = false
 
 [sub_resource type="Resource" id="Resource_3srau"]
 script = ExtResource("3_0sacl")

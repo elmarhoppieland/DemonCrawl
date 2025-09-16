@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends AnnotatedTextureNode
 class_name Collectible
 
@@ -120,9 +121,10 @@ func invoke() -> void:
 	_invoke()
 
 
-## Virtual method. Usually called when the [Collectible] is used by a game effect that is not the player.
-## Should use the [Collectible] without requiring player input. If the [Collectible] requires a
-## target [Cell], should target it on a random [Cell].
+## Virtual method. Usually called when the [Collectible] is used by a game effect
+## that is not the player. Should use the [Collectible] without requiring player
+## input. If the [Collectible] requires a target [Cell], should target it on a
+## random [Cell].
 func _invoke() -> void:
 	_use()
 

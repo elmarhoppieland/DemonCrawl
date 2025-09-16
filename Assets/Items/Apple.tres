@@ -12,7 +12,6 @@ region = Rect2(224, 64, 16, 16)
 script = ExtResource("1_huwnm")
 name = "item.apple"
 description = "item.apple.description"
-mana = 0
 cost = 5
 tags = Array[String](["easter"])
 icon = SubResource("AtlasTexture_1qlun")

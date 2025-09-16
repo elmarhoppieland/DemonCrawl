@@ -1,3 +1,4 @@
+@abstract
 extends Resource
 class_name NomadOffer
 
@@ -38,8 +39,7 @@ func get_description() -> String:
 
 ## Virtual method. Override to specify whether the player can afford this offer.
 ## This is not called when the player activates the [Nomad] for free.
-func _can_afford() -> bool:
-	return true
+@abstract func _can_afford() -> bool
 
 
 ## Returns whether the player can afford this offer. This usually means that the player has enough coins.

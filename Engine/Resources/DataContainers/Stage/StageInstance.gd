@@ -144,7 +144,7 @@ func generate(start_cell: CellData) -> void:
 		
 		get_cells()[idx].set_object(Monster.new(get_stage()))
 	
-	var objects: Array[CellObject] = EffectManager.propagate(get_effects().get_guaranteed_objects, [[] as Array[CellObject]], 0)
+	var objects: Array[CellObject] = EffectManager.propagate_mutable(get_effects().get_guaranteed_objects, 0, [] as Array[CellObject])
 	var cells: Array[CellData] = []
 	cells.assign(get_cells().filter(func(cell: CellData) -> bool: return cell.is_empty()))
 	var picked := PackedInt32Array()

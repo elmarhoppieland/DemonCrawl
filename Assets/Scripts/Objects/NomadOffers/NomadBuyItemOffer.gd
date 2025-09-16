@@ -11,7 +11,11 @@ func _spawn() -> void:
 	price = maxi(1, roundi(randf_range(0.8, 1.2) * item.cost))
 
 
-func _can_perform(_free: bool = false) -> bool:
+func _can_afford() -> bool:
+	return true
+
+
+func _can_perform() -> bool:
 	for i in Quest.get_current().get_inventory().get_item_count():
 		if Quest.get_current().get_inventory().get_item(i).get_script() == item.get_script():
 			return true

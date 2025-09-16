@@ -39,7 +39,7 @@ func _collect() -> bool:
 	var success := true
 	
 	if get_stats().life < get_stats().max_life:
-		var life: int = EffectManager.propagate((get_quest().get_event_bus(HeartEffects) as HeartEffects).get_heal_amount, [self, 1], 1)
+		var life: int = EffectManager.propagate_mutable((get_quest().get_event_bus(HeartEffects) as HeartEffects).get_heal_amount, 1, self, 1)
 		life = get_stats().life_restore(life, self)
 		get_cell().add_text_particle("+" + str(life), TextParticles.ColorPreset.LIFE)
 	else:

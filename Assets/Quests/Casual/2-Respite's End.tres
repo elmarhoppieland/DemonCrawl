@@ -23,8 +23,6 @@ density_minimum = 0.14
 density_maximum = 0.19
 size_minimum = 6
 size_maximum = 8
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_kvqxj"]
 script = ExtResource("4_1ncdf")
@@ -37,8 +35,6 @@ density_minimum = 0.15
 density_maximum = 0.2
 size_minimum = 6
 size_maximum = 8
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_nrcjf"]
 script = ExtResource("4_1ncdf")
@@ -51,8 +47,6 @@ density_minimum = 0.16
 density_maximum = 0.21
 size_minimum = 6
 size_maximum = 10
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_8u0ev"]
 script = ExtResource("4_1ncdf")
@@ -65,8 +59,6 @@ density_minimum = 0.17
 density_maximum = 0.22
 size_minimum = 9
 size_maximum = 11
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_m124s"]
 script = ExtResource("4_1ncdf")
@@ -79,8 +71,6 @@ density_minimum = 0.18
 density_maximum = 0.23
 size_minimum = 10
 size_maximum = 13
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_y85rx"]
 script = ExtResource("4_1ncdf")
@@ -93,8 +83,6 @@ density_minimum = 0.19
 density_maximum = 0.24
 size_minimum = 11
 size_maximum = 12
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_qyh3i"]
 script = ExtResource("4_1ncdf")
@@ -107,8 +95,6 @@ density_minimum = 0.2
 density_maximum = 0.25
 size_minimum = 11
 size_maximum = 15
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_ir8ee"]
 script = ExtResource("4_1ncdf")
@@ -121,8 +107,6 @@ density_minimum = 0.21
 density_maximum = 0.26
 size_minimum = 13
 size_maximum = 15
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_o1x01"]
 script = ExtResource("4_1ncdf")
@@ -135,8 +119,6 @@ density_minimum = 0.22
 density_maximum = 0.27
 size_minimum = 14
 size_maximum = 16
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_suxme"]
 script = ExtResource("4_1ncdf")
@@ -149,14 +131,11 @@ density_minimum = 0.23
 density_maximum = 0.28
 size_minimum = 16
 size_maximum = 18
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("2_12ux7")
 name = "quest.respites-end"
 lore = "quest.respites-end.lore"
 icon = SubResource("Texture2D_ah532")
-skip_unlock = false
 stages = Array[ExtResource("4_1ncdf")]([SubResource("Resource_5387s"), SubResource("Resource_kvqxj"), SubResource("Resource_nrcjf"), SubResource("Resource_8u0ev"), SubResource("Resource_m124s"), SubResource("Resource_y85rx"), SubResource("Resource_qyh3i"), SubResource("Resource_ir8ee"), SubResource("Resource_o1x01"), SubResource("Resource_suxme")])
 special_stages = Array[ExtResource("3_qt1oi")]([ExtResource("3_qucdc")])

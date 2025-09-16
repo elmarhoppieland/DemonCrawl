@@ -24,8 +24,6 @@ density_minimum = 0.15
 density_maximum = 0.2
 size_minimum = 6
 size_maximum = 8
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_yayms"]
 script = ExtResource("4_ds7y8")
@@ -38,8 +36,6 @@ density_minimum = 0.16
 density_maximum = 0.21
 size_minimum = 6
 size_maximum = 8
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_vvx3l"]
 script = ExtResource("4_ds7y8")
@@ -52,8 +48,6 @@ density_minimum = 0.17
 density_maximum = 0.22
 size_minimum = 6
 size_maximum = 10
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_l2jdi"]
 script = ExtResource("4_ds7y8")
@@ -66,8 +60,6 @@ density_minimum = 0.18
 density_maximum = 0.23
 size_minimum = 9
 size_maximum = 11
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_gcirs"]
 script = ExtResource("4_ds7y8")
@@ -80,8 +72,6 @@ density_minimum = 0.19
 density_maximum = 0.24
 size_minimum = 10
 size_maximum = 13
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_0wsmg"]
 script = ExtResource("4_ds7y8")
@@ -94,8 +84,6 @@ density_minimum = 0.2
 density_maximum = 0.25
 size_minimum = 11
 size_maximum = 12
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_axbgc"]
 script = ExtResource("4_ds7y8")
@@ -108,8 +96,6 @@ density_minimum = 0.21
 density_maximum = 0.26
 size_minimum = 11
 size_maximum = 15
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_d6ugj"]
 script = ExtResource("4_ds7y8")
@@ -122,8 +108,6 @@ density_minimum = 0.22
 density_maximum = 0.27
 size_minimum = 13
 size_maximum = 15
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_golmq"]
 script = ExtResource("4_ds7y8")
@@ -136,8 +120,6 @@ density_minimum = 0.23
 density_maximum = 0.28
 size_minimum = 14
 size_maximum = 16
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_nsgeo"]
 script = ExtResource("4_ds7y8")
@@ -150,8 +132,6 @@ density_minimum = 0.24
 density_maximum = 0.29
 size_minimum = 16
 size_maximum = 18
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("2_s6hu1")
@@ -159,6 +139,5 @@ name = "quest.around-the-bend"
 lore = "quest.around-the-bend.lore"
 token_shop_purchase = ExtResource("5_ygfj7")
 icon = SubResource("Texture2D_axt8q")
-skip_unlock = false
 stages = Array[ExtResource("4_ds7y8")]([SubResource("Resource_0qqpw"), SubResource("Resource_yayms"), SubResource("Resource_vvx3l"), SubResource("Resource_l2jdi"), SubResource("Resource_gcirs"), SubResource("Resource_0wsmg"), SubResource("Resource_axbgc"), SubResource("Resource_d6ugj"), SubResource("Resource_golmq"), SubResource("Resource_nsgeo")])
 special_stages = Array[ExtResource("3_bb8n5")]([ExtResource("3_t4iuj")])

@@ -179,14 +179,7 @@ static func dynamic_signal(owner_callable: Callable, signal_name: String, change
 	var obj := _SignalObject.new()
 	
 	(func() -> void:
-		var emitter := func(arg0: Variant = obj, arg1: Variant = obj, arg2: Variant = obj, arg3: Variant = obj, arg4: Variant = obj, arg5: Variant = obj, arg6: Variant = obj, arg7: Variant = obj, arg8: Variant = obj, arg9: Variant = obj) -> void:
-			var args := [arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9]
-			var call_args := ["s"]
-			for arg in args:
-				if arg == obj:
-					break
-				call_args.append(arg)
-			obj.emit_signal.callv(call_args)
+		var emitter := obj.s.emit
 		
 		var owner: Variant
 		var owner_signal := Signal()

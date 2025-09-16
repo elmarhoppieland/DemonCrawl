@@ -127,15 +127,15 @@ func get_info() -> Array:
 	
 	return [
 		4,
-		IconManager.get_icon_data("icons/power5").create_texture(),
+		get_window().get_theme_icon("power5", "Stage"),
 		2,
 		"%d-%d" % [min_power, max_power],
 		6,
-		IconManager.get_icon_data("icons/monster5").create_texture(),
+		get_window().get_theme_icon("monster5", "Stage"),
 		3,
 		str(monsters),
 		7,
-		IconManager.get_icon_data("icons/size5").create_texture(),
+		get_window().get_theme_icon("size5", "Stage"),
 		3,
 		str(area())
 	]
@@ -222,7 +222,7 @@ func get_small_icon() -> Texture2D:
 	const IMAGE_PATH := "res://Assets/skins/%s/bg.png"
 	
 	if not ResourceLoader.exists(IMAGE_PATH % name):
-		return IconManager.get_icon_data("quest/questionmark").create_texture()
+		return get_window().get_theme_icon("question_mark", "Stage")
 	
 	var image: Image = load(IMAGE_PATH % name).get_image()
 	image.convert(Image.FORMAT_RGBA8)

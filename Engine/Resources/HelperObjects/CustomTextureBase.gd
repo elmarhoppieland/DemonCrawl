@@ -3,18 +3,8 @@ extends Texture2D
 class_name CustomTextureBase
 
 # ==============================================================================
-static var _initalized := false
-# ==============================================================================
 @export var _instance: Texture2D
 # ==============================================================================
-
-static func _static_init() -> void:
-	if _initalized:
-		return
-	_initalized = true
-	
-	CustomTexturePreview.add_remap(CustomTextureBase, "_instance")
-
 
 func _init(texture: Texture2D = null) -> void:
 	_instance = texture

@@ -1,3 +1,4 @@
+@abstract
 extends Node
 class_name TextureNode
 
@@ -22,8 +23,7 @@ func get_texture() -> Texture2D:
 ## Called when this node's [Texture2D] is queried.
 ## [br][br]After this is called, the texture is cached and this method is not called
 ## anymore on this node.
-func _get_texture() -> Texture2D:
-	return null
+@abstract func _get_texture() -> Texture2D
 
 
 func clear_texture_cache() -> void:

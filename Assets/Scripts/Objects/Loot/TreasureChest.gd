@@ -6,8 +6,8 @@ class_name TreasureChest
 var tween: Tween
 # ==============================================================================
 
-func _get_texture() -> Icon:
-	return IconManager.get_icon_data("chests/default").create_texture()
+func _get_texture() -> Texture2D:
+	return get_theme_icon("default", "TreasureChest")
 
 
 func _collect() -> bool:
@@ -43,18 +43,18 @@ func _can_interact() -> bool:
 
 func get_coin_reward() -> int:
 	var reward: int = randi_range(6, 2 * Quest.get_current().get_selected_stage().max_power + 6)
-	return EffectManager.propagate((get_quest().get_event_bus(ChestEffects) as ChestEffects).get_coin_reward, [self, reward], 1)
+	return EffectManager.propagate_mutable((get_quest().get_event_bus(ChestEffects) as ChestEffects).get_coin_reward, 1, self, reward)
 
 
 func get_item_reward_amount() -> int:
-	return EffectManager.propagate((get_quest().get_event_bus(ChestEffects) as ChestEffects).get_item_reward_amount, [self, 1], 1)
+	return EffectManager.propagate_mutable((get_quest().get_event_bus(ChestEffects) as ChestEffects).get_item_reward_amount, 1, self, 1)
 
 
 func get_item_reward_max_cost() -> int:
-	return EffectManager.propagate((get_quest().get_event_bus(ChestEffects) as ChestEffects).get_item_reward_max_cost, [
+	return EffectManager.propagate_mutable((get_quest().get_event_bus(ChestEffects) as ChestEffects).get_item_reward_max_cost, 1, 
 		self,
 		4 * Quest.get_current().get_selected_stage().max_power + 3
-	], 1)
+	)
 
 
 class ChestEffects extends EventBus:

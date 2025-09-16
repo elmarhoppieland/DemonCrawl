@@ -14,7 +14,6 @@ name = "tokenshop/upgrade_chaote"
 [sub_resource type="Resource" id="Resource_14rhc"]
 script = ExtResource("4_gxhro")
 flag = "hard"
-invert = false
 
 [resource]
 script = ExtResource("5_nf2mm")
