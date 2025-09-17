@@ -28,35 +28,42 @@ var debugger: Button :
 				
 				queue.append_array(node.get_children())
 		return debugger
+var saved_error_count := -1
 
 
 func _process(_delta: float) -> void:
-	if errors_tree.get_root() == null:
+	var root := errors_tree.get_root()
+	if root == null:
 		return
 	
-	var old_error_count := errors_tree.get_root().get_child_count()
+	var old_error_count := root.get_child_count()
+	if saved_error_count < 0:
+		saved_error_count = old_error_count
 	var new_error_count := old_error_count
 	var found_warning := false
 	var found_error := false
-	for item in errors_tree.get_root().get_children():
+	for item in root.get_children():
 		if item.get_text(1).match("*Parameter \"SceneTree::get_singleton()\" is null.*"):
-			errors_tree.get_root().remove_child(item)
+			root.remove_child(item)
 			new_error_count -= 1
 		elif item.get_custom_color(1) == errors_tree.get_theme_color("warning_color", "Editor"):
 			found_warning = true
 		elif item.get_custom_color(1) == errors_tree.get_theme_color("error_color", "Editor"):
 			found_error = true
 	
+	if saved_error_count == new_error_count and new_error_count == old_error_count:
+		return
+	
 	if new_error_count == 0:
-		get_tree().process_frame.connect(func() -> void:
+		get_tree().process_frame.connect(get_tree().process_frame.connect.bind(func() -> void:
 			errors.name = "Errors"
 			tab_container.set_tab_icon(errors.get_index(), null)
 			debugger.text = "Debugger"
 			debugger.icon = null
-			debugger.add_theme_color_override("font_color", tab_container.get_theme_color("font_selected_color"))
-		, CONNECT_DEFERRED | CONNECT_ONE_SHOT)
+			debugger.remove_theme_color_override("font_color")
+		, CONNECT_DEFERRED | CONNECT_ONE_SHOT), CONNECT_ONE_SHOT)
 	else:
-		get_tree().process_frame.connect(func() -> void:
+		get_tree().process_frame.connect(get_tree().process_frame.connect.bind(func() -> void:
 			errors.name = "Errors (%d)" % new_error_count
 			var icon: Texture2D
 			var color: Color
@@ -74,7 +81,8 @@ func _process(_delta: float) -> void:
 			debugger.text = "Debugger (%d)" % new_error_count
 			debugger.icon = icon
 			debugger.add_theme_color_override("font_color", color)
-		, CONNECT_DEFERRED | CONNECT_ONE_SHOT)
+		, CONNECT_DEFERRED | CONNECT_ONE_SHOT), CONNECT_ONE_SHOT)
 	
-	if new_error_count < old_error_count:
+	if old_error_count > new_error_count:
 		print_rich("[color=web_gray]DCPlugin: Suppressed %d errors. See [url=https://github.com/godotengine/godot/issues/110548]this GitHub issue[/url] for more info.[/color]" % (old_error_count - new_error_count))
+	saved_error_count = new_error_count
