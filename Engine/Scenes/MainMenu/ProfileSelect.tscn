@@ -17,7 +17,7 @@ region = Rect2(64, 16, 16, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_m84bi"]
 font_size = 8
-font_color = Color(0.745098, 0.745098, 0.745098, 1)
+font_color = Color(0.74509805, 0.74509805, 0.74509805, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
@@ -100,7 +100,7 @@ script = ExtResource("4_ggtkl")
 [node name="ProfileLevelLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "Lv1"
+text = "generic.level.abbr"
 label_settings = SubResource("LabelSettings_m84bi")
 script = ExtResource("5_omnn8")
 

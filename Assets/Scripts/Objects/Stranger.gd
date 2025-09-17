@@ -17,6 +17,8 @@ func activate() -> void:
 	EffectManager.propagate(get_quest().get_object_effects().used, [self])
 
 
+## Virtual method. Called when this [Stranger] is activated, usually when the player
+## interacts with it. Should activate this [Stranger]'s effects without paying for them.
 @abstract func _activate() -> void
 
 

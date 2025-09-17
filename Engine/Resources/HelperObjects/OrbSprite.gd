@@ -51,6 +51,8 @@ func get_size() -> Vector2:
 	return _get_size()
 
 
+## Virtual method. Should return the size of the rectangle around this orb.
+## This method should ignore the shape of the orb.
 @abstract func _get_size() -> Vector2
 
 
@@ -58,4 +60,6 @@ func is_hovered() -> bool:
 	return not DCPopup.is_popup_visible() and _is_hovered()
 
 
+## Virtual method. Should return whether this orb is currently hovered.
+## This method should consider the shape of the orb (usually a circle).
 @abstract func _is_hovered() -> bool

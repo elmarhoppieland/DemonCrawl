@@ -11,7 +11,7 @@ var exit_tween: Tween
 
 func _ready() -> void:
 	for button: MainMenuButton in buttons_container.get_children():
-		button.mouse_entered.connect(func():
+		button.mouse_entered.connect(func() -> void:
 			label.text = button.text
 			label.label_settings.outline_color = button.color
 			await get_tree().process_frame
@@ -30,7 +30,7 @@ func _ready() -> void:
 				padding.custom_minimum_size.x = final_val
 				label.modulate.a = 1
 		)
-		button.mouse_exited.connect(func():
+		button.mouse_exited.connect(func() -> void:
 			exit_tween = create_tween()
 			exit_tween.tween_property(label, "modulate:a", 0.0, 0.4)
 		)

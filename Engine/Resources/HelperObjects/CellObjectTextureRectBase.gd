@@ -40,25 +40,31 @@ func _update() -> void:
 			_tooltip_grabber.enabled = Engine.is_editor_hint()
 
 
+## Virtual method. Should return whether the object is visible.
 func _is_visible() -> bool:
 	return true
 
 
+## Virtual method. Should return the texture to be rendered.
 @abstract func _get_texture() -> Texture2D
 
 
+## Virtual method. Should return the [Material] to be used in rendering.
 func _get_material() -> Material:
 	return null
 
 
+## Virtual method. Should return the modulation of the texture to use in rendering.
 func _get_modulate() -> Color:
 	return Color.WHITE
 
 
+## Virtual method. Should return whether the object has annotation text.
 func _has_annotation_text() -> bool:
 	return true
 
 
+## Virtual method. Should return the object's annotation text.
 func _get_annotation_text() -> String:
 	return ""
 

@@ -42,6 +42,7 @@ func get_bg() -> Texture2D:
 	return _bg
 
 
+## Virtual method. Should return this [SpecialStage]'s background texture.
 @abstract func _get_bg() -> Texture2D
 
 
@@ -51,4 +52,6 @@ func get_dest_scene() -> PackedScene:
 	return _dest_scene
 
 
+## Virtual method. Should return the scene that the player should be sent to
+## when entering this [SpecialStage].
 @abstract func _get_dest_scene() -> PackedScene
