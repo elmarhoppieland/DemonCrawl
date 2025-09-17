@@ -45,7 +45,7 @@ naming/script_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AutoThread/plugin.cfg", "res://addons/CustomTexturePreview/plugin.cfg", "res://addons/DCPlugin/plugin.cfg", "res://addons/DocsHelper/plugin.cfg", "res://addons/EffectManager/plugin.cfg", "res://addons/IconManager/plugin.cfg", "res://addons/Immunity/plugin.cfg", "res://addons/Promise/plugin.cfg", "res://addons/StaticClass/plugin.cfg", "res://addons/Stringifier/plugin.cfg", "res://addons/UserClassDB/plugin.cfg")
+enabled=PackedStringArray("res://addons/AutoThread/plugin.cfg", "res://addons/CustomTexturePreview/plugin.cfg", "res://addons/DCPlugin/plugin.cfg", "res://addons/DocsHelper/plugin.cfg", "res://addons/EffectManager/plugin.cfg", "res://addons/IconManager/plugin.cfg", "res://addons/Immunity/plugin.cfg", "res://addons/Promise/plugin.cfg", "res://addons/Stringifier/plugin.cfg", "res://addons/UserClassDB/plugin.cfg")
 
 [eternity]
 

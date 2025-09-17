@@ -11,6 +11,16 @@ func _spawn() -> void:
 	price = maxi(1, roundi(randf_range(0.8, 1.2) * item.cost))
 
 
+func _perform() -> void:
+	for i in _nomad.get_quest().get_inventory().get_items():
+		if i.data == item:
+			_nomad.get_quest().get_inventory().item_lose(i)
+			_nomad.get_quest().get_stats().coins += price
+			return
+	
+	Debug.log_error("NomadBuyItemOffer failed, but _can_perform() returned true.")
+
+
 func _can_afford() -> bool:
 	return true
 

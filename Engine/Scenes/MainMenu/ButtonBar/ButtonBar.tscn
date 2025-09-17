@@ -1,12 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://g1r4iletxch8"]
+[gd_scene load_steps=18 format=3 uid="uid://g1r4iletxch8"]
 
-[ext_resource type="Script" uid="uid://ctrhk1uc0tgj3" path="res://Engine/Scenes/MainMenu/ButtonBar.gd" id="1_0wbkr"]
+[ext_resource type="Script" uid="uid://ctrhk1uc0tgj3" path="res://Engine/Scenes/MainMenu/ButtonBar/ButtonBar.gd" id="1_0wbkr"]
 [ext_resource type="PackedScene" uid="uid://dpbvhpo6h1cog" path="res://Engine/Scenes/MainMenu/MainMenuButton.tscn" id="1_3rst5"]
-[ext_resource type="Script" uid="uid://due6cinjdx8lo" path="res://Engine/Scenes/MainMenu/QuestsButton.gd" id="2_xcxpo"]
+[ext_resource type="Script" uid="uid://due6cinjdx8lo" path="res://Engine/Scenes/MainMenu/ButtonBar/QuestsButton.gd" id="2_xcxpo"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="3_5lyta"]
-[ext_resource type="Script" uid="uid://2rvguib36ons" path="res://Engine/Scenes/MainMenu/QuitButton.gd" id="4_lvhwf"]
+[ext_resource type="Script" uid="uid://2rvguib36ons" path="res://Engine/Scenes/MainMenu/ButtonBar/QuitButton.gd" id="4_lvhwf"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="5_0dubs"]
-[ext_resource type="Script" uid="uid://c0hf0vi5312ik" path="res://Engine/Resources/UtilityNode/TokenShopButton.gd" id="6_gahvg"]
+[ext_resource type="Script" uid="uid://i6s8x7wlld5y" path="res://Engine/Scenes/MainMenu/ButtonBar/ClassicButton.gd" id="6_3rl01"]
+[ext_resource type="Script" uid="uid://c0hf0vi5312ik" path="res://Engine/Scenes/MainMenu/ButtonBar/TokenShopButton.gd" id="6_gahvg"]
+[ext_resource type="Script" uid="uid://do1n651lh3aju" path="res://Engine/Scenes/MainMenu/ButtonBar/CodexButton.gd" id="8_melh5"]
 
 [sub_resource type="Gradient" id="Gradient_n6rig"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -26,7 +28,7 @@ region = Rect2(0, 58, 12, 12)
 script = ExtResource("5_0dubs")
 name = "button_quests"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c1jic"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_melh5"]
 atlas = ExtResource("3_5lyta")
 region = Rect2(12, 58, 10, 12)
 
@@ -36,7 +38,7 @@ region = Rect2(34, 59, 12, 11)
 script = ExtResource("5_0dubs")
 name = "button_token_shop"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jmcqt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb6bc"]
 atlas = ExtResource("3_5lyta")
 region = Rect2(46, 58, 12, 12)
 
@@ -96,7 +98,8 @@ color = Color(0.0352941, 0.164706, 0.372549, 1)
 
 [node name="ClassicButton" parent="ButtonsContainer" instance=ExtResource("1_3rst5")]
 layout_mode = 2
-texture = SubResource("AtlasTexture_c1jic")
+script = ExtResource("6_3rl01")
+texture = SubResource("AtlasTexture_melh5")
 text = "menu.button.classic"
 color = Color(0.796078, 0.0745098, 0.160784, 1)
 
@@ -109,7 +112,8 @@ color = Color(0, 0.588235, 0.301961, 1)
 
 [node name="CodexButton" parent="ButtonsContainer" instance=ExtResource("1_3rst5")]
 layout_mode = 2
-texture = SubResource("AtlasTexture_jmcqt")
+script = ExtResource("8_melh5")
+texture = SubResource("AtlasTexture_sb6bc")
 text = "menu.button.codex"
 color = Color(0.717647, 0.352941, 0, 1)
 
