@@ -1,3 +1,4 @@
+@abstract
 extends MasteryUnlocker
 class_name AuramancerUnlocker
 

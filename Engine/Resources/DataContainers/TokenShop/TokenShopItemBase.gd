@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends Resource
 class_name TokenShopItemBase
 
@@ -8,8 +9,7 @@ func notify_purchased() -> void:
 	_purchase()
 
 
-func _purchase() -> void:
-	pass
+@abstract func _purchase() -> void
 
 
 func reapply_reward(purchase_count: int) -> void:
@@ -33,40 +33,28 @@ func get_display_name() -> String:
 	return _get_name()
 
 
-func _get_name() -> String:
-	return ""
+@abstract func _get_name() -> String
 
 
 func get_description() -> String:
 	return _get_description()
 
 
-func _get_description() -> String:
-	return ""
+@abstract func _get_description() -> String
 
 
 func get_icon() -> Texture2D:
 	return _get_icon()
 
 
-func _get_icon() -> Texture2D:
-	return null
+@abstract func _get_icon() -> Texture2D
 
 
 func get_cost() -> int:
 	return _get_cost()
 
 
-func _get_cost() -> int:
-	return 0
-
-
-func get_reward_flag() -> String:
-	return _get_reward_flag()
-
-
-func _get_reward_flag() -> String:
-	return ""
+@abstract func _get_cost() -> int
 
 
 func is_visible() -> bool:

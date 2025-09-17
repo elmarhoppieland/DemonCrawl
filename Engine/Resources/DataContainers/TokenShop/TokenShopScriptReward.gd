@@ -3,7 +3,12 @@ extends TokenShopReward
 class_name TokenShopScriptReward
 
 # ==============================================================================
-@export var reward_script: Script = null
+@export var reward_script: Script = null :
+	set(value):
+		var different := value != reward_script
+		reward_script = value
+		if different:
+			instance = null
 # ==============================================================================
 var instance: TokenShopReward = null :
 	get:

@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends CellObject
 class_name Stranger
 
@@ -16,8 +17,7 @@ func activate() -> void:
 	EffectManager.propagate(get_quest().get_object_effects().used, [self])
 
 
-func _activate() -> void:
-	pass
+@abstract func _activate() -> void
 
 
 func _get_texture() -> Texture2D:

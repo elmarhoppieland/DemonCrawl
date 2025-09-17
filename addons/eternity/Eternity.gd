@@ -1,5 +1,5 @@
 @tool
-#extends StaticClass
+@abstract
 class_name Eternity
 
 # ==============================================================================

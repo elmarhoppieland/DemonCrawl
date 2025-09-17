@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends Item
 class_name LegendaryItem
 

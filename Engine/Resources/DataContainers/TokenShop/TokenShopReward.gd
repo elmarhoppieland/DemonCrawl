@@ -1,3 +1,4 @@
+@abstract
 extends Resource
 class_name TokenShopReward
 
@@ -7,8 +8,7 @@ func apply() -> void:
 	_apply()
 
 
-func _apply() -> void:
-	pass
+@abstract func _apply() -> void
 
 
 func reapply() -> void:

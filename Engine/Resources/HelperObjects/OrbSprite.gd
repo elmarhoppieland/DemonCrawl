@@ -1,3 +1,4 @@
+@abstract
 extends Node2D
 class_name OrbSprite
 
@@ -50,13 +51,11 @@ func get_size() -> Vector2:
 	return _get_size()
 
 
-func _get_size() -> Vector2:
-	return Vector2.ZERO
+@abstract func _get_size() -> Vector2
 
 
 func is_hovered() -> bool:
 	return not DCPopup.is_popup_visible() and _is_hovered()
 
 
-func _is_hovered() -> bool:
-	return false
+@abstract func _is_hovered() -> bool

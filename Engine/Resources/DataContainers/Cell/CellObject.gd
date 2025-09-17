@@ -508,7 +508,6 @@ func clear() -> void:
 
 @warning_ignore("shadowed_variable")
 func move_to_cell(cell: CellData) -> void:
-	# TODO: this should animate the texture from the old cell to the new one
 	get_cell().move_object_to(cell)
 
 

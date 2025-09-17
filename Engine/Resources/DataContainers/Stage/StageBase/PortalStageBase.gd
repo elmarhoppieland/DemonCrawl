@@ -8,4 +8,3 @@ class_name PortalStageBase
 @export var density_multi := 0.0
 @export var size_multi := 0.0
 # ==============================================================================
-

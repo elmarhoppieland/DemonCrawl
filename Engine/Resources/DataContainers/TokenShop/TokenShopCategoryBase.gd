@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends Resource
 class_name TokenShopCategoryBase
 
@@ -21,21 +22,18 @@ func get_display_name() -> String:
 	return _get_name()
 
 
-func _get_name() -> String:
-	return ""
+@abstract func _get_name() -> String
 
 
 func get_icon() -> Texture2D:
 	return _get_icon()
 
 
-func _get_icon() -> Texture2D:
-	return null
+@abstract func _get_icon() -> Texture2D
 
 
 func get_items() -> Array[TokenShopItemBase]:
 	return _get_items()
 
 
-func _get_items() -> Array[TokenShopItemBase]:
-	return []
+@abstract func _get_items() -> Array[TokenShopItemBase]

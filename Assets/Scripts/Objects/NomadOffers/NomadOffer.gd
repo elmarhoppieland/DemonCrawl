@@ -73,8 +73,7 @@ func pay() -> void:
 
 ## Virtual method. Called when the player interacts with the [Nomad], after checking
 ## whether this offer can be performed. See also [method _can_perform].
-func _perform() -> void:
-	pass
+@abstract func _perform() -> void
 
 
 ## Performs this offer. Should only be called if the offer can be performed. See also [method can_perform].

@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends PassiveItem
 class_name Book
 

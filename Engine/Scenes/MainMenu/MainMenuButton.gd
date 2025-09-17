@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends MarginContainer
 class_name MainMenuButton
 

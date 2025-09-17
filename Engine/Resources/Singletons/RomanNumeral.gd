@@ -1,4 +1,4 @@
-extends StaticClass
+@abstract
 class_name RomanNumeral
 
 # ==============================================================================

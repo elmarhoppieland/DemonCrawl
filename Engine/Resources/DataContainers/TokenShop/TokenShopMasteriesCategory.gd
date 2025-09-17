@@ -46,6 +46,9 @@ func _get_items() -> Array[TokenShopItemBase]:
 class MasteryItem extends TokenShopItemBase:
 	@export var mastery: MasteryInstanceData = null
 	
+	func _purchase() -> void:
+		pass
+	
 	func _get_name() -> String:
 		return mastery.get_name_text()
 	

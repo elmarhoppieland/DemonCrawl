@@ -1,5 +1,5 @@
 @tool
-extends StaticClass
+@abstract
 class_name IconManager
 
 ## A manager for icons.

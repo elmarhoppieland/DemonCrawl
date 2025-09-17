@@ -26,7 +26,7 @@ func _get_modulate() -> Color:
 func _enter_tree() -> void:
 	if get_parent() is not CellData:
 		return
-
+	
 	get_quest().get_stage_effects().turn.connect(_turn)
 
 

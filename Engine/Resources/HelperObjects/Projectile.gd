@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends TextureNode
 class_name Projectile
 
@@ -47,44 +48,6 @@ func _init(cell_pos: Vector2i = Vector2i.ZERO, direction: Vector2i = Vector2i.ZE
 
 func register() -> void:
 	sprite = get_stage_instance().get_scene().register_projectile(self)
-
-
-func _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: bool) -> void:
-	if _texture:
-		_texture.draw(to_canvas_item, pos, modulate, transpose)
-
-
-func _draw_rect(to_canvas_item: RID, rect: Rect2, tile: bool, modulate: Color, transpose: bool) -> void:
-	if _texture:
-		_texture.draw_rect(to_canvas_item, rect, tile, modulate, transpose)
-
-
-func _draw_rect_region(to_canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color, transpose: bool, clip_uv: bool) -> void:
-	if _texture:
-		_texture.draw_rect_region(to_canvas_item, rect, src_rect, modulate, transpose, clip_uv)
-
-
-func _get_width() -> int:
-	if _texture:
-		return _texture.get_width()
-	return 0
-
-
-func _get_height() -> int:
-	if _texture:
-		return _texture.get_height()
-	return 0
-
-
-func _has_alpha() -> bool:
-	if _texture:
-		return _texture.has_alpha()
-	return false
-
-
-## Virtual method. Should return this [Projectile]'s texture.
-func _get_texture() -> Texture2D:
-	return null
 
 
 func get_speed() -> float:

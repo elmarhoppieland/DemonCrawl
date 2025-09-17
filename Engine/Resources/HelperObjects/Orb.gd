@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends Node
 class_name Orb
 

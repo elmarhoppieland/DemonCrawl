@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends Stage
 class_name SpecialStage
 
@@ -41,8 +42,7 @@ func get_bg() -> Texture2D:
 	return _bg
 
 
-func _get_bg() -> Texture2D:
-	return null
+@abstract func _get_bg() -> Texture2D
 
 
 func get_dest_scene() -> PackedScene:
@@ -51,5 +51,4 @@ func get_dest_scene() -> PackedScene:
 	return _dest_scene
 
 
-func _get_dest_scene() -> PackedScene:
-	return null
+@abstract func _get_dest_scene() -> PackedScene

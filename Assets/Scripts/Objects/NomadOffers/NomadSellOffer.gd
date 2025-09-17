@@ -1,3 +1,4 @@
+@abstract
 extends NomadOffer
 class_name NomadSellOffer
 

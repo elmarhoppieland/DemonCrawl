@@ -144,7 +144,11 @@ func move_object_from(source: CellData) -> void:
 	const ANIM_DURATION := 0.2
 	
 	var source_cell := get_stage().get_board().get_cell(source.get_position())
-	create_tween().tween_property(get_object_texture_rect().get_2d_anchor(), "position", Vector2.ZERO, ANIM_DURATION).from(source_cell.global_position - global_position).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	assert(source_cell.get_index() == source.get_index())
+	var source_anchor := source_cell.get_object_texture_rect().get_2d_anchor()
+	var self_anchor := get_object_texture_rect().get_2d_anchor()
+	var position_diff := self_anchor.get_global_transform().affine_inverse() * source_anchor.get_global_transform() * source_anchor.position
+	create_tween().tween_property(self_anchor, "position", Vector2.ZERO, ANIM_DURATION).from(position_diff).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
 
 ## Returns the [CellData] instance of the [Cell].

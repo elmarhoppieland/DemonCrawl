@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends Collectible
 class_name Item
 

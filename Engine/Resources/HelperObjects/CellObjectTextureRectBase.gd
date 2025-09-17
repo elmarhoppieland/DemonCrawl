@@ -1,4 +1,5 @@
 @tool
+@abstract
 extends TextureRect
 class_name CellObjectTextureRectBase
 
@@ -43,8 +44,7 @@ func _is_visible() -> bool:
 	return true
 
 
-func _get_texture() -> Texture2D:
-	return null
+@abstract func _get_texture() -> Texture2D
 
 
 func _get_material() -> Material:
