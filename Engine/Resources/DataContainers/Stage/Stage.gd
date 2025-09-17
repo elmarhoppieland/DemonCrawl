@@ -348,7 +348,7 @@ func clear_instance() -> void:
 	get_instance().queue_free()
 
 
-## Returns whether the specified [code]coord[/code] is inside this [Stage].
+## Returns whether the specified [param coord] is inside this [Stage].
 func has_coord(coord: Vector2i) -> bool:
 	if coord.x < 0 or coord.y < 0:
 		return false

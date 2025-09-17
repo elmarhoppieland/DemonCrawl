@@ -50,7 +50,7 @@ func get_effects() -> StatsEffects:
 	return get_quest().get_event_bus(StatsEffects)
 
 
-## Restores [code]life[/code] lives, without exceeding the max lives.
+## Restores [param life] lives, without exceeding the max lives.
 @warning_ignore("shadowed_variable")
 func life_restore(life: int, source: Object) -> int:
 	if life <= 0:
@@ -62,7 +62,7 @@ func life_restore(life: int, source: Object) -> int:
 	return life
 
 
-## Loses [code]life[/code] lives.
+## Loses [param life] lives.
 @warning_ignore("shadowed_variable")
 func life_lose(life: int, source: Object) -> int:
 	if life <= 0:

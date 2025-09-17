@@ -318,7 +318,7 @@ func _clear() -> void:
 
 ## Trigger any effects that occur when this object is revealed. If the player actively
 ## opened the cell, typically by directly opening this cell or chording an adjacent
-## cell, [code]active[/code] should be [code]true[/code]. Otherwise, [code]active[/code]
+## cell, [param active] should be [code]true[/code]. Otherwise, [param active]
 ## should be [code]false[/code].
 func notify_revealed(active: bool) -> void:
 	_reveal()

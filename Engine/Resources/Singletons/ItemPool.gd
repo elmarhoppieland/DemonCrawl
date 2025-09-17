@@ -51,25 +51,23 @@ class ItemFilter:
 		_inventory = inventory
 		_modifiers = modifiers
 	
-	## Only allow items with a cost of [code]max_cost[/code] or less.
+	## Only allow items with a cost of [param max_cost] or less.
 	func set_max_cost(max_cost: int) -> ItemFilter:
 		_max_cost = max_cost
 		return self
 	
-	## Only allow items with a cost of [code]min_cost[/code] or higher.
+	## Only allow items with a cost of [param min_cost] or higher.
 	func set_min_cost(min_cost: int) -> ItemFilter:
 		_min_cost = min_cost
 		return self
 	
-	## Only allow items with a cost of exactly [code]cost[/code].
+	## Only allow items with a cost of exactly [param cost].
 	func set_cost(cost: int) -> ItemFilter:
 		_max_cost = cost
 		_min_cost = cost
 		return self
 	
-	## Only allow items with a type in the given bitmask. Use [code]1 << type[/code]
-	## to get the bit for a specific type.
-	## [br][br]See also [method allow_type].
+	## Only allow items with a type in the given [param types].
 	func set_types(types: Array[Script]) -> ItemFilter:
 		_type_whitelist = true
 		_types = types
@@ -162,7 +160,7 @@ class ItemFilter:
 		
 		return pool.keys()[idx]
 	
-	## Returns [code]count[/code] random different items that match this filter.
+	## Returns [param count] random different items that match this filter.
 	func get_random_item_set(count: int) -> Array[ItemData]:
 		var pool := _get_pool()
 		if pool.is_empty():
@@ -208,7 +206,7 @@ class ItemFilter:
 	func is_empty() -> bool:
 		return not ItemDB.get_items().any(matches)
 	
-	## Returns whether the given [code]data[/code] matches this filter.
+	## Returns whether the given [param data] matches this filter.
 	func matches(item: ItemData) -> bool:
 		if item.cost > _max_cost:
 			return false

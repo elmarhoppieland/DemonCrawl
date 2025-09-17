@@ -27,17 +27,17 @@ class ModFilter:
 	var _max_difficulty := (1 << 63) - 1
 	var _rng: RandomNumberGenerator
 	
-	## Only allow mods with a difficulty of [code]max_difficulty[/code] or less.
+	## Only allow mods with a difficulty of [param max_difficulty] or less.
 	func set_max_difficulty(max_difficulty: int) -> ModFilter:
 		_max_difficulty = max_difficulty
 		return self
 	
-	## Only allow mods with a difficulty of [code]min_difficulty[/code] or higher.
+	## Only allow mods with a difficulty of [param min_difficulty] or higher.
 	func set_min_difficulty(min_difficulty: int) -> ModFilter:
 		_min_difficulty = min_difficulty
 		return self
 	
-	## Only allow mods with a difficulty of exactly [code]difficulty[/code].
+	## Only allow mods with a difficulty of exactly [param difficulty].
 	func set_difficulty(difficulty: int) -> ModFilter:
 		_max_difficulty = difficulty
 		_min_difficulty = difficulty
@@ -65,7 +65,7 @@ class ModFilter:
 	func is_empty() -> bool:
 		return not StageModDB.get_mods_data().any(matches)
 	
-	## Returns whether the given [code]data[/code] matches this filter.
+	## Returns whether the given [param data] matches this filter.
 	func matches(data: StageModData) -> bool:
 		if data.difficulty > _max_difficulty:
 			return false

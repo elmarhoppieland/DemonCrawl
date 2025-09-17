@@ -133,7 +133,7 @@ func get_description() -> PackedStringArray:
 	#return description
 
 
-## Virtual method to override the given [code]level[/code] of this [Mastery]'s description.
+## Virtual method to override the given [param level] of this [Mastery]'s description.
 ## [br][br]If this method is not overridden, uses this [Mastery]'s identifier (see
 ## [method _get_identifier]) to generate a translatable string:
 ## [br][code]MASTERY_{id}_DESCRIPTION_{level}[/code].
@@ -182,12 +182,12 @@ func get_icon() -> Texture2D:
 	#return "mastery." + UserClassDB.script_get_class(get_script()).to_snake_case().to_lower().replace("_", "-")
 
 
-## Returns the [Token] cost for this [Mastery] at the given [code]level[/code].
+## Returns the [Token] cost for this [Mastery] at the given [param level].
 func get_cost() -> int:
 	return instance_data.get_cost()
 
 
-## Virtual method to override the [Token] cost for this [Mastery] at the given [code]level[/code].
+## Virtual method to override the [Token] cost for this [Mastery] at the given [param level].
 ## If not overridden, returns [code]level * 10[/code].
 #func _get_cost() -> int:
 	#return level * 10

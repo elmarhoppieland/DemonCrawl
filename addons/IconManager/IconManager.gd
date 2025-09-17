@@ -8,11 +8,11 @@ class_name IconManager
 static var _icon_cache: Dictionary[String, IconData] = {}
 # ==============================================================================
 
-## Returns an [IconManager.IconData] object for the icon with the given [code]name[/code].
+## Returns an [IconManager.IconData] object for the icon with the given [param name].
 ## [br][br]If the icon was found, it is cached and later calls with this name will
 ## return this same object.
 ## [br][br]If the icon was not found, an empty [IconManager.IconData] object is returned.
-## This object is safe to call methods like [code]create_texture()[/code] on.
+## This object is safe to call methods like [method IconManager.IconData.create_texture] on.
 ## These methods will return either [code]null[/code] or another default value
 ## if the icon does not exist.
 static func get_icon_data(name: String) -> IconData:
@@ -43,12 +43,12 @@ static func get_icon_data(name: String) -> IconData:
 	return data
 
 
-## Overrides the icon with the given [code]name[/code] to another [code]atlas[/code].
+## Overrides the icon with the given [param name] to another [param atlas].
 ## [br][br][method get_icon_data] will now return an [IconManager.IconData] object for the given
 ## atlas instead of whatever it would otherwise return.
-## [br][br]If no icon with the given [code]name[/code] exists, this method will
+## [br][br]If no icon with the given [param name] exists, this method will
 ## still create an override and will therefore create a new icon.
-## [br][br]If [code]atlas[/code] is [code]null[/code], the atlas will not be overridden,
+## [br][br]If [param atlas] is [code]null[/code], the atlas will not be overridden,
 ## and only the atlas region will change.
 ## [br][br]This method is mostly intended for modding purposes.
 static func override_icon(name: String, atlas: Texture2D, region: Rect2 = Rect2()) -> IconData:
@@ -59,7 +59,7 @@ static func override_icon(name: String, atlas: Texture2D, region: Rect2 = Rect2(
 	return data
 
 
-## Returns whether an icon with the given [code]name[/code] exists or not.
+## Returns whether an icon with the given [param name] exists or not.
 ## [br][br][b]Note:[/b] [method get_icon_data] never returns [code]null[/code],
 ## so even if the icon does not exist, it is still safe to call methods on the return
 ## value of [method get_icon_data].

@@ -23,7 +23,7 @@ static func add_debug_toast(text: String) -> Toast:
 
 
 ## Adds a toast to the player's screen.
-## [br][br]The given [code]icon[/code] can be [code]null[/code] to have no icon.
+## [br][br]The given [param icon] can be [code]null[/code] to have no icon.
 static func add_toast(text: String, icon: Texture2D, debug_toast: bool = false) -> Toast:
 	if debug_toast and not debug_alerts:
 		return

@@ -25,17 +25,17 @@ static func _initialize() -> void:
 	_initialized = true
 
 
-## Registers [code]object[/code]. Future calls to [method propagate_call],
+## Registers [param object]. Future calls to [method propagate_call],
 ## [method propagate_value] or [method propagate_posnum] will be passed into the
 ## given object.
 ## [br][br]The order in which effects are propagated depend on the object's
-## [code]priority[/code] and [code]subpriority[/code] arguments. The object's
-## [code]priority[/code] specifies what group this object belong to, as a value
-## of the [enum Priority] enum. The object's [code]subpriority[/code] further specifies
+## [param priority] and [param subpriority] arguments. The object's
+## [param priority] specifies what group this object belong to, as a value
+## of the [enum Priority] enum. The object's [param subpriority] further specifies
 ## the order in which objects of the same group (priority) are called. These arguments
 ## should always be consistent so behaviour is deterministic.
-## [br][br]If [code]allow_duplicates[/code] is [code]false[/code], the object
-## will not be registered if it has already been registered. If [code]allow_duplicates[/code]
+## [br][br]If [param allow_duplicates] is [code]false[/code], the object
+## will not be registered if it has already been registered. If [param allow_duplicates]
 ## is [code]true[/code] and the object was already registered, propagating calls
 ## will be passed into the object once for each time it has been registered.
 ## This can be useful to allow objects to trigger an extra time.
@@ -51,7 +51,7 @@ static func register_object(object: Object, connect_flags: int = 0) -> void:
 				Effects.MutableSignals[method.name].connect(object[method.name], connect_flags)
 
 
-## Unregisters [code]object[/code]. Future calls to [method propagate_call],
+## Unregisters [param object]. Future calls to [method propagate_call],
 ## [method propagate_value] or [method propagate_posnum] will no longer be passed
 ## into the given object.
 ## [br][br]If the object was registered multiple times, it will only be unregistered

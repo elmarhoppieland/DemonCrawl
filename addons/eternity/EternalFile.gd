@@ -23,7 +23,7 @@ func clear() -> void:
 	_resources.clear()
 
 
-## Loads the file at the given [code]path[/code].
+## Loads the file at the given [param path].
 func load(path: String, additive: bool = false) -> void:
 	if not FileAccess.file_exists(path):
 		if not additive:
@@ -39,7 +39,7 @@ func load(path: String, additive: bool = false) -> void:
 	loaded.emit(path)
 
 
-## Loads all [Resource] ids from the file at the given [code]path[/code].
+## Loads all [Resource] ids from the file at the given [param path].
 ## This method expects data to already be loaded, and will replace existing
 ## [Resource] ids with the file's ids.
 func load_existing_resources(path: String) -> void:
@@ -144,7 +144,7 @@ func _reassign_resource_ids_in_subresource(subresource: Object, file: FileAccess
 		file.seek(position)
 
 
-## Saves the loaded data to [code]path[/code].
+## Saves the loaded data to [param path].
 func save(path: String, safe_mode: bool = false) -> void:
 	var safe_text := ""
 	if safe_mode:
@@ -179,15 +179,15 @@ func get_scripts() -> PackedStringArray:
 	return scripts
 
 
-## Returns all [Eternal]s saved under the given [code]script[/code].
+## Returns all [Eternal]s saved under the given [param script].
 func get_eternals(script: String) -> PackedStringArray:
 	if script in _data:
 		return PackedStringArray(_data[script].keys())
 	return PackedStringArray()
 
 
-## Returns the saved value of the [Eternal] in the given [code]script[/code],
-## with the given [code]key[/code]. If it is not available, returns [code]default[/code],
+## Returns the saved value of the [Eternal] in the given [param script],
+## with the given [param key]. If it is not available, returns [param default],
 ## or [code]null[/code] if the parameter is omitted.
 func get_eternal(script: String, key: String, default: Variant = null) -> Variant:
 	if script not in _data or key not in _data[script]:
@@ -196,8 +196,8 @@ func get_eternal(script: String, key: String, default: Variant = null) -> Varian
 	return _data[script][key]
 
 
-## Sets the value of the [Eternal] in the given [code]script[/code] with the given
-## [code]key[/code] to [code]value[/code].
+## Sets the value of the [Eternal] in the given [param script] with the given
+## [param key] to [param value].
 func set_eternal(script: String, key: String, value: Variant) -> void:
 	if script not in _data:
 		_data[script] = {}
@@ -206,6 +206,7 @@ func set_eternal(script: String, key: String, value: Variant) -> void:
 	value_changed.emit(script, key, value)
 
 
+## Returns whether the given [param key] exists under [param script].
 func has_eternal(script: String, key: String) -> bool:
 	return script in _data and key in _data[script]
 

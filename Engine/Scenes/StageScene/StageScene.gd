@@ -72,9 +72,9 @@ func was_reloaded() -> bool:
 	return false
 
 
-## Tweens a [code]texture[/code], moving it from [code]start_pos[/code] to [code]end_pos[/code]
-## in [code]duration[/code] seconds.
-## [br][br]If a [code]sprite_material[/code] is specified, will add the [Material] to
+## Tweens a [param texture], moving it from [param start_pos] to [param end_pos]
+## in [param duration] seconds.
+## [br][br]If a [param sprite_material] is specified, will add the [Material] to
 ## the [Sprite2D].
 ## [br][br]Returns the created [Sprite2D] object.
 func tween_texture(texture: Texture2D, start_pos: Vector2, end_pos: Vector2, duration: float, sprite_material: Material = null) -> Sprite2D:

@@ -143,9 +143,9 @@ static func defer() -> void:
 	await s
 
 
-## Returns a [Signal] that is emitted (once) after [code]coroutine[/code] returns.
+## Returns a [Signal] that is emitted (once) after [param coroutine] returns.
 ## This effectively converts a coroutine into a [Signal].
-## [br][br]If [code]discard_null[/code] is [code]true[/code], and the given [Callable]
+## [br][br]If [param discard_null] is [code]true[/code], and the given [Callable]
 ## returns [code]null[/code] (or [code]void[/code]), discards the argument and emits
 ## the signal without any arguments.
 static func signal_await(coroutine: Callable, discard_null: bool = true) -> Signal:
@@ -169,9 +169,9 @@ static func _temp_signal() -> Signal:
 
 
 ## Returns a dynamic [Signal], which is emitted as follows:
-## [br][br]Immediately and whenever [code]changed_signal[/code] is emitted, [code]owner_callable[/code]
+## [br][br]Immediately and whenever [param changed_signal] is emitted, [param owner_callable]
 ## is run and its return value determines the [Signal] owner.
-## [br][br]The [Signal] used is given by [code]signal_name[/code]. Whenever the [Signal] with that
+## [br][br]The [Signal] used is given by [param signal_name]. Whenever the [Signal] with that
 ## name is emitted on the current owner, the returned [Signal] is emitted, using the same arguments.
 ## [br][br][b]Note:[/b] Only up to 10 arguments are supported. If the [Signal] uses more than 10 arguments,
 ## an error is raised and the returned [Signal] cannot be emitted.

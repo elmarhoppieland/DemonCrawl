@@ -116,7 +116,7 @@ func _bind_idx(idx: int) -> int:
 
 
 ## Generates this [StageInstance], spawning [Monster]s at random [Cell]s.
-## [br][br]Cells orthogonally or diagonally adjacent to [code]start_cell[/code] will
+## [br][br]Cells orthogonally or diagonally adjacent to [param start_cell] will
 ## not contain a monster.
 func generate(start_cell: CellData) -> void:
 	const COORD_OFFSETS: PackedInt32Array = [-1, 0, 1]

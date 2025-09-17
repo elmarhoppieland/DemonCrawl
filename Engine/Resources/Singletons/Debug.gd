@@ -76,8 +76,8 @@ func _exit_tree() -> void:
 	Debug._flush_log_file()
 
 
-## Logs [code]message[/code], adding a new line in the log file, and if
-## [code]print_to_console[/code] is [code]true[/code] and this is a debug build,
+## Logs [param message], adding a new line in the log file, and if
+## [param print_to_console] is [code]true[/code] and this is a debug build,
 ## prints to the console.
 static func log_event(message: String, color: Color = Color.AQUA, print_to_console: bool = true, show_toast: bool = true) -> void:
 	if OS.is_debug_build() and print_to_console:
@@ -124,7 +124,7 @@ static func log_stack_event(message: String, color: Color = Color.WHITE, prefix:
 		Toasts.add_debug_toast(prefix + message)
 
 
-## Logs [code]error[/code], and prints an error message.
+## Logs [param error], and prints an error message.
 static func log_error(error: String) -> void:
 	log_stack_event(error, Color("ff786b"), "ERROR")
 	push_error(error)

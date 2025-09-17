@@ -42,7 +42,7 @@ func add_text_particle(text: String, color: TextParticles.ColorPreset) -> void:
 	_text_particles.emitting = true
 
 
-## Shows an arrow pointing in the given [code]direction[/code]. This arrow stays
+## Shows an arrow pointing in the given [param direction]. This arrow stays
 ## visible until it is hidden using [method hide_direction_arrow].
 func show_direction_arrow(direction: Vector2i) -> void:
 	if not is_node_ready():
@@ -87,7 +87,7 @@ func get_texture_shatter() -> TextureShatter:
 	return get_node_or_null("%TextureShatter")
 
 
-## Sets the [CellData] instance of this [Cell] to [code]data[/code].
+## Sets the [CellData] instance of this [Cell] to [param data].
 func set_data(data: CellData) -> void:
 	const CONNECTIONS: Dictionary[String, String] = {
 		"changed": "_data_changed",
@@ -179,7 +179,7 @@ func clear_object() -> void:
 	_set_object(null)
 
 
-## Sets the mode of this [Cell] to [code]mode[/code]. The mode determines the visibility
+## Sets the mode of this [Cell] to [param mode]. The mode determines the visibility
 ## of this [Cell] and its contents. See [enum Mode].
 func set_mode(mode: Cell.Mode) -> void:
 	assert(mode != Cell.Mode.INVALID, "Cells cannot have an invalid mode.")
@@ -196,7 +196,7 @@ func get_mode() -> int:
 	return Cell.Mode.INVALID
 
 
-## Sets the value of this [Cell] to [code]value[/code]. The value typically indicates
+## Sets the value of this [Cell] to [param value]. The value typically indicates
 ## the number of nearby monsters, but can be changed by many effects.
 func set_value(value: int) -> void:
 	_data.value = value

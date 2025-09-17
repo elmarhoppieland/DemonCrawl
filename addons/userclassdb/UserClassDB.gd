@@ -174,7 +174,7 @@ static func class_get_enum_list(name: StringName, no_inheritance: bool = false) 
 	return enums + class_get_enum_list(parent)
 
 
-## Returns the value of the integer constant [code]int_name[/code] of class [code]name[/code]
+## Returns the value of the integer constant [param int_name] of class [param name]
 ## or its ancestry. Always returns 0 when the constant could not be found.
 static func class_get_integer_constant(name: StringName, int_name: StringName) -> int:
 	if not class_exists(name):
@@ -194,7 +194,7 @@ static func class_get_integer_constant(name: StringName, int_name: StringName) -
 	return class_get_integer_constant(parent, int_name)
 
 
-## Returns which enum the integer constant [code]int_name[/code] of class [code]name[/code]
+## Returns which enum the integer constant [param int_name] of class [param name]
 ## or its ancestry belongs to.
 static func class_get_integer_constant_enum(name: StringName, int_name: StringName, no_inheritance: bool = false) -> StringName:
 	if not class_exists(name):
@@ -207,7 +207,7 @@ static func class_get_integer_constant_enum(name: StringName, int_name: StringNa
 	return &""
 
 
-## Returns an array with the names all the integer constants of class [code]name[/code]
+## Returns an array with the names all the integer constants of class [param name]
 ## or its ancestry.
 static func class_get_integer_constant_list(name: StringName, no_inheritance: bool = false) -> PackedStringArray:
 	if not class_exists(name):
@@ -229,7 +229,7 @@ static func class_get_integer_constant_list(name: StringName, no_inheritance: bo
 	return int_constants + class_get_integer_constant_list(name)
 
 
-## Returns an array with all the methods of class or its ancestry if [code]no_inheritance[/code]
+## Returns an array with all the methods of class or its ancestry if [param no_inheritance]
 ## is [code]false[/code]. Every element of the array is a [Dictionary] with the following
 ## keys: [code]args, default_args, flags, id, name, return: (class_name, hint, hint_string, name, type, usage)[/code].
 ## [br][br][b]Note:[/b] In exported release builds the debug info is not available,
@@ -252,14 +252,14 @@ static func class_get_method_list(name: StringName, no_inheritance: bool = false
 	return methods + class_get_method_list(parent).filter(func(method: Dictionary) -> bool: return not method.name in method_names)
 
 
-## Returns the value of [code]property[/code] of [code]object[/code] or its ancestry.
+## Returns the value of [param property] of [param object] or its ancestry.
 static func class_get_property(object: Object, property: StringName) -> Variant:
 	# this seems too trivial but I'm guessing GDScript uses ClassDB behind the scenes here
 	return object[property]
 
 
-## Returns an array with all the properties of class [code]name[/code] or its ancestry
-## if [code]no_inheritance[/code] is [code]false[/code].
+## Returns an array with all the properties of class [param name] or its ancestry
+## if [param no_inheritance] is [code]false[/code].
 static func class_get_property_list(name: StringName, no_inheritance: bool = false) -> Array[Dictionary]:
 	if not class_exists(name):
 		return []
@@ -278,7 +278,7 @@ static func class_get_property_list(name: StringName, no_inheritance: bool = fal
 	return property_list
 
 
-## Returns the signal data of class [code]name[/code] or its ancestry. The returned
+## Returns the signal data of class [param name] or its ancestry. The returned
 ## value is a [Dictionary] with the following keys: [code]args, default_args, flags,
 ## id, name, return: (class_name, hint, hint_string, name, type, usage)[/code].
 static func class_get_signal(name: StringName, signal_name: StringName) -> Dictionary:
@@ -295,7 +295,7 @@ static func class_get_signal(name: StringName, signal_name: StringName) -> Dicti
 	return {}
 
 
-## Returns an array with all the signals of class or its ancestry if [code]no_inheritance[/code]
+## Returns an array with all the signals of class or its ancestry if [param no_inheritance]
 ## is [code]false[/code]. Every element of the array is a [Dictionary] as described in
 ## [method class_get_signal].
 static func class_get_signal_list(name: StringName, no_inheritance: bool = false) -> Array[Dictionary]:
@@ -315,8 +315,8 @@ static func class_get_signal_list(name: StringName, no_inheritance: bool = false
 	return signals + class_get_signal_list(parent)
 
 
-## Returns whether class [code]name[/code] or its ancestry has an enum called
-## [code]enum_name[/code] or not.
+## Returns whether class [param name] or its ancestry has an enum called
+## [param enum_name] or not.
 static func class_has_enum(name: StringName, enum_name: StringName, no_inheritance: bool = false) -> bool:
 	if not class_exists(name):
 		return false
@@ -342,8 +342,8 @@ static func class_has_enum(name: StringName, enum_name: StringName, no_inheritan
 	return class_has_enum(parent, enum_name)
 
 
-## Returns whether class [code]name[/code] or its ancestry has an integer constant called
-## [code]int_name[/code] or not.
+## Returns whether class [param name] or its ancestry has an integer constant called
+## [param int_name] or not.
 static func class_has_integer_constant(name: StringName, int_name: StringName) -> bool:
 	if not class_exists(name):
 		return false
@@ -361,8 +361,8 @@ static func class_has_integer_constant(name: StringName, int_name: StringName) -
 	return class_has_integer_constant(parent, int_name)
 
 
-## Returns whether class [code]name[/code] (or its ancestry if [code]no_inheritance[/code]
-## is [code]false[/code]) has a method called [code]method[/code] or not.
+## Returns whether class [param name] (or its ancestry if [param no_inheritance]
+## is [code]false[/code]) has a method called [param method] or not.
 static func class_has_method(name: StringName, method: StringName, no_inheritance: bool = false) -> bool:
 	if not class_exists(name):
 		return false
@@ -383,8 +383,8 @@ static func class_has_method(name: StringName, method: StringName, no_inheritanc
 	return class_has_method(parent, method)
 
 
-## Returns whether class [code]name[/code] or its ancestry has a signal called
-## [code]signal_name[/code] or not.
+## Returns whether class [param name] or its ancestry has a signal called
+## [param signal_name] or not.
 static func class_has_signal(name: StringName, signal_name: StringName) -> bool:
 	if not class_exists(name):
 		return false
@@ -398,7 +398,7 @@ static func class_has_signal(name: StringName, signal_name: StringName) -> bool:
 	return false
 
 
-## Returns whether class [code]name[/code] or its ancestry has a property named [code]property[/code].
+## Returns whether class [param name] or its ancestry has a property named [param property].
 static func class_has_property(name: StringName, property: StringName, no_inheritance: bool = false) -> bool:
 	if not class_exists(name):
 		return false
@@ -410,9 +410,9 @@ static func class_has_property(name: StringName, property: StringName, no_inheri
 	return false
 
 
-## Sets [code]property[/code] value of [code]object[/code] to [code]value[/code].
+## Sets [param property] value of [param object] to [param value].
 static func class_set_property(object: Object, property: StringName, value: Variant) -> Error:
-	if not property in object:
+	if property not in object:
 		return ERR_UNAVAILABLE
 	
 	object.set(property, value)
@@ -481,7 +481,7 @@ static func _get_files_in_dir_recursive(dir: String, pattern: String = "*") -> P
 	return files
 
 
-## Returns the names of all the classes that directly or indirectly inherit from class [code]name[/code].
+## Returns the names of all the classes that directly or indirectly inherit from class [param name].
 static func get_inheriters_from_class(name: StringName) -> PackedStringArray:
 	var inheriters := PackedStringArray()
 	
@@ -513,7 +513,7 @@ static func get_parent_class(name: StringName) -> StringName:
 	return script_get_identifier(parent_script) if parent_script else script.get_instance_base_type()
 
 
-## Creates an instance of class [code]name[/code].
+## Creates an instance of class [param name].
 static func instantiate(name: StringName, args: Array = []) -> Object:
 	if not class_can_instantiate(name):
 		return null
@@ -521,12 +521,12 @@ static func instantiate(name: StringName, args: Array = []) -> Object:
 	return class_get_script(name).new.callv(args)
 
 
-## Returns whether class [code]name[/code] is enabled or not.
+## Returns whether class [param name] is enabled or not.
 static func is_class_enabled(name: StringName) -> bool:
 	return class_exists(name)
 
 
-## Returns whether [code]inherits[/code] is an ancestor of class [code]name[/code] or not.
+## Returns whether [param inherits] is an ancestor of class [param name] or not.
 static func is_parent_class(name: StringName, inherits: StringName) -> bool:
 	if not class_exists(name):
 		return false
@@ -566,7 +566,7 @@ static func class_get_script(name: StringName) -> Script:
 	return script
 
 
-## Returns the class name of [code]script[/code].
+## Returns the class name of [param script].
 ## [br][br][b]Note:[/b] Returns an empty [StringName] if the provided script does not have
 ## a class name defined. If you need an identifier for the script, use [method script_get_identifier].
 static func script_get_class(script: Script) -> StringName:
@@ -587,7 +587,7 @@ static func script_get_class(script: Script) -> StringName:
 	return &""
 
 
-## Returns an identifier for [code]script[/code]. The identifier can then be used in
+## Returns an identifier for [param script]. The identifier can then be used in
 ## UserClassDB's functions.
 ## [br][br]If [param use_class_if_available] is [code]true[/code], will use
 ## the script's class name (or the class name of its base script if it is a subclass),
@@ -595,7 +595,7 @@ static func script_get_class(script: Script) -> StringName:
 ## [br][br][b]Note:[/b] If the script has a defined class name, this method will return
 ## the same value as [method script_get_class].
 ## [br][br][b]Note:[/b] In the editor, this method cannot cache the result and is
-## therefore often slower than [method script_get_class] if [code]script[/code]
+## therefore often slower than [method script_get_class] if [param script]
 ## has a class name, so prefer using [method script_get_class] over this method
 ## if the script is guaranteed to have a class name. This is because this method
 ## needs to fetch all classes, while [method script_get_class] can use
@@ -643,9 +643,9 @@ static func script_get_identifier(script: Script, use_class_if_available: bool =
 	return id
 
 
-## Returns all subclasses defined under the base class [code]name[/code].
+## Returns all subclasses defined under the base class [param name].
 ## [br][br]All elements of the returned array will be the full name of the subclass,
-## including the name of the base class, e.g. [code]BaseClass:SubClass[/code], not just
+## including the name of the base class, e.g. [code]BaseClass::SubClass[/code], not just
 ## [code]SubClass[/code].
 static func class_get_subclasses(name: StringName, recursive: bool = false) -> PackedStringArray:
 	var original_name := name

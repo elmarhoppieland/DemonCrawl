@@ -180,7 +180,7 @@ func start() -> void:
 	started.emit()
 
 
-## Unlocks the next stage of the quest, starting at [code]stage[/code].
+## Unlocks the next stage of the quest, starting at [param stage].
 func unlock_next_stage(skip_special_stages: bool = true, start_stage_index: int = selected_stage_idx) -> void:
 	if start_stage_index + 1 >= get_stages().size():
 		return

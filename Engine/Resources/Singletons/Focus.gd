@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 		hide()
 
 
-## Moves the cursor to the given [code]node[/code]. If another node was selected,
+## Moves the cursor to the given [param node]. If another node was selected,
 ## moves the cursor to the node as an animation.
 static func move_to(node: CanvasItem, force_instant: bool = false, size: Vector2 = Vector2.ZERO) -> void:
 	if size != Vector2.ZERO:

@@ -245,13 +245,13 @@ func charge() -> void:
 	set_mana(get_max_mana())
 
 
-## Sets this item's current mana to [code]mana[/code].
+## Sets this item's current mana to [param mana].
 func set_mana(mana: int) -> void:
 	_current_mana = mana
 	emit_changed()
 
 
-## Adds the given [code]mana[/code] to the current mana.
+## Adds the given [param mana] to the current mana.
 func gain_mana(mana: int) -> void:
 	_current_mana = clampi(_current_mana + mana, 0, get_max_mana())
 	emit_changed()

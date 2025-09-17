@@ -10,7 +10,7 @@ static func change_scene_to_node(node: Node) -> void:
 	await change_scene_to_custom(func() -> Node: return node)
 
 
-## Changes the current scene to the specified [code]file[/code]. Returns the created
+## Changes the current scene to the specified [param file]. Returns the created
 ## [Node] after instantiating it.
 ## [br][br][b]Note:[/b] The scene will be instantiated at the end of the current frame.
 ## Therefore, this is a coroutine and should be called with [code]await[/code] if
@@ -19,7 +19,7 @@ static func change_scene_to_file(file: String) -> Node:
 	return await change_scene_to_custom(func() -> Node: return load(file).instantiate())
 
 
-## Changes the current scene to the specified [code]packed_scene[/code]. Returns the
+## Changes the current scene to the specified [param packed_scene]. Returns the
 ## created [Node] after instantiating it.
 ## [br][br][b]Note:[/b] The scene will be instantiated at the end of the current frame.
 ## therefore, this is a coroutine and should be called with [code]await[/code] if

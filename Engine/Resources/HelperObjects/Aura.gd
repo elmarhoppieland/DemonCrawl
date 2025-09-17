@@ -62,25 +62,25 @@ func _is_elemental() -> bool:
 	return false
 
 
-## Notifies this [Aura] that the given [code]cell[/code] has been interacted with.
+## Notifies this [Aura] that the given [param cell] has been interacted with.
 func notify_interacted(cell: CellData) -> void:
 	_interact(cell)
 
 
-## Virtual method. Called whenever the given [code]cell[/code] is interacted with.
+## Virtual method. Called whenever the given [param cell] is interacted with.
 @warning_ignore("unused_parameter")
 func _interact(cell: CellData) -> void:
 	pass
 
 
-## Notifies this [Aura] that the given [code]cell[/code] has been second-interacted with.
+## Notifies this [Aura] that the given [param cell] has been second-interacted with.
 func notify_second_interacted(cell: CellData) -> void:
-	_second_interacted(cell)
+	_second_interact(cell)
 
 
-## Virtual method. Called whenever the given [code]cell[/code] is second-interacted with.
+## Virtual method. Called whenever the given [param cell] is second-interacted with.
 @warning_ignore("unused_parameter")
-func _second_interacted(cell: CellData) -> void:
+func _second_interact(cell: CellData) -> void:
 	pass
 
 

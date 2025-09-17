@@ -71,7 +71,7 @@ func _on_mouse_exited() -> void:
 	_hovered = false
 
 
-## Creates and returns the icon of the given [code]stage[/code]. The returned icon is a 16x16 texture,
+## Creates and returns the icon of the given [param stage]. The returned icon is a 16x16 texture,
 ## with the corner pixels removed.
 static func create_texture(stage_name: String) -> ImageTexture:
 	var image: Image = load(IMAGE_PATH % stage_name).get_image()
