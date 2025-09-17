@@ -7,7 +7,7 @@ var tween: Tween
 # ==============================================================================
 
 func _get_texture() -> Texture2D:
-	return get_theme_icon("default", "TreasureChest")
+	return get_theme_icon("default", "TreasureChest").duplicate()
 
 
 func _collect() -> bool:
@@ -20,7 +20,7 @@ func _collect() -> bool:
 	const CHEST_ATLAS_WIDTH := 5
 	const CHEST_ATLAS_MAX_X := (CHEST_ATLAS_WIDTH - 1) * Cell.CELL_SIZE.x
 	
-	tween = get_cell().create_tween()
+	tween = create_tween()
 	
 	tween.tween_method(func(value: float):
 		get_texture().region.position.x = floorf(value / Cell.CELL_SIZE.x) * Cell.CELL_SIZE.x
@@ -31,6 +31,10 @@ func _collect() -> bool:
 	tween.tween_callback(clear)
 	
 	return true
+
+
+func _clear_on_collect() -> bool:
+	return false
 
 
 func _get_charitable_amount() -> int:

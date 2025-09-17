@@ -1,5 +1,5 @@
 @tool
-extends Item
+extends ConsumableItem
 
 # ==============================================================================
 const DURATION_SEC := 5

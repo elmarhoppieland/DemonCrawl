@@ -1,5 +1,5 @@
 @tool
-extends Item
+extends ConsumableItem
 
 # ==============================================================================
 
@@ -8,8 +8,6 @@ func _use() -> void:
 		return
 	
 	get_stage_instance().solve_cell()
-	
-	clear()
 
 
 func damage(amount: int, source: Object) -> int:
