@@ -14,16 +14,23 @@ static var _event_owner_list: Dictionary[EventBusManager, Node] = {}
 				_event_owner_list.erase(self)
 @export var event_owner_parent: Node :
 	set(value):
-		_disconnect_event_forwards()
+		if is_inside_tree():
+			_disconnect_event_forwards()
 		event_owner_parent = value
-		_connect_event_forwards()
+		if is_inside_tree():
+			_connect_event_forwards()
 # ==============================================================================
 
 func _enter_tree() -> void:
-	child_entered_tree.connect(_child_entered_tree)
-	
 	if event_owner:
 		_event_owner_list[self] = event_owner
+	
+	_connect_event_forwards()
+	
+	if not is_node_ready():
+		await ready
+	
+	child_entered_tree.connect(_child_entered_tree)
 
 
 func _exit_tree() -> void:
@@ -31,9 +38,14 @@ func _exit_tree() -> void:
 	
 	if self in _event_owner_list:
 		_event_owner_list.erase(self)
+	
+	_disconnect_event_forwards()
 
 
 func _child_entered_tree(child: Node) -> void:
+	if not is_node_ready():
+		await ready
+	
 	EventBusManager._validate_event_owner_list()
 	
 	if child is not EventBus:
@@ -67,6 +79,9 @@ func _child_entered_tree(child: Node) -> void:
 
 
 func _connect_event_forwards() -> void:
+	if not is_node_ready():
+		await ready
+	
 	EventBusManager._validate_event_owner_list()
 	
 	if event_owner_parent not in _event_owner_list.values():
