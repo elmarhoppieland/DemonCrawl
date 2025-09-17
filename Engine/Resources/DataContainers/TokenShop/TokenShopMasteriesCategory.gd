@@ -13,13 +13,7 @@ func _try_purchase(item: TokenShopItemBase) -> bool:
 	if Codex.tokens < item.get_cost():
 		return false
 	
-	Codex.tokens -= item.get_cost()
-	
-	var selectable := Codex.get_selectable_mastery(item.mastery)
-	if selectable:
-		selectable.level = item.mastery.level
-	else:
-		Codex.selectable_masteries.append(item.mastery.duplicate())
+	item.purchase()
 	
 	return true
 
@@ -47,13 +41,19 @@ class MasteryItem extends TokenShopItemBase:
 	@export var mastery: MasteryInstanceData = null
 	
 	func _purchase() -> void:
-		pass
+		Codex.tokens -= get_cost()
+		
+		var selectable := Codex.get_selectable_mastery(mastery)
+		if selectable:
+			selectable.level = mastery.level
+		else:
+			Codex.selectable_masteries.append(mastery.duplicate())
 	
 	func _get_name() -> String:
 		return mastery.get_name_text()
 	
 	func _get_description() -> String:
-		return mastery.get_description_text(true)
+		return mastery.get_description_text(not is_purchased())
 	
 	func _get_icon() -> Texture2D:
 		return mastery.get_icon()

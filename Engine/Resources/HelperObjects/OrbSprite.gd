@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and is_hovered():
+	if is_visible_in_tree() and event.is_action_pressed("interact") and is_hovered():
 		notify_clicked()
 		get_viewport().set_input_as_handled()
 

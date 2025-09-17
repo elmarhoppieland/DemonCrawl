@@ -5,6 +5,7 @@
 
 [node name="DCPopup" type="CanvasLayer"]
 layer = 20
+visible = false
 offset = Vector2(640, 360)
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 640, 360)

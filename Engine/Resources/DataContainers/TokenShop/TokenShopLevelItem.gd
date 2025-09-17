@@ -20,7 +20,7 @@ func get_next_level() -> TokenShopItem:
 
 
 func _purchase() -> void:
-	get_next_level().notify_purchased()
+	get_next_level().purchase()
 
 
 func _reapply_reward(purchase_count: int) -> void:

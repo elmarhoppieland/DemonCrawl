@@ -5,7 +5,7 @@ class_name TokenShopItemBase
 
 # ==============================================================================
 
-func notify_purchased() -> void:
+func purchase() -> void:
 	_purchase()
 
 
