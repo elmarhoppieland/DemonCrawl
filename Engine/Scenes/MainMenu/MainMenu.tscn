@@ -84,7 +84,7 @@ offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 0
 bbcode_enabled = true
-text = "[center][img]res://Assets/sprites/icon_copyright.png[/img] 2024 [color=#9edeff]EROFEREHT GAMES[/color]
+text = "[center][img]res://Assets/Sprites/icon_copyright.png[/img] 2024 [color=#9edeff]EROFEREHT GAMES[/color]
 [color=#c3c3c3]All Rights Reserved[/color]"
 fit_content = true
 scroll_active = false

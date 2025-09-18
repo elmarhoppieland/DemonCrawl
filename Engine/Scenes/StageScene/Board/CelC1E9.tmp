@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/CellTextureRect.gd" id="3_te1nx"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/CellValueLabel.gd" id="4_3k5be"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/CellAuraModulator.gd" id="4_ocqma"]
-[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://Assets/skins/default/empty.png" id="4_uiyoy"]
-[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/skins/default/flag.png" id="5_3kk2r"]
+[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://Assets/Skins/default/empty.png" id="4_uiyoy"]
+[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://Assets/Skins/default/flag.png" id="5_3kk2r"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/CellFlagSprite.gd" id="6_ty2a2"]
 [ext_resource type="Script" path="res://Scenes/StageScene/Board/CellObjectTextureRect.gd" id="7_3xaxv"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/TooltipGrabber.gd" id="7_ggwll"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cn8gaau2ecden" path="res://Resources/Scenes/TextureShatter.tscn" id="13_mfvjy"]
 [ext_resource type="Script" path="res://Resources/UtilityNode/Grabber.gd" id="13_tuktl"]
 [ext_resource type="Shader" path="res://Resources/Shaders/DirectionArrow.gdshader" id="14_27bf8"]
-[ext_resource type="Texture2D" uid="uid://cx3w4pgpiwi3p" path="res://Assets/sprites/dir_arrow.png" id="14_ffohp"]
+[ext_resource type="Texture2D" uid="uid://cx3w4pgpiwi3p" path="res://Assets/Sprites/dir_arrow.png" id="14_ffohp"]
 
 [sub_resource type="Resource" id="Resource_fixtg"]
 script = ExtResource("3_685kk")

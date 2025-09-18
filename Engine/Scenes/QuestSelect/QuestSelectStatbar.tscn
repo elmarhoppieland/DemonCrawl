@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c4g8elig1ldk3" path="res://Assets/Sprites/Masteries.png" id="8_mxn6j"]
 [ext_resource type="Script" uid="uid://b3p4tgo8c53wu" path="res://Engine/Resources/UtilityNode/ProfileMastery.gd" id="8_y3cea"]
 [ext_resource type="Script" uid="uid://ci3br140mitsg" path="res://Engine/Resources/UtilityNode/ProfileSpecialChest.gd" id="10_avyii"]
-[ext_resource type="Texture2D" uid="uid://cpfdt0p3bkl2x" path="res://Assets/sprites/chests.png" id="11_lkdpv"]
+[ext_resource type="Texture2D" uid="uid://cpfdt0p3bkl2x" path="res://Assets/Sprites/chests.png" id="11_lkdpv"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://Assets/Sprites/icons.png" id="11_nvijv"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="12_u62r3"]
 

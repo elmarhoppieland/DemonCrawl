@@ -3,7 +3,7 @@ extends Stranger
 class_name Doctor
 
 # ==============================================================================
-const Apple := preload("res://Assets/items/Apple.gd")
+const Apple := preload("res://Assets/Items/Apple.gd")
 # ==============================================================================
 @export var cost := -1
 @export var extra_fee := -1

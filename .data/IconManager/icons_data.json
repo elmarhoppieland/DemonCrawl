@@ -1,6 +1,6 @@
 {
 	"Bagman": {
-		"atlas": "res://Assets/sprites/strangers/Bagman.png",
+		"atlas": "res://Assets/Sprites/Strangers/Bagman.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -19,7 +19,7 @@
 		]
 	},
 	"Blacksmith": {
-		"atlas": "res://Assets/sprites/strangers/Blacksmith.png",
+		"atlas": "res://Assets/Sprites/Strangers/Blacksmith.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -71,7 +71,7 @@
 		]
 	},
 	"Doctor": {
-		"atlas": "res://Assets/sprites/strangers/Doctor.png",
+		"atlas": "res://Assets/Sprites/Strangers/Doctor.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -90,7 +90,7 @@
 		]
 	},
 	"Elder": {
-		"atlas": "res://Assets/sprites/strangers/Elder.png",
+		"atlas": "res://Assets/Sprites/Strangers/Elder.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -109,7 +109,7 @@
 		]
 	},
 	"Gambler": {
-		"atlas": "res://Assets/sprites/strangers/Gambler.png",
+		"atlas": "res://Assets/Sprites/Strangers/Gambler.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -128,7 +128,7 @@
 		]
 	},
 	"HungryPlant": {
-		"atlas": "res://Assets/sprites/strangers/HungryPlant.png",
+		"atlas": "res://Assets/Sprites/Strangers/HungryPlant.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -147,7 +147,7 @@
 		]
 	},
 	"Mage": {
-		"atlas": "res://Assets/sprites/strangers/Mage.png",
+		"atlas": "res://Assets/Sprites/Strangers/Mage.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -166,7 +166,7 @@
 		]
 	},
 	"Nomad": {
-		"atlas": "res://Assets/sprites/strangers/Nomad.png",
+		"atlas": "res://Assets/Sprites/Strangers/Nomad.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -185,7 +185,7 @@
 		]
 	},
 	"Priest": {
-		"atlas": "res://Assets/sprites/strangers/Priest.png",
+		"atlas": "res://Assets/Sprites/Strangers/Priest.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -204,7 +204,7 @@
 		]
 	},
 	"Pyro": {
-		"atlas": "res://Assets/sprites/strangers/Pyro.png",
+		"atlas": "res://Assets/Sprites/Strangers/Pyro.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -223,7 +223,7 @@
 		]
 	},
 	"Scribe": {
-		"atlas": "res://Assets/sprites/strangers/Scribe.png",
+		"atlas": "res://Assets/Sprites/Strangers/Scribe.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -242,7 +242,7 @@
 		]
 	},
 	"Waterboy": {
-		"atlas": "res://Assets/sprites/strangers/Waterboy.png",
+		"atlas": "res://Assets/Sprites/Strangers/Waterboy.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -261,7 +261,7 @@
 		]
 	},
 	"arrow_small": {
-		"atlas": "res://Assets/sprites/icons.png",
+		"atlas": "res://Assets/Sprites/icons.png",
 		"icons": [
 			{
 				"h": 5.0,
@@ -280,7 +280,7 @@
 		]
 	},
 	"chests": {
-		"atlas": "res://Assets/sprites/chests.png",
+		"atlas": "res://Assets/Sprites/chests.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -292,7 +292,7 @@
 		]
 	},
 	"icons": {
-		"atlas": "res://Assets/sprites/icons.png",
+		"atlas": "res://Assets/Sprites/icons.png",
 		"icons": [
 			{
 				"h": 5.0,
@@ -388,7 +388,7 @@
 		]
 	},
 	"mastery": {
-		"atlas": "res://Assets/Sprites/masteries2.png",
+		"atlas": "res://Assets/Sprites/Masteries2.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -435,7 +435,7 @@
 		]
 	},
 	"mastery1": {
-		"atlas": "res://Assets/Sprites/masteries0.png",
+		"atlas": "res://Assets/Sprites/Masteries0.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -475,7 +475,7 @@
 		]
 	},
 	"mastery2": {
-		"atlas": "res://Assets/Sprites/masteries1.png",
+		"atlas": "res://Assets/Sprites/Masteries1.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -515,7 +515,7 @@
 		]
 	},
 	"mastery3": {
-		"atlas": "res://Assets/Sprites/masteries2.png",
+		"atlas": "res://Assets/Sprites/Masteries2.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -555,7 +555,7 @@
 		]
 	},
 	"quest": {
-		"atlas": "res://Assets/sprites/icons.png",
+		"atlas": "res://Assets/Sprites/icons.png",
 		"icons": [
 			{
 				"h": 16.0,
@@ -637,7 +637,7 @@
 		]
 	},
 	"statbar": {
-		"atlas": "res://Assets/sprites/icons.png",
+		"atlas": "res://Assets/Sprites/icons.png",
 		"icons": [
 			{
 				"h": 7.0,
@@ -689,7 +689,7 @@
 		]
 	},
 	"tokenshop": {
-		"atlas": "res://Assets/sprites/icons.png",
+		"atlas": "res://Assets/Sprites/icons.png",
 		"icons": [
 			{
 				"h": 16.0,

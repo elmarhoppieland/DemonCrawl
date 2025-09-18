@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://qyb7vtjc4d6o"]
 
-[ext_resource type="Texture2D" uid="uid://c0w2jbbojcheq" path="res://Assets/sprites/heirloom_border.png" id="1_xooal"]
+[ext_resource type="Texture2D" uid="uid://c0w2jbbojcheq" path="res://Assets/Sprites/heirloom_border.png" id="1_xooal"]
 [ext_resource type="Script" uid="uid://h6duc5vwcoou" path="res://Engine/Resources/Scenes/HeirloomDisplay.gd" id="1_xqpnh"]
-[ext_resource type="Texture2D" uid="uid://dahyw4bk8otd0" path="res://Assets/sprites/heirloom_fill_empty.png" id="2_lskec"]
+[ext_resource type="Texture2D" uid="uid://dahyw4bk8otd0" path="res://Assets/Sprites/heirloom_fill_empty.png" id="2_lskec"]
 [ext_resource type="PackedScene" uid="uid://dppdeqskdv8hc" path="res://Engine/Resources/Scenes/CollectibleDisplay.tscn" id="3_fcqjp"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="4_urrv8"]
 

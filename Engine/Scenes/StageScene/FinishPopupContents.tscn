@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjx67qhbqro41"]
 
 [ext_resource type="Script" uid="uid://y4mdeltue3mp" path="res://Engine/Scenes/StageScene/FinishPopupContents.gd" id="1_o1mly"]
-[ext_resource type="Texture2D" uid="uid://w0eac00tgi4" path="res://Assets/sprites/text_stage_clear.png" id="1_t7kn7"]
-[ext_resource type="Texture2D" uid="uid://crx85kipjfvqw" path="res://Assets/sprites/hxpbar_bg.png" id="5_ox33d"]
+[ext_resource type="Texture2D" uid="uid://w0eac00tgi4" path="res://Assets/Sprites/text_stage_clear.png" id="1_t7kn7"]
+[ext_resource type="Texture2D" uid="uid://crx85kipjfvqw" path="res://Assets/Sprites/hxpbar_bg.png" id="5_ox33d"]
 
 [node name="FinishPopupContents" type="VBoxContainer"]
 theme_override_constants/separation = 0

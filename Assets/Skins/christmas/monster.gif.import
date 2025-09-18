@@ -7,7 +7,7 @@ path="res://.godot/imported/monster.gif-2c41ed812977db930079d7fc5e41b16b.tres"
 
 [deps]
 
-source_file="res://Assets/skins/christmas/monster.gif"
+source_file="res://Assets/Skins/christmas/monster.gif"
 dest_files=["res://.godot/imported/monster.gif-2c41ed812977db930079d7fc5e41b16b.tres"]
 
 [params]

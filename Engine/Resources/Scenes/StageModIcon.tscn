@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cax2hgw22uqos"]
 
-[ext_resource type="Texture2D" uid="uid://bcb8tob5ubxrk" path="res://Assets/sprites/stage_mods.png" id="2_iv60g"]
+[ext_resource type="Texture2D" uid="uid://bcb8tob5ubxrk" path="res://Assets/Sprites/stage_mods.png" id="2_iv60g"]
 
 [sub_resource type="Resource" id="Resource_q1j5n"]
 metadata/__load_path__ = "res://Assets/sprites/stage_mod_bg.png"

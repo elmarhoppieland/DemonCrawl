@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dy7h614yc7ptg"]
 
 [ext_resource type="Script" uid="uid://bjsw7yj8ahomy" path="res://Engine/Resources/Singletons/Tooltip.gd" id="1_errb6"]
-[ext_resource type="Texture2D" uid="uid://bvlywjjg0tpt1" path="res://Assets/sprites/tooltip_bg.png" id="1_yrkkl"]
+[ext_resource type="Texture2D" uid="uid://bvlywjjg0tpt1" path="res://Assets/Sprites/tooltip_bg.png" id="1_yrkkl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4aptq"]
 content_margin_left = 5.0
