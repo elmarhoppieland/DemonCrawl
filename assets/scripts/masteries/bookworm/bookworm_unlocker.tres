@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MasteryUnlockerData" load_steps=4 format=3 uid="uid://b6oosavybeoxe"]
+
+[ext_resource type="Resource" uid="uid://c2r6yowu50dek" path="res://assets/Scripts/Masteries/Bookworm/Bookworm.tres" id="1_3aulb"]
+[ext_resource type="Script" uid="uid://dpylrkh0r76lw" path="res://engine/resources/DataContainers/Mastery/MasteryUnlockerData.gd" id="1_qc1wg"]
+[ext_resource type="Script" uid="uid://dsq0sk8maxfea" path="res://assets/Scripts/Masteries/Bookworm/BookwormUnlocker.gd" id="3_f1j3w"]
+
+[resource]
+script = ExtResource("1_qc1wg")
+data = ExtResource("1_3aulb")
+unlocker_script = ExtResource("3_f1j3w")
+metadata/_custom_type_script = "uid://dpylrkh0r76lw"

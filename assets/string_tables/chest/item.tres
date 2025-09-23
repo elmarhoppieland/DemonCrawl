@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="StringTable" load_steps=2 format=3 uid="uid://eswndy3mivp6"]
+
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/DataContainers/StringTable.gd" id="1_p4qb5"]
+
+[resource]
+script = ExtResource("1_p4qb5")
+data = {
+"": PackedStringArray(),
+"en": PackedStringArray("easy mode activated", "heck yeah", "about time", "locked and loaded", "big fat grin", "mhm", "monsters tremble", "blood, sweat and tears", "who left this behind?", "we have unfinished business", "what are the odds?", "fat and happy", "evil beware", "happy ending", "go get em tiger", "all kinds of gains", "just what the doctor ordered", "buckle up", "don\'t lose it", "you are worth it", "power courses through your veins", "happy as a clam", "exotic", "jackpot", "great deal", "bingo", "this is the one", "neat", "i like what i see", "the good stuff", "that\'s my fetish", "going sicko mode", "better late than never", "no-brainer", "gimme", "dreams never die", "almighty one", "this will do the trick", "playing with fire", "not bad", "oh you betcha", "come to mama", "holy guacamole", "spiffy", "the stars align"),
+"nl": PackedStringArray()
+}

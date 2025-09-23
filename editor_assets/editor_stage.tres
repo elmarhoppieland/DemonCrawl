@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Stage" load_steps=2 format=3 uid="uid://bkwkkkjin22lx"]
+
+[ext_resource type="Script" path="res://engine/resources/DataContainers/Stage/Stage.gd" id="1_atfrd"]
+
+[resource]
+script = ExtResource("1_atfrd")
+name = "default"
+size = Vector2i(12, 12)
+monsters = 12
+min_power = 2
+max_power = 4
+locked = false
+completed = false
+mods = Array[Resource("res://Resources/DataContainers/StageMod.gd")]([])

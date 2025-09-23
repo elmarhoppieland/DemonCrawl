@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://b2pnw2c4b1wv8"]
+
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://assets/sprites/items.png" id="1_truwv"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/DataContainers/Collectible/ItemData.gd" id="2_d1pec"]
+[ext_resource type="Script" uid="uid://b2tiogp5tfj7h" path="res://assets/items/liquid_gold.gd" id="2_njwtx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njwtx"]
+atlas = ExtResource("1_truwv")
+region = Rect2(96, 32, 16, 16)
+
+[resource]
+script = ExtResource("2_d1pec")
+name = "item.liquid-gold"
+description = "item.liquid-gold.description"
+mana = 0
+cost = 5
+tags = Array[String]([])
+icon = SubResource("AtlasTexture_njwtx")
+item_script = ExtResource("2_njwtx")
+metadata/_custom_type_script = "uid://d3icmltrt12ld"

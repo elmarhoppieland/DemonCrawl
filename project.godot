@@ -11,18 +11,18 @@ config_version=5
 [application]
 
 config/name="DemonCrawl"
-run/main_scene="res://Engine/Scenes/MainMenu/MainMenu.tscn"
+run/main_scene="uid://duasdk788nmel"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Tooltip="res://Engine/Resources/Singletons/Tooltip.tscn"
-Focus="res://Engine/Resources/Singletons/Focus.tscn"
-Debug="res://Engine/Resources/Singletons/Debug.tscn"
-Toasts="res://Engine/Resources/Singletons/Toasts.tscn"
-DCPopup="res://Engine/Resources/Scenes/DCPopup.tscn"
-GuiLayer="res://Engine/Resources/Singletons/GuiLayer.tscn"
+Tooltip="res://engine/resources/singletons/tooltip.tscn"
+Focus="res://engine/resources/singletons/focus.tscn"
+Debug="res://engine/resources/singletons/debug.tscn"
+Toasts="res://engine/resources/singletons/toasts.tscn"
+DCPopup="res://engine/resources/scenes/dc_popup.tscn"
+GuiLayer="res://engine/resources/singletons/gui_layer.tscn"
 
 [debug]
 
@@ -35,33 +35,33 @@ gdscript/warnings/confusable_local_declaration=0
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
-mouse_cursor/custom_image="res://Assets/Sprites/cursor.png"
+mouse_cursor/custom_image="res://assets/sprites/cursor.png"
 
 [editor]
 
-script/search_in_file_extensions=PackedStringArray("gd", "gdshader", "tscn", "tres")
+script/search_in_file_extensions=PackedStringArray("gd", "gdshader", "tscn", "tres", "uid")
 naming/scene_name_casing=1
 naming/script_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AutoThread/plugin.cfg", "res://addons/CustomTexturePreview/plugin.cfg", "res://addons/DCPlugin/plugin.cfg", "res://addons/DocsHelper/plugin.cfg", "res://addons/EffectManager/plugin.cfg", "res://addons/IconManager/plugin.cfg", "res://addons/Immunity/plugin.cfg", "res://addons/Promise/plugin.cfg", "res://addons/Stringifier/plugin.cfg", "res://addons/UserClassDB/plugin.cfg")
+enabled=PackedStringArray("res://addons/auto_thread/plugin.cfg", "res://addons/custom_texture_preview/plugin.cfg", "res://addons/dc_plugin/plugin.cfg", "res://addons/effect_manager/plugin.cfg", "res://addons/icon_manager/plugin.cfg", "res://addons/immunity/plugin.cfg", "res://addons/promise/plugin.cfg")
 
 [eternity]
 
 named_paths/defaults={
 "settings": "user://settings.ini"
 }
-editor/editor_save_path="res://EditorAssets/EditorSave.ini"
+editor/editor_save_path="res://editor_assets/editor_save.ini"
 
 [file_customization]
 
 folder_colors={
-"res://Assets/": "purple",
-"res://EditorAssets/": "orange",
-"res://EffectManager/": "gray",
-"res://Engine/": "teal",
-"res://addons/": "gray"
+"res://addons/": "gray",
+"res://assets/": "purple",
+"res://editor_assets/": "orange",
+"res://effect_manager/": "gray",
+"res://engine/": "teal"
 }
 
 [filesystem]
@@ -71,8 +71,8 @@ import/blender/enabled=false
 [gui]
 
 theme/default_font_antialiasing=0
-theme/custom="uid://dmddrgkl04gph"
-theme/custom_font="res://Assets/Fonts/04B_03__.TTF"
+theme/custom="uid://b442tpxg2qr7y"
+theme/custom_font="uid://7ynms6dclfsi"
 
 [importer_defaults]
 
@@ -166,7 +166,7 @@ debug_overlay_toggle={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Assets/localization/localization.en.translation", "res://Assets/localization/localization-strangers.en.translation", "res://Assets/localization/localization-items.en.translation", "res://Assets/Localization/localization-stages.en.translation", "res://Assets/Localization/localization-masteries.en.translation")
+locale/translations=PackedStringArray("res://assets/localization/localization.en.translation", "res://assets/localization/localization-strangers.en.translation", "res://assets/localization/localization-items.en.translation", "res://assets/localization/localization-stages.en.translation", "res://assets/localization/localization-masteries.en.translation")
 
 [rendering]
 

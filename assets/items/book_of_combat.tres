@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://b4dary20o0gcv"]
+
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="1_redvf"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://assets/sprites/items.png" id="1_vdab4"]
+[ext_resource type="Script" uid="uid://cb0dnvk0t5vp1" path="res://assets/items/book_of_combat.gd" id="2_wqir8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqir8"]
+atlas = ExtResource("1_vdab4")
+region = Rect2(64, 128, 16, 16)
+
+[resource]
+script = ExtResource("1_redvf")
+name = "item.book-of-combat"
+description = "item.book-of-combat.description"
+cost = 12
+tags = Array[String](["book"])
+icon = SubResource("AtlasTexture_wqir8")
+item_script = ExtResource("2_wqir8")
+metadata/_custom_type_script = "uid://d3icmltrt12ld"
