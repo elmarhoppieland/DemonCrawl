@@ -38,7 +38,7 @@ func _ready() -> void:
 			cell.value += contribution
 	
 	_cell_enter()
-	_spawn()
+	notify_spawned()
 
 
 func _export_packed_enabled() -> bool:
@@ -64,7 +64,7 @@ func _export_packed() -> Array:
 	return args
 
 
-static func _import_packed_static_v(script: String, args: Array) -> CellObject:
+static func _import_packed_static(script: String, ...args: Array) -> CellObject:
 	var object: CellObject = UserClassDB.instantiate(script)
 	
 	var i := 0
@@ -409,8 +409,9 @@ func _spawn() -> void:
 
 ## Notifies the object that is has just been spawned.
 func notify_spawned() -> void:
-	#initialized = true
 	_spawn()
+	
+	EffectManager.propagate(get_quest().get_object_effects().spawned, self)
 
 
 func _cell_enter() -> void:
@@ -572,6 +573,8 @@ func get_theme_icon(theme_name: StringName, theme_type: StringName = "Cell") -> 
 @warning_ignore_start("unused_signal")
 
 class ObjectEffects extends EventBus:
+	signal spawned(object: CellObject)
+	
 	signal used(object: CellObject)
 	
 	signal interacted(object: CellObject)

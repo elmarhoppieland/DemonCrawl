@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="TokenShopMasteriesCategory" load_steps=4 format=3 uid="uid://b36mx2wkxsnll"]
 
-[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="1_hd23n"]
-[ext_resource type="Script" uid="uid://cx4fpp7hmh8i" path="res://engine/resources/DataContainers/TokenShop/TokenShopMasteriesCategory.gd" id="1_vgdhh"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_hd23n"]
+[ext_resource type="Script" uid="uid://cx4fpp7hmh8i" path="res://engine/resources/data_containers/token_shop/token_shop_masteries_category.gd" id="1_vgdhh"]
 
 [sub_resource type="Texture2D" id="Texture2D_hk8i5"]
 resource_local_to_scene = false

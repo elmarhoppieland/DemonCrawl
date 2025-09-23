@@ -80,10 +80,9 @@ func _init() -> void:
 
 
 @warning_ignore("shadowed_variable")
-static func _import_packed_v(args: Array) -> CellData:
+static func _import_packed(value: int, ...args: Array) -> CellData:
 	var cell := CellData.new()
-	assert(args[0] is int, "The first argument of a CellData must be of type \"int\".")
-	cell.value = args.pop_front()
+	cell.value = value
 	
 	var cell_mode := Mode.VISIBLE_EMPTY
 	var children: Array[Node] = []
@@ -244,7 +243,6 @@ func clear_object() -> void:
 	get_object().queue_free()
 
 
-@warning_ignore("shadowed_variable")
 func set_object(object: CellObject) -> void:
 	if is_occupied():
 		clear_object()

@@ -16,7 +16,6 @@
 [sub_resource type="Resource" id="Resource_8gmwo"]
 script = ExtResource("1_qipl7")
 flag = "hard"
-invert = false
 
 [sub_resource type="Texture2D" id="Texture2D_fnfsu"]
 resource_local_to_scene = false
@@ -32,6 +31,3 @@ conditions = Array[ExtResource("1_biiur")]([SubResource("Resource_8gmwo")])
 quests = Array[ExtResource("4_ccner")]([ExtResource("2_8miv4"), ExtResource("3_8s1ny"), ExtResource("4_bg8b8"), ExtResource("5_dmv15"), ExtResource("6_t0kgu"), ExtResource("7_7yuxm"), ExtResource("8_rbhev")])
 max_life = 3
 life = 3
-revives = 0
-defense = 0
-coins = 0

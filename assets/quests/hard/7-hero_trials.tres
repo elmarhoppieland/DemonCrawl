@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="QuestFile" load_steps=18 format=3 uid="uid://egb3ted806hu"]
 
-[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="1_hxaby"]
-[ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/DataContainers/Quest/QuestFile.gd" id="2_wrs1r"]
-[ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://assets/SpecialStages/Item Shop.tres" id="3_ej5gr"]
-[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://engine/resources/DataContainers/Stage/StageBase/SpecialStageBase.gd" id="3_xw6wg"]
-[ext_resource type="Script" uid="uid://blmciji5vcvge" path="res://engine/resources/DataContainers/Stage/StageBase/RandomStageBase.gd" id="4_q81aj"]
-[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/DataContainers/Stage/StageBase/StageBase.gd" id="5_6vdyp"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_hxaby"]
+[ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="2_wrs1r"]
+[ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://assets/special_stages/item_shop.tres" id="3_ej5gr"]
+[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://engine/resources/data_containers/stage/stage_base/special_stage_base.gd" id="3_xw6wg"]
+[ext_resource type="Script" uid="uid://blmciji5vcvge" path="res://engine/resources/data_containers/stage/stage_base/random_stage_base.gd" id="4_q81aj"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/stage/stage_base/stage_base.gd" id="5_6vdyp"]
 
 [sub_resource type="Texture2D" id="Texture2D_bpcax"]
 resource_local_to_scene = false
@@ -23,8 +23,6 @@ density_minimum = 0.16
 density_maximum = 0.21
 size_minimum = 6
 size_maximum = 8
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_p5u11"]
 script = ExtResource("4_q81aj")
@@ -36,8 +34,6 @@ density_minimum = 0.17
 density_maximum = 0.22
 size_minimum = 6
 size_maximum = 8
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_thi6w"]
 script = ExtResource("4_q81aj")
@@ -49,8 +45,6 @@ density_minimum = 0.18
 density_maximum = 0.23
 size_minimum = 6
 size_maximum = 10
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_hxiju"]
 script = ExtResource("4_q81aj")
@@ -62,8 +56,6 @@ density_minimum = 0.19
 density_maximum = 0.24
 size_minimum = 9
 size_maximum = 11
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_gwavl"]
 script = ExtResource("4_q81aj")
@@ -75,8 +67,6 @@ density_minimum = 0.2
 density_maximum = 0.25
 size_minimum = 10
 size_maximum = 13
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_t2hxq"]
 script = ExtResource("4_q81aj")
@@ -84,12 +74,9 @@ min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
 max_power_maximum = 5
-density_minimum = 0.0
 density_maximum = 26.0
 size_minimum = 11
 size_maximum = 12
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_xvww4"]
 script = ExtResource("4_q81aj")
@@ -101,8 +88,6 @@ density_minimum = 0.22
 density_maximum = 0.27
 size_minimum = 11
 size_maximum = 15
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_3f7c8"]
 script = ExtResource("4_q81aj")
@@ -114,8 +99,6 @@ density_minimum = 0.23
 density_maximum = 0.28
 size_minimum = 13
 size_maximum = 15
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_rk7nb"]
 script = ExtResource("4_q81aj")
@@ -127,8 +110,6 @@ density_minimum = 0.24
 density_maximum = 0.29
 size_minimum = 14
 size_maximum = 16
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [sub_resource type="Resource" id="Resource_gq67k"]
 script = ExtResource("4_q81aj")
@@ -140,14 +121,11 @@ density_minimum = 0.25
 density_maximum = 0.3
 size_minimum = 16
 size_maximum = 18
-mod_difficulty_minimum = 0
-mod_difficulty_maximum = 0
 
 [resource]
 script = ExtResource("2_wrs1r")
 name = "quest.hero-trials"
 lore = "quest.hero-trials.lore"
 icon = SubResource("Texture2D_bpcax")
-skip_unlock = false
 stages = Array[ExtResource("5_6vdyp")]([SubResource("Resource_xniog"), SubResource("Resource_p5u11"), SubResource("Resource_thi6w"), SubResource("Resource_hxiju"), SubResource("Resource_gwavl"), SubResource("Resource_t2hxq"), SubResource("Resource_xvww4"), SubResource("Resource_3f7c8"), SubResource("Resource_rk7nb"), SubResource("Resource_gq67k")])
 special_stages = Array[ExtResource("3_xw6wg")]([ExtResource("3_ej5gr")])
