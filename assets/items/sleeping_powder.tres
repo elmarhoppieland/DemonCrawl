@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://bq0vgdhfkbbrd"]
+
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://assets/sprites/items.png" id="1_csv0w"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/DataContainers/Collectible/ItemData.gd" id="1_yx5sa"]
+[ext_resource type="Script" uid="uid://cc27u723sq5mk" path="res://assets/items/sleeping_powder.gd" id="2_y432g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skfqe"]
+atlas = ExtResource("1_csv0w")
+region = Rect2(192, 64, 16, 16)
+
+[resource]
+script = ExtResource("1_yx5sa")
+name = "item.sleeping-powder"
+description = "item.sleeping-powder.description"
+mana = 0
+cost = 4
+tags = Array[String]([])
+icon = SubResource("AtlasTexture_skfqe")
+item_script = ExtResource("2_y432g")
+metadata/_custom_type_script = "uid://d3icmltrt12ld"

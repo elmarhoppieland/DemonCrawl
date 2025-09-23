@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="TokenShopCategory" load_steps=19 format=3 uid="uid://3rduhwvlqb1q"]
+
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_x5oia"]
+[ext_resource type="Script" uid="uid://3ko5cbpj317c" path="res://engine/resources/data_containers/token_shop/token_shop_item_base.gd" id="2_6mwvg"]
+[ext_resource type="Resource" uid="uid://ch182n15td6ju" path="res://assets/token_shop/upgrades/tokeneer.tres" id="2_k7bdy"]
+[ext_resource type="Resource" uid="uid://cnbevbtob1jom" path="res://assets/token_shop/upgrades/specialist.tres" id="3_8qfev"]
+[ext_resource type="Script" uid="uid://oq0dgv8tkx3y" path="res://engine/resources/data_containers/token_shop/token_shop_category.gd" id="3_chlul"]
+[ext_resource type="Resource" uid="uid://o4ce6fvojob5" path="res://assets/token_shop/upgrades/artificer.tres" id="4_gv6f5"]
+[ext_resource type="Resource" uid="uid://b58ybksdysnl7" path="res://assets/token_shop/upgrades/q_2___respite's_end.tres" id="4_sklqb"]
+[ext_resource type="Resource" uid="uid://bso2mgt3uqn7s" path="res://assets/token_shop/upgrades/crafter.tres" id="5_tp2cj"]
+[ext_resource type="Resource" uid="uid://b7yi75jhkqp27" path="res://assets/token_shop/upgrades/q_3___another_way.tres" id="5_x2vp2"]
+[ext_resource type="Resource" uid="uid://bn053h0s8sx8t" path="res://assets/token_shop/upgrades/q_4___around_the_bend.tres" id="6_pgb1v"]
+[ext_resource type="Resource" uid="uid://bd7wb2gtc0c4f" path="res://assets/token_shop/upgrades/chaote.tres" id="7_6rgus"]
+[ext_resource type="Resource" uid="uid://jt0gtyhyhjkp" path="res://assets/token_shop/upgrades/q_5___shadowman.tres" id="7_s1qwk"]
+[ext_resource type="Resource" uid="uid://b4u12ujiinmqe" path="res://assets/token_shop/upgrades/qh_2___respite's_end.tres" id="9_2218y"]
+[ext_resource type="Resource" uid="uid://wv5jht8bndvy" path="res://assets/token_shop/upgrades/qh_3___another_way.tres" id="10_61hjr"]
+[ext_resource type="Resource" uid="uid://bgxkoaxnxme5p" path="res://assets/token_shop/upgrades/qh_4___around_the_bend.tres" id="11_omlok"]
+[ext_resource type="Resource" uid="uid://crenv4t4ujhim" path="res://assets/token_shop/upgrades/qh_5___shadowman.tres" id="12_4fylt"]
+[ext_resource type="Resource" uid="uid://bq2mha5gkp3y1" path="res://assets/token_shop/upgrades/hoarder.tres" id="14_5pwke"]
+
+[sub_resource type="Texture2D" id="Texture2D_0f4lc"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_x5oia")
+name = "tokenshop/category_upgrades"
+
+[resource]
+script = ExtResource("3_chlul")
+name = "token-shop.category.upgrades"
+icon = SubResource("Texture2D_0f4lc")
+items = Array[ExtResource("2_6mwvg")]([ExtResource("2_k7bdy"), ExtResource("3_8qfev"), ExtResource("4_gv6f5"), ExtResource("5_tp2cj"), ExtResource("7_6rgus"), ExtResource("14_5pwke"), ExtResource("4_sklqb"), ExtResource("5_x2vp2"), ExtResource("6_pgb1v"), ExtResource("7_s1qwk"), ExtResource("9_2218y"), ExtResource("10_61hjr"), ExtResource("11_omlok"), ExtResource("12_4fylt")])

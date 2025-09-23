@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://lyjf6xn4bpyf"]
+
+[ext_resource type="Script" uid="uid://bba5k8nhxitd5" path="res://Engine/Resources/Singletons/ChestCoinsPopup.gd" id="1_p5cgo"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/Fonts/Lady Radical.ttf" id="2_537a8"]
+[ext_resource type="PackedScene" uid="uid://d3fpf8gbjxsbx" path="res://Engine/Resources/Scenes/CoinValue.tscn" id="3_8mgd0"]
+[ext_resource type="Script" uid="uid://b24k0h0ivk3t0" path="res://Engine/Resources/UtilityNode/StringTableLabel.gd" id="4_1ls5h"]
+[ext_resource type="Resource" uid="uid://y3lxhnn3p8fd" path="res://assets/StringTables/Chest/Coins.tres" id="5_537a8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8kyde"]
+font = ExtResource("2_537a8")
+
+[sub_resource type="LabelSettings" id="LabelSettings_aks3e"]
+font_size = 8
+font_color = Color(0.764706, 0.764706, 0.764706, 1)
+
+[node name="ChestCoinsPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p5cgo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.5
+offset_top = -30.5
+offset_right = 54.5
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "popup.chest.title"
+label_settings = SubResource("LabelSettings_8kyde")
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="CoinValue" parent="VBoxContainer" instance=ExtResource("3_8mgd0")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+red_if_too_expensive = false
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+
+[node name="StringTableLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+label_settings = SubResource("LabelSettings_aks3e")
+script = ExtResource("4_1ls5h")
+table = ExtResource("5_537a8")

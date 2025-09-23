@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="TokenShopLevelItem" load_steps=7 format=3 uid="uid://o4ce6fvojob5"]
+
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_x0faw"]
+[ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/data_containers/condition/condition.gd" id="1_ye8my"]
+[ext_resource type="Script" uid="uid://ba12xyhtl3546" path="res://engine/resources/data_containers/token_shop/token_shop_level_item.gd" id="2_62ice"]
+[ext_resource type="Script" uid="uid://ddeq2y3c5x2gj" path="res://engine/resources/data_containers/condition/flag_condition.gd" id="2_vqia3"]
+
+[sub_resource type="Texture2D" id="Texture2D_nhp6q"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_x0faw")
+name = "tokenshop/upgrade_artificer"
+
+[sub_resource type="Resource" id="Resource_14rhc"]
+script = ExtResource("2_vqia3")
+flag = "hard"
+
+[resource]
+script = ExtResource("2_62ice")
+Base/name = "token-shop.category.upgrades.artificer"
+Base/description = "token-shop.category.upgrades.artificer.description"
+Base/icon = SubResource("Texture2D_nhp6q")
+Base/cost = 0
+Base/conditions = Array[ExtResource("1_ye8my")]([])
+Base/unlock_conditions = Array[ExtResource("1_ye8my")]([SubResource("Resource_14rhc")])
+level_count = 5
+level_0/name = "token-shop.category.upgrades.artificer"
+level_0/description = "token-shop.category.upgrades.artificer.description"
+level_0/icon = SubResource("Texture2D_nhp6q")
+level_0/cost = 5
+level_0/conditions = Array[ExtResource("1_ye8my")]([])
+level_0/unlock_conditions = Array[ExtResource("1_ye8my")]([SubResource("Resource_14rhc")])
+level_1/name = "token-shop.category.upgrades.artificer"
+level_1/description = "token-shop.category.upgrades.artificer.description"
+level_1/icon = SubResource("Texture2D_nhp6q")
+level_1/cost = 10
+level_1/conditions = Array[ExtResource("1_ye8my")]([])
+level_1/unlock_conditions = Array[ExtResource("1_ye8my")]([SubResource("Resource_14rhc")])
+level_2/name = "token-shop.category.upgrades.artificer"
+level_2/description = "token-shop.category.upgrades.artificer.description"
+level_2/icon = SubResource("Texture2D_nhp6q")
+level_2/cost = 20
+level_2/conditions = Array[ExtResource("1_ye8my")]([])
+level_2/unlock_conditions = Array[ExtResource("1_ye8my")]([SubResource("Resource_14rhc")])
+level_3/name = "token-shop.category.upgrades.artificer"
+level_3/description = "token-shop.category.upgrades.artificer.description"
+level_3/icon = SubResource("Texture2D_nhp6q")
+level_3/cost = 50
+level_3/conditions = Array[ExtResource("1_ye8my")]([])
+level_3/unlock_conditions = Array[ExtResource("1_ye8my")]([SubResource("Resource_14rhc")])
+level_4/name = "token-shop.category.upgrades.artificer"
+level_4/description = "token-shop.category.upgrades.artificer.description"
+level_4/icon = SubResource("Texture2D_nhp6q")
+level_4/cost = 100
+level_4/conditions = Array[ExtResource("1_ye8my")]([])
+level_4/unlock_conditions = Array[ExtResource("1_ye8my")]([SubResource("Resource_14rhc")])

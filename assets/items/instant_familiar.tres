@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://b71et3glcim18"]
+
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="1_11yqy"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://assets/sprites/items.png" id="1_cwbh6"]
+[ext_resource type="Script" uid="uid://dbxo1w7r6cnpe" path="res://assets/items/instant_familiar.gd" id="2_ic7l6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxu6x"]
+atlas = ExtResource("1_cwbh6")
+region = Rect2(240, 80, 16, 16)
+
+[resource]
+script = ExtResource("1_11yqy")
+name = "item.instant-familiar"
+description = "item.instant-familiar.description"
+cost = 5
+icon = SubResource("AtlasTexture_lxu6x")
+item_script = ExtResource("2_ic7l6")
+metadata/_custom_type_script = "uid://d3icmltrt12ld"

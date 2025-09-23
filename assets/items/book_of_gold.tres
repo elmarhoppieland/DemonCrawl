@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://dojxjdhe586o8"]
+
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="1_p2y71"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://assets/sprites/items.png" id="1_wm1bb"]
+[ext_resource type="Script" uid="uid://xi8tteeobv4t" path="res://assets/items/book_of_gold.gd" id="2_yf7wr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwyt7"]
+atlas = ExtResource("1_wm1bb")
+region = Rect2(48, 288, 16, 16)
+
+[resource]
+script = ExtResource("1_p2y71")
+name = "item.book-of-gold"
+description = "item.book-of-gold.description"
+cost = 19
+tags = Array[String](["book"])
+icon = SubResource("AtlasTexture_kwyt7")
+item_script = ExtResource("2_yf7wr")
+metadata/_custom_type_script = "uid://d3icmltrt12ld"

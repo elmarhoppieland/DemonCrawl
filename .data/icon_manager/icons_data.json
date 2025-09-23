@@ -1,0 +1,780 @@
+{
+	"bagman": {
+		"atlas": "res://assets/sprites/strangers/bagman.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"blacksmith": {
+		"atlas": "res://assets/sprites/strangers/blacksmith.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"difficulties": {
+		"atlas": "res://assets/sprites/icons.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Casual",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 166.0
+			},
+			{
+				"h": 16.0,
+				"name": "Normal",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 166.0
+			},
+			{
+				"h": 16.0,
+				"name": "Hard",
+				"w": 16.0,
+				"x": 32.0,
+				"y": 166.0
+			},
+			{
+				"h": 16.0,
+				"name": "Beyond",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 166.0
+			}
+		]
+	},
+	"doctor": {
+		"atlas": "res://assets/sprites/strangers/doctor.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"elder": {
+		"atlas": "res://assets/sprites/strangers/elder.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"gambler": {
+		"atlas": "res://assets/sprites/strangers/gambler.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"hungryPlant": {
+		"atlas": "res://assets/sprites/strangers/hungryPlant.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"mage": {
+		"atlas": "res://assets/sprites/strangers/mage.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"nomad": {
+		"atlas": "res://assets/sprites/strangers/nomad.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"priest": {
+		"atlas": "res://assets/sprites/strangers/priest.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"pyro": {
+		"atlas": "res://assets/sprites/strangers/pyro.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"scribe": {
+		"atlas": "res://assets/sprites/strangers/scribe.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"waterboy": {
+		"atlas": "res://assets/sprites/strangers/waterboy.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"arrow_small": {
+		"atlas": "res://assets/sprites/icons.png",
+		"icons": [
+			{
+				"h": 5.0,
+				"name": "left",
+				"w": 6.0,
+				"x": 47.0,
+				"y": 0.0
+			},
+			{
+				"h": 5.0,
+				"name": "right",
+				"w": 6.0,
+				"x": 53.0,
+				"y": 0.0
+			}
+		]
+	},
+	"chests": {
+		"atlas": "res://assets/sprites/chests.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "default",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			}
+		]
+	},
+	"icons": {
+		"atlas": "res://assets/sprites/icons.png",
+		"icons": [
+			{
+				"h": 5.0,
+				"name": "monster5",
+				"w": 5.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 5.0,
+				"name": "power5",
+				"w": 5.0,
+				"x": 5.0,
+				"y": 0.0
+			},
+			{
+				"h": 5.0,
+				"name": "size5",
+				"w": 5.0,
+				"x": 10.0,
+				"y": 0.0
+			},
+			{
+				"h": 5.0,
+				"name": "copyright",
+				"w": 5.0,
+				"x": 15.0,
+				"y": 0.0
+			},
+			{
+				"h": 5.0,
+				"name": "restart_small",
+				"w": 7.0,
+				"x": 26.0,
+				"y": 0.0
+			},
+			{
+				"h": 9.0,
+				"name": "clock8",
+				"w": 8.0,
+				"x": 0.0,
+				"y": 7.0
+			},
+			{
+				"h": 9.0,
+				"name": "monster8",
+				"w": 8.0,
+				"x": 8.0,
+				"y": 7.0
+			},
+			{
+				"h": 9.0,
+				"name": "power8",
+				"w": 8.0,
+				"x": 16.0,
+				"y": 7.0
+			},
+			{
+				"h": 9.0,
+				"name": "mailbox",
+				"w": 12.0,
+				"x": 24.0,
+				"y": 7.0
+			},
+			{
+				"h": 12.0,
+				"name": "customize",
+				"w": 10.0,
+				"x": 36.0,
+				"y": 4.0
+			},
+			{
+				"h": 10.0,
+				"name": "achievements",
+				"w": 13.0,
+				"x": 46.0,
+				"y": 6.0
+			},
+			{
+				"h": 9.0,
+				"name": "checkmark",
+				"w": 8.0,
+				"x": 59.0,
+				"y": 8.0
+			},
+			{
+				"h": 16.0,
+				"name": "locked_flat",
+				"w": 16.0,
+				"x": 64.0,
+				"y": 86.0
+			}
+		]
+	},
+	"mastery": {
+		"atlas": "res://assets/sprites/masteries2.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "none",
+				"w": 16.0,
+				"x": 80.0,
+				"y": 80.0
+			},
+			{
+				"h": 16.0,
+				"name": "Novice",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 48.0
+			},
+			{
+				"h": 16.0,
+				"name": "Survivor",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 80.0
+			},
+			{
+				"h": 16.0,
+				"name": "Banker",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Barbarian",
+				"w": 16.0,
+				"x": 32.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Auramancer",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			}
+		]
+	},
+	"mastery1": {
+		"atlas": "res://assets/sprites/masteries0.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Novice",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 48.0
+			},
+			{
+				"h": 16.0,
+				"name": "Survivor",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 80.0
+			},
+			{
+				"h": 16.0,
+				"name": "Banker",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Barbarian",
+				"w": 16.0,
+				"x": 32.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Auramancer",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			}
+		]
+	},
+	"mastery2": {
+		"atlas": "res://assets/sprites/masteries1.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Novice",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 48.0
+			},
+			{
+				"h": 16.0,
+				"name": "Survivor",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 80.0
+			},
+			{
+				"h": 16.0,
+				"name": "Banker",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Barbarian",
+				"w": 16.0,
+				"x": 32.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Auramancer",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			}
+		]
+	},
+	"mastery3": {
+		"atlas": "res://assets/sprites/masteries2.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Novice",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 48.0
+			},
+			{
+				"h": 16.0,
+				"name": "Survivor",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 80.0
+			},
+			{
+				"h": 16.0,
+				"name": "Banker",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Barbarian",
+				"w": 16.0,
+				"x": 32.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Auramancer",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			}
+		]
+	},
+	"quest": {
+		"atlas": "res://assets/sprites/icons.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "questionmark",
+				"w": 16.0,
+				"x": 32.0,
+				"y": 70.0
+			},
+			{
+				"h": 16.0,
+				"name": "1",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 70.0
+			},
+			{
+				"h": 16.0,
+				"name": "2",
+				"w": 16.0,
+				"x": 64.0,
+				"y": 70.0
+			},
+			{
+				"h": 16.0,
+				"name": "3",
+				"w": 16.0,
+				"x": 80.0,
+				"y": 70.0
+			},
+			{
+				"h": 16.0,
+				"name": "4",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 86.0
+			},
+			{
+				"h": 16.0,
+				"name": "5",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 86.0
+			},
+			{
+				"h": 16.0,
+				"name": "em",
+				"w": 16.0,
+				"x": 32.0,
+				"y": 86.0
+			},
+			{
+				"h": 16.0,
+				"name": "ht",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 86.0
+			},
+			{
+				"h": 16.0,
+				"name": "locked",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 70.0
+			},
+			{
+				"h": 16.0,
+				"name": "blank",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 70.0
+			},
+			{
+				"h": 16.0,
+				"name": "lock_flat",
+				"w": 16.0,
+				"x": 64.0,
+				"y": 86.0
+			}
+		]
+	},
+	"statbar": {
+		"atlas": "res://assets/sprites/icons.png",
+		"icons": [
+			{
+				"h": 7.0,
+				"name": "coin",
+				"w": 8.0,
+				"x": 59.0,
+				"y": 0.0
+			},
+			{
+				"h": 7.0,
+				"name": "heart",
+				"w": 8.0,
+				"x": 67.0,
+				"y": 0.0
+			},
+			{
+				"h": 7.0,
+				"name": "shield",
+				"w": 8.0,
+				"x": 75.0,
+				"y": 0.0
+			}
+		]
+	},
+	"stats": {
+		"atlas": "res://engine/resources/scenes/stats_icons.png",
+		"icons": [
+			{
+				"h": 8.0,
+				"name": "life",
+				"w": 8.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 8.0,
+				"name": "defense",
+				"w": 8.0,
+				"x": 8.0,
+				"y": 0.0
+			},
+			{
+				"h": 8.0,
+				"name": "coins",
+				"w": 8.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"tokenshop": {
+		"atlas": "res://assets/sprites/icons.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "category_upgrades",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 102.0
+			},
+			{
+				"h": 16.0,
+				"name": "hover_plus",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 150.0
+			},
+			{
+				"h": 16.0,
+				"name": "upgrade_quest",
+				"w": 16.0,
+				"x": 80.0,
+				"y": 134.0
+			},
+			{
+				"h": 6.0,
+				"name": "token_small",
+				"w": 6.0,
+				"x": 20.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "upgrade_tokeneer",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 134.0
+			},
+			{
+				"h": 16.0,
+				"name": "upgrade_specialist",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 134.0
+			},
+			{
+				"h": 16.0,
+				"name": "upgrade_artificer",
+				"w": 16.0,
+				"x": 32.0,
+				"y": 134.0
+			},
+			{
+				"h": 16.0,
+				"name": "upgrade_crafter",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 134.0
+			},
+			{
+				"h": 16.0,
+				"name": "upgrade_chaote",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 134.0
+			},
+			{
+				"h": 16.0,
+				"name": "upgrade_hoarder",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 134.0
+			},
+			{
+				"h": 16.0,
+				"name": "xp_boost",
+				"w": 16.0,
+				"x": 64.0,
+				"y": 134.0
+			},
+			{
+				"h": 16.0,
+				"name": "category_masteries",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 102.0
+			}
+		]
+	}
+}
