@@ -1,0 +1,160 @@
+﻿key;en
+
+scene-return.main;RETURN TO MAIN MENU
+scene-return.quests;RETURN TO QUESTS
+
+menu.select-profile.title;SELECT PROFILE:
+menu.create-profile.confirm;OK!
+menu.create-profile.header;CREATE YOUR PROFILE:
+menu.button.change-profile;CLICK TO CHANGE PROFILE
+menu.button.quests;QUESTS
+menu.button.classic;CLASSIC
+menu.button.token-shop;TOKEN SHOP
+menu.button.codex;CODEX
+menu.button.quit;QUIT
+
+token-shop.title;SELECT A CATEGORY:
+token-shop.category.upgrades;Upgrades
+token-shop.category.upgrades.tokeneer;Tokeneer
+token-shop.category.upgrades.tokeneer.description;Slightly increases your chance to find Tokens. Not recommended for new players.
+token-shop.category.upgrades.specialist;Specialist
+token-shop.category.upgrades.specialist.description;Gain a Favor slot. Favored items can be set to appear more or less often than normal.
+token-shop.category.upgrades.quest.2;Quest II
+token-shop.category.upgrades.quest.2.description;Unlocks the second quest on Normal.
+token-shop.category.upgrades.quest.3;Quest III
+token-shop.category.upgrades.quest.3.description;Unlocks the third quest on Normal.
+token-shop.category.upgrades.quest.4;Quest IV
+token-shop.category.upgrades.quest.4.description;Unlocks the fourth quest on Normal.
+token-shop.category.upgrades.quest.5;Quest V
+token-shop.category.upgrades.quest.5.description;Unlocks the fifth quest on Normal.
+token-shop.category.upgrades.quest.2.hard;Quest II [H]
+token-shop.category.upgrades.quest.2.hard.description;Unlocks the second quest on Hard.
+token-shop.category.upgrades.quest.3.hard;Quest III [H]
+token-shop.category.upgrades.quest.3.hard.description;Unlocks the third quest on Hard.
+token-shop.category.upgrades.quest.4.hard;Quest IV [H]
+token-shop.category.upgrades.quest.4.hard.description;Unlocks the fourth quest on Hard.
+token-shop.category.upgrades.quest.5.hard;Quest V [H]
+token-shop.category.upgrades.quest.5.hard.description;Unlocks the fifth quest on Hard.
+token-shop.category.upgrades.hoarder;Hoarder
+token-shop.category.upgrades.hoarder.description;Gain a codex profile save slot.
+token-shop.category.upgrades.crafter;Crafter
+token-shop.category.upgrades.crafter.description;Improve your chance to salvalge ingredients.
+token-shop.category.upgrades.chaote;Chaote
+token-shop.category.upgrades.chaote.description.1;Increase the maximum number of Sigils you can have to 20.
+token-shop.category.upgrades.chaote.description.2;Increase the maximum number of Sigils you can have to 30.
+token-shop.category.upgrades.chaote.description.3;Increase the maximum number of Sigils you can have to 40.
+token-shop.category.upgrades.chaote.description.4;Increase the maximum number of Sigils you can have to 50.
+token-shop.category.upgrades.chaote.description.5;Increase the maximum number of Sigils you can have to 100.
+token-shop.category.upgrades.artificer;Artificer
+token-shop.category.upgrades.artificer.description;Adds 3% chance to find artifacts in item chests.
+
+token-shop.category.upgrades.xp-boost;XP Boost
+token-shop.category.upgrades.xp-boost.description;Earn double Victory XP for the next 10 stages.\nCURRENTLY HAVE: %d REMAINING
+token-shop.category.masteries;Masteries
+
+quest-select.overview.header;SELECT A QUEST:
+quest-select.overview.quest-completions;COMPLETED
+quest-select.overview.best;BEST
+quest-select.quest.locked;Locked
+quest-select.quest.locked.lore;You may purchase this quest from the Token Shop.
+quest-select.quest.locked.lore-casual;You must complete the previous quest to unlock this one.
+
+edit-equipment.title;EDIT YOUR LOADOUT:
+edit-equipment.masteries.title;MASTERIES
+edit-equipment.masteries.subtext;%d/%d COMPLETED
+edit-equipment.chests.title;SPECIAL CHESTS
+edit-equipment.chests.subtext;%d/%d UNLOCKED
+edit-equipment.sigils.title;SIGILS
+edit-equipment.sigils.subtext;%d/%d COLLECTED
+
+stage-select.overview.title;SELECT A STAGE:
+stage-select.details.property.special;SPECIAL STAGE!
+stage-select.details.property.complete;STAGE COMPLETE!
+stage-select.button.abandon.title;ABANDON QUEST
+stage-select.button.abandon.subtext;This cannot be undone.
+stage-select.locked;Locked
+stage-select.locked.lore;Play more stages to reveal this stage.
+
+generic.xp;XP
+generic.level.abbr;Lv%d
+generic.mana;Mana
+generic.charges;charge
+generic.charges.plural;charges
+generic.difficulty;Difficulty
+generic.object.fell-off-world;Oops, your {object} fell off the world!
+generic.armor.head;head
+generic.armor.body;body
+generic.armor.leg;leg
+
+gui.search;Search...
+
+difficulty.casual;Casual
+difficulty.normal;Normal
+difficulty.hard;Hard
+difficulty.beyond;Beyond
+
+quest.tutorial;Tutorial
+quest.tutorial.lore;Learn the basics of DemonCrawl!
+quest.glory-days;Glory Days
+quest.glory-days.lore;The king has tasked you with the delivery of an important message to a land across the great waters. Use your renowned tracking skills to avoid the monsters along the way!
+quest.respites-end;Respite's End
+quest.respites-end.lore;Years have gone by in the flash of an eye. The glory days are long behind you. How exactly did your adventure end? What lay beyond the brink? It seems you've grown a bit fuzzy on the details. Regardless, there are more pressing matters to attend to - your quiet farm life has been interrupted by a strange new evil!
+quest.another-way;Another Way
+quest.another-way.lore;Despite your best efforts, the kingdom has fallen. Shadows run rampant across the lands. Some say you never really made it out of that dungeon. But you and I both know that's not true, right? You're awake now, in a strange place. Let the real adventure begin.
+quest.around-the-bend;Around The Bend
+quest.around-the-bend.lore;It's becoming more difficult to distinguish between reality and fiction. Know this, my friend: the machine is real. It powers our world. Not many have seen behind the curtain... many don't want to. They are afraid to learn what lies below.
+quest.shadowman;Shadowman
+quest.shadowman.lore;You're still here, are you? Desperate for the truth? Well, don't say I didn't warn you. When you get to the very end, and see what lies on the other side, just remember that we were trying to protect you. If you have any sense, you'll turn back now.
+quest.endless-multiverse;Endless Multiverse
+quest.endless-multiverse.lore;Infinite variations. One destination. Delay the inevitable annihilation of your soul for as long as you can.
+quest.hero-trials;Hero Trials
+quest.hero-trials.lore;Put your mettle to the test with a new adventure every day! Can you survive these wartorn lands?
+
+stage.reward.victory;Victory
+stage.reward.victory.subtext;You beat the stage.
+stage.reward.flagless;Flagless
+stage.reward.untouchable;Untouchable
+stage.reward.untouchable.subtext;You took no damage.
+stage.reward.fast;Fast
+stage.reward.thrifty;Thrifty
+stage.reward.thrifty.subtext;You skipped three or more special stages.
+stage.reward.charitable;Charitable
+stage.reward.charitable.subtext;You left some loot behind. How kind of you!
+stage.reward.heartless;Heartless
+
+stats.lives.hover.text;LIVES
+stats.lives.hover.subtext;Make sure you have at least 1.
+stats.defense.hover.text;DEFENSE
+stats.defense.hover.subtext;Reduces incoming damage to a minimum of 1.
+stats.coins.hover.text;COINS
+stats.coins.hover.subtext;Spend money at shops.
+stats.overview.header;YOUR OVERVIEW
+stats.overview.score;Score: {score} pts
+stats.overview.cells-opened-since-mistake;Cells opened since last mistake: {cells}
+stats.overview.morality;Morality: {morality}
+stats.overview.mastery-activations;Mastery activations: {activations}
+stats.overview.chain-value;Chain value: {value}
+stats.overview.chain-length;Chain length: {length}
+stats.overview.chain-sum;Chain sum: {sum}
+stats.overview.pathfinding;Pathfinding: {pathfinding}%
+stats.overview.rare-loot-modifier;Rare loot modifier: {modifier}%
+stats.overview.chests-opened;Chests opened: {chests}
+stats.overview.monsters-killed;Monsters killed: {monsters}
+stats.overview.research-subject;"You are an expert at finding ""{subject}"" items."
+
+popup.mastery-achieved.title;mastery achieved!
+popup.mastery-achieved.text;A new Mastery is available in the Token Shop:
+popup.chest.title;treasure found!
+
+stage.special.item-shop;Item Shop
+stage.special.item-shop.description;Spend coins to buy items. 
+stage.special.item-shop.text;CHOOSE AN ITEM:
+stage.special.item-shop.confirm;BUY NOW!
+stage.special.item-shop.leave;LEAVE
+
+research.kill;Kill
+
+object.treasure-chest;Chest
+object.familiar;Familiar
+object.familiar.description;Moves in a random direction each turn, revealing cells and picking up loot for you. Avoids flagged cells.
+object.familiar.strong.description;Moves in a random direction each turn, revealing cells and picking up loot for you. Avoids flagged cells.

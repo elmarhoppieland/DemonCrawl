@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://qyb7vtjc4d6o"]
+
+[ext_resource type="Texture2D" uid="uid://c0w2jbbojcheq" path="res://assets/sprites/heirloom_border.png" id="1_xooal"]
+[ext_resource type="Script" uid="uid://h6duc5vwcoou" path="res://Engine/Resources/Scenes/HeirloomDisplay.gd" id="1_xqpnh"]
+[ext_resource type="Texture2D" uid="uid://dahyw4bk8otd0" path="res://assets/sprites/heirloom_fill_empty.png" id="2_lskec"]
+[ext_resource type="PackedScene" uid="uid://dppdeqskdv8hc" path="res://Engine/Resources/Scenes/CollectibleDisplay.tscn" id="3_fcqjp"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="4_urrv8"]
+
+[sub_resource type="Texture2D" id="Texture2D_gdkup"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("4_urrv8")
+name = "icons/locked_flat"
+
+[node name="HeirloomDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+size_flags_horizontal = 10
+script = ExtResource("1_xqpnh")
+
+[node name="BackgroundRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xooal")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lskec")
+
+[node name="CollectibleDisplay" parent="." instance=ExtResource("3_fcqjp")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lock" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("Texture2D_gdkup")
+
+[node name="CountLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 2.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "1"
+
+[connection signal="interacted" from="CollectibleDisplay" to="." method="_on_collectible_display_interacted"]

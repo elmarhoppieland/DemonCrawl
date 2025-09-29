@@ -8,6 +8,7 @@ Welcome to the official GitHub repository for the fanmade Godot recreation of De
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
+- [Style Guide](#style-guide)
 - [Contact](#contact)
 - [Important Note](#important-note)
 
@@ -43,10 +44,10 @@ Contributions are what make an open-source project work. Any contributions you m
 4. Push to the Branch
 5. Open a Pull Request and wait for someone to merge the pull request
 
+## Style Guide
+
+There is a [style guide](docs/style-guide.md) in the project's files. Before contributing, make sure to read that file first and write code in a way that is similar to the rest of the project.
+
 ## Contact
 
 You can contact me on Discord. My username is `@elmarhoppieland`. You can either contact me on the official DemonCrawl Discord server or in my DMs.
-
-## Important Note
-
-Because of a bug that occurred when working on the `main` branch, I rewrote most of the code on the [dc-redo](https://github.com/elmarhoppieland/DemonCrawl/tree/dc-redo) branch. Any changes you make should be made on that branch. When the rewrite has all the features of the `main` branch, I will merge it into the `main` branch.

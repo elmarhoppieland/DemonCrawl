@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="TokenShopLevelItem" load_steps=8 format=3 uid="uid://ch182n15td6ju"]
+
+[ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/data_containers/condition/condition.gd" id="1_law05"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_teiaw"]
+[ext_resource type="Script" uid="uid://ba12xyhtl3546" path="res://engine/resources/data_containers/token_shop/token_shop_level_item.gd" id="2_2gjkg"]
+[ext_resource type="Script" uid="uid://haldp21eby36" path="res://assets/token_shop/upgrades/tokeneer.gd" id="2_vpyd8"]
+[ext_resource type="Script" uid="uid://buyf4lo0eqekd" path="res://engine/resources/data_containers/token_shop/token_shop_script_reward.gd" id="3_pjvhc"]
+
+[sub_resource type="Texture2D" id="Texture2D_8mt1i"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_teiaw")
+name = "tokenshop/upgrade_tokeneer"
+
+[sub_resource type="Resource" id="Resource_33y4g"]
+script = ExtResource("3_pjvhc")
+reward_script = ExtResource("2_vpyd8")
+
+[resource]
+script = ExtResource("2_2gjkg")
+Base/name = "token-shop.category.upgrades.tokeneer"
+Base/description = "token-shop.category.upgrades.tokeneer.description"
+Base/icon = SubResource("Texture2D_8mt1i")
+Base/cost = 0
+Base/reward = SubResource("Resource_33y4g")
+Base/conditions = Array[ExtResource("1_law05")]([])
+Base/unlock_conditions = Array[ExtResource("1_law05")]([])
+level_count = 5
+level_0/name = "token-shop.category.upgrades.tokeneer"
+level_0/description = "token-shop.category.upgrades.tokeneer.description"
+level_0/icon = SubResource("Texture2D_8mt1i")
+level_0/cost = 5
+level_0/reward = SubResource("Resource_33y4g")
+level_0/conditions = Array[ExtResource("1_law05")]([])
+level_0/unlock_conditions = Array[ExtResource("1_law05")]([])
+level_1/name = "token-shop.category.upgrades.tokeneer"
+level_1/description = "token-shop.category.upgrades.tokeneer.description"
+level_1/icon = SubResource("Texture2D_8mt1i")
+level_1/cost = 10
+level_1/reward = SubResource("Resource_33y4g")
+level_1/conditions = Array[ExtResource("1_law05")]([])
+level_1/unlock_conditions = Array[ExtResource("1_law05")]([])
+level_2/name = "token-shop.category.upgrades.tokeneer"
+level_2/description = "token-shop.category.upgrades.tokeneer.description"
+level_2/icon = SubResource("Texture2D_8mt1i")
+level_2/cost = 20
+level_2/reward = SubResource("Resource_33y4g")
+level_2/conditions = Array[ExtResource("1_law05")]([])
+level_2/unlock_conditions = Array[ExtResource("1_law05")]([])
+level_3/name = "token-shop.category.upgrades.tokeneer"
+level_3/description = "token-shop.category.upgrades.tokeneer.description"
+level_3/icon = SubResource("Texture2D_8mt1i")
+level_3/cost = 50
+level_3/reward = SubResource("Resource_33y4g")
+level_3/conditions = Array[ExtResource("1_law05")]([])
+level_3/unlock_conditions = Array[ExtResource("1_law05")]([])
+level_4/name = "token-shop.category.upgrades.tokeneer"
+level_4/description = "token-shop.category.upgrades.tokeneer.description"
+level_4/icon = SubResource("Texture2D_8mt1i")
+level_4/cost = 100
+level_4/reward = SubResource("Resource_33y4g")
+level_4/conditions = Array[ExtResource("1_law05")]([])
+level_4/unlock_conditions = Array[ExtResource("1_law05")]([])

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bqyv035y5b5fk"
+
+[deps]
+
+files=["res://assets/localization/localization-stages.en.translation"]
+
+source_file="res://assets/localization/localization-stages.csv"
+dest_files=["res://assets/localization/localization-stages.en.translation"]
+
+[params]
+
+compress=true
+delimiter=1

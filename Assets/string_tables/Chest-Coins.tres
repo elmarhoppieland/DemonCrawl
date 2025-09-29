@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="StringTable" load_steps=2 format=3 uid="uid://y3lxhnn3p8fd"]
-
-[ext_resource type="Script" path="res://Resources/StringTable.gd" id="1_q687q"]
-
-[resource]
-script = ExtResource("1_q687q")
-data = {
-"en": PackedStringArray("good day today", "use it or lose it", "fill your pockets", "money is power", "now you just have to survive", "absolute power corrupts absolutely", "don\'t spend it all at once", "don\'t die rich", "a shopkeeper smiles somewhere", "gold, as foretold", "moneymaker", "live like a king", "all that glitters is gold", "wop it out", "bet your bottom dollar", "the source of all evil", "payday", "more bang for your buck", "a penny for your thoughts", "shiny")
-}

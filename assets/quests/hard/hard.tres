@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Difficulty" load_steps=15 format=3 uid="uid://im6g8j5omb54"]
+
+[ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/data_containers/condition/condition.gd" id="1_biiur"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_lpgkx"]
+[ext_resource type="Script" uid="uid://ddeq2y3c5x2gj" path="res://engine/resources/data_containers/condition/flag_condition.gd" id="1_qipl7"]
+[ext_resource type="Resource" uid="uid://ct4h3rpvny7ve" path="res://assets/quests/hard/1-glory_days.tres" id="2_8miv4"]
+[ext_resource type="Resource" uid="uid://bnceos644ncor" path="res://assets/quests/hard/2-respite's_end.tres" id="3_8s1ny"]
+[ext_resource type="Resource" uid="uid://thtiwo46behm" path="res://assets/quests/hard/3-another_way.tres" id="4_bg8b8"]
+[ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="4_ccner"]
+[ext_resource type="Resource" uid="uid://lrnl8lh2wikh" path="res://assets/quests/hard/4-around_the_bend.tres" id="5_dmv15"]
+[ext_resource type="Resource" uid="uid://cg7k2pp8icuip" path="res://assets/quests/hard/5-shadowman.tres" id="6_t0kgu"]
+[ext_resource type="Resource" uid="uid://cnleqtnuvvj7y" path="res://assets/quests/hard/6-endless_multiverse.tres" id="7_7yuxm"]
+[ext_resource type="Resource" uid="uid://egb3ted806hu" path="res://assets/quests/hard/7-hero_trials.tres" id="8_rbhev"]
+[ext_resource type="Script" uid="uid://dx8sic8p7f7lp" path="res://engine/resources/data_containers/difficulty.gd" id="10_e001k"]
+
+[sub_resource type="Resource" id="Resource_8gmwo"]
+script = ExtResource("1_qipl7")
+flag = "hard"
+
+[sub_resource type="Texture2D" id="Texture2D_fnfsu"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_lpgkx")
+name = "Difficulties/Hard"
+
+[resource]
+script = ExtResource("10_e001k")
+name = "DIFFICULTY_HARD"
+icon = SubResource("Texture2D_fnfsu")
+conditions = Array[ExtResource("1_biiur")]([SubResource("Resource_8gmwo")])
+quests = Array[ExtResource("4_ccner")]([ExtResource("2_8miv4"), ExtResource("3_8s1ny"), ExtResource("4_bg8b8"), ExtResource("5_dmv15"), ExtResource("6_t0kgu"), ExtResource("7_7yuxm"), ExtResource("8_rbhev")])
+max_life = 3
+life = 3

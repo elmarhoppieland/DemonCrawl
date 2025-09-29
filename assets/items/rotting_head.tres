@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://bfjxt53garlhq"]
+
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://assets/sprites/items.png" id="1_gbdai"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/DataContainers/Collectible/ItemData.gd" id="1_ia7ir"]
+[ext_resource type="Script" uid="uid://b3xt5rf8wdkhs" path="res://assets/items/rotting_head.gd" id="2_vr63m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dj7iy"]
+atlas = ExtResource("1_gbdai")
+region = Rect2(144, 192, 16, 16)
+
+[resource]
+script = ExtResource("1_ia7ir")
+name = "item.rotting-head"
+description = "item.rotting-head.description"
+mana = 0
+cost = 11
+tags = Array[String](["meat", "halloween"])
+icon = SubResource("AtlasTexture_dj7iy")
+item_script = ExtResource("2_vr63m")
+metadata/_custom_type_script = "uid://d3icmltrt12ld"

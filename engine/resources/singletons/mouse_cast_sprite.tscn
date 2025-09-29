@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnbk18l62cltc"]
+
+[ext_resource type="Script" uid="uid://cntetxxccph5h" path="res://Engine/Resources/Singletons/MouseCastSprite.gd" id="1_7sjwv"]
+[ext_resource type="Texture2D" uid="uid://b6eoq6u51c7nn" path="res://assets/sprites/mouse_cast_sprite_bg.png" id="1_cb20a"]
+[ext_resource type="Script" uid="uid://dqpabfobbxkf8" path="res://Engine/Resources/HelperObjects/ItemTexture.gd" id="2_belp5"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://assets/sprites/items.png" id="3_d0qky"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igyxh"]
+atlas = ExtResource("3_d0qky")
+region = Rect2(144, 16, 16, 16)
+script = ExtResource("2_belp5")
+
+[node name="MouseCastSprite" type="CanvasLayer"]
+layer = 50
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+script = ExtResource("1_7sjwv")
+
+[node name="Anchor" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Background" type="Sprite2D" parent="Anchor"]
+position = Vector2(16.5, 16.5)
+texture = ExtResource("1_cb20a")
+
+[node name="Foreground" type="Sprite2D" parent="Anchor"]
+unique_name_in_owner = true
+position = Vector2(16.5, 16.5)
+texture = SubResource("AtlasTexture_igyxh")
+
+[node name="MouseBlocker" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

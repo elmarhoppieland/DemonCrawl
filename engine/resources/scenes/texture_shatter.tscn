@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn8gaau2ecden"]
+
+[ext_resource type="Script" uid="uid://bf2w6tilswfru" path="res://Engine/Resources/Scenes/TextureShatter.gd" id="1_4xgnv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dsvwj"]
+particles_animation = true
+particles_anim_h_frames = 16
+particles_anim_v_frames = 16
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_635vg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.25, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gjmbu"]
+curve = SubResource("Curve_635vg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ve1gu"]
+lifetime_randomness = 0.6
+particle_flag_disable_z = true
+radial_velocity_min = 48.0
+radial_velocity_max = 64.0
+radial_velocity_curve = SubResource("CurveTexture_gjmbu")
+gravity = Vector3(0, 0, 0)
+anim_offset_max = 1.0
+
+[node name="TextureShatter" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_dsvwj")
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_ve1gu")
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+visibility_rect = Rect2(-200, -200, 400, 400)
+draw_order = 0
+script = ExtResource("1_4xgnv")

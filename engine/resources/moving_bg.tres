@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dk24wtqiv26r5"]
+
+[ext_resource type="Shader" uid="uid://jirf6ehmla4x" path="res://engine/resources/shaders/finish_button.gdshader" id="1_vkjo3"]
+
+[resource]
+shader = ExtResource("1_vkjo3")
+shader_parameter/color = Vector3(1, 1, 1)
+shader_parameter/speed = 0.667
