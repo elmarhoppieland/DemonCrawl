@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MasteryUnlockerData" load_steps=4 format=3 uid="uid://dvbxgjlgmo1cj"]
+
+[ext_resource type="Script" uid="uid://dpylrkh0r76lw" path="res://engine/resources/data_containers/mastery/mastery_unlocker_data.gd" id="1_56ff4"]
+[ext_resource type="Resource" uid="uid://cyflbs5o34kgs" path="res://assets/scripts/masteries/commander/commander.tres" id="1_h6yer"]
+[ext_resource type="Script" uid="uid://cwrr0mjyt10ll" path="res://assets/scripts/masteries/commander/commander_unlocker.gd" id="3_xm1p1"]
+
+[resource]
+script = ExtResource("1_56ff4")
+data = ExtResource("1_h6yer")
+unlocker_script = ExtResource("3_xm1p1")
+metadata/_custom_type_script = "uid://dpylrkh0r76lw"

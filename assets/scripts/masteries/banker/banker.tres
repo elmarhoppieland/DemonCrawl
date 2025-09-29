@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MasteryData" load_steps=6 format=3 uid="uid://d1wj4onrfr1s2"]
+
+[ext_resource type="Texture2D" uid="uid://c7asat6ry2iil" path="res://assets/Scripts/Masteries/Banker/banker_0.png" id="1_55ggh"]
+[ext_resource type="Script" uid="uid://dwpxqvbtpkwkf" path="res://assets/Scripts/Masteries/Banker/Banker.gd" id="1_qw431"]
+[ext_resource type="Script" uid="uid://8hcwgbxnbkuw" path="res://engine/resources/DataContainers/Mastery/MasteryData.gd" id="1_vuxg8"]
+[ext_resource type="Texture2D" uid="uid://b3lfe6awktuhp" path="res://assets/Scripts/Masteries/Banker/banker_1.png" id="2_lnvuh"]
+[ext_resource type="Texture2D" uid="uid://dcos50eaobfhn" path="res://assets/Scripts/Masteries/Banker/banker_2.png" id="3_a1cby"]
+
+[resource]
+script = ExtResource("1_vuxg8")
+name = "mastery.banker"
+description = Array[String](["mastery.banker.description.1", "mastery.banker.description.2", "mastery.banker.description.3"])
+unlock_text = Array[String](["mastery.banker.unlock.1", "mastery.banker.unlock.2", "mastery.banker.unlock.3"])
+icon = Array[Texture2D]([ExtResource("1_55ggh"), ExtResource("2_lnvuh"), ExtResource("3_a1cby")])
+cost = Array[int]([10, 20, 30])
+ability_charges = 5
+mastery_script = ExtResource("1_qw431")
+metadata/_custom_type_script = "uid://8hcwgbxnbkuw"

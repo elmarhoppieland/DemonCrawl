@@ -1,0 +1,284 @@
+key;en
+
+mastery.auramancer;Auramancer
+mastery.auramancer.description.1;Each stage has 3 random auras, you are immune to the negative effects of auras and can remove them with right-click.
+mastery.auramancer.description.2;Whenever an aura is applied or removed, activate an effect based on the aura.
+mastery.auramancer.description.3;Permanently increase the number of auras in future stages and the quality of their effects, then activate Auramancer effects of all visible auras.
+mastery.auramancer.unlock.1;Unlock I by completing a stage that has 1 of each aura on Normal or above.
+mastery.auramancer.unlock.2;Unlock II by completing a stage that has 5 of each aura on Normal or above.
+mastery.auramancer.unlock.3;Unlock III by completing a stage that has 10 of each aura on Normal or above.
+
+mastery.banker;Banker
+mastery.banker.description.1;Begin the quest with 15 extra coins.
+mastery.banker.description.2;Chests contain double coins.
+mastery.banker.description.3;Double your coins.
+mastery.banker.unlock.1;Unlock by completing a quest on Normal or above with 100 or more coins
+mastery.banker.unlock.2;Unlock II by completing a quest on Normal or above with 200 or more coins
+mastery.banker.unlock.3;Unlock III by completing a quest on Normal or above with 300 or more coins
+
+mastery.barbarian;Barbarian
+mastery.barbarian.description.1;If you can't afford a stranger's price, kill him.
+mastery.barbarian.description.2;Whenever a stranger dies, activate Rotting Head. Whenever a Rotting Head expires, kill all visible monsters.
+mastery.barbarian.description.3;Activate Rotting Heads equal to the number of strangers you have killed.
+mastery.barbarian.unlock.1;Unlock by killing 5 or more strangers in a single quest.
+mastery.barbarian.unlock.2;Unlock II by killing 10 or more strangers in a single quest.
+mastery.barbarian.unlock.3;Unlock III by killing 30 or more strangers in a single quest.
+
+mastery.bookworm;Bookworm
+mastery.bookworm.description.1;Gain a Book item whenever you enter a special stage. Change your research subject at will by clicking on a Book item.
+mastery.bookworm.description.2;Your Book effects will activate even if you're not at full life.
+mastery.bookworm.description.3;Gain an item related to your research subject.
+mastery.bookworm.unlock.1;Unlock I by activating 10 Book effects in a quest on Normal or above.
+mastery.bookworm.unlock.2;Unlock II by activating 30 Book effects in a quest on Normal or above.
+mastery.bookworm.unlock.3;Unlock III by activating 100 Book effects in a quest on Normal or above.
+
+mastery.bubbler;Bubbler
+mastery.bubbler.description.1;At the end of each stage, bubble all visible loot on 0-value cells.
+mastery.bubbler.description.2;Whenever you pop a bubble, reveal a number of random nearby cells equal to the value of the cell it was popped in.
+mastery.bubbler.description.3;Duplicate your bubbles.
+mastery.bubbler.unlock.1;Complete a quest in normal or above with 10 or more bubbles.
+mastery.bubbler.unlock.2;Complete a quest in normal or above with 20 or more bubbles.
+mastery.bubbler.unlock.3;Complete a quest in normal or above with 30 or more bubbles.
+
+mastery.commander;Commander
+mastery.commander.description.1;Click a flagged cell to recruit a familiar to a nearby empty cell for 3 coins.
+mastery.commander.description.2;Whenever a familiar collects loot, perform a unique action based on the type of loot.
+mastery.commander.description.3;Convert your familiars into Instant Familiars.
+mastery.commander.unlock.1;Unlock by having 10 or more familiars
+mastery.commander.unlock.2;Unlock II by having 15 or more familiars
+mastery.commander.unlock.3;Unlock III by having 30 or more familiars
+
+mastery.demolitionist;Demolitionist
+mastery.demolitionist.description.1;Each stage has an additional Barrel. You can throw Barrels. Right click to change the direction of a Barrel.
+mastery.demolitionist.description.2;Increase the radius of all explosion effects.
+mastery.demolitionist.description.3;Launch 4 Barrels into the stage. These Barrels cannot damage you.
+mastery.demolitionist.unlock.1;Unlock by exploding 100 cells in a quest on Normal or above.
+mastery.demolitionist.unlock.2;Unlock II by exploding 300 cells in a quest on Normal or above.
+mastery.demolitionist.unlock.3;Unlock III by exploding 800 cells in a quest on Normal or above.
+
+mastery.detective;Detective
+mastery.detective.description.1;Each stage has a guaranteed stranger. Solve a cell whenever you activate a stranger, but there's a 10% chance to get bad intel!
+mastery.detective.description.2;Whenever you fully and correctly chord a cell, reveal all nearby monsters.
+mastery.detective.description.3;Remove all visible monsters from the board and gain coins equal to their cell values.
+mastery.detective.unlock.1;Unlock by completing a stage on Normal or above with at least 10 visible monsters.
+mastery.detective.unlock.2;Unlock II by completing a stage on Normal or above with at least 50 visible monsters.
+mastery.detective.unlock.3;Unlock III by completing a stage on Normal or above with at least 100 visible monsters.
+
+mastery.exorcist;Exorcist
+mastery.exorcist.description.1;Destroy the first omen you receive.
+mastery.exorcist.description.2;Whenever you lose an omen, gain souls and defense equal to the number of omens you've lost this run.
+mastery.exorcist.description.3;Destroy a random omen.
+mastery.exorcist.unlock.1;Unlock by completing a quest with no Omens.
+mastery.exorcist.unlock.2;Unlock II by completing a Hard quest with no Omens.
+mastery.exorcist.unlock.3;Unlock III by completing a Hard quest with no items.
+
+mastery.firefly;Firefly
+mastery.firefly.description.1;Burning cells do not hurt you. Each stage has burning cells equal to the minimum power.
+mastery.firefly.description.2;Whenever you fully and correctly chord a 2 or greater, burn and reveal a random nearby cell.
+mastery.firefly.description.3;Shoot flares in all directions from visible burning cells.
+mastery.firefly.unlock.1;Unlock by having 10 simultaneous flares.
+mastery.firefly.unlock.2;Unlock II by having 20 simultaneous flares.
+mastery.firefly.unlock.3;Unlock III by having 30 simultaneous flares.
+
+mastery.ghost;Ghost
+mastery.ghost.description.1;Whenever you die, activate Ectodrop.
+mastery.ghost.description.2;Whenever you complete a stage in ghost form, revive with 1 life.
+mastery.ghost.description.3;Activate Ectoplasm and increase the amount of life you revive with.
+mastery.ghost.unlock.1;Unlock by completing a quest on Normal or above with 1 or fewer lives.
+mastery.ghost.unlock.2;Unlock II by completing a quest on Normal or above with an Ectoplasm counter of 400 or greater.
+mastery.ghost.unlock.3;Unlock III by completing a quest on Normal or above with an Ectoplasm counter of 800 or greater.
+
+mastery.guardian;Guardian
+mastery.guardian.description.1;Begin the quest with 1 defense.
+mastery.guardian.description.2;You are immune to life loss outside of damage.
+mastery.guardian.description.3;Gain 3 defense.
+mastery.guardian.unlock.1;Unlock by completing a quest in Normal or above with at least 5 defense.
+mastery.guardian.unlock.2;Unlock II by completing a quest in Normal or above with at least 10 defense.
+mastery.guardian.unlock.3;Unlock III by completing a quest in Normal or above with at least 15 defense.
+
+mastery.human;Human
+mastery.human.description.1;If you are amoral and gain or lose morality, increase the amount by 3 in the same direction.
+mastery.human.description.2;Whenever you are moral and gain morality, gain a soul. Whenever you are immoral and lose morality, solve all cells near 1s.
+mastery.human.description.3;If you are moral, convert visible strangers to strong familiars. If immoral, convert visible monsters into familiars. Pass a number of turns equal to your absolute morality.
+mastery.human.unlock.1;Unlock by completing a quest on Normal or above with 20 or more absolute morality.
+mastery.human.unlock.2;Unlock II by completing a quest on Normal or above with 50 or more absolute morality.
+mastery.human.unlock.3;Unlock III by completing a quest on Normal or above with 100 or more absolute morality.
+
+mastery.hunter;Hunter
+mastery.hunter.description.1;Begin the quest with 3 Minions.
+mastery.hunter.description.2;Every 60 cells opened without a mistake, gain a Minion.
+mastery.hunter.description.3;Reduce the stage power by your number of Minions.
+mastery.hunter.unlock.1;Unlock by completing a quest with at least 5 Minions.
+mastery.hunter.unlock.2;Unlock II by completing a quest with at least 10 Minions.
+mastery.hunter.unlock.3;Unlock III by completing a quest with at least 15 Minions.
+
+mastery.hypnotist;Hypnotist
+mastery.hypnotist.description.1;Delay monster damage by 3 turns.
+mastery.hypnotist.description.2;Your last status effect will increase instead of decrease.
+mastery.hypnotist.description.3;Increase your status effect counters by 10.
+mastery.hypnotist.unlock.1;Unlock by completing a quest with a status effect counter of 100 or greater.
+mastery.hypnotist.unlock.2;Unlock II by completing a quest with a status effect counter of 500 or greater.
+mastery.hypnotist.unlock.3;Unlock III by completing a quest with a status effect counter of 1000 or greater.
+
+mastery.immortal;Immortal
+mastery.immortal.description.1;Begin the quest with an extra revive and one less max life.
+mastery.immortal.description.2;When you are revived, double your lives.
+mastery.immortal.description.3;Gain a revive.
+mastery.immortal.unlock.1;Unlock by completing a quest with 2 or more revives.
+mastery.immortal.unlock.2;Unlock II by completing a quest with 3 or more revives.
+mastery.immortal.unlock.3;Unlock III by completing a quest with 4 or more revives.
+
+mastery.knight;Knight
+mastery.knight.description.1;Begin the quest wearing Simple Robe.
+mastery.knight.description.2;Your armor cannot break.  If you replace an armor, fortify by the durability of the old armor.
+mastery.knight.description.3;Fortify all of your armor by 5.
+mastery.knight.unlock.1;Complete a quest on Normal or above with 20 or more combined armor durability.
+mastery.knight.unlock.2;Complete a quest on Normal or above with 50 or more combined armor durability.
+mastery.knight.unlock.3;Complete a quest on Normal or above with 100 or more combined armor durability.
+
+mastery.lumberjack;Lumberjack
+mastery.lumberjack.description.1;Begin the quest with a Sawblade. You can toggle Sawblade phasing.
+mastery.lumberjack.description.2;Whenever a Sawblade explodes, gain Broken Sawblade.
+mastery.lumberjack.description.3;Set the lifespan of your Sawblades to 1 and reveal a random monster for each lifespan lost this way.
+mastery.lumberjack.unlock.1;Explode 3 Sawblade in a quest on Normal or above.
+mastery.lumberjack.unlock.2;Explode 10 Sawblade in a quest on Normal or above.
+mastery.lumberjack.unlock.3;Explode 20 Sawblade in a quest on Normal or above.
+
+mastery.marksman;Marksman
+mastery.marksman.description.1;The first cell you open each stage does not break your chain.
+mastery.marksman.description.2;If the sum of your chain is greater than the max stage power, kill monsters before they can deal damage to you.
+mastery.marksman.description.3;Double the length and value of your chain.
+mastery.marksman.unlock.1;Unlock by creating a 15-turn chain on Normal or above.
+mastery.marksman.unlock.2;Unlock by creating a 30-turn chain on Normal or above.
+mastery.marksman.unlock.3;Unlock by creating a 50-turn chain on Normal or above.
+
+mastery.mutant;Mutant
+mastery.mutant.description.1;Begin the quest with 3 Cankers that have Brainiac mutations.
+mastery.mutant.description.2;At the end of each stage, each Canker gains a random mutation.
+mastery.mutant.description.3;Spawn a Canker, then activate your Canker mutations without destroying any Cankers.
+mastery.mutant.unlock.1;Unlock by completing a quest on Normal or above with 10 or more Cankers.
+mastery.mutant.unlock.2;Unlock II by completing a quest on Normal or above with 20 or more Cankers.
+mastery.mutant.unlock.3;Unlock III by completing a quest on Normal or above with 30 or more Cankers.
+
+mastery.ninja;Ninja
+mastery.ninja.description.1;When you click a monster, you have a 25% chance to avoid monster damage for each side of its cell that is exposed.
+mastery.ninja.description.2;Monster reveal and death effects are negated.
+mastery.ninja.description.3;Activate Kunai equal to the number of times you have activated your mastery ultimate ability.
+mastery.ninja.unlock.1;Unlock I by completing 5 stages in a row in Normal or above without taking damage.
+mastery.ninja.unlock.2;Unlock II by completing 7 stages in a row in Normal or above without taking damage.
+mastery.ninja.unlock.3;Unlock III by completing 10 stages in a row in Normal or above without taking damage.
+
+mastery.novice;Novice
+mastery.novice.description.1;Reduce your score by half. If you make a mistake on a necessary guess, reduce incoming damage to 1.
+mastery.novice.description.2;If you die with 300 or more points, revive and reduce your score to 0.
+mastery.novice.description.3;Focus an area where you can make progress.
+mastery.novice.unlock.1;Unlock by discovering a 4 or greater.
+mastery.novice.unlock.2;Unlock II by discovering a 5 or greater.
+mastery.novice.unlock.3;Unlock III by discovering a 6 or greater.
+mastery.novice.ability.fail;You must make a guess to proceed.
+mastery.novice.guess_fail;Unlucky guess! Damage reduced to 1.
+
+mastery.poisoner;Poisoner
+mastery.poisoner.description.1;Begin the quest with Poison. Whenever Poison activates, cast Poison Blade.
+mastery.poisoner.description.2;You are immune to life loss from Poison. Toxic cells grant an additional Poison.
+mastery.poisoner.description.3;Consume all of your Poisons, activate an equal number of Spider Fangs, then gain Poison.
+mastery.poisoner.unlock.1;Unlock by completing a quest on Normal or above with 5 or more Poisons.
+mastery.poisoner.unlock.2;Unlock II by completing a quest on Normal or above with 10 or more Poisons.
+mastery.poisoner.unlock.3;Unlock III by completing a quest on Normal or above with a full inventory of Poisons.
+
+mastery.prophet;Prophet
+mastery.prophet.description.1;Increase your XP gain by 35%.
+mastery.prophet.description.2;You are twice as likely to find items you have never acquired.
+mastery.prophet.description.3;Gain between 1 and 5 Tokens.
+mastery.prophet.unlock.1;Unlock by completing a quest with at least 1000 points.
+mastery.prophet.unlock.2;Unlock II by completing a quest with at least 2000 points.
+mastery.prophet.unlock.3;Unlock III by completing a quest with at least 3000 points.
+
+mastery.protagonist;Protagonist
+mastery.protagonist.description.1;All legendary items are favored. Gain a random legendary item when you enter the final stage.
+mastery.protagonist.description.2;Whenever you gain a legendary item, gain a mastery charge. Whenever you replace a legendary item, increase the number of legendary items you can hold.
+mastery.protagonist.description.3;Convert all visible chests into legendary items. Whenever you would die, this instead discharges automatically to prevent death.
+mastery.protagonist.unlock.1;Complete a quest on Normal of above with 2 or more Legendary Items.
+mastery.protagonist.unlock.2;Complete a quest on Normal of above with 3 or more Legendary Items.
+mastery.protagonist.unlock.3;Complete a quest on Normal of above with 4 or more Legendary Items.
+
+mastery.scholar;Scholar
+mastery.scholar.description.1;Activate Quest for Quests at the start of the quest.
+mastery.scholar.description.2;Whenever a status effect is completed, restore 1 life and solve a cell.
+mastery.scholar.description.3;Complete all of your status effects.
+mastery.scholar.unlock.1;Unlock by completing a quest in Normal or above with 3 or more status effects.
+mastery.scholar.unlock.2;Unlock II by completing a quest in Normal or above with 5 or more status effects.
+mastery.scholar.unlock.3;Unlock III by completing a quest in Normal or above with 7 or more status effects.
+
+mastery.scout;Scout
+mastery.scout.description.1;Gain 3% pathfinding at the start of the quest.
+mastery.scout.description.2;Increase your pathfinding cap by 10%. Gain 1% pathfinding whenever you earn the Untouchable award.
+mastery.scout.description.3;Solve a number of cells equal to your pathfinding.
+mastery.scout.unlock.1;Unlock by completing a quest on Normal or above with 20% or more pathfinding.
+mastery.scout.unlock.2;Unlock II by completing a quest on Normal or above with 40% or more pathfinding.
+mastery.scout.unlock.3;Unlock III by completing a quest on Normal or above with 60% or more pathfinding.
+
+mastery.snowflake;Snowflake
+mastery.snowflake.description.1;If there are fewer than 3 frozen cells, click a flagged cell to freeze it.
+mastery.snowflake.description.2;Increase the limit of the above effect by the number of stage mods.
+mastery.snowflake.description.3;Shatter all frozen cells, causing each to explode in a 3x3 area
+mastery.snowflake.unlock.1;Unlock by beating a stage with at least 15 frozen cells.
+mastery.snowflake.unlock.2;Unlock II by beating a stage with at least 30 frozen cells.
+mastery.snowflake.unlock.3;Unlock III by beating a stage with at least 50 frozen cells.
+
+mastery.spark;Spark
+mastery.spark.description.1;Each stage, one cell with loot gains Electric. Monsters in Electric cells deal half damage.
+mastery.spark.description.2;Whenever you collect loot from an Electric cell, apply Electric to cells of the same value in the same column and row.
+mastery.spark.description.3;Apply Electric to all cells between Electric cells, then reveal all Electric cells and kill any living objects within.
+mastery.spark.unlock.1;Complete a stage in Normal or above with 15 or more Electric cells.
+mastery.spark.unlock.2;Complete a stage in Normal or above with 30 or more Electric cells.
+mastery.spark.unlock.3;Complete a stage in Normal or above with 50 or more Electric cells.
+
+mastery.spy;Spy
+mastery.spy.description.1;At the start of each stage, glean 10 hidden cells.
+mastery.spy.description.2;Whenever you chord a 4 or greater, glean nearby hidden cells.
+mastery.spy.description.3;Glean all hidden cells near gleaned hidden cells.
+mastery.spy.unlock.1;Unlock by gleaning 10 or more cells in a single stage in Normal or above.
+mastery.spy.unlock.2;Unlock II by gleaning 50 or more cells in a single stage in Normal or above.
+mastery.spy.unlock.3;Unlock III by gleaning 100 or more cells in a single stage in Normal or above.
+
+mastery.survivor;Survivor
+mastery.survivor.description.1;Begin the quest with 1 extra max life.
+mastery.survivor.description.2;At the end of each stage, gain max life equal to the minimum power if you are injured.
+mastery.survivor.description.3; Solve a number of cells equal to your missing life, then heal to full.
+mastery.survivor.unlock.1;Unlock by completing a quest with 10 or more lives.
+mastery.survivor.unlock.2;Unlock II by completing a quest with 20 or more lives.
+mastery.survivor.unlock.3;Unlock III by completing a quest with 30 or more lives.
+
+mastery.undertaker;Undertaker
+mastery.undertaker.description.1;Gain Bones whenever you consume an item that isn't Bones.
+mastery.undertaker.description.2;When using Bones, you can target any visible cell without an aura.
+mastery.undertaker.description.3;Reveal all cells near sanctified cells and apply sanctified to any monsters in those cells.
+mastery.undertaker.unlock.1;Unlock by burying 10 Bones in a quest on Normal or above.
+mastery.undertaker.unlock.2;Unlock II by burying 20 Bones in a quest on Normal or above.
+mastery.undertaker.unlock.3;Unlock III by burying 30 Bones in a quest on Normal or above.
+
+mastery.warlock;Warlock
+mastery.warlock.description.1;Right click your mastery to cast Blood Magic.
+mastery.warlock.description.2;Whenever you cast a magic item, apply Cursed to a random cell, prioritizing cells with objects.
+mastery.warlock.description.3;Spawn random magic items in empty Cursed cells.
+mastery.warlock.unlock.1;Unlock by destroying 10 objects using Cursed cells in a quest on Normal or above.
+mastery.warlock.unlock.2;Unlock II by destroying 30 objects using Cursed cells in a quest on Normal or above.
+mastery.warlock.unlock.3;Unlock III by destroying 100 objects using Cursed cells in a quest on Normal or above.
+
+mastery.witch;Witch
+mastery.witch.description.1;Reduce incoming damage by your number of omens.
+mastery.witch.description.2;When you enter a stage, remove a stage mod for each of your omens.
+mastery.witch.description.3;Gain a random omen.
+mastery.witch.unlock.1;Unlock by completing a quest with at least 5 omens.
+mastery.witch.unlock.2;Unlock II by completing a quest with at least 10 omens.
+mastery.witch.unlock.3;Unlock III by completing a quest with at least 15 omens.
+
+mastery.wizard;Wizard
+mastery.wizard.description.1;The first Item Shop in the quest only contains magic items.
+mastery.wizard.description.2;Whenever you cast a magic item, gain a soul.
+mastery.wizard.description.3;Transform your cheapest magic item into one that's worth more, up to twice the item's original value.
+mastery.wizard.unlock.1;Unlock by completing a quest with 5 magic items.
+mastery.wizard.unlock.2;Unlock II by completing a quest with 10 magic items.
+mastery.wizard.unlock.3;Unlock III by completing a quest with 11 fully-charged magic items.
+

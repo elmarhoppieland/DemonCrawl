@@ -20,7 +20,7 @@ This DemonCrawl recreation tries to replicate the original DemonCrawl. Using the
 
 When the game is released, there will be a download in the `releases` secion on this page. Until then, you will have to compile the game yourself by installing Godot.
 
-1. Install Godot on the [official website](https://godotengine.org/download/archive/4.2.2-stable/). **Note:** We use the `4.2.2` version of Godot.
+1. Install Godot on the [official website](https://godotengine.org/).
 2. If you plan on contributing, you should also [install GitHub Desktop](https://desktop.github.com/download/).
 3. Get the source code. You can do this by cloning the repository or by downloading the source code directly from GitHub.
    To clone the repo: On GitHub Desktop, go to File -> Clone Repository -> URL and paste in this page's URL, then click `clone`.

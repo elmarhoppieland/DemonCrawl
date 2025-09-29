@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://l26wus4d320"]
+
+[ext_resource type="Script" uid="uid://cfr747xc3ca41" path="res://Engine/Resources/Scenes/MasteryDisplay.gd" id="1_xs0tm"]
+[ext_resource type="Shader" uid="uid://bkn3o0cujs67t" path="res://Engine/Resources/Scenes/CollectibleTexture.gdshader" id="2_s3yij"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="3_d1xq6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pypo4"]
+resource_local_to_scene = true
+shader = ExtResource("2_s3yij")
+shader_parameter/glow = 0.0
+
+[node name="MasteryDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_xs0tm")
+charge_color = Color(0.235294, 0.623529, 0.984314, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_pypo4")
+layout_mode = 1
+
+[node name="ChargesAnchor" type="Node2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, 14)
+scale = Vector2(0.25, 0.25)
+
+[node name="ColorRect" type="ColorRect" parent="ChargesAnchor"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 64.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ChargesAnchor/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="ChargesContainer" type="HBoxContainer" parent="ChargesAnchor/ColorRect/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TooltipGrabber" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_d1xq6")
+
+[connection signal="interacted" from="TooltipGrabber" to="." method="_on_interacted"]

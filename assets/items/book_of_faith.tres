@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://c00k08w5ckbgs"]
+
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="1_c3ech"]
+[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://assets/sprites/items.png" id="1_xrla1"]
+[ext_resource type="Script" uid="uid://dy5w5lchlil3w" path="res://assets/items/book_of_faith.gd" id="2_ohy1y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m2gx"]
+atlas = ExtResource("1_xrla1")
+region = Rect2(32, 288, 16, 16)
+
+[resource]
+script = ExtResource("1_c3ech")
+name = "item.book-of-faith"
+description = "item.book-of-faith.description"
+cost = 19
+tags = Array[String](["book"])
+icon = SubResource("AtlasTexture_7m2gx")
+item_script = ExtResource("2_ohy1y")
+metadata/_custom_type_script = "uid://d3icmltrt12ld"

@@ -1,0 +1,192 @@
+[gd_scene load_steps=21 format=3 uid="uid://52plnh26fjgo"]
+
+[ext_resource type="Script" uid="uid://d2q0svdo1sdof" path="res://Engine/Scenes/TokenShop/TokenShop.gd" id="1_x20b8"]
+[ext_resource type="Texture2D" uid="uid://b5rt77loesna7" path="res://assets/Backgrounds/token_shop_sky.png" id="2_c6u0t"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://assets/sprites/icons.png" id="3_i3xv6"]
+[ext_resource type="Texture2D" uid="uid://chamkmak0kl0t" path="res://assets/Backgrounds/token_shop.png" id="3_j1oel"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="4_nqp1b"]
+[ext_resource type="Shader" uid="uid://duejth3p8iwji" path="res://Engine/Scenes/MainMenu/ProfileSelect.gdshader" id="4_uy6s8"]
+[ext_resource type="Script" uid="uid://cypm6gm4lirv1" path="res://Engine/Scenes/MainMenu/ChangePageButton.gd" id="5_52qn8"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="6_f5ovn"]
+[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Engine/Resources/UtilityNode/Avatar_atlas.tres" id="10_hyis6"]
+[ext_resource type="Script" uid="uid://d16rb2jruql4e" path="res://Engine/Resources/UtilityNode/Avatar.gd" id="11_3wli1"]
+[ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://Engine/Resources/UtilityNode/XPBar.gd" id="12_qob23"]
+[ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://Engine/Resources/UtilityNode/ProfileNameLabel.gd" id="13_nipms"]
+[ext_resource type="Script" uid="uid://bp8kqfn8liwqp" path="res://Engine/Resources/UtilityNode/FadeButton.gd" id="14_7gi5r"]
+[ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://Engine/Resources/UtilityNode/ProfileLevelLabel.gd" id="14_37g46"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahp6w"]
+atlas = ExtResource("3_i3xv6")
+region = Rect2(22, 44, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7xjk"]
+atlas = ExtResource("3_i3xv6")
+region = Rect2(34, 44, 12, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2bg06"]
+shader = ExtResource("4_uy6s8")
+shader_parameter/inversion = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g63rs"]
+atlas = ExtResource("3_i3xv6")
+region = Rect2(80, 16, 16, 16)
+script = ExtResource("4_nqp1b")
+name = "button_arrow"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ecwdy"]
+shader = ExtResource("4_uy6s8")
+shader_parameter/inversion = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ts3ab"]
+font_size = 8
+font_color = Color(0.745098, 0.745098, 0.745098, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="TokenShop" type="Control"]
+layout_mode = 3
+anchor_right = 0.25
+anchor_bottom = 0.25
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+script = ExtResource("1_x20b8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_c6u0t")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_j1oel")
+
+[node name="BackToMenuButton" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 7.0
+script = ExtResource("14_7gi5r")
+shortcut_action = &"back"
+texture_normal = SubResource("AtlasTexture_ahp6w")
+texture_hover = SubResource("AtlasTexture_c7xjk")
+
+[node name="TooltipGrabber" type="Node" parent="BackToMenuButton"]
+script = ExtResource("6_f5ovn")
+text = "scene-return.main"
+context_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 24.0
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "SELECT_CATEGORY"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="CategoryTabButtons" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 2
+
+[node name="ChangePageButton" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_2bg06")
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_g63rs")
+script = ExtResource("5_52qn8")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "2/2"
+
+[node name="ChangePageButton2" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_ecwdy")
+layout_mode = 2
+texture = SubResource("AtlasTexture_g63rs")
+flip_h = true
+flip_v = true
+script = ExtResource("5_52qn8")
+direction = 1
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="CategoryScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="Categories" type="MarginContainer" parent="VBoxContainer/CategoryScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -8
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Avatar" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("10_hyis6")
+script = ExtResource("11_3wli1")
+
+[node name="XPBar" type="ProgressBar" parent="VBoxContainer/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+max_value = 93.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("12_qob23")
+
+[node name="Control" type="Control" parent="VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = -1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ProfileNameLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "<profile-name>"
+script = ExtResource("13_nipms")
+
+[node name="ProfileLevelLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Lv1"
+label_settings = SubResource("LabelSettings_ts3ab")
+script = ExtResource("14_37g46")
+
+[connection signal="pressed" from="BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]

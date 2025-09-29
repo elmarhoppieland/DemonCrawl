@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="SpecialStageBase" load_steps=3 format=3 uid="uid://qdvgm2nj7if0"]
-
-[ext_resource type="Script" path="res://Engine/Resources/DataContainers/Stage/StageBase/SpecialStageBase.gd" id="1_q0tx8"]
-[ext_resource type="Script" path="res://Assets/SpecialStages/Item Shop.gd" id="2_k1o4s"]
-
-[resource]
-script = ExtResource("1_q0tx8")
-name = "Item Shop"
-special_script = ExtResource("2_k1o4s")

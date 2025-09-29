@@ -1,0 +1,78 @@
+[gd_resource type="Resource" script_class="TokenShopLevelItem" load_steps=14 format=3 uid="uid://bso2mgt3uqn7s"]
+
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_4lnlb"]
+[ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/data_containers/condition/condition.gd" id="1_ib5ko"]
+[ext_resource type="Script" uid="uid://ba12xyhtl3546" path="res://engine/resources/data_containers/token_shop/token_shop_level_item.gd" id="1_v2k4g"]
+[ext_resource type="Script" uid="uid://b6r7ibk3k16c7" path="res://assets/token_shop/upgrades/crafter.gd" id="2_hhni1"]
+[ext_resource type="Script" uid="uid://buyf4lo0eqekd" path="res://engine/resources/data_containers/token_shop/token_shop_script_reward.gd" id="3_0sacl"]
+[ext_resource type="Script" uid="uid://ddeq2y3c5x2gj" path="res://engine/resources/data_containers/condition/flag_condition.gd" id="4_ymp7h"]
+[ext_resource type="Script" uid="uid://bpcmqksfvwi2u" path="res://assets/token_shop/upgrades/crafter_iv.gd" id="5_bn2ic"]
+[ext_resource type="Script" uid="uid://bc5j1se6atjx3" path="res://assets/token_shop/upgrades/crafter_v.gd" id="6_vx1jf"]
+
+[sub_resource type="Texture2D" id="Texture2D_6n3vl"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_4lnlb")
+name = "tokenshop/upgrade_crafter"
+
+[sub_resource type="Resource" id="Resource_c7tsi"]
+script = ExtResource("3_0sacl")
+reward_script = ExtResource("2_hhni1")
+
+[sub_resource type="Resource" id="Resource_60vxu"]
+script = ExtResource("4_ymp7h")
+flag = "hard"
+
+[sub_resource type="Resource" id="Resource_3srau"]
+script = ExtResource("3_0sacl")
+reward_script = ExtResource("5_bn2ic")
+
+[sub_resource type="Resource" id="Resource_4qf84"]
+script = ExtResource("3_0sacl")
+reward_script = ExtResource("6_vx1jf")
+
+[resource]
+script = ExtResource("1_v2k4g")
+Base/name = "token-shop.category.upgrades.crafter"
+Base/description = "token-shop.category.upgrades.crafter.description"
+Base/icon = SubResource("Texture2D_6n3vl")
+Base/cost = 30
+Base/reward = SubResource("Resource_c7tsi")
+Base/conditions = Array[ExtResource("1_ib5ko")]([])
+Base/unlock_conditions = Array[ExtResource("1_ib5ko")]([SubResource("Resource_60vxu")])
+level_count = 5
+level_0/name = "token-shop.category.upgrades.crafter"
+level_0/description = "token-shop.category.upgrades.crafter.description"
+level_0/icon = SubResource("Texture2D_6n3vl")
+level_0/cost = 30
+level_0/reward = SubResource("Resource_c7tsi")
+level_0/conditions = Array[ExtResource("1_ib5ko")]([])
+level_0/unlock_conditions = Array[ExtResource("1_ib5ko")]([SubResource("Resource_60vxu")])
+level_1/name = "token-shop.category.upgrades.crafter"
+level_1/description = "token-shop.category.upgrades.crafter.description"
+level_1/icon = SubResource("Texture2D_6n3vl")
+level_1/cost = 30
+level_1/reward = SubResource("Resource_c7tsi")
+level_1/conditions = Array[ExtResource("1_ib5ko")]([])
+level_1/unlock_conditions = Array[ExtResource("1_ib5ko")]([SubResource("Resource_60vxu")])
+level_2/name = "token-shop.category.upgrades.crafter"
+level_2/description = "token-shop.category.upgrades.crafter.description"
+level_2/icon = SubResource("Texture2D_6n3vl")
+level_2/cost = 30
+level_2/reward = SubResource("Resource_c7tsi")
+level_2/conditions = Array[ExtResource("1_ib5ko")]([])
+level_2/unlock_conditions = Array[ExtResource("1_ib5ko")]([SubResource("Resource_60vxu")])
+level_3/name = "token-shop.category.upgrades.crafter"
+level_3/description = "token-shop.category.upgrades.crafter.description.4"
+level_3/icon = SubResource("Texture2D_6n3vl")
+level_3/cost = 30
+level_3/reward = SubResource("Resource_3srau")
+level_3/conditions = Array[ExtResource("1_ib5ko")]([])
+level_3/unlock_conditions = Array[ExtResource("1_ib5ko")]([SubResource("Resource_60vxu")])
+level_4/name = "token-shop.category.upgrades.crafter"
+level_4/description = "token-shop.category.upgrades.crafter.description.5"
+level_4/icon = SubResource("Texture2D_6n3vl")
+level_4/cost = 30
+level_4/reward = SubResource("Resource_4qf84")
+level_4/conditions = Array[ExtResource("1_ib5ko")]([])
+level_4/unlock_conditions = Array[ExtResource("1_ib5ko")]([SubResource("Resource_60vxu")])

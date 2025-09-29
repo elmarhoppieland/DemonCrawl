@@ -1,0 +1,196 @@
+[gd_scene load_steps=12 format=3 uid="uid://p84gdey0jib0"]
+
+[ext_resource type="Script" uid="uid://ctycrn5fy23oo" path="res://addons/IconManager/IconManagerIconEditor.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://j0tyb28468no" path="res://addons/IconManager/icons.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://di06pt73owbs0" path="res://addons/IconManager/TrashCan.png" id="3"]
+[ext_resource type="Script" uid="uid://cdiw18gmems41" path="res://addons/IconManager/IntegerEdit.gd" id="4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp041"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.115294, 0.131765, 0.161961, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 3
+anti_aliasing = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdq7x"]
+resource_local_to_scene = true
+atlas = ExtResource("2")
+
+[sub_resource type="LabelSettings" id="LabelSettings_gdcsj"]
+font_color = Color(0.52549, 0.388235, 0.337255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hl1l"]
+bg_color = Color(0.0666667, 0.0745098, 0.0941176, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_51yf1"]
+font_color = Color(0.321569, 0.529412, 0.396078, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w82f5"]
+font_color = Color(0.52549, 0.388235, 0.337255, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3hwgh"]
+font_color = Color(0.321569, 0.529412, 0.396078, 1)
+
+[node name="IconManagerIconEditor" type="MarginContainer"]
+script = ExtResource("1")
+icon_name = "Icon"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wp041")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_pdq7x")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Icon"
+expand_to_text_length = true
+
+[node name="DeleteButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3")
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "x"
+label_settings = SubResource("LabelSettings_gdcsj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer/GridContainer/Label"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8hl1l")
+
+[node name="IntegerEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+select_all_on_focus = true
+script = ExtResource("4")
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "y"
+label_settings = SubResource("LabelSettings_51yf1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer/GridContainer/Label2"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8hl1l")
+
+[node name="IntegerEdit2" type="LineEdit" parent="HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+select_all_on_focus = true
+script = ExtResource("4")
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "w"
+label_settings = SubResource("LabelSettings_w82f5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer/GridContainer/Label3"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8hl1l")
+
+[node name="IntegerEdit3" type="LineEdit" parent="HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+select_all_on_focus = true
+script = ExtResource("4")
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "h"
+label_settings = SubResource("LabelSettings_3hwgh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer/GridContainer/Label4"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8hl1l")
+
+[node name="IntegerEdit4" type="LineEdit" parent="HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+select_all_on_focus = true
+script = ExtResource("4")
+
+[connection signal="text_changed" from="HBoxContainer/VBoxContainer/HBoxContainer/NameEdit" to="." method="_on_name_edit_text_changed"]
+[connection signal="text_submitted" from="HBoxContainer/VBoxContainer/HBoxContainer/NameEdit" to="." method="_on_name_edit_text_submitted"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/GridContainer/IntegerEdit" to="." method="_on_integer_edit_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/GridContainer/IntegerEdit2" to="." method="_on_integer_edit_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/GridContainer/IntegerEdit3" to="." method="_on_integer_edit_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer/GridContainer/IntegerEdit4" to="." method="_on_integer_edit_value_changed"]

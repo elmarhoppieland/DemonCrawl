@@ -1,0 +1,230 @@
+[gd_scene load_steps=14 format=3 uid="uid://ckftsugq2vfat"]
+
+[ext_resource type="Script" uid="uid://dqqqo4430laq0" path="res://Engine/Scenes/QuestSelect/EditEquipment.gd" id="1_78tgn"]
+[ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://assets/sprites/icons.png" id="3_1tjlh"]
+[ext_resource type="Script" uid="uid://bp8kqfn8liwqp" path="res://Engine/Resources/UtilityNode/FadeButton.gd" id="3_bw2v2"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="4_hcstr"]
+[ext_resource type="Script" uid="uid://631a8dlwe7ms" path="res://Engine/Resources/UtilityNode/FocusGrabber.gd" id="5_w562y"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="6_i6q32"]
+[ext_resource type="Script" uid="uid://bbh8o5vyaranh" path="res://Engine/Resources/UtilityNode/DCLineEdit.gd" id="7_t2hu2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_so3ln"]
+atlas = ExtResource("3_1tjlh")
+region = Rect2(22, 44, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw2v2"]
+atlas = ExtResource("3_1tjlh")
+region = Rect2(34, 44, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a24e1"]
+atlas = ExtResource("3_1tjlh")
+region = Rect2(0, 70, 16, 16)
+script = ExtResource("4_hcstr")
+name = "icon_blank"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6qwc"]
+atlas = ExtResource("3_1tjlh")
+region = Rect2(96, 16, 16, 16)
+script = ExtResource("4_hcstr")
+name = "button_masteries"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4tul"]
+atlas = ExtResource("3_1tjlh")
+region = Rect2(112, 16, 16, 16)
+script = ExtResource("4_hcstr")
+name = "button_chests"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syfkg"]
+atlas = ExtResource("3_1tjlh")
+region = Rect2(128, 16, 16, 16)
+script = ExtResource("4_hcstr")
+name = "button_sigils"
+
+[node name="EditEquipment" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_78tgn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 6
+
+[node name="FadeButton" type="MarginContainer" parent="VBoxContainer/MarginContainer3"]
+layout_mode = 2
+script = ExtResource("3_bw2v2")
+texture_normal = SubResource("AtlasTexture_so3ln")
+texture_hover = SubResource("AtlasTexture_bw2v2")
+metadata/_custom_type_script = "uid://bp8kqfn8liwqp"
+
+[node name="TooltipGrabber" type="Node" parent="VBoxContainer/MarginContainer3/FadeButton"]
+script = ExtResource("6_i6q32")
+text = "scene-return.quests"
+context_mode = 0
+metadata/_custom_type_script = "uid://fhgkw1iml6g3"
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "edit-equipment.title"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="MasteriesButton" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = -1
+theme_override_constants/margin_bottom = -1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton/MarginContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_a24e1")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_t6qwc")
+
+[node name="FocusGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton"]
+script = ExtResource("5_w562y")
+
+[node name="TooltipGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton"]
+script = ExtResource("6_i6q32")
+text = "edit-equipment.masteries.title"
+subtext = "edit-equipment.masteries.subtext"
+context_mode = 0
+
+[node name="ChestsButton" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = -1
+theme_override_constants/margin_bottom = -1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton/MarginContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_a24e1")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_k4tul")
+
+[node name="FocusGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton"]
+script = ExtResource("5_w562y")
+main = true
+
+[node name="TooltipGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton"]
+script = ExtResource("6_i6q32")
+text = "edit-equipment.chests.title"
+subtext = "edit-equipment.chests.subtext"
+context_mode = 0
+
+[node name="SigilsButton" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = -1
+theme_override_constants/margin_bottom = -1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton/MarginContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_a24e1")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_syfkg")
+
+[node name="FocusGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton"]
+script = ExtResource("5_w562y")
+main = true
+
+[node name="TooltipGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton"]
+script = ExtResource("6_i6q32")
+text = "edit-equipment.sigils.title"
+subtext = "edit-equipment.sigils.subtext"
+context_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 3
+
+[node name="DCLineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+placeholder_text = "gui.search"
+script = ExtResource("7_t2hu2")
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FlowContainer" type="HFlowContainer" parent="VBoxContainer/MarginContainer2/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer3/FadeButton" to="." method="_on_back_button_pressed"]
+[connection signal="interacted" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton/FocusGrabber" to="." method="_on_masteries_button_interacted"]
+[connection signal="interacted" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton/FocusGrabber" to="." method="_on_chests_button_interacted"]
+[connection signal="interacted" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton/FocusGrabber" to="." method="_on_sigils_button_interacted"]

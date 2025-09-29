@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl07eret4ujpn"]
+
+[ext_resource type="Texture2D" uid="uid://co56d710r6qow" path="res://assets/sprites/Inventory.png" id="1_0ehd2"]
+[ext_resource type="Script" uid="uid://bak3r6abwmdql" path="res://Engine/Resources/Scenes/Inventory.gd" id="1_6hkni"]
+
+[node name="Inventory" type="MarginContainer"]
+anchors_preset = -1
+anchor_left = 0.25
+anchor_right = 0.25
+anchor_bottom = 0.25
+offset_left = -77.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_6hkni")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = -3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_0ehd2")
+stretch_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 47
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ItemGrid" type="GridContainer" parent="MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 3
+theme_override_constants/v_separation = 3
+columns = 4

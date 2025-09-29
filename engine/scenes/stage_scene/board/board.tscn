@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://b07xutea3tepb"]
+
+[ext_resource type="Script" uid="uid://cgn4bbn8v7hwm" path="res://Engine/Scenes/StageScene/Board/Board.gd" id="1_cxyap"]
+[ext_resource type="Script" uid="uid://d2r5sufr00t7u" path="res://Engine/Scenes/StageScene/Board/BoardCellContainer.gd" id="2_qp6ts"]
+[ext_resource type="Script" uid="uid://0du033cfeojh" path="res://Engine/Resources/UtilityNode/StageCamera.gd" id="3_coe5m"]
+
+[node name="Board" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cxyap")
+
+[node name="BoardCellContainer" type="GridContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
+columns = 12
+script = ExtResource("2_qp6ts")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StageCamera" type="Camera2D" parent="Control"]
+unique_name_in_owner = true
+script = ExtResource("3_coe5m")
+move_speed = 650.0
