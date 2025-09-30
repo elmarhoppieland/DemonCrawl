@@ -16,50 +16,34 @@ Most contributors likely only need to edit files, in which case only reading the
 ## Summary
 
 If you're just starting out, there's a good chance you only need to edit scripts and don't need to create any new ones. If that is the case, you probably don't need to read through this entire file, but can instead just mimic the rest of the script. Here are some general conventions that you should know about:
-- File names are in `PascalCase`, variable and function names in `snake_case` and constant names in `UPPER_SNAKE_CASE`.
-- The project has some script templates to quickly get you started. When creating a script, use `Full Example Template` to see how your file should be structured.
+- File names, variable names, and function names are in `snake_case`. Constant names are in `CONSTANT_CASE`.
+- Node names are in `PascalCase`.
+- The project has some script templates to quickly get you started. I recommend creating your first script using the `Full Example Template` to see how your file should be structured.
 - Simply look at existing files and mimic their structure and conventions and you're probably doing things right.
-- Everything should **always** be statically typed, either by using `var my_variable := 0` (note the `:=`) or `var my_variable: Array[Dictionary] = []`. This should also be done in a `for` loop if Godot can't figure out the type by itself (such as when iterating over an untyped `Array` or over `Dictionary` keys).
+- Everything should **always** be statically typed, either by using `var my_variable := 0` (note the `:=`) or `var my_variable: Array[Dictionary] = []`. This should also be done in a `for` loop if Godot can't figure out the type by itself (such as when iterating over an untyped `Array` or over an untyped `Dictionary`'s keys).
+- If a variable cannot be statically typed, it does not need to be typed as `Variant`. Instead, simply write `var my_variable = (...)`. If a function argument or return value cannot be statically typed, it _should_ be typed as `Variant`. For example, `func my_func(argument: Variant) -> Variant`.
 
 This is probably enough to be able to start writing code. If you're ever confused about any conventions, feel free to read the rest of this style guide then.
 
 ## Filesystem
 
-First, let's go over the project's filesystem. In the root directory, we have the following directories:
+First, let's go over the project's filesystem. You should read this if you are unsure where to place a file.
 
-### Assets
+In the root directory, we have the following directories:
+
+### res://assets
 This directory contains all files found in the `assets` directory in your local DemonCrawl installation, as well as some more assets extracted from the game's `data.win` file, as well as resources (like items or loot tables) and some scripts (like mastery scripts and item scripts). There are some more miscellaneous files found in here, when they make sense to go there.
 
-### Resources
-This directory contains various resources that are often reused. Most files are scripts that are written for very general situations. All resources are divided into 6 directories. When creating a new file that can be used more often than the one time it is created for, it should go in a fitting subdirectory:
-#### Resources/DataContainers
-All scripts in here inherit from `Resource` and its instances are used to store data. For example, `Quest` can store various data about a quest, like the quest's stages and the player's lives.
-#### Resources/HelperObjects
-All scripts in here are not directly used to store data but are instead generalized objects to make a specific thing easier to do. For example, `AnnotatedTexture` allows you to make a texture that can show a tooltip.
-#### Resources/Scenes
-This directory contains scenes (and their root scripts). It is similar to [UtilityNode](#utilitynode), but used for more complex nodes that require a scene.
-#### Resources/Shaders
-This directory contains all shaders used in the game.
-#### Resources/Singletons
-This directory contains all of the game's Singletons. A singleton is an object that is globally accessible. It is either an autoload, where the scene instance is globally accessible under its name, or a script, where the class name can be used to call all needed functions. For example, `ChestPopup` can be used anywhere using `ChestPopup.show_rewards()`.
-#### Resources/UtilityNode
-This directory contains generalized scripts of Nodes that can be directly created anywhere and have a specific purpose. For example, `FocusGrabber` can be created as a child of a `Control` to move the focus to the control when it is clicked.
+As a rule of thumb, every directory and file in `res://assets` should be safely removable, unless it has another file in `res://assets` that depends on it. Files in `res://engine` should not depend on files in `res://assets` (though this rule is sometimes broken).
 
-### Scenes
-This directory contains all of the game's scenes that are placed as the root of the scene tree. Each scene has its own separate directory. Each scene's directory also contains all of the scenes files that should not be used outside of the scene. If a scene's file is ever used outside of the scene, it should be moved into the [Resources](#resources) directory since it can be used generally.
+### res://engine
+This directory contains all files that are necessary for the game to run. All files may depend on files in `res://engine`, and its files may not be easily removable.
 
-### addons
-This directory contains the project's addons (also known as plugins). Each addon has its own directory, and no file here should be edited, created, or deleted without first mentioning it to me (@elmarhoppieland). Each addon is made very generally and explained as documentation in the main script (named the same as the addon).
-
-### EffectManager
-This is a directory created by the `EffectManager` plugin to handle various effects. The 2 files here usually don't need to be edited and should instead be edited via the `EffectManager` tab in the top bar in the editor.
+### res://addons
+This directory contains the project's addons (also known as plugins). Each addon has its own directory, and no file here should be edited, created, or deleted without mentioning it in the pr. Each addon is made very generically and documented in the main script (named the same as the addon).
 
 ### Other Directories
 The other directories (`script_templates`, `.data`, `.docs`, `.git` and `.godot`) are used for internal features and can almost always be ignored. They are also invisible in the editor.
-
-### Miscellaneous Files
-Some files are not placed in a specific directory. In the root directory, all files need to be here. In the `Resources` directory, the miscellaneous files should be moved in a fitting subdirectory. This is still a work-in-progress.
-Files should never be created outside a fitting directory.
 
 ## Naming Conventions
 
@@ -69,18 +53,16 @@ Casing should be done in the following way:
 
 ||Casing|Notes|
 |--|--|--|
-|File|`PascalCase.extension`|For scripts, should be the same as the class.|
-|Class|`PascalCase`|Should be the same as the file name.|
-|Constant|`UPPPER_SNAKE_CASE`||
+|File|`snake_case.extension`|For scripts, should be the same as the class (converted to snake case).|
+|Class|`PascalCase`|Should be the same as the file name (converted to pascal case).|
+|Constant|`CONSTANT_CASE`||
 |Variable|`snake_case`||
 |Method|`snake_case()`||
 |Signal|`snake_case()`|The `()` is technically optional if the signal doesn't have arguments, but should be added anyway.|
 
-**Note:** This casing convention differs slightly from the global Godot style guide, since files are recommended to be cased in `snake_case`. We use `PascalCase` because that makes the script's file name the same as the class name.
-
 ### Private members
 
-A script may use functions, variables or constants that should not be used outside the script. Godot doesn't provide a way to actually private a member, but we can prefix the function, variable or constant with an underscore (`_`) to indicate that is should not be used outside the script. This should be used whenever it doesn't make sense to use a member externally.
+A script may use functions, variables or constants that should not be used outside the script. Godot doesn't provide a way to actually private a member, but we can prefix the function, variable or constant with an underscore (`_`) to indicate that is should not be used outside the script. This should be used whenever it doesn't make sense to use a member externally. A getter or setter function (`get_*()` and `set_*()`) may be added if the variable is private but should be settable/gettable publicly.
 
 ### Virtual Methods
 
@@ -117,6 +99,9 @@ var my_normal_variable: Array[Dictionary] = []
 # all onready variables go here.
 @onready var my_onready_variable ## Variable documentation.
 # ==============================================================================
+# all signals go here.
+signal my_signal() ## Signal documentation.
+# ==============================================================================
 
 func _init(parameter: Dictionary) -> void:
 	my_normal_variable.append(parameter)
@@ -138,6 +123,47 @@ Types of variables are separated using exactly 78 `=` symbols. This can just be 
 After the variables, we add one blank line before all the script's functions.
 The order of the functions doesn't matter, but functions should be separated using 2 empty lines. This separation excludes documentation placed above the function.
 
-## Miscellaneous
+## Static Typing
 
-One last thing to mention is that everything, unless impossible, should **always** be statically typed. This has 2 main advantages: 1) The game will run slightly faster, but more importantly, 2) Godot will have more and better autocomplete as well as be able to catch some errors more easily (like when misspelling a variable name).
+Godot offer dynamic typing, which means that a variable can first be assigned one type of value and then another. This can be useful, but has a few drawbacks:
+- The game will perform slightly slower
+- Autocomplete may not always work
+- `Ctrl`-clicking a variable or function may not take you to its definition or documentation.
+
+Godot also offers static typing, to enforce a specific type of value in a variable. Doing this will create a performance boost, but more importantly, Godot will be able to more easily catch errors. Therefore, we **always** statically type variables and functions.
+
+Godot allows for two ways to statically type a variable:
+```gdscript
+var my_var_explicit: int = 0
+var my_var_inferred := 0
+```
+When possible, variables types should be _inferred_, which means that Godot will deduce the type of the variable. If Godot cannot deduce the variable's type, we either write the type explicitly or use `as`:
+```gdscript
+var my_var := (...) as int
+```
+
+Functions should be statically typed like this:
+```gdscript
+func my_func(argument: int, default_argument: Vector2 = Vector2.ZERO) -> String:
+    (...)
+```
+
+We should also statically type our `Arrays` and `Dictionaries`, as follows:
+```gdscript
+var array: Array[Resource] = []
+var dictionary: Dictionary[int, String] = []
+```
+Note that Godot does not support nested types, so an `Array` of `Dictionaries` cannot be further statically typed.
+
+If a variable, `Array` or `Dictionary` _cannot_ be statically typed, we omit the type entirely:
+```gdscript
+var my_var = (...)
+var array := []
+var dict := {}
+```
+
+If a function cannot be statically typed, we write `Variant`:
+```gdscript
+func my_func(argument: Variant, default: Array = []) -> Variant:
+    (...)
+```
