@@ -1,20 +1,14 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://c2e5q3krfyiw8"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://c2e5q3krfyiw8"]
 
-[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/DataContainers/Collectible/ItemData.gd" id="1_5wo7v"]
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://assets/sprites/items.png" id="1_pu0av"]
+[ext_resource type="Texture2D" uid="uid://d4g1djq6lyvrq" path="res://assets/items/bag_of_coal.png" id="1_0dedl"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="1_5wo7v"]
 [ext_resource type="Script" uid="uid://dq6wubkyyqqeo" path="res://assets/items/bag_of_coal.gd" id="2_p4324"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ncikj"]
-atlas = ExtResource("1_pu0av")
-region = Rect2(304, 16, 16, 16)
 
 [resource]
 script = ExtResource("1_5wo7v")
 name = "item.bag-of-coal"
 description = "item.bag-of-coal.description"
 mana = 100
-cost = 0
-tags = Array[String]([])
-icon = SubResource("AtlasTexture_ncikj")
+icon = ExtResource("1_0dedl")
 item_script = ExtResource("2_p4324")
 metadata/_custom_type_script = "uid://d3icmltrt12ld"

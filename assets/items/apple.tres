@@ -1,12 +1,8 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://be0trl6ly4wv2"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://be0trl6ly4wv2"]
 
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="1_huwnm"]
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://assets/sprites/items.png" id="1_na8ie"]
+[ext_resource type="Texture2D" uid="uid://dhxl720bprun2" path="res://assets/items/apple.png" id="1_ysb2k"]
 [ext_resource type="Script" uid="uid://dadvpbreu2l7e" path="res://assets/items/apple.gd" id="2_ube8l"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1qlun"]
-atlas = ExtResource("1_na8ie")
-region = Rect2(224, 64, 16, 16)
 
 [resource]
 script = ExtResource("1_huwnm")
@@ -14,6 +10,6 @@ name = "item.apple"
 description = "item.apple.description"
 cost = 5
 tags = Array[String](["easter"])
-icon = SubResource("AtlasTexture_1qlun")
+icon = ExtResource("1_ysb2k")
 item_script = ExtResource("2_ube8l")
 metadata/_custom_type_script = "uid://d3icmltrt12ld"

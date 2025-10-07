@@ -1,3 +1,4 @@
+@abstract
 extends Node
 class_name MasteryUnlocker
 

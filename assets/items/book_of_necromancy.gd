@@ -1,5 +1,5 @@
 @tool
-extends PassiveItem
+extends Book
 
 # ==============================================================================
 const BONES := preload("res://assets/items/bones.tres")
