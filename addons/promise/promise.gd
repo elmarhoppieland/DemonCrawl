@@ -24,6 +24,11 @@ func _init(_signals: Variant) -> void:
 		mode = Mode.MAP
 
 
+@warning_ignore("shadowed_variable")
+static func list(...signals: Array) -> Promise:
+	return Promise.new(signals)
+
+
 ## Returns a [Variant] value after one of the [member signals] has been emitted.
 ## The returned value is the argument of the [Signal], or [code]null[/code] if the
 ## [Signal] does not have a parameter.

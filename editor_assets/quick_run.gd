@@ -3,7 +3,7 @@ extends EditorScript
 
 
 func _run() -> void:
-	print(error_string(DirAccess.remove_absolute("res://.godot/editor/favorites.")))
+	pass
 
 
 static func convert_filenames_to_snake_case() -> void:

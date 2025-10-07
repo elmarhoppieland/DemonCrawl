@@ -6,7 +6,7 @@ extends PassiveItem
 # ==============================================================================
 
 # the 'you may find duplicate items' effect is hardcoded
-# see the ItemDB.ItemFilter._ignore_items_in_inventory getter
+# see the ItemPool.ItemFilter._ignore_items_in_inventory getter
 
 func stage_enter() -> void:
 	var highest_count := 0

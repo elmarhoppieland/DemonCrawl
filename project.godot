@@ -40,8 +40,6 @@ mouse_cursor/custom_image="res://assets/sprites/cursor.png"
 [editor]
 
 script/search_in_file_extensions=PackedStringArray("gd", "gdshader", "tscn", "tres", "uid")
-naming/scene_name_casing=1
-naming/script_name_casing=1
 
 [editor_plugins]
 

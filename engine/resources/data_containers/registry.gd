@@ -11,6 +11,8 @@ class_name Registry
 @export var token_shop_categories: Array[TokenShopCategoryBase] = []
 
 @export var auras: Array[Script] = []
+
+@export var items: Array[ItemData] = []
 # ==============================================================================
 
 func get_elemental_auras() -> Array[Aura]:

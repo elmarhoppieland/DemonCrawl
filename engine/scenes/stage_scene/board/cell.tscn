@@ -1,18 +1,18 @@
 [gd_scene load_steps=18 format=3 uid="uid://bl8bwoewf0m57"]
 
-[ext_resource type="Script" uid="uid://bk5gpwf2tbj5e" path="res://Engine/Scenes/StageScene/Board/Cell.gd" id="1_e3wqt"]
-[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://assets/Skins/default/empty.png" id="3_j2awk"]
-[ext_resource type="Script" uid="uid://km0tl3hpf81q" path="res://Engine/Scenes/StageScene/Board/CellTextureRect.gd" id="3_te1nx"]
-[ext_resource type="Script" uid="uid://hddki14im5pk" path="res://Engine/Scenes/StageScene/Board/CellValueLabel.gd" id="4_3k5be"]
-[ext_resource type="Script" uid="uid://b3l1eajfjs5vj" path="res://Engine/Scenes/StageScene/Board/CellAuraModulator.gd" id="4_ocqma"]
-[ext_resource type="Script" uid="uid://bc8y26f6y6t1q" path="res://Engine/Scenes/StageScene/Board/CellFlagSprite.gd" id="6_ty2a2"]
-[ext_resource type="Script" uid="uid://dmnt7qof86lgs" path="res://Engine/Scenes/StageScene/Board/CellObjectTextureRect.gd" id="7_3xaxv"]
-[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="7_ggwll"]
-[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://assets/Skins/default/flag.png" id="8_cbs4h"]
-[ext_resource type="Script" uid="uid://l8pdgdp8v741" path="res://Engine/Resources/UtilityNode/TextParticles.gd" id="12_4ov3c"]
-[ext_resource type="PackedScene" uid="uid://cn8gaau2ecden" path="res://Engine/Resources/Scenes/TextureShatter.tscn" id="13_mfvjy"]
-[ext_resource type="Script" uid="uid://k2n0orq8v38q" path="res://Engine/Resources/UtilityNode/Grabber.gd" id="13_tuktl"]
-[ext_resource type="Shader" uid="uid://dm184lu8cvpj0" path="res://Engine/Resources/Shaders/DirectionArrow.gdshader" id="14_27bf8"]
+[ext_resource type="Script" uid="uid://bk5gpwf2tbj5e" path="res://engine/scenes/stage_scene/board/cell.gd" id="1_e3wqt"]
+[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://assets/skins/default/empty.png" id="3_j2awk"]
+[ext_resource type="Script" uid="uid://km0tl3hpf81q" path="res://engine/scenes/stage_scene/board/cell_texture_rect.gd" id="3_te1nx"]
+[ext_resource type="Script" uid="uid://hddki14im5pk" path="res://engine/scenes/stage_scene/board/cell_value_label.gd" id="4_3k5be"]
+[ext_resource type="Script" uid="uid://b3l1eajfjs5vj" path="res://engine/scenes/stage_scene/board/cell_aura_modulator.gd" id="4_ocqma"]
+[ext_resource type="Script" uid="uid://bc8y26f6y6t1q" path="res://engine/scenes/stage_scene/board/cell_flag_sprite.gd" id="6_ty2a2"]
+[ext_resource type="Script" uid="uid://dmnt7qof86lgs" path="res://engine/scenes/stage_scene/board/cell_object_texture_rect.gd" id="7_3xaxv"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="7_ggwll"]
+[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://assets/skins/default/flag.png" id="8_cbs4h"]
+[ext_resource type="Script" uid="uid://l8pdgdp8v741" path="res://engine/resources/utility_node/text_particles.gd" id="12_4ov3c"]
+[ext_resource type="PackedScene" uid="uid://cn8gaau2ecden" path="res://engine/resources/scenes/texture_shatter.tscn" id="13_mfvjy"]
+[ext_resource type="Script" uid="uid://k2n0orq8v38q" path="res://engine/resources/utility_node/grabber.gd" id="13_tuktl"]
+[ext_resource type="Shader" uid="uid://dm184lu8cvpj0" path="res://engine/resources/shaders/direction_arrow.gdshader" id="14_27bf8"]
 [ext_resource type="Texture2D" uid="uid://cx3w4pgpiwi3p" path="res://assets/sprites/dir_arrow.png" id="14_ffohp"]
 
 [sub_resource type="Curve" id="Curve_0u5ry"]
@@ -21,9 +21,9 @@ point_count = 3
 
 [sub_resource type="LabelSettings" id="LabelSettings_rm8r2"]
 font_size = 8
-font_color = Color(1, 0.772549, 0.772549, 1)
+font_color = Color(1, 0.77254903, 0.77254903, 1)
 outline_size = 3
-outline_color = Color(0.737255, 0.0470588, 0.0470588, 1)
+outline_color = Color(0.7372549, 0.047058824, 0.047058824, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6d8hb"]
 shader = ExtResource("14_27bf8")
@@ -53,7 +53,7 @@ script = ExtResource("4_ocqma")
 
 [node name="CellTextureRect" type="TextureRect" parent="CellAuraModulator"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 mouse_filter = 2

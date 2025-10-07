@@ -258,7 +258,7 @@ class ItemFilter:
 				invalid_count += 1
 	
 	func _to_string() -> String:
-		return "<ItemDB.ItemFilter(%s)>" % ", ".join(get_property_list()\
+		return "<ItemPool.ItemFilter(%s)>" % ", ".join(get_property_list()\
 			.filter(func(prop: Dictionary) -> bool: return prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and prop.class_name.is_empty())\
 			.map(func(prop: Dictionary) -> String: return "%s: %s" % [prop.name.capitalize(), get(prop.name)])
 		)

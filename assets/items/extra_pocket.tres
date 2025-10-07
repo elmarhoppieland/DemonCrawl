@@ -1,20 +1,14 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://cxn3q6eomkwwi"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://cxn3q6eomkwwi"]
 
-[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/DataContainers/Collectible/ItemData.gd" id="1_6ckc4"]
-[ext_resource type="Texture2D" uid="uid://cg7b0gjpfaxrf" path="res://assets/sprites/items.png" id="1_k2ei0"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="1_6ckc4"]
+[ext_resource type="Texture2D" uid="uid://ih3ieqpue5cb" path="res://assets/items/extra_pocket.png" id="1_75c08"]
 [ext_resource type="Script" uid="uid://bwt5teaqgnp7l" path="res://assets/items/extra_pocket.gd" id="2_tuwl7"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8vq1i"]
-atlas = ExtResource("1_k2ei0")
-region = Rect2(48, 32, 16, 16)
 
 [resource]
 script = ExtResource("1_6ckc4")
 name = "item.extra-pocket"
 description = "item.extra-pocket.description"
-mana = 0
 cost = 4
-tags = Array[String]([])
-icon = SubResource("AtlasTexture_8vq1i")
+icon = ExtResource("1_75c08")
 item_script = ExtResource("2_tuwl7")
 metadata/_custom_type_script = "uid://d3icmltrt12ld"
