@@ -1,0 +1,201 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0ulv1pxmpr77"]
+
+[ext_resource type="Script" uid="uid://bjonssjjjk2ag" path="res://addons/dc_plugin/add_item.gd" id="1_pk35f"]
+[ext_resource type="PackedScene" uid="uid://c4ooeq4f4j6ec" path="res://addons/dc_plugin/data_win_config_popup.tscn" id="2_1i1p2"]
+
+[node name="AddItem" type="PopupPanel"]
+oversampling_override = 1.0
+title = "Add Item..."
+size = Vector2i(289, 258)
+visible = true
+borderless = false
+script = ExtResource("1_pk35f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(256, 192)
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 285.0
+offset_bottom = 254.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="NameEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+keep_editing_on_text_submit = true
+
+[node name="NameEditTimer" type="Timer" parent="VBoxContainer/HBoxContainer/NameEdit"]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+
+[node name="DisableTranslationStringsButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Disable Translation Strings"
+
+[node name="DescriptionEditContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DescriptionEditContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/DescriptionEditContainer/HBoxContainer"]
+layout_mode = 2
+text = "Description"
+
+[node name="EnableTranslationStringsButton" type="Button" parent="VBoxContainer/DescriptionEditContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Enable Translation Strings"
+
+[node name="DescriptionEdit" type="TextEdit" parent="VBoxContainer/DescriptionEditContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+wrap_mode = 1
+scroll_fit_content_height = true
+
+[node name="AddManaButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add Mana"
+
+[node name="ManaEditContainer" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ManaEditContainer"]
+layout_mode = 2
+text = "Mana"
+
+[node name="ManaEdit" type="SpinBox" parent="VBoxContainer/ManaEditContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 1.0
+select_all_on_focus = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Cost"
+
+[node name="CostEdit" type="SpinBox" parent="VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 1.0
+select_all_on_focus = true
+
+[node name="UseDataWinButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Use Sprite From data.win..."
+
+[node name="DataWinContainer" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DataWinContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="DataWinCheckBox" type="CheckBox" parent="VBoxContainer/DataWinContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+button_pressed = true
+text = "Use Sprite From data.win:"
+
+[node name="LocateDataWinButton" type="Button" parent="VBoxContainer/DataWinContainer/VBoxContainer"]
+layout_mode = 2
+text = "Locate Files..."
+
+[node name="DataWinTextureRect" type="TextureRect" parent="VBoxContainer/DataWinContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Type"
+
+[node name="TypeOptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+selected = 1
+item_count = 6
+popup/item_0/text = "Book"
+popup/item_0/id = 0
+popup/item_1/text = "Consumable"
+popup/item_1/id = 1
+popup/item_2/text = "Legendary"
+popup/item_2/id = 2
+popup/item_3/text = "Magic"
+popup/item_3/id = 3
+popup/item_4/text = "Omen"
+popup/item_4/id = 4
+popup/item_5/text = "Passive"
+popup/item_5/id = 5
+
+[node name="RegistryCheckBox" type="CheckBox" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+button_pressed = true
+text = "Add To Registry"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="CreateButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Create"
+
+[node name="DataWinConfigPopup" parent="." instance=ExtResource("2_1i1p2")]
+unique_name_in_owner = true
+position = Vector2i(512, 0)
+size = Vector2i(256, 4503)
+visible = false
+
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/NameEdit" to="." method="_on_name_edit_text_changed"]
+[connection signal="timeout" from="VBoxContainer/HBoxContainer/NameEdit/NameEditTimer" to="." method="_on_name_edit_timer_timeout"]
+[connection signal="pressed" from="VBoxContainer/DisableTranslationStringsButton" to="." method="_on_disable_translation_strings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/DescriptionEditContainer/HBoxContainer/EnableTranslationStringsButton" to="." method="_on_enable_translation_strings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/AddManaButton" to="." method="_on_add_mana_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/UseDataWinButton" to="." method="_on_use_data_win_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/DataWinContainer/VBoxContainer/LocateDataWinButton" to="." method="_on_locate_data_win_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/CreateButton" to="." method="_on_create_button_pressed"]
+[connection signal="canceled" from="DataWinConfigPopup" to="." method="_on_data_win_config_popup_canceled"]
+[connection signal="dir_selected" from="DataWinConfigPopup" to="." method="_on_data_win_config_popup_dir_selected"]

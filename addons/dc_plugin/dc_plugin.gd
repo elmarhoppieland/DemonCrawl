@@ -1,6 +1,7 @@
 @tool
 extends EditorPlugin
 
+#region error supressor
 
 var errors: VBoxContainer :
 	get:
@@ -86,3 +87,38 @@ func _process(_delta: float) -> void:
 	if old_error_count > new_error_count:
 		print_rich("[color=web_gray]DCPlugin: Suppressed %d errors. See [url=https://github.com/godotengine/godot/issues/110548]this GitHub issue[/url] for more info.[/color]" % (old_error_count - new_error_count))
 	saved_error_count = new_error_count
+
+#endregion
+
+
+const COMMANDS_GROUP_NAME := "DemonCrawl Helper Commands"
+const COMMAND_ADD_ITEM := "Add Item"
+const COMMAND_ADD_ITEM_KEY := COMMANDS_GROUP_NAME + "/dc.add-item"
+const COMMAND_ADD_MASTERY := "Add Mastery"
+const COMMAND_ADD_MASTERY_KEY := COMMANDS_GROUP_NAME + "/dc.add-mastery"
+const ADD_ITEM_SCENE := preload("res://addons/dc_plugin/add_item.tscn")
+const ADD_MASTERY_SCENE := preload("res://addons/dc_plugin/add_mastery_popup.tscn")
+
+
+func _enter_tree() -> void:
+	EditorInterface.get_command_palette().add_command(COMMAND_ADD_ITEM, COMMAND_ADD_ITEM_KEY, add_item)
+	EditorInterface.get_command_palette().add_command(COMMAND_ADD_MASTERY, COMMAND_ADD_MASTERY_KEY, add_mastery)
+
+
+func _exit_tree() -> void:
+	EditorInterface.get_command_palette().remove_command(COMMAND_ADD_ITEM_KEY)
+	EditorInterface.get_command_palette().remove_command(COMMAND_ADD_MASTERY_KEY)
+
+
+func add_item() -> void:
+	var window := ADD_ITEM_SCENE.instantiate() as Window
+	EditorInterface.popup_dialog_centered(window, Vector2(512, 384))
+	
+	window.close_requested.connect(window.queue_free)
+
+
+func add_mastery() -> void:
+	var window := ADD_MASTERY_SCENE.instantiate() as Window
+	EditorInterface.popup_dialog_centered(window, Vector2(512, 384))
+	
+	window.close_requested.connect(window.queue_free)

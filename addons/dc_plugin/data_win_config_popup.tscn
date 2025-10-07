@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4ooeq4f4j6ec"]
+
+[ext_resource type="Script" uid="uid://r343vbr0qrmc" path="res://addons/dc_plugin/data_win_config_popup.gd" id="1_u1bt0"]
+
+[node name="DataWinConfigPopup" type="PopupPanel"]
+oversampling_override = 1.0
+title = "Configure data.win Export Location"
+size = Vector2i(256, 139)
+visible = true
+borderless = false
+script = ExtResource("1_u1bt0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 252.0
+offset_bottom = 135.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "This tool can extract sprites from DemonCrawl's data.win file. In order to use it, you need to export its contents using UnderTaleModTool.
+
+You can download UnderTaleModTool on [url=https://github.com/UnderminersTeam/UndertaleModTool/releases/tag/bleeding-edge]GitHub[/url].
+
+After downloading UnderTaleModTool, open the data.win file (likely located at [url]C:\\Program Files (x86)\\Steam\\steamapps\\common\\DemonCrawl[/url]) using the tool. Then go to Scripts > Resource Exporters > ExportAllSprites.csx. [b]Make sure to export the sprites with subdirectories enabled[/b]. When UnderTaleModTool is finished exporting, press the button below to locate the exported files."
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="LocateButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Locate Exported Sprites"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a Directory"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[connection signal="meta_clicked" from="VBoxContainer/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/LocateButton" to="." method="_on_locate_button_pressed"]
+[connection signal="canceled" from="FileDialog" to="." method="_on_file_dialog_canceled"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]
