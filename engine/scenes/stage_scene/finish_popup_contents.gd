@@ -19,9 +19,9 @@ signal finished()
 # ==============================================================================
 
 func _ready() -> void:
-	xp_label.text = "%d/%d" % [XPBar.xp, XPBar.get_next_level_xp()]
-	xp_progress_bar.value = XPBar.xp
-	xp_progress_bar.max_value = XPBar.get_next_level_xp()
+	xp_label.text = "%d/%d" % [Codex.xp, Codex.get_next_level_xp()]
+	xp_progress_bar.value = Codex.xp
+	xp_progress_bar.max_value = Codex.get_next_level_xp()
 
 
 func show_rewards() -> void:
@@ -65,7 +65,7 @@ func show_rewards() -> void:
 			whole_xp_to_add += total_xp
 			total_xp = 0
 		
-		XPBar.xp += whole_xp_to_add
+		Codex.xp += whole_xp_to_add
 		
 		if total_xp <= 0:
 			break
@@ -87,8 +87,8 @@ func _process(_delta: float) -> void:
 				reward.instant()
 	
 	if is_visible_in_tree():
-		xp_progress_bar.value = XPBar.xp
-		xp_label.text = "%d/%d" % [XPBar.xp, XPBar.get_next_level_xp()]
+		xp_progress_bar.value = Codex.xp
+		xp_label.text = "%d/%d" % [Codex.xp, Codex.get_next_level_xp()]
 
 
 func get_score_reward(type: StringName) -> ScoreReward:

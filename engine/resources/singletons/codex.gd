@@ -37,6 +37,16 @@ static var selected_mastery_changed := Signal() :
 
 static var tokens: int = Eternal.create(0)
 
+static var xp: int = Eternal.create(0) :
+	set(new_xp):
+		xp = new_xp
+		
+		while xp > get_next_level_xp():
+			xp -= get_next_level_xp()
+			level += 1
+
+static var level: int = Eternal.create(1)
+
 static var profiles: Array[CodexProfile] = Eternal.create([] as Array[CodexProfile])
 # ==============================================================================
 
@@ -128,6 +138,14 @@ static func notify_heirlooms_changed() -> void:
 
 static func add_profile_slot() -> void:
 	profiles.append(CodexProfile.new())
+
+
+# TODO: not 100% accurate yet
+static func get_next_level_xp() -> int:
+	if level < 23:
+		return (level + 13) * level / 2 + 93
+	
+	return (level + 80) * 5
 
 
 static func get_selectable_mastery(mastery: Variant) -> MasteryInstanceData:

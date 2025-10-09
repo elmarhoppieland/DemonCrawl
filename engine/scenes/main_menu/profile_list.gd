@@ -32,7 +32,7 @@ func _ready() -> void:
 			var path := DIR.path_join(file)
 			
 			var avatar_atlas_position: Vector2i = Eternity.get_saved_value(path, Avatar, "atlas_position")
-			var level: int = Eternity.get_saved_value(path, XPBar, "level")
+			var level: int = Eternity.get_saved_value(path, Codex, "level")
 			var profile_name := file.get_basename()
 			
 			var profile := MainMenuProfile.create(profile_name, avatar_atlas_position, level)
