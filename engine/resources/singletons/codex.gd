@@ -44,8 +44,16 @@ static var xp: int = Eternal.create(0) :
 		while xp > get_next_level_xp():
 			xp -= get_next_level_xp()
 			level += 1
+		xp_changed.emit()
 
 static var level: int = Eternal.create(1)
+
+static var xp_changed := Signal() :
+	get:
+		if xp_changed.is_null():
+			(Codex as GDScript).add_user_signal("xp_changed")
+			xp_changed = Signal(Codex, "xp_changed")
+		return xp_changed
 
 static var profiles: Array[CodexProfile] = Eternal.create([] as Array[CodexProfile])
 # ==============================================================================

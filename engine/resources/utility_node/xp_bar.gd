@@ -13,12 +13,11 @@ func _enter_tree() -> void:
 	
 	custom_minimum_size.y = 16
 	
-	if not Eternity.loaded.is_connected(update):
-		Eternity.loaded.connect(update)
-		Eternity.saved.connect(update)
-	update(null)
+	if not Codex.xp_changed.is_connected(update):
+		Codex.xp_changed.connect(update)
+	update()
 
-func update(_arg) -> void:
+func update() -> void:
 	max_value = Codex.get_next_level_xp()
 	value = Codex.xp
 
