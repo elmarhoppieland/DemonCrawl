@@ -13,12 +13,11 @@ func _enter_tree() -> void:
 	label_settings.outline_color = Color.BLACK
 	label_settings.outline_size = 3
 	
-	if not Eternity.loaded.is_connected(update):
-		Eternity.loaded.connect(update)
-		Eternity.saved.connect(update)
-	update(null)
+	if not Codex.xp_changed.is_connected(update):
+		Codex.xp_changed.connect(update)
+	update()
 
-func update(_arg):
+func update():
 	text = tr("generic.level.abbr")
 	if "%" in text:
 		text %= Codex.level
