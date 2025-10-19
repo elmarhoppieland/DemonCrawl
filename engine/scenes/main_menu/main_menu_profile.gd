@@ -26,9 +26,9 @@ class_name MainMenuProfile
 		
 		var text := tr("generic.level.abbr")
 		if "%" in text:
-			text %= XPBar.level
+			text %= Codex.level
 		else:
-			text += "." + str(XPBar.level)
+			text += "." + str(Codex.level)
 		
 		level_label.text = text
 # ==============================================================================
