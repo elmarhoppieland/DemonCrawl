@@ -99,7 +99,7 @@ func get_overview_text() -> String:
 	if pathfinding > 0:
 		text += "• " + (tr("stats.overview.pathfinding").format({"pathfinding": pathfinding})) + "\n"
 	if powerchording > 0:
-		text += "• " + (tr("stats.overview.pathfinding").format({"powerchording": powerchording})) + "\n"
+		text += "• " + (tr("stats.overview.powerchording").format({"powerchording": powerchording})) + "\n"
 	
 	if not is_equal_approx(rare_loot_modifier, 1.0):
 		text += "• " + (tr("stats.overview.rare-loot-modifier").format({"modifier": roundi(100 * rare_loot_modifier)})) + "\n"
