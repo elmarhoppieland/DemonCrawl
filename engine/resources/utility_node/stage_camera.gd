@@ -16,6 +16,7 @@ const ZOOM_BEGIN := Vector2(0.75, 0.75)
 @export var shake_duration := 0.2
 # ==============================================================================
 var shake_enabled := false
+var last_mouse_pos := Vector2.ZERO
 
 var _zoom_tween: Tween
 # ==============================================================================
@@ -30,6 +31,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var input_vector := Input.get_vector("pan_left", "pan_right", "pan_up", "pan_down")
 	position += move_speed * input_vector * delta / zoom
+	
+	if Input.is_action_pressed("grab_screen"):
+		input_vector = last_mouse_pos - get_viewport().get_mouse_position()
+		position += input_vector / zoom
+	
+	last_mouse_pos = get_viewport().get_mouse_position()
 	
 	var scroll := int(Input.is_action_just_released("zoom_in")) - int(Input.is_action_just_released("zoom_out"))
 	if scroll != 0:
