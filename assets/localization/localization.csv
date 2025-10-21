@@ -137,6 +137,7 @@ stats.overview.chain-value;Chain value: {value}
 stats.overview.chain-length;Chain length: {length}
 stats.overview.chain-sum;Chain sum: {sum}
 stats.overview.pathfinding;Pathfinding: {pathfinding}%
+stats.overview.powerchording;Powerchording: {powerchording}%
 stats.overview.rare-loot-modifier;Rare loot modifier: {modifier}%
 stats.overview.chests-opened;Chests opened: {chests}
 stats.overview.monsters-killed;Monsters killed: {monsters}
