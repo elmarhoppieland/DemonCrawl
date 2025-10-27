@@ -15,7 +15,7 @@
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("1_jd80n")
-name = "Difficulties/Normal"
+name = "difficulties/Normal"
 
 [resource]
 script = ExtResource("8_f1lbq")

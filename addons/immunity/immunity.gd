@@ -7,6 +7,32 @@ static func create_immunity_list() -> ImmunityList:
 	return ImmunityList.new()
 
 
+## Tries to call [param callable], by doing the following:
+## [br]- First, the [param immunity_signal] is proparated using [EffectManager],
+## using the given [param mutable] and [param args].
+## [br]- If the result is [code]true[/code], calls [param callable] and returns
+## its result.
+## [br]- If the result is [code]false[/code], does not call [param callable] and
+## returns [code]null[/code].
+## [br][br][b]Note:[/b] The [param immunity_signal] should take a boolean parameter,
+## to which the [param mutable] points. This is the mutable parameter that determines
+## whether the [param callable] can be called.
+static func try_call(callable: Callable, immunity_signal: Signal, mutable: int, ...args: Array) -> Variant:
+	if can_call.callv([immunity_signal, mutable] + args):
+		return callable.call()
+	return null
+
+
+## Returns whether a [Callable] can be called using the given [param immunity_signal],
+## by propagating it using [EffectManager] and using the given [param mutable]
+## and [param args].
+## [br][br][b]Note:[/b] The [param immunity_signal] should take a boolean parameter,
+## to which the [param mutable] points. This is the mutable parameter that determines
+## whether the [Callable] can be called.
+static func can_call(immunity_signal: Signal, mutable: int, ...args: Array) -> bool:
+	return EffectManager.propagate_mutable.callv([immunity_signal, mutable] + args)
+
+
 class ImmunityList:
 	var _blockers: Dictionary[String, Dictionary] = {}
 	var _forwarded_immunities: Array[ImmunityList] = []

@@ -89,7 +89,6 @@ static func propagate_mutable(effect: Signal, mutable: int, ...args: Array) -> V
 static func _propagate(effect: Signal, mutable: int, ...args: Array) -> Variant:
 	var connections: Array[Dictionary] = []
 	connections.assign(effect.get_connections())
-	args = args.duplicate()
 	if not connections.is_empty():
 		var previous_mutable := get_priority_tree().current_mutable
 		var previous_args := get_priority_tree().current_args
@@ -105,19 +104,8 @@ static func _propagate(effect: Signal, mutable: int, ...args: Array) -> Variant:
 
 
 static func propagate_forward(effect: Signal) -> Callable:
-	var object := effect.get_object()
-	var arg_count := -1
-	for s in object.get_signal_list():
-		if s.name == effect.get_name():
-			arg_count = s.args.size()
-			break
-	assert(arg_count >= 0, "Could not find the effect signal on its object.")
-	
-	var callable := func propagate_forward_lambda() -> Variant:
-		return _propagate.callv([effect, get_priority_tree().current_mutable] + get_priority_tree().current_args)
-	if arg_count > 0:
-		callable = callable.unbind(arg_count)
-	return callable
+	return func propagate_forward_lambda(...args: Array) -> Variant:
+		return _propagate.callv([effect, get_priority_tree().current_mutable] + args)
 
 
 ## Returns the priority tree. This is a [SceneTree]-like object that holds priority
@@ -404,10 +392,6 @@ class PriorityRoot extends PrioritySection:
 			connections = child.propagate(connections)
 		
 		for connection in connections:
-			if get_tree().current_args.size() > connection.callable.get_argument_count():
-				Debug.log_error("Too many arguments provided. Expected at most %d, but received %d." % [connection.callable.get_argument_count(), get_tree().current_args.size()])
-				continue
-			
 			if get_tree().current_mutable < 0:
 				connection.callable.callv(get_tree().current_args)
 			else:

@@ -3,11 +3,11 @@ extends MasteryUnlocker
 
 # ==============================================================================
 
-func _enter_tree() -> void:
+func _enable() -> void:
 	get_quest().get_object_effects().spawned.connect(_object_spawned)
 
 
-func _exit_tree() -> void:
+func _disable() -> void:
 	get_quest().get_object_effects().spawned.disconnect(_object_spawned)
 
 

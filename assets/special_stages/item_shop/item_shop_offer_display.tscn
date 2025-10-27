@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bmqwxo8kiep6w"]
 
-[ext_resource type="Script" uid="uid://ryjpyb28fxfu" path="res://Engine/Scenes/SpecialStages/Item Shop/ItemShopOfferDisplay.gd" id="1_3a802"]
-[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://Engine/Resources/Scenes/Frame.tscn" id="1_qjdbf"]
-[ext_resource type="PackedScene" uid="uid://dppdeqskdv8hc" path="res://Engine/Resources/Scenes/CollectibleDisplay.tscn" id="2_3a802"]
-[ext_resource type="PackedScene" uid="uid://d3fpf8gbjxsbx" path="res://Engine/Resources/Scenes/CoinValue.tscn" id="5_6jwi3"]
+[ext_resource type="Script" uid="uid://ryjpyb28fxfu" path="res://assets/special_stages/item_shop/item_shop_offer_display.gd" id="1_3a802"]
+[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="1_qjdbf"]
+[ext_resource type="PackedScene" uid="uid://dppdeqskdv8hc" path="res://engine/resources/scenes/collectible_display.tscn" id="2_3a802"]
+[ext_resource type="PackedScene" uid="uid://d3fpf8gbjxsbx" path="res://engine/resources/scenes/coin_value.tscn" id="5_6jwi3"]
 
 [node name="ItemShopOfferDisplay" type="VBoxContainer"]
 theme_override_constants/separation = -3

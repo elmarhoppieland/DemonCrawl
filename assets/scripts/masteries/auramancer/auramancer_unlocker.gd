@@ -4,11 +4,11 @@ class_name AuramancerUnlocker
 
 # ==============================================================================
 
-func _enter_tree() -> void:
+func _enable() -> void:
 	get_quest().get_stage_effects().completed.connect(_stage_completed)
 
 
-func _exit_tree() -> void:
+func _disable() -> void:
 	get_quest().get_stage_effects().completed.disconnect(_stage_completed)
 
 

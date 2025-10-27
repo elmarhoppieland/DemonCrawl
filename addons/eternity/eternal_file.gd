@@ -260,20 +260,35 @@ func _prepare_resource_list() -> Array[Object]:
 
 
 func _prepare_variant(variant: Variant, resources: Array[Object], allow_packing: bool = true) -> void:
-	if allow_packing and variant is Object and _is_object_packable(variant):
-		processing_owner_stack.append(variant)
-		_prepare_variant(variant._export_packed(), resources)
+	match typeof(variant):
+		TYPE_OBJECT:
+			_prepare_object(variant, resources, allow_packing)
+		TYPE_ARRAY:
+			_prepare_array(variant, resources, allow_packing)
+		TYPE_DICTIONARY:
+			_prepare_dictionary(variant, resources, allow_packing)
+
+
+func _prepare_object(object: Object, resources: Array[Object], allow_packing: bool = true) -> void:
+	if not is_instance_valid(object):
+		return
+	
+	if allow_packing and _is_object_packable(object):
+		processing_owner_stack.append(object)
+		_prepare_variant(object._export_packed(), resources)
 		processing_owner_stack.pop_back()
-	elif variant is Object and variant not in resources:
-		if variant is Script:
-			var name := UserClassDB.script_get_class(variant)
-			if not name.is_empty():
-				return
-		resources.append(variant)
-	elif variant is Array:
-		_prepare_array(variant, resources, allow_packing)
-	elif variant is Dictionary:
-		_prepare_dictionary(variant, resources, allow_packing)
+		return
+	
+	if object is Node and object.has_method("_export_children"):
+		processing_owner_stack.append(object)
+		_prepare_variant(object._export_children(), resources)
+		processing_owner_stack.pop_back()
+		return
+	
+	if object is Script and not UserClassDB.script_get_class(object).is_empty():
+		return
+	
+	resources.append(object)
 
 
 func _prepare_array(array: Array, resources: Array[Object], allow_packing: bool = true) -> void:
@@ -425,11 +440,7 @@ func _parse_ini(file: FileAccess, additive: bool = false) -> void:
 					(func() -> void:
 						var parent_string := current_section.get_slice("parent=", 1).get_slice(" ", 0).get_slice("]", 0)
 						var parent = _parse_value(parent_string)
-						if parent is PendingResourceBase:
-							while not parent.is_ready(_resources):
-								await _resource_saved
-							
-							parent = parent.create(_resources)
+						parent = await await_resource(parent)
 						
 						assert(parent is Node, "Cannot add a Node as a child of a non-Node.")
 						parent.add_child(node)
@@ -455,6 +466,8 @@ func _parse_ini(file: FileAccess, additive: bool = false) -> void:
 	
 	processing_owner_stack.pop_back()
 	assert(processing_owner_stack.is_empty(), "Processing stack did not get cleared.")
+	
+	_resource_saved.emit(-1)
 
 
 func _read_line(file: FileAccess) -> String:
@@ -504,7 +517,7 @@ func _set_variant(variant: Variant, key: Variant, value: Variant) -> void:
 					assert(variant is Node, "Cannot add children to a non-Node.")
 					assert(value is Array, "Cannot unpack children; the value must be an Array.")
 					for i in value:
-						assert(i is Node, "Cannot add child: Node expected, but %s was found." % (i.get_class() if i is Object else type_string(typeof(i))))
+						assert(i is Node, "Cannot add child: Node expected, but %s was found." % Stringifier.get_type_string(i))
 						variant.add_child(i)
 					return
 				
@@ -519,6 +532,10 @@ func await_resource(resource: Variant) -> Variant:
 	
 	while not resource.is_ready(_resources):
 		await _resource_saved
+		
+		if processing_owner_stack.is_empty():
+			Debug.log_error("Could not load a pending resource of type %s. Invalid id?" % Stringifier.get_type_string(resource))
+			return (resource as PendingResourceBase).create(_resources)
 	
 	var added_owner := false
 	if processing_owner_stack[-1] != owner:
@@ -605,7 +622,7 @@ func _parse_value(value: String) -> Variant:
 				continue
 			dict[key] = parsed_value
 		if is_pending:
-			return PendingResourceDictionary.new(dict)
+			return UntypedPendingResourceDictionary.new(dict)
 		return dict
 	
 	if UserClassDB.class_exists(value):
@@ -828,7 +845,9 @@ func _stream_encode(stream: ValueStream) -> void:
 		await stream.step(_serialize_header("node", properties))
 		
 		if node.has_method("_export_children"):
-			await stream.step("*children = %s\n" % _serialize_value(node._export_children()))
+			var children = node._export_children()
+			if children is not Array or not children.is_empty():
+				await stream.step("*children = %s\n" % _serialize_value(children))
 		
 		for property in node.get_property_list():
 			if property.name == "script":
@@ -978,16 +997,28 @@ func _stringify_uid(uid: int) -> String:
 
 
 ## Base class for all not yet available [Resource]s.
+@abstract
 class PendingResourceBase:
 	## Returns whether the underlying [Resource] can be obtained.
 	@warning_ignore("unused_parameter")
 	func is_ready(resources: Dictionary[int, Object]) -> bool:
-		return false
+		return _is_ready(resources)
 	
-	## Returns the underlying [Resource], or another [Variant] type that contains the [Resource].
+	## Virtual method. Should return whether the underlying [Resource] can be obtained.
+	@abstract func _is_ready(resources: Dictionary[int, Object]) -> bool
+	
+	## Returns the underlying [Resource], or another [Variant] type that contains
+	## the [Resource]. If this pending resource is not ready (see [method is_ready]),
+	## returns a fallback value that is as close to the expected value as possible.
 	@warning_ignore("unused_parameter")
 	func create(resources: Dictionary[int, Object]) -> Variant:
-		return null
+		return _create(resources)
+	
+	## Virtual method. Should create and return the underlying [Resource], or the
+	## [Variant] type that contains the [Resource]. If this pending resource
+	## is not ready (see [method _is_ready]), should create a fallback value
+	## that is as close to the expected value as possible.
+	@abstract func _create(resources: Dictionary[int, Object]) -> Variant
 	
 	static func _is_ready_safe(value: Variant, resources: Dictionary[int, Object]) -> bool:
 		return not value is PendingResourceBase or value.is_ready(resources)
@@ -1001,13 +1032,11 @@ class PendingResource extends PendingResourceBase:
 	func _init(id: int) -> void:
 		self.id = id
 	
-	## Returns whether a [Resource] with this [Resource]'s [member id] exists.
-	func is_ready(resources: Dictionary[int, Object]) -> bool:
+	func _is_ready(resources: Dictionary[int, Object]) -> bool:
 		return id in resources
 	
-	## Returns the [Resource] with this object's [member id].
-	func create(resources: Dictionary[int, Object]) -> Object:
-		return resources[id]
+	func _create(resources: Dictionary[int, Object]) -> Object:
+		return resources.get(id, null)
 
 
 ## An [Array] of values, where at least one is an unavailable [Resource].
@@ -1018,12 +1047,10 @@ class UntypedPendingResourceArray extends PendingResourceBase:
 	func _init(array: Array) -> void:
 		self.array = array
 	
-	## Returns whether all [PendingResourceBase]s in this [Array] are ready.
-	func is_ready(resources: Dictionary[int, Object]) -> bool:
+	func _is_ready(resources: Dictionary[int, Object]) -> bool:
 		return not array.any(func(a: Variant) -> bool: return a is PendingResourceBase and not a.is_ready(resources))
 	
-	## Returns this [Array], after creating all of its [PendingResourceBase]s.
-	func create(resources: Dictionary[int, Object]) -> Array:
+	func _create(resources: Dictionary[int, Object]) -> Array:
 		return array.map(func(a: Variant) -> Variant:
 			if a is PendingResourceBase:
 				return a.create(resources)
@@ -1040,23 +1067,22 @@ class TypedPendingResourceArray extends UntypedPendingResourceArray:
 		super(array)
 		self.array_base = array_base
 	
-	## Returns [member array_base], after assigning it this [Array]'s contents.
-	func create(resources: Dictionary[int, Object]) -> Array:
+	func _create(resources: Dictionary[int, Object]) -> Array:
 		array_base.assign(super(resources))
 		return array_base
 
 
-class PendingResourceDictionary extends PendingResourceBase:
+class UntypedPendingResourceDictionary extends PendingResourceBase:
 	var dict := {}
 	
 	@warning_ignore("shadowed_variable")
 	func _init(dict: Dictionary) -> void:
 		self.dict = dict
 	
-	func is_ready(resources: Dictionary[int, Object]) -> bool:
+	func _is_ready(resources: Dictionary[int, Object]) -> bool:
 		return dict.keys().all(_is_ready_safe.bind(resources)) and dict.values().all(_is_ready_safe.bind(resources))
 	
-	func create(resources: Dictionary[int, Object]) -> Dictionary:
+	func _create(resources: Dictionary[int, Object]) -> Dictionary:
 		for key in dict.keys():
 			if dict[key] is PendingResourceBase:
 				dict[key] = dict[key].create(resources)
@@ -1075,10 +1101,10 @@ class PendingResourceInstantiator extends PendingResourceBase:
 		self.instantiator = instantiator
 		self.args = args
 	
-	func is_ready(resources: Dictionary[int, Object]) -> bool:
+	func _is_ready(resources: Dictionary[int, Object]) -> bool:
 		return args.all(_is_ready_safe.bind(resources))
 	
-	func create(resources: Dictionary[int, Object]) -> Object:
+	func _create(resources: Dictionary[int, Object]) -> Object:
 		for i in args.size():
 			if args[i] is PendingResourceBase:
 				args[i] = args[i].create(resources)

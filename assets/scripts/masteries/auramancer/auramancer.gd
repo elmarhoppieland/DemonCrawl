@@ -7,7 +7,7 @@ const AURA_COUNT := 3
 # ==============================================================================
 
 func _enable() -> void:
-	get_quest().get_immunity().add_blocker(Aura, &"negative_effect", _negative_effect)
+	(get_quest().get_event_bus(Aura.AuraEffects) as Aura.AuraEffects).can_apply_negative_effect.connect(_negative_effect)
 	get_quest().get_stage_effects().generated.connect(_stage_generate)
 	get_quest().get_cell_effects().aura_removed.connect(_aura_remove)
 	
@@ -15,7 +15,7 @@ func _enable() -> void:
 
 
 func _disable() -> void:
-	get_quest().get_immunity().remove_blocker(Aura, &"negative_effect", _negative_effect)
+	(get_quest().get_event_bus(Aura.AuraEffects) as Aura.AuraEffects).can_apply_negative_effect.disconnect(_negative_effect)
 	get_quest().get_stage_effects().generated.disconnect(_stage_generate)
 	get_quest().get_cell_effects().aura_removed.disconnect(_aura_remove)
 	
@@ -32,9 +32,9 @@ func _action(object: Object) -> Array[Callable]:
 	return [object.clear_aura]
 
 
-func _negative_effect(_effect: Callable) -> bool:
+func _negative_effect(_aura: Aura, _effect: Callable, can_apply: bool) -> bool:
 	if level < 1:
-		return true
+		return can_apply
 	return false
 
 

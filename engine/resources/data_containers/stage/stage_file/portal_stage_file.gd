@@ -1,6 +1,6 @@
 @tool
-extends StageBase
-class_name PortalStageBase
+extends StageFile
+class_name PortalStageFile
 
 # ==============================================================================
 @export var min_power_multi := 0.0

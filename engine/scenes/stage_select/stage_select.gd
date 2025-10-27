@@ -25,16 +25,11 @@ func _on_stage_details_interacted() -> void:
 	await tween.finished
 	
 	var stage := get_quest().get_selected_stage()
-	
-	if stage is SpecialStage:
-		get_tree().change_scene_to_packed(stage.get_dest_scene())
-		return
-	
 	var instance := get_quest().start_stage(stage)
-	#instance.notify_loaded()
-	#instance.set_as_current()
 	
-	instance.change_to_scene()
+	SceneManager.change_scene_to_custom(instance.create_scene)
+	
+	instance.play()
 
 
 func _on_stages_overview_icon_selected(icon: StageIcon) -> void:

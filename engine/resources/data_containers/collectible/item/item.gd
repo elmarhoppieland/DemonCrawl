@@ -370,7 +370,7 @@ func _get_target_area(origin: CellData, radius: int) -> Array[CellData]:
 				cells.append(cell)
 	
 	cells = EffectManager.propagate_mutable(get_quest().get_item_effects().target_cells, 1, self, cells)
-	EffectManager.propagate(get_quest().get_item_effects().cells_targeted, [self, cells])
+	EffectManager.propagate(get_quest().get_item_effects().cells_targeted, self, cells)
 	
 	return cells
 

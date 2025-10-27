@@ -36,7 +36,7 @@ func _stage_enter() -> void:
 	if level < 1:
 		return
 	
-	if get_quest().get_current_stage().get_stage() is SpecialStage:
+	if get_quest().get_current_stage_base().get_stage() is SpecialStage:
 		get_inventory().item_gain(get_books().pick_random().create())
 
 

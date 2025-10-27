@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://cf6pwvend36k4"]
 
-[ext_resource type="Script" uid="uid://dlk23qy0u2xwh" path="res://Engine/Scenes/SpecialStages/Item Shop/ItemShopStage.gd" id="1_3moa5"]
-[ext_resource type="Texture2D" uid="uid://bgg7dvorx22m1" path="res://assets/Backgrounds/item_shop.png" id="1_hllyk"]
-[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/Fonts/Lady Radical.ttf" id="2_7h07o"]
-[ext_resource type="Shader" uid="uid://dg3b7w8v3tf2r" path="res://Engine/Scenes/SpecialStages/Item Shop/Item Shop.gdshader" id="4_6l62f"]
-[ext_resource type="PackedScene" uid="uid://d1v0qvvw8dwe0" path="res://Engine/Resources/Scenes/DCButton.tscn" id="5_3qi0c"]
-[ext_resource type="Texture2D" uid="uid://cq175wtkgma0r" path="res://assets/sprites/item_shop_present_logo.png" id="5_gc6dr"]
-[ext_resource type="Script" uid="uid://d1c6fxxsk1ugt" path="res://Engine/Resources/Singletons/GuiEnabler.gd" id="7_57vr3"]
+[ext_resource type="Script" uid="uid://dlk23qy0u2xwh" path="res://assets/special_stages/item_shop/item_shop_scene.gd" id="1_3moa5"]
+[ext_resource type="Texture2D" uid="uid://bgg7dvorx22m1" path="res://assets/backgrounds/item_shop.png" id="1_hllyk"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_7h07o"]
+[ext_resource type="Shader" uid="uid://dg3b7w8v3tf2r" path="res://assets/special_stages/item_shop/item_shop.gdshader" id="4_6l62f"]
+[ext_resource type="PackedScene" uid="uid://d1v0qvvw8dwe0" path="res://engine/resources/scenes/dc_button.tscn" id="5_3qi0c"]
+[ext_resource type="Texture2D" uid="uid://cq175wtkgma0r" path="res://assets/special_stages/item_shop/item_shop_present_logo.png" id="5_gc6dr"]
+[ext_resource type="Script" uid="uid://d1c6fxxsk1ugt" path="res://engine/resources/singletons/gui_enabler.gd" id="7_57vr3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g72nf"]
 font = ExtResource("2_7h07o")
@@ -169,6 +169,15 @@ auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_auto_translate_mode = 0
+focus_behavior_recursive = 0
+mouse_behavior_recursive = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 color = Color(0.0627451, 0.87451, 0.501961, 1)
 bg_color = Color(0, 0, 0, 1)
 text = "stage.special.item-shop.confirm"
@@ -184,6 +193,15 @@ auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_auto_translate_mode = 0
+focus_behavior_recursive = 0
+mouse_behavior_recursive = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 color = Color(0.862745, 0.121569, 0.121569, 1)
 bg_color = Color(0, 0, 0, 1)
 text = "stage.special.item-shop.leave"

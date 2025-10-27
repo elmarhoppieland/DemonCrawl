@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq175wtkgma0r"
-path="res://.godot/imported/item_shop_present_logo.png-8b31bf8254de1acbcab7a0191e109783.ctex"
+uid="uid://c4vsx7phqlc3l"
+path="res://.godot/imported/stage_icon_mask.png-ce90b4caa66261ca97ce8d05396ae464.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/item_shop_present_logo.png"
-dest_files=["res://.godot/imported/item_shop_present_logo.png-8b31bf8254de1acbcab7a0191e109783.ctex"]
+source_file="res://engine/resources/data_containers/stage/stage_icon_mask.png"
+dest_files=["res://.godot/imported/stage_icon_mask.png-ce90b4caa66261ca97ce8d05396ae464.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 @tool
 extends Resource
-class_name SpecialStageBase
+class_name SpecialStageFile
 
 # ==============================================================================
 @export var name := ""

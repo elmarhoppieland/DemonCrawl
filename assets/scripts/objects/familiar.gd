@@ -68,7 +68,7 @@ func _turn() -> void:
 					if was_hidden:
 						return  # some loot has spawned in our way that we cannot collect
 					continue
-				EffectManager.propagate((get_stage_instance().get_event_bus(FamiliarEffects) as FamiliarEffects).loot_collected, [self, object])
+				EffectManager.propagate((get_stage_instance().get_event_bus(FamiliarEffects) as FamiliarEffects).loot_collected, self, object)
 			else:
 				object.notify_interacted()
 		

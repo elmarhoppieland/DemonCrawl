@@ -1,6 +1,6 @@
 @tool
 extends Resource
-class_name StageBase
+class_name StageFile
 
 # ==============================================================================
 @export var name := ""

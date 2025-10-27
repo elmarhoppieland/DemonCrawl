@@ -57,7 +57,7 @@ func add_mastery(mastery: Mastery) -> void:
 	if not locked:
 		var grabber := CheckmarkGrabber.new()
 		if mastery:
-			grabber.main = Codex.selected_mastery != null and Codex.selected_mastery.mastery.instance_has(mastery)
+			grabber.main = Codex.selected_mastery != null and Codex.selected_mastery.mastery_script.instance_has(mastery)
 		else:
 			grabber.main = Codex.selected_mastery == null
 		texture_rect.add_child(grabber)

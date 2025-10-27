@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="MasteryData" load_steps=6 format=3 uid="uid://cyflbs5o34kgs"]
 
-[ext_resource type="Texture2D" uid="uid://b58dgxv2fvq7i" path="res://assets/Scripts/Masteries/Commander/commander_0.png" id="1_bojl2"]
-[ext_resource type="Script" uid="uid://8hcwgbxnbkuw" path="res://engine/resources/DataContainers/Mastery/MasteryData.gd" id="1_t8p3j"]
-[ext_resource type="Script" uid="uid://d4jla3x5lmfvx" path="res://assets/Scripts/Masteries/Commander/Commander.gd" id="1_xycfl"]
-[ext_resource type="Texture2D" uid="uid://dr73ghifh6y4f" path="res://assets/Scripts/Masteries/Commander/commander_1.png" id="2_jpl8b"]
-[ext_resource type="Texture2D" uid="uid://ea3bl8tmtc3u" path="res://assets/Scripts/Masteries/Commander/commander_2.png" id="3_6ywga"]
+[ext_resource type="Texture2D" uid="uid://b58dgxv2fvq7i" path="res://assets/scripts/masteries/commander/commander_0.png" id="1_bojl2"]
+[ext_resource type="Script" uid="uid://8hcwgbxnbkuw" path="res://engine/resources/data_containers/mastery/mastery_data.gd" id="1_t8p3j"]
+[ext_resource type="Script" uid="uid://d4jla3x5lmfvx" path="res://assets/scripts/masteries/commander/commander.gd" id="1_xycfl"]
+[ext_resource type="Texture2D" uid="uid://dr73ghifh6y4f" path="res://assets/scripts/masteries/commander/commander_1.png" id="2_jpl8b"]
+[ext_resource type="Texture2D" uid="uid://ea3bl8tmtc3u" path="res://assets/scripts/masteries/commander/commander_2.png" id="3_6ywga"]
 
 [resource]
 script = ExtResource("1_t8p3j")
@@ -12,7 +12,6 @@ name = "mastery.commander"
 description = Array[String](["mastery.commander.description.1", "mastery.commander.description.2", "mastery.commander.description.3"])
 unlock_text = Array[String](["mastery.commander.unlock.1", "mastery.commander.unlock.2", "mastery.commander.unlock.3"])
 icon = Array[Texture2D]([ExtResource("1_bojl2"), ExtResource("2_jpl8b"), ExtResource("3_6ywga")])
-cost = Array[int]([10, 20, 30])
 ability_charges = 2
 mastery_script = ExtResource("1_xycfl")
 metadata/_custom_type_script = "uid://8hcwgbxnbkuw"

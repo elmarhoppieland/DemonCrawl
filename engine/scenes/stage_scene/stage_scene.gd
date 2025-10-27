@@ -36,8 +36,6 @@ func _exit_tree() -> void:
 	
 	if stage_instance:
 		stage_instance.get_stage().stop_music()
-	
-	Eternity.save()
 
 
 func _ready() -> void:

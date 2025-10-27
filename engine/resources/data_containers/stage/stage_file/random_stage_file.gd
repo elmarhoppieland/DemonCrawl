@@ -1,6 +1,6 @@
 @tool
-extends StageBase
-class_name RandomStageBase
+extends StageFile
+class_name RandomStageFile
 
 # ==============================================================================
 static var stage_list := DirAccess.get_directories_at("res://assets/skins/")

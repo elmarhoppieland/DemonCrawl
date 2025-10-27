@@ -86,25 +86,15 @@ static func _import_packed(value: int, ...args: Array) -> CellData:
 	
 	var cell_mode := Mode.VISIBLE_EMPTY
 	var children: Array[Node] = []
-	var stage: StageInstance = null
 	for arg in args:
 		if arg is int:
 			cell_mode = arg
 		elif arg is Node:
 			children.append(arg)
-		elif arg is StageInstance:
-			stage = arg
 	
 	cell.mode = cell_mode
 	for child in children:
 		cell.add_child(child)
-	
-	var processing_owner := Eternity.get_processing_owner()
-	if processing_owner is StageInstance:
-		if stage != null and stage != processing_owner:
-			Debug.log_warning("A CellData object was created under a StageInstance, but a different StageInstance was provided in the constructor. Ignoring the argument...")
-		
-		stage = processing_owner
 	
 	return cell
 
@@ -173,7 +163,7 @@ func _open(active: bool = true, allow_loot: bool = true) -> bool:
 	if is_occupied():
 		get_object().notify_revealed(active)
 	
-	EffectManager.propagate(get_stage_instance().get_cell_effects().opened, [self])
+	EffectManager.propagate(get_stage_instance().get_cell_effects().opened, self)
 	
 	return true
 
@@ -292,20 +282,19 @@ func has_aura() -> bool:
 	return get_aura() != null and not get_aura().is_queued_for_deletion()
 
 
-@warning_ignore("shadowed_variable")
 func apply_aura(aura: Variant) -> Aura:
 	aura = aura.new() if aura is Script else aura
 	set_aura(aura)
 	if is_occupied():
 		get_object().notify_aura_applied()
-	EffectManager.propagate(get_stage_instance().get_cell_effects().aura_applied, [aura])
+	EffectManager.propagate(get_stage_instance().get_cell_effects().aura_applied, aura)
 	return aura
 
 
 func clear_aura() -> void:
 	if has_aura():
 		get_aura().queue_free()
-		EffectManager.propagate(get_stage_instance().get_cell_effects().aura_removed, [get_aura()])
+		EffectManager.propagate(get_stage_instance().get_cell_effects().aura_removed, get_aura())
 
 
 func spawn(base: Script, visible_only: bool = true) -> CellObject:
@@ -632,13 +621,13 @@ func get_mode() -> int:
 #region notifiers
 
 func notify_interacted() -> void:
-	interacted.emit()
 	if is_occupied() and is_visible():
 		get_object().notify_interacted()
 	if has_aura():
-		get_aura().notify_interacted(self)
+		get_aura().notify_interacted()
 	
-	EffectManager.propagate(get_stage_instance().get_cell_effects().interacted, [self])
+	interacted.emit()
+	EffectManager.propagate(get_stage_instance().get_cell_effects().interacted, self)
 
 
 func notify_second_interacted() -> void:
@@ -648,7 +637,7 @@ func notify_second_interacted() -> void:
 	if has_aura():
 		get_aura().notify_second_interacted(self)
 	
-	EffectManager.propagate(get_stage_instance().get_cell_effects().second_interacted, [self])
+	EffectManager.propagate(get_stage_instance().get_cell_effects().second_interacted, self)
 
 #endregion
 

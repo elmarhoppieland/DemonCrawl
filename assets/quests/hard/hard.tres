@@ -21,11 +21,11 @@ flag = "hard"
 resource_local_to_scene = false
 resource_name = ""
 script = ExtResource("1_lpgkx")
-name = "Difficulties/Hard"
+name = "difficulties/Hard"
 
 [resource]
 script = ExtResource("10_e001k")
-name = "DIFFICULTY_HARD"
+name = "difficulty.hard"
 icon = SubResource("Texture2D_fnfsu")
 conditions = Array[ExtResource("1_biiur")]([SubResource("Resource_8gmwo")])
 quests = Array[ExtResource("4_ccner")]([ExtResource("2_8miv4"), ExtResource("3_8s1ny"), ExtResource("4_bg8b8"), ExtResource("5_dmv15"), ExtResource("6_t0kgu"), ExtResource("7_7yuxm"), ExtResource("8_rbhev")])

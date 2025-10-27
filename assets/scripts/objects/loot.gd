@@ -13,10 +13,10 @@ func collect() -> void:
 	var handled := _collect()
 	if not handled:
 		handled = EffectManager.propagate_mutable(get_quest().get_object_effects().handle_interact_failed, 1, self, handled)
-		EffectManager.propagate(get_quest().get_object_effects().interact_failed, [self, handled])
+		EffectManager.propagate(get_quest().get_object_effects().interact_failed, self, handled)
 	
 	if handled:
-		EffectManager.propagate(get_quest().get_object_effects().used, [self])
+		EffectManager.propagate(get_quest().get_object_effects().used, self)
 		if _clear_on_collect():
 			clear()
 	else:
@@ -27,10 +27,10 @@ func try_collect() -> bool:
 	var handled := _collect()
 	if not handled:
 		handled = EffectManager.propagate_mutable(get_quest().get_object_effects().handle_interact_failed, 1, self, handled)
-		EffectManager.propagate(get_quest().get_object_effects().interact_failed, [self, handled])
+		EffectManager.propagate(get_quest().get_object_effects().interact_failed, self, handled)
 	
 	if handled:
-		EffectManager.propagate(get_quest().get_object_effects().used, [self])
+		EffectManager.propagate(get_quest().get_object_effects().used, self)
 		if _clear_on_collect():
 			clear()
 	
