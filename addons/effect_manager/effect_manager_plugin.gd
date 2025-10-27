@@ -3,12 +3,28 @@ extends EditorPlugin
 class_name __EffectManagerPlugin
 
 # ==============================================================================
+const ENABLED_SETTING := "plugin/effect_manager/plugin_tab_enabled"
 const USER_FILES_DIR := "res://effect_manager/"
 # ==============================================================================
 static var main_screen: __EffectManagerMainScreen
 # ==============================================================================
+var tab_enabled := false :
+	get:
+		tab_enabled = ProjectSettings.get_setting(ENABLED_SETTING, true)
+		return tab_enabled
+var tab_enabled_buffer := false
+# ==============================================================================
 
 func _enter_tree() -> void:
+	if not ProjectSettings.has_setting(ENABLED_SETTING):
+		ProjectSettings.set_setting(ENABLED_SETTING, true)
+	
+	ProjectSettings.set_initial_value(ENABLED_SETTING, true)
+	
+	tab_enabled_buffer = tab_enabled
+	if not tab_enabled:
+		return
+	
 	if not DirAccess.dir_exists_absolute(USER_FILES_DIR):
 		DirAccess.make_dir_absolute(USER_FILES_DIR)
 	
@@ -38,11 +54,11 @@ static var MutableSignals := __EffectSignals.new()
 
 
 func _exit_tree() -> void:
-	pass
+	tab_enabled_buffer = tab_enabled
 
 
 func _has_main_screen() -> bool:
-	return true
+	return tab_enabled or tab_enabled_buffer
 
 
 func _get_plugin_name() -> String:

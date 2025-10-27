@@ -43,7 +43,7 @@ script/search_in_file_extensions=PackedStringArray("gd", "gdshader", "tscn", "tr
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/auto_thread/plugin.cfg", "res://addons/custom_texture_preview/plugin.cfg", "res://addons/dc_plugin/plugin.cfg", "res://addons/effect_manager/plugin.cfg", "res://addons/icon_manager/plugin.cfg", "res://addons/immunity/plugin.cfg", "res://addons/promise/plugin.cfg")
+enabled=PackedStringArray("res://addons/auto_thread/plugin.cfg", "res://addons/custom_texture_preview/plugin.cfg", "res://addons/dc_plugin/plugin.cfg", "res://addons/effect_manager/plugin.cfg", "res://addons/eternity/plugin.cfg", "res://addons/icon_manager/plugin.cfg", "res://addons/immunity/plugin.cfg", "res://addons/promise/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/stringifier/plugin.cfg", "res://addons/user_class_db/plugin.cfg")
 
 [eternity]
 
@@ -165,6 +165,10 @@ debug_overlay_toggle={
 [internationalization]
 
 locale/translations=PackedStringArray("res://assets/localization/localization.en.translation", "res://assets/localization/localization-strangers.en.translation", "res://assets/localization/localization-items.en.translation", "res://assets/localization/localization-stages.en.translation", "res://assets/localization/localization-masteries.en.translation")
+
+[plugin]
+
+effect_manager/plugin_tab_enabled=false
 
 [rendering]
 
