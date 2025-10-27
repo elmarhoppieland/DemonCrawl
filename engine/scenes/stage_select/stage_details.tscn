@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3vf0fdejs72s"]
+[gd_scene load_steps=21 format=3 uid="uid://c3vf0fdejs72s"]
 
 [ext_resource type="Script" uid="uid://b2gqvi2k7kxcq" path="res://engine/scenes/stage_select/stage_details.gd" id="1_fk3lx"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="3_aemx4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://h21go13db0p1" path="res://engine/scenes/stage_select/stage_info_background.gdshader" id="4_lwu6u"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="4_qkq4a"]
 [ext_resource type="Texture2D" uid="uid://b50mytipvkq4" path="res://assets/sprites/stage_checkmark.png" id="5_7imam"]
+[ext_resource type="Script" uid="uid://cqn3av0xtweww" path="res://engine/resources/data_containers/stage/stage.gd" id="9_f8xgr"]
 
 [sub_resource type="Image" id="Image_f8xgr"]
 data = {
@@ -141,6 +142,7 @@ offset_right = 172.0
 offset_bottom = 64.0
 scale = Vector2(4, 4)
 script = ExtResource("1_fk3lx")
+stage = NodePath("Stage")
 
 [node name="TextureContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -323,6 +325,15 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_eovnk")
 }
+
+[node name="Stage" type="Node" parent="."]
+script = ExtResource("9_f8xgr")
+name_id = "cavern"
+size = Vector2i(8, 8)
+monsters = 8
+min_power = 1
+max_power = 2
+metadata/_custom_type_script = "uid://cqn3av0xtweww"
 
 [connection signal="mouse_entered" from="TextureContainer" to="." method="_on_texture_container_mouse_entered"]
 [connection signal="mouse_exited" from="TextureContainer" to="." method="_on_texture_container_mouse_exited"]

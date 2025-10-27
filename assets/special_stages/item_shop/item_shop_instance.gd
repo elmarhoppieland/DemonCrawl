@@ -20,7 +20,7 @@ func _ready() -> void:
 		var item := data.create()
 		var offer := ItemShopOffer.new()
 		offer.add_child(item)
-		offer.cost = maxi(floori(item.get_cost() * randf_range(0.7, 1.3)), 1)
+		offer.cost = maxi(int(item.get_cost() * randf_range(0.7, 1.3)), 1)
 		get_offers_parent().add_child(offer)
 
 

@@ -5,7 +5,6 @@
 [ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://assets/special_stages/item_shop/item_shop.tres" id="3_3ed66"]
 [ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://engine/resources/data_containers/stage/stage_file/special_stage_file.gd" id="3_ykw3a"]
 [ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/stage/stage_file/stage_file.gd" id="4_12a3h"]
-[ext_resource type="Resource" uid="uid://cj4j8v78ck1iy" path="res://assets/special_stages/bazaar/bazaar.tres" id="5_5a58k"]
 
 [sub_resource type="Texture2D" id="Texture2D_kpscn"]
 resource_local_to_scene = false

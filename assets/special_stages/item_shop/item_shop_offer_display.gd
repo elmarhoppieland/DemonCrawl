@@ -18,7 +18,11 @@ class_name ItemShopOfferDisplay
 		
 		stats = value
 		
-		_update()
+		if value < 0:
+			_coin_value.hide()
+		else:
+			_coin_value.show()
+			_coin_value.coin_value = value
 # ==============================================================================
 @onready var _frame: Frame = %Frame
 @onready var _collectible_display: CollectibleDisplay = %CollectibleDisplay
