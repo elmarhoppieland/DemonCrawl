@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Registry" load_steps=61 format=3 uid="uid://dbtam61joj2mf"]
+[gd_resource type="Resource" script_class="Registry" load_steps=75 format=3 uid="uid://dbtam61joj2mf"]
 
 [ext_resource type="Script" uid="uid://pefpigd10fyq" path="res://engine/resources/data_containers/registry.gd" id="1_8420k"]
 [ext_resource type="Resource" uid="uid://caiig2eupe0vb" path="res://assets/quests/casual/casual.tres" id="1_srnaq"]
@@ -60,6 +60,20 @@
 [ext_resource type="Resource" uid="uid://d434v42k7jhj" path="res://assets/items/trapper.tres" id="36_epscq"]
 [ext_resource type="Resource" uid="uid://ou5eyedemksy" path="res://assets/items/wallet.tres" id="37_c3amg"]
 [ext_resource type="Resource" uid="uid://bux1gkrhqbmqy" path="res://assets/items/wooden_bow.tres" id="38_2ma14"]
+[ext_resource type="Resource" uid="uid://dg7urpy77cvi8" path="res://assets/items/mage_medal.tres" id="39_rhtll"]
+[ext_resource type="Resource" uid="uid://cgct8thtg8ykt" path="res://assets/items/bagman_medal.tres" id="40_rgon4"]
+[ext_resource type="Resource" uid="uid://c3yut5pml4y4v" path="res://assets/items/nomad_medal.tres" id="41_88jp1"]
+[ext_resource type="Resource" uid="uid://csvgj4leufmk4" path="res://assets/items/blacksmith_medal.tres" id="42_0kcwi"]
+[ext_resource type="Resource" uid="uid://blynxlkncv1b4" path="res://assets/items/mercenary_medal.tres" id="43_ji5om"]
+[ext_resource type="Resource" uid="uid://cbx03w18ro5gd" path="res://assets/items/priest_medal.tres" id="44_1rfs5"]
+[ext_resource type="Resource" uid="uid://bqdbpn22a3tu1" path="res://assets/items/doctor_medal.tres" id="45_gicwo"]
+[ext_resource type="Resource" uid="uid://cxui1aoi12uga" path="res://assets/items/waterboy_medal.tres" id="46_1wlhl"]
+[ext_resource type="Resource" uid="uid://c8t37ymwf4k6s" path="res://assets/items/pyro_medal.tres" id="47_gk01d"]
+[ext_resource type="Resource" uid="uid://b24af1d1nksd2" path="res://assets/items/hungry_plant_medal.tres" id="48_5ls7p"]
+[ext_resource type="Resource" uid="uid://ce26ua2ry382q" path="res://assets/items/gambler_medal.tres" id="49_r7avt"]
+[ext_resource type="Resource" uid="uid://ckperdbk5nfyk" path="res://assets/items/treasure_amulet.tres" id="50_a27po"]
+[ext_resource type="Resource" uid="uid://x23qq7prxd7" path="res://assets/items/empty_chest.tres" id="51_fcre8"]
+[ext_resource type="Resource" uid="uid://di748dmo0j3jm" path="res://assets/items/mutton.tres" id="52_saorm"]
 
 [resource]
 script = ExtResource("1_8420k")
@@ -68,4 +82,4 @@ mastery_unlockers = Array[ExtResource("8_kbcm6")]([ExtResource("10_hfiaq"), ExtR
 difficulties = Array[ExtResource("2_vmrn0")]([ExtResource("1_srnaq"), ExtResource("2_chtep"), ExtResource("3_g8edj")])
 token_shop_categories = Array[ExtResource("9_hfiaq")]([ExtResource("13_0b80u"), ExtResource("14_ov03c")])
 auras = Array[Script]([ExtResource("1_vmrn0"), ExtResource("2_kbcm6")])
-items = Array[ExtResource("7_hgnwp")]([ExtResource("8_spm1o"), ExtResource("9_wrwdr"), ExtResource("10_h306g"), ExtResource("11_eb87v"), ExtResource("12_6luli"), ExtResource("13_8rjjg"), ExtResource("14_cqbh5"), ExtResource("15_wrwdr"), ExtResource("16_h306g"), ExtResource("17_eb87v"), ExtResource("18_6luli"), ExtResource("19_8rjjg"), ExtResource("20_cqbh5"), ExtResource("21_xj8fa"), ExtResource("22_e243v"), ExtResource("23_dgc8e"), ExtResource("24_0wpyh"), ExtResource("25_4ou8n"), ExtResource("26_8fw1w"), ExtResource("27_5581g"), ExtResource("28_a2mxy"), ExtResource("29_4wncw"), ExtResource("30_8wnlg"), ExtResource("31_n5u3l"), ExtResource("32_6i227"), ExtResource("33_f0n0l"), ExtResource("34_q8ydp"), ExtResource("35_bo6me"), ExtResource("36_epscq"), ExtResource("37_c3amg"), ExtResource("38_2ma14")])
+items = Array[ExtResource("7_hgnwp")]([ExtResource("8_spm1o"), ExtResource("9_wrwdr"), ExtResource("10_h306g"), ExtResource("11_eb87v"), ExtResource("12_6luli"), ExtResource("13_8rjjg"), ExtResource("14_cqbh5"), ExtResource("15_wrwdr"), ExtResource("16_h306g"), ExtResource("17_eb87v"), ExtResource("18_6luli"), ExtResource("19_8rjjg"), ExtResource("20_cqbh5"), ExtResource("21_xj8fa"), ExtResource("22_e243v"), ExtResource("23_dgc8e"), ExtResource("24_0wpyh"), ExtResource("25_4ou8n"), ExtResource("26_8fw1w"), ExtResource("27_5581g"), ExtResource("28_a2mxy"), ExtResource("29_4wncw"), ExtResource("30_8wnlg"), ExtResource("31_n5u3l"), ExtResource("32_6i227"), ExtResource("33_f0n0l"), ExtResource("34_q8ydp"), ExtResource("35_bo6me"), ExtResource("36_epscq"), ExtResource("37_c3amg"), ExtResource("38_2ma14"), ExtResource("40_rgon4"), ExtResource("42_0kcwi"), ExtResource("45_gicwo"), ExtResource("49_r7avt"), ExtResource("48_5ls7p"), ExtResource("39_rhtll"), ExtResource("43_ji5om"), ExtResource("41_88jp1"), ExtResource("44_1rfs5"), ExtResource("47_gk01d"), ExtResource("46_1wlhl"), ExtResource("50_a27po"), ExtResource("51_fcre8"), ExtResource("52_saorm")])

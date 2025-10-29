@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://ce26ua2ry382q"]
+
+[ext_resource type="Texture2D" uid="uid://cel6ho08id1hv" path="res://assets/items/gambler_medal.png" id="1_0pr4y"]
+[ext_resource type="Script" uid="uid://bnrc7up3lpmyr" path="res://assets/items/gambler_medal.gd" id="1_dutto"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="2_0pr4y"]
+
+[resource]
+script = ExtResource("2_0pr4y")
+name = "item.gambler-medal"
+description = "item.gambler-medal.description"
+cost = 7
+icon = ExtResource("1_0pr4y")
+item_script = ExtResource("1_dutto")

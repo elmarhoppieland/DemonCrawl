@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://cxui1aoi12uga"]
+
+[ext_resource type="Texture2D" uid="uid://d7hohsoaicwb" path="res://assets/items/waterboy_medal.png" id="1_ly558"]
+[ext_resource type="Script" uid="uid://baqwmxt2bm3b3" path="res://assets/items/waterboy_medal.gd" id="1_obhef"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="2_ly558"]
+
+[resource]
+script = ExtResource("2_ly558")
+name = "item.waterboy-medal"
+description = "item.waterboy-medal.description"
+cost = 7
+icon = ExtResource("1_ly558")
+item_script = ExtResource("1_obhef")
