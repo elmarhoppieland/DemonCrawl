@@ -315,6 +315,12 @@ func transform(new_item: Item) -> void:
 	transform_item(self, new_item)
 
 
+## Allows an Item to modify the set of Guaranteed Objects for a given stage.
+## Takes in an [Array][[CellObject]] and returns an [Array][[CellObject]].
+func get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
+	return input
+
+
 ## Targets a [Cell]. Waits for the player to select a [Cell] and then return it.
 ## This returns an [Array][[CellData]] since the player may increase the range
 ## or add more cells to target. See also [method target_cells].

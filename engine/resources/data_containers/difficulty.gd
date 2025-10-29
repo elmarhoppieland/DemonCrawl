@@ -9,6 +9,8 @@ class_name Difficulty
 
 @export var quests: Array[QuestFile] = []  ## This difficulty's quests.
 
+@export var guaranteed_chests := 1 ## The number of guaranteed chests per stage.
+
 @export_group("Starting Stats")
 @export var max_life := 5  ## The amount of max lives the player should start each quest with.
 @export var life := 5  ## The amount of lives the player should start each quest with. Should never be higher than [property max_life].

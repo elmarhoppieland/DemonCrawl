@@ -369,6 +369,13 @@ func has_mastery() -> bool:
 	return get_mastery() != null
 
 
+func get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
+	for _index in range(source_difficulty.guaranteed_chests):
+		var chest = TreasureChest.new()
+		input.append(chest)
+	return input
+
+
 func get_orb_manager() -> OrbManager:
 	return _get_component(OrbManager)
 
