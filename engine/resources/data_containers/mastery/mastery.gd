@@ -99,6 +99,11 @@ func _quest_init() -> void:
 #func _unequip() -> void:
 	#pass
 
+
+## Virtual method. Allows a [Mastery] to modify the list of Guaranteed [CellObject]s.
+#func _get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
+	#return input
+
 #endregion
 
 #region decription & visualization

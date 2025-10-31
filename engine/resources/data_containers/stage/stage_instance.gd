@@ -65,13 +65,6 @@ func _ready() -> void:
 	get_timer().pause()
 	get_status_timer().pause()
 	
-	get_effects().get_guaranteed_objects.connect(get_quest().get_guaranteed_objects)
-	get_effects().get_guaranteed_objects.connect(get_quest().get_inventory().get_guaranteed_objects)
-	# TODO: StageMod Guaranteed Objects
-	var mastery = get_quest().get_mastery()
-	if mastery != null and mastery.has_method(&"get_guaranteed_objects"):
-		get_effects().get_guaranteed_objects.connect(mastery.get_guaranteed_objects)
-	
 	emit_changed()
 
 
@@ -164,13 +157,6 @@ func generate(start_cell: CellData) -> void:
 		picked.insert(picked.bsearch(idx), idx)
 		
 		cells[idx].set_object(object)
-	
-	get_effects().get_guaranteed_objects.disconnect(get_quest().get_guaranteed_objects)
-	get_effects().get_guaranteed_objects.disconnect(get_quest().get_inventory().get_guaranteed_objects)
-	# TODO: StageMod Guaranteed Objects
-	var mastery = get_quest().get_mastery()
-	if mastery != null and mastery.get_guaranteed_objects.instance_has():
-		get_effects().get_guaranteed_objects.disconnect(mastery.get_guaranteed_objects)
 	
 	EffectManager.propagate(get_effects().generated)
 	

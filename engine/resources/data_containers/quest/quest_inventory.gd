@@ -104,11 +104,6 @@ func get_random_item() -> Item:
 	return get_items().pick_random()
 
 
-func get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
-	for item in get_items():
-		input = item.get_guaranteed_objects(input)
-	return input
-
 func is_empty() -> bool:
 	return get_item_count() == 0
 

@@ -27,6 +27,13 @@ func apply_starting_values(quest: Quest) -> void:
 	quest.get_stats().coins = coins
 
 
+func get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
+	for _index in range(guaranteed_chests):
+		var chest = TreasureChest.new()
+		input.append(chest)
+	return input
+
+
 func is_unlocked() -> bool:
 	for condition in conditions:
 		if not condition.is_met():

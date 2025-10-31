@@ -191,7 +191,7 @@ func notify_gained() -> void:
 ## added to the inventory. However, in certain circumstances, one item can be gained
 ## again after being lost. See also [method _inventory_add].
 func _gain() -> void:
-	pass
+	get_quest().get_stage_effects().get_guaranteed_objects.connect(_get_guaranteed_objects)
 
 
 ## Notifies the item that it has been lost. This method will call [method _lose]
@@ -205,7 +205,7 @@ func notify_lost() -> void:
 ## it is removed from the inventory. However, in certain circumstances, one item
 ## can be gained again after being lost. See also [method _inventory_remove].
 func _lose() -> void:
-	pass
+	get_quest().get_stage_effects().get_guaranteed_objects.disconnect(_get_guaranteed_objects)
 
 #endregion
 
@@ -315,9 +315,9 @@ func transform(new_item: Item) -> void:
 	transform_item(self, new_item)
 
 
-## Allows an Item to modify the set of Guaranteed Objects for a given stage.
+## Virtual Method to Allow an [Item] to modify the set of Guaranteed [CellObject]s for a given stage.
 ## Takes in an [Array][[CellObject]] and returns an [Array][[CellObject]].
-func get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
+func _get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
 	return input
 
 
