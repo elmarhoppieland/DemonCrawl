@@ -47,6 +47,16 @@ func _init(data: ItemData = null) -> void:
 	self.data = data
 
 
+func _enter_tree() -> void:
+	if is_active():
+		get_quest().get_stage_effects().get_guaranteed_objects.connect(_get_guaranteed_objects)
+
+
+func _exit_tree() -> void:
+	if is_active():
+		get_quest().get_stage_effects().get_guaranteed_objects.disconnect(_get_guaranteed_objects)
+
+
 func _get_texture() -> Texture2D:
 	return data.icon if data else null
 
@@ -191,7 +201,8 @@ func notify_gained() -> void:
 ## added to the inventory. However, in certain circumstances, one item can be gained
 ## again after being lost. See also [method _inventory_add].
 func _gain() -> void:
-	get_quest().get_stage_effects().get_guaranteed_objects.connect(_get_guaranteed_objects)
+	if not get_quest().get_stage_effects().get_guaranteed_objects.is_connected(_get_guaranteed_objects):
+		get_quest().get_stage_effects().get_guaranteed_objects.connect(_get_guaranteed_objects)
 
 
 ## Notifies the item that it has been lost. This method will call [method _lose]
@@ -205,7 +216,8 @@ func notify_lost() -> void:
 ## it is removed from the inventory. However, in certain circumstances, one item
 ## can be gained again after being lost. See also [method _inventory_remove].
 func _lose() -> void:
-	get_quest().get_stage_effects().get_guaranteed_objects.disconnect(_get_guaranteed_objects)
+	if get_quest().get_stage_effects().get_guaranteed_objects.is_connected(_get_guaranteed_objects):
+		get_quest().get_stage_effects().get_guaranteed_objects.disconnect(_get_guaranteed_objects)
 
 #endregion
 
