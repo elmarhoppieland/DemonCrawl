@@ -53,7 +53,7 @@ func _enter_tree() -> void:
 
 
 func _exit_tree() -> void:
-	if is_active():
+	if get_quest().get_stage_effects().get_guaranteed_objects.is_connected(_get_guaranteed_objects):
 		get_quest().get_stage_effects().get_guaranteed_objects.disconnect(_get_guaranteed_objects)
 
 
