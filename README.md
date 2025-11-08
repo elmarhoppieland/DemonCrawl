@@ -61,7 +61,7 @@ If you are ever unsure on how to implement something, feel free to contact me on
 
 ## Style Guide
 
-There is a [style guide](docs/style-guide.md) in the project's files. Before contributing code, make sure to read that file first and write code in a way that is similar to the rest of the project.
+There is a [style guide](.docs/style_guide.md) in the project's files. Before contributing code, make sure to read that file first and write code in a way that is similar to the rest of the project.
 
 ## Contact
 
