@@ -1,11 +1,10 @@
 [gd_resource type="Resource" script_class="LootTable" load_steps=2 format=3 uid="uid://dc3jaw8iwwnxo"]
 
-[ext_resource type="Script" uid="uid://cntvip8m67kjy" path="res://engine/resources/DataContainers/LootTable.gd" id="1_ja58f"]
+[ext_resource type="Script" uid="uid://cntvip8m67kjy" path="res://engine/resources/data_containers/loot_table.gd" id="1_ja58f"]
 
 [resource]
 script = ExtResource("1_ja58f")
 type = 0
-items_class = "Object"
 auto_sort = false
 use_modifier = false
 item_count = 7
