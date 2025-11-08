@@ -9,6 +9,8 @@ class_name Difficulty
 
 @export var quests: Array[QuestFile] = []  ## This difficulty's quests.
 
+@export var guaranteed_chests := 1 ## The number of guaranteed chests per stage.
+
 @export_group("Starting Stats")
 @export var max_life := 5  ## The amount of max lives the player should start each quest with.
 @export var life := 5  ## The amount of lives the player should start each quest with. Should never be higher than [property max_life].
@@ -23,6 +25,13 @@ func apply_starting_values(quest: Quest) -> void:
 	quest.get_stats().revives = revives
 	quest.get_stats().defense = defense
 	quest.get_stats().coins = coins
+
+
+func get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
+	for _index in range(guaranteed_chests):
+		var chest = TreasureChest.new()
+		input.append(chest)
+	return input
 
 
 func is_unlocked() -> bool:

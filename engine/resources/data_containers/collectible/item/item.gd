@@ -47,6 +47,16 @@ func _init(data: ItemData = null) -> void:
 	self.data = data
 
 
+func _enter_tree() -> void:
+	if is_active():
+		get_quest().get_stage_effects().get_guaranteed_objects.connect(_get_guaranteed_objects)
+
+
+func _exit_tree() -> void:
+	if is_active():
+		get_quest().get_stage_effects().get_guaranteed_objects.disconnect(_get_guaranteed_objects)
+
+
 func _get_texture() -> Texture2D:
 	return data.icon if data else null
 
@@ -313,6 +323,12 @@ func clear_mana() -> void:
 ## Transforms this item into another item.
 func transform(new_item: Item) -> void:
 	transform_item(self, new_item)
+
+
+## Virtual Method to Allow an [Item] to modify the set of Guaranteed [CellObject]s for a given stage.
+## Takes in an [Array][[CellObject]] and returns an [Array][[CellObject]].
+func _get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
+	return input
 
 
 ## Targets a [Cell]. Waits for the player to select a [Cell] and then return it.

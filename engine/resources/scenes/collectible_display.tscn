@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dppdeqskdv8hc"]
 
-[ext_resource type="Script" uid="uid://cx3bhmrancadt" path="res://Engine/Resources/Scenes/CollectibleDisplay.gd" id="1_mhrok"]
-[ext_resource type="Shader" uid="uid://bkn3o0cujs67t" path="res://Engine/Resources/Scenes/CollectibleTexture.gdshader" id="3_g7q54"]
-[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_qke8a"]
+[ext_resource type="Script" uid="uid://cx3bhmrancadt" path="res://engine/resources/scenes/collectible_display.gd" id="1_mhrok"]
+[ext_resource type="Shader" uid="uid://bkn3o0cujs67t" path="res://engine/resources/scenes/collectible_texture.gdshader" id="3_g7q54"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="4_qke8a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0nv3h"]
 resource_local_to_scene = true
@@ -18,6 +18,7 @@ expand_margin_top = 1.0
 bg_color = Color(1, 1, 1, 1)
 
 [node name="CollectibleDisplay" type="Control"]
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 16.0
@@ -44,6 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+stretch_mode = 5
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true

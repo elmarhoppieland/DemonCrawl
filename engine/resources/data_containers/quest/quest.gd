@@ -64,6 +64,12 @@ func _ready() -> void:
 		parent.add_child(unlocker.create())
 	
 	get_event_bus_manager()
+	
+	get_stage_effects().get_guaranteed_objects.connect(source_difficulty.get_guaranteed_objects)
+
+
+func _exit_tree() -> void:
+	get_stage_effects().get_guaranteed_objects.disconnect(source_difficulty.get_guaranteed_objects)
 
 #endregion
 
