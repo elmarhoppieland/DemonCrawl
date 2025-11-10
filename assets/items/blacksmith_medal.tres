@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://csvgj4leufmk4"]
+
+[ext_resource type="Script" uid="uid://blr0j46d8s8ym" path="res://assets/items/blacksmith_medal.gd" id="1_c12qw"]
+[ext_resource type="Texture2D" uid="uid://dxfj40ja5os4c" path="res://assets/items/blacksmith_medal.png" id="1_rwr5p"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="2_rwr5p"]
+
+[resource]
+script = ExtResource("2_rwr5p")
+name = "item.blacksmith-medal"
+description = "item.blacksmith-medal.description"
+cost = 7
+icon = ExtResource("1_rwr5p")
+item_script = ExtResource("1_c12qw")

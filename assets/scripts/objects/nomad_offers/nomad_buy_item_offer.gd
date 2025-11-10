@@ -35,13 +35,13 @@ func _can_perform() -> bool:
 
 func _get_fail_message() -> String:
 	return tr("stranger.nomad.buy.item.fail").format({
-		"item": tr(item.get_name())
+		"item": tr(item.name)
 	})
 
 
 func _get_description() -> String:
 	return "\"" + tr("stranger.nomad.buy.item").format({
-		"item": tr(item.get_name())
+		"item": tr(item.name)
 	}) + "\"\n" + tr("stranger.nomad.price").format({
 		"cost": price
 	})

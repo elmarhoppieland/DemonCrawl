@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="LootTable" load_steps=11 format=3 uid="uid://c2gh03qbscoec"]
 
-[ext_resource type="Script" uid="uid://cb865s5vxrp2b" path="res://assets/Scripts/Objects/Loot/Coin.gd" id="1_m74u1"]
-[ext_resource type="Script" uid="uid://b2fl50hmn6rix" path="res://engine/resources/DataContainers/Cell/CellObjectBase.gd" id="2_kkdfu"]
-[ext_resource type="Script" uid="uid://b6lc4rka1r6im" path="res://assets/Scripts/Objects/Loot/Diamond.gd" id="3_mme3m"]
-[ext_resource type="Script" uid="uid://bmq4dvud4876n" path="res://assets/Scripts/Objects/Loot/TreasureChest.gd" id="4_ttf5a"]
-[ext_resource type="Script" uid="uid://co2os8hn78bo6" path="res://assets/Scripts/Objects/Loot/Heart.gd" id="5_7ye48"]
-[ext_resource type="Script" uid="uid://cntvip8m67kjy" path="res://engine/resources/DataContainers/LootTable.gd" id="6_fjjuy"]
+[ext_resource type="Script" uid="uid://cb865s5vxrp2b" path="res://assets/scripts/objects/loot/coin.gd" id="1_m74u1"]
+[ext_resource type="Script" uid="uid://b2fl50hmn6rix" path="res://engine/resources/data_containers/cell/cell_object_base.gd" id="2_kkdfu"]
+[ext_resource type="Script" uid="uid://b6lc4rka1r6im" path="res://assets/scripts/objects/loot/diamond.gd" id="3_mme3m"]
+[ext_resource type="Script" uid="uid://bmq4dvud4876n" path="res://assets/scripts/objects/loot/treasure_chest.gd" id="4_ttf5a"]
+[ext_resource type="Script" uid="uid://co2os8hn78bo6" path="res://assets/scripts/objects/loot/heart.gd" id="5_7ye48"]
+[ext_resource type="Script" uid="uid://cntvip8m67kjy" path="res://engine/resources/data_containers/loot_table.gd" id="6_fjjuy"]
 
 [sub_resource type="Resource" id="Resource_ja4qr"]
 resource_name = "Coin"
@@ -32,7 +32,6 @@ script = ExtResource("6_fjjuy")
 type = 24
 items_class = "CellObjectBase"
 auto_sort = false
-use_modifier = true
 item_count = 4
 item_0/value = SubResource("Resource_ja4qr")
 item_0/weight = 10.0

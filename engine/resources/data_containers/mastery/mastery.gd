@@ -99,6 +99,7 @@ func _quest_init() -> void:
 #func _unequip() -> void:
 	#pass
 
+
 #endregion
 
 #region decription & visualization
@@ -274,6 +275,7 @@ func enable() -> void:
 	if not get_quest().is_node_ready():
 		await get_quest().ready
 	
+	get_quest().get_stage_effects().get_guaranteed_objects.connect(_get_guaranteed_objects)
 	_enable()
 
 
@@ -285,6 +287,7 @@ func disable() -> void:
 	get_quest().started.disconnect(_quest_start)
 	get_quest().lost.disconnect(_quest_lose)
 	get_quest().won.disconnect(_quest_win)
+	get_quest().get_stage_effects().get_guaranteed_objects.disconnect(_get_guaranteed_objects)
 	
 	_disable()
 
@@ -361,6 +364,11 @@ func _can_use_ability() -> bool:
 ## reset the ability's charges.
 func _ability() -> void:
 	pass
+
+
+## Virtual Method. Allows a [Mastery] to modify the list of Guaranteed [CellObject]s.
+func _get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
+	return input
 
 
 ## Returns the description of this [Mastery]'s ability.
