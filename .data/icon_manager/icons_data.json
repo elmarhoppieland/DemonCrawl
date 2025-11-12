@@ -260,6 +260,109 @@
 			}
 		]
 	},
+	"landmarks": {
+		"atlas": "res://assets/sprites/landmarks.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Barrel",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Meteorite",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "MysticStatue",
+				"w": 16.0,
+				"x": 32.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Sign",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Vault",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 16.0
+			},
+			{
+				"h": 16.0,
+				"name": "Obelisk",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 16.0
+			},
+			{
+				"h": 16.0,
+				"name": "ObeliskActive0",
+				"w": 16.0,
+				"x": 32.0,
+				"y": 16.0
+			},
+			{
+				"h": 16.0,
+				"name": "ObeliskActive1",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 16.0
+			},
+			{
+				"h": 16.0,
+				"name": "WishPool0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 32.0
+			},
+			{
+				"h": 16.0,
+				"name": "WishPool1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 32.0
+			},
+			{
+				"h": 16.0,
+				"name": "WishPoolScary0",
+				"w": 16.0,
+				"x": 32.0,
+				"y": 32.0
+			},
+			{
+				"h": 16.0,
+				"name": "WishPoolScary1",
+				"w": 16.0,
+				"x": 48.0,
+				"y": 32.0
+			},
+			{
+				"h": 16.0,
+				"name": "Stairwell",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 48.0
+			},
+			{
+				"h": 16.0,
+				"name": "DimensionalPortal",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 48.0
+			}
+		]
+	},
 	"arrow_small": {
 		"atlas": "res://assets/sprites/icons.png",
 		"icons": [
