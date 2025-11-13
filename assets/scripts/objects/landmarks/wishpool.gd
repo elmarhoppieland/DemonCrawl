@@ -4,7 +4,7 @@ class_name Wishpool
 
 # ==============================================================================
 
-var reward
+var reward: WishpoolReward
 var charges: int = 1
 var charge_cell_count: int = 0
 
@@ -18,9 +18,12 @@ func _can_interact() -> bool:
 	return true
 
 
-func get_stats():
-	pass
+func get_stats() -> QuestStats:
+	return get_quest().get_stats()
 
+
+func get_inventory() -> QuestInventory:
+	return get_quest().get_inventory()
 
 class WishPoolEffects extends EventBus:
 	signal get_heal_amount(amount: int)
