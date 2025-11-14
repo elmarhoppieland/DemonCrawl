@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="WishpoolManaReward" load_steps=2 format=3 uid="uid://bt10cv26gqoym"]
+
+[ext_resource type="Script" uid="uid://cvfhwsec2t5rb" path="res://assets/scripts/objects/wishpool_rewards/wishpool_mana_reward.gd" id="1_u84o7"]
+
+[resource]
+script = ExtResource("1_u84o7")
+reward_range = Array[int]([20, 60])

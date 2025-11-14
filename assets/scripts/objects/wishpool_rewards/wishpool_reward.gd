@@ -31,7 +31,7 @@ func _get_description() -> String:
 	return tr("landmark.wishpool." + _get_script_name().to_snake_case().to_lower().replace("_", ".")).format(values)
 
 
-## Returns the Nomad's description.
+## Returns the Wishpool's description.
 func get_description() -> String:
 	return _get_description()
 
