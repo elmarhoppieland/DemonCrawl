@@ -1,4 +1,23 @@
 {
+	"arrow_small": {
+		"atlas": "res://assets/sprites/icons.png",
+		"icons": [
+			{
+				"h": 5.0,
+				"name": "left",
+				"w": 6.0,
+				"x": 47.0,
+				"y": 0.0
+			},
+			{
+				"h": 5.0,
+				"name": "right",
+				"w": 6.0,
+				"x": 53.0,
+				"y": 0.0
+			}
+		]
+	},
 	"bagman": {
 		"atlas": "res://assets/sprites/strangers/bagman.png",
 		"icons": [
@@ -33,6 +52,18 @@
 				"name": "Frame1",
 				"w": 16.0,
 				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"chests": {
+		"atlas": "res://assets/sprites/chests.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "default",
+				"w": 16.0,
+				"x": 0.0,
 				"y": 0.0
 			}
 		]
@@ -146,254 +177,6 @@
 			}
 		]
 	},
-	"mage": {
-		"atlas": "res://assets/sprites/strangers/mage.png",
-		"icons": [
-			{
-				"h": 16.0,
-				"name": "Frame0",
-				"w": 16.0,
-				"x": 0.0,
-				"y": 0.0
-			},
-			{
-				"h": 16.0,
-				"name": "Frame1",
-				"w": 16.0,
-				"x": 16.0,
-				"y": 0.0
-			}
-		]
-	},
-	"nomad": {
-		"atlas": "res://assets/sprites/strangers/nomad.png",
-		"icons": [
-			{
-				"h": 16.0,
-				"name": "Frame0",
-				"w": 16.0,
-				"x": 0.0,
-				"y": 0.0
-			},
-			{
-				"h": 16.0,
-				"name": "Frame1",
-				"w": 16.0,
-				"x": 16.0,
-				"y": 0.0
-			}
-		]
-	},
-	"priest": {
-		"atlas": "res://assets/sprites/strangers/priest.png",
-		"icons": [
-			{
-				"h": 16.0,
-				"name": "Frame0",
-				"w": 16.0,
-				"x": 0.0,
-				"y": 0.0
-			},
-			{
-				"h": 16.0,
-				"name": "Frame1",
-				"w": 16.0,
-				"x": 16.0,
-				"y": 0.0
-			}
-		]
-	},
-	"pyro": {
-		"atlas": "res://assets/sprites/strangers/pyro.png",
-		"icons": [
-			{
-				"h": 16.0,
-				"name": "Frame0",
-				"w": 16.0,
-				"x": 0.0,
-				"y": 0.0
-			},
-			{
-				"h": 16.0,
-				"name": "Frame1",
-				"w": 16.0,
-				"x": 16.0,
-				"y": 0.0
-			}
-		]
-	},
-	"scribe": {
-		"atlas": "res://assets/sprites/strangers/scribe.png",
-		"icons": [
-			{
-				"h": 16.0,
-				"name": "Frame0",
-				"w": 16.0,
-				"x": 0.0,
-				"y": 0.0
-			},
-			{
-				"h": 16.0,
-				"name": "Frame1",
-				"w": 16.0,
-				"x": 16.0,
-				"y": 0.0
-			}
-		]
-	},
-	"waterboy": {
-		"atlas": "res://assets/sprites/strangers/waterboy.png",
-		"icons": [
-			{
-				"h": 16.0,
-				"name": "Frame0",
-				"w": 16.0,
-				"x": 0.0,
-				"y": 0.0
-			},
-			{
-				"h": 16.0,
-				"name": "Frame1",
-				"w": 16.0,
-				"x": 16.0,
-				"y": 0.0
-			}
-		]
-	},
-	"landmarks": {
-		"atlas": "res://assets/sprites/landmarks.png",
-		"icons": [
-			{
-				"h": 16.0,
-				"name": "Barrel",
-				"w": 16.0,
-				"x": 0.0,
-				"y": 0.0
-			},
-			{
-				"h": 16.0,
-				"name": "Meteorite",
-				"w": 16.0,
-				"x": 16.0,
-				"y": 0.0
-			},
-			{
-				"h": 16.0,
-				"name": "MysticStatue",
-				"w": 16.0,
-				"x": 32.0,
-				"y": 0.0
-			},
-			{
-				"h": 16.0,
-				"name": "Sign",
-				"w": 16.0,
-				"x": 48.0,
-				"y": 0.0
-			},
-			{
-				"h": 16.0,
-				"name": "Vault",
-				"w": 16.0,
-				"x": 0.0,
-				"y": 16.0
-			},
-			{
-				"h": 16.0,
-				"name": "Obelisk",
-				"w": 16.0,
-				"x": 16.0,
-				"y": 16.0
-			},
-			{
-				"h": 16.0,
-				"name": "ObeliskActive0",
-				"w": 16.0,
-				"x": 32.0,
-				"y": 16.0
-			},
-			{
-				"h": 16.0,
-				"name": "ObeliskActive1",
-				"w": 16.0,
-				"x": 48.0,
-				"y": 16.0
-			},
-			{
-				"h": 16.0,
-				"name": "WishPool0",
-				"w": 16.0,
-				"x": 0.0,
-				"y": 32.0
-			},
-			{
-				"h": 16.0,
-				"name": "WishPool1",
-				"w": 16.0,
-				"x": 16.0,
-				"y": 32.0
-			},
-			{
-				"h": 16.0,
-				"name": "WishPoolScary0",
-				"w": 16.0,
-				"x": 32.0,
-				"y": 32.0
-			},
-			{
-				"h": 16.0,
-				"name": "WishPoolScary1",
-				"w": 16.0,
-				"x": 48.0,
-				"y": 32.0
-			},
-			{
-				"h": 16.0,
-				"name": "Stairwell",
-				"w": 16.0,
-				"x": 0.0,
-				"y": 48.0
-			},
-			{
-				"h": 16.0,
-				"name": "DimensionalPortal",
-				"w": 16.0,
-				"x": 16.0,
-				"y": 48.0
-			}
-		]
-	},
-	"arrow_small": {
-		"atlas": "res://assets/sprites/icons.png",
-		"icons": [
-			{
-				"h": 5.0,
-				"name": "left",
-				"w": 6.0,
-				"x": 47.0,
-				"y": 0.0
-			},
-			{
-				"h": 5.0,
-				"name": "right",
-				"w": 6.0,
-				"x": 53.0,
-				"y": 0.0
-			}
-		]
-	},
-	"chests": {
-		"atlas": "res://assets/sprites/chests.png",
-		"icons": [
-			{
-				"h": 16.0,
-				"name": "default",
-				"w": 16.0,
-				"x": 0.0,
-				"y": 0.0
-			}
-		]
-	},
 	"icons": {
 		"atlas": "res://assets/sprites/icons.png",
 		"icons": [
@@ -487,6 +270,25 @@
 				"w": 16.0,
 				"x": 64.0,
 				"y": 86.0
+			}
+		]
+	},
+	"mage": {
+		"atlas": "res://assets/sprites/strangers/mage.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
 			}
 		]
 	},
@@ -657,6 +459,82 @@
 			}
 		]
 	},
+	"nomad": {
+		"atlas": "res://assets/sprites/strangers/nomad.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"obelisk_active": {
+		"atlas": "res://assets/sprites/landmarks/obelisk_active.png",
+		"icons": [
+			{
+				"h": 0.0,
+				"name": "ObeliskActive0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 0.0,
+				"name": "ObeliskActive1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"priest": {
+		"atlas": "res://assets/sprites/strangers/priest.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"pyro": {
+		"atlas": "res://assets/sprites/strangers/pyro.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
 	"quest": {
 		"atlas": "res://assets/sprites/icons.png",
 		"icons": [
@@ -736,6 +614,25 @@
 				"w": 16.0,
 				"x": 64.0,
 				"y": 86.0
+			}
+		]
+	},
+	"scribe": {
+		"atlas": "res://assets/sprites/strangers/scribe.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
 			}
 		]
 	},
@@ -877,6 +774,63 @@
 				"w": 16.0,
 				"x": 16.0,
 				"y": 102.0
+			}
+		]
+	},
+	"waterboy": {
+		"atlas": "res://assets/sprites/strangers/waterboy.png",
+		"icons": [
+			{
+				"h": 16.0,
+				"name": "Frame0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 16.0,
+				"name": "Frame1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"wishpool": {
+		"atlas": "res://assets/sprites/landmarks/wishpool.png",
+		"icons": [
+			{
+				"h": 0.0,
+				"name": "Wishpool0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 0.0,
+				"name": "Wishpool1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
+			}
+		]
+	},
+	"wishpool_halloween": {
+		"atlas": "res://assets/sprites/landmarks/wishpool_halloween.png",
+		"icons": [
+			{
+				"h": 0.0,
+				"name": "WishpoolHalloween0",
+				"w": 16.0,
+				"x": 0.0,
+				"y": 0.0
+			},
+			{
+				"h": 0.0,
+				"name": "\\WishpoolHalloween1",
+				"w": 16.0,
+				"x": 16.0,
+				"y": 0.0
 			}
 		]
 	}
