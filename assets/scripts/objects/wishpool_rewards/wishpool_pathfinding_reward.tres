@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="WishpoolPathfindingReward" load_steps=2 format=3 uid="uid://cm75ygebjk367"]
+
+[ext_resource type="Script" uid="uid://uugkaifyfmu8" path="res://assets/scripts/objects/wishpool_rewards/wishpool_pathfinding_reward.gd" id="1_ufmve"]
+
+[resource]
+script = ExtResource("1_ufmve")
+reward_range = Array[int]([2, 6])
