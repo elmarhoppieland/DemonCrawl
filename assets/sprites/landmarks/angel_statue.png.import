@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q0fnu7svi8e0"
-path="res://.godot/imported/landmarks.png-e1649ee6af070c1ba77df13a81cfe8e7.ctex"
+uid="uid://cafg0d4k08s7e"
+path="res://.godot/imported/angel_statue.png-1b95bae26cc7daedfbb75c06aa66cedc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/landmarks.png"
-dest_files=["res://.godot/imported/landmarks.png-e1649ee6af070c1ba77df13a81cfe8e7.ctex"]
+source_file="res://assets/sprites/landmarks/angel_statue.png"
+dest_files=["res://.godot/imported/angel_statue.png-1b95bae26cc7daedfbb75c06aa66cedc.ctex"]
 
 [params]
 

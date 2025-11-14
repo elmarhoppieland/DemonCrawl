@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_ufmve")
-reward_range = Array[int]([2, 6])
+reward_min = 1
+reward_max = 4

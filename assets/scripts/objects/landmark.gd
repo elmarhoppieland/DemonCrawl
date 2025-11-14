@@ -11,9 +11,5 @@ var _script_name := "" :
 		return _script_name
 # ==============================================================================
 
-func _interact() -> void:
-	pass
-
-
 func _get_texture() -> Texture2D:
 	return get_theme_icon(_script_name.to_snake_case(), "Landmark").duplicate()

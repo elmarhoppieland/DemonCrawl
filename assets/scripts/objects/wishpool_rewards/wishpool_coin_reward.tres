@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_kjxkv")
-reward_range = Array[int]([5, 25])
+reward_min = 5
+reward_max = 20

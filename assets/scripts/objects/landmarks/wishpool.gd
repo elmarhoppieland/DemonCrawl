@@ -3,11 +3,9 @@ extends Landmark
 class_name Wishpool
 
 # ==============================================================================
-
 var reward: WishpoolReward
 var charges: int = 1
 var charge_cell_count: int = 0
-
 # ==============================================================================
 
 func _init():
@@ -22,6 +20,7 @@ func _spawn():
 	
 	reward = script.new(self)
 	reward.notify_spawned()
+
 
 func _can_interact() -> bool:
 	return true
