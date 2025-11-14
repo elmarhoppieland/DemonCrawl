@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootTable" load_steps=7 format=3 uid="uid://c2t5kvnndcbah"]
+[gd_resource type="Resource" script_class="LootTable" load_steps=8 format=3 uid="uid://c2t5kvnndcbah"]
 
 [ext_resource type="Resource" uid="uid://c16e7i8x0nf3t" path="res://assets/scripts/objects/wishpool_rewards/wishpool_coin_reward.tres" id="1_sadp2"]
 [ext_resource type="Resource" uid="uid://bt10cv26gqoym" path="res://assets/scripts/objects/wishpool_rewards/wishpool_life_reward.tres" id="2_n6d7b"]
@@ -6,11 +6,12 @@
 [ext_resource type="Resource" uid="uid://cghqyk2yma5gw" path="res://assets/scripts/objects/wishpool_rewards/wishpool_minion_reward.tres" id="4_1laq2"]
 [ext_resource type="Resource" uid="uid://cm75ygebjk367" path="res://assets/scripts/objects/wishpool_rewards/wishpool_pathfinding_reward.tres" id="5_qb8pp"]
 [ext_resource type="Script" uid="uid://cntvip8m67kjy" path="res://engine/resources/data_containers/loot_table.gd" id="6_hsj4v"]
+[ext_resource type="Resource" uid="uid://o25veisasxq7" path="res://assets/scripts/objects/wishpool_rewards/wishpool_defense_reward.tres" id="6_n6d7b"]
 
 [resource]
 script = ExtResource("6_hsj4v")
 type = 24
-item_count = 5
+item_count = 7
 item_0/value = ExtResource("1_sadp2")
 item_0/weight = 1.0
 item_1/value = ExtResource("2_n6d7b")
@@ -21,4 +22,8 @@ item_3/value = ExtResource("4_1laq2")
 item_3/weight = 1.0
 item_4/value = ExtResource("5_qb8pp")
 item_4/weight = 1.0
+item_5/value = ExtResource("4_1laq2")
+item_5/weight = 1.0
+item_6/value = ExtResource("6_n6d7b")
+item_6/weight = 1.0
 metadata/_custom_type_script = "uid://cntvip8m67kjy"

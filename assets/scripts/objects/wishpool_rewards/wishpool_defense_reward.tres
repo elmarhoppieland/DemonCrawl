@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="WishpoolPathfindingReward" load_steps=2 format=3 uid="uid://o25veisasxq7"]
+[gd_resource type="Resource" script_class="WishpoolDefenseReward" load_steps=2 format=3 uid="uid://o25veisasxq7"]
 
 [ext_resource type="Script" uid="uid://bg5o0gfek58j6" path="res://assets/scripts/objects/wishpool_rewards/wishpool_defense_reward.gd" id="1_uqu8s"]
 
 [resource]
 script = ExtResource("1_uqu8s")
-reward_range = Array[int]([1, 3])
+reward_min = 1
+reward_max = 3
