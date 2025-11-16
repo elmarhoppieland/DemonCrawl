@@ -47,12 +47,16 @@ func _init(data: ItemData = null) -> void:
 	self.data = data
 
 
-func _enter_tree() -> void:
+func enable() -> void:
+	super()
+	
 	if is_active():
 		get_quest().get_stage_effects().get_guaranteed_objects.connect(_get_guaranteed_objects)
 
 
-func _exit_tree() -> void:
+func disable() -> void:
+	super()
+	
 	if is_active():
 		get_quest().get_stage_effects().get_guaranteed_objects.disconnect(_get_guaranteed_objects)
 

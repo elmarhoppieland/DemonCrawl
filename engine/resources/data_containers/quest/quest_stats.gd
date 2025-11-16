@@ -161,6 +161,15 @@ func gain_coins(coins: int, source: Object) -> int:
 	return coins
 
 
+@warning_ignore("shadowed_variable")
+func can_afford(coins: int, source: Object) -> bool:
+	if coins <= 0:
+		return true
+	
+	var default := self.coins >= coins
+	return EffectManager.propagate_mutable(get_effects().can_afford, 0, default, coins, source)
+
+
 func damage(amount: int, source: Object) -> int:
 	if get_quest().has_current_stage() and get_quest().get_current_stage().has_scene():
 		get_quest().get_current_stage().get_scene().get_background().flash_red()
@@ -227,3 +236,5 @@ class StatsEffects extends EventBus:
 	
 	signal gain_coins(coins: int, source: Object)
 	signal coins_gained(coins: int, source: Object)
+	
+	signal can_afford(can_afford: bool, coins: int, source: Object)

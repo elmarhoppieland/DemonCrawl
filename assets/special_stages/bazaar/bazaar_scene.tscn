@@ -1,0 +1,297 @@
+[gd_scene load_steps=17 format=3 uid="uid://rnnpdlgpa61t"]
+
+[ext_resource type="Texture2D" uid="uid://dbfxo2026kfl" path="res://assets/backgrounds/bazaar.png" id="1_ky3uv"]
+[ext_resource type="Script" uid="uid://cwygs6gkixgni" path="res://assets/special_stages/bazaar/bazaar_scene.gd" id="1_ouai6"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_6vkfb"]
+[ext_resource type="Shader" uid="uid://dg3b7w8v3tf2r" path="res://assets/special_stages/item_shop/item_shop.gdshader" id="3_le14x"]
+[ext_resource type="Texture2D" uid="uid://cq175wtkgma0r" path="res://assets/special_stages/item_shop/item_shop_present_logo.png" id="4_4cpid"]
+[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="5_4cpid"]
+[ext_resource type="PackedScene" uid="uid://d1v0qvvw8dwe0" path="res://engine/resources/scenes/dc_button.tscn" id="5_le14x"]
+[ext_resource type="PackedScene" uid="uid://dppdeqskdv8hc" path="res://engine/resources/scenes/collectible_display.tscn" id="6_e6o1s"]
+[ext_resource type="PackedScene" uid="uid://d3fpf8gbjxsbx" path="res://engine/resources/scenes/coin_value.tscn" id="7_pmhej"]
+[ext_resource type="Script" uid="uid://dadvpbreu2l7e" path="res://assets/items/apple.gd" id="9_e6o1s"]
+[ext_resource type="Script" uid="uid://nqubiv4s4ucx" path="res://engine/resources/helper_objects/texture_node/texture_node_display.gd" id="9_mln54"]
+[ext_resource type="Resource" uid="uid://be0trl6ly4wv2" path="res://assets/items/apple.tres" id="10_ts7b6"]
+[ext_resource type="Script" uid="uid://d1c6fxxsk1ugt" path="res://engine/resources/singletons/gui_enabler.gd" id="13_mln54"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vi8qp"]
+font = ExtResource("2_6vkfb")
+font_color = Color(0.890196, 0.623529, 0.262745, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pmhej"]
+shader = ExtResource("3_le14x")
+
+[sub_resource type="LabelSettings" id="LabelSettings_e6o1s"]
+font = ExtResource("2_6vkfb")
+font_color = Color(1, 0.819608, 0.458824, 1)
+
+[node name="BazaarScene" type="Control"]
+layout_mode = 3
+anchor_right = 0.25
+anchor_bottom = 0.25
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+script = ExtResource("1_ouai6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ky3uv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 20
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.125
+anchor_right = 0.125
+offset_top = 35.0
+grow_horizontal = 2
+theme_override_constants/separation = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(1, 0.819608, 0.458824, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.890196, 0.623529, 0.262745, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "stage.special.bazaar"
+label_settings = SubResource("LabelSettings_vi8qp")
+
+[node name="Label2" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_pmhej")
+layout_mode = 2
+text = "stage.special.bazaar"
+label_settings = SubResource("LabelSettings_e6o1s")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(1, 0.819608, 0.458824, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.890196, 0.623529, 0.262745, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.125
+anchor_right = 0.125
+offset_left = -15.0
+offset_top = 16.0
+offset_right = 16.0
+offset_bottom = 42.0
+grow_horizontal = 2
+texture = ExtResource("4_4cpid")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.543
+offset_top = -27.0
+offset_bottom = 9.25999
+grow_horizontal = 2
+theme_override_constants/separation = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="OffersContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/OffersContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer"]
+layout_mode = 2
+text = "stage.special.bazaar.buy"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = -3
+
+[node name="Frame" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer/VBoxContainer" instance=ExtResource("5_4cpid")]
+layout_mode = 2
+
+[node name="BuyDisplay" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer/VBoxContainer/Frame" instance=ExtResource("6_e6o1s")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BuyCoinValue" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer/VBoxContainer" instance=ExtResource("7_pmhej")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/OffersContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer2"]
+layout_mode = 2
+text = "stage.special.bazaar.sell"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = -3
+
+[node name="Frame" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer2/VBoxContainer" instance=ExtResource("5_4cpid")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SellDisplay" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer2/VBoxContainer/Frame" instance=ExtResource("6_e6o1s")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CoinValue" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer2/VBoxContainer" instance=ExtResource("7_pmhej")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.0627451, 0.8745098, 0.5019608, 1)
+prefix = "+"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/OffersContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer3"]
+layout_mode = 2
+text = "stage.special.bazaar.trade"
+horizontal_alignment = 1
+
+[node name="Frame" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer3" instance=ExtResource("5_4cpid")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TradeDisplay" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer3/Frame" instance=ExtResource("6_e6o1s")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TradeCostDisplay" type="TextureRect" parent="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("9_mln54")
+metadata/_custom_type_script = "uid://nqubiv4s4ucx"
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="BuyButton" parent="VBoxContainer" instance=ExtResource("5_le14x")]
+unique_name_in_owner = true
+physics_interpolation_mode = 2
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_auto_translate_mode = 0
+focus_behavior_recursive = 0
+mouse_behavior_recursive = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+color = Color(0.0627451, 0.87451, 0.501961, 1)
+bg_color = Color(0, 0, 0, 1)
+text = "stage.special.bazaar.confirm"
+
+[node name="Control3" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="LeaveButton" parent="VBoxContainer" instance=ExtResource("5_le14x")]
+unique_name_in_owner = true
+physics_interpolation_mode = 2
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_auto_translate_mode = 0
+focus_behavior_recursive = 0
+mouse_behavior_recursive = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+color = Color(0.862745, 0.121569, 0.121569, 1)
+bg_color = Color(0, 0, 0, 1)
+text = "stage.special.bazaar.leave"
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("9_e6o1s")
+data = ExtResource("10_ts7b6")
+
+[node name="GuiEnabler" type="Node" parent="."]
+script = ExtResource("13_mln54")
+_disabled = 0
+metadata/_custom_type_script = "uid://d1c6fxxsk1ugt"
+
+[connection signal="interacted" from="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer/VBoxContainer/Frame" to="." method="_on_buy_frame_interacted"]
+[connection signal="interacted" from="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer2/VBoxContainer/Frame" to="." method="_on_sell_frame_interacted"]
+[connection signal="interacted" from="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer3/Frame" to="." method="_on_trade_frame_interacted"]
+[connection signal="pressed" from="VBoxContainer/BuyButton" to="." method="_on_buy_button_pressed"]

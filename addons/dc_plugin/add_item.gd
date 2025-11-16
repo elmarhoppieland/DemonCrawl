@@ -2,7 +2,7 @@
 extends Window
 
 # ==============================================================================
-const LOCALIZATION_ITEMS_EN = preload("uid://c5c25072ykxhg")
+const LOCALIZATION_ITEMS_EN := preload("res://assets/localization/localization-items.en.translation")
 
 const STATUS_TEXT_FETCHING := "Fetching..."
 const STATUS_TEXT_UNAVAILABLE := "Icon could not be found."

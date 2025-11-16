@@ -153,6 +153,14 @@ stage.special.item-shop.text;CHOOSE AN ITEM:
 stage.special.item-shop.confirm;BUY NOW!
 stage.special.item-shop.leave;LEAVE
 
+stage.special.bazaar;Bazaar
+stage.special.bazaar.description;Buy, sell & trade items.
+stage.special.bazaar.buy;BUY:
+stage.special.bazaar.sell;SELL:
+stage.special.bazaar.trade;TRADE:
+stage.special.bazaar.confirm;ACCEPT OFFER
+stage.special.bazaar.leave;LEAVE
+
 research.kill;Kill
 
 object.treasure-chest;Chest

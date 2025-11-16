@@ -71,4 +71,5 @@ func _update() -> void:
 		if i < items.size():
 			display.collectible = items[i]
 		else:
+			_item_grid.remove_child(display)
 			display.queue_free()

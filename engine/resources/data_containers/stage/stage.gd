@@ -10,7 +10,7 @@ const MUSIC_PATH := "res://assets/skins/%s/music.ogg"
 const AMBIENCE_A_PATH := "res://assets/skins/%s/ambience_a.ogg"
 const AMBIENCE_B_PATH := "res://assets/skins/%s/ambience_b.ogg"
 # ==============================================================================
-static var _theme_cache := {}
+static var _theme_cache: Dictionary[String, Theme] = {}
 # ==============================================================================
 @export var name_id := "" :
 	set(value):

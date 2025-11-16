@@ -3,7 +3,7 @@ class_name MouseCastSprite
 
 # ==============================================================================
 @onready var anchor: Node2D = %Anchor
-@onready var foreground: Sprite2D = %Foreground
+@onready var foreground: TextureRect = %Foreground
 # ==============================================================================
 signal cast_finished()
 signal cast_cancelled()

@@ -28,6 +28,7 @@ func _update() -> void:
 			frame = _offers_container.get_child(i)
 		else:
 			frame = OFFER_DISPLAY.instantiate()
+			frame.stats = instance.get_quest().get_stats()
 			_offers_container.add_child(frame)
 			
 			frame.interacted.connect(func() -> void:

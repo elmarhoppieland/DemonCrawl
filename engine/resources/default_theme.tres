@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=87 format=3 uid="uid://b442tpxg2qr7y"]
+[gd_resource type="Theme" load_steps=96 format=3 uid="uid://b442tpxg2qr7y"]
 
 [ext_resource type="StyleBox" uid="uid://cokg66aqb3ro1" path="res://engine/resources/xp_bar_fill.tres" id="1_0ok7g"]
 [ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://assets/skins/default/bg.png" id="1_3w34f"]
@@ -106,6 +106,57 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
 anti_aliasing = false
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_po0a3"]
+load_path = "res://.godot/imported/icons.png-a48a139c0599139f1c5a2b259449f81f.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyn3g"]
+atlas = SubResource("CompressedTexture2D_po0a3")
+region = Rect2(67, 7, 8, 8)
+script = ExtResource("7_th4e0")
+name = "scroll_grabber"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r2oes"]
+texture = SubResource("AtlasTexture_fyn3g")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+axis_stretch_vertical = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5i44x"]
+load_path = "res://.godot/imported/icons.png-a48a139c0599139f1c5a2b259449f81f.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07gb0"]
+atlas = SubResource("CompressedTexture2D_5i44x")
+region = Rect2(67, 7, 8, 8)
+script = ExtResource("7_th4e0")
+name = "scroll_grabber"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xgobq"]
+texture = SubResource("AtlasTexture_07gb0")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+axis_stretch_vertical = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pyln4"]
+load_path = "res://.godot/imported/icons.png-a48a139c0599139f1c5a2b259449f81f.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5jy0"]
+atlas = SubResource("CompressedTexture2D_pyln4")
+region = Rect2(75, 7, 8, 8)
+script = ExtResource("7_th4e0")
+name = "scroll_grabber_highlight"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fgqlg"]
+texture = SubResource("AtlasTexture_h5jy0")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+axis_stretch_vertical = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pqs50"]
 atlas = ExtResource("11_010p6")
@@ -408,6 +459,9 @@ CodeEdit/styles/normal = SubResource("StyleBoxFlat_odxkr")
 DCButton/colors/cancel = Color(1, 0, 0, 1)
 DCButton/colors/confirm = Color(0.0627451, 0.87451, 0.501961, 1)
 DCButton/colors/general = Color(1, 1, 1, 1)
+HScrollBar/styles/grabber = SubResource("StyleBoxTexture_r2oes")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_xgobq")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_fgqlg")
 Icons/icons/locked_flat = SubResource("AtlasTexture_pqs50")
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/line_spacing = 0
