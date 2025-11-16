@@ -3,7 +3,7 @@ extends HBoxContainer
 class_name StageDetails
 
 # ==============================================================================
-@export var stage: Stage :
+@export var stage: StageBase :
 	set(value):
 		if stage == value:
 			return
@@ -72,7 +72,7 @@ func update() -> void:
 		_stage_mods_container.remove_child(child)
 		child.queue_free()
 	
-	for mod in stage.mods:
+	for mod in stage.get_mods():
 		var icon := StageModIcon.create(mod)
 		_stage_mods_container.add_child(icon)
 	

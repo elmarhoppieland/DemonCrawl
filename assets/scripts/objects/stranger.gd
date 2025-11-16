@@ -14,7 +14,7 @@ var _script_name := "" :
 func activate() -> void:
 	_activate()
 	
-	EffectManager.propagate(get_quest().get_object_effects().used, [self])
+	EffectManager.propagate(get_quest().get_object_effects().used, self)
 
 
 ## Virtual method. Called when this [Stranger] is activated, usually when the player

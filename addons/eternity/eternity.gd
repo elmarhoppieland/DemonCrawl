@@ -5,17 +5,12 @@ class_name Eternity
 # ==============================================================================
 const DEFAULTS_FILE_PATH := "res://.data/eternity/defaults.cfg"
 # ==============================================================================
-static var _defaults_cfg := EternalFile.new()
-
 static var path := "" :
 	set(value):
 		var different := path != value
 		path = value
 		if different:
 			_reload_file()
-
-static var _named_paths := {}
-#static var _named_values := {}
 
 static var saved: Signal :
 	get:
@@ -26,36 +21,15 @@ static var loaded: Signal :
 
 #static var _save_cfg: EternalFile = null
 
-static var _initialized := false
-
-static var _named_path_load_queue := PackedStringArray()
-
 static var _processing_cfg: EternalFile = null : get = get_processing_file
 static var _processing_owner: Object = null : get = get_processing_owner
+
+static var _initializer: Initializer :
+	get:
+		if _initializer == null:
+			_initializer = Initializer.new()
+		return _initializer
 # ==============================================================================
-
-static func _static_init() -> void:
-	if Engine.is_editor_hint():
-		return
-	
-	if _initialized:
-		return
-	
-	_initialized = true
-	
-	if ProjectSettings.has_setting("eternity/named_paths/defaults"):
-		_named_paths = ProjectSettings.get_setting("eternity/named_paths/defaults")
-	
-	if OS.is_debug_build():
-		_defaults_cfg.load_existing_resources.call_deferred(DEFAULTS_FILE_PATH)
-		
-		while true:
-			await _defaults_cfg.value_changed
-			await Promise.defer() # this makes sure we never save more than once per frame (unless any values get changed in deferred calls after this)
-			_defaults_cfg.save(DEFAULTS_FILE_PATH, true)
-	else:
-		_defaults_cfg.load.call_deferred(DEFAULTS_FILE_PATH)
-
 
 static func _editor_init() -> void:
 	if ProjectSettings.has_setting("eternity/editor/editor_save_path") and not ProjectSettings.get_setting("eternity/editor/editor_save_path").is_empty():
@@ -72,7 +46,7 @@ static func get_saved_value(save_path: String, script: Script, key: String) -> V
 	var script_class := UserClassDB.script_get_identifier(script)
 	var cfg := EternalFile.new()
 	cfg.load(save_path)
-	return cfg.get_eternal(script_class, key, _defaults_cfg.get_eternal(script_class, key))
+	return cfg.get_eternal(script_class, key, get_defaults_cfg().get_eternal(script_class, key))
 
 
 static func save(path_name: String = "") -> void:
@@ -89,9 +63,9 @@ static func save(path_name: String = "") -> void:
 	
 	file.clear()
 	
-	for script_class in _defaults_cfg.get_scripts():
+	for script_class in get_defaults_cfg().get_scripts():
 		var script := UserClassDB.class_get_script(script_class)
-		for key in _defaults_cfg.get_eternals(script_class):
+		for key in get_defaults_cfg().get_eternals(script_class):
 			var name := key.get_slice("::", 0) if "::" in key else ""
 			if name != path_name:
 				continue
@@ -139,19 +113,17 @@ static func get_save_name(path_name: String = "") -> String:
 
 
 static func get_defaults_cfg() -> EternalFile:
-	if Engine.is_editor_hint():
-		_defaults_cfg.load(DEFAULTS_FILE_PATH)
-	return _defaults_cfg
+	return _initializer.defaults_cfg
 
 
 static func _get_path(path_name: String = "") -> String:
 	if path_name.is_empty():
 		return path
-	if path_name not in _named_paths:
+	if path_name not in _initializer.named_paths:
 		#Debug.log_error("")
 		return ""
 	
-	return _named_paths[path_name]
+	return _initializer.named_paths[path_name]
 
 
 static func _reload_file(path_name: String = "") -> void:
@@ -164,11 +136,11 @@ static func _reload_file(path_name: String = "") -> void:
 	_processing_cfg = cfg
 	cfg.load(file_path)
 	
-	for script_class in _defaults_cfg.get_scripts():
+	for script_class in get_defaults_cfg().get_scripts():
 		var script := UserClassDB.class_get_script(script_class)
 		_processing_owner = script
 		assert(is_instance_valid(script))
-		for key in _defaults_cfg.get_eternals(script_class):
+		for key in get_defaults_cfg().get_eternals(script_class):
 			if "::" in key:
 				if key.get_slice("::", 0) != path_name:
 					continue
@@ -184,7 +156,7 @@ static func _reload_file(path_name: String = "") -> void:
 			if cfg.has_eternal(script_class, key):
 				value = cfg.get_eternal(script_class, key)
 			else:
-				value = _duplicate(_defaults_cfg.get_eternal(script_class, prefix + key))
+				value = _duplicate(get_defaults_cfg().get_eternal(script_class, prefix + key))
 			
 			if script.has_method("_import_" + key):
 				value = script.call("_import_" + key, value)
@@ -198,15 +170,16 @@ static func _reload_file(path_name: String = "") -> void:
 
 
 static func _queue_named_path_load(path_name: String) -> void:
-	if path_name in _named_path_load_queue:
+	var _t := _initializer
+	if path_name in _initializer.named_path_load_queue:
 		return
-	_named_path_load_queue.append(path_name)
+	_initializer.named_path_load_queue.append(path_name)
 	
 	await Promise.defer()
 	
 	_reload_file(path_name)
-	assert(path_name in _named_path_load_queue, "Unexpected result; investigate and add conditional return")
-	_named_path_load_queue.remove_at(_named_path_load_queue.find(path_name))
+	assert(path_name in _initializer.named_path_load_queue, "Unexpected result; investigate and add conditional return")
+	_initializer.named_path_load_queue.remove_at(_initializer.named_path_load_queue.find(path_name))
 
 
 static func _duplicate(value: Variant) -> Variant:
@@ -235,3 +208,29 @@ class _Instance:
 	signal _path_changed()
 	signal _saved(path: String)
 	signal _loaded(path: String)
+
+
+class Initializer:
+	var defaults_cfg := EternalFile.new()
+	var named_paths: Dictionary[String, String] = {}
+	var named_path_load_queue := PackedStringArray()
+	
+	var defaults_cfg_save_queued := false
+	
+	func _init() -> void:
+		named_paths.assign(ProjectSettings.get_setting("eternity/named_paths/defaults"))
+		
+		if OS.has_feature("editor"):
+			defaults_cfg.load_existing_resources.call_deferred(DEFAULTS_FILE_PATH)
+			
+			defaults_cfg.value_changed.connect(func(..._args: Array) -> void:
+				if defaults_cfg_save_queued:
+					return
+				defaults_cfg_save_queued = true
+				
+				await Promise.defer()
+				
+				defaults_cfg.save(DEFAULTS_FILE_PATH, true)
+			)
+		else:
+			defaults_cfg.load.call_deferred(DEFAULTS_FILE_PATH)

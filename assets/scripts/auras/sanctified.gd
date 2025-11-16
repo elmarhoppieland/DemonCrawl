@@ -5,7 +5,7 @@ class_name Sanctified
 # ==============================================================================
 
 func _ready() -> void:
-	Quest.get_current().get_stats().get_mutable_effects().life_restore.connect(_restore_life)
+	Quest.get_current().get_stats().get_effects().restore_life.connect(_restore_life)
 
 
 func _spawn() -> void:
@@ -13,7 +13,7 @@ func _spawn() -> void:
 
 
 func _exit_tree() -> void:
-	Quest.get_current().get_stats().get_mutable_effects().life_restore.disconnect(_restore_life)
+	Quest.get_current().get_stats().get_effects().restore_life.disconnect(_restore_life)
 
 
 func _get_modulate() -> Color:

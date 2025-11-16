@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="TokenShopItem" load_steps=10 format=3 uid="uid://bn053h0s8sx8t"]
+
+[ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/data_containers/condition/condition.gd" id="1_afjr7"]
+[ext_resource type="Resource" uid="uid://bk14shjgawsbt" path="res://assets/quests/normal/3-another_way.tres" id="2_36mqq"]
+[ext_resource type="Script" uid="uid://dgc5yi6lu6u70" path="res://engine/resources/data_containers/condition/quest_complete_condition.gd" id="3_fakix"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="4_v6hkt"]
+[ext_resource type="Script" uid="uid://c2jr3se2cjy15" path="res://engine/resources/data_containers/token_shop/token_shop_item.gd" id="5_fq5vj"]
+[ext_resource type="Script" uid="uid://ddeq2y3c5x2gj" path="res://engine/resources/data_containers/condition/flag_condition.gd" id="6_0fn07"]
+
+[sub_resource type="Resource" id="Resource_drplq"]
+script = ExtResource("3_fakix")
+quest = ExtResource("2_36mqq")
+
+[sub_resource type="Texture2D" id="Texture2D_not6g"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("4_v6hkt")
+name = "tokenshop/upgrade_quest"
+
+[sub_resource type="Resource" id="Resource_p4cou"]
+script = ExtResource("6_0fn07")
+flag = "hard"
+invert = true
+
+[resource]
+script = ExtResource("5_fq5vj")
+name = "token-shop.category.upgrades.quest.4"
+description = "token-shop.category.upgrades.quest.4.description"
+icon = SubResource("Texture2D_not6g")
+cost = 1
+conditions = Array[ExtResource("1_afjr7")]([SubResource("Resource_drplq")])
+unlock_conditions = Array[ExtResource("1_afjr7")]([SubResource("Resource_p4cou")])

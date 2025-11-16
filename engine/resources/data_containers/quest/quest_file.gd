@@ -7,8 +7,8 @@ class_name QuestFile
 @export var token_shop_purchase: TokenShopItemBase = null  ## The [TokenShopItem] that must be purchased to unlock this quest, or [code]null[/code] if this quest does not need to be purchased.
 @export var icon: Texture2D = null  ## The quest's icon.
 @export var skip_unlock := false  ## If this is [code]true[/code], unlocking this quest should also unlock the next quest.
-@export var stages: Array[StageBase] = []  ## The stages in the quest.
-@export var special_stages: Array[SpecialStageBase] = []  ## The special stages that may appear in the quest.
+@export var stages: Array[StageFile] = []  ## The stages in the quest.
+@export var special_stages: Array[SpecialStageFile] = []  ## The special stages that may appear in the quest.
 # ==============================================================================
 
 func generate() -> Quest:

@@ -39,7 +39,7 @@ func _collect() -> bool:
 	var success := true
 	
 	if get_stats().life < get_stats().max_life:
-		var life: int = EffectManager.propagate_mutable((get_quest().get_event_bus(HeartEffects) as HeartEffects).get_heal_amount, 1, self, 1)
+		var life: int = EffectManager.propagate_mutable((get_stage_instance().get_event_bus(HeartEffects) as HeartEffects).get_heal_amount, 1, self, 1)
 		life = get_stats().life_restore(life, self)
 		get_cell().add_text_particle("+" + str(life), TextParticles.ColorPreset.LIFE)
 	else:
@@ -61,7 +61,7 @@ func _collect_failed() -> void:
 
 func use() -> void:
 	tween_texture_to(GuiLayer.get_statbar().get_heart_position())
-	EffectManager.propagate(get_quest().get_object_effects().used, [self])
+	EffectManager.propagate(get_stage_instance().get_object_effects().used, self)
 
 
 class HeartEffects extends EventBus:

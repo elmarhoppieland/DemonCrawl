@@ -47,12 +47,16 @@ func _init(data: ItemData = null) -> void:
 	self.data = data
 
 
-func _enter_tree() -> void:
+func enable() -> void:
+	super()
+	
 	if is_active():
 		get_quest().get_stage_effects().get_guaranteed_objects.connect(_get_guaranteed_objects)
 
 
-func _exit_tree() -> void:
+func disable() -> void:
+	super()
+	
 	if is_active():
 		get_quest().get_stage_effects().get_guaranteed_objects.disconnect(_get_guaranteed_objects)
 
@@ -386,7 +390,7 @@ func _get_target_area(origin: CellData, radius: int) -> Array[CellData]:
 				cells.append(cell)
 	
 	cells = EffectManager.propagate_mutable(get_quest().get_item_effects().target_cells, 1, self, cells)
-	EffectManager.propagate(get_quest().get_item_effects().cells_targeted, [self, cells])
+	EffectManager.propagate(get_quest().get_item_effects().cells_targeted, self, cells)
 	
 	return cells
 

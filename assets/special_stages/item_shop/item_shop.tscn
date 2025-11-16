@@ -1,0 +1,215 @@
+[gd_scene load_steps=11 format=3 uid="uid://cf6pwvend36k4"]
+
+[ext_resource type="Script" uid="uid://dlk23qy0u2xwh" path="res://assets/special_stages/item_shop/item_shop_scene.gd" id="1_3moa5"]
+[ext_resource type="Texture2D" uid="uid://bgg7dvorx22m1" path="res://assets/backgrounds/item_shop.png" id="1_hllyk"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_7h07o"]
+[ext_resource type="Shader" uid="uid://dg3b7w8v3tf2r" path="res://assets/special_stages/item_shop/item_shop.gdshader" id="4_6l62f"]
+[ext_resource type="PackedScene" uid="uid://d1v0qvvw8dwe0" path="res://engine/resources/scenes/dc_button.tscn" id="5_3qi0c"]
+[ext_resource type="Texture2D" uid="uid://cq175wtkgma0r" path="res://assets/special_stages/item_shop/item_shop_present_logo.png" id="5_gc6dr"]
+[ext_resource type="Script" uid="uid://d1c6fxxsk1ugt" path="res://engine/resources/singletons/gui_enabler.gd" id="7_57vr3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g72nf"]
+font = ExtResource("2_7h07o")
+font_color = Color(0.890196, 0.623529, 0.262745, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_by0ps"]
+shader = ExtResource("4_6l62f")
+
+[sub_resource type="LabelSettings" id="LabelSettings_w6k33"]
+font = ExtResource("2_7h07o")
+font_color = Color(1, 0.819608, 0.458824, 1)
+
+[node name="ItemShop" type="Control"]
+layout_mode = 3
+anchor_right = 0.25
+anchor_bottom = 0.25
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+script = ExtResource("1_3moa5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hllyk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 20
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.125
+anchor_right = 0.125
+offset_top = 35.0
+grow_horizontal = 2
+theme_override_constants/separation = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(1, 0.819608, 0.458824, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.890196, 0.623529, 0.262745, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "stage.special.item-shop"
+label_settings = SubResource("LabelSettings_g72nf")
+
+[node name="Label2" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_by0ps")
+layout_mode = 2
+text = "stage.special.item-shop"
+label_settings = SubResource("LabelSettings_w6k33")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(1, 0.819608, 0.458824, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.890196, 0.623529, 0.262745, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.125
+anchor_right = 0.125
+offset_left = -15.0
+offset_top = 16.0
+offset_right = 16.0
+offset_bottom = 42.0
+grow_horizontal = 2
+texture = ExtResource("5_gc6dr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.543
+offset_top = -27.0
+offset_bottom = 9.25999
+grow_horizontal = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "stage.special.item-shop.text"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="OffersContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 10
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="BuyButton" parent="VBoxContainer" instance=ExtResource("5_3qi0c")]
+unique_name_in_owner = true
+physics_interpolation_mode = 2
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_auto_translate_mode = 0
+focus_behavior_recursive = 0
+mouse_behavior_recursive = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+color = Color(0.0627451, 0.87451, 0.501961, 1)
+bg_color = Color(0, 0, 0, 1)
+text = "stage.special.item-shop.confirm"
+
+[node name="Control3" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="LeaveButton" parent="VBoxContainer" instance=ExtResource("5_3qi0c")]
+unique_name_in_owner = true
+physics_interpolation_mode = 2
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_auto_translate_mode = 0
+focus_behavior_recursive = 0
+mouse_behavior_recursive = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+color = Color(0.862745, 0.121569, 0.121569, 1)
+bg_color = Color(0, 0, 0, 1)
+text = "stage.special.item-shop.leave"
+
+[node name="GuiEnabler" type="Node" parent="."]
+script = ExtResource("7_57vr3")
+_disabled = 0
+metadata/_custom_type_script = "uid://d1c6fxxsk1ugt"
+
+[connection signal="pressed" from="VBoxContainer/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LeaveButton" to="." method="_on_leave_button_pressed"]

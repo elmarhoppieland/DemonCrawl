@@ -37,7 +37,7 @@ func _get_texture_bg_color() -> Color:
 
 #endregion
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	if is_active():
 		var base := get_parent()
 		while base != null:

@@ -3,11 +3,11 @@ class_name NoviceUnlocker
 
 # ==============================================================================
 
-func _enter_tree() -> void:
+func _enable() -> void:
 	get_quest().get_event_bus(CellData.CellEffects).opened.connect(_cell_open)
 
 
-func _exit_tree() -> void:
+func _disable() -> void:
 	get_quest().get_event_bus(CellData.CellEffects).opened.disconnect(_cell_open)
 
 

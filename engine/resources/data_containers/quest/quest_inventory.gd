@@ -97,7 +97,7 @@ func mana_gain(mana: int, source: Object) -> void:
 	for i in mana:
 		mana_items.pick_random().gain_mana(1)
 	
-	EffectManager.propagate(get_effects().mana_gained, [mana, source])
+	EffectManager.propagate(get_effects().mana_gained, mana, source)
 
 
 func get_random_item() -> Item:

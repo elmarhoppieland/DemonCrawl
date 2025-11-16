@@ -6,7 +6,7 @@ class_name CellObject
 ## A [Cell]'s object.
 
 # ==============================================================================
-@export var _origin_stage: Stage = null : set = _set_origin_stage, get = get_origin_stage
+@export var _origin_stage: StageBase = null : set = _set_origin_stage, get = get_origin_stage
 # ==============================================================================
 var _material: Material = null : get = get_material
 
@@ -159,7 +159,7 @@ func get_stage_instance() -> StageInstance:
 	return base
 
 
-func get_origin_stage() -> Stage:
+func get_origin_stage() -> StageBase:
 	return _origin_stage
 
 #region virtuals
@@ -244,7 +244,7 @@ func notify_interacted() -> void:
 	
 	_hover()
 	
-	EffectManager.propagate(get_stage_instance().get_object_effects().interacted, [self])
+	EffectManager.propagate(get_stage_instance().get_object_effects().interacted, self)
 
 
 ## Interacts with this object.
@@ -303,7 +303,7 @@ func kill() -> void:
 	
 	clear()
 	
-	EffectManager.propagate(get_stage_instance().get_object_effects().killed, [self])
+	EffectManager.propagate(get_stage_instance().get_object_effects().killed, self)
 
 
 ## Virtual method to react to being killed.
@@ -519,7 +519,7 @@ func flee() -> void:
 
 func handle_fail() -> bool:
 	var handled: bool = EffectManager.propagate_mutable(get_stage_instance().get_object_effects().handle_interact_failed, 1, self, false)
-	EffectManager.propagate(get_stage_instance().get_object_effects().interact_failed, [self, handled])
+	EffectManager.propagate(get_stage_instance().get_object_effects().interact_failed, self, handled)
 	return handled
 
 

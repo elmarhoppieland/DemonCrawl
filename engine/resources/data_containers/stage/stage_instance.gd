@@ -1,5 +1,5 @@
 @tool
-extends Node
+extends StageInstanceBase
 class_name StageInstance
 
 # ==============================================================================
@@ -32,27 +32,24 @@ class_name StageInstance
 
 #@export var _projectile_manager: ProjectileManager = null : get = get_projectile_manager
 # ==============================================================================
-var _scene: StageScene : get = get_scene
-
-var _immunity := Immunity.create_immunity_list() : get = get_immunity
+#var _immunity := Immunity.create_immunity_list() : get = get_immunity
 # ==============================================================================
 signal finish_pressed()
-signal finished()
 
 #signal loaded()
 #signal unloaded()
-
-signal changed()
 # ==============================================================================
 
 func _ready() -> void:
-	if Eternity.get_processing_file() != null:
-		await Eternity.get_processing_file().loaded
-		if not is_generated():
-			get_timer().pause()
-			get_status_timer().pause()
-		
-		check_completed()
+	get_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().second_passed, self))
+	get_status_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().status_second_passed, self))
+	
+	get_timer().pause()
+	get_status_timer().pause()
+	
+	if was_reloaded():
+		for data in get_grid().get_cells():
+			data.changed.connect(emit_changed)
 		return
 	
 	var stage := get_stage()
@@ -62,14 +59,18 @@ func _ready() -> void:
 		data.changed.connect(emit_changed)
 		get_grid().add_child(data)
 	
-	get_timer().pause()
-	get_status_timer().pause()
-	
 	emit_changed()
 
 
-func emit_changed() -> void:
-	changed.emit()
+func _play() -> void:
+	if is_generated():
+		get_timer().play()
+		get_status_timer().play()
+		
+		check_completed()
+	else:
+		get_timer().pause()
+		get_status_timer().pause()
 
 #region internals
 
@@ -184,12 +185,8 @@ func create_cell(idx: int) -> Cell:
 
 
 func notify_finish_pressed() -> void:
-	EffectManager.propagate(get_effects().finish_pressed)
-
-
-func finish() -> void:
-	get_stage().completed = true
-	finished.emit()
+	finish_pressed.emit()
+	EffectManager.propagate(get_effects().finish_pressed, self)
 
 
 #func notify_loaded() -> void:
@@ -278,7 +275,7 @@ func get_reward_types() -> PackedStringArray:
 		if not "heartless" in types and cell.get_object() and cell.get_object() is Heart:
 			types.append("heartless")
 	
-	if Quest.get_current().get_stages().all(func(a: Stage) -> bool: return a.completed or a is SpecialStage):
+	if Quest.get_current().is_finished():
 		types.append("quest_complete")
 	
 	return types
@@ -309,13 +306,9 @@ func get_cell(at: Vector2i) -> CellData:
 	return get_cells()[at.x + at.y * get_stage().size.x]
 
 
-func get_grid() -> Node:
-	if not has_node("Grid"):
-		var grid := Grid.new()
-		grid.name = "Grid"
-		add_child(grid)
-	
-	return get_node("Grid")
+## Returns this stage's grid.
+func get_grid() -> Grid:
+	return get_component(Grid, self)
 
 
 ## Returns an [Array] of all [Cell]s in the [Stage].
@@ -356,13 +349,18 @@ func is_completed() -> bool:
 
 
 func check_completed() -> void:
-	if is_completed():
-		for cell in get_cells():
-			if cell.has_monster():
-				cell.flag()
-			else:
-				cell.reveal()
-		EffectManager.propagate(get_effects().completed)
+	if not is_completed():
+		return
+	
+	for cell in get_cells():
+		if cell.has_monster():
+			cell.flag()
+		else:
+			cell.reveal()
+	EffectManager.propagate(get_effects().completed)
+	
+	get_timer().pause()
+	get_status_timer().pause()
 
 
 func needs_guess() -> bool:
@@ -485,17 +483,6 @@ func get_remaining_monster_count() -> int:
 	return monsters
 
 
-func get_stage() -> Stage:
-	return get_parent()
-
-
-func get_quest() -> Quest:
-	var base := get_parent()
-	while base != null and base is not Quest:
-		base = base.get_parent()
-	return base
-
-
 func was_reloaded() -> bool:
 	return false # TODO
 
@@ -512,39 +499,18 @@ func is_timer_paused() -> bool:
 	return get_timer().is_paused()
 
 
-## Returns the currently active [StageScene].
+## Reimplements [method StageInstanceBase.get_scene] for easy typing.
 func get_scene() -> StageScene:
-	if is_instance_valid(_scene):
-		return _scene
-	
-	var loop := Engine.get_main_loop()
-	assert(loop is SceneTree, "Expected a SceneTree as the main loop, but a %s was found." % loop.get_class())
-	
-	var current_scene := (loop as SceneTree).current_scene
-	if current_scene is StageScene:
-		_scene = current_scene
-	
-	return _scene
+	return super()
 
 
-func change_to_scene() -> StageScene:
-	return await SceneManager.change_scene_to_custom(create_scene)
-
-
-func create_scene() -> StageScene:
-	if _scene:
-		return _scene
+func _create_scene() -> StageScene:
+	var scene: StageScene = load("res://engine/scenes/stage_scene/stage_scene.tscn").instantiate()
 	
-	_scene = load("res://engine/scenes/stage_scene/stage_scene.tscn").instantiate()
-	_scene.stage_instance = self
+	scene.stage_instance = self
+	scene.finish_pressed.connect(finish_pressed.emit)
 	
-	_scene.finish_pressed.connect(finish_pressed.emit)
-	
-	return _scene
-
-
-func has_scene() -> bool:
-	return _scene != null
+	return scene
 
 
 func get_board() -> Board:
@@ -570,38 +536,16 @@ func get_status_timer() -> StageTimer:
 
 
 func get_projectile_manager() -> ProjectileManager:
-	return _get_component(ProjectileManager)
+	return get_component(ProjectileManager)
 
 
-func get_event_bus_manager() -> EventBusManager:
-	return _get_component(EventBusManager, self, func() -> EventBusManager:
-		var instance: EventBusManager = _add_component(EventBusManager)
-		instance.event_owner = self
-		instance.event_owner_parent = get_quest()
-		return instance
-	)
-
-
-func get_event_bus(script: Script) -> EventBus:
-	return get_event_bus_manager().get_event_bus(script)
-
-
-func _get_component(component_script: Script, parent: Node = self, add_method: Callable = _add_component.bind(component_script, parent)) -> Node:
-	for child in parent.get_children():
-		if component_script.instance_has(child):
-			return child
-	
-	return add_method.call()
-
-
-func _add_component(component_script: Script, parent: Node = self) -> Node:
-	var instance: Node = component_script.new()
-	parent.add_child(instance)
-	return instance
-
-
+## Redefines [method StageInstanceBase.get_effects] for easy typing.
 func get_effects() -> StageEffects:
-	return get_event_bus(StageEffects)
+	return super()
+
+
+func _get_effects() -> Script:
+	return StageEffects
 
 
 func get_cell_effects() -> CellData.CellEffects:
@@ -616,28 +560,28 @@ func get_item_effects() -> Item.ItemEffects:
 	return get_event_bus(Item.ItemEffects)
 
 
-func get_immunity() -> Immunity.ImmunityList:
-	return _immunity
-
-
 class Grid extends Node:
 	func _export_children() -> Array[CellData]:
+		return get_cells()
+	
+	func get_cells() -> Array[CellData]:
 		var children: Array[CellData] = []
 		children.assign(get_children())
 		return children
 
 @warning_ignore_start("unused_signal")
 
-class StageEffects extends EventBus:
-	signal get_guaranteed_objects(objects: Array[CellObject])
+class StageEffects extends StageBaseEffects:
+	signal get_guaranteed_objects(stage: StageInstance, objects: Array[CellObject])
 	
-	signal turn()
+	signal second_passed(stage: StageInstance)
+	signal status_second_passed(stage: StageInstance)
 	
-	signal entered()
-	signal generated()
-	signal started()
-	signal completed()
-	signal finish_pressed()
-	signal exited()
+	signal turn(stage: StageInstance)
+	
+	signal generated(stage: StageInstance)
+	signal started(stage: StageInstance)
+	signal completed(stage: StageInstance)
+	signal finish_pressed(stage: StageInstance)
 
 @warning_ignore_restore("unused_signal")

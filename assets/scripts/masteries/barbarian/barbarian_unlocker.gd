@@ -5,8 +5,12 @@ class_name BarbarianUnlocker
 @export var strangers_killed := 0
 # ==============================================================================
 
-func _ready() -> void:
+func _enable() -> void:
 	get_quest().get_object_effects().killed.connect(_object_kill)
+
+
+func _disable() -> void:
+	get_quest().get_object_effects().killed.disconnect(_object_kill)
 
 
 func _quest_win() -> void:

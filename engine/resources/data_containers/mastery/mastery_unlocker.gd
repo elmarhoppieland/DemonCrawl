@@ -11,6 +11,29 @@ func _init(data: MasteryUnlockerData = null) -> void:
 	self.data = data
 
 
+func _enter_tree() -> void:
+	if not get_quest().is_node_ready():
+		await get_quest().ready
+	
+	_enable()
+
+
+func _exit_tree() -> void:
+	_disable()
+
+
+## Virtual method. Called when this [MasteryUnlocker] is enabled, usually when it
+## enters the scene tree.
+func _enable() -> void:
+	pass
+
+
+## Virtual method. Called when this [MasteryUnlocker] is disabled, usually when it
+## is about to exit the scene tree.
+func _disable() -> void:
+	pass
+
+
 ## Notifies the [MasteryUnlocker] that the current [Quest] has been won.
 func notify_quest_won() -> void:
 	_quest_win()

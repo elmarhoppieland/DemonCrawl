@@ -58,11 +58,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			if actions.size() > 0:
 				actions[0].call()
 				accept_event()
+			_hovered_cell.notify_interacted()
 		if event.is_action_pressed(&"secondary_interact"):
 			var actions := _hovered_cell.get_actions()
 			if actions.size() > 1:
 				actions[1].call()
 				accept_event()
+			_hovered_cell.notify_second_interacted()
 		
 		if event.is_action_released(&"secondary_interact"):
 			var actions := _hovered_cell.get_release_actions()

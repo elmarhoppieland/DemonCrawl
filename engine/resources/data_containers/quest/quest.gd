@@ -22,14 +22,14 @@ static var current_changed := Signal() :
 		selected_stage_idx = value
 		emit_changed()
 
-@export var _current_stage: StageInstance = null : set = _set_current_stage, get = get_current_stage
+@export var _current_stage: StageInstanceBase = null : set = _set_current_stage, get = get_current_stage_base
 
 @export var heirlooms_active := true :
 	set(value):
 		heirlooms_active = value
 		emit_changed()
 # ==============================================================================
-var _immunity := Immunity.create_immunity_list() : get = get_immunity
+#var _immunity := Immunity.create_immunity_list() : get = get_immunity
 # ==============================================================================
 signal current_stage_changed()
 
@@ -117,43 +117,48 @@ func set_as_current() -> void:
 	_current = self
 
 
-func _set_current_stage(current_stage: StageInstance) -> void:
+func _set_current_stage(current_stage: StageInstanceBase) -> void:
 	if current_stage == _current_stage:
 		return
 	
 	if _current_stage:
-		(func() -> void:
-			if not is_node_ready():
-				await ready
+		#(func() -> void:
+			#if not is_node_ready():
+				#await ready
 			
-			_current_stage.get_immunity().remove_forwarded_immunity(get_immunity())
+			#_current_stage.get_immunity().remove_forwarded_immunity(get_immunity())
 			
-			_current_stage.get_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().stage_second_passed))
-			_current_stage.get_status_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().status_effect_second_passed))
+			#_current_stage.get_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().stage_second_passed))
+			#_current_stage.get_status_timer().second_passed.disconnect(EffectManager.propagate.bind(get_effects().status_effect_second_passed))
 			
 			_current_stage.finished.disconnect(_on_stage_finished.bind(_current_stage))
-		).call()
+		#).call()
 	
 	_current_stage = current_stage
 	
 	if current_stage:
-		(func() -> void:
-			if not is_node_ready():
-				await ready
+		#(func() -> void:
+			#if not is_node_ready():
+				#await ready
 			
-			current_stage.get_immunity().add_forwarded_immunity(get_immunity())
+			#current_stage.get_immunity().add_forwarded_immunity(get_immunity())
 			
-			current_stage.get_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().stage_second_passed))
-			current_stage.get_status_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().status_effect_second_passed))
+			#current_stage.get_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().stage_second_passed))
+			#current_stage.get_status_timer().second_passed.connect(EffectManager.propagate.bind(get_effects().status_effect_second_passed))
 			
 			current_stage.finished.connect(_on_stage_finished.bind(_current_stage))
-		).call()
+		#).call()
 	
 	current_stage_changed.emit()
 
 
-## Returns the currently active [StageInstance].
+## Returns the currently active stage instance, if it is of instance [StageInstance].
 func get_current_stage() -> StageInstance:
+	return _current_stage as StageInstance
+
+
+## Returns the currently active stage instance.
+func get_current_stage_base() -> StageInstanceBase:
 	return _current_stage
 
 
@@ -161,7 +166,7 @@ func has_current_stage() -> bool:
 	return _current_stage != null
 
 
-func start_stage(stage: Stage) -> StageInstance:
+func start_stage(stage: StageBase) -> StageInstanceBase:
 	if _current_stage != null:
 		Debug.log_error("Cannot start a stage, since one is already running.")
 		return null
@@ -174,11 +179,11 @@ func start_stage(stage: Stage) -> StageInstance:
 
 #region global utils
 
-func add_stage(stage: Stage) -> void:
+func add_stage(stage: StageBase) -> void:
 	get_stages_parent().add_child(stage)
 
 
-func get_stage(index: int) -> Stage:
+func get_stage(index: int) -> StageBase:
 	return get_stages_parent().get_child(index)
 
 
@@ -231,7 +236,7 @@ func pass_turn() -> void:
 		EffectManager.propagate(get_stage_effects().turn)
 
 
-func _on_stage_finished(stage_instance: StageInstance) -> void:
+func _on_stage_finished(stage_instance: StageInstanceBase) -> void:
 	if get_mastery():
 		get_mastery().gain_charge()
 	
@@ -257,7 +262,7 @@ func _on_stage_finished(stage_instance: StageInstance) -> void:
 			
 			return
 	
-	if stage_instance == get_current_stage():
+	if stage_instance == get_current_stage_base():
 		_current_stage = null
 	
 	stage_instance.queue_free()
@@ -284,19 +289,19 @@ func get_components_parent() -> Node:
 	return get_node("Components")
 
 
-func get_stages() -> Array[Stage]:
-	var stages: Array[Stage] = []
+func get_stages() -> Array[StageBase]:
+	var stages: Array[StageBase] = []
 	stages.assign(get_stages_parent().get_children())
 	return stages
 
 
 func is_finished() -> bool:
-	return get_stages().all(func(stage: Stage) -> bool: return stage is SpecialStage or stage.completed)
+	return get_stages().all(func(stage: StageBase) -> bool: return stage.is_special() or stage.completed)
 
 
-## Returns the currently selected [Stage].
-func get_selected_stage() -> Stage:
-	return get_stages()[selected_stage_idx]
+## Returns the currently selected stage.
+func get_selected_stage() -> StageBase:
+	return get_stage(selected_stage_idx)
 
 
 #func _set_inventory(inventory: QuestInventory) -> void:
@@ -439,8 +444,8 @@ func get_stage_effects() -> StageInstance.StageEffects:
 	return get_event_bus(StageInstance.StageEffects)
 
 
-func get_effects() -> QuestEffects:
-	return get_event_bus(QuestEffects)
+#func get_effects() -> QuestEffects:
+	#return get_event_bus(QuestEffects)
 
 
 func get_cell_effects() -> CellData.CellEffects:
@@ -455,12 +460,12 @@ func get_item_effects() -> Item.ItemEffects:
 	return get_event_bus(Item.ItemEffects)
 
 
-func get_immunity() -> Immunity.ImmunityList:
-	return _immunity
+#func get_immunity() -> Immunity.ImmunityList:
+	#return _immunity
 
 #endregion
 
 
-class QuestEffects extends EventBus:
-	signal status_effect_second_passed()
-	signal stage_second_passed()
+#class QuestEffects extends EventBus:
+	#signal status_effect_second_passed()
+	#signal stage_second_passed()

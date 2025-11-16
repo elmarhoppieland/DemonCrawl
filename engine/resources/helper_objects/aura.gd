@@ -63,13 +63,13 @@ func _is_elemental() -> bool:
 
 
 ## Notifies this [Aura] that the given [param cell] has been interacted with.
-func notify_interacted(cell: CellData) -> void:
-	_interact(cell)
+func notify_interacted() -> void:
+	_interact()
 
 
 ## Virtual method. Called whenever the given [param cell] is interacted with.
 @warning_ignore("unused_parameter")
-func _interact(cell: CellData) -> void:
+func _interact() -> void:
 	pass
 
 
@@ -84,5 +84,12 @@ func _second_interact(cell: CellData) -> void:
 	pass
 
 
-func negative_effect(effect: Callable) -> void:
-	get_stage_instance().get_immunity().try_call(func() -> void: effect.call(), "negative_effect")
+func negative_effect(effect: Callable) -> Variant:
+	return Immunity.try_call(effect, (get_stage_instance().get_event_bus(AuraEffects) as AuraEffects).can_apply_negative_effect, 1, self, effect, true)
+
+@warning_ignore_start("unused_signal")
+
+class AuraEffects extends EventBus:
+	signal can_apply_negative_effect(aura: Aura, effect: Callable, can_apply: bool)
+
+@warning_ignore_restore("unused_signal")

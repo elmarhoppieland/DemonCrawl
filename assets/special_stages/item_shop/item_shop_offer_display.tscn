@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmqwxo8kiep6w"]
+
+[ext_resource type="Script" uid="uid://ryjpyb28fxfu" path="res://assets/special_stages/item_shop/item_shop_offer_display.gd" id="1_3a802"]
+[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="1_qjdbf"]
+[ext_resource type="PackedScene" uid="uid://dppdeqskdv8hc" path="res://engine/resources/scenes/collectible_display.tscn" id="2_3a802"]
+[ext_resource type="PackedScene" uid="uid://d3fpf8gbjxsbx" path="res://engine/resources/scenes/coin_value.tscn" id="5_6jwi3"]
+
+[node name="ItemShopOfferDisplay" type="VBoxContainer"]
+theme_override_constants/separation = -3
+script = ExtResource("1_3a802")
+
+[node name="Frame" parent="." instance=ExtResource("1_qjdbf")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CollectibleDisplay" parent="Frame" instance=ExtResource("2_3a802")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+
+[node name="CoinValue" parent="Control" instance=ExtResource("5_6jwi3")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 21.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+coin_value = 10294

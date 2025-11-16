@@ -33,8 +33,8 @@ func load(path: String, additive: bool = false) -> void:
 		loaded.emit(path)
 		return
 	
-	var file := FileAccess.open(path, FileAccess.READ)
-	_parse_ini(file, additive)
+	var buffer := FileBuffer.new(path)
+	_parse_ini(buffer, additive)
 	
 	loaded.emit(path)
 
@@ -46,16 +46,17 @@ func load_existing_resources(path: String) -> void:
 	if not FileAccess.file_exists(path):
 		return
 	
-	var file := FileAccess.open(path, FileAccess.READ)
+	#var file := FileAccess.open(path, FileAccess.READ)
 	
 	var sub_resource_positions: Dictionary[int, int] = {}
 	
 	processing_owner_stack.clear()
 	
 	var current_section := ""
-	while not file.eof_reached():
-		var line := _read_line(file)
-		var position := file.get_position()
+	var buffer := FileBuffer.new(path)
+	while not buffer.eof_reached():
+		var line := buffer.get_next()
+		var position := buffer.get_position()
 		
 		if line.is_empty():
 			# this often happens at the end of the file
@@ -101,20 +102,20 @@ func load_existing_resources(path: String) -> void:
 		if resource is Resource and not resource.resource_path.is_empty():
 			continue
 		
-		file.seek(sub_resource_positions[id])
+		buffer.seek(sub_resource_positions[id])
 		
-		_reassign_resource_ids_in_subresource(resource, file, sub_resource_positions)
+		_reassign_resource_ids_in_subresource(resource, buffer, sub_resource_positions)
 		
-		file.seek(position)
+		buffer.seek(position)
 	
 	processing_owner_stack.pop_back()
 	assert(processing_owner_stack.is_empty(), "Processing stack did not get cleared.")
 
 
-func _reassign_resource_ids_in_subresource(subresource: Object, file: FileAccess, sub_resource_positions: Dictionary[int, int]) -> void:
+func _reassign_resource_ids_in_subresource(subresource: Object, buffer: FileBuffer, sub_resource_positions: Dictionary[int, int]) -> void:
 	while true:
-		var line := file.get_line()
-		var position := file.get_position()
+		var line := buffer.get_next()
+		var position := buffer.get_position()
 		if "#" in line:
 			line = Stringifier.split_ignoring_nested(line, "#")[0].strip_edges()
 		if line.is_empty():
@@ -122,7 +123,7 @@ func _reassign_resource_ids_in_subresource(subresource: Object, file: FileAccess
 		if line.match("[*]"):
 			return
 		
-		assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file.get_path()])
+		assert("=" in line, "Invalid line '%s' in file '%s'." % [line, buffer.get_path()])
 		var key := line.get_slice("=", 0).strip_edges()
 		var value := line.trim_prefix(key).strip_edges().trim_prefix("=").strip_edges()
 		
@@ -137,11 +138,11 @@ func _reassign_resource_ids_in_subresource(subresource: Object, file: FileAccess
 		_resources.erase(_resources.find_key(resource))
 		_resources[id] = resource
 		
-		file.seek(sub_resource_positions[id])
+		buffer.seek(sub_resource_positions[id])
 		
-		_reassign_resource_ids_in_subresource(resource, file, sub_resource_positions)
+		_reassign_resource_ids_in_subresource(resource, buffer, sub_resource_positions)
 		
-		file.seek(position)
+		buffer.seek(position)
 
 
 ## Saves the loaded data to [param path].
@@ -222,7 +223,10 @@ func _store_resource(value: Variant) -> Variant:
 
 func _prepare_resource_list() -> Array[Object]:
 	var resources: Array[Object] = []
-	resources.assign(_resources.values())
+	for resource in _resources.values():
+		if resource not in resources:
+			resources.append(resource)
+	
 	var i := 0
 	while i < resources.size():
 		var resource := resources[i]
@@ -256,24 +260,44 @@ func _prepare_resource_list() -> Array[Object]:
 		_resource_get_uid(resource)
 		i += 1
 	
+	assert(resources.all(func(a: Object) -> bool: return resources.count(a) == 1), "Duplicate resource prepared when saving.")
+	
 	return resources
 
 
 func _prepare_variant(variant: Variant, resources: Array[Object], allow_packing: bool = true) -> void:
-	if allow_packing and variant is Object and _is_object_packable(variant):
-		processing_owner_stack.append(variant)
-		_prepare_variant(variant._export_packed(), resources)
+	match typeof(variant):
+		TYPE_OBJECT:
+			_prepare_object(variant, resources, allow_packing)
+		TYPE_ARRAY:
+			_prepare_array(variant, resources, allow_packing)
+		TYPE_DICTIONARY:
+			_prepare_dictionary(variant, resources, allow_packing)
+
+
+func _prepare_object(object: Object, resources: Array[Object], allow_packing: bool = true) -> void:
+	if not is_instance_valid(object):
+		return
+	
+	if allow_packing and _is_object_packable(object):
+		processing_owner_stack.append(object)
+		_prepare_variant(object._export_packed(), resources)
 		processing_owner_stack.pop_back()
-	elif variant is Object and variant not in resources:
-		if variant is Script:
-			var name := UserClassDB.script_get_class(variant)
-			if not name.is_empty():
-				return
-		resources.append(variant)
-	elif variant is Array:
-		_prepare_array(variant, resources, allow_packing)
-	elif variant is Dictionary:
-		_prepare_dictionary(variant, resources, allow_packing)
+		return
+	
+	if object is Node and object.has_method("_export_children"):
+		processing_owner_stack.append(object)
+		_prepare_variant(object._export_children(), resources)
+		processing_owner_stack.pop_back()
+		return
+	
+	if object is Script and not UserClassDB.script_get_class(object).is_empty():
+		return
+	
+	if object in resources:
+		return
+	
+	resources.append(object)
 
 
 func _prepare_array(array: Array, resources: Array[Object], allow_packing: bool = true) -> void:
@@ -315,25 +339,25 @@ func _is_packable(value: Variant) -> bool:
 	return false
 
 
-func _parse_ini(file: FileAccess, additive: bool = false) -> void:
+func _parse_ini(buffer: FileBuffer, additive: bool = false) -> void:
 	if not additive:
 		_data.clear()
 		_resources.clear()
 	
 	processing_owner_stack.clear()
 	
-	if file.get_length() == 0:
+	if buffer.get_length() == 0:
 		return
 	
 	var current_section := ""
-	while not file.eof_reached():
-		var line := _read_line(file)
+	while not buffer.eof_reached():
+		var line := buffer.get_next()
 		
 		if line.begins_with("[") and line.ends_with("]"):
 			current_section = line.substr(1, line.length() - 2).strip_edges()
 			if current_section.begins_with("ext_resource "):
 				var id := current_section.get_slice("id=\"", 1).get_slice("\"", 0).hex_to_int()
-				assert(id not in _resources, "Duplicate ID found in the file at '%s'." % file.get_path())
+				assert(id not in _resources, "Duplicate ID found in the file at '%s', at line %d." % [buffer.get_path(), buffer.line_number])
 				
 				var path := current_section.get_slice("path=\"", 1).get_slice("\"", 0)
 				if ResourceLoader.exists(path):
@@ -356,7 +380,7 @@ func _parse_ini(file: FileAccess, additive: bool = false) -> void:
 			
 			if current_section.begins_with("sub_resource "):
 				var id := current_section.get_slice("id=\"", 1).get_slice("\"", 0).hex_to_int()
-				assert(id not in _resources, "Duplicate ID found in the file at '%s'." % file.get_path())
+				assert(id not in _resources, "Duplicate ID found in the file at '%s', at line %d." % [buffer.get_path(), buffer.line_number])
 				if current_section.match("* script=\"*\"*"):
 					var script_name := current_section.get_slice("script=\"", 1).get_slice("\"", 0)
 					if not UserClassDB.class_exists(script_name):
@@ -388,7 +412,7 @@ func _parse_ini(file: FileAccess, additive: bool = false) -> void:
 			
 			if current_section.begins_with("node "):
 				var id := current_section.get_slice("id=\"", 1).get_slice("\"", 0).hex_to_int()
-				assert(id not in _resources, "Duplicate ID found in the file at '%s'." % file.get_path())
+				assert(id not in _resources, "Duplicate ID found in the file at '%s', at line %d." % [buffer.get_path(), buffer.line_number])
 				var node: Node
 				if current_section.match("* script=\"*\"*"):
 					var script_name := current_section.get_slice("script=\"", 1).get_slice("\"", 0)
@@ -425,11 +449,7 @@ func _parse_ini(file: FileAccess, additive: bool = false) -> void:
 					(func() -> void:
 						var parent_string := current_section.get_slice("parent=", 1).get_slice(" ", 0).get_slice("]", 0)
 						var parent = _parse_value(parent_string)
-						if parent is PendingResourceBase:
-							while not parent.is_ready(_resources):
-								await _resource_saved
-							
-							parent = parent.create(_resources)
+						parent = await await_resource(parent)
 						
 						assert(parent is Node, "Cannot add a Node as a child of a non-Node.")
 						parent.add_child(node)
@@ -449,36 +469,38 @@ func _parse_ini(file: FileAccess, additive: bool = false) -> void:
 		
 		if current_section.is_empty():
 			if processing_owner_stack[-1] != null:
-				_parse_line(line, processing_owner_stack[-1], file.get_path())
+				_parse_line(line, processing_owner_stack[-1], buffer.get_path())
 		else:
-			_parse_line(line, _data[current_section], file.get_path())
+			_parse_line(line, _data[current_section], buffer.get_path())
 	
 	processing_owner_stack.pop_back()
 	assert(processing_owner_stack.is_empty(), "Processing stack did not get cleared.")
-
-
-func _read_line(file: FileAccess) -> String:
-	var line := ""
-	while not file.eof_reached():
-		line = file.get_line().strip_edges()
-		if "#" in line:
-			line = line.substr(0, line.find("#")).strip_edges()
-		if line.is_empty():
-			continue
-		
-		if line.begins_with("[") and line.ends_with("]"):
-			return line
-		
-		var value := line.trim_prefix(line.get_slice("=", 0)).strip_edges().trim_prefix("=").strip_edges()
-		assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file.get_path()])
-		while not _validate_value_string(value):
-			var new_line := file.get_line().strip_edges()
-			line += "\n" + new_line
-			value += new_line
-		
-		return line
 	
-	return line
+	_resource_saved.emit(-1)
+
+
+#func _read_line(file: FileAccess) -> LineData:
+	#var line := ""
+	#while not file.eof_reached():
+		#line = file.get_line().strip_edges()
+		#if "#" in line:
+			#line = line.substr(0, line.find("#")).strip_edges()
+		#if line.is_empty():
+			#continue
+		#
+		#if line.begins_with("[") and line.ends_with("]"):
+			#return line
+		#
+		#var value := line.trim_prefix(line.get_slice("=", 0)).strip_edges().trim_prefix("=").strip_edges()
+		#assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file.get_path()])
+		#while not _validate_value_string(value):
+			#var new_line := file.get_line().strip_edges()
+			#line += "\n" + new_line
+			#value += new_line
+		#
+		#return line
+	#
+	#return line
 
 
 func _parse_line(line: String, owner: Variant, file_path: String) -> void:
@@ -504,7 +526,7 @@ func _set_variant(variant: Variant, key: Variant, value: Variant) -> void:
 					assert(variant is Node, "Cannot add children to a non-Node.")
 					assert(value is Array, "Cannot unpack children; the value must be an Array.")
 					for i in value:
-						assert(i is Node, "Cannot add child: Node expected, but %s was found." % (i.get_class() if i is Object else type_string(typeof(i))))
+						assert(i is Node, "Cannot add child: Node expected, but %s was found." % Stringifier.get_type_string(i))
 						variant.add_child(i)
 					return
 				
@@ -519,6 +541,10 @@ func await_resource(resource: Variant) -> Variant:
 	
 	while not resource.is_ready(_resources):
 		await _resource_saved
+		
+		if processing_owner_stack.is_empty():
+			Debug.log_error("Could not load a pending resource of type %s. Invalid id?" % Stringifier.get_type_string(resource))
+			return (resource as PendingResourceBase).create(_resources)
 	
 	var added_owner := false
 	if processing_owner_stack[-1] != owner:
@@ -605,7 +631,7 @@ func _parse_value(value: String) -> Variant:
 				continue
 			dict[key] = parsed_value
 		if is_pending:
-			return PendingResourceDictionary.new(dict)
+			return UntypedPendingResourceDictionary.new(dict)
 		return dict
 	
 	if UserClassDB.class_exists(value):
@@ -828,7 +854,9 @@ func _stream_encode(stream: ValueStream) -> void:
 		await stream.step(_serialize_header("node", properties))
 		
 		if node.has_method("_export_children"):
-			await stream.step("*children = %s\n" % _serialize_value(node._export_children()))
+			var children = node._export_children()
+			if children is not Array or not children.is_empty():
+				await stream.step("*children = %s\n" % _serialize_value(children))
 		
 		for property in node.get_property_list():
 			if property.name == "script":
@@ -978,16 +1006,28 @@ func _stringify_uid(uid: int) -> String:
 
 
 ## Base class for all not yet available [Resource]s.
+@abstract
 class PendingResourceBase:
 	## Returns whether the underlying [Resource] can be obtained.
 	@warning_ignore("unused_parameter")
 	func is_ready(resources: Dictionary[int, Object]) -> bool:
-		return false
+		return _is_ready(resources)
 	
-	## Returns the underlying [Resource], or another [Variant] type that contains the [Resource].
+	## Virtual method. Should return whether the underlying [Resource] can be obtained.
+	@abstract func _is_ready(resources: Dictionary[int, Object]) -> bool
+	
+	## Returns the underlying [Resource], or another [Variant] type that contains
+	## the [Resource]. If this pending resource is not ready (see [method is_ready]),
+	## returns a fallback value that is as close to the expected value as possible.
 	@warning_ignore("unused_parameter")
 	func create(resources: Dictionary[int, Object]) -> Variant:
-		return null
+		return _create(resources)
+	
+	## Virtual method. Should create and return the underlying [Resource], or the
+	## [Variant] type that contains the [Resource]. If this pending resource
+	## is not ready (see [method _is_ready]), should create a fallback value
+	## that is as close to the expected value as possible.
+	@abstract func _create(resources: Dictionary[int, Object]) -> Variant
 	
 	static func _is_ready_safe(value: Variant, resources: Dictionary[int, Object]) -> bool:
 		return not value is PendingResourceBase or value.is_ready(resources)
@@ -1001,13 +1041,11 @@ class PendingResource extends PendingResourceBase:
 	func _init(id: int) -> void:
 		self.id = id
 	
-	## Returns whether a [Resource] with this [Resource]'s [member id] exists.
-	func is_ready(resources: Dictionary[int, Object]) -> bool:
+	func _is_ready(resources: Dictionary[int, Object]) -> bool:
 		return id in resources
 	
-	## Returns the [Resource] with this object's [member id].
-	func create(resources: Dictionary[int, Object]) -> Object:
-		return resources[id]
+	func _create(resources: Dictionary[int, Object]) -> Object:
+		return resources.get(id, null)
 
 
 ## An [Array] of values, where at least one is an unavailable [Resource].
@@ -1018,12 +1056,10 @@ class UntypedPendingResourceArray extends PendingResourceBase:
 	func _init(array: Array) -> void:
 		self.array = array
 	
-	## Returns whether all [PendingResourceBase]s in this [Array] are ready.
-	func is_ready(resources: Dictionary[int, Object]) -> bool:
+	func _is_ready(resources: Dictionary[int, Object]) -> bool:
 		return not array.any(func(a: Variant) -> bool: return a is PendingResourceBase and not a.is_ready(resources))
 	
-	## Returns this [Array], after creating all of its [PendingResourceBase]s.
-	func create(resources: Dictionary[int, Object]) -> Array:
+	func _create(resources: Dictionary[int, Object]) -> Array:
 		return array.map(func(a: Variant) -> Variant:
 			if a is PendingResourceBase:
 				return a.create(resources)
@@ -1040,23 +1076,22 @@ class TypedPendingResourceArray extends UntypedPendingResourceArray:
 		super(array)
 		self.array_base = array_base
 	
-	## Returns [member array_base], after assigning it this [Array]'s contents.
-	func create(resources: Dictionary[int, Object]) -> Array:
+	func _create(resources: Dictionary[int, Object]) -> Array:
 		array_base.assign(super(resources))
 		return array_base
 
 
-class PendingResourceDictionary extends PendingResourceBase:
+class UntypedPendingResourceDictionary extends PendingResourceBase:
 	var dict := {}
 	
 	@warning_ignore("shadowed_variable")
 	func _init(dict: Dictionary) -> void:
 		self.dict = dict
 	
-	func is_ready(resources: Dictionary[int, Object]) -> bool:
+	func _is_ready(resources: Dictionary[int, Object]) -> bool:
 		return dict.keys().all(_is_ready_safe.bind(resources)) and dict.values().all(_is_ready_safe.bind(resources))
 	
-	func create(resources: Dictionary[int, Object]) -> Dictionary:
+	func _create(resources: Dictionary[int, Object]) -> Dictionary:
 		for key in dict.keys():
 			if dict[key] is PendingResourceBase:
 				dict[key] = dict[key].create(resources)
@@ -1075,10 +1110,10 @@ class PendingResourceInstantiator extends PendingResourceBase:
 		self.instantiator = instantiator
 		self.args = args
 	
-	func is_ready(resources: Dictionary[int, Object]) -> bool:
+	func _is_ready(resources: Dictionary[int, Object]) -> bool:
 		return args.all(_is_ready_safe.bind(resources))
 	
-	func create(resources: Dictionary[int, Object]) -> Object:
+	func _create(resources: Dictionary[int, Object]) -> Object:
 		for i in args.size():
 			if args[i] is PendingResourceBase:
 				args[i] = args[i].create(resources)
@@ -1162,3 +1197,84 @@ class Constructor:
 		var object := instantiator.callv(args) as Object
 		assert(object != null, "Could not create object.")
 		return object
+
+
+class FileBuffer:
+	var current_line := ""
+	var line_number := 0
+	var current_line_newlines := 0
+	var _file: FileAccess
+	
+	@warning_ignore("shadowed_variable")
+	func _init(path: String) -> void:
+		_file = FileAccess.open(path, FileAccess.READ)
+	
+	func get_next() -> String:
+		current_line = ""
+		while not _file.eof_reached():
+			current_line = _file.get_line().strip_edges()
+			line_number += 1
+			if "#" in current_line:
+				current_line = current_line.substr(0, current_line.find("#")).strip_edges()
+			if current_line.is_empty():
+				continue
+			
+			if current_line.begins_with("[") and current_line.ends_with("]"):
+				return current_line
+			
+			var value := current_line.trim_prefix(current_line.get_slice("=", 0)).strip_edges().trim_prefix("=").strip_edges()
+			assert("=" in current_line, "Invalid line '%s' in file '%s'." % [current_line, _file.get_path()])
+			while not _validate_value_string(value):
+				var new_line := _file.get_line().strip_edges()
+				line_number += 1
+				current_line += "\n" + new_line
+				value += new_line
+			
+			return current_line
+		
+		return current_line
+	
+	func eof_reached() -> bool:
+		return _file.eof_reached()
+	
+	func get_position() -> int:
+		return _file.get_position()
+	
+	func seek(position: int) -> void:
+		var old_position := _file.get_position()
+		if position == old_position:
+			return
+		
+		var increment := 1 if position > old_position else -1
+		
+		var delta := 0
+		var pos := old_position
+		
+		while pos != position:
+			pos += increment
+			_file.seek(pos)
+			
+			var byte := _file.get_8()
+			
+			if byte == 10: # '\n'
+				delta += increment
+		
+		_file.seek(position)
+		line_number += delta
+	
+	func get_path() -> String:
+		return _file.get_path()
+	
+	func get_length() -> int:
+		return _file.get_length()
+	
+	func _validate_value_string(value: String) -> bool:
+		value = value.strip_edges()
+		
+		if value.begins_with("{"):
+			return value[-1] == "}"
+		if value.begins_with("["):
+			return value[-1] == "]"
+		if value.begins_with("Array[") or value.begins_with("PackedArray["):
+			return Stringifier.get_depth(value, "(", ")") == 0
+		return true

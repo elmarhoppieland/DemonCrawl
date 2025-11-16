@@ -166,3 +166,7 @@ static func _validate_event_owner_list() -> void:
 	for manager in _event_owner_list.keys():
 		if not is_instance_valid(manager):
 			_event_owner_list.erase(manager)
+
+
+func _export_children() -> Array:
+	return []
