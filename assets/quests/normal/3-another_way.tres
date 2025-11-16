@@ -139,5 +139,5 @@ name = "quest.another-way"
 lore = "quest.another-way.lore"
 token_shop_purchase = ExtResource("5_k8pwy")
 icon = SubResource("Texture2D_utex0")
-stages = [SubResource("Resource_tvu10"), SubResource("Resource_tla61"), SubResource("Resource_2hp6w"), SubResource("Resource_wkeh8"), SubResource("Resource_kacdp"), SubResource("Resource_kuu0j"), SubResource("Resource_sj86w"), SubResource("Resource_n7fvn"), SubResource("Resource_3vq3j"), SubResource("Resource_yywuu")]
+stages = Array[ExtResource("4_mvh7x")]([SubResource("Resource_tvu10"), SubResource("Resource_tla61"), SubResource("Resource_2hp6w"), SubResource("Resource_wkeh8"), SubResource("Resource_kacdp"), SubResource("Resource_kuu0j"), SubResource("Resource_sj86w"), SubResource("Resource_n7fvn"), SubResource("Resource_3vq3j"), SubResource("Resource_yywuu")])
 special_stages = Array[ExtResource("3_p1dy3")]([ExtResource("3_34oo7")])

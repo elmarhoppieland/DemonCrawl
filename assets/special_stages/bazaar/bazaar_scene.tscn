@@ -263,7 +263,6 @@ custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
 [node name="LeaveButton" parent="VBoxContainer" instance=ExtResource("5_le14x")]
-unique_name_in_owner = true
 physics_interpolation_mode = 2
 auto_translate_mode = 1
 layout_mode = 2
@@ -295,3 +294,4 @@ metadata/_custom_type_script = "uid://d1c6fxxsk1ugt"
 [connection signal="interacted" from="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer2/VBoxContainer/Frame" to="." method="_on_sell_frame_interacted"]
 [connection signal="interacted" from="VBoxContainer/ScrollContainer/OffersContainer/VBoxContainer3/Frame" to="." method="_on_trade_frame_interacted"]
 [connection signal="pressed" from="VBoxContainer/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LeaveButton" to="." method="_on_leave_button_pressed"]

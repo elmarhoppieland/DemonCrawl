@@ -20,7 +20,7 @@ func _get_name_id() -> String:
 
 
 func _get_description_id() -> String:
-	return "stage.special." + name.to_snake_case().replace("_", "-") + ".description"
+	return get_name_id().to_snake_case().replace("_", "-") + ".description"
 
 
 func _get_info() -> Array:

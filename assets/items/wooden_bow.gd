@@ -8,7 +8,7 @@ func _use() -> void:
 
 
 func _invoke() -> void:
-	_target(get_stage_instance().get_cells().pick_random())
+	_target([get_stage_instance().get_cells().pick_random()])
 
 
 func _target(cells: Array[CellData]) -> void:

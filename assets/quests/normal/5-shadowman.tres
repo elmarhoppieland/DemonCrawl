@@ -139,5 +139,5 @@ name = "quest.shadowman"
 lore = "quest.shadowman.lore"
 token_shop_purchase = ExtResource("5_57whx")
 icon = SubResource("Texture2D_bpcax")
-stages = [SubResource("Resource_8oyvu"), SubResource("Resource_rgivt"), SubResource("Resource_wpbqx"), SubResource("Resource_pp2ut"), SubResource("Resource_qwhsj"), SubResource("Resource_sww72"), SubResource("Resource_gqq0w"), SubResource("Resource_jh6r2"), SubResource("Resource_n4513"), SubResource("Resource_w03sx")]
+stages = Array[ExtResource("4_27io0")]([SubResource("Resource_8oyvu"), SubResource("Resource_rgivt"), SubResource("Resource_wpbqx"), SubResource("Resource_pp2ut"), SubResource("Resource_qwhsj"), SubResource("Resource_sww72"), SubResource("Resource_gqq0w"), SubResource("Resource_jh6r2"), SubResource("Resource_n4513"), SubResource("Resource_w03sx")])
 special_stages = Array[ExtResource("3_53dxn")]([ExtResource("3_hu1kk")])

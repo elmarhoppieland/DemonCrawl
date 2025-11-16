@@ -5,17 +5,11 @@ class_name Book
 
 # ==============================================================================
 
-func _enter_tree() -> void:
-	if not is_active():
-		return
-	
+func _enable() -> void:
 	get_quest().get_object_effects().handle_interact_failed.connect(_handle_object_interact_failed)
 
 
-func _exit_tree() -> void:
-	if not is_active():
-		return
-	
+func _disable() -> void:
 	get_quest().get_object_effects().handle_interact_failed.disconnect(_handle_object_interact_failed)
 
 

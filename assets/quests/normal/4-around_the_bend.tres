@@ -139,5 +139,5 @@ name = "quest.around-the-bend"
 lore = "quest.around-the-bend.lore"
 token_shop_purchase = ExtResource("5_ofwvg")
 icon = SubResource("Texture2D_axt8q")
-stages = [SubResource("Resource_0qqpw"), SubResource("Resource_yayms"), SubResource("Resource_vvx3l"), SubResource("Resource_l2jdi"), SubResource("Resource_gcirs"), SubResource("Resource_0wsmg"), SubResource("Resource_axbgc"), SubResource("Resource_d6ugj"), SubResource("Resource_golmq"), SubResource("Resource_nsgeo")]
+stages = Array[ExtResource("4_sh7ef")]([SubResource("Resource_0qqpw"), SubResource("Resource_yayms"), SubResource("Resource_vvx3l"), SubResource("Resource_l2jdi"), SubResource("Resource_gcirs"), SubResource("Resource_0wsmg"), SubResource("Resource_axbgc"), SubResource("Resource_d6ugj"), SubResource("Resource_golmq"), SubResource("Resource_nsgeo")])
 special_stages = Array[ExtResource("3_v2gkn")]([ExtResource("3_w4fdq")])
