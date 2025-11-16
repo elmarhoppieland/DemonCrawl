@@ -294,6 +294,9 @@ func _prepare_object(object: Object, resources: Array[Object], allow_packing: bo
 	if object is Script and not UserClassDB.script_get_class(object).is_empty():
 		return
 	
+	if object in resources:
+		return
+	
 	resources.append(object)
 
 
@@ -501,28 +504,28 @@ func _parse_ini(buffer: FileBuffer, additive: bool = false) -> void:
 	_resource_saved.emit(-1)
 
 
-func _read_line(file: FileAccess) -> String:
-	var line := ""
-	while not file.eof_reached():
-		line = file.get_line().strip_edges()
-		if "#" in line:
-			line = line.substr(0, line.find("#")).strip_edges()
-		if line.is_empty():
-			continue
-		
-		if line.begins_with("[") and line.ends_with("]"):
-			return line
-		
-		var value := line.trim_prefix(line.get_slice("=", 0)).strip_edges().trim_prefix("=").strip_edges()
-		assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file.get_path()])
-		while not _validate_value_string(value):
-			var new_line := file.get_line().strip_edges()
-			line += "\n" + new_line
-			value += new_line
-		
-		return line
-	
-	return line
+#func _read_line(file: FileAccess) -> LineData:
+	#var line := ""
+	#while not file.eof_reached():
+		#line = file.get_line().strip_edges()
+		#if "#" in line:
+			#line = line.substr(0, line.find("#")).strip_edges()
+		#if line.is_empty():
+			#continue
+		#
+		#if line.begins_with("[") and line.ends_with("]"):
+			#return line
+		#
+		#var value := line.trim_prefix(line.get_slice("=", 0)).strip_edges().trim_prefix("=").strip_edges()
+		#assert("=" in line, "Invalid line '%s' in file '%s'." % [line, file.get_path()])
+		#while not _validate_value_string(value):
+			#var new_line := file.get_line().strip_edges()
+			#line += "\n" + new_line
+			#value += new_line
+		#
+		#return line
+	#
+	#return line
 
 
 func _parse_line(line: String, owner: Variant, file_path: String) -> void:

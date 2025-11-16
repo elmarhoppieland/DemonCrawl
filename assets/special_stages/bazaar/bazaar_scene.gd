@@ -10,14 +10,7 @@ class_name BazaarScene
 		
 		_update(old)
 # ==============================================================================
-var _selected_offer: BazaarInstance.ItemOfferBase :
-	set(value):
-		_selected_offer = value
-		
-		if not is_node_ready():
-			await ready
-		
-		_buy_button.modulate.a = float(value.can_afford())
+var _selected_offer: BazaarInstance.ItemOfferBase
 # ==============================================================================
 @onready var _buy_display: CollectibleDisplay = %BuyDisplay
 @onready var _buy_coin_value: CoinValue = %BuyCoinValue
@@ -25,7 +18,6 @@ var _selected_offer: BazaarInstance.ItemOfferBase :
 @onready var _sell_coin_value: CoinValue = %CoinValue
 @onready var _trade_display: CollectibleDisplay = %TradeDisplay
 @onready var _trade_cost_display: TextureNodeDisplay = %TradeCostDisplay
-@onready var _buy_button: DCButton = %BuyButton
 # ==============================================================================
 
 func _update(old_instance: BazaarInstance) -> void:
@@ -102,7 +94,3 @@ func _on_trade_frame_interacted() -> void:
 func _on_buy_button_pressed() -> void:
 	if _selected_offer.can_afford():
 		_selected_offer.perform()
-
-
-func _on_leave_button_pressed() -> void:
-	instance.finish()

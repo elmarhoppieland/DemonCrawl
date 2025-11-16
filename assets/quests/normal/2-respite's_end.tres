@@ -139,5 +139,5 @@ name = "quest.respites-end"
 lore = "quest.respites-end.lore"
 token_shop_purchase = ExtResource("5_u05ok")
 icon = SubResource("Texture2D_ah532")
-stages = Array[ExtResource("4_8pk26")]([SubResource("Resource_5387s"), SubResource("Resource_kvqxj"), SubResource("Resource_nrcjf"), SubResource("Resource_8u0ev"), SubResource("Resource_m124s"), SubResource("Resource_y85rx"), SubResource("Resource_qyh3i"), SubResource("Resource_ir8ee"), SubResource("Resource_o1x01"), SubResource("Resource_suxme")])
+stages = [SubResource("Resource_5387s"), SubResource("Resource_kvqxj"), SubResource("Resource_nrcjf"), SubResource("Resource_8u0ev"), SubResource("Resource_m124s"), SubResource("Resource_y85rx"), SubResource("Resource_qyh3i"), SubResource("Resource_ir8ee"), SubResource("Resource_o1x01"), SubResource("Resource_suxme")]
 special_stages = Array[ExtResource("3_88fuc")]([ExtResource("3_kv666")])

@@ -3,18 +3,6 @@
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_x5oia"]
 [ext_resource type="Script" uid="uid://3ko5cbpj317c" path="res://engine/resources/data_containers/token_shop/token_shop_item_base.gd" id="2_6mwvg"]
 [ext_resource type="Script" uid="uid://oq0dgv8tkx3y" path="res://engine/resources/data_containers/token_shop/token_shop_category.gd" id="3_chlul"]
-[ext_resource type="Resource" uid="uid://o4ce6fvojob5" path="res://assets/token_shop/upgrades/artificer.tres" id="4_gv6f5"]
-[ext_resource type="Resource" uid="uid://bso2mgt3uqn7s" path="res://assets/token_shop/upgrades/crafter.tres" id="5_tp2cj"]
-[ext_resource type="Resource" uid="uid://bd7wb2gtc0c4f" path="res://assets/token_shop/upgrades/chaote.tres" id="7_6rgus"]
-[ext_resource type="Resource" uid="uid://b58ybksdysnl7" path="res://assets/token_shop/upgrades/q2-respite's_end.tres" id="9_7xx3t"]
-[ext_resource type="Resource" uid="uid://b7yi75jhkqp27" path="res://assets/token_shop/upgrades/q3-another_way.tres" id="10_58era"]
-[ext_resource type="Resource" uid="uid://bn053h0s8sx8t" path="res://assets/token_shop/upgrades/q4-around_the_bend.tres" id="11_xigyi"]
-[ext_resource type="Resource" uid="uid://jt0gtyhyhjkp" path="res://assets/token_shop/upgrades/q5-shadowman.tres" id="12_ghjv0"]
-[ext_resource type="Resource" uid="uid://b4u12ujiinmqe" path="res://assets/token_shop/upgrades/qh2-respite's_end.tres" id="13_82pjh"]
-[ext_resource type="Resource" uid="uid://bq2mha5gkp3y1" path="res://assets/token_shop/upgrades/hoarder.tres" id="14_5pwke"]
-[ext_resource type="Resource" uid="uid://wv5jht8bndvy" path="res://assets/token_shop/upgrades/qh3-another_way.tres" id="14_wf3oe"]
-[ext_resource type="Resource" uid="uid://bgxkoaxnxme5p" path="res://assets/token_shop/upgrades/qh4-around_the_bend.tres" id="15_fpfo6"]
-[ext_resource type="Resource" uid="uid://crenv4t4ujhim" path="res://assets/token_shop/upgrades/qh5-shadowman.tres" id="16_6bg6y"]
 
 [sub_resource type="Texture2D" id="Texture2D_0f4lc"]
 resource_local_to_scene = false
@@ -26,4 +14,3 @@ name = "tokenshop/category_upgrades"
 script = ExtResource("3_chlul")
 name = "token-shop.category.upgrades"
 icon = SubResource("Texture2D_0f4lc")
-items = Array[ExtResource("2_6mwvg")]([ExtResource("2_k7bdy"), ExtResource("3_8qfev"), ExtResource("4_gv6f5"), ExtResource("5_tp2cj"), ExtResource("7_6rgus"), ExtResource("14_5pwke"), ExtResource("9_7xx3t"), ExtResource("10_58era"), ExtResource("11_xigyi"), ExtResource("12_ghjv0"), ExtResource("13_82pjh"), ExtResource("14_wf3oe"), ExtResource("15_fpfo6"), ExtResource("16_6bg6y")])
