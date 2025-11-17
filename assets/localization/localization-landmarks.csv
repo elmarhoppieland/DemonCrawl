@@ -1,0 +1,9 @@
+key;en
+
+landmark.wishpool.increase;Increase this value by {reward_per_charge} whenever you open {charge_cell_count} cells without making a mistake.
+landmark.wishpool.coin;Gain {total_reward} coins. 
+landmark.wishpool.defense;Gain {total_reward} defense.
+landmark.wishpool.life;Restore {total_reward} lives.
+landmark.wishpool.mana;Gain {total_reward} mana.
+landmark.wishpool.minion;Gain {total_reward} Minions.
+landmark.wishpool.pathfinding;Gain {total_reward} pathfinding.
