@@ -8,6 +8,8 @@ var charges: int
 var charge_cell_count: int
 var local_cells_since_last_mistake: int
 # ==============================================================================
+const GLOW_MATERIAL = preload("res://assets/scripts/objects/landmarks/magic_glow.tres")
+# ==============================================================================
 
 func _init():
 	# TODO: Research actual ranges of wishpool charge count
@@ -15,13 +17,19 @@ func _init():
 	charges = 1
 	local_cells_since_last_mistake = 0
 
+
 func _spawn():
-	var script: Script = null
+	var script: WishpoolReward = null
 	while not script:
 		script = load("res://assets/loot_tables/wishpool_rewards.tres").generate()
 	
-	reward = script.new(self)
+	reward = script
+	reward.init(self)
 	reward.notify_spawned()
+
+
+func _get_material() -> Material:
+	return GLOW_MATERIAL
 
 
 func _enter_tree() -> void:
@@ -57,6 +65,14 @@ func _cells_opened_since_last_mistake_changed(cell_count: int) -> void:
 
 func _can_interact() -> bool:
 	return true
+
+
+func _interact() -> void:
+	reward.perform()
+	
+	# Shrink to nothing
+	
+	clear()
 
 
 func _get_annotation_text() -> String:
