@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpecialStageFile" load_steps=3 format=3 uid="uid://qdvgm2nj7if0"]
 
-[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://engine/resources/data_containers/stage/stage_file/special_stage_file.gd" id="1_q0tx8"]
+[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://engine/resources/data_containers/quest/generation/stage_file/special_stage_file.gd" id="1_q0tx8"]
 [ext_resource type="Script" uid="uid://bdcqfv2b4iyki" path="res://assets/special_stages/item_shop/item_shop.gd" id="2_k1o4s"]
 
 [resource]
