@@ -11,6 +11,7 @@
 [resource]
 script = ExtResource("6_hsj4v")
 type = 24
+auto_sort = false
 item_count = 6
 item_0/value = ExtResource("1_sadp2")
 item_0/weight = 1.0
