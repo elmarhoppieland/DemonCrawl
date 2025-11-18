@@ -75,7 +75,7 @@ func _interact() -> void:
 	clear()
 
 
-func _get_annotation_text() -> String:
+func _get_annotation_subtext() -> String:
 	var values = {
 		"total_reward": charges * reward.reward_per_charge,
 		"reward_per_charge": reward.reward_per_charge,
