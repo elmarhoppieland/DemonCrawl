@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=18 format=3 uid="uid://c24u78kr4evmt"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=19 format=3 uid="uid://c24u78kr4evmt"]
 
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_kbhp5"]
+[ext_resource type="Script" uid="uid://ydkmagetydc8" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_base.gd" id="1_y8lx6"]
 [ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="2_pgrld"]
-[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://engine/resources/data_containers/stage/stage_file/special_stage_file.gd" id="3_v2gkn"]
+[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://engine/resources/data_containers/quest/generation/stage_file/special_stage_file.gd" id="3_v2gkn"]
 [ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://assets/special_stages/item_shop/item_shop.tres" id="3_w4fdq"]
-[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/stage/stage_file/stage_file.gd" id="4_sh7ef"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file.gd" id="4_sh7ef"]
 [ext_resource type="Resource" uid="uid://bn053h0s8sx8t" path="res://assets/token_shop/upgrades/q4-around_the_bend.tres" id="5_ofwvg"]
 
 [sub_resource type="Texture2D" id="Texture2D_axt8q"]

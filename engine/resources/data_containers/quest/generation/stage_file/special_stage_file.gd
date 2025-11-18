@@ -1,5 +1,5 @@
 @tool
-extends Resource
+extends StageFileBase
 class_name SpecialStageFile
 
 # ==============================================================================
@@ -7,5 +7,5 @@ class_name SpecialStageFile
 @export var special_script: Script = null
 # ==============================================================================
 
-func create() -> SpecialStage:
+func _generate() -> SpecialStage:
 	return special_script.new(name)

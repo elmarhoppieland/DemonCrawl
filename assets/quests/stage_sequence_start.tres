@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="QuestGenerationStageSequence" load_steps=2 format=3 uid="uid://d0hl7wuana0ud"]
+
+[ext_resource type="Script" uid="uid://cfljp5ptsudds" path="res://engine/resources/data_containers/quest/generation/quest_generation_stage_sequence.gd" id="1_20vlv"]
+
+[resource]
+script = ExtResource("1_20vlv")
+length_distribution_count = 2
+length_distribution_0/length = 1
+length_distribution_0/weight = 0.33
+length_distribution_1/length = 2
+length_distribution_1/weight = 0.67
+metadata/_custom_type_script = "uid://cfljp5ptsudds"

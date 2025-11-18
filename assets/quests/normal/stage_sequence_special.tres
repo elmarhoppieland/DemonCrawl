@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="QuestGenerationSpecialStage" load_steps=5 format=3 uid="uid://csjsuy0orxi38"]
+
+[ext_resource type="Script" uid="uid://bpa15get78ehd" path="res://engine/resources/data_containers/quest/generation/quest_generation_special_stage.gd" id="1_pfxuy"]
+[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://engine/resources/data_containers/quest/generation/stage_file/special_stage_file.gd" id="2_gfu48"]
+[ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://assets/special_stages/item_shop/item_shop.tres" id="3_0ofsg"]
+[ext_resource type="Resource" uid="uid://cj4j8v78ck1iy" path="res://assets/special_stages/bazaar/bazaar.tres" id="4_ublon"]
+
+[resource]
+script = ExtResource("1_pfxuy")
+special_stages = Array[ExtResource("2_gfu48")]([ExtResource("3_0ofsg"), ExtResource("4_ublon")])
+metadata/_custom_type_script = "uid://bpa15get78ehd"
