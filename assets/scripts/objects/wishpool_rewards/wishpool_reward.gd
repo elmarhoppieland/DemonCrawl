@@ -9,7 +9,7 @@ var reward_per_charge: int
 @export var reward_max: int
 # ==============================================================================
 
-func _init(wishpool: Wishpool = null) -> void:
+func init(wishpool: Wishpool = null) -> void:
 	_wishpool = wishpool
 
 
