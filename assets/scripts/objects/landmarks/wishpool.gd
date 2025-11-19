@@ -8,7 +8,7 @@ var charges: int
 var charge_cell_count: int
 var local_cells_since_last_mistake: int
 # ==============================================================================
-const GLOW_MATERIAL = preload("res://assets/scripts/objects/landmarks/magic_glow.tres")
+const FLASH_MATERIAL = preload("res://assets/scripts/objects/landmarks/flash.tres")
 # ==============================================================================
 
 func _init():
@@ -19,17 +19,15 @@ func _init():
 
 
 func _spawn():
-	var script: WishpoolReward = null
-	while not script:
-		script = load("res://assets/loot_tables/wishpool_rewards.tres").generate()
+	while not reward:
+		reward = load("res://assets/loot_tables/wishpool_rewards.tres").generate()
 	
-	reward = script
 	reward.init(self)
 	reward.notify_spawned()
 
 
 func _get_material() -> Material:
-	return GLOW_MATERIAL
+	return FLASH_MATERIAL
 
 
 func _enter_tree() -> void:
