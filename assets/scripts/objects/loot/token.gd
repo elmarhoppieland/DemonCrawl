@@ -18,6 +18,10 @@ func _get_material() -> Material:
 	return GLOW_MATERIAL
 
 
+func _reveal() -> void:
+	Toasts.add_toast(tr("object.token.spawned"), get_texture())
+
+
 func _collect() -> bool:
 	Codex.tokens += 1
 	
