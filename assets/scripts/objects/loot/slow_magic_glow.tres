@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://coy05407v7eqe"]
+
+[ext_resource type="Shader" uid="uid://dpsf15bstqiuy" path="res://assets/scripts/objects/loot/slow_magic_glow_shader.tres" id="1_51tab"]
+
+[resource]
+shader = ExtResource("1_51tab")
