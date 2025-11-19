@@ -3,9 +3,16 @@ extends Loot
 class_name Diamond
 
 # ==============================================================================
+var glow_material := load("res://assets/scripts/objects/loot/magic_glow.tres")
+# ==============================================================================
 
 func _get_texture() -> CompressedTexture2D:
 	return preload("res://assets/sprites/diamond.png")
+
+
+func _get_material() -> Material:
+	glow_material.set_shader_parameter(&"Speed", 8.0)
+	return glow_material
 
 
 func _collect() -> bool:
