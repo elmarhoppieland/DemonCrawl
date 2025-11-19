@@ -7,4 +7,5 @@ landmark.wishpool.life;Restore {total_reward} lives.
 landmark.wishpool.mana;Gain {total_reward} mana.
 landmark.wishpool.minion;Gain {total_reward} Minions.
 landmark.wishpool.pathfinding;Gain {total_reward} pathfinding.
+landmark.wishpool.shimmer;The wishpool shimmers with light...
 

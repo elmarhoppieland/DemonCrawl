@@ -50,6 +50,7 @@ func _attribute_changed(attribute: StringName, value: Variant) -> void:
 
 
 func _cells_opened_since_last_mistake_changed(cell_count: int) -> void:
+	print(cell_count, get_quest().get_attributes().cells_opened_since_mistake)
 	if cell_count == 0:
 		local_cells_since_last_mistake = 0
 		return
@@ -59,6 +60,7 @@ func _cells_opened_since_last_mistake_changed(cell_count: int) -> void:
 	if local_cells_since_last_mistake >= charge_cell_count:
 		charges += local_cells_since_last_mistake / charge_cell_count
 		local_cells_since_last_mistake = local_cells_since_last_mistake % charge_cell_count
+		Toasts.add_toast(tr("landmark.wishpool.shimmer"), _get_texture())
 
 
 func _can_interact() -> bool:
