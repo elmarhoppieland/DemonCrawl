@@ -53,7 +53,8 @@ func _attribute_changed(attribute: StringName, value: Variant) -> void:
 		_cells_opened_since_mistake_changed(value)
 
 
-func _cells_opened_since_mistake_changed(cell_count: int) -> void:
+func _cells_opened_since_last_mistake_changed(cell_count: int) -> void:
+	print(cell_count, get_quest().get_attributes().cells_opened_since_mistake)
 	if cell_count == 0:
 		local_cells_since_last_mistake = 0
 		return
