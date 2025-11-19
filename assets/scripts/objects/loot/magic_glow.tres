@@ -4,3 +4,4 @@
 
 [resource]
 shader = ExtResource("1_7u7hj")
+shader_parameter/Speed = 0.0

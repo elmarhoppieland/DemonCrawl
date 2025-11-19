@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="LootTable" load_steps=11 format=3 uid="uid://c2gh03qbscoec"]
+[gd_resource type="Resource" script_class="LootTable" load_steps=13 format=3 uid="uid://c2gh03qbscoec"]
 
 [ext_resource type="Script" uid="uid://cb865s5vxrp2b" path="res://assets/scripts/objects/loot/coin.gd" id="1_m74u1"]
 [ext_resource type="Script" uid="uid://b2fl50hmn6rix" path="res://engine/resources/data_containers/cell/cell_object_base.gd" id="2_kkdfu"]
 [ext_resource type="Script" uid="uid://b6lc4rka1r6im" path="res://assets/scripts/objects/loot/diamond.gd" id="3_mme3m"]
 [ext_resource type="Script" uid="uid://bmq4dvud4876n" path="res://assets/scripts/objects/loot/treasure_chest.gd" id="4_ttf5a"]
 [ext_resource type="Script" uid="uid://co2os8hn78bo6" path="res://assets/scripts/objects/loot/heart.gd" id="5_7ye48"]
+[ext_resource type="Script" uid="uid://ca6mm5nu20dq7" path="res://assets/scripts/objects/loot/token.gd" id="6_dy8h2"]
 [ext_resource type="Script" uid="uid://cntvip8m67kjy" path="res://engine/resources/data_containers/loot_table.gd" id="6_fjjuy"]
 
 [sub_resource type="Resource" id="Resource_ja4qr"]
@@ -27,12 +28,18 @@ resource_name = "Heart"
 script = ExtResource("2_kkdfu")
 base_script = ExtResource("5_7ye48")
 
+[sub_resource type="Resource" id="Resource_le30l"]
+resource_name = "Token"
+script = ExtResource("2_kkdfu")
+base_script = ExtResource("6_dy8h2")
+metadata/_custom_type_script = "uid://b2fl50hmn6rix"
+
 [resource]
 script = ExtResource("6_fjjuy")
 type = 24
 items_class = "CellObjectBase"
 auto_sort = false
-item_count = 4
+item_count = 5
 item_0/value = SubResource("Resource_ja4qr")
 item_0/weight = 10.0
 item_1/value = SubResource("Resource_rs0x1")
@@ -41,3 +48,5 @@ item_2/value = SubResource("Resource_hh6i5")
 item_2/weight = 1.0
 item_3/value = SubResource("Resource_qphml")
 item_3/weight = 1.0
+item_4/value = SubResource("Resource_le30l")
+item_4/weight = 0.5
