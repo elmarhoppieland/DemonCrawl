@@ -59,6 +59,8 @@ func _ready() -> void:
 		data.changed.connect(emit_changed)
 		get_grid().add_child(data)
 	
+	get_cell_effects().opened.connect(get_quest().get_attributes().increment_cells_counter)
+	get_cell_effects().mistake_made.connect(get_quest().get_attributes().reset_cells_counter)
 	emit_changed()
 
 
