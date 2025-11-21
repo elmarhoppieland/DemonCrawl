@@ -184,6 +184,8 @@ func _propagate_open(active: bool = true, allow_loot: bool = true) -> void:
 			if c in visited or c in to_explore or c.is_visible() or c.is_flagged():
 				continue
 			to_explore.append(c)
+	
+	EffectManager.propagate(get_stage_instance().get_cell_effects().open_propagation_finished, visited)
 
 
 func shatter(texture: Texture2D) -> void:
@@ -645,6 +647,7 @@ func notify_second_interacted() -> void:
 
 class CellEffects extends EventBus:
 	signal opened(cell: CellData)
+	signal open_propagation_finished(cells: Array[CellData])
 	
 	signal aura_applied(aura: Aura)
 	signal aura_removed(aura: Aura)
