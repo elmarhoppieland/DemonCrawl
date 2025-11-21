@@ -153,5 +153,5 @@ func reset_cells_counter(_cell: CellData):
 	cells_opened_since_mistake = 0
 
 
-func increment_cells_counter(_cell: CellData):
-	cells_opened_since_mistake += 1
+func increment_cells_counter(cells: Array[CellData]):
+	cells_opened_since_mistake += len(cells)
