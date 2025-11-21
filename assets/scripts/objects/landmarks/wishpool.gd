@@ -45,7 +45,7 @@ func _exit_tree() -> void:
 
 
 func _attribute_changed(attribute: StringName, value: Variant) -> void:
-	if attribute == &"cells_opened_since_last_mistake":
+	if attribute == &"cells_opened_since_mistake":
 		_cells_opened_since_last_mistake_changed(value)
 
 
