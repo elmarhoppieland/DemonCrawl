@@ -50,7 +50,7 @@ func _reveal() -> void:
 
 func _attribute_changed(attribute: StringName, value: Variant) -> void:
 	if attribute == &"cells_opened_since_mistake":
-		_cells_opened_since_mistake_changed(value)
+		_cells_opened_since_last_mistake_changed(value)
 
 
 func _cells_opened_since_last_mistake_changed(cell_count: int) -> void:
