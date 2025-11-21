@@ -136,3 +136,11 @@ func item_matches_research(item: ItemData) -> bool:
 	var description := TranslationServer.translate(item.description)
 	TranslationServer.set_locale(locale)
 	return research_subject.to_lower() in description.to_lower()
+
+
+func reset_cells_counter(_cell: CellData):
+	cells_opened_since_mistake = 0
+
+
+func increment_cells_counter(_cell: CellData):
+	cells_opened_since_mistake += 1
