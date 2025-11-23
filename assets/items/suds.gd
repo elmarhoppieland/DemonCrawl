@@ -17,5 +17,9 @@ func _use() -> void:
 				cell.send_projectile(BubbleProjectile, dir)
 
 
+func _post() -> void:
+	pass # Testing signal handling FIXME
+
+
 func _can_use() -> bool:
 	return super() and get_quest().has_current_stage()
