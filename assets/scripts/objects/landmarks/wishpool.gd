@@ -31,26 +31,27 @@ func _get_material() -> Material:
 
 
 func _enter_tree() -> void:
-	if get_parent() is not CellData:
+	if get_parent() is not CellData or get_cell().is_hidden():
 		return
 	
 	get_quest().get_attributes().property_changed.connect(_attribute_changed)
 
 
 func _exit_tree() -> void:
-	if get_parent() is not CellData:
-		return
-	
-	get_quest().get_attributes().property_changed.disconnect(_attribute_changed)
+	if get_quest().get_attributes().property_changed.is_connected(_attribute_changed):
+		get_quest().get_attributes().property_changed.disconnect(_attribute_changed)
+
+
+func _reveal() -> void:
+	get_quest().get_attributes().property_changed.connect(_attribute_changed)
 
 
 func _attribute_changed(attribute: StringName, value: Variant) -> void:
 	if attribute == &"cells_opened_since_mistake":
-		_cells_opened_since_last_mistake_changed(value)
+		_cells_opened_since_mistake_changed(value)
 
 
-func _cells_opened_since_last_mistake_changed(cell_count: int) -> void:
-	print(cell_count, get_quest().get_attributes().cells_opened_since_mistake)
+func _cells_opened_since_mistake_changed(cell_count: int) -> void:
 	if cell_count == 0:
 		local_cells_since_last_mistake = 0
 		return
