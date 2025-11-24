@@ -137,6 +137,9 @@ func _ready() -> void:
 			return RESEARCH_WEIGHT_MULT
 		return 1.0
 	)
+	
+	get_quest().get_cell_effects().open_propagation_finished.connect(increment_cells_counter)
+	get_quest().get_cell_effects().mistake_made.connect(reset_cells_counter)
 
 
 ## Returns whether the current [member research_subject] matches the given [ItemData].
