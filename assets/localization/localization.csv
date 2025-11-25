@@ -167,5 +167,5 @@ object.treasure-chest;Chest
 object.familiar;Familiar
 object.familiar.description;Moves in a random direction each turn, revealing cells and picking up loot for you. Avoids flagged cells.
 object.familiar.strong.description;Moves in a random direction each turn, revealing cells and picking up loot for you. Avoids flagged cells.
-object.token.spawned;A token has spawned.
+object.token.spawned;A token has spawned!
 
