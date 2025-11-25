@@ -300,31 +300,6 @@ func _prepare_object(object: Object, resources: Array[Object], allow_packing: bo
 	resources.append(object)
 
 
-func _prepare_object(object: Object, resources: Array[Object], allow_packing: bool = true) -> void:
-	if not is_instance_valid(object):
-		return
-	
-	if allow_packing and _is_object_packable(object):
-		processing_owner_stack.append(object)
-		_prepare_variant(object._export_packed(), resources)
-		processing_owner_stack.pop_back()
-		return
-	
-	if object is Node and object.has_method("_export_children"):
-		processing_owner_stack.append(object)
-		_prepare_variant(object._export_children(), resources)
-		processing_owner_stack.pop_back()
-		return
-	
-	if object is Script and not UserClassDB.script_get_class(object).is_empty():
-		return
-	
-	if object in resources:
-		return
-	
-	resources.append(object)
-
-
 func _prepare_array(array: Array, resources: Array[Object], allow_packing: bool = true) -> void:
 	if allow_packing and _is_packable(array):
 		for v in array:
