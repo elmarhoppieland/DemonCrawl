@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi0bprh7rf3v0"]
+[gd_scene load_steps=4 format=3 uid="uid://bi0bprh7rf3v0"]
 
-[ext_resource type="Script" uid="uid://c202mpk585bpx" path="res://Engine/Resources/Singletons/Toast.gd" id="1_jsfq5"]
+[ext_resource type="Theme" uid="uid://b442tpxg2qr7y" path="res://engine/resources/default_theme.tres" id="1_jgrmq"]
+[ext_resource type="Script" uid="uid://c202mpk585bpx" path="res://engine/resources/singletons/toast.gd" id="1_jsfq5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2hpc4"]
 font_size = 8
@@ -13,7 +14,9 @@ anchors_preset = 0
 offset_right = 15.0
 offset_bottom = 20.0
 mouse_filter = 2
+theme = ExtResource("1_jgrmq")
 script = ExtResource("1_jsfq5")
+color = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(-15, 0)

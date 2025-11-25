@@ -19,12 +19,12 @@ func _init() -> void:
 
 ## Adds a debug toast to the player's screen, if [member debug_alerts] is [code]true[/code]. Also logs the message.
 static func add_debug_toast(text: String) -> Toast:
-	return add_toast(text, null, Color.BLACK, true)
+	return add_toast(text, null, "debug", true)
 
 
 ## Adds a toast to the player's screen.
 ## [br][br]The given [param icon] can be [code]null[/code] to have no icon.
-static func add_toast(text: String, icon: Texture2D, color: Color = Color.BLACK, debug_toast: bool = false) -> Toast:
+static func add_toast(text: String, icon: Texture2D, color: String = "default", debug_toast: bool = false) -> Toast:
 	if debug_toast and not debug_alerts:
 		return
 	

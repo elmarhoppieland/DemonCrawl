@@ -19,7 +19,7 @@ func _get_material() -> Material:
 
 
 func _reveal() -> void:
-	Toasts.add_toast(tr("object.token.spawned"), get_texture(), Color.DARK_GOLDENROD)
+	Toasts.add_toast(tr("object.token.spawned"), get_texture(), "gold")
 
 
 func _collect() -> bool:
@@ -27,7 +27,7 @@ func _collect() -> bool:
 	
 	tween_texture_to(GuiLayer.get_statbar().position + Vector2(0.0, 16.0))
 	
-	Toasts.add_toast(str(Codex.tokens), get_texture(), Color.DARK_GOLDENROD)
+	Toasts.add_toast(str(Codex.tokens), get_texture(), "gold")
 	
 	return true
 
