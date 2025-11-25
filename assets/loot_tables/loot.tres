@@ -49,4 +49,4 @@ item_2/weight = 1.0
 item_3/value = SubResource("Resource_qphml")
 item_3/weight = 1.0
 item_4/value = SubResource("Resource_le30l")
-item_4/weight = 0.5
+item_4/weight = 0.2
