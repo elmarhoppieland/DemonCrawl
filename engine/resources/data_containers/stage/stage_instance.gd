@@ -59,6 +59,8 @@ func _ready() -> void:
 		data.changed.connect(emit_changed)
 		get_grid().add_child(data)
 	
+	get_quest().get_attributes().change_property.connect(count_first_opened_cell)
+	
 	emit_changed()
 
 
@@ -441,6 +443,13 @@ func solve_cell() -> CellData:
 
 func pass_turn() -> void:
 	EffectManager.propagate(get_effects().turn)
+
+
+func count_first_opened_cell(property: StringName, value: int) -> int:
+	if property == &"cells_opened_since_mistake":
+		get_quest().get_attributes().change_property.disconnect(count_first_opened_cell)
+		return get_quest().get_attributes().cells_opened_since_mistake + 1
+	return value
 
 
 ## Returns whether this [StageInstance] has been generated. If this is not the
