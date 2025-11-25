@@ -13,8 +13,10 @@ class_name BazaarScene
 var _selected_offer: BazaarInstance.ItemOfferBase :
 	set(value):
 		_selected_offer = value
+
 		if not is_node_ready():
 			await ready
+
 		_buy_button.modulate.a = float(value.can_afford())
 # ==============================================================================
 @onready var _buy_display: CollectibleDisplay = %BuyDisplay
