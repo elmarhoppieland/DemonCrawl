@@ -3,12 +3,12 @@ extends Landmark
 class_name Wishpool
 
 # ==============================================================================
+const FLASH_MATERIAL = preload("res://assets/scripts/objects/landmarks/flash.tres")
+# ==============================================================================
 var reward: WishpoolReward
 var charges: int
 var charge_cell_count: int
 var local_cells_since_last_mistake: int
-# ==============================================================================
-const FLASH_MATERIAL = preload("res://assets/scripts/objects/landmarks/flash.tres")
 # ==============================================================================
 
 func _init(_stage: Stage):
