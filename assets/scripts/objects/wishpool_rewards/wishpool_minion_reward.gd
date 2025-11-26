@@ -1,4 +1,3 @@
-@tool
 extends WishpoolReward
 class_name WishpoolMinionReward
 
