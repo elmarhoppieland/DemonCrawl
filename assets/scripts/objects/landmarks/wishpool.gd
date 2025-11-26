@@ -11,7 +11,7 @@ var local_cells_since_last_mistake: int
 const FLASH_MATERIAL = preload("res://assets/scripts/objects/landmarks/flash.tres")
 # ==============================================================================
 
-func _init():
+func _init(_stage: Stage):
 	# TODO: Research actual ranges of wishpool charge count
 	charge_cell_count = randi_range(20, 30)
 	charges = 1
