@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c51mpgyd5rs7y" path="res://assets/scripts/objects/wishpool_rewards/wishpool_minion_reward.gd" id="1_brn4n"]
 
 [resource]
+resource_name = "Minion"
 script = ExtResource("1_brn4n")
 reward_min = 1
-reward_max = 3
+reward_max = 2
