@@ -19,7 +19,7 @@ func _on_quests_overview_quest_selected(quest: QuestFile, difficulty: Difficulty
 	
 	var state := QuestsManager.get_quest_state(quest, difficulty)
 	
-	if false and not QuestsManager.is_quest_unlocked(quest, difficulty):
+	if not QuestsManager.is_quest_unlocked(quest, difficulty):
 		quest_name_label.text = tr("quest-select.quest.locked")
 		lore_label.text = tr("quest-select.quest.locked.lore") if state == QuestsManager.QuestState.LOCKED_NEEDS_PURCHASE else tr("quest-select.quest.locked.lore-casual")
 		begin_button_container.hide()
