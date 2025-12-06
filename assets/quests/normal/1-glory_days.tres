@@ -1,25 +1,10 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=24 format=3 uid="uid://7rcj8aaeg57t"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=17 format=3 uid="uid://7rcj8aaeg57t"]
 
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_85xo3"]
-[ext_resource type="Script" uid="uid://ydkmagetydc8" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_base.gd" id="1_sfvfm"]
-[ext_resource type="Resource" uid="uid://d0hl7wuana0ud" path="res://assets/quests/stage_sequence_start.tres" id="2_n3vr3"]
-[ext_resource type="Resource" uid="uid://bkvdrhrm24htj" path="res://assets/quests/stage_sequence_item_shop.tres" id="3_21p0g"]
-[ext_resource type="Resource" uid="uid://drdhhacu8wcmr" path="res://assets/quests/stage_sequence_default.tres" id="4_1wtoa"]
-[ext_resource type="Resource" uid="uid://csjsuy0orxi38" path="res://assets/quests/normal/stage_sequence_special.tres" id="5_ckwu8"]
-[ext_resource type="Script" uid="uid://b663thi1bmhd3" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_loop.gd" id="6_21p0g"]
-[ext_resource type="Script" uid="uid://cm3ocgxiu0dbf" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_array.gd" id="7_1wtoa"]
+[ext_resource type="Resource" uid="uid://cmgsgbfsp2eq7" path="res://assets/quests/normal/normal_generation_sequence.tres" id="1_v8l20"]
+[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file_base.gd" id="4_hq225"]
 [ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="9_05hb6"]
 [ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file.gd" id="10_ckwu8"]
-
-[sub_resource type="Resource" id="Resource_afrda"]
-script = ExtResource("6_21p0g")
-loop = Array[ExtResource("1_sfvfm")]([ExtResource("3_21p0g"), ExtResource("4_1wtoa"), ExtResource("5_ckwu8"), ExtResource("4_1wtoa")])
-metadata/_custom_type_script = "uid://b663thi1bmhd3"
-
-[sub_resource type="Resource" id="Resource_xdhia"]
-script = ExtResource("7_1wtoa")
-generation_sequence = Array[ExtResource("1_sfvfm")]([ExtResource("2_n3vr3"), SubResource("Resource_afrda")])
-metadata/_custom_type_script = "uid://cm3ocgxiu0dbf"
 
 [sub_resource type="Texture2D" id="Texture2D_kpscn"]
 resource_local_to_scene = false
@@ -152,5 +137,5 @@ script = ExtResource("9_05hb6")
 name = "quest.glory-days"
 lore = "quest.glory-days.lore"
 icon = SubResource("Texture2D_kpscn")
-stage_list = Array[ExtResource("10_ckwu8")]([SubResource("Resource_arluq"), SubResource("Resource_0fprk"), SubResource("Resource_7sity"), SubResource("Resource_avld4"), SubResource("Resource_ccxup"), SubResource("Resource_4lmxs"), SubResource("Resource_sivim"), SubResource("Resource_3jn66"), SubResource("Resource_72pru"), SubResource("Resource_c8ijh")])
-generation_sequence = SubResource("Resource_xdhia")
+stage_list = Array[ExtResource("4_hq225")]([SubResource("Resource_arluq"), SubResource("Resource_0fprk"), SubResource("Resource_7sity"), SubResource("Resource_avld4"), SubResource("Resource_ccxup"), SubResource("Resource_4lmxs"), SubResource("Resource_sivim"), SubResource("Resource_3jn66"), SubResource("Resource_72pru"), SubResource("Resource_c8ijh")])
+generation_sequence = ExtResource("1_v8l20")
