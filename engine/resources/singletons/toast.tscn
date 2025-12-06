@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bi0bprh7rf3v0"]
 
-[ext_resource type="Script" uid="uid://c202mpk585bpx" path="res://Engine/Resources/Singletons/Toast.gd" id="1_jsfq5"]
+[ext_resource type="Script" uid="uid://c202mpk585bpx" path="res://engine/resources/singletons/toast.gd" id="1_jsfq5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2hpc4"]
 font_size = 8
