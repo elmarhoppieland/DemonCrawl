@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="QuestGenerationSequenceArray" load_steps=9 format=3 uid="uid://cmgsgbfsp2eq7"]
+
+[ext_resource type="Script" uid="uid://ydkmagetydc8" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_base.gd" id="1_vx3yv"]
+[ext_resource type="Resource" path="res://assets/quests/stage_sequence_start.tres" id="2_3l24j"]
+[ext_resource type="Resource" path="res://assets/quests/stage_sequence_item_shop.tres" id="3_ouwjj"]
+[ext_resource type="Resource" path="res://assets/quests/stage_sequence_default.tres" id="4_4uyqo"]
+[ext_resource type="Resource" path="res://assets/quests/normal/stage_sequence_special.tres" id="5_28i05"]
+[ext_resource type="Script" uid="uid://b663thi1bmhd3" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_loop.gd" id="6_tnxfp"]
+[ext_resource type="Script" uid="uid://cm3ocgxiu0dbf" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_array.gd" id="7_0568a"]
+
+[sub_resource type="Resource" id="Resource_afrda"]
+script = ExtResource("6_tnxfp")
+loop = Array[ExtResource("1_vx3yv")]([ExtResource("3_ouwjj"), ExtResource("4_4uyqo"), ExtResource("5_28i05"), ExtResource("4_4uyqo")])
+metadata/_custom_type_script = "uid://b663thi1bmhd3"
+
+[resource]
+script = ExtResource("7_0568a")
+generation_sequence = Array[ExtResource("1_vx3yv")]([ExtResource("2_3l24j"), SubResource("Resource_afrda")])
+metadata/_custom_type_script = "uid://cm3ocgxiu0dbf"
