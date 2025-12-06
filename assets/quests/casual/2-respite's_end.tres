@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=18 format=3 uid="uid://cmryc25pgrnah"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=17 format=3 uid="uid://cmryc25pgrnah"]
 
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_adv6f"]
+[ext_resource type="Resource" uid="uid://cmgsgbfsp2eq7" path="res://assets/quests/default_generation_sequence.tres" id="1_yb7me"]
 [ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="2_12ux7"]
-[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://engine/resources/data_containers/stage/stage_file/special_stage_file.gd" id="3_qt1oi"]
-[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/stage/stage_file/stage_file.gd" id="4_1ncdf"]
-[ext_resource type="Script" uid="uid://bdcqfv2b4iyki" path="res://assets/special_stages/item_shop/item_shop.gd" id="4_yb7me"]
+[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file_base.gd" id="3_8ut8o"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file.gd" id="4_1ncdf"]
 
 [sub_resource type="Texture2D" id="Texture2D_ah532"]
 resource_local_to_scene = false
@@ -12,14 +12,9 @@ resource_name = ""
 script = ExtResource("1_adv6f")
 name = "quest/2"
 
-[sub_resource type="Resource" id="Resource_5a58k"]
-script = ExtResource("3_qt1oi")
-name = "stage.special.item-shop"
-special_script = ExtResource("4_yb7me")
-
 [sub_resource type="Resource" id="Resource_5387s"]
 script = ExtResource("4_1ncdf")
-name = "farm"
+name = "stage.farm"
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -31,7 +26,7 @@ size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_kvqxj"]
 script = ExtResource("4_1ncdf")
-name = "alcove"
+name = "stage.alcove"
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -43,7 +38,7 @@ size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_nrcjf"]
 script = ExtResource("4_1ncdf")
-name = "grotto"
+name = "stage.grotto"
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -55,7 +50,7 @@ size_maximum = 10
 
 [sub_resource type="Resource" id="Resource_8u0ev"]
 script = ExtResource("4_1ncdf")
-name = "hallow"
+name = "stage.hallow"
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 2
@@ -67,7 +62,7 @@ size_maximum = 11
 
 [sub_resource type="Resource" id="Resource_m124s"]
 script = ExtResource("4_1ncdf")
-name = "swamp"
+name = "stage.swamp"
 min_power_minimum = 1
 min_power_maximum = 2
 max_power_minimum = 4
@@ -79,7 +74,7 @@ size_maximum = 13
 
 [sub_resource type="Resource" id="Resource_y85rx"]
 script = ExtResource("4_1ncdf")
-name = "graveyard"
+name = "stage.graveyard"
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -91,7 +86,7 @@ size_maximum = 12
 
 [sub_resource type="Resource" id="Resource_qyh3i"]
 script = ExtResource("4_1ncdf")
-name = "dungeon"
+name = "stage.dungeon"
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -103,7 +98,7 @@ size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_ir8ee"]
 script = ExtResource("4_1ncdf")
-name = "memory"
+name = "stage.memory"
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 6
@@ -115,7 +110,7 @@ size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_o1x01"]
 script = ExtResource("4_1ncdf")
-name = "tribe"
+name = "stage.tribe"
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7
@@ -127,7 +122,7 @@ size_maximum = 16
 
 [sub_resource type="Resource" id="Resource_suxme"]
 script = ExtResource("4_1ncdf")
-name = "shrine"
+name = "stage.shrine"
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7
@@ -142,5 +137,5 @@ script = ExtResource("2_12ux7")
 name = "quest.respites-end"
 lore = "quest.respites-end.lore"
 icon = SubResource("Texture2D_ah532")
-stages = Array[ExtResource("4_1ncdf")]([SubResource("Resource_5387s"), SubResource("Resource_kvqxj"), SubResource("Resource_nrcjf"), SubResource("Resource_8u0ev"), SubResource("Resource_m124s"), SubResource("Resource_y85rx"), SubResource("Resource_qyh3i"), SubResource("Resource_ir8ee"), SubResource("Resource_o1x01"), SubResource("Resource_suxme")])
-special_stages = Array[ExtResource("3_qt1oi")]([SubResource("Resource_5a58k")])
+stage_list = Array[ExtResource("3_8ut8o")]([SubResource("Resource_5387s"), SubResource("Resource_kvqxj"), SubResource("Resource_nrcjf"), SubResource("Resource_8u0ev"), SubResource("Resource_m124s"), SubResource("Resource_y85rx"), SubResource("Resource_qyh3i"), SubResource("Resource_ir8ee"), SubResource("Resource_o1x01"), SubResource("Resource_suxme")])
+generation_sequence = ExtResource("1_yb7me")

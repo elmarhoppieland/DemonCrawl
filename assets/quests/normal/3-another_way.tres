@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="QuestFile" load_steps=18 format=3 uid="uid://bk14shjgawsbt"]
 
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_lktao"]
-[ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="2_sj12g"]
-[ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://assets/special_stages/item_shop/item_shop.tres" id="3_34oo7"]
-[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://engine/resources/data_containers/stage/stage_file/special_stage_file.gd" id="3_p1dy3"]
-[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/stage/stage_file/stage_file.gd" id="4_mvh7x"]
+[ext_resource type="Resource" uid="uid://cmgsgbfsp2eq7" path="res://assets/quests/default_generation_sequence.tres" id="1_ogvxv"]
+[ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="3_4t7xx"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file.gd" id="4_mvh7x"]
+[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file_base.gd" id="4_syuya"]
 [ext_resource type="Resource" uid="uid://b7yi75jhkqp27" path="res://assets/token_shop/upgrades/q3-another_way.tres" id="5_k8pwy"]
 
 [sub_resource type="Texture2D" id="Texture2D_utex0"]
@@ -134,10 +134,10 @@ size_minimum = 16
 size_maximum = 18
 
 [resource]
-script = ExtResource("2_sj12g")
+script = ExtResource("3_4t7xx")
 name = "quest.another-way"
 lore = "quest.another-way.lore"
 token_shop_purchase = ExtResource("5_k8pwy")
 icon = SubResource("Texture2D_utex0")
-stages = Array[ExtResource("4_mvh7x")]([SubResource("Resource_tvu10"), SubResource("Resource_tla61"), SubResource("Resource_2hp6w"), SubResource("Resource_wkeh8"), SubResource("Resource_kacdp"), SubResource("Resource_kuu0j"), SubResource("Resource_sj86w"), SubResource("Resource_n7fvn"), SubResource("Resource_3vq3j"), SubResource("Resource_yywuu")])
-special_stages = Array[ExtResource("3_p1dy3")]([ExtResource("3_34oo7")])
+stage_list = Array[ExtResource("4_syuya")]([SubResource("Resource_tvu10"), SubResource("Resource_tla61"), SubResource("Resource_2hp6w"), SubResource("Resource_wkeh8"), SubResource("Resource_kacdp"), SubResource("Resource_kuu0j"), SubResource("Resource_sj86w"), SubResource("Resource_n7fvn"), SubResource("Resource_3vq3j"), SubResource("Resource_yywuu")])
+generation_sequence = ExtResource("1_ogvxv")
