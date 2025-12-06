@@ -19,6 +19,7 @@ func _get_source() -> Texture2D:
 
 
 func _reveal_active() -> void:
+	EffectManager.propagate(get_stage_instance().get_cell_effects().mistake_made, get_cell())
 	Quest.get_current().get_stats().damage(get_origin_stage().roll_power(), self)
 
 

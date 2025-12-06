@@ -6,59 +6,70 @@ const RESEARCH_WEIGHT_MULT := 5.0
 # ==============================================================================
 @export var score := 0 :
 	set(value):
-		score = EffectManager.propagate_mutable(change_property, 1, &"score", value)
-		EffectManager.propagate(property_changed, &"score", score)
+		value = EffectManager.propagate_mutable(change_property, 1, &"score", value)
+		EffectManager.propagate(property_changed, &"score", value)
+		score = value
 		emit_changed()
 @export var cells_opened_since_mistake := 0 :
 	set(value):
-		cells_opened_since_mistake = EffectManager.propagate_mutable(change_property, 1, &"cells_opened_since_mistake", value)
-		EffectManager.propagate(property_changed, &"cells_opened_since_mistake", score)
+		value = EffectManager.propagate_mutable(change_property, 1, &"cells_opened_since_mistake", value)
+		EffectManager.propagate(property_changed, &"cells_opened_since_mistake", value)
+		cells_opened_since_mistake = value
 		emit_changed()
 @export var rare_loot_modifier := 1.0 :
 	set(value):
-		rare_loot_modifier = EffectManager.propagate_mutable(change_property, 1, &"rare_loot_modifier", value)
-		EffectManager.propagate(property_changed, &"rare_loot_modifier", score)
+		value = EffectManager.propagate_mutable(change_property, 1, &"rare_loot_modifier", value)
+		EffectManager.propagate(property_changed, &"rare_loot_modifier", value)
+		rare_loot_modifier = value
 		emit_changed()
 @export var morality := 0 :
 	set(value):
-		morality = EffectManager.propagate_mutable(change_property, 1, &"morality", value)
-		EffectManager.propagate(property_changed, &"morality", score)
+		value = EffectManager.propagate_mutable(change_property, 1, &"morality", value)
+		EffectManager.propagate(property_changed, &"morality", value)
+		morality = value
 		emit_changed()
 @export var chests_opened := 0 :
 	set(value):
-		chests_opened = EffectManager.propagate_mutable(change_property, 1, &"chests_opened", value)
-		EffectManager.propagate(property_changed, &"chests_opened", score)
+		value = EffectManager.propagate_mutable(change_property, 1, &"chests_opened", value)
+		EffectManager.propagate(property_changed, &"chests_opened", value)
+		chests_opened = value
 		emit_changed()
 @export var monsters_killed := 0 :
 	set(value):
-		monsters_killed = EffectManager.propagate_mutable(change_property, 1, &"monsters_killed", value)
-		EffectManager.propagate(property_changed, &"monsters_killed", score)
+		value = EffectManager.propagate_mutable(change_property, 1, &"monsters_killed", value)
+		EffectManager.propagate(property_changed, &"monsters_killed", value)
+		monsters_killed = value
 		emit_changed()
 @export var mastery_activations := 0 :
 	set(value):
-		mastery_activations = EffectManager.propagate_mutable(change_property, 1, &"mastery_activations", value)
-		EffectManager.propagate(property_changed, &"mastery_activations", score)
+		value = EffectManager.propagate_mutable(change_property, 1, &"mastery_activations", value)
+		EffectManager.propagate(property_changed, &"mastery_activations", value)
+		mastery_activations = value
 		emit_changed()
 @export var pathfinding := 0 :
 	set(value):
-		pathfinding = EffectManager.propagate_mutable(change_property, 1, &"pathfinding", value)
-		EffectManager.propagate(property_changed, &"pathfinding", score)
+		value = EffectManager.propagate_mutable(change_property, 1, &"pathfinding", value)
+		EffectManager.propagate(property_changed, &"pathfinding", value)
+		pathfinding = value
 		emit_changed()
 @export var powerchording := 0 :
 	set(value):
-		powerchording = EffectManager.propagate_mutable(change_property, 1, &"powerchording", value)
-		EffectManager.propagate(property_changed, &"powerchording", score)
+		value = EffectManager.propagate_mutable(change_property, 1, &"powerchording", value)
+		EffectManager.propagate(property_changed, &"powerchording", value)
+		powerchording = value
 		emit_changed()
 @export_subgroup("Chain", "chain_")
 @export var chain_value := 0 :
 	set(value):
-		chain_value = EffectManager.propagate_mutable(change_property, 1, &"chain_value", value)
-		EffectManager.propagate(property_changed, &"chain_value", score)
+		value = EffectManager.propagate_mutable(change_property, 1, &"chain_value", value)
+		EffectManager.propagate(property_changed, &"chain_value", value)
+		chain_value = value
 		emit_changed()
 @export var chain_length := 0 :
 	set(value):
-		chain_length = EffectManager.propagate_mutable(change_property, 1, &"chain_length", value)
-		EffectManager.propagate(property_changed, &"chain_length", score)
+		value = EffectManager.propagate_mutable(change_property, 1, &"chain_length", value)
+		EffectManager.propagate(property_changed, &"chain_length", value)
+		chain_length = value
 		emit_changed()
 
 @export var research_subject := "" :
@@ -128,6 +139,22 @@ func _ready() -> void:
 	)
 
 
+func _enter_tree() -> void:
+	var base := get_parent()
+	while base != null:
+		if not base.is_node_ready():
+			await base.ready
+		base = base.get_parent()
+	
+	get_quest().get_cell_effects().open_propagation_finished.connect(increment_cells_counter)
+	get_quest().get_cell_effects().mistake_made.connect(reset_cells_counter)
+
+
+func _exit_tree() -> void:
+	get_quest().get_cell_effects().open_propagation_finished.disconnect(increment_cells_counter)
+	get_quest().get_cell_effects().mistake_made.disconnect(reset_cells_counter)
+
+
 ## Returns whether the current [member research_subject] matches the given [ItemData].
 ## [br][br][b]Note:[/b] This method temporarily changes the locale, so use this sparingly.
 func item_matches_research(item: ItemData) -> bool:
@@ -136,3 +163,11 @@ func item_matches_research(item: ItemData) -> bool:
 	var description := TranslationServer.translate(item.description)
 	TranslationServer.set_locale(locale)
 	return research_subject.to_lower() in description.to_lower()
+
+
+func reset_cells_counter(_cell: CellData):
+	cells_opened_since_mistake = 0
+
+
+func increment_cells_counter(cells: Array[CellData]):
+	cells_opened_since_mistake += len(cells)
