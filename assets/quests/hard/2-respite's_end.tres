@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="QuestFile" load_steps=18 format=3 uid="uid://bnceos644ncor"]
 
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_25enw"]
+[ext_resource type="Resource" uid="uid://cmgsgbfsp2eq7" path="res://assets/quests/default_generation_sequence.tres" id="1_ukvt7"]
 [ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="2_7v1oy"]
-[ext_resource type="Script" uid="uid://r33d12ourqdj" path="res://engine/resources/data_containers/quest/generation/stage_file/special_stage_file.gd" id="3_lk4ub"]
-[ext_resource type="Resource" uid="uid://qdvgm2nj7if0" path="res://assets/special_stages/item_shop/item_shop.tres" id="3_r5c5x"]
+[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file_base.gd" id="3_iwdgu"]
 [ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file.gd" id="4_n5jd8"]
 [ext_resource type="Resource" uid="uid://b4u12ujiinmqe" path="res://assets/token_shop/upgrades/qh2-respite's_end.tres" id="5_d5cc4"]
 
@@ -15,7 +15,7 @@ name = "quest/2"
 
 [sub_resource type="Resource" id="Resource_5387s"]
 script = ExtResource("4_n5jd8")
-name = "farm"
+name = "stage.farm"
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -27,7 +27,7 @@ size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_kvqxj"]
 script = ExtResource("4_n5jd8")
-name = "alcove"
+name = "stage.alcove"
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -39,7 +39,7 @@ size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_nrcjf"]
 script = ExtResource("4_n5jd8")
-name = "grotto"
+name = "stage.grotto"
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -51,7 +51,7 @@ size_maximum = 10
 
 [sub_resource type="Resource" id="Resource_8u0ev"]
 script = ExtResource("4_n5jd8")
-name = "hallow"
+name = "stage.hallow"
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 2
@@ -63,7 +63,7 @@ size_maximum = 11
 
 [sub_resource type="Resource" id="Resource_m124s"]
 script = ExtResource("4_n5jd8")
-name = "swamp"
+name = "stage.swamp"
 min_power_minimum = 1
 min_power_maximum = 2
 max_power_minimum = 4
@@ -75,7 +75,7 @@ size_maximum = 13
 
 [sub_resource type="Resource" id="Resource_y85rx"]
 script = ExtResource("4_n5jd8")
-name = "graveyard"
+name = "stage.graveyard"
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -87,7 +87,7 @@ size_maximum = 12
 
 [sub_resource type="Resource" id="Resource_qyh3i"]
 script = ExtResource("4_n5jd8")
-name = "dungeon"
+name = "stage.dungeon"
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -99,7 +99,7 @@ size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_ir8ee"]
 script = ExtResource("4_n5jd8")
-name = "memory"
+name = "stage.memory"
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 6
@@ -111,7 +111,7 @@ size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_o1x01"]
 script = ExtResource("4_n5jd8")
-name = "tribe"
+name = "stage.tribe"
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7
@@ -123,7 +123,7 @@ size_maximum = 16
 
 [sub_resource type="Resource" id="Resource_suxme"]
 script = ExtResource("4_n5jd8")
-name = "shrine"
+name = "stage.shrine"
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7
@@ -139,5 +139,5 @@ name = "quest.respites-end"
 lore = "quest.respites-end.lore"
 token_shop_purchase = ExtResource("5_d5cc4")
 icon = SubResource("Texture2D_ah532")
-stages = Array[ExtResource("4_n5jd8")]([SubResource("Resource_5387s"), SubResource("Resource_kvqxj"), SubResource("Resource_nrcjf"), SubResource("Resource_8u0ev"), SubResource("Resource_m124s"), SubResource("Resource_y85rx"), SubResource("Resource_qyh3i"), SubResource("Resource_ir8ee"), SubResource("Resource_o1x01"), SubResource("Resource_suxme")])
-special_stages = Array[ExtResource("3_lk4ub")]([ExtResource("3_r5c5x")])
+stage_list = Array[ExtResource("3_iwdgu")]([SubResource("Resource_5387s"), SubResource("Resource_kvqxj"), SubResource("Resource_nrcjf"), SubResource("Resource_8u0ev"), SubResource("Resource_m124s"), SubResource("Resource_y85rx"), SubResource("Resource_qyh3i"), SubResource("Resource_ir8ee"), SubResource("Resource_o1x01"), SubResource("Resource_suxme")])
+generation_sequence = ExtResource("1_ukvt7")
