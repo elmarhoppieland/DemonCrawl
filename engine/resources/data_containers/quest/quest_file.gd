@@ -24,7 +24,7 @@ func generate() -> Quest:
 	var stages := generation_sequence.generate(stage_list)
 	for i in stages.size():
 		var stage := stages[i].generate()
-		#stage.locked = i > 0
+		stage.locked = i > 0
 		quest.add_stage(stage)
 	
 	return quest
