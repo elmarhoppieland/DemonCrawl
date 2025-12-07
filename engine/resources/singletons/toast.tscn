@@ -16,7 +16,6 @@ offset_bottom = 20.0
 mouse_filter = 2
 theme = ExtResource("1_jgrmq")
 script = ExtResource("1_jsfq5")
-color = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(-15, 0)
@@ -29,6 +28,7 @@ mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="Node2D/BaseContainer"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.8039216)
 layout_mode = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.8)
