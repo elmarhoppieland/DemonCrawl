@@ -25,6 +25,7 @@ class_name Toast
 		if not label:
 			return text
 		return label.text
+@export var color: String
 # ==============================================================================
 @onready var base_container: MarginContainer = %BaseContainer
 @onready var color_rect: ColorRect = %ColorRect
@@ -42,6 +43,8 @@ func _ready() -> void:
 				hide()
 		)
 		return
+	
+	color_rect.color = get_theme_color(color, "Toast")
 	
 	play()
 
@@ -69,10 +72,11 @@ func play() -> void:
 	finished.emit()
 
 
-static func create(_text: String = "", _icon: Texture2D = null) -> Toast:
+static func create(_text: String = "", _icon: Texture2D = null, _color: String = "default") -> Toast:
 	var toast: Toast = load("res://engine/resources/singletons/toast.tscn").instantiate()
 	toast.text = _text
 	toast.icon = _icon
+	toast.color = _color
 	return toast
 
 
