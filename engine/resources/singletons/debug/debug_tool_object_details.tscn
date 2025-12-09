@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvi3a1hhaotk8"]
+
+[ext_resource type="Script" uid="uid://dd6lfockqbyik" path="res://engine/resources/singletons/debug/debug_tool_object_details.gd" id="1_f22g6"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_wp5p3"]
+[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="3_kafo5"]
+[ext_resource type="Script" uid="uid://nqubiv4s4ucx" path="res://engine/resources/helper_objects/texture_node/texture_node_display.gd" id="4_f22g6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eqoxe"]
+font = ExtResource("2_wp5p3")
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="DebugToolObjectDetails" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f22g6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "object.coin"
+label_settings = SubResource("LabelSettings_eqoxe")
+
+[node name="Frame" parent="VBoxContainer" instance=ExtResource("3_kafo5")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureNodeDisplay" type="TextureRect" parent="VBoxContainer/Frame"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 3
+script = ExtResource("4_f22g6")
+metadata/_custom_type_script = "uid://nqubiv4s4ucx"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SpawnRandomButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Spawn on Random Cell"
+
+[node name="BindSpawnRandomButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Bind..."
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BindSpawnHoveredButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Spawn on
+Hovered Cell (Bind...)"
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/VBoxContainer/SpawnRandomButton" to="." method="_on_spawn_random_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/VBoxContainer/BindSpawnRandomButton" to="." method="_on_bind_spawn_random_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/VBoxContainer2/BindSpawnHoveredButton" to="." method="_on_bind_spawn_hovered_button_pressed"]

@@ -8,8 +8,6 @@ class_name CellObject
 # ==============================================================================
 @export var _origin_stage: StageBase = null : set = _set_origin_stage, get = get_origin_stage
 # ==============================================================================
-var _material: Material = null : get = get_material
-
 var _theme: Theme = null :
 	get:
 		if _theme == null and _origin_stage != null:
@@ -27,6 +25,9 @@ func _init(stage: Stage = null) -> void:
 
 
 func _ready() -> void:
+	if not get_cell():
+		return
+	
 	if Eternity.get_processing_file() != null:
 		await Eternity.get_processing_file().loaded
 		_cell_enter()
@@ -124,7 +125,7 @@ static func _import_packed_static(script: String, ...args: Array) -> CellObject:
 #endregion
 
 func get_cell() -> CellData:
-	return get_parent()
+	return get_parent() as CellData
 
 
 func _set_origin_stage(value: Stage) -> void:
@@ -164,6 +165,15 @@ func get_origin_stage() -> StageBase:
 
 #region virtuals
 
+## Returns a translatable [String] containing this object's name.
+func get_name_id() -> String:
+	return _get_name_id()
+
+
+## Virtual method. Should return this object's name as a translatable [String].
+@abstract func _get_name_id() -> String
+
+
 ## Returns whether an object of this type can spawn. If this returns [code]false[/code],
 ## a [Cell] that attempts to spawn this object will try again.
 static func can_spawn(object: Script) -> bool:
@@ -187,60 +197,9 @@ func _get_source() -> Texture2D:
 	return null
 
 
-## Returns this object's [Material], to be applied whenever its texture is used.
-func get_material() -> Material:
-	if _material:
-		return _material
-	
-	var override := _get_material()
-	if override:
-		_material = override
-		return override
-	
-	var palette := get_palette()
-	if palette:
-		var shader := ShaderMaterial.new()
-		shader.shader = preload("res://engine/scenes/stage_scene/board/cell_object.gdshader")
-		shader.set_shader_parameter("palette", palette)
-		shader.set_shader_parameter("palette_enabled", true)
-		_material = shader
-		return shader
-	
-	return null
-
-
-## Virtual method to override this object's material. If a value other than [code]null[/code]
-## is returned, any other [Material] will be overridden by the returned one.
-## [br][br][b]Note:[/b] If [method _get_palette] does not return [code]null[/code],
-## that value will be used by default. However, this method will override that [Material]
-## if it does not return [code]null[/code].
-func _get_material() -> Material:
-	return null
-
-
-## Returns this object's [Color] modulation.
-func get_modulate() -> Color:
-	return _get_modulate()
-
-
-## Virtual method to override the return value of [method get_modulate].
-func _get_modulate() -> Color:
-	return Color.WHITE
-
-
-## Returns the object's color palette, to be inserted into the cell's shader.
-func get_palette() -> Texture2D:
-	return _get_palette()
-
-
-## Virtual method to override the object's color palette, to be inserted into the cell's shader.
-func _get_palette() -> Texture2D:
-	return null
-
-
 ## Notifies this object that the player has interacted (left-click or Q) with it.
 func notify_interacted() -> void:
-	interact()
+	#interact()
 	
 	_hover()
 	

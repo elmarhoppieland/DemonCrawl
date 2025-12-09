@@ -21,6 +21,10 @@ enum Direction {
 @export var direction := Direction.UP
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.waterboy"
+
+
 func _spawn() -> void:
 	cost = randi_range(1, 5)
 	direction = Direction.values().pick_random()

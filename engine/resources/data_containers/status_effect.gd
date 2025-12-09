@@ -349,7 +349,7 @@ class Initializer:
 					Debug.log_error("Cannot join status effects '%s': type mismatch." % UserClassDB.script_get_identifier(_source.get_script()))
 					break # we'll create a new status effect instead since I don't want to return null
 				
-				status._duration += _duration
+				status.duration += _duration
 				return status
 		
 		var base := _status_script

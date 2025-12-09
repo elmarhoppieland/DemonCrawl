@@ -163,9 +163,26 @@ stage.special.bazaar.leave;LEAVE
 
 research.kill;Kill
 
-object.treasure-chest;Chest
+object.monster;Monster
+object.treasure-chest;Treasure Chest
+object.coin;Coin
+object.diamond;Diamond
+object.heart;Heart
 object.familiar;Familiar
 object.familiar.description;Moves in a random direction each turn, revealing cells and picking up loot for you. Avoids flagged cells.
 object.familiar.strong.description;Moves in a random direction each turn, revealing cells and picking up loot for you. Avoids flagged cells.
+object.token;Token
 object.token.spawned;A token has spawned!
-
+object.mage;Mage
+object.bagman;Bagman
+object.nomad;Nomad
+object.blacksmith;Blacksmith
+object.mercenary;Mercenary
+object.priest;Priest
+object.doctor;Doctor
+object.waterboy;Waterboy
+object.pyro;Pyro
+object.hungry-plant;Hungry Plant
+object.elder;Elder
+object.gambler;Gambler
+object.scribe;Scribe

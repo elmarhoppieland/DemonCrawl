@@ -16,6 +16,10 @@ enum RewardType {
 @export var maximum := -1
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.hungry-plant"
+
+
 func _spawn() -> void:
 	type = RewardType.values().pick_random()
 	maximum = randi_range(3, 6)

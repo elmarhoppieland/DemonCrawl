@@ -12,6 +12,10 @@ const APPLE := preload("res://assets/items/apple.tres")
 @export var purchase_count := 0
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.doctor"
+
+
 func _enter_tree() -> void:
 	if get_parent() is not CellData:
 		return

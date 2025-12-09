@@ -13,6 +13,10 @@ enum Type {
 @export var type := Type.INCREASE
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.scribe"
+
+
 func _spawn() -> void:
 	cost = randi_range(20, 40)
 	type = Type.values().pick_random()

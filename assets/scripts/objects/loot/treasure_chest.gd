@@ -6,6 +6,10 @@ class_name TreasureChest
 var tween: Tween
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.treasure-chest"
+
+
 func _get_texture() -> Texture2D:
 	return get_theme_icon("default", "TreasureChest").duplicate()
 
