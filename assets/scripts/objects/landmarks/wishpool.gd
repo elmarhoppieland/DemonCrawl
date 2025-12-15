@@ -69,7 +69,12 @@ func _can_interact() -> bool:
 
 
 func _interact() -> void:
+	if charges == 0:
+		Toasts.add_toast(tr("landmark.wishpool.empty"), _get_texture())
+		return
+	
 	reward.perform()
+	Toasts.add_toast(tr("landmark.wishpool.collect"), _get_texture())
 	
 	# Shrink to nothing
 	
