@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c7bnfk2x7amtj" path="res://assets/sprites/button.png" id="2_u6x6t"]
 [ext_resource type="Script" uid="uid://mfu7hnfru68d" path="res://engine/resources/utility_node/checkmark_grabber.gd" id="3_pdqtg"]
 [ext_resource type="Script" uid="uid://sg5wikaqom71" path="res://engine/resources/singletons/debug/debug_tool_items.gd" id="3_rptbx"]
-[ext_resource type="Script" path="res://engine/resources/helper_objects/search_box.gd" id="5_3nk64"]
+[ext_resource type="Script" uid="uid://ckrcudou05sfu" path="res://engine/resources/helper_objects/search_box.gd" id="5_3nk64"]
 [ext_resource type="Script" uid="uid://dj15jrukfw1qs" path="res://engine/resources/singletons/debug/debug_tool_objects.gd" id="5_yfhv8"]
 [ext_resource type="Script" uid="uid://ut7dfsq0rbq6" path="res://engine/resources/singletons/debug/input_binder.gd" id="6_qlxe7"]
 

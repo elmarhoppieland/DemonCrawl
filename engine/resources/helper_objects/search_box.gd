@@ -28,6 +28,11 @@ func _init() -> void:
 	_timer.one_shot = true
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		_timer.queue_free()
+
+
 func _enter_tree() -> void:
 	add_child.call_deferred(_timer)
 
