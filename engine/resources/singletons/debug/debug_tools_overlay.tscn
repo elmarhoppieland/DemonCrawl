@@ -161,6 +161,10 @@ metadata/_custom_type_script = "uid://ceob43rxtruwu"
 script = ExtResource("3_pdqtg")
 metadata/_custom_type_script = "uid://mfu7hnfru68d"
 
+[node name="ClearBoundButton" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Clear Bound Actions..."
+
 [node name="HSplitContainer" type="HSplitContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -245,6 +249,7 @@ text = "Confirm"
 [connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolItems" to="." method="_on_debug_tool_pressed" flags=18]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolObjects" to="." method="_on_debug_tool_pressed" flags=18]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolAuras" to="." method="_on_debug_tool_pressed" flags=18]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ClearBoundButton" to="." method="_on_clear_bound_button_pressed"]
 [connection signal="timeout" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/SearchBox" to="." method="_on_search_box_timeout"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="SubViewportContainer/SubViewport/InputBinder" method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer/ConfirmButton" to="SubViewportContainer/SubViewport/InputBinder" method="_on_confirm_button_pressed"]

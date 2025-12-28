@@ -86,3 +86,7 @@ func _on_search_box_timeout(search: String) -> void:
 	var items: Array[Control] = []
 	items.assign(_items_container.get_children())
 	selected_tool_button.handle_search(search, items)
+
+
+func _on_clear_bound_button_pressed() -> void:
+	actions.clear()
