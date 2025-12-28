@@ -49,7 +49,7 @@ func _ready() -> void:
 	second_interacted.connect(second_interact)
 	
 	await get_tree().process_frame
-	if main and enabled and control.is_visible_in_tree():
+	if main and enabled:
 		interacted.emit()
 		_main_grabber = self
 

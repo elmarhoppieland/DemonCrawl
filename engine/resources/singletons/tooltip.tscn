@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dy7h614yc7ptg"]
 
-[ext_resource type="Script" uid="uid://bjsw7yj8ahomy" path="res://Engine/Resources/Singletons/Tooltip.gd" id="1_errb6"]
+[ext_resource type="Script" uid="uid://bjsw7yj8ahomy" path="res://engine/resources/singletons/tooltip.gd" id="1_errb6"]
 [ext_resource type="Texture2D" uid="uid://bvlywjjg0tpt1" path="res://assets/sprites/tooltip_bg.png" id="1_yrkkl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4aptq"]
@@ -93,6 +93,7 @@ _data = {
 }
 
 [node name="Tooltip" type="CanvasLayer"]
+process_mode = 3
 layer = 100
 offset = Vector2(0, 16)
 scale = Vector2(4, 4)
@@ -118,5 +119,5 @@ autowrap_mode = 0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_sg3rk")
+&"": SubResource("AnimationLibrary_sg3rk")
 }

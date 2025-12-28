@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ke1qun0x7lx3"]
 
-[ext_resource type="Script" uid="uid://e3jnrx6g7wot" path="res://Engine/Resources/Singletons/Focus.gd" id="1_g54rn"]
+[ext_resource type="Script" uid="uid://e3jnrx6g7wot" path="res://engine/resources/singletons/focus.gd" id="1_g54rn"]
 [ext_resource type="Texture2D" uid="uid://fk4ds8n78usp" path="res://assets/sprites/stage_icon_focus0.png" id="1_vpuug"]
 
 [sub_resource type="Animation" id="Animation_ycauv"]
@@ -113,6 +113,7 @@ _data = {
 }
 
 [node name="Focus" type="CanvasLayer"]
+process_mode = 3
 layer = 50
 script = ExtResource("1_g54rn")
 
@@ -138,6 +139,6 @@ patch_margin_bottom = 6
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_crwsi")
+&"": SubResource("AnimationLibrary_crwsi")
 }
 autoplay = "idle"

@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://cyw23q7ecmq1i"]
 
-[ext_resource type="Script" uid="uid://ba11085yih1jw" path="res://Engine/Resources/Singletons/GuiLayer.gd" id="1_17xuq"]
-[ext_resource type="PackedScene" uid="uid://bqgqlnp8nk2x2" path="res://Engine/Resources/Scenes/Statbar.tscn" id="1_gfntl"]
-[ext_resource type="PackedScene" uid="uid://xngqg6hwurpe" path="res://Engine/Resources/Singletons/OrbLayer.tscn" id="3_3qee7"]
-[ext_resource type="Script" uid="uid://bqbd1nck2c2ye" path="res://Engine/Resources/Singletons/TextureTweener.gd" id="4_ruhnq"]
+[ext_resource type="Script" uid="uid://ba11085yih1jw" path="res://engine/resources/singletons/gui_layer.gd" id="1_17xuq"]
+[ext_resource type="PackedScene" uid="uid://bqgqlnp8nk2x2" path="res://engine/resources/scenes/statbar.tscn" id="1_gfntl"]
+[ext_resource type="PackedScene" uid="uid://xngqg6hwurpe" path="res://engine/resources/singletons/orb_layer.tscn" id="3_3qee7"]
+[ext_resource type="Script" uid="uid://bqbd1nck2c2ye" path="res://engine/resources/singletons/texture_tweener.gd" id="4_ruhnq"]
 
 [node name="GuiLayer" type="CanvasLayer"]
-layer = 50
+layer = 25
 script = ExtResource("1_17xuq")
 
 [node name="Statbar" parent="." instance=ExtResource("1_gfntl")]

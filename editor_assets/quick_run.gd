@@ -57,15 +57,6 @@ func call_on_root() -> void:
 		call(function, root)
 
 
-class T extends Object:
-	func function(callable: Callable) -> void:
-		print(self)
-		print(is_instance_valid(self))
-		callable.call()
-		print(self)
-		print(is_instance_valid(self))
-
-
 static func get_tree() -> SceneTree:
 	return Engine.get_main_loop()
 

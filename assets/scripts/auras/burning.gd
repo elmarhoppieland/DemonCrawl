@@ -4,6 +4,10 @@ class_name Burning
 
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "aura.burning"
+
+
 func _get_modulate() -> Color:
 	return Color("#b2482f")
 

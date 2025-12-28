@@ -21,6 +21,10 @@ const TAGS := {
 @export var passed_turns := -1 # this is -1 if the blacksmith isn't busy
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.blacksmith"
+
+
 func _enter_tree() -> void:
 	if get_parent() is not CellData:
 		return

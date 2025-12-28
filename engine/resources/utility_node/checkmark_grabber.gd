@@ -21,6 +21,7 @@ func _ready() -> void:
 	margin_container.add_theme_constant_override("margin_right", -3)
 	margin_container.add_theme_constant_override("margin_bottom", -2)
 	margin_container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	margin_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	margin_container.hide()
 	
 	margin_container.add_child(texture_rect)

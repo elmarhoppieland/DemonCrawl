@@ -6,6 +6,10 @@ class_name Mercenary
 @export var cost := -1
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.mercenary"
+
+
 func _spawn() -> void:
 	cost = randi_range(1, 5)
 

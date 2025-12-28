@@ -10,6 +10,10 @@ class_name Nomad
 			value._nomad = self
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.nomad"
+
+
 func _spawn() -> void:
 	var script: Script = null
 	while not script or not NomadOffer.is_enabled(script):

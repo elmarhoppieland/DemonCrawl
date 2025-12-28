@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8ybql6aglnji"]
+
+[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="1_1crv3"]
+[ext_resource type="Script" uid="uid://bscio0od1mqyf" path="res://engine/resources/singletons/debug/debug_tool_item_details.gd" id="1_eqoxe"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="1_vfc82"]
+[ext_resource type="PackedScene" uid="uid://dppdeqskdv8hc" path="res://engine/resources/scenes/collectible_display.tscn" id="2_vfc82"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eqoxe"]
+font = ExtResource("1_vfc82")
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="DebugToolItemDetails" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eqoxe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "item.lyre"
+label_settings = SubResource("LabelSettings_eqoxe")
+
+[node name="Frame" parent="VBoxContainer" instance=ExtResource("1_1crv3")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CollectibleDisplay" parent="VBoxContainer/Frame" instance=ExtResource("2_vfc82")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "item.lyre.description"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AddToInventoryButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Add to Inventory"
+
+[node name="BindAddToInventoryButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Bind..."
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer/AddToInventoryButton" to="." method="_on_add_to_inventory_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer/BindAddToInventoryButton" to="." method="_on_bind_add_to_inventory_button_pressed"]

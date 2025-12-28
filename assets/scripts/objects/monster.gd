@@ -6,6 +6,10 @@ class_name Monster
 
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.monster"
+
+
 func _spawn() -> void:
 	name = get_origin_stage().get_property("monsters", "names", ["???"]).pick_random()
 

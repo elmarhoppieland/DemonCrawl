@@ -1,0 +1,86 @@
+key;en
+
+object.monster;Monster
+object.treasure-chest;Treasure Chest
+object.coin;Coin
+object.diamond;Diamond
+object.heart;Heart
+object.familiar;Familiar
+object.familiar.description;Moves in a random direction each turn, revealing cells and picking up loot for you. Avoids flagged cells.
+object.familiar.strong.description;Moves in a random direction each turn, revealing cells and picking up loot for you. Avoids flagged cells.
+object.token;Token
+object.token.spawned;A token has spawned!
+
+object.nomad;Nomad
+object.nomad.price;Price: {cost} coins
+object.nomad.sell.consumable;Selling {item}!
+object.nomad.sell.magic;Selling magic items!
+object.nomad.sell.legendary;Selling legendary items!
+object.nomad.sell.mana;Selling {mana} mana!
+object.nomad.sell.treasure;Selling treasure chests!
+object.nomad.sell.apples;Selling {amount} apples!
+object.nomad.sell.fail;You don't have enough coins!
+object.nomad.buy.item;Buying {item}!
+object.nomad.buy.item.fail;Right, you don't have {item}!
+
+object.plant;Hungry Plant
+object.plant.description;Feed me your items!
+object.plant.reward;[{v}/{max}] Reward: {reward}
+object.plant.reward.coins;{amount} coin
+object.plant.reward.coins.plural;{amount} coins
+object.plant.reward.souls;{amount} soul
+object.plant.reward.souls.plural;{amount} souls
+object.plant.reward.mana;{amount} mana
+object.plant.reward.mana.plural;{amount} mana
+object.plant.reward.present;Gain a Present
+
+object.blacksmith;Blacksmith
+object.blacksmith.description;Got {cost} coins? I'll forge you some {type} armor in {turns} turns!
+object.blacksmith.busy;Still hammerin' away!
+object.blacksmith.progress;[{passed.turns}/{turns}]
+
+object.priest;Priest
+object.priest.description;I can remove an Omen and get rid of your negative morality for {cost} coins!
+object.priest.fail;Even soldiers of God need to eat!
+
+object.bagman;Bagman
+object.bagman.description.empower;I empower monsters by {power}!
+object.bagman.description.weaken;I weaken monsters by {power}!
+object.bagman.description.neutral;Having trouble with those monsters?
+object.bagman.description.prompt;Give me {cost} coins and I'll help you out...
+object.bagman.interact;You got it...
+
+object.elder;Elder
+object.elder.description;I can activate your mastery's ultimate ability for {cost} coins...
+
+object.gambler;Gambler
+object.gambler.description;I'll bet you {cost} coins that I can move to a hidden cell without getting hurt! If I'm wrong, well, you can have whatever I've got.
+object.gambler.balance;Currently has: {coins} coins
+
+object.doctor;Doctor
+object.doctor.description;I will restore {lives} life for {cost} coins, but you'll owe me {fee} more when you leave.
+object.doctor.description.plural;I will restore {lives} lives for {cost} coins, but you'll owe me {fee} more when you leave.
+object.doctor.description.extra;Don't forget, you still owe me {fee} coins! Need another heal? I will restore {lives} life for {cost} coins, but then you'll owe a total of {new_fee} coins later.
+object.doctor.description.extra.plural;Don't forget, you still owe me {fee} coins! Need another heal? I will restore {lives} lives for {cost} coins, but then you'll owe a total of {new_fee} coins later.
+object.doctor.balance;Currently has: {coins} coins
+
+object.mage;Mage
+object.mage.description;I will cast {item} on a random cell for {cost} coins!
+object.mage.description.no-item;I seem to have lost my {item}!
+object.mage.description.charging;I need {mana} more mana before I can cast {item} again!
+object.mage.lost-item;Oh no! I lost my {item}!
+
+object.scribe;Scribe
+object.scribe.increase.description;I will add 1 to each of your heirlooms for {cost} coins!
+object.scribe.copy.description;I will copy your first {slot.count} items into their heirloom slots for {cost} coins!
+object.scribe.reactivate.description;I will reactivate your heirloom slots for {cost} coins!
+
+object.pyro;Pyro
+object.pyro.description;Flares are my thing!! Give me {cost} coins and I'll rotate clockwise!
+
+object.waterboy;Waterboy
+object.waterboy.description;I love bubbles! Pay me {cost} coins and I'll move over one cell.
+object.waterboy.move.fail;I cannot move there!
+
+object.mercenary;Mercenary
+object.mercenary.description;Give me {cost} coins and I will fight for you!

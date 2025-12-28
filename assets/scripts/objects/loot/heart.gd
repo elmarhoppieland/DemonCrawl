@@ -9,6 +9,10 @@ const TEXTURE_WIDTH := 10
 var tween: Tween
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.heart"
+
+
 func _get_texture() -> CompressedTexture2D:
 	return preload("res://assets/sprites/heart.png")
 
@@ -56,7 +60,7 @@ func _can_interact() -> bool:
 
 
 func _collect_failed() -> void:
-	Toasts.add_toast("object.heart.fail", null)
+	Toasts.add_toast(tr("object.heart.fail"), get_texture())
 
 
 func use() -> void:

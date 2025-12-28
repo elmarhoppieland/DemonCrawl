@@ -22,6 +22,7 @@ func _validate_property(property: Dictionary) -> void:
 
 func _update() -> void:
 	texture = texture_node.get_texture() if texture_node else null
+	material = texture_node.get_material() if texture_node else null
 
 
 @warning_ignore("shadowed_variable")

@@ -11,6 +11,10 @@ const MANA_MODIFIER_MAX := 0.15
 @export var cost := -1
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.mage"
+
+
 func _spawn() -> void:
 	cost = randi_range(COST_MIN, COST_MAX)
 	var item := get_quest().get_item_pool().create_filter().filter_tag("_targeted").disallow_all_types().allow_type(MagicItem).set_allow_items_in_inventory().get_random_item().create()

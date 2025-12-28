@@ -15,6 +15,10 @@ class_name Familiar
 @export var strong := false
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.familiar"
+
+
 func _get_texture() -> Texture2D:
 	return source
 

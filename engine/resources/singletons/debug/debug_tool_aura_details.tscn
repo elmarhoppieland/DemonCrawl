@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhicldaxdmq7s"]
+
+[ext_resource type="Script" uid="uid://d35xerwxburc2" path="res://engine/resources/singletons/debug/debug_tool_aura_details.gd" id="1_u8cmb"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_m6m5l"]
+[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="3_r4fxw"]
+[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://assets/skins/default/empty.png" id="4_m6m5l"]
+[ext_resource type="Script" uid="uid://bk3q4kpv0inpn" path="res://assets/scripts/auras/burning.gd" id="5_m6m5l"]
+[ext_resource type="Script" uid="uid://rsacscnpkr1d" path="res://assets/scripts/auras/sanctified.gd" id="6_r4fxw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eqoxe"]
+font = ExtResource("2_m6m5l")
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="DebugToolObjectDetails" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u8cmb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "aura.burning"
+label_settings = SubResource("LabelSettings_eqoxe")
+
+[node name="Frame" parent="VBoxContainer" instance=ExtResource("3_r4fxw")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CellTextureRect" type="TextureRect" parent="VBoxContainer/Frame"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_m6m5l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SpawnRandomButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Spawn on Random Cell"
+
+[node name="BindSpawnRandomButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Bind..."
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BindSpawnHoveredButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Spawn on
+Hovered Cell (Bind...)"
+
+[node name="Burning" type="Node" parent="."]
+script = ExtResource("5_m6m5l")
+metadata/_custom_type_script = "uid://bk3q4kpv0inpn"
+
+[node name="Sanctified" type="Node" parent="."]
+script = ExtResource("6_r4fxw")
+metadata/_custom_type_script = "uid://rsacscnpkr1d"
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/VBoxContainer/SpawnRandomButton" to="." method="_on_spawn_random_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/VBoxContainer/BindSpawnRandomButton" to="." method="_on_bind_spawn_random_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/VBoxContainer2/BindSpawnHoveredButton" to="." method="_on_bind_spawn_hovered_button_pressed"]

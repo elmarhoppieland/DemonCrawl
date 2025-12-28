@@ -1,0 +1,255 @@
+[gd_scene load_steps=15 format=3 uid="uid://c6ya0ralarli8"]
+
+[ext_resource type="Script" uid="uid://bijc51hjplour" path="res://engine/resources/singletons/debug/debug_tools_overlay.gd" id="1_wa8x0"]
+[ext_resource type="Texture2D" uid="uid://c7bnfk2x7amtj" path="res://assets/sprites/button.png" id="2_u6x6t"]
+[ext_resource type="Script" uid="uid://mfu7hnfru68d" path="res://engine/resources/utility_node/checkmark_grabber.gd" id="3_pdqtg"]
+[ext_resource type="Script" uid="uid://sg5wikaqom71" path="res://engine/resources/singletons/debug/debug_tool_items.gd" id="3_rptbx"]
+[ext_resource type="Script" uid="uid://ckrcudou05sfu" path="res://engine/resources/helper_objects/search_box.gd" id="5_3nk64"]
+[ext_resource type="Script" uid="uid://dj15jrukfw1qs" path="res://engine/resources/singletons/debug/debug_tool_objects.gd" id="5_yfhv8"]
+[ext_resource type="Script" uid="uid://ceob43rxtruwu" path="res://engine/resources/singletons/debug/debug_tool_auras.gd" id="6_7u2oj"]
+[ext_resource type="Script" uid="uid://ut7dfsq0rbq6" path="res://engine/resources/singletons/debug/input_binder.gd" id="6_qlxe7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mfv00"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 1.0
+texture = ExtResource("2_u6x6t")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yxumr"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 1.0
+texture = ExtResource("2_u6x6t")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_olyl8"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 1.0
+texture = ExtResource("2_u6x6t")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.764706, 0.764706, 0.764706, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3yso8"]
+texture = ExtResource("2_u6x6t")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="Theme" id="Theme_xgnre"]
+Button/styles/disabled = SubResource("StyleBoxTexture_mfv00")
+Button/styles/hover = SubResource("StyleBoxTexture_mfv00")
+Button/styles/normal = SubResource("StyleBoxTexture_mfv00")
+Button/styles/pressed = SubResource("StyleBoxTexture_mfv00")
+LineEdit/constants/caret_width = 1
+LineEdit/styles/focus = SubResource("StyleBoxTexture_yxumr")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_olyl8")
+LineEdit/styles/read_only = SubResource("StyleBoxTexture_3yso8")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlxe7"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_detail = 5
+
+[node name="DebugToolsOverlay" type="CanvasLayer"]
+process_mode = 3
+layer = 40
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+script = ExtResource("1_wa8x0")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(320, 180)
+render_target_update_mode = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_xgnre")
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DebugToolsContainer" type="HFlowContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="DebugToolItems" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer"]
+layout_mode = 2
+text = "Items"
+script = ExtResource("3_rptbx")
+metadata/_custom_type_script = "uid://sg5wikaqom71"
+
+[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolItems"]
+script = ExtResource("3_pdqtg")
+main = true
+metadata/_custom_type_script = "uid://mfu7hnfru68d"
+
+[node name="DebugToolObjects" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer"]
+layout_mode = 2
+text = "Objects"
+script = ExtResource("5_yfhv8")
+metadata/_custom_type_script = "uid://dj15jrukfw1qs"
+
+[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolObjects"]
+script = ExtResource("3_pdqtg")
+metadata/_custom_type_script = "uid://mfu7hnfru68d"
+
+[node name="DebugToolAuras" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer"]
+layout_mode = 2
+text = "Auras"
+script = ExtResource("6_7u2oj")
+metadata/_custom_type_script = "uid://ceob43rxtruwu"
+
+[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolAuras"]
+script = ExtResource("3_pdqtg")
+metadata/_custom_type_script = "uid://mfu7hnfru68d"
+
+[node name="ClearBoundButton" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Clear Bound Actions..."
+
+[node name="HSplitContainer" type="HSplitContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SearchBox" type="LineEdit" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Search..."
+caret_blink = true
+caret_blink_interval = 0.5
+script = ExtResource("5_3nk64")
+wait_enabled = false
+wait_time = 0.2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemsContainer" type="HFlowContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
+
+[node name="ItemDetailsContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputBinder" type="PanelContainer" parent="SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -11.5
+offset_right = 38.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qlxe7")
+script = ExtResource("6_qlxe7")
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/InputBinder"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Listening for input..."
+
+[node name="InputLabel" type="Label" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "No action pressed"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="ConfirmButton" type="Button" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Confirm"
+
+[connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolItems" to="." method="_on_debug_tool_pressed" flags=18]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolObjects" to="." method="_on_debug_tool_pressed" flags=18]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolAuras" to="." method="_on_debug_tool_pressed" flags=18]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ClearBoundButton" to="." method="_on_clear_bound_button_pressed"]
+[connection signal="timeout" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/SearchBox" to="." method="_on_search_box_timeout"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="SubViewportContainer/SubViewport/InputBinder" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer/ConfirmButton" to="SubViewportContainer/SubViewport/InputBinder" method="_on_confirm_button_pressed"]
