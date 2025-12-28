@@ -10,11 +10,13 @@ var _item_details_cache: DebugToolItemDetails
 func _get_items() -> Array[Control]:
 	var items: Array[Control] = []
 	var registry := DemonCrawl.get_full_registry()
+	
 	for item in registry.items:
 		var frame := Frame.create(CollectibleDisplay.create(item.create(), true))
 		frame.set_meta("item", item)
 		frame.interacted.connect(item_selected.emit.bind(frame))
 		items.append(frame)
+	
 	return items
 
 

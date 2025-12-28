@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c6ya0ralarli8"]
+[gd_scene load_steps=15 format=3 uid="uid://c6ya0ralarli8"]
 
 [ext_resource type="Script" uid="uid://bijc51hjplour" path="res://engine/resources/singletons/debug/debug_tools_overlay.gd" id="1_wa8x0"]
 [ext_resource type="Texture2D" uid="uid://c7bnfk2x7amtj" path="res://assets/sprites/button.png" id="2_u6x6t"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://sg5wikaqom71" path="res://engine/resources/singletons/debug/debug_tool_items.gd" id="3_rptbx"]
 [ext_resource type="Script" uid="uid://ckrcudou05sfu" path="res://engine/resources/helper_objects/search_box.gd" id="5_3nk64"]
 [ext_resource type="Script" uid="uid://dj15jrukfw1qs" path="res://engine/resources/singletons/debug/debug_tool_objects.gd" id="5_yfhv8"]
+[ext_resource type="Script" uid="uid://ceob43rxtruwu" path="res://engine/resources/singletons/debug/debug_tool_auras.gd" id="6_7u2oj"]
 [ext_resource type="Script" uid="uid://ut7dfsq0rbq6" path="res://engine/resources/singletons/debug/input_binder.gd" id="6_qlxe7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mfv00"]
@@ -144,16 +145,19 @@ metadata/_custom_type_script = "uid://mfu7hnfru68d"
 layout_mode = 2
 text = "Objects"
 script = ExtResource("5_yfhv8")
+metadata/_custom_type_script = "uid://dj15jrukfw1qs"
 
 [node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolObjects"]
 script = ExtResource("3_pdqtg")
 metadata/_custom_type_script = "uid://mfu7hnfru68d"
 
-[node name="Button3" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer"]
+[node name="DebugToolAuras" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer"]
 layout_mode = 2
 text = "Auras"
+script = ExtResource("6_7u2oj")
+metadata/_custom_type_script = "uid://ceob43rxtruwu"
 
-[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/Button3"]
+[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolAuras"]
 script = ExtResource("3_pdqtg")
 metadata/_custom_type_script = "uid://mfu7hnfru68d"
 
@@ -240,6 +244,7 @@ text = "Confirm"
 
 [connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolItems" to="." method="_on_debug_tool_pressed" flags=18]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolObjects" to="." method="_on_debug_tool_pressed" flags=18]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolAuras" to="." method="_on_debug_tool_pressed" flags=18]
 [connection signal="timeout" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/SearchBox" to="." method="_on_search_box_timeout"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="SubViewportContainer/SubViewport/InputBinder" method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer/ConfirmButton" to="SubViewportContainer/SubViewport/InputBinder" method="_on_confirm_button_pressed"]
