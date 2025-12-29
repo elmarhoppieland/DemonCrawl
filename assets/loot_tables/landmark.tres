@@ -18,5 +18,5 @@ auto_sort = false
 use_modifier = false
 item_count = 1
 item_0/value = SubResource("Resource_uqv2t")
-item_0/weight = 0.0
+item_0/weight = 1.0
 metadata/_custom_type_script = "uid://cntvip8m67kjy"

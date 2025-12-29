@@ -5,5 +5,4 @@
 [resource]
 resource_name = "Pathfinding"
 script = ExtResource("1_ufmve")
-reward_min = 1
-reward_max = 4
+reward_per_charge = 1

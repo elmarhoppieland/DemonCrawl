@@ -5,5 +5,4 @@
 [resource]
 resource_name = "Coin"
 script = ExtResource("1_kjxkv")
-reward_min = 5
-reward_max = 20
+reward_per_charge = 5

@@ -5,5 +5,4 @@
 [resource]
 resource_name = "Life"
 script = ExtResource("1_u84o7")
-reward_min = 1
-reward_max = 2
+reward_per_charge = 1

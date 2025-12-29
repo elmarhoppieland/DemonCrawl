@@ -4,21 +4,11 @@ class_name WishpoolReward
 
 # ==============================================================================
 var _wishpool: Wishpool
-var reward_per_charge: int
-@export var reward_min: int
-@export var reward_max: int
+@export var reward_per_charge: int
 # ==============================================================================
 
 func init(wishpool: Wishpool = null) -> void:
 	_wishpool = wishpool
-
-
-func _spawn() -> void:
-	reward_per_charge = randi_range(reward_min, reward_max)
-
-
-func notify_spawned() -> void:
-	_spawn()
 
 
 @abstract func _perform() -> void

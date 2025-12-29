@@ -5,5 +5,4 @@
 [resource]
 resource_name = "Mana"
 script = ExtResource("1_12m1o")
-reward_min = 20
-reward_max = 60
+reward_per_charge = 20

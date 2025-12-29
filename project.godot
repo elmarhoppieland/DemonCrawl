@@ -175,7 +175,7 @@ debug_tools_overlay_toggle={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://assets/localization/localization.en.translation", "res://assets/localization/localization-items.en.translation", "res://assets/localization/localization-stages.en.translation", "res://assets/localization/localization-masteries.en.translation", "res://assets/localization/localization-objects.en.translation", "res://assets/localization/localization-landmarks.en.translation")
+locale/translations=PackedStringArray("res://assets/localization/localization.en.translation", "res://assets/localization/localization-items.en.translation", "res://assets/localization/localization-stages.en.translation", "res://assets/localization/localization-masteries.en.translation", "res://assets/localization/localization-objects.en.translation")
 
 [plugin]
 

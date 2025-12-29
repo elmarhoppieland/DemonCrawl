@@ -3,33 +3,23 @@ extends Landmark
 class_name Wishpool
 
 # ==============================================================================
-const FLASH_MATERIAL = preload("res://assets/scripts/objects/landmarks/flash.tres")
+const FLASH_MATERIAL := preload("res://assets/scripts/objects/landmarks/flash.tres")
+const CHARGE_CELL_COUNT := 30
 # ==============================================================================
 var reward: WishpoolReward
 var charges: int
-var charge_cell_count: int
-var local_cells_since_last_mistake: int
 # ==============================================================================
 
-func _init(_stage: Stage = null) -> void:
-	# TODO: Research actual ranges of wishpool charge count
-	charge_cell_count = randi_range(20, 30)
-	charges = 1
-	local_cells_since_last_mistake = 0
-	
-	super(_stage)
-
-
 func _get_name_id() -> String:
-	return "landmark.wishpool"
+	return "object.wishpool"
 
 
 func _spawn():
 	while not reward:
 		reward = load("res://assets/loot_tables/wishpool_rewards.tres").generate()
-	
+	charges = 1
+
 	reward.init(self)
-	reward.notify_spawned()
 
 
 func _get_material() -> Material:
@@ -59,15 +49,13 @@ func _attribute_changed(attribute: StringName, value: Variant) -> void:
 
 func _cells_opened_since_mistake_changed(cell_count: int) -> void:
 	if cell_count == 0:
-		local_cells_since_last_mistake = 0
 		return
 	
-	local_cells_since_last_mistake += cell_count - get_quest().get_attributes().cells_opened_since_mistake
+	var change := cell_count % CHARGE_CELL_COUNT - get_quest().get_attributes().cells_opened_since_mistake % CHARGE_CELL_COUNT
 	
-	if local_cells_since_last_mistake >= charge_cell_count:
-		charges += local_cells_since_last_mistake / charge_cell_count
-		local_cells_since_last_mistake = local_cells_since_last_mistake % charge_cell_count
-		Toasts.add_toast(tr("landmark.wishpool.shimmer"), _get_texture())
+	if change > 0:
+		charges += change
+		Toasts.add_toast(tr("object.wishpool.shimmer"), _get_texture())
 
 
 func _can_interact() -> bool:
@@ -76,22 +64,20 @@ func _can_interact() -> bool:
 
 func _interact() -> void:
 	if charges == 0:
-		Toasts.add_toast(tr("landmark.wishpool.empty"), _get_texture())
+		Toasts.add_toast(tr("object.wishpool.empty"), _get_texture())
 		return
 	
 	reward.perform()
-	Toasts.add_toast(tr("landmark.wishpool.collect"), _get_texture())
+	Toasts.add_toast(tr("object.wishpool.collect"), _get_texture())
 	
-	# Shrink to nothing
-	
-	clear()
+	flee()
 
 
 func _get_annotation_subtext() -> String:
-	var values = {
+	var values := {
 		"total_reward": charges * reward.reward_per_charge,
 		"reward_per_charge": reward.reward_per_charge,
-		"charge_cell_count": charge_cell_count
+		"charge_cell_count": CHARGE_CELL_COUNT
 	}
 	
-	return (tr("landmark.wishpool." + reward.get_script_name().to_snake_case()) + " " + tr("landmark.wishpool.increase")).format(values)
+	return (tr("object.wishpool." + reward.get_script_name().to_snake_case()) + " " + tr("object.wishpool.increase")).format(values)
