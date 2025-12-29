@@ -74,11 +74,11 @@ func overlay_select(target: Variant) -> String:
 		if not target.begins_with("/root/"):
 			target = "/root/" + target
 		
-		Debug.left_object = get_node(target)
+		DebugInspectorOverlay.left_object = get_node(target)
 		
 		return "Set the left overlay to " + target + "."
 	elif target is Object:
-		Debug.left_object = target
+		DebugInspectorOverlay.left_object = target
 		return "Set the left overlay to " + str(target) + "."
 	else:
 		return "[color=red]Invalid type of parameter 'target' (1st param).[/color]"
@@ -94,7 +94,7 @@ func overlay_select_right(path: String) -> String:
 			if not path.begins_with("/root/"):
 				path = "/root/" + path
 			
-			Debug.right_object = get_node(path)
+			DebugInspectorOverlay.right_object = get_node(path)
 	
 	return "Set the right overlay to " + path + "."
 
@@ -117,9 +117,9 @@ func inspect(object: Variant, side: String = "l") -> String:
 	
 	match side:
 		"l":
-			Debug.left_object = object
+			DebugInspectorOverlay.left_object = object
 		"r":
-			Debug.right_object = object
+			DebugInspectorOverlay.right_object = object
 		_:
 			return "[color=red]Expected a side as the 2nd argument.[/color]"
 	

@@ -6,6 +6,10 @@ class_name Elder
 @export var cost := -1
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.elder"
+
+
 static func _can_spawn() -> bool:
 	return Quest.get_current().get_mastery() != null
 
@@ -15,19 +19,19 @@ func _spawn() -> void:
 
 
 func _interact() -> void:
-	if Quest.get_current().get_stats().coins < cost:
+	if get_quest().get_stats().coins < cost:
 		var handled := handle_fail()
 		if not handled:
 			Toasts.add_toast(tr("stranger.elder.fail"), get_source())
 		return
 	
-	Quest.get_current().get_stats().spend_coins(cost, self)
+	get_quest().get_stats().spend_coins(cost, self)
 	
 	activate()
 
 
 func _activate() -> void:
-	Quest.get_current().get_mastery().activate_ability()
+	get_quest().get_mastery().activate_ability()
 	cost *= 2
 
 
@@ -36,10 +40,13 @@ func _get_annotation_title() -> String:
 
 
 func _get_annotation_subtext() -> String:
-	return "\"" + tr("stranger.elder.description").format({
+	var subtext := "\"" + tr("stranger.elder.description").format({
 		"cost": cost
-	}) + "\"\n(" + Quest.get_current().get_mastery().get_ability_description() + ")"
+	})
+	if get_quest().get_mastery():
+		subtext += "\"\n(" + get_quest().get_mastery().get_ability_description() + ")"
+	return subtext
 
 
 func _can_afford() -> bool:
-	return Quest.get_current().get_stats().coins >= cost
+	return get_quest().get_stats().coins >= cost

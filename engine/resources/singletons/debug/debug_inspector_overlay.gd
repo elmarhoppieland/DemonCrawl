@@ -1,7 +1,7 @@
 extends CanvasLayer
-class_name Debug
+class_name DebugInspectorOverlay
 
-## Singleton for debugging purposes.
+## Overlay that shows information, for debugging purposes.
 
 # ==============================================================================
 enum DebugSide {
@@ -11,28 +11,20 @@ enum DebugSide {
 # ==============================================================================
 const META_PREFIX := "debug_"
 const DEBUG_FILE_PATH := "user://overlay.debug"
-
-const LOG_DIR := "user://logs"
-const LOG_FILE_PATH_BASE := LOG_DIR + "/log%d.txt"
 # ==============================================================================
-static var max_log_count: int = Eternal.create(100, "settings")
-static var verbose_logging: bool = Eternal.create(false, "settings")
-
 static var all_objects: Array[Object] = []
 static var left_object: Object
 static var right_object: Object
 
-static var _instance: Debug
-
-static var _log_queue := ""
-static var _log_file_idx := -1
-
+static var _instance: DebugInspectorOverlay
+# ==============================================================================
 var _debug_lines_left: Array[Dictionary] = []
 var _debug_lines_right: Array[Dictionary] = []
 # ==============================================================================
 @onready var debug_label_left: RichTextLabel = %DebugLabelLeft
 @onready var debug_label_right: RichTextLabel = %DebugLabelRight
-@onready var command_line: TextEdit = %CommandLine
+@onready var _command_line: TextEdit = %CommandLine
+@onready var _command_line_canvas_layer: CanvasLayer = $CommandLineCanvasLayer
 # ==============================================================================
 
 func _init() -> void:
@@ -44,14 +36,14 @@ func _init() -> void:
 func _ready() -> void:
 	debug_label_left.hide()
 	debug_label_right.hide()
-	command_line.hide()
+	_command_line_canvas_layer.hide()
 	
 	left_object = get_tree().current_scene
 	
-	Debug._init_log_file()
+	Debug.flush_log_file()
 	
 	Eternity.saved.connect(func(path: String) -> void:
-		Debug._flush_log_file()
+		Debug.flush_log_file()
 		Debug.log_event("Saved data to disk (to path '%s')" % path, Color.DARK_SALMON, true, false)
 	)
 	Eternity.loaded.connect(func(path: String):
@@ -73,77 +65,7 @@ func _process(_delta: float) -> void:
 
 func _exit_tree() -> void:
 	Debug.log_event("Closing DemonCrawl", Color.GRAY)
-	Debug._flush_log_file()
-
-
-## Logs [param message], adding a new line in the log file, and if
-## [param print_to_console] is [code]true[/code] and this is a debug build,
-## prints to the console.
-static func log_event(message: String, color: Color = Color.AQUA, print_to_console: bool = true, show_toast: bool = true) -> void:
-	if OS.is_debug_build() and print_to_console:
-		print_rich("[color=#%s]%s[/color]" % [color.to_html(), message])
-	
-	_log_queue += "[%s] %s\n" % [Time.get_datetime_string_from_system().replace("T", " @ "), message]
-	
-	if show_toast:
-		Toasts.add_debug_toast(message)
-
-
-## Logs [param message], if [member verbose_logging] is [code]true[/code].
-## See [method log_event].
-static func log_event_verbose(message: String, color: Color = Color.AQUA, print_to_console: bool = true, show_toast: bool = true) -> void:
-	if verbose_logging:
-		log_event(message, color, print_to_console, show_toast)
-
-
-static func log_stack_event(message: String, color: Color = Color.WHITE, prefix: String = "", print_to_console: bool = true, show_toast: bool = true) -> void:
-	if not prefix.is_empty():
-		prefix += ": "
-	
-	var stack := get_stack()
-	while not stack.is_empty() and stack[0].source == (Debug as Script).resource_path:
-		stack.pop_front()
-	
-	if stack.is_empty():
-		log_event(message, color, print_to_console, show_toast)
-		return
-	
-	if OS.is_debug_build() and print_to_console:
-		print_rich("[color=#%s]● %s:%d @ %s() - %s[/color]" % [color.to_html(), stack[0].source, stack[0].line, stack[0].function, message])
-	
-	_log_queue += "[%s] %s%s:%d @ %s() - %s" % [
-		Time.get_datetime_string_from_system().replace("T", " @ "),
-		prefix,
-		stack[0].source,
-		stack[0].line,
-		stack[0].function,
-		message
-	]
-	
-	if show_toast:
-		Toasts.add_debug_toast(prefix + message)
-
-
-## Logs [param error], and prints an error message.
-static func log_error(error: String) -> void:
-	log_stack_event(error, Color("ff786b"), "ERROR")
-	push_error(error)
-
-
-static func log_warning(warning: String) -> void:
-	log_stack_event(warning, Color("ffde66"), "WARNING")
-	push_warning(warning)
-
-
-static func log_info(value: Variant) -> void:
-	var info := str(value)\
-		+ "\n" + type_string(typeof(value))
-	if value is Object:
-		info += "\n" + value.get_class()\
-			+ "".join(value.get_property_list().map(func(prop: Dictionary) -> String: return "\n%s: %s" % [prop.name, value.get(prop.name)] if prop.name in value else ""))
-		if value.get_script() != null:
-			info += "\n" + UserClassDB.script_get_identifier(value.get_script())
-	log_event(info)
+	Debug.flush_log_file()
 
 
 static func clear_overlay() -> void:
@@ -270,41 +192,6 @@ static func stringify(variable: Variant, var_name: String = "") -> String:
 	return str(variable).replace("[", "[lb]").replace("]", "[rb]")
 
 
-static func _init_log_file() -> void:
-	const DIR := "user://logs"
-	const FILE_PATH_BASE := DIR + "/log%d.txt"
-	
-	var log_count := DirAccess.get_files_at(DIR).size()
-	
-	if log_count >= max_log_count:
-		for i in (max_log_count - 1):
-			DirAccess.rename_absolute(FILE_PATH_BASE % (i + 1), FILE_PATH_BASE % i)
-		
-		_log_file_idx = log_count - 1
-	else:
-		_log_file_idx = log_count
-
-
-static func get_log_path() -> String:
-	return LOG_FILE_PATH_BASE % _log_file_idx
-
-
-static func _flush_log_file() -> void:
-	if not FileAccess.file_exists(get_log_path()):
-		FileAccess.open(get_log_path(), FileAccess.WRITE)
-	
-	var file := FileAccess.open(get_log_path(), FileAccess.READ_WRITE)
-	if not file:
-		log_error("Unable to load the log file at path '%s': %s" % [get_log_path(), error_string(FileAccess.get_open_error())])
-		return
-	
-	file.seek_end()
-	file.store_string(_log_queue)
-	file.close()
-	
-	_log_queue = ""
-
-
 func update() -> void:
 	if not is_left_bound():
 		left_object = get_tree().current_scene
@@ -312,16 +199,16 @@ func update() -> void:
 		right_object = null
 	
 	if is_left_label_bound():
-		debug_label_left.text = Debug.get_text(left_object)
+		debug_label_left.text = DebugInspectorOverlay.get_text(left_object)
 	if is_right_label_bound():
-		debug_label_right.text = "[right]" + Debug.get_text(right_object)
+		debug_label_right.text = "[right]" + DebugInspectorOverlay.get_text(right_object)
 	
 	var invalid_objects := PackedInt32Array()
 	var debug_file := FileAccess.open(DEBUG_FILE_PATH, FileAccess.WRITE)
 	for i in all_objects.size():
 		var object := all_objects[i]
 		if is_instance_valid(object):
-			debug_file.store_string(Debug.get_text(object, false) + "\n\n")
+			debug_file.store_string(DebugInspectorOverlay.get_text(object, false) + "\n\n")
 		else:
 			invalid_objects.append(i - invalid_objects.size())
 	
@@ -359,17 +246,17 @@ func is_right_bound() -> bool:
 
 func _handle_toggle() -> void:
 	if Input.is_action_just_pressed("command_line_toggle"):
-		if command_line.visible:
-			command_line.hide()
+		if _command_line_canvas_layer.visible:
+			_command_line_canvas_layer.hide()
 			get_tree().paused = false
 		else:
-			command_line.show()
-			command_line.grab_focus()
-			command_line.clear()
+			_command_line_canvas_layer.show()
+			_command_line.grab_focus()
+			_command_line.clear()
 			
 			get_tree().paused = true
 	
-	if Input.is_action_just_pressed("debug_overlay_toggle"):
+	if Input.is_action_just_pressed("debug_inspector_overlay_toggle"):
 		debug_label_left.visible = not debug_label_left.visible
 		debug_label_right.visible = not debug_label_right.visible
 
@@ -392,8 +279,8 @@ func _parse_meta_click(meta: String, object: Object) -> void:
 		Debug.log_error("Could not execute meta '%s': %s" % [meta, expression.get_error_text()])
 	if result is Object:
 		if object == left_object:
-			Debug.select_left(result)
+			DebugInspectorOverlay.select_left(result)
 		else:
-			Debug.select_right(result)
+			DebugInspectorOverlay.select_right(result)
 	else:
 		print(result)

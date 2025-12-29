@@ -17,8 +17,8 @@ static func create_immunity_list() -> ImmunityList:
 ## [br][br][b]Note:[/b] The [param immunity_signal] should take a boolean parameter,
 ## to which the [param mutable] points. This is the mutable parameter that determines
 ## whether the [param callable] can be called.
-static func try_call(callable: Callable, immunity_signal: Signal, mutable: int, ...args: Array) -> Variant:
-	if can_call.callv([immunity_signal, mutable] + args):
+static func try_call(callable: Callable, immunity_signal: Signal, ...args: Array) -> Variant:
+	if can_call.callv([immunity_signal] + args):
 		return callable.call()
 	return null
 
@@ -29,8 +29,8 @@ static func try_call(callable: Callable, immunity_signal: Signal, mutable: int, 
 ## [br][br][b]Note:[/b] The [param immunity_signal] should take a boolean parameter,
 ## to which the [param mutable] points. This is the mutable parameter that determines
 ## whether the [Callable] can be called.
-static func can_call(immunity_signal: Signal, mutable: int, ...args: Array) -> bool:
-	return EffectManager.propagate_mutable.callv([immunity_signal, mutable] + args)
+static func can_call(immunity_signal: Signal, ...args: Array) -> bool:
+	return EffectManager.propagate_mutable.callv([immunity_signal, args.size()] + args + [true])
 
 
 class ImmunityList:

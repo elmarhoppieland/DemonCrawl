@@ -51,6 +51,8 @@ texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 draw_center = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m545e"]
@@ -65,6 +67,8 @@ texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 draw_center = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5hgp"]
@@ -77,6 +81,8 @@ texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 draw_center = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t8bve"]
@@ -89,6 +95,8 @@ texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 draw_center = false
 
 [sub_resource type="Texture2D" id="Texture2D_rvs6q"]
@@ -258,6 +266,8 @@ texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_olyl8"]
 content_margin_left = 4.0
@@ -269,6 +279,8 @@ texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 modulate_color = Color(0.764706, 0.764706, 0.764706, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3yso8"]
@@ -277,6 +289,8 @@ texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 modulate_color = Color(0.5, 0.5, 0.5, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n0x7a"]
@@ -472,36 +486,24 @@ _instance = SubResource("Texture2D_aivby")
 atlas = ExtResource("28_j34jp")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gso4b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_po0a3"]
 atlas = ExtResource("11_010p6")
-region = Rect2(67, 7, 8, 8)
-script = ExtResource("7_th4e0")
-name = "scroll_grabber"
+region = Rect2(67, 8, 8, 8)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tsonw"]
-texture = SubResource("AtlasTexture_gso4b")
+texture = SubResource("AtlasTexture_po0a3")
 texture_margin_left = 3.0
 texture_margin_top = 3.0
 texture_margin_right = 3.0
 texture_margin_bottom = 3.0
 axis_stretch_vertical = 1
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7jy4q"]
-texture = SubResource("AtlasTexture_gso4b")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 3.0
-axis_stretch_vertical = 1
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y68i0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2oes"]
 atlas = ExtResource("11_010p6")
-region = Rect2(75, 7, 8, 8)
-script = ExtResource("7_th4e0")
-name = "scroll_grabber_highlight"
+region = Rect2(75, 8, 8, 8)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d235a"]
-texture = SubResource("AtlasTexture_y68i0")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5i44x"]
+texture = SubResource("AtlasTexture_r2oes")
 texture_margin_left = 3.0
 texture_margin_top = 3.0
 texture_margin_right = 3.0
@@ -561,7 +563,7 @@ Landmark/icons/sign = SubResource("Texture2D_hlc2v")
 Landmark/icons/stairwell = SubResource("Texture2D_cgkkp")
 Landmark/icons/vault = SubResource("Texture2D_ips1h")
 Landmark/icons/wishpool = SubResource("Texture2D_5royr")
-LineEdit/constants/caret_width = 0
+LineEdit/constants/caret_width = 8
 LineEdit/styles/focus = SubResource("StyleBoxTexture_yxumr")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_olyl8")
 LineEdit/styles/read_only = SubResource("StyleBoxTexture_3yso8")
@@ -602,8 +604,8 @@ Toast/colors/green = Color(0.06694102, 0.5634877, 0.34159592, 1)
 Toast/colors/red = Color(0.5294118, 0, 0, 1)
 TreasureChest/icons/default = SubResource("AtlasTexture_j34jp")
 VScrollBar/styles/grabber = SubResource("StyleBoxTexture_tsonw")
-VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_7jy4q")
-VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_d235a")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_tsonw")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_5i44x")
 VSlider/icons/grabber = SubResource("AtlasTexture_g7hq2")
 VSlider/icons/grabber_highlight = SubResource("AtlasTexture_x4bhj")
 VSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_uy602")

@@ -7,6 +7,10 @@ class_name Gambler
 @export var coins := -1
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.gambler"
+
+
 func _spawn() -> void:
 	cost = randi_range(5, 15)
 	coins = randi_range(10, 20)

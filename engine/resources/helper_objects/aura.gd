@@ -17,6 +17,13 @@ func _spawn() -> void:
 	pass
 
 
+func get_name_id() -> String:
+	return _get_name_id()
+
+
+@abstract func _get_name_id() -> String
+
+
 func get_cell() -> CellData:
 	return get_parent()
 
@@ -48,8 +55,7 @@ func get_modulate() -> Color:
 
 
 ## Virtual method. Should return this [Aura]'s modulation [Color].
-func _get_modulate() -> Color:
-	return Color.WHITE
+@abstract func _get_modulate() -> Color
 
 
 ## Returns whether this [Aura] is elemental.
@@ -85,7 +91,7 @@ func _second_interact(cell: CellData) -> void:
 
 
 func negative_effect(effect: Callable) -> Variant:
-	return Immunity.try_call(effect, (get_stage_instance().get_event_bus(AuraEffects) as AuraEffects).can_apply_negative_effect, 1, self, effect, true)
+	return Immunity.try_call(effect, (get_stage_instance().get_event_bus(AuraEffects) as AuraEffects).can_apply_negative_effect, self, effect)
 
 @warning_ignore_start("unused_signal")
 

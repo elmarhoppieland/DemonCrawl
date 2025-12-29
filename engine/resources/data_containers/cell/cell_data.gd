@@ -231,10 +231,16 @@ func unglean() -> void:
 	mode &= ~ModeFlags.VALUE_VISIBLE
 
 
+## Removes and resets this [CellData]'s object, if it has one.
 func clear_object() -> void:
+	if not is_occupied():
+		return
+	get_object().reset()
 	get_object().queue_free()
 
 
+## Sets this [CellData]'s [param object]. If it already has an object, this
+## method will clear the original (see [method clear_object]).
 func set_object(object: CellObject) -> void:
 	if is_occupied():
 		clear_object()
@@ -242,6 +248,7 @@ func set_object(object: CellObject) -> void:
 		add_child(object)
 
 
+## Return's this [CellData]'s [CellObject].
 func get_object() -> CellObject:
 	for child in get_children():
 		if child is CellObject:

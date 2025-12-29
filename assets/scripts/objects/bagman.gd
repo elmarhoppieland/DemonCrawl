@@ -7,6 +7,10 @@ class_name Bagman
 @export var power := 0
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.bagman"
+
+
 func _enter_tree() -> void:
 	if get_parent() is not CellData:
 		return

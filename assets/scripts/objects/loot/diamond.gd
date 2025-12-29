@@ -7,6 +7,10 @@ const GLOW_MATERIAL := preload("res://assets/scripts/objects/loot/magic_glow.tre
 const ANIM_DURATION := 0.4
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.diamond"
+
+
 func _get_texture() -> AnimatedTextureSequence:
 	var texture = AnimatedTextureSequence.new()
 	texture.atlas = preload("res://assets/sprites/diamond.png")

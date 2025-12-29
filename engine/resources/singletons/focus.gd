@@ -26,7 +26,11 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if not is_instance_valid(_focused_node):
+	if is_instance_valid(_focused_node) and _focused_node.is_visible_in_tree():
+		_focus.global_position = _focused_node.get_screen_transform().origin
+		_focus.scale = _focused_node.get_screen_transform().get_scale()
+		show()
+	else:
 		hide()
 
 

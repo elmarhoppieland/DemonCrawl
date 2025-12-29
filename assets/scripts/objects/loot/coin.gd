@@ -6,6 +6,10 @@ class_name Coin
 const ANIM_DURATION := 0.4
 # ==============================================================================
 
+func _get_name_id() -> String:
+	return "object.coin"
+
+
 func _get_texture() -> AnimatedTextureSequence:
 	var texture := AnimatedTextureSequence.new()
 	texture.atlas = preload("res://assets/sprites/coin.png")
