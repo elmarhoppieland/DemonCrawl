@@ -1,5 +1,5 @@
 @tool
-extends Resource
+extends StageFileBase
 class_name StageFile
 
 # ==============================================================================
@@ -26,7 +26,7 @@ class_name StageFile
 @export var mod_difficulty_maximum := 0
 # ==============================================================================
 
-func generate() -> Stage:
+func _generate() -> Stage:
 	var stage := Stage.new(name)
 	
 	stage.size.x = randi_range(size_minimum, size_maximum)

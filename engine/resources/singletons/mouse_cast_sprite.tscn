@@ -16,7 +16,7 @@ unique_name_in_owner = true
 position = Vector2(16.5, 16.5)
 
 [node name="Background" type="TextureRect" parent="Anchor/Node2D"]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -27,7 +27,7 @@ texture = ExtResource("1_cb20a")
 
 [node name="Foreground" type="TextureRect" parent="Anchor/Node2D"]
 unique_name_in_owner = true
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

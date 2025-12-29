@@ -87,6 +87,12 @@ func _notification(what: int) -> void:
 
 
 func _connect_signals() -> void:
+	var base := get_parent()
+	while base != null:
+		if not base.is_node_ready():
+			await base.ready
+		base = base.get_parent()
+	
 	get_quest().get_cell_effects().mistake_made.connect(notify_mistake)
 	
 	match _type:

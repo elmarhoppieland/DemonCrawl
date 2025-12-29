@@ -8,4 +8,5 @@ landmark.wishpool.mana;Gain {total_reward} mana.
 landmark.wishpool.minion;Gain {total_reward} Minions.
 landmark.wishpool.pathfinding;Gain {total_reward} pathfinding.
 landmark.wishpool.shimmer;The wishpool shimmers with light...
-
+landmark.wishpool.collect;The wishpool dries up.
+landmark.wishpool.empty;The wishpool is empty right now.
