@@ -11,11 +11,17 @@ var charge_cell_count: int
 var local_cells_since_last_mistake: int
 # ==============================================================================
 
-func _init(_stage: Stage):
+func _init(_stage: Stage = null) -> void:
 	# TODO: Research actual ranges of wishpool charge count
 	charge_cell_count = randi_range(20, 30)
 	charges = 1
 	local_cells_since_last_mistake = 0
+	
+	super(_stage)
+
+
+func _get_name_id() -> String:
+	return "landmark.wishpool"
 
 
 func _spawn():
