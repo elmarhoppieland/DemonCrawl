@@ -162,7 +162,7 @@ func _get_bg() -> Texture2D:
 # Loads music and ambience into _audio_streams
 func _load_music() -> void:
 	for music_path: String in [MUSIC_PATH, AMBIENCE_A_PATH, AMBIENCE_B_PATH]:
-		var full_music_path := music_path % name
+		var full_music_path := music_path % name_id
 		if ResourceLoader.exists(full_music_path):
 			var audio_stream := load(full_music_path)
 			if audio_stream is AudioStreamOggVorbis:
