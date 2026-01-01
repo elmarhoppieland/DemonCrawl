@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://b1x3wfqyyj1ro"]
+
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_7pqqw"]
+[ext_resource type="Texture2D" uid="uid://c3jq1d7bc4cs8" path="res://assets/skins/salem/bg.png" id="1_io25q"]
+[ext_resource type="Texture2D" uid="uid://rjdmjslj5gc0" path="res://assets/skins/salem/empty.png" id="2_7wlax"]
+[ext_resource type="Texture2D" uid="uid://njf0difw7wnj" path="res://assets/skins/salem/checking.png" id="3_f16ye"]
+[ext_resource type="Texture2D" uid="uid://boxh28f5la1m6" path="res://assets/skins/salem/coin.png" id="4_l8rtn"]
+[ext_resource type="Texture2D" uid="uid://dbepawm8ngncu" path="res://assets/skins/salem/flag.png" id="5_w063k"]
+[ext_resource type="Texture2D" uid="uid://erp6ue47vsl6" path="res://assets/skins/salem/flag_bg.png" id="6_kw1hb"]
+[ext_resource type="Texture2D" uid="uid://51ypheext7ee" path="res://assets/skins/salem/heart.png" id="7_32wgh"]
+[ext_resource type="Texture2D" uid="uid://de2qefg8ovn4u" path="res://assets/skins/salem/full.png" id="8_4481u"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="9_ufc0f"]
+[ext_resource type="AudioStream" uid="uid://cta527m5v1rcy" path="res://assets/skins/salem/music.ogg" id="10_xxv2f"]
+
+[sub_resource type="Resource" id="Resource_iugm1"]
+script = ExtResource("9_ufc0f")
+data = {
+&"en": PackedStringArray("Zombie", "Rotter", "Shambler", "Undead")
+}
+
+[resource]
+script = ExtResource("1_7pqqw")
+name = "stage.salem"
+bg = ExtResource("1_io25q")
+monster_name_pool = SubResource("Resource_iugm1")
+music = ExtResource("10_xxv2f")
+cell_bg = ExtResource("2_7wlax")
+cell_hidden = ExtResource("8_4481u")
+cell_checking = ExtResource("3_f16ye")
+cell_flag = ExtResource("5_w063k")
+cell_flag_bg = ExtResource("6_kw1hb")
+cell_coin_palette = ExtResource("4_l8rtn")
+cell_heart_palette = ExtResource("7_32wgh")

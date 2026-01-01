@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=15 format=3 uid="uid://dag8iypewh1bj"]
+
+[ext_resource type="AudioStream" uid="uid://brgxemyd8jjdd" path="res://assets/skins/hell/ambience_a.ogg" id="1_gojw8"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_ybwo8"]
+[ext_resource type="AudioStream" uid="uid://ccfflhfuk16d8" path="res://assets/skins/hell/ambience_b.ogg" id="2_1pnt1"]
+[ext_resource type="Texture2D" uid="uid://bmyficvvugkev" path="res://assets/skins/hell/bg.png" id="3_mlo0b"]
+[ext_resource type="Texture2D" uid="uid://dnhsdi8m31lch" path="res://assets/skins/hell/empty.png" id="4_nn21v"]
+[ext_resource type="Texture2D" uid="uid://di742a3bhh3vc" path="res://assets/skins/hell/checking.png" id="5_qt64m"]
+[ext_resource type="Texture2D" uid="uid://jj4uekox4hp7" path="res://assets/skins/hell/coin.png" id="6_o4hca"]
+[ext_resource type="Texture2D" uid="uid://bu4utxjr4ksa5" path="res://assets/skins/hell/flag.png" id="7_515f4"]
+[ext_resource type="Texture2D" uid="uid://bfho71vc8rixn" path="res://assets/skins/hell/flag_bg.png" id="8_sn5et"]
+[ext_resource type="Texture2D" uid="uid://bnmm85dkvdo1n" path="res://assets/skins/hell/heart.png" id="9_aj5fc"]
+[ext_resource type="Texture2D" uid="uid://bxflhx0dcuk46" path="res://assets/skins/hell/full.png" id="10_elh2h"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_w7mws"]
+[ext_resource type="AudioStream" uid="uid://bc2a516u0a7d5" path="res://assets/skins/hell/music.ogg" id="12_eashk"]
+
+[sub_resource type="Resource" id="Resource_0i5lq"]
+script = ExtResource("11_w7mws")
+data = {
+&"en": PackedStringArray("Demon", "Devil", "Hellspawn")
+}
+
+[resource]
+script = ExtResource("1_ybwo8")
+name = "stage.hell"
+bg = ExtResource("3_mlo0b")
+monster_name_pool = SubResource("Resource_0i5lq")
+music = ExtResource("12_eashk")
+ambience_a = ExtResource("1_gojw8")
+ambience_b = ExtResource("2_1pnt1")
+cell_bg = ExtResource("4_nn21v")
+cell_hidden = ExtResource("10_elh2h")
+cell_checking = ExtResource("5_qt64m")
+cell_flag = ExtResource("7_515f4")
+cell_flag_bg = ExtResource("8_sn5et")
+cell_coin_palette = ExtResource("6_o4hca")
+cell_heart_palette = ExtResource("9_aj5fc")

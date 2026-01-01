@@ -1,10 +1,20 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=17 format=3 uid="uid://c5jggiamg73b6"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=27 format=3 uid="uid://c5jggiamg73b6"]
 
 [ext_resource type="Resource" uid="uid://cmgsgbfsp2eq7" path="res://assets/quests/default_generation_sequence.tres" id="1_a4wci"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_ilanx"]
 [ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="2_iyvyw"]
-[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file_base.gd" id="3_rhhwn"]
-[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file.gd" id="4_6wd7r"]
+[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template_base.gd" id="4_a4wci"]
+[ext_resource type="Resource" uid="uid://br8geq04g5gr1" path="res://assets/skins/forest/forest.tres" id="5_1eie2"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template.gd" id="5_7e1dg"]
+[ext_resource type="Resource" uid="uid://2pddyb3wf24c" path="res://assets/skins/cavern/cavern.tres" id="7_y34e3"]
+[ext_resource type="Resource" uid="uid://bihbwlds868o1" path="res://assets/skins/desert/desert.tres" id="8_xj26u"]
+[ext_resource type="Resource" uid="uid://xqbhmgt330a7" path="res://assets/skins/strand/strand.tres" id="9_h370e"]
+[ext_resource type="Resource" uid="uid://bgbu2msnrdx2v" path="res://assets/skins/ocean/ocean.tres" id="10_p5874"]
+[ext_resource type="Resource" uid="uid://dj02wrpb3x8ul" path="res://assets/skins/tropics/tropics.tres" id="11_xrw1n"]
+[ext_resource type="Resource" uid="uid://caiqjhvy4vgtp" path="res://assets/skins/volcano/volcano.tres" id="12_75sxg"]
+[ext_resource type="Resource" uid="uid://rmsx0avfbx3d" path="res://assets/skins/wilds/wilds.tres" id="13_mnqab"]
+[ext_resource type="Resource" uid="uid://ctfrgoji4wr1n" path="res://assets/skins/arctic/arctic.tres" id="14_tx125"]
+[ext_resource type="Resource" uid="uid://bxrt45hmk0u5e" path="res://assets/skins/brink/brink.tres" id="15_mgi44"]
 
 [sub_resource type="Texture2D" id="Texture2D_kpscn"]
 resource_local_to_scene = false
@@ -13,8 +23,8 @@ script = ExtResource("1_ilanx")
 name = "quest/1"
 
 [sub_resource type="Resource" id="Resource_arluq"]
-script = ExtResource("4_6wd7r")
-name = "stage.forest"
+script = ExtResource("5_7e1dg")
+file = ExtResource("5_1eie2")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -25,8 +35,8 @@ size_minimum = 6
 size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_0fprk"]
-script = ExtResource("4_6wd7r")
-name = "stage.cavern"
+script = ExtResource("5_7e1dg")
+file = ExtResource("7_y34e3")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -37,8 +47,8 @@ size_minimum = 6
 size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_7sity"]
-script = ExtResource("4_6wd7r")
-name = "stage.desert"
+script = ExtResource("5_7e1dg")
+file = ExtResource("8_xj26u")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -49,8 +59,8 @@ size_minimum = 6
 size_maximum = 10
 
 [sub_resource type="Resource" id="Resource_avld4"]
-script = ExtResource("4_6wd7r")
-name = "stage.strand"
+script = ExtResource("5_7e1dg")
+file = ExtResource("9_h370e")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 2
@@ -61,8 +71,8 @@ size_minimum = 9
 size_maximum = 11
 
 [sub_resource type="Resource" id="Resource_ccxup"]
-script = ExtResource("4_6wd7r")
-name = "stage.ocean"
+script = ExtResource("5_7e1dg")
+file = ExtResource("10_p5874")
 min_power_minimum = 1
 min_power_maximum = 2
 max_power_minimum = 4
@@ -73,8 +83,8 @@ size_minimum = 10
 size_maximum = 13
 
 [sub_resource type="Resource" id="Resource_4lmxs"]
-script = ExtResource("4_6wd7r")
-name = "stage.tropics"
+script = ExtResource("5_7e1dg")
+file = ExtResource("11_xrw1n")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -85,8 +95,8 @@ size_minimum = 11
 size_maximum = 12
 
 [sub_resource type="Resource" id="Resource_sivim"]
-script = ExtResource("4_6wd7r")
-name = "stage.volcano"
+script = ExtResource("5_7e1dg")
+file = ExtResource("12_75sxg")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -97,8 +107,8 @@ size_minimum = 11
 size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_3jn66"]
-script = ExtResource("4_6wd7r")
-name = "stage.wilds"
+script = ExtResource("5_7e1dg")
+file = ExtResource("13_mnqab")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 6
@@ -109,8 +119,8 @@ size_minimum = 13
 size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_72pru"]
-script = ExtResource("4_6wd7r")
-name = "stage.arctic"
+script = ExtResource("5_7e1dg")
+file = ExtResource("14_tx125")
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7
@@ -121,8 +131,8 @@ size_minimum = 14
 size_maximum = 16
 
 [sub_resource type="Resource" id="Resource_c8ijh"]
-script = ExtResource("4_6wd7r")
-name = "stage.brink"
+script = ExtResource("5_7e1dg")
+file = ExtResource("15_mgi44")
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7
@@ -137,5 +147,5 @@ script = ExtResource("2_iyvyw")
 name = "quest.glory-days"
 lore = "quest.glory-days.lore"
 icon = SubResource("Texture2D_kpscn")
-stage_list = Array[ExtResource("3_rhhwn")]([SubResource("Resource_arluq"), SubResource("Resource_0fprk"), SubResource("Resource_7sity"), SubResource("Resource_avld4"), SubResource("Resource_ccxup"), SubResource("Resource_4lmxs"), SubResource("Resource_sivim"), SubResource("Resource_3jn66"), SubResource("Resource_72pru"), SubResource("Resource_c8ijh")])
+stage_list = Array[ExtResource("4_a4wci")]([SubResource("Resource_arluq"), SubResource("Resource_0fprk"), SubResource("Resource_7sity"), SubResource("Resource_avld4"), SubResource("Resource_ccxup"), SubResource("Resource_4lmxs"), SubResource("Resource_sivim"), SubResource("Resource_3jn66"), SubResource("Resource_72pru"), SubResource("Resource_c8ijh")])
 generation_sequence = ExtResource("1_a4wci")

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://by8f7q54jh57q"]
+
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_0yvy4"]
+[ext_resource type="AudioStream" uid="uid://cfw162a1dug1y" path="res://assets/skins/farm/ambience_a.ogg" id="1_2pfp2"]
+[ext_resource type="AudioStream" uid="uid://cp3uoyjt34d7j" path="res://assets/skins/farm/ambience_b.ogg" id="2_05agt"]
+[ext_resource type="Texture2D" uid="uid://cqc61qfky4yya" path="res://assets/skins/farm/bg.png" id="3_t067k"]
+[ext_resource type="Texture2D" uid="uid://i6j678notieo" path="res://assets/skins/farm/empty.png" id="4_p2hbx"]
+[ext_resource type="Texture2D" uid="uid://cf26j1w2lk32u" path="res://assets/skins/farm/checking.png" id="5_2ixmm"]
+[ext_resource type="Texture2D" uid="uid://cu8eormka3itm" path="res://assets/skins/farm/flag.png" id="6_71phh"]
+[ext_resource type="Texture2D" uid="uid://crosg7q567dvd" path="res://assets/skins/farm/flag_bg.png" id="7_6owi0"]
+[ext_resource type="Texture2D" uid="uid://yr3xp5v6dt5d" path="res://assets/skins/farm/full.png" id="8_4cgiw"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="9_w6idm"]
+[ext_resource type="AudioStream" uid="uid://be60djmabfbc0" path="res://assets/skins/farm/music.ogg" id="10_iqjj0"]
+
+[sub_resource type="Resource" id="Resource_qp6tl"]
+script = ExtResource("9_w6idm")
+data = {
+&"en": PackedStringArray("Chicken", "Bawk", "Cock", "Fowl", "Hen", "Poultry")
+}
+
+[resource]
+script = ExtResource("1_0yvy4")
+name = "stage.farm"
+bg = ExtResource("3_t067k")
+monster_name_pool = SubResource("Resource_qp6tl")
+music = ExtResource("10_iqjj0")
+ambience_a = ExtResource("1_2pfp2")
+ambience_b = ExtResource("2_05agt")
+cell_bg = ExtResource("4_p2hbx")
+cell_hidden = ExtResource("8_4cgiw")
+cell_checking = ExtResource("5_2ixmm")
+cell_flag = ExtResource("6_71phh")
+cell_flag_bg = ExtResource("7_6owi0")

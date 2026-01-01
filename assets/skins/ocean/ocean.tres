@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://bgbu2msnrdx2v"]
+
+[ext_resource type="AudioStream" uid="uid://2y1jfsiuer2s" path="res://assets/skins/ocean/ambience_a.ogg" id="1_46mqv"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_gwk17"]
+[ext_resource type="AudioStream" uid="uid://doalep8u7sl87" path="res://assets/skins/ocean/ambience_b.ogg" id="2_kofj0"]
+[ext_resource type="Texture2D" uid="uid://b3suj1uy4qo50" path="res://assets/skins/ocean/bg.png" id="3_t2rvo"]
+[ext_resource type="Texture2D" uid="uid://df511wx61kbv3" path="res://assets/skins/ocean/empty.png" id="4_10ojk"]
+[ext_resource type="Texture2D" uid="uid://dlyt1tcp6yh4u" path="res://assets/skins/ocean/checking.png" id="5_4qsey"]
+[ext_resource type="Texture2D" uid="uid://s6nber7mhqsv" path="res://assets/skins/ocean/coin.png" id="6_eaarf"]
+[ext_resource type="Texture2D" uid="uid://tbghfv51l5ju" path="res://assets/skins/ocean/flag.png" id="7_my31t"]
+[ext_resource type="Texture2D" uid="uid://cuimb1ganclad" path="res://assets/skins/ocean/flag_bg.png" id="8_5i76w"]
+[ext_resource type="Texture2D" uid="uid://6mtb8uuvvgtb" path="res://assets/skins/ocean/heart.png" id="9_qcn34"]
+[ext_resource type="Texture2D" uid="uid://ru2ncpgqkfsr" path="res://assets/skins/ocean/full.png" id="10_1hfps"]
+[ext_resource type="Texture2D" uid="uid://c7rnjll7ldlyo" path="res://assets/skins/ocean/monster.png" id="11_ccu7j"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_kofj0"]
+[ext_resource type="AudioStream" uid="uid://crq3yk2cvlvrh" path="res://assets/skins/ocean/music.ogg" id="12_jalr4"]
+
+[sub_resource type="Resource" id="Resource_t2rvo"]
+script = ExtResource("11_kofj0")
+data = {
+&"en": PackedStringArray("Jelly", "Man of War", "Medusa", "Polyp")
+}
+
+[resource]
+script = ExtResource("1_gwk17")
+name = "stage.ocean"
+bg = ExtResource("3_t2rvo")
+monster_texture = ExtResource("11_ccu7j")
+monster_name_pool = SubResource("Resource_t2rvo")
+music = ExtResource("12_jalr4")
+ambience_a = ExtResource("1_46mqv")
+ambience_b = ExtResource("2_kofj0")
+cell_bg = ExtResource("4_10ojk")
+cell_hidden = ExtResource("10_1hfps")
+cell_checking = ExtResource("5_4qsey")
+cell_flag = ExtResource("7_my31t")
+cell_flag_bg = ExtResource("8_5i76w")
+cell_coin_palette = ExtResource("6_eaarf")
+cell_heart_palette = ExtResource("9_qcn34")

@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=15 format=3 uid="uid://twy520cac6tq"]
+
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_gfrib"]
+[ext_resource type="AudioStream" uid="uid://d2jq2nolxpdpy" path="res://assets/skins/elysium/ambience_a.ogg" id="1_kx1fw"]
+[ext_resource type="AudioStream" uid="uid://d0chnsn1r6j6i" path="res://assets/skins/elysium/ambience_b.ogg" id="2_3p3xk"]
+[ext_resource type="Texture2D" uid="uid://ws6sxs2qy0k8" path="res://assets/skins/elysium/bg.png" id="3_lopjm"]
+[ext_resource type="Texture2D" uid="uid://gu7cylx7pycs" path="res://assets/skins/elysium/empty.png" id="4_3opaj"]
+[ext_resource type="Texture2D" uid="uid://dac2t05jh47hu" path="res://assets/skins/elysium/checking.png" id="5_wlhol"]
+[ext_resource type="Texture2D" uid="uid://qtuhgukfcu0b" path="res://assets/skins/elysium/coin.png" id="6_7x1h0"]
+[ext_resource type="Texture2D" uid="uid://cgif1o7241wqi" path="res://assets/skins/elysium/flag.png" id="7_t20pb"]
+[ext_resource type="Texture2D" uid="uid://cqhqwqn06q7vm" path="res://assets/skins/elysium/flag_bg.png" id="8_35x4y"]
+[ext_resource type="Texture2D" uid="uid://djo05p5ob48fr" path="res://assets/skins/elysium/heart.png" id="9_8xdxm"]
+[ext_resource type="Texture2D" uid="uid://bn8l7b5w16agb" path="res://assets/skins/elysium/full.png" id="10_pgyw5"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_wm704"]
+[ext_resource type="AudioStream" uid="uid://cd28ys1a0jsfd" path="res://assets/skins/elysium/music.ogg" id="12_qujss"]
+
+[sub_resource type="Resource" id="Resource_cgcqr"]
+script = ExtResource("11_wm704")
+data = {
+&"en": PackedStringArray("Deity", "Champion", "God", "Idol", "Lord")
+}
+
+[resource]
+script = ExtResource("1_gfrib")
+name = "stage.elysium"
+bg = ExtResource("3_lopjm")
+monster_name_pool = SubResource("Resource_cgcqr")
+music = ExtResource("12_qujss")
+ambience_a = ExtResource("1_kx1fw")
+ambience_b = ExtResource("2_3p3xk")
+cell_bg = ExtResource("4_3opaj")
+cell_hidden = ExtResource("10_pgyw5")
+cell_checking = ExtResource("5_wlhol")
+cell_flag = ExtResource("7_t20pb")
+cell_flag_bg = ExtResource("8_35x4y")
+cell_coin_palette = ExtResource("6_7x1h0")
+cell_heart_palette = ExtResource("9_8xdxm")

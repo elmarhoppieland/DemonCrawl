@@ -1,10 +1,20 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=17 format=3 uid="uid://cmryc25pgrnah"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=27 format=3 uid="uid://cmryc25pgrnah"]
 
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_adv6f"]
 [ext_resource type="Resource" uid="uid://cmgsgbfsp2eq7" path="res://assets/quests/default_generation_sequence.tres" id="1_yb7me"]
 [ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="2_12ux7"]
-[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file_base.gd" id="3_8ut8o"]
-[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file.gd" id="4_1ncdf"]
+[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template_base.gd" id="3_8ut8o"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template.gd" id="4_1ncdf"]
+[ext_resource type="Resource" uid="uid://by8f7q54jh57q" path="res://assets/skins/farm/farm.tres" id="5_vvn88"]
+[ext_resource type="Resource" uid="uid://cenuiwh3u4ogb" path="res://assets/skins/alcove/alcove.tres" id="7_xfldh"]
+[ext_resource type="Resource" uid="uid://cunev662fe17v" path="res://assets/skins/grotto/grotto.tres" id="8_bt8ef"]
+[ext_resource type="Resource" uid="uid://0t3ok88gni5w" path="res://assets/skins/hallow/hallow.tres" id="9_omss1"]
+[ext_resource type="Resource" uid="uid://dwbj710kiptai" path="res://assets/skins/swamp/swamp.tres" id="10_e4f2u"]
+[ext_resource type="Resource" uid="uid://c70fmp15fhcb" path="res://assets/skins/graveyard/graveyard.tres" id="11_1s45s"]
+[ext_resource type="Resource" uid="uid://crad4d3ck0y2j" path="res://assets/skins/dungeon/dungeon.tres" id="12_joa66"]
+[ext_resource type="Resource" uid="uid://3wkgwpruu5bs" path="res://assets/skins/memory/memory.tres" id="13_omwrb"]
+[ext_resource type="Resource" uid="uid://b3a7nflmuuh87" path="res://assets/skins/tribe/tribe.tres" id="14_jptb4"]
+[ext_resource type="Resource" uid="uid://bsfkw83towkkm" path="res://assets/skins/shrine/shrine.tres" id="15_un4mr"]
 
 [sub_resource type="Texture2D" id="Texture2D_ah532"]
 resource_local_to_scene = false
@@ -14,7 +24,7 @@ name = "quest/2"
 
 [sub_resource type="Resource" id="Resource_5387s"]
 script = ExtResource("4_1ncdf")
-name = "stage.farm"
+file = ExtResource("5_vvn88")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -26,7 +36,7 @@ size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_kvqxj"]
 script = ExtResource("4_1ncdf")
-name = "stage.alcove"
+file = ExtResource("7_xfldh")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -38,7 +48,7 @@ size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_nrcjf"]
 script = ExtResource("4_1ncdf")
-name = "stage.grotto"
+file = ExtResource("8_bt8ef")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -50,7 +60,7 @@ size_maximum = 10
 
 [sub_resource type="Resource" id="Resource_8u0ev"]
 script = ExtResource("4_1ncdf")
-name = "stage.hallow"
+file = ExtResource("9_omss1")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 2
@@ -62,7 +72,7 @@ size_maximum = 11
 
 [sub_resource type="Resource" id="Resource_m124s"]
 script = ExtResource("4_1ncdf")
-name = "stage.swamp"
+file = ExtResource("10_e4f2u")
 min_power_minimum = 1
 min_power_maximum = 2
 max_power_minimum = 4
@@ -74,7 +84,7 @@ size_maximum = 13
 
 [sub_resource type="Resource" id="Resource_y85rx"]
 script = ExtResource("4_1ncdf")
-name = "stage.graveyard"
+file = ExtResource("11_1s45s")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -86,7 +96,7 @@ size_maximum = 12
 
 [sub_resource type="Resource" id="Resource_qyh3i"]
 script = ExtResource("4_1ncdf")
-name = "stage.dungeon"
+file = ExtResource("12_joa66")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -98,7 +108,7 @@ size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_ir8ee"]
 script = ExtResource("4_1ncdf")
-name = "stage.memory"
+file = ExtResource("13_omwrb")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 6
@@ -110,7 +120,7 @@ size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_o1x01"]
 script = ExtResource("4_1ncdf")
-name = "stage.tribe"
+file = ExtResource("14_jptb4")
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7
@@ -122,7 +132,7 @@ size_maximum = 16
 
 [sub_resource type="Resource" id="Resource_suxme"]
 script = ExtResource("4_1ncdf")
-name = "stage.shrine"
+file = ExtResource("15_un4mr")
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7

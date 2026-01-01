@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://bxrt45hmk0u5e"]
+
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_5v5jp"]
+[ext_resource type="AudioStream" uid="uid://5jv3474iedjw" path="res://assets/skins/brink/ambience_a.ogg" id="1_ssrkk"]
+[ext_resource type="AudioStream" uid="uid://cpcqr2bucvpus" path="res://assets/skins/brink/ambience_b.ogg" id="2_cvlbf"]
+[ext_resource type="Texture2D" uid="uid://1p1u1j8mi26r" path="res://assets/skins/brink/bg.png" id="3_b8od3"]
+[ext_resource type="Texture2D" uid="uid://bo7ln03uwgwix" path="res://assets/skins/brink/empty.png" id="4_370v5"]
+[ext_resource type="Texture2D" uid="uid://0gek25kokd1b" path="res://assets/skins/brink/checking.png" id="5_13aur"]
+[ext_resource type="Texture2D" uid="uid://bopn4llahehhc" path="res://assets/skins/brink/coin.png" id="6_ql37j"]
+[ext_resource type="Texture2D" uid="uid://tb8vvwjr0rxm" path="res://assets/skins/brink/flag.png" id="7_u4cm0"]
+[ext_resource type="Texture2D" uid="uid://bx7nvdw7qorjc" path="res://assets/skins/brink/flag_bg.png" id="8_l60de"]
+[ext_resource type="Texture2D" uid="uid://dxbdmjucn6pmg" path="res://assets/skins/brink/heart.png" id="9_s2abx"]
+[ext_resource type="Texture2D" uid="uid://dh20r1b3dt4ph" path="res://assets/skins/brink/full.png" id="10_5wmfq"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_q8lp3"]
+[ext_resource type="Texture2D" uid="uid://cy606qxkx0i2y" path="res://assets/skins/brink/monster.png" id="12_jjvnx"]
+[ext_resource type="AudioStream" uid="uid://clkl0wkw2o7y5" path="res://assets/skins/brink/music.ogg" id="13_iokl3"]
+
+[sub_resource type="Resource" id="Resource_rikgp"]
+script = ExtResource("11_q8lp3")
+data = {
+&"en": PackedStringArray("Behelder", "Aberration", "Cacodemon", "Gazer", "Tyrant")
+}
+
+[resource]
+script = ExtResource("1_5v5jp")
+name = "stage.brink"
+bg = ExtResource("3_b8od3")
+monster_texture = ExtResource("12_jjvnx")
+monster_name_pool = SubResource("Resource_rikgp")
+music = ExtResource("13_iokl3")
+ambience_a = ExtResource("1_ssrkk")
+ambience_b = ExtResource("2_cvlbf")
+cell_bg = ExtResource("4_370v5")
+cell_hidden = ExtResource("10_5wmfq")
+cell_checking = ExtResource("5_13aur")
+cell_flag = ExtResource("7_u4cm0")
+cell_flag_bg = ExtResource("8_l60de")
+cell_coin_palette = ExtResource("6_ql37j")
+cell_heart_palette = ExtResource("9_s2abx")

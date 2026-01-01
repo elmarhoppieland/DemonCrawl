@@ -6,7 +6,7 @@ class_name SpecialStage
 ## A stage that gives the player rewards in return for coins.
 
 # ==============================================================================
-@export var file: SpecialStageFile
+@export var file: SpecialStageTemplate
 # ==============================================================================
 var _bg: Texture2D = null : get = get_bg
 # ==============================================================================

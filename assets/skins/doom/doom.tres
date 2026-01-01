@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://di1y00xpxjj22"]
+
+[ext_resource type="Texture2D" uid="uid://c5gtwgap6hbkb" path="res://assets/skins/doom/bg.png" id="1_cuqc0"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_hp7lh"]
+[ext_resource type="Texture2D" uid="uid://b3h2yc40qe717" path="res://assets/skins/doom/empty.png" id="2_5e7yn"]
+[ext_resource type="Texture2D" uid="uid://ccb5fd767a84" path="res://assets/skins/doom/checking.png" id="3_cnu2e"]
+[ext_resource type="Texture2D" uid="uid://bikxmy2qg2s6h" path="res://assets/skins/doom/coin.png" id="4_f8hxb"]
+[ext_resource type="Texture2D" uid="uid://dkdygqlnbh3bo" path="res://assets/skins/doom/flag.png" id="5_5riot"]
+[ext_resource type="Texture2D" uid="uid://donds5vlyj4vf" path="res://assets/skins/doom/flag_bg.png" id="6_83y6m"]
+[ext_resource type="Texture2D" uid="uid://c1qstqbwwpoy" path="res://assets/skins/doom/heart.png" id="7_bgrh7"]
+[ext_resource type="Texture2D" uid="uid://dyip6ccavpgwr" path="res://assets/skins/doom/full.png" id="8_y7kc6"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="9_1y870"]
+[ext_resource type="AudioStream" uid="uid://h7tqsy4b8e8b" path="res://assets/skins/doom/music.ogg" id="10_d2k1j"]
+
+[sub_resource type="Resource" id="Resource_dj63q"]
+script = ExtResource("9_1y870")
+data = {
+&"en": PackedStringArray("Cthulu", "Dreamer", "Ender", "Kraken", "Octopus", "Tentacles")
+}
+
+[resource]
+script = ExtResource("1_hp7lh")
+name = "stage.doom"
+bg = ExtResource("1_cuqc0")
+monster_name_pool = SubResource("Resource_dj63q")
+music = ExtResource("10_d2k1j")
+cell_bg = ExtResource("2_5e7yn")
+cell_hidden = ExtResource("8_y7kc6")
+cell_checking = ExtResource("3_cnu2e")
+cell_flag = ExtResource("5_5riot")
+cell_flag_bg = ExtResource("6_83y6m")
+cell_coin_palette = ExtResource("4_f8hxb")
+cell_heart_palette = ExtResource("7_bgrh7")

@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=15 format=3 uid="uid://bxl8axk3x7cnl"]
+
+[ext_resource type="AudioStream" uid="uid://b2hvnyn0h8b1o" path="res://assets/skins/storm/ambience_a.ogg" id="1_gdb0w"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_u3plu"]
+[ext_resource type="AudioStream" uid="uid://cek0oyxuqgxnw" path="res://assets/skins/storm/ambience_b.ogg" id="2_jonye"]
+[ext_resource type="Texture2D" uid="uid://cqk4d6ln4ylsw" path="res://assets/skins/storm/bg.png" id="3_tt06e"]
+[ext_resource type="Texture2D" uid="uid://f1r5q42nq600" path="res://assets/skins/storm/empty.png" id="4_mk07n"]
+[ext_resource type="Texture2D" uid="uid://uissy1b4nhar" path="res://assets/skins/storm/checking.png" id="5_3r3vx"]
+[ext_resource type="Texture2D" uid="uid://d4kqn2hqykaj2" path="res://assets/skins/storm/coin.png" id="6_1mwkg"]
+[ext_resource type="Texture2D" uid="uid://qyb24tfarrlv" path="res://assets/skins/storm/flag.png" id="7_55nt6"]
+[ext_resource type="Texture2D" uid="uid://6ajad44nystd" path="res://assets/skins/storm/flag_bg.png" id="8_pduvg"]
+[ext_resource type="Texture2D" uid="uid://dlv72jkwx66iw" path="res://assets/skins/storm/heart.png" id="9_g014m"]
+[ext_resource type="Texture2D" uid="uid://bmw1yoatwakdb" path="res://assets/skins/storm/full.png" id="10_xdg5i"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_hhcs3"]
+[ext_resource type="AudioStream" uid="uid://blwqklxgl5as" path="res://assets/skins/storm/music.ogg" id="12_ts66x"]
+
+[sub_resource type="Resource" id="Resource_uckuv"]
+script = ExtResource("11_hhcs3")
+data = {
+&"en": PackedStringArray("Tornado", "Cyclone", "Hurricane", "Twister", "Typhoon", "Wind")
+}
+
+[resource]
+script = ExtResource("1_u3plu")
+name = "stage.storm"
+bg = ExtResource("3_tt06e")
+monster_name_pool = SubResource("Resource_uckuv")
+music = ExtResource("12_ts66x")
+ambience_a = ExtResource("1_gdb0w")
+ambience_b = ExtResource("2_jonye")
+cell_bg = ExtResource("4_mk07n")
+cell_hidden = ExtResource("10_xdg5i")
+cell_checking = ExtResource("5_3r3vx")
+cell_flag = ExtResource("7_55nt6")
+cell_flag_bg = ExtResource("8_pduvg")
+cell_coin_palette = ExtResource("6_1mwkg")
+cell_heart_palette = ExtResource("9_g014m")

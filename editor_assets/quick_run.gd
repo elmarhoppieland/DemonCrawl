@@ -1,9 +1,27 @@
 @tool
 extends EditorScript
+class_name QuickRun
 
 
 func _run() -> void:
-	pass
+	create_stage_files()
+
+
+static func create_stage_files() -> void:
+	const BASE := "res://assets/skins/"
+	for stage in DirAccess.get_directories_at(BASE):
+		var dir := BASE.path_join(stage)
+		var path := dir.path_join(stage) + ".tres"
+		var stage_file: StageFile
+		if ResourceLoader.exists(path):
+			stage_file = load(path)
+		else:
+			stage_file = StageFile.new()
+		
+		await stage_file._autofill()
+		
+		ResourceSaver.save(stage_file, path, ResourceSaver.FLAG_CHANGE_PATH)
+		await get_tree().process_frame
 
 
 static func convert_filenames_to_snake_case() -> void:
@@ -55,6 +73,30 @@ func call_on_root() -> void:
 	var function := "_run_" + UserClassDB.script_get_class(root.get_script()).to_snake_case().to_lower()
 	if has_method(function):
 		call(function, root)
+
+
+static func connect_to_host() -> HTTPClient:
+	var client := HTTPClient.new()
+	client.connect_to_host("https://demoncrawl.com")
+	while true:
+		await get_tree().create_timer(0.1).timeout
+		
+		var err := client.poll()
+		var status := client.get_status()
+		print(status)
+		if status == HTTPClient.STATUS_CONNECTED:
+			break
+		
+		if status not in [HTTPClient.STATUS_CONNECTING, HTTPClient.STATUS_RESOLVING]:
+			print("Failed to connect to host.")
+			print("Status: ", status)
+			print("Error code: ", error_string(err))
+			client.close()
+			return null
+		
+		print(status)
+	
+	return client
 
 
 static func get_tree() -> SceneTree:

@@ -4,8 +4,6 @@ extends ResourceNode
 class_name StageBase
 
 # ==============================================================================
-static var music_volume: float = Eternal.create(1.0, "settings")
-# ==============================================================================
 @export var locked := false : ## Whether the stage is locked.
 	set(value):
 		if locked == value:

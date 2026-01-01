@@ -1,11 +1,21 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=18 format=3 uid="uid://lrnl8lh2wikh"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=28 format=3 uid="uid://lrnl8lh2wikh"]
 
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_aeejd"]
 [ext_resource type="Resource" uid="uid://cmgsgbfsp2eq7" path="res://assets/quests/default_generation_sequence.tres" id="1_hyn1w"]
 [ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="2_s6hu1"]
-[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file_base.gd" id="3_fs3my"]
-[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file.gd" id="4_ds7y8"]
+[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template_base.gd" id="3_fs3my"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template.gd" id="4_ds7y8"]
+[ext_resource type="Resource" uid="uid://nwqqk2dkklrb" path="res://assets/skins/delta/delta.tres" id="5_2vc06"]
 [ext_resource type="Resource" uid="uid://bgxkoaxnxme5p" path="res://assets/token_shop/upgrades/qh4-around_the_bend.tres" id="5_ygfj7"]
+[ext_resource type="Resource" uid="uid://cq7dy8dsruc4u" path="res://assets/skins/ash/ash.tres" id="7_yqdl8"]
+[ext_resource type="Resource" uid="uid://dc8y1u0rht584" path="res://assets/skins/quarry/quarry.tres" id="8_4o5ko"]
+[ext_resource type="Resource" uid="uid://cbpmm48b0ooar" path="res://assets/skins/vale/vale.tres" id="9_00o5w"]
+[ext_resource type="Resource" uid="uid://cp15fl5m4nuor" path="res://assets/skins/bloodway/bloodway.tres" id="10_6jsom"]
+[ext_resource type="Resource" uid="uid://bxl8axk3x7cnl" path="res://assets/skins/storm/storm.tres" id="11_gysmj"]
+[ext_resource type="Resource" uid="uid://by1r1kqnasem3" path="res://assets/skins/blight/blight.tres" id="12_rabe4"]
+[ext_resource type="Resource" uid="uid://cpdhl17ejsm1x" path="res://assets/skins/rapture/rapture.tres" id="13_64pk2"]
+[ext_resource type="Resource" uid="uid://twy520cac6tq" path="res://assets/skins/elysium/elysium.tres" id="14_s4hxv"]
+[ext_resource type="Resource" uid="uid://dag8iypewh1bj" path="res://assets/skins/hell/hell.tres" id="15_2826n"]
 
 [sub_resource type="Texture2D" id="Texture2D_axt8q"]
 resource_local_to_scene = false
@@ -15,7 +25,7 @@ name = "quest/4"
 
 [sub_resource type="Resource" id="Resource_0qqpw"]
 script = ExtResource("4_ds7y8")
-name = "stage.delta"
+file = ExtResource("5_2vc06")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -27,7 +37,7 @@ size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_yayms"]
 script = ExtResource("4_ds7y8")
-name = "stage.ash"
+file = ExtResource("7_yqdl8")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -39,7 +49,7 @@ size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_vvx3l"]
 script = ExtResource("4_ds7y8")
-name = "stage.quarry"
+file = ExtResource("8_4o5ko")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -51,7 +61,7 @@ size_maximum = 10
 
 [sub_resource type="Resource" id="Resource_l2jdi"]
 script = ExtResource("4_ds7y8")
-name = "stage.vale"
+file = ExtResource("9_00o5w")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 2
@@ -63,7 +73,7 @@ size_maximum = 11
 
 [sub_resource type="Resource" id="Resource_gcirs"]
 script = ExtResource("4_ds7y8")
-name = "stage.bloodway"
+file = ExtResource("10_6jsom")
 min_power_minimum = 1
 min_power_maximum = 2
 max_power_minimum = 4
@@ -75,7 +85,7 @@ size_maximum = 13
 
 [sub_resource type="Resource" id="Resource_0wsmg"]
 script = ExtResource("4_ds7y8")
-name = "stage.storm"
+file = ExtResource("11_gysmj")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -87,7 +97,7 @@ size_maximum = 12
 
 [sub_resource type="Resource" id="Resource_axbgc"]
 script = ExtResource("4_ds7y8")
-name = "stage.blight"
+file = ExtResource("12_rabe4")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -99,7 +109,7 @@ size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_d6ugj"]
 script = ExtResource("4_ds7y8")
-name = "stage.rapture"
+file = ExtResource("13_64pk2")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 6
@@ -111,7 +121,7 @@ size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_golmq"]
 script = ExtResource("4_ds7y8")
-name = "stage.elysium"
+file = ExtResource("14_s4hxv")
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7
@@ -123,7 +133,7 @@ size_maximum = 16
 
 [sub_resource type="Resource" id="Resource_nsgeo"]
 script = ExtResource("4_ds7y8")
-name = "stage.hell"
+file = ExtResource("15_2826n")
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7

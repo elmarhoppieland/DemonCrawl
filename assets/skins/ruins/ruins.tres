@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=15 format=3 uid="uid://f7l1ngebtbui"]
+
+[ext_resource type="AudioStream" uid="uid://d2iiaqwbwtxar" path="res://assets/skins/ruins/ambience_a.ogg" id="1_ivfx0"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_l0nd7"]
+[ext_resource type="AudioStream" uid="uid://btgxcettevl3s" path="res://assets/skins/ruins/ambience_b.ogg" id="2_qe5fn"]
+[ext_resource type="Texture2D" uid="uid://cbw76ywthhjuo" path="res://assets/skins/ruins/bg.png" id="3_qacr0"]
+[ext_resource type="Texture2D" uid="uid://8cyij12a4lcp" path="res://assets/skins/ruins/empty.png" id="4_pm0ro"]
+[ext_resource type="Texture2D" uid="uid://j4deuyk3lfw5" path="res://assets/skins/ruins/checking.png" id="5_t4yad"]
+[ext_resource type="Texture2D" uid="uid://bcg7o5wh5gccx" path="res://assets/skins/ruins/coin.png" id="6_w8fb2"]
+[ext_resource type="Texture2D" uid="uid://beo08x7c4sqyu" path="res://assets/skins/ruins/flag.png" id="7_525uy"]
+[ext_resource type="Texture2D" uid="uid://coriagei8wk7j" path="res://assets/skins/ruins/flag_bg.png" id="8_8vubv"]
+[ext_resource type="Texture2D" uid="uid://dx1mhfwvj3ny8" path="res://assets/skins/ruins/heart.png" id="9_ge0q8"]
+[ext_resource type="Texture2D" uid="uid://ce8i7khk8cqc5" path="res://assets/skins/ruins/full.png" id="10_5kr6n"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_vjjgr"]
+[ext_resource type="AudioStream" uid="uid://cdfb0v2gesyj" path="res://assets/skins/ruins/music.ogg" id="12_8pjcs"]
+
+[sub_resource type="Resource" id="Resource_etfse"]
+script = ExtResource("11_vjjgr")
+data = {
+&"en": PackedStringArray("Cyclops", "Behemoth", "Goliath", "Titan")
+}
+
+[resource]
+script = ExtResource("1_l0nd7")
+name = "stage.ruins"
+bg = ExtResource("3_qacr0")
+monster_name_pool = SubResource("Resource_etfse")
+music = ExtResource("12_8pjcs")
+ambience_a = ExtResource("1_ivfx0")
+ambience_b = ExtResource("2_qe5fn")
+cell_bg = ExtResource("4_pm0ro")
+cell_hidden = ExtResource("10_5kr6n")
+cell_checking = ExtResource("5_t4yad")
+cell_flag = ExtResource("7_525uy")
+cell_flag_bg = ExtResource("8_8vubv")
+cell_coin_palette = ExtResource("6_w8fb2")
+cell_heart_palette = ExtResource("9_ge0q8")

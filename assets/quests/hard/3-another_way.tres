@@ -1,11 +1,21 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=18 format=3 uid="uid://thtiwo46behm"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=28 format=3 uid="uid://thtiwo46behm"]
 
 [ext_resource type="Resource" uid="uid://cmgsgbfsp2eq7" path="res://assets/quests/default_generation_sequence.tres" id="1_3nsdp"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_72e7e"]
 [ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="2_tgd6p"]
-[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file_base.gd" id="3_gpwm6"]
-[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file.gd" id="4_tk50n"]
+[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template_base.gd" id="3_gpwm6"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template.gd" id="4_tk50n"]
 [ext_resource type="Resource" uid="uid://wv5jht8bndvy" path="res://assets/token_shop/upgrades/qh3-another_way.tres" id="5_3o0np"]
+[ext_resource type="Resource" uid="uid://dmbqtvvve5f6v" path="res://assets/skins/blossom/blossom.tres" id="5_hh6pw"]
+[ext_resource type="Resource" uid="uid://bwqtdwpetykbr" path="res://assets/skins/island/island.tres" id="7_4vgej"]
+[ext_resource type="Resource" uid="uid://beuklt88liowl" path="res://assets/skins/mountain/mountain.tres" id="8_2rvol"]
+[ext_resource type="Resource" uid="uid://cp6fhr023eu16" path="res://assets/skins/garden/garden.tres" id="9_yh4a2"]
+[ext_resource type="Resource" uid="uid://f7l1ngebtbui" path="res://assets/skins/ruins/ruins.tres" id="10_d4h3b"]
+[ext_resource type="Resource" uid="uid://dc4a05mfjq7xd" path="res://assets/skins/skies/skies.tres" id="11_1i3mp"]
+[ext_resource type="Resource" uid="uid://ccwmwauedfujf" path="res://assets/skins/fungus/fungus.tres" id="12_6sxgo"]
+[ext_resource type="Resource" uid="uid://fmfq5m0jeeab" path="res://assets/skins/sewer/sewer.tres" id="13_4pk1m"]
+[ext_resource type="Resource" uid="uid://3jthla43mcs4" path="res://assets/skins/prefecture/prefecture.tres" id="14_hc1kb"]
+[ext_resource type="Resource" uid="uid://bfl6u4kkf4vdk" path="res://assets/skins/machine/machine.tres" id="15_nipq4"]
 
 [sub_resource type="Texture2D" id="Texture2D_utex0"]
 resource_local_to_scene = false
@@ -15,7 +25,7 @@ name = "quest/3"
 
 [sub_resource type="Resource" id="Resource_tvu10"]
 script = ExtResource("4_tk50n")
-name = "stage.blossom"
+file = ExtResource("5_hh6pw")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -27,7 +37,7 @@ size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_tla61"]
 script = ExtResource("4_tk50n")
-name = "stage.island"
+file = ExtResource("7_4vgej")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -39,7 +49,7 @@ size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_2hp6w"]
 script = ExtResource("4_tk50n")
-name = "stage.mountain"
+file = ExtResource("8_2rvol")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -51,7 +61,7 @@ size_maximum = 10
 
 [sub_resource type="Resource" id="Resource_wkeh8"]
 script = ExtResource("4_tk50n")
-name = "stage.garden"
+file = ExtResource("9_yh4a2")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 2
@@ -63,7 +73,7 @@ size_maximum = 11
 
 [sub_resource type="Resource" id="Resource_kacdp"]
 script = ExtResource("4_tk50n")
-name = "stage.ruins"
+file = ExtResource("10_d4h3b")
 min_power_minimum = 1
 min_power_maximum = 2
 max_power_minimum = 4
@@ -75,7 +85,7 @@ size_maximum = 13
 
 [sub_resource type="Resource" id="Resource_kuu0j"]
 script = ExtResource("4_tk50n")
-name = "stage.skies"
+file = ExtResource("11_1i3mp")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -87,7 +97,7 @@ size_maximum = 12
 
 [sub_resource type="Resource" id="Resource_sj86w"]
 script = ExtResource("4_tk50n")
-name = "stage.fungus"
+file = ExtResource("12_6sxgo")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -99,7 +109,7 @@ size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_n7fvn"]
 script = ExtResource("4_tk50n")
-name = "stage.sewer"
+file = ExtResource("13_4pk1m")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 6
@@ -111,7 +121,7 @@ size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_3vq3j"]
 script = ExtResource("4_tk50n")
-name = "stage.prefecture"
+file = ExtResource("14_hc1kb")
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7
@@ -123,7 +133,7 @@ size_maximum = 16
 
 [sub_resource type="Resource" id="Resource_yywuu"]
 script = ExtResource("4_tk50n")
-name = "stage.machine"
+file = ExtResource("15_nipq4")
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7

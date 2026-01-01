@@ -517,6 +517,11 @@ func get_scene() -> StageScene:
 	return super()
 
 
+## Reimplements [method StageInstanceBase.get_stage] for easy typing.
+func get_stage() -> Stage:
+	return super()
+
+
 func _create_scene() -> StageScene:
 	var scene: StageScene = load("res://engine/scenes/stage_scene/stage_scene.tscn").instantiate()
 	

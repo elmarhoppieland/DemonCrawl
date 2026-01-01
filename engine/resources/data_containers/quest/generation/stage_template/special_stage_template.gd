@@ -1,6 +1,6 @@
 @tool
-extends StageFileBase
-class_name SpecialStageFile
+extends StageTemplateBase
+class_name SpecialStageTemplate
 
 # ==============================================================================
 @export var name := ""

@@ -6,7 +6,7 @@ class_name QuestGenerationStageSequence
 var length_distribution: Array[LengthWeight] = []
 # ==============================================================================
 
-func _generate(stage_list: Array[StageFileBase]) -> Array[StageFileBase]:
+func _generate(stage_list: Array[StageTemplateBase]) -> Array[StageTemplateBase]:
 	var length := get_length()
 	return stage_list.slice(0, length)
 

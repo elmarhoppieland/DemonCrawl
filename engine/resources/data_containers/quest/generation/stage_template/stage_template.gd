@@ -1,9 +1,9 @@
 @tool
-extends StageFileBase
-class_name StageFile
+extends StageTemplateBase
+class_name StageTemplate
 
 # ==============================================================================
-@export var name := ""
+@export var file: StageFile
 
 @export_group("Min Power", "min_power_")
 @export var min_power_minimum := 0
@@ -27,7 +27,7 @@ class_name StageFile
 # ==============================================================================
 
 func _generate() -> Stage:
-	var stage := Stage.new(name)
+	var stage := Stage.new(file)
 	
 	stage.size.x = randi_range(size_minimum, size_maximum)
 	stage.size.y = randi_range(size_minimum, size_maximum)

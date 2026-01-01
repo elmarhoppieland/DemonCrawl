@@ -80,4 +80,4 @@ class _RequestBlocker:
 	
 	func lower() -> void:
 		available = true
-		lowered.emit()
+		lowered.emit.call_deferred()

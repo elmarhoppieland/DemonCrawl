@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=9 format=3 uid="uid://b3uumlb7xnfvh"]
+
+[ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://assets/skins/default/bg.png" id="1_0ai8y"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_48x7w"]
+[ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://assets/skins/default/empty.png" id="2_hyr7r"]
+[ext_resource type="Texture2D" uid="uid://cid1fd12q4fvd" path="res://assets/skins/default/checking.png" id="3_iltmd"]
+[ext_resource type="Texture2D" uid="uid://vr40qjxna1js" path="res://assets/skins/default/flag.png" id="4_fnkaq"]
+[ext_resource type="Texture2D" uid="uid://dwfec06v6p7h1" path="res://assets/skins/default/flag_bg.png" id="5_jb6j5"]
+[ext_resource type="Texture2D" uid="uid://cwud7hep7qi5b" path="res://assets/skins/default/full.png" id="6_uccw8"]
+[ext_resource type="AudioStream" uid="uid://cnakgrnrjuob3" path="res://assets/skins/default/music.ogg" id="7_sxfvm"]
+
+[resource]
+script = ExtResource("1_48x7w")
+name = "stage.default"
+bg = ExtResource("1_0ai8y")
+music = ExtResource("7_sxfvm")
+cell_bg = ExtResource("2_hyr7r")
+cell_hidden = ExtResource("6_uccw8")
+cell_checking = ExtResource("3_iltmd")
+cell_flag = ExtResource("4_fnkaq")
+cell_flag_bg = ExtResource("5_jb6j5")

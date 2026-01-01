@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=15 format=3 uid="uid://48f7i3hvwehd"]
+
+[ext_resource type="AudioStream" uid="uid://518fw2gq3b51" path="res://assets/skins/galaxy/ambience_a.ogg" id="1_66xp0"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_nu6d5"]
+[ext_resource type="AudioStream" uid="uid://dpiosdbfoylaa" path="res://assets/skins/galaxy/ambience_b.ogg" id="2_fpta8"]
+[ext_resource type="Texture2D" uid="uid://c06pqfr76e5s4" path="res://assets/skins/galaxy/bg.png" id="3_h27r7"]
+[ext_resource type="Texture2D" uid="uid://b4d3rws62in2m" path="res://assets/skins/galaxy/empty.png" id="4_r3wh5"]
+[ext_resource type="Texture2D" uid="uid://2r02gsm083of" path="res://assets/skins/galaxy/checking.png" id="5_0ut2n"]
+[ext_resource type="Texture2D" uid="uid://bkpigtlllgfa0" path="res://assets/skins/galaxy/coin.png" id="6_abnt0"]
+[ext_resource type="Texture2D" uid="uid://cdqqfijfxotkq" path="res://assets/skins/galaxy/flag.png" id="7_jt2bu"]
+[ext_resource type="Texture2D" uid="uid://bcnwwwefj84q6" path="res://assets/skins/galaxy/flag_bg.png" id="8_33vx4"]
+[ext_resource type="Texture2D" uid="uid://oj73om2wnnw0" path="res://assets/skins/galaxy/heart.png" id="9_l682a"]
+[ext_resource type="Texture2D" uid="uid://beliv3lgpruu1" path="res://assets/skins/galaxy/full.png" id="10_o1l5f"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_miify"]
+[ext_resource type="AudioStream" uid="uid://4567ef1mit8" path="res://assets/skins/galaxy/music.ogg" id="12_e06md"]
+
+[sub_resource type="Resource" id="Resource_n1s0r"]
+script = ExtResource("11_miify")
+data = {
+&"en": PackedStringArray("Alien", "Invader", "Martian", "Spaceman")
+}
+
+[resource]
+script = ExtResource("1_nu6d5")
+name = "stage.galaxy"
+bg = ExtResource("3_h27r7")
+monster_name_pool = SubResource("Resource_n1s0r")
+music = ExtResource("12_e06md")
+ambience_a = ExtResource("1_66xp0")
+ambience_b = ExtResource("2_fpta8")
+cell_bg = ExtResource("4_r3wh5")
+cell_hidden = ExtResource("10_o1l5f")
+cell_checking = ExtResource("5_0ut2n")
+cell_flag = ExtResource("7_jt2bu")
+cell_flag_bg = ExtResource("8_33vx4")
+cell_coin_palette = ExtResource("6_abnt0")
+cell_heart_palette = ExtResource("9_l682a")

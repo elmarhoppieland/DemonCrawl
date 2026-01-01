@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=15 format=3 uid="uid://0t3ok88gni5w"]
+
+[ext_resource type="AudioStream" uid="uid://dkcsdxqhcwcjd" path="res://assets/skins/hallow/ambience_a.ogg" id="1_4alro"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_blcot"]
+[ext_resource type="AudioStream" uid="uid://cr4k6rmj63hc2" path="res://assets/skins/hallow/ambience_b.ogg" id="2_ro002"]
+[ext_resource type="Texture2D" uid="uid://dofe0ev4uxe5o" path="res://assets/skins/hallow/bg.png" id="3_kqp08"]
+[ext_resource type="Texture2D" uid="uid://bw7rrodxvttij" path="res://assets/skins/hallow/empty.png" id="4_66qrm"]
+[ext_resource type="Texture2D" uid="uid://ugva3mxfa4qo" path="res://assets/skins/hallow/checking.png" id="5_fhnoo"]
+[ext_resource type="Texture2D" uid="uid://cr3ve8agc46r5" path="res://assets/skins/hallow/coin.png" id="6_3sm3c"]
+[ext_resource type="Texture2D" uid="uid://ceq7dsais2h6k" path="res://assets/skins/hallow/flag.png" id="7_kupyq"]
+[ext_resource type="Texture2D" uid="uid://3800l84v2s8a" path="res://assets/skins/hallow/flag_bg.png" id="8_fgf5t"]
+[ext_resource type="Texture2D" uid="uid://hi1fr851t7pa" path="res://assets/skins/hallow/heart.png" id="9_ek156"]
+[ext_resource type="Texture2D" uid="uid://cacjhln53hk4" path="res://assets/skins/hallow/full.png" id="10_kp4u3"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_pe6bm"]
+[ext_resource type="AudioStream" uid="uid://c45jfebomc5u8" path="res://assets/skins/hallow/music.ogg" id="12_vnogq"]
+
+[sub_resource type="Resource" id="Resource_hrjv4"]
+script = ExtResource("11_pe6bm")
+data = {
+&"en": PackedStringArray("Owl", "Hooter", "Preybird")
+}
+
+[resource]
+script = ExtResource("1_blcot")
+name = "stage.hallow"
+bg = ExtResource("3_kqp08")
+monster_name_pool = SubResource("Resource_hrjv4")
+music = ExtResource("12_vnogq")
+ambience_a = ExtResource("1_4alro")
+ambience_b = ExtResource("2_ro002")
+cell_bg = ExtResource("4_66qrm")
+cell_hidden = ExtResource("10_kp4u3")
+cell_checking = ExtResource("5_fhnoo")
+cell_flag = ExtResource("7_kupyq")
+cell_flag_bg = ExtResource("8_fgf5t")
+cell_coin_palette = ExtResource("6_3sm3c")
+cell_heart_palette = ExtResource("9_ek156")

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://t3c8e7qfdctb"]
+
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_2hecb"]
+[ext_resource type="Texture2D" uid="uid://csgi7p8uifuqr" path="res://assets/skins/easter/bg.png" id="1_pykua"]
+[ext_resource type="Texture2D" uid="uid://342v7pogw1gj" path="res://assets/skins/easter/empty.png" id="2_6gcnn"]
+[ext_resource type="Texture2D" uid="uid://fdu0u307cmk0" path="res://assets/skins/easter/checking.png" id="3_vr2hl"]
+[ext_resource type="Texture2D" uid="uid://b6gs5027exkb6" path="res://assets/skins/easter/coin.png" id="4_7cl3v"]
+[ext_resource type="Texture2D" uid="uid://0xr40x0htx8t" path="res://assets/skins/easter/flag.png" id="5_tt16x"]
+[ext_resource type="Texture2D" uid="uid://cb1qxou2jue52" path="res://assets/skins/easter/flag_bg.png" id="6_nk8td"]
+[ext_resource type="Texture2D" uid="uid://dbhtmsv6auhhd" path="res://assets/skins/easter/heart.png" id="7_w86wi"]
+[ext_resource type="Texture2D" uid="uid://dw2mw0ngo1fgn" path="res://assets/skins/easter/full.png" id="8_becot"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="9_cxey1"]
+[ext_resource type="AudioStream" uid="uid://b5e2w6mj3i3db" path="res://assets/skins/easter/music.ogg" id="10_nnhrh"]
+
+[sub_resource type="Resource" id="Resource_empae"]
+script = ExtResource("9_cxey1")
+data = {
+&"en": PackedStringArray("Hare", "Bunny", "Cottontail", "Critter")
+}
+
+[resource]
+script = ExtResource("1_2hecb")
+name = "stage.easter"
+bg = ExtResource("1_pykua")
+monster_name_pool = SubResource("Resource_empae")
+music = ExtResource("10_nnhrh")
+cell_bg = ExtResource("2_6gcnn")
+cell_hidden = ExtResource("8_becot")
+cell_checking = ExtResource("3_vr2hl")
+cell_flag = ExtResource("5_tt16x")
+cell_flag_bg = ExtResource("6_nk8td")
+cell_coin_palette = ExtResource("4_7cl3v")
+cell_heart_palette = ExtResource("7_w86wi")

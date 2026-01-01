@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=15 format=3 uid="uid://cbpmm48b0ooar"]
+
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_pamwd"]
+[ext_resource type="AudioStream" uid="uid://tifdsj0lcrfd" path="res://assets/skins/vale/ambience_a.ogg" id="1_rspgh"]
+[ext_resource type="AudioStream" uid="uid://cfumn5fgh01ad" path="res://assets/skins/vale/ambience_b.ogg" id="2_y3hwm"]
+[ext_resource type="Texture2D" uid="uid://dkf2f2ykohvq1" path="res://assets/skins/vale/bg.png" id="3_3u5ps"]
+[ext_resource type="Texture2D" uid="uid://cv7w7c3ewtnhi" path="res://assets/skins/vale/empty.png" id="4_ldjf4"]
+[ext_resource type="Texture2D" uid="uid://bxnmq0vsinh2n" path="res://assets/skins/vale/checking.png" id="5_q5wx1"]
+[ext_resource type="Texture2D" uid="uid://ck6oyb0y8lj47" path="res://assets/skins/vale/coin.png" id="6_e364h"]
+[ext_resource type="Texture2D" uid="uid://f5ug7bydv6b6" path="res://assets/skins/vale/flag.png" id="7_jrujj"]
+[ext_resource type="Texture2D" uid="uid://b4lcqjvns1qcp" path="res://assets/skins/vale/flag_bg.png" id="8_xerrl"]
+[ext_resource type="Texture2D" uid="uid://c8002ad8pmmmi" path="res://assets/skins/vale/heart.png" id="9_y12s7"]
+[ext_resource type="Texture2D" uid="uid://crg6mneiipsus" path="res://assets/skins/vale/full.png" id="10_yl8y2"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_r2ge3"]
+[ext_resource type="AudioStream" uid="uid://dhmm00cae0xc0" path="res://assets/skins/vale/music.ogg" id="12_fc8k4"]
+
+[sub_resource type="Resource" id="Resource_8jn55"]
+script = ExtResource("11_r2ge3")
+data = {
+&"en": PackedStringArray("Hydra", "Serpent", "Snake")
+}
+
+[resource]
+script = ExtResource("1_pamwd")
+name = "stage.vale"
+bg = ExtResource("3_3u5ps")
+monster_name_pool = SubResource("Resource_8jn55")
+music = ExtResource("12_fc8k4")
+ambience_a = ExtResource("1_rspgh")
+ambience_b = ExtResource("2_y3hwm")
+cell_bg = ExtResource("4_ldjf4")
+cell_hidden = ExtResource("10_yl8y2")
+cell_checking = ExtResource("5_q5wx1")
+cell_flag = ExtResource("7_jrujj")
+cell_flag_bg = ExtResource("8_xerrl")
+cell_coin_palette = ExtResource("6_e364h")
+cell_heart_palette = ExtResource("9_y12s7")

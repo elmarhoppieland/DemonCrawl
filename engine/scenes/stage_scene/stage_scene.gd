@@ -4,6 +4,9 @@ class_name StageScene
 
 # ==============================================================================
 static var _instance: StageScene = null : get = get_instance
+
+static var music_volume: float = Eternal.create(1.0, "settings")
+static var ambience_volume: float = Eternal.create(1.0, "settings")
 # ==============================================================================
 @export var stage_instance: StageInstance = null :
 	set(value):
@@ -12,7 +15,19 @@ static var _instance: StageScene = null : get = get_instance
 			await ready
 			_on_stage_completed()
 		else:
-			stage_instance.get_effects().completed.connect(_on_stage_completed)
+			value.get_effects().completed.connect(_on_stage_completed)
+		
+		if not is_node_ready():
+			await ready
+		
+		_music_player.stream = value.get_stage().file.music
+		_music_player.play()
+		_ambience_a_player.stream = value.get_stage().file.ambience_a
+		_ambience_a_player.play()
+		_ambience_b_player.stream = value.get_stage().file.ambience_b
+		_ambience_b_player.play()
+		
+		theme = value.get_stage().get_theme()
 # ==============================================================================
 @onready var _stage_background: StageBackground = %StageBackground : get = get_background
 @onready var _finish_button: FinishButton = %FinishButton
@@ -22,6 +37,9 @@ static var _instance: StageScene = null : get = get_instance
 @onready var _status_effect_list: StatusEffectList = %StatusEffectList
 @onready var _board: Board = %Board : get = get_board
 @onready var _projectiles: Node2D = %Projectiles
+@onready var _music_player: AudioStreamPlayer = %MusicPlayer
+@onready var _ambience_a_player: AudioStreamPlayer = %AmbienceAPlayer
+@onready var _ambience_b_player: AudioStreamPlayer = %AmbienceBPlayer
 # ==============================================================================
 signal finish_pressed()
 # ==============================================================================
@@ -33,23 +51,20 @@ func _enter_tree() -> void:
 func _exit_tree() -> void:
 	if _instance == self:
 		_instance = null
-	
-	if stage_instance:
-		stage_instance.get_stage().stop_music()
 
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	if stage_instance:
-		theme = stage_instance.get_stage().get_theme()
-		stage_instance.get_stage().play_music()
-	
 	for projectile in stage_instance.get_projectile_manager().get_projectiles():
 		register_projectile(projectile)
 	
 	_status_effect_list.manager = Quest.get_current().get_status_manager()
+	
+	_music_player.volume_linear = StageScene.music_volume
+	_ambience_a_player.volume_linear = StageScene.ambience_volume
+	_ambience_b_player.volume_linear = StageScene.ambience_volume
 
 
 ## Returns the scene's [StageBackground] instance.
@@ -113,8 +128,9 @@ func cast(icon: Texture2D) -> CellData:
 func _on_stage_completed() -> void:
 	stage_instance.get_timer().pause()
 	stage_instance.get_status_timer().pause()
-	stage_instance.get_stage().stop_music()
 	_finish_button.show()
+	
+	_music_player.stop()
 
 
 func _on_board_stage_finished() -> void:
@@ -134,8 +150,6 @@ func _on_finish_button_pressed() -> void:
 	#var quest := Quest.get_current()
 	#stage_instance.notify_unloaded()
 	#quest.notify_stage_finished(stage_instance)
-	
-	stage_instance.get_stage().stop_music()
 	
 	#if quest.is_finished():
 		#await quest.finish()

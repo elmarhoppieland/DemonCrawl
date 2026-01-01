@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=14 format=3 uid="uid://br8geq04g5gr1"]
+
+[ext_resource type="AudioStream" uid="uid://dw3hx1jrfxafx" path="res://assets/skins/forest/ambience_a.ogg" id="1_8yx21"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_wbw31"]
+[ext_resource type="AudioStream" uid="uid://cr4i6lognukpc" path="res://assets/skins/forest/ambience_b.ogg" id="2_1jono"]
+[ext_resource type="Texture2D" uid="uid://d2ybgqm1qjpln" path="res://assets/skins/forest/bg.png" id="3_5yfn6"]
+[ext_resource type="Texture2D" uid="uid://su7b02a334o2" path="res://assets/skins/forest/empty.png" id="4_si6i5"]
+[ext_resource type="Texture2D" uid="uid://drmyj530c3xb" path="res://assets/skins/forest/checking.png" id="5_xeuis"]
+[ext_resource type="Texture2D" uid="uid://4nylpcy0f4xj" path="res://assets/skins/forest/flag.png" id="6_kcdoy"]
+[ext_resource type="Texture2D" uid="uid://vvoyutrtxvd4" path="res://assets/skins/forest/flag_bg.png" id="7_155xv"]
+[ext_resource type="Texture2D" uid="uid://baseiykds5c7e" path="res://assets/skins/forest/full.png" id="8_alnyb"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="9_exlul"]
+[ext_resource type="Texture2D" uid="uid://dfwsoi1dna1xn" path="res://assets/skins/forest/monster.png" id="10_adr64"]
+[ext_resource type="AudioStream" uid="uid://d0a6tq8k2lu7v" path="res://assets/skins/forest/music.ogg" id="11_14eos"]
+
+[sub_resource type="Resource" id="Resource_ohunc"]
+script = ExtResource("9_exlul")
+data = {
+&"en": PackedStringArray("Spider", "Arachnid", "Bug", "Crawler", "Spinner", "Viper", "Webshaper", "Widow")
+}
+
+[resource]
+script = ExtResource("1_wbw31")
+name = "stage.forest"
+bg = ExtResource("3_5yfn6")
+monster_texture = ExtResource("10_adr64")
+monster_name_pool = SubResource("Resource_ohunc")
+music = ExtResource("11_14eos")
+ambience_a = ExtResource("1_8yx21")
+ambience_b = ExtResource("2_1jono")
+cell_bg = ExtResource("4_si6i5")
+cell_hidden = ExtResource("8_alnyb")
+cell_checking = ExtResource("5_xeuis")
+cell_flag = ExtResource("6_kcdoy")
+cell_flag_bg = ExtResource("7_155xv")

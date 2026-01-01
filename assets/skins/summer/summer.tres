@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://cu3gm4yd7kq7s"]
+
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_2cqpb"]
+[ext_resource type="Texture2D" uid="uid://h2iy56hxx7uf" path="res://assets/skins/summer/bg.png" id="1_jh05h"]
+[ext_resource type="Texture2D" uid="uid://b7tlpbxjvu0jt" path="res://assets/skins/summer/empty.png" id="2_dbrij"]
+[ext_resource type="Texture2D" uid="uid://4apv2vhpagvh" path="res://assets/skins/summer/checking.png" id="3_mjoo4"]
+[ext_resource type="Texture2D" uid="uid://d4inc0j4li8om" path="res://assets/skins/summer/coin.png" id="4_so6k1"]
+[ext_resource type="Texture2D" uid="uid://bt5a27pld543i" path="res://assets/skins/summer/flag.png" id="5_6icad"]
+[ext_resource type="Texture2D" uid="uid://cgerwnr6ak6yr" path="res://assets/skins/summer/flag_bg.png" id="6_growg"]
+[ext_resource type="Texture2D" uid="uid://dvcmdkwq3octr" path="res://assets/skins/summer/heart.png" id="7_me5pa"]
+[ext_resource type="Texture2D" uid="uid://d147by1q1btq" path="res://assets/skins/summer/full.png" id="8_1bco0"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="9_8hjn7"]
+[ext_resource type="AudioStream" uid="uid://dqr37ldbwa1j7" path="res://assets/skins/summer/music.ogg" id="10_u5ydp"]
+
+[sub_resource type="Resource" id="Resource_4cgcl"]
+script = ExtResource("9_8hjn7")
+data = {
+&"en": PackedStringArray("Crab", "Crablegs", "Crabmeat", "Pincher")
+}
+
+[resource]
+script = ExtResource("1_2cqpb")
+name = "stage.summer"
+bg = ExtResource("1_jh05h")
+monster_name_pool = SubResource("Resource_4cgcl")
+music = ExtResource("10_u5ydp")
+cell_bg = ExtResource("2_dbrij")
+cell_hidden = ExtResource("8_1bco0")
+cell_checking = ExtResource("3_mjoo4")
+cell_flag = ExtResource("5_6icad")
+cell_flag_bg = ExtResource("6_growg")
+cell_coin_palette = ExtResource("4_so6k1")
+cell_heart_palette = ExtResource("7_me5pa")

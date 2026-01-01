@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://c6ytg5blop1dr"]
+
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_3epu5"]
+[ext_resource type="Texture2D" uid="uid://cvolshl5iswiv" path="res://assets/skins/reef/bg.png" id="1_larxm"]
+[ext_resource type="Texture2D" uid="uid://bv37luqbw5cfn" path="res://assets/skins/reef/empty.png" id="2_q67er"]
+[ext_resource type="Texture2D" uid="uid://7ootb2bgi6k0" path="res://assets/skins/reef/checking.png" id="3_c3omt"]
+[ext_resource type="Texture2D" uid="uid://c2whi3i3g3nb1" path="res://assets/skins/reef/coin.png" id="4_gq4mj"]
+[ext_resource type="Texture2D" uid="uid://cmgwbf3kykxx1" path="res://assets/skins/reef/flag.png" id="5_174pg"]
+[ext_resource type="Texture2D" uid="uid://deghhw3201e8d" path="res://assets/skins/reef/flag_bg.png" id="6_26sfm"]
+[ext_resource type="Texture2D" uid="uid://3q7r1guyjbii" path="res://assets/skins/reef/heart.png" id="7_p6itu"]
+[ext_resource type="Texture2D" uid="uid://beocx1sedoq51" path="res://assets/skins/reef/full.png" id="8_falxt"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="9_o2to8"]
+[ext_resource type="AudioStream" uid="uid://b8jwh261ydmt7" path="res://assets/skins/reef/music.ogg" id="10_ci2ho"]
+
+[sub_resource type="Resource" id="Resource_p5ew6"]
+script = ExtResource("9_o2to8")
+data = {
+&"en": PackedStringArray("Jelly", "Man of War", "Medusa", "Polyp")
+}
+
+[resource]
+script = ExtResource("1_3epu5")
+name = "stage.reef"
+bg = ExtResource("1_larxm")
+monster_name_pool = SubResource("Resource_p5ew6")
+music = ExtResource("10_ci2ho")
+cell_bg = ExtResource("2_q67er")
+cell_hidden = ExtResource("8_falxt")
+cell_checking = ExtResource("3_c3omt")
+cell_flag = ExtResource("5_174pg")
+cell_flag_bg = ExtResource("6_26sfm")
+cell_coin_palette = ExtResource("4_gq4mj")
+cell_heart_palette = ExtResource("7_p6itu")

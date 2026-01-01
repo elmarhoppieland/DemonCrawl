@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=12 format=3 uid="uid://bvjxlmwt15vdk"]
+
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_6qt7a"]
+[ext_resource type="Texture2D" uid="uid://dyrajmjq8lgvm" path="res://assets/skins/hearth/bg.png" id="1_g35sq"]
+[ext_resource type="Texture2D" uid="uid://cr7jmpeyrw3wo" path="res://assets/skins/hearth/empty.png" id="2_m0yes"]
+[ext_resource type="Texture2D" uid="uid://b86ng38a24e2u" path="res://assets/skins/hearth/checking.png" id="3_hwwm3"]
+[ext_resource type="Texture2D" uid="uid://btgincg77di6u" path="res://assets/skins/hearth/coin.png" id="4_3h8cg"]
+[ext_resource type="Texture2D" uid="uid://c35dra6hlt4u8" path="res://assets/skins/hearth/flag.png" id="5_p62oy"]
+[ext_resource type="Texture2D" uid="uid://buc4q2gb5a6t3" path="res://assets/skins/hearth/flag_bg.png" id="6_vi71h"]
+[ext_resource type="Texture2D" uid="uid://1mv5lesw1mwg" path="res://assets/skins/hearth/full.png" id="7_u8gr7"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="8_rx4gt"]
+[ext_resource type="AudioStream" uid="uid://c8utbu464jwu4" path="res://assets/skins/hearth/music.ogg" id="9_jdg02"]
+
+[sub_resource type="Resource" id="Resource_pak3v"]
+script = ExtResource("8_rx4gt")
+data = {
+&"en": PackedStringArray("Elf", "Assistant", "Helper", "Toymaker")
+}
+
+[resource]
+script = ExtResource("1_6qt7a")
+name = "stage.hearth"
+bg = ExtResource("1_g35sq")
+monster_name_pool = SubResource("Resource_pak3v")
+music = ExtResource("9_jdg02")
+cell_bg = ExtResource("2_m0yes")
+cell_hidden = ExtResource("7_u8gr7")
+cell_checking = ExtResource("3_hwwm3")
+cell_flag = ExtResource("5_p62oy")
+cell_flag_bg = ExtResource("6_vi71h")
+cell_coin_palette = ExtResource("4_3h8cg")

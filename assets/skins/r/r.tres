@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=12 format=3 uid="uid://7bpclu7a27dr"]
+
+[ext_resource type="Texture2D" uid="uid://b5hr8vumbafts" path="res://assets/skins/r/bg.png" id="1_8yb7u"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_jmh2c"]
+[ext_resource type="Texture2D" uid="uid://bvyc1fy7mdlse" path="res://assets/skins/r/empty.png" id="2_hula3"]
+[ext_resource type="Texture2D" uid="uid://ko2xxj4nffkq" path="res://assets/skins/r/checking.png" id="3_40qo3"]
+[ext_resource type="Texture2D" uid="uid://dbibf4fpa0lrc" path="res://assets/skins/r/coin.png" id="4_slax1"]
+[ext_resource type="Texture2D" uid="uid://dox0lsaqdfv2j" path="res://assets/skins/r/flag.png" id="5_jxv14"]
+[ext_resource type="Texture2D" uid="uid://il5qocspsve3" path="res://assets/skins/r/flag_bg.png" id="6_g5bmr"]
+[ext_resource type="Texture2D" uid="uid://7e2kpv1e51sa" path="res://assets/skins/r/full.png" id="7_shg8j"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="8_p2raf"]
+[ext_resource type="AudioStream" uid="uid://c434tqu0jiu8i" path="res://assets/skins/r/music.ogg" id="9_vjfgq"]
+
+[sub_resource type="Resource" id="Resource_k5hvm"]
+script = ExtResource("8_p2raf")
+data = {
+&"en": PackedStringArray("Lifeform", "Being", "Visitor")
+}
+
+[resource]
+script = ExtResource("1_jmh2c")
+name = "stage.r"
+bg = ExtResource("1_8yb7u")
+monster_name_pool = SubResource("Resource_k5hvm")
+music = ExtResource("9_vjfgq")
+cell_bg = ExtResource("2_hula3")
+cell_hidden = ExtResource("7_shg8j")
+cell_checking = ExtResource("3_40qo3")
+cell_flag = ExtResource("5_jxv14")
+cell_flag_bg = ExtResource("6_g5bmr")
+cell_coin_palette = ExtResource("4_slax1")

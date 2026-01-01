@@ -8,7 +8,7 @@ class_name QuestFile
 @export var icon: Texture2D = null  ## The quest's icon.
 @export var skip_unlock := false  ## If this is [code]true[/code], unlocking this quest should also unlock the next quest.
 
-@export var stage_list: Array[StageFileBase] = []  ## The order that the stages should appear in the quest. Special stages will be inserted in-between these stages.
+@export var stage_list: Array[StageTemplateBase] = []  ## The order that the stages should appear in the quest. Special stages will be inserted in-between these stages.
 
 @export var generation_sequence: QuestGenerationSequenceBase
 # ==============================================================================

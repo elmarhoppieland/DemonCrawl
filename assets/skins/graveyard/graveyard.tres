@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=15 format=3 uid="uid://c70fmp15fhcb"]
+
+[ext_resource type="AudioStream" uid="uid://c1v6cs5eqd5df" path="res://assets/skins/graveyard/ambience_a.ogg" id="1_lbmla"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_qokv2"]
+[ext_resource type="AudioStream" uid="uid://632t2igljn1j" path="res://assets/skins/graveyard/ambience_b.ogg" id="2_rc2th"]
+[ext_resource type="Texture2D" uid="uid://co0bmb3vg6u0q" path="res://assets/skins/graveyard/bg.png" id="3_q68d6"]
+[ext_resource type="Texture2D" uid="uid://ch304ytvsqtnx" path="res://assets/skins/graveyard/empty.png" id="4_fee6f"]
+[ext_resource type="Texture2D" uid="uid://dinppvikmtue" path="res://assets/skins/graveyard/checking.png" id="5_spirp"]
+[ext_resource type="Texture2D" uid="uid://sxib8n2d1ma0" path="res://assets/skins/graveyard/coin.png" id="6_duo81"]
+[ext_resource type="Texture2D" uid="uid://4jbub28otpv1" path="res://assets/skins/graveyard/flag.png" id="7_fwnsl"]
+[ext_resource type="Texture2D" uid="uid://h8sxmu5m8ooq" path="res://assets/skins/graveyard/flag_bg.png" id="8_stpfp"]
+[ext_resource type="Texture2D" uid="uid://byg0u14pvf5pq" path="res://assets/skins/graveyard/heart.png" id="9_1xuna"]
+[ext_resource type="Texture2D" uid="uid://bpm1gtk4dag7a" path="res://assets/skins/graveyard/full.png" id="10_1a10y"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_brlqu"]
+[ext_resource type="AudioStream" uid="uid://b87lq3jki608l" path="res://assets/skins/graveyard/music.ogg" id="12_8dnkn"]
+
+[sub_resource type="Resource" id="Resource_tq4vt"]
+script = ExtResource("11_brlqu")
+data = {
+&"en": PackedStringArray("Skeleton", "Bones", "Bonewalker", "Shambler", "Skull")
+}
+
+[resource]
+script = ExtResource("1_qokv2")
+name = "stage.graveyard"
+bg = ExtResource("3_q68d6")
+monster_name_pool = SubResource("Resource_tq4vt")
+music = ExtResource("12_8dnkn")
+ambience_a = ExtResource("1_lbmla")
+ambience_b = ExtResource("2_rc2th")
+cell_bg = ExtResource("4_fee6f")
+cell_hidden = ExtResource("10_1a10y")
+cell_checking = ExtResource("5_spirp")
+cell_flag = ExtResource("7_fwnsl")
+cell_flag_bg = ExtResource("8_stpfp")
+cell_coin_palette = ExtResource("6_duo81")
+cell_heart_palette = ExtResource("9_1xuna")

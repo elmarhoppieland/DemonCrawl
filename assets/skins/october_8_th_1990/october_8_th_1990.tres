@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=9 format=3 uid="uid://bmswxkfmj7a7k"]
+
+[ext_resource type="Texture2D" uid="uid://cjwjjwu0aij75" path="res://assets/skins/october_8_th_1990/bg.png" id="1_2ejpy"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_2w6p0"]
+[ext_resource type="Texture2D" uid="uid://dh6xgc4msdp8d" path="res://assets/skins/october_8_th_1990/empty.png" id="2_4alje"]
+[ext_resource type="Texture2D" uid="uid://b5ok24am05fp8" path="res://assets/skins/october_8_th_1990/checking.png" id="3_qw23m"]
+[ext_resource type="Texture2D" uid="uid://ww7g1arq3631" path="res://assets/skins/october_8_th_1990/flag.png" id="4_cb1h0"]
+[ext_resource type="Texture2D" uid="uid://d6ncldrkm5ym" path="res://assets/skins/october_8_th_1990/flag_bg.png" id="5_v3ugt"]
+[ext_resource type="Texture2D" uid="uid://5ixyaecbrsp" path="res://assets/skins/october_8_th_1990/full.png" id="6_y7tjh"]
+[ext_resource type="AudioStream" uid="uid://btbx04ua03r7a" path="res://assets/skins/october_8_th_1990/music.ogg" id="7_jl56n"]
+
+[resource]
+script = ExtResource("1_2w6p0")
+name = "stage.october-8-th-1990"
+bg = ExtResource("1_2ejpy")
+music = ExtResource("7_jl56n")
+cell_bg = ExtResource("2_4alje")
+cell_hidden = ExtResource("6_y7tjh")
+cell_checking = ExtResource("3_qw23m")
+cell_flag = ExtResource("4_cb1h0")
+cell_flag_bg = ExtResource("5_v3ugt")

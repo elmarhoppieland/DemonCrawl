@@ -12,12 +12,12 @@ const AMBIENCE_B_PATH := "res://assets/skins/%s/ambience_b.ogg"
 # ==============================================================================
 static var _theme_cache: Dictionary[String, Theme] = {}
 # ==============================================================================
-@export var name_id := "" :
+@export var file: StageFile :
 	set(value):
-		if name_id == value:
+		if file == value:
 			return
 		
-		name_id = value
+		file = value
 		
 		queue_changed()
 
@@ -63,21 +63,16 @@ static var _theme_cache: Dictionary[String, Theme] = {}
 		
 		queue_changed()
 # ==============================================================================
-var _theme: Theme : get = get_theme
-
-var _audio_streams: Array[AudioStreamOggVorbis] = []
-var _audio_players: Array[AudioStreamPlayer] = []
-# ==============================================================================
 
 @warning_ignore("shadowed_variable")
-func _init(name_id: String = "", size: Vector2i = Vector2i.ZERO, monsters: int = 0) -> void:
-	self.name_id = name_id
+func _init(file: StageFile = null, size: Vector2i = Vector2i.ZERO, monsters: int = 0) -> void:
+	self.file = file
 	self.size = size
 	self.monsters = monsters
 
 
 func _get_name_id() -> String:
-	return name_id
+	return file.name
 
 
 ## Returns the total area of this [Stage], i.e. the number of [Cell]s.
@@ -117,10 +112,7 @@ func _get_description_id() -> String:
 ## Returns a [Theme] instance for this [Stage], with all relevant properties set
 ## to this [Stage]'s theme.
 func get_theme() -> Theme:
-	if not _theme:
-		_theme = Stage.create_theme(name_id.substr(name_id.rfind(".") + 1))
-	
-	return _theme
+	return file.create_theme()
 
 
 static func create_theme(stage_name: String) -> Theme:
@@ -154,51 +146,8 @@ static func create_theme(stage_name: String) -> Theme:
 	return theme
 
 
-
 func _get_bg() -> Texture2D:
-	return get_theme().get_icon("bg", "StageScene")
-
-
-# Loads music and ambience into _audio_streams
-func _load_music() -> void:
-	for music_path: String in [MUSIC_PATH, AMBIENCE_A_PATH, AMBIENCE_B_PATH]:
-		var full_music_path := music_path % name
-		if ResourceLoader.exists(full_music_path):
-			var audio_stream := load(full_music_path)
-			if audio_stream is AudioStreamOggVorbis:
-				audio_stream.loop = true
-				_audio_streams.append(audio_stream)
-			else:
-				Debug.log_error("Failed to load music at %s" % full_music_path)
-
-
-# Creates _audio_players and adds them to the StageScene
-func _create_audio_players() -> void:
-	for stream in _audio_streams:
-		var audio_player := AudioStreamPlayer.new()
-		audio_player.stream = stream
-		audio_player.volume_linear *= music_volume
-		get_scene().add_child(audio_player)
-		_audio_players.append(audio_player)
-
-
-func _start_audio_players() -> void:
-	for player in _audio_players:
-		player.play()
-
-
-func play_music() -> void:
-	_load_music()
-	_create_audio_players()
-	_start_audio_players()
-
-
-func stop_music() -> void:
-	for player in _audio_players:
-		player.stop()
-		player.queue_free()
-	_audio_players.clear()
-	_audio_streams.clear()
+	return file.bg
 
 
 ## Reimplements [method StageBase.get_instance] for easy typing.
@@ -255,7 +204,7 @@ func get_mods_difficulty() -> int:
 func get_property(section: String, key: String, default: Variant = null) -> Variant:
 	var cfg := ConfigFile.new()
 	
-	var stage_name := name_id.substr(name_id.rfind(".") + 1)
+	var stage_name := get_name_id().substr(get_name_id().rfind(".") + 1)
 	var value: Variant = null
 	while true:
 		cfg.load("res://assets/skins/%s/properties.ini" % stage_name)
@@ -269,7 +218,7 @@ func get_property(section: String, key: String, default: Variant = null) -> Vari
 
 
 # TODO: This is not accurate, we need to collect data about DemonCrawl's generation
-#static func generate(base: QuestFile.StageFile, rng: RandomNumberGenerator) -> Stage: # (stage_name: String, index: int, toughness: float, rng: RandomNumberGenerator) -> Stage:
+#static func generate(base: QuestFile.StageTemplate, rng: RandomNumberGenerator) -> Stage: # (stage_name: String, index: int, toughness: float, rng: RandomNumberGenerator) -> Stage:
 	#var stage := Stage.new(base.name)
 	#
 	#stage.size.x = rng.randi_range(base.size[0], base.size[-1])

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=3 format=3 uid="uid://c1wn24cqm8vb"]
+
+[ext_resource type="AudioStream" uid="uid://bsurjwjwea8y0" path="res://assets/skins/hidden/music.ogg" id="1_kl70m"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_lj43r"]
+
+[resource]
+script = ExtResource("1_lj43r")
+name = "stage.hidden"
+music = ExtResource("1_kl70m")

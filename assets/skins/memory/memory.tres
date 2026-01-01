@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://3wkgwpruu5bs"]
+
+[ext_resource type="AudioStream" uid="uid://kddksg7q5qd8" path="res://assets/skins/memory/ambience_a.ogg" id="1_4c0ly"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_x5h5v"]
+[ext_resource type="AudioStream" uid="uid://bcgvd76isi04m" path="res://assets/skins/memory/ambience_b.ogg" id="2_oggfd"]
+[ext_resource type="Texture2D" uid="uid://ba841pflv6uf8" path="res://assets/skins/memory/bg.png" id="3_hwk34"]
+[ext_resource type="Texture2D" uid="uid://61llpuia8w5i" path="res://assets/skins/memory/empty.png" id="4_mvt4q"]
+[ext_resource type="Texture2D" uid="uid://cnmrm2ssukwnl" path="res://assets/skins/memory/checking.png" id="5_iuvgk"]
+[ext_resource type="Texture2D" uid="uid://dfw0hew0v46km" path="res://assets/skins/memory/flag.png" id="6_2gsge"]
+[ext_resource type="Texture2D" uid="uid://c7bodkc3r77b1" path="res://assets/skins/memory/flag_bg.png" id="7_hhhj5"]
+[ext_resource type="Texture2D" uid="uid://qi8xkowro0yv" path="res://assets/skins/memory/full.png" id="8_ciw22"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="9_quqdh"]
+[ext_resource type="AudioStream" uid="uid://i15wyohlsq8d" path="res://assets/skins/memory/music.ogg" id="10_djfdn"]
+
+[sub_resource type="Resource" id="Resource_xhwp4"]
+script = ExtResource("9_quqdh")
+data = {
+&"en": PackedStringArray("Gastropod", "Escargot", "Mollusk", "Slug", "Snail")
+}
+
+[resource]
+script = ExtResource("1_x5h5v")
+name = "stage.memory"
+bg = ExtResource("3_hwk34")
+monster_name_pool = SubResource("Resource_xhwp4")
+music = ExtResource("10_djfdn")
+ambience_a = ExtResource("1_4c0ly")
+ambience_b = ExtResource("2_oggfd")
+cell_bg = ExtResource("4_mvt4q")
+cell_hidden = ExtResource("8_ciw22")
+cell_checking = ExtResource("5_iuvgk")
+cell_flag = ExtResource("6_2gsge")
+cell_flag_bg = ExtResource("7_hhhj5")

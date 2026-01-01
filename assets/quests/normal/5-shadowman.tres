@@ -1,11 +1,21 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=18 format=3 uid="uid://xvwdvsqap7uq"]
+[gd_resource type="Resource" script_class="QuestFile" load_steps=28 format=3 uid="uid://xvwdvsqap7uq"]
 
 [ext_resource type="Resource" uid="uid://cmgsgbfsp2eq7" path="res://assets/quests/default_generation_sequence.tres" id="1_ftxme"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_gio0p"]
 [ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="3_sy4d3"]
-[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file_base.gd" id="4_04o3n"]
-[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file.gd" id="4_27io0"]
+[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template_base.gd" id="4_04o3n"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template.gd" id="4_27io0"]
 [ext_resource type="Resource" uid="uid://jt0gtyhyhjkp" path="res://assets/token_shop/upgrades/q5-shadowman.tres" id="5_57whx"]
+[ext_resource type="Resource" uid="uid://budfv4n1wfppc" path="res://assets/skins/entropy/entropy.tres" id="5_yp6nb"]
+[ext_resource type="Resource" uid="uid://b5vsiwq4kqi7v" path="res://assets/skins/lagoon/lagoon.tres" id="7_gjdpo"]
+[ext_resource type="Resource" uid="uid://48f7i3hvwehd" path="res://assets/skins/galaxy/galaxy.tres" id="8_ykreo"]
+[ext_resource type="Resource" uid="uid://dqkcov85fycvr" path="res://assets/skins/womb/womb.tres" id="9_n58d3"]
+[ext_resource type="Resource" uid="uid://ccw8b6ltvtdyj" path="res://assets/skins/convoy/convoy.tres" id="10_sr6qq"]
+[ext_resource type="Resource" uid="uid://dp3ryf65pmf6n" path="res://assets/skins/metropolis/metropolis.tres" id="11_hl00y"]
+[ext_resource type="Resource" uid="uid://15xru81revpg" path="res://assets/skins/hinterland/hinterland.tres" id="12_t65vv"]
+[ext_resource type="Resource" uid="uid://b7fp3vs3is4bt" path="res://assets/skins/tower/tower.tres" id="13_m3clw"]
+[ext_resource type="Resource" uid="uid://dmmvh1teb4ujd" path="res://assets/skins/glass/glass.tres" id="14_0aodt"]
+[ext_resource type="Resource" uid="uid://ci3lhfhwsanlg" path="res://assets/skins/minefield/minefield.tres" id="15_qevji"]
 
 [sub_resource type="Texture2D" id="Texture2D_bpcax"]
 resource_local_to_scene = false
@@ -15,7 +25,7 @@ name = "quest/5"
 
 [sub_resource type="Resource" id="Resource_8oyvu"]
 script = ExtResource("4_27io0")
-name = "stage.entropy"
+file = ExtResource("5_yp6nb")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -27,7 +37,7 @@ size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_rgivt"]
 script = ExtResource("4_27io0")
-name = "stage.lagoon"
+file = ExtResource("7_gjdpo")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -39,7 +49,7 @@ size_maximum = 8
 
 [sub_resource type="Resource" id="Resource_wpbqx"]
 script = ExtResource("4_27io0")
-name = "stage.galaxy"
+file = ExtResource("8_ykreo")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1
@@ -51,7 +61,7 @@ size_maximum = 10
 
 [sub_resource type="Resource" id="Resource_pp2ut"]
 script = ExtResource("4_27io0")
-name = "stage.womb"
+file = ExtResource("9_n58d3")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 2
@@ -63,7 +73,7 @@ size_maximum = 11
 
 [sub_resource type="Resource" id="Resource_qwhsj"]
 script = ExtResource("4_27io0")
-name = "stage.convoy"
+file = ExtResource("10_sr6qq")
 min_power_minimum = 1
 min_power_maximum = 2
 max_power_minimum = 4
@@ -75,7 +85,7 @@ size_maximum = 13
 
 [sub_resource type="Resource" id="Resource_sww72"]
 script = ExtResource("4_27io0")
-name = "stage.metropolis"
+file = ExtResource("11_hl00y")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -87,7 +97,7 @@ size_maximum = 12
 
 [sub_resource type="Resource" id="Resource_gqq0w"]
 script = ExtResource("4_27io0")
-name = "stage.hinterland"
+file = ExtResource("12_t65vv")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -99,7 +109,7 @@ size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_jh6r2"]
 script = ExtResource("4_27io0")
-name = "stage.tower"
+file = ExtResource("13_m3clw")
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 6
@@ -111,7 +121,7 @@ size_maximum = 15
 
 [sub_resource type="Resource" id="Resource_n4513"]
 script = ExtResource("4_27io0")
-name = "stage.glass"
+file = ExtResource("14_0aodt")
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7
@@ -123,7 +133,7 @@ size_maximum = 16
 
 [sub_resource type="Resource" id="Resource_w03sx"]
 script = ExtResource("4_27io0")
-name = "stage.minefield"
+file = ExtResource("15_qevji")
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 7

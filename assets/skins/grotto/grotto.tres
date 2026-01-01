@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://cunev662fe17v"]
+
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_l7p2q"]
+[ext_resource type="AudioStream" uid="uid://dcrimevem1sm0" path="res://assets/skins/grotto/ambience_a.ogg" id="1_stixg"]
+[ext_resource type="AudioStream" uid="uid://bmqsdrm0ckrrf" path="res://assets/skins/grotto/ambience_b.ogg" id="2_06x2n"]
+[ext_resource type="Texture2D" uid="uid://cevxqym8y63vh" path="res://assets/skins/grotto/bg.png" id="3_t6qgl"]
+[ext_resource type="Texture2D" uid="uid://ihyvv2c7ywte" path="res://assets/skins/grotto/empty.png" id="4_msli6"]
+[ext_resource type="Texture2D" uid="uid://d12rbgq62xmkk" path="res://assets/skins/grotto/checking.png" id="5_mn1i2"]
+[ext_resource type="Texture2D" uid="uid://dylm34g2j7csw" path="res://assets/skins/grotto/flag.png" id="6_qcx0l"]
+[ext_resource type="Texture2D" uid="uid://b13ukemns5rnm" path="res://assets/skins/grotto/flag_bg.png" id="7_27ub1"]
+[ext_resource type="Texture2D" uid="uid://d0vnywj14v3dr" path="res://assets/skins/grotto/full.png" id="8_b6fve"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="9_w7ojw"]
+[ext_resource type="AudioStream" uid="uid://bioh7g0ls2a2h" path="res://assets/skins/grotto/music.ogg" id="10_n8ipy"]
+
+[sub_resource type="Resource" id="Resource_vvi4q"]
+script = ExtResource("9_w7ojw")
+data = {
+&"en": PackedStringArray("Bat", "Bloodsucker", "Flapper")
+}
+
+[resource]
+script = ExtResource("1_l7p2q")
+name = "stage.grotto"
+bg = ExtResource("3_t6qgl")
+monster_name_pool = SubResource("Resource_vvi4q")
+music = ExtResource("10_n8ipy")
+ambience_a = ExtResource("1_stixg")
+ambience_b = ExtResource("2_06x2n")
+cell_bg = ExtResource("4_msli6")
+cell_hidden = ExtResource("8_b6fve")
+cell_checking = ExtResource("5_mn1i2")
+cell_flag = ExtResource("6_qcx0l")
+cell_flag_bg = ExtResource("7_27ub1")

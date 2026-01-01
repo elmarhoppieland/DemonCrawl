@@ -1,6 +1,6 @@
 @abstract
 extends Resource
-class_name StageFileBase
+class_name StageTemplateBase
 
 # ==============================================================================
 

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://b83lfdmp7tvey"]
+
+[ext_resource type="Texture2D" uid="uid://b8vqdv6lskqqe" path="res://assets/skins/crypt/bg.png" id="1_1athk"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_7lhtr"]
+[ext_resource type="Texture2D" uid="uid://02fpoe87xb50" path="res://assets/skins/crypt/empty.png" id="2_0dbfr"]
+[ext_resource type="Texture2D" uid="uid://bj2dnsyhnbvl0" path="res://assets/skins/crypt/checking.png" id="3_xg2yn"]
+[ext_resource type="Texture2D" uid="uid://biwww072svcr8" path="res://assets/skins/crypt/coin.png" id="4_uo51u"]
+[ext_resource type="Texture2D" uid="uid://psjr2rjnihh3" path="res://assets/skins/crypt/flag.png" id="5_qe4ey"]
+[ext_resource type="Texture2D" uid="uid://b6valpvipff8d" path="res://assets/skins/crypt/flag_bg.png" id="6_e3pgh"]
+[ext_resource type="Texture2D" uid="uid://b8bk853dldx88" path="res://assets/skins/crypt/heart.png" id="7_d7df0"]
+[ext_resource type="Texture2D" uid="uid://d2tdbdslc7ewn" path="res://assets/skins/crypt/full.png" id="8_bq355"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="9_5thkq"]
+[ext_resource type="AudioStream" uid="uid://fodjdrpiogjr" path="res://assets/skins/crypt/music.ogg" id="10_otfmf"]
+
+[sub_resource type="Resource" id="Resource_dihuv"]
+script = ExtResource("9_5thkq")
+data = {
+&"en": PackedStringArray("Reaper", "Death", "Harvester", "Psychopomp")
+}
+
+[resource]
+script = ExtResource("1_7lhtr")
+name = "stage.crypt"
+bg = ExtResource("1_1athk")
+monster_name_pool = SubResource("Resource_dihuv")
+music = ExtResource("10_otfmf")
+cell_bg = ExtResource("2_0dbfr")
+cell_hidden = ExtResource("8_bq355")
+cell_checking = ExtResource("3_xg2yn")
+cell_flag = ExtResource("5_qe4ey")
+cell_flag_bg = ExtResource("6_e3pgh")
+cell_coin_palette = ExtResource("4_uo51u")
+cell_heart_palette = ExtResource("7_d7df0")

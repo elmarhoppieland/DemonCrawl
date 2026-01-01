@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=15 format=3 uid="uid://crad4d3ck0y2j"]
+
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_a51lq"]
+[ext_resource type="AudioStream" uid="uid://dc8d4q5x7uh2b" path="res://assets/skins/dungeon/ambience_a.ogg" id="1_wetl7"]
+[ext_resource type="AudioStream" uid="uid://bg1skqrnm4up0" path="res://assets/skins/dungeon/ambience_b.ogg" id="2_2beob"]
+[ext_resource type="Texture2D" uid="uid://bqolaxtirqwkd" path="res://assets/skins/dungeon/bg.png" id="3_gtdeg"]
+[ext_resource type="Texture2D" uid="uid://disdo5yqj7dq7" path="res://assets/skins/dungeon/empty.png" id="4_cmymh"]
+[ext_resource type="Texture2D" uid="uid://csa4vgyhvk221" path="res://assets/skins/dungeon/checking.png" id="5_4lo1f"]
+[ext_resource type="Texture2D" uid="uid://eof5umfy77bl" path="res://assets/skins/dungeon/coin.png" id="6_3uat2"]
+[ext_resource type="Texture2D" uid="uid://p2y32nknjjeb" path="res://assets/skins/dungeon/flag.png" id="7_65ruv"]
+[ext_resource type="Texture2D" uid="uid://bxbgx1thrn23e" path="res://assets/skins/dungeon/flag_bg.png" id="8_mddfm"]
+[ext_resource type="Texture2D" uid="uid://on6p6pgjh6kt" path="res://assets/skins/dungeon/heart.png" id="9_hh6kf"]
+[ext_resource type="Texture2D" uid="uid://fpjv6gnc4ra0" path="res://assets/skins/dungeon/full.png" id="10_t3ta1"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_clifa"]
+[ext_resource type="AudioStream" uid="uid://chr0hqum7m7i4" path="res://assets/skins/dungeon/music.ogg" id="12_7skpm"]
+
+[sub_resource type="Resource" id="Resource_4daha"]
+script = ExtResource("11_clifa")
+data = {
+&"en": PackedStringArray("Reaper", "Death", "Harvester", "Psychopomp")
+}
+
+[resource]
+script = ExtResource("1_a51lq")
+name = "stage.dungeon"
+bg = ExtResource("3_gtdeg")
+monster_name_pool = SubResource("Resource_4daha")
+music = ExtResource("12_7skpm")
+ambience_a = ExtResource("1_wetl7")
+ambience_b = ExtResource("2_2beob")
+cell_bg = ExtResource("4_cmymh")
+cell_hidden = ExtResource("10_t3ta1")
+cell_checking = ExtResource("5_4lo1f")
+cell_flag = ExtResource("7_65ruv")
+cell_flag_bg = ExtResource("8_mddfm")
+cell_coin_palette = ExtResource("6_3uat2")
+cell_heart_palette = ExtResource("9_hh6kf")

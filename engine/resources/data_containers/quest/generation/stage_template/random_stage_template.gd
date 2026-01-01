@@ -1,6 +1,6 @@
 @tool
-extends StageFile
-class_name RandomStageFile
+extends StageTemplate
+class_name RandomStageTemplate
 
 # ==============================================================================
 # TODO: filter this list (maybe add it to the register?)
@@ -10,10 +10,11 @@ static var stage_list := DirAccess.get_directories_at("res://assets/skins/")
 
 func _generate() -> Stage:
 	var stage := super()
-	stage.name_id = "stage." + stage_list[randi() % stage_list.size()]
+	var stage_name := stage_list[randi() % stage_list.size()]
+	stage.file = load("res://assets/skins/%s/%s" % [stage_name, stage_name])
 	return stage
 
 
 func _validate_property(property: Dictionary) -> void:
-	if property.name == &"name":
+	if property.name == &"file":
 		property.usage &= ~PROPERTY_USAGE_DEFAULT

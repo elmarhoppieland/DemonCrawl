@@ -5,13 +5,8 @@ class_name StringTable
 # ==============================================================================
 static var _selected_locale := "en"
 # ==============================================================================
-var data := {}
+@export_custom(PROPERTY_HINT_NONE, "", PROPERTY_USAGE_STORAGE) var data := {}
 # ==============================================================================
-
-func _validate_property(property: Dictionary) -> void:
-	if property.name == "data":
-		property.usage |= PROPERTY_USAGE_STORAGE
-
 
 func _get_property_list() -> Array[Dictionary]:
 	var property_list: Array[Dictionary] = [{
@@ -44,9 +39,12 @@ func _set(property: StringName, value: Variant) -> bool:
 	
 	match property:
 		&"locale":
+			if _selected_locale in data and data[_selected_locale].is_empty():
+				data.erase(_selected_locale)
 			_selected_locale = value
-			if not _selected_locale in data:
+			if _selected_locale not in data:
 				data[_selected_locale] = PackedStringArray()
+			notify_property_list_changed()
 		&"string_count":
 			value = maxi(0, value)
 			

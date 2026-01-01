@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=14 format=3 uid="uid://cp15fl5m4nuor"]
+
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_nlxbk"]
+[ext_resource type="AudioStream" uid="uid://bi1pv10gnl758" path="res://assets/skins/bloodway/ambience_a.ogg" id="1_tsiqd"]
+[ext_resource type="AudioStream" uid="uid://dqf2ptlxak6ip" path="res://assets/skins/bloodway/ambience_b.ogg" id="2_ejqqj"]
+[ext_resource type="Texture2D" uid="uid://cusxxvlryfdbd" path="res://assets/skins/bloodway/bg.png" id="3_s6f0j"]
+[ext_resource type="Texture2D" uid="uid://euhju558vfxy" path="res://assets/skins/bloodway/empty.png" id="4_ekxvc"]
+[ext_resource type="Texture2D" uid="uid://c7ku3mxwo05s6" path="res://assets/skins/bloodway/checking.png" id="5_vujad"]
+[ext_resource type="Texture2D" uid="uid://3nw7j8n7p5uc" path="res://assets/skins/bloodway/flag.png" id="6_41oaj"]
+[ext_resource type="Texture2D" uid="uid://kqwrh5sts4gh" path="res://assets/skins/bloodway/flag_bg.png" id="7_12b56"]
+[ext_resource type="Texture2D" uid="uid://bwu8irem50wgh" path="res://assets/skins/bloodway/heart.png" id="8_4bqb5"]
+[ext_resource type="Texture2D" uid="uid://f1dfcn2mfwh0" path="res://assets/skins/bloodway/full.png" id="9_e4j6w"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="10_4rika"]
+[ext_resource type="AudioStream" uid="uid://cj43mqyi0cf2e" path="res://assets/skins/bloodway/music.ogg" id="11_wuayc"]
+
+[sub_resource type="Resource" id="Resource_yo5tl"]
+script = ExtResource("10_4rika")
+data = {
+&"en": PackedStringArray("Ectoplasm", "Plasma", "Psychocell")
+}
+
+[resource]
+script = ExtResource("1_nlxbk")
+name = "stage.bloodway"
+bg = ExtResource("3_s6f0j")
+monster_name_pool = SubResource("Resource_yo5tl")
+music = ExtResource("11_wuayc")
+ambience_a = ExtResource("1_tsiqd")
+ambience_b = ExtResource("2_ejqqj")
+cell_bg = ExtResource("4_ekxvc")
+cell_hidden = ExtResource("9_e4j6w")
+cell_checking = ExtResource("5_vujad")
+cell_flag = ExtResource("6_41oaj")
+cell_flag_bg = ExtResource("7_12b56")
+cell_heart_palette = ExtResource("8_4bqb5")

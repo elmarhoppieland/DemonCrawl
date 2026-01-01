@@ -3,9 +3,9 @@
 [ext_resource type="Resource" uid="uid://cmgsgbfsp2eq7" path="res://assets/quests/default_generation_sequence.tres" id="1_d3m0b"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_hxaby"]
 [ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="2_wrs1r"]
-[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file_base.gd" id="3_uwofr"]
-[ext_resource type="Script" uid="uid://blmciji5vcvge" path="res://engine/resources/data_containers/quest/generation/stage_file/random_stage_file.gd" id="4_q81aj"]
-[ext_resource type="Script" uid="uid://dyauh1wy7yfc7" path="res://engine/resources/data_containers/quest/generation/stage_file/portal_stage_file.gd" id="5_2yjai"]
+[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template_base.gd" id="3_uwofr"]
+[ext_resource type="Script" uid="uid://blmciji5vcvge" path="res://engine/resources/data_containers/quest/generation/stage_template/random_stage_template.gd" id="4_q81aj"]
+[ext_resource type="Script" uid="uid://dyauh1wy7yfc7" path="res://engine/resources/data_containers/quest/generation/stage_template/portal_stage_template.gd" id="5_2yjai"]
 
 [sub_resource type="Texture2D" id="Texture2D_bpcax"]
 resource_local_to_scene = false
@@ -128,7 +128,6 @@ min_power_multi = 1.1
 max_power_multi = 1.1
 density_multi = 1.1
 size_multi = 1.1
-name = "stage.metagate"
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 1

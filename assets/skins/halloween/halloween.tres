@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://cesesm3cs7l8c"]
+
+[ext_resource type="Texture2D" uid="uid://cbgqt05gio1dk" path="res://assets/skins/halloween/bg.png" id="1_7d1af"]
+[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_nvubv"]
+[ext_resource type="Texture2D" uid="uid://b7s7pwiu772ps" path="res://assets/skins/halloween/empty.png" id="2_mx27x"]
+[ext_resource type="Texture2D" uid="uid://djk1skrg424jd" path="res://assets/skins/halloween/checking.png" id="3_rr0r1"]
+[ext_resource type="Texture2D" uid="uid://fdsvms63mp5g" path="res://assets/skins/halloween/coin.png" id="4_wc1cj"]
+[ext_resource type="Texture2D" uid="uid://bwnrqcowgbjw8" path="res://assets/skins/halloween/flag.png" id="5_4w8ny"]
+[ext_resource type="Texture2D" uid="uid://dxmc8uhwt7smd" path="res://assets/skins/halloween/flag_bg.png" id="6_43o6n"]
+[ext_resource type="Texture2D" uid="uid://dk0anfih8at8" path="res://assets/skins/halloween/heart.png" id="7_250jh"]
+[ext_resource type="Texture2D" uid="uid://nfefl434s6et" path="res://assets/skins/halloween/full.png" id="8_s2b76"]
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="9_uqxqx"]
+[ext_resource type="AudioStream" uid="uid://dhmunhtemsc2f" path="res://assets/skins/halloween/music.ogg" id="10_vmxms"]
+
+[sub_resource type="Resource" id="Resource_e15xv"]
+script = ExtResource("9_uqxqx")
+data = {
+&"en": PackedStringArray("Zombie", "Rotter", "Shambler", "Undead")
+}
+
+[resource]
+script = ExtResource("1_nvubv")
+name = "stage.halloween"
+bg = ExtResource("1_7d1af")
+monster_name_pool = SubResource("Resource_e15xv")
+music = ExtResource("10_vmxms")
+cell_bg = ExtResource("2_mx27x")
+cell_hidden = ExtResource("8_s2b76")
+cell_checking = ExtResource("3_rr0r1")
+cell_flag = ExtResource("5_4w8ny")
+cell_flag_bg = ExtResource("6_43o6n")
+cell_coin_palette = ExtResource("4_wc1cj")
+cell_heart_palette = ExtResource("7_250jh")
