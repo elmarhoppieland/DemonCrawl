@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="StageFile" load_steps=12 format=3 uid="uid://ca4rpm3yl867b"]
 
 [ext_resource type="Texture2D" uid="uid://bsrmgx7wovtvl" path="res://assets/skins/wonder/bg.png" id="1_aub2o"]
-[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_uo5kq"]
+[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_uo5kq"]
 [ext_resource type="Texture2D" uid="uid://n7a3twk8sxk8" path="res://assets/skins/wonder/empty.png" id="2_npnmk"]
 [ext_resource type="Texture2D" uid="uid://de8ea66v1s7io" path="res://assets/skins/wonder/checking.png" id="3_pr1fa"]
 [ext_resource type="Texture2D" uid="uid://tb2udbg08fp8" path="res://assets/skins/wonder/flag.png" id="4_6irsg"]

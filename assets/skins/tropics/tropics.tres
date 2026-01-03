@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://dj02wrpb3x8ul"]
 
-[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_3js85"]
+[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_3js85"]
 [ext_resource type="AudioStream" uid="uid://caqsqurjicicp" path="res://assets/skins/tropics/ambience_a.ogg" id="1_yy1li"]
 [ext_resource type="AudioStream" uid="uid://c7l8qavr0qn50" path="res://assets/skins/tropics/ambience_b.ogg" id="2_d82cu"]
 [ext_resource type="Texture2D" uid="uid://bcg0nujrits0f" path="res://assets/skins/tropics/bg.png" id="3_42m0m"]

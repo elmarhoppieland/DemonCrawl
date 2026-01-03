@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="StageFile" load_steps=15 format=3 uid="uid://dag8iypewh1bj"]
 
 [ext_resource type="AudioStream" uid="uid://brgxemyd8jjdd" path="res://assets/skins/hell/ambience_a.ogg" id="1_gojw8"]
-[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_ybwo8"]
+[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_ybwo8"]
 [ext_resource type="AudioStream" uid="uid://ccfflhfuk16d8" path="res://assets/skins/hell/ambience_b.ogg" id="2_1pnt1"]
 [ext_resource type="Texture2D" uid="uid://bmyficvvugkev" path="res://assets/skins/hell/bg.png" id="3_mlo0b"]
 [ext_resource type="Texture2D" uid="uid://dnhsdi8m31lch" path="res://assets/skins/hell/empty.png" id="4_nn21v"]
@@ -24,7 +24,6 @@ data = {
 script = ExtResource("1_ybwo8")
 name = "stage.hell"
 bg = ExtResource("3_mlo0b")
-normal = null
 monster_name_pool = SubResource("Resource_0i5lq")
 music = ExtResource("12_eashk")
 ambience_a = ExtResource("1_gojw8")

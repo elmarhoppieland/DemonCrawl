@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://b83lfdmp7tvey"]
 
 [ext_resource type="Texture2D" uid="uid://b8vqdv6lskqqe" path="res://assets/skins/crypt/bg.png" id="1_1athk"]
-[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_7lhtr"]
+[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_7lhtr"]
 [ext_resource type="Texture2D" uid="uid://02fpoe87xb50" path="res://assets/skins/crypt/empty.png" id="2_0dbfr"]
 [ext_resource type="Texture2D" uid="uid://bj2dnsyhnbvl0" path="res://assets/skins/crypt/checking.png" id="3_xg2yn"]
 [ext_resource type="Texture2D" uid="uid://biwww072svcr8" path="res://assets/skins/crypt/coin.png" id="4_uo51u"]

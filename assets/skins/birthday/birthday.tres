@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="StageFile" load_steps=12 format=3 uid="uid://o7heq3ufca2f"]
 
 [ext_resource type="Texture2D" uid="uid://13fd2h38jn6b" path="res://assets/skins/birthday/bg.png" id="1_ifbn1"]
-[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_w87hn"]
+[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_w87hn"]
 [ext_resource type="Texture2D" uid="uid://3kq2nf5kkr26" path="res://assets/skins/birthday/empty.png" id="2_v37hv"]
 [ext_resource type="Texture2D" uid="uid://hge4kpdevy80" path="res://assets/skins/birthday/checking.png" id="3_u4tpw"]
 [ext_resource type="Texture2D" uid="uid://cacqq48aspog3" path="res://assets/skins/birthday/flag.png" id="4_os3nl"]

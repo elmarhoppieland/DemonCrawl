@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://di1y00xpxjj22"]
 
 [ext_resource type="Texture2D" uid="uid://c5gtwgap6hbkb" path="res://assets/skins/doom/bg.png" id="1_cuqc0"]
-[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_hp7lh"]
+[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_hp7lh"]
 [ext_resource type="Texture2D" uid="uid://b3h2yc40qe717" path="res://assets/skins/doom/empty.png" id="2_5e7yn"]
 [ext_resource type="Texture2D" uid="uid://ccb5fd767a84" path="res://assets/skins/doom/checking.png" id="3_cnu2e"]
 [ext_resource type="Texture2D" uid="uid://bikxmy2qg2s6h" path="res://assets/skins/doom/coin.png" id="4_f8hxb"]

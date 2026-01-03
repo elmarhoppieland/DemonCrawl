@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://cu3gm4yd7kq7s"]
 
-[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_2cqpb"]
+[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_2cqpb"]
 [ext_resource type="Texture2D" uid="uid://h2iy56hxx7uf" path="res://assets/skins/summer/bg.png" id="1_jh05h"]
 [ext_resource type="Texture2D" uid="uid://b7tlpbxjvu0jt" path="res://assets/skins/summer/empty.png" id="2_dbrij"]
 [ext_resource type="Texture2D" uid="uid://4apv2vhpagvh" path="res://assets/skins/summer/checking.png" id="3_mjoo4"]

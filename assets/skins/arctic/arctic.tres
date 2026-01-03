@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://ctfrgoji4wr1n"]
 
 [ext_resource type="AudioStream" uid="uid://djbsurw18a07" path="res://assets/skins/arctic/ambience_a.ogg" id="1_70xd8"]
-[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_dwg2t"]
+[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_dwg2t"]
 [ext_resource type="AudioStream" uid="uid://dwhpid05cw7kj" path="res://assets/skins/arctic/ambience_b.ogg" id="2_dfynh"]
 [ext_resource type="Texture2D" uid="uid://dywtpm40fhnfo" path="res://assets/skins/arctic/bg.png" id="3_mlraq"]
 [ext_resource type="Texture2D" uid="uid://bnlxcejadrr3v" path="res://assets/skins/arctic/empty.png" id="4_m8d2h"]

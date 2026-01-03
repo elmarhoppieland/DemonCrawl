@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://b1x3wfqyyj1ro"]
 
-[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_7pqqw"]
+[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_7pqqw"]
 [ext_resource type="Texture2D" uid="uid://c3jq1d7bc4cs8" path="res://assets/skins/salem/bg.png" id="1_io25q"]
 [ext_resource type="Texture2D" uid="uid://rjdmjslj5gc0" path="res://assets/skins/salem/empty.png" id="2_7wlax"]
 [ext_resource type="Texture2D" uid="uid://njf0difw7wnj" path="res://assets/skins/salem/checking.png" id="3_f16ye"]

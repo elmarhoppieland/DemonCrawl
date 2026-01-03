@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://cesesm3cs7l8c"]
 
 [ext_resource type="Texture2D" uid="uid://cbgqt05gio1dk" path="res://assets/skins/halloween/bg.png" id="1_7d1af"]
-[ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_nvubv"]
+[ext_resource type="Script" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_nvubv"]
 [ext_resource type="Texture2D" uid="uid://b7s7pwiu772ps" path="res://assets/skins/halloween/empty.png" id="2_mx27x"]
 [ext_resource type="Texture2D" uid="uid://djk1skrg424jd" path="res://assets/skins/halloween/checking.png" id="3_rr0r1"]
 [ext_resource type="Texture2D" uid="uid://fdsvms63mp5g" path="res://assets/skins/halloween/coin.png" id="4_wc1cj"]
@@ -22,7 +22,6 @@ data = {
 script = ExtResource("1_nvubv")
 name = "stage.halloween"
 bg = ExtResource("1_7d1af")
-normal = null
 monster_name_pool = SubResource("Resource_e15xv")
 music = ExtResource("10_vmxms")
 cell_bg = ExtResource("2_mx27x")
