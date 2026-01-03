@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://2pddyb3wf24c"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=18 format=3 uid="uid://2pddyb3wf24c"]
 
 [ext_resource type="AudioStream" uid="uid://b3oqa5eswgx17" path="res://assets/skins/cavern/ambience_a.ogg" id="1_rce27"]
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_xs4dc"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cmcn0qvsmvhnv" path="res://assets/skins/cavern/full.png" id="10_6qc0r"]
 [ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_nih66"]
 [ext_resource type="Texture2D" uid="uid://d33ctcm2bcakp" path="res://assets/skins/cavern/monster.png" id="12_2boas"]
+[ext_resource type="Script" uid="uid://fagfups2w8dt" path="res://engine/resources/helper_objects/animated_texture_sequence.gd" id="13_i8e2d"]
 [ext_resource type="AudioStream" uid="uid://3jfvms7v46ei" path="res://assets/skins/cavern/music.ogg" id="13_liepk"]
 
 [sub_resource type="Resource" id="Resource_oomwx"]
@@ -21,11 +22,17 @@ data = {
 &"en": PackedStringArray("Blob", "Bubbling Mass", "Mire", "Ooze", "Slime", "Sludge", "Thing")
 }
 
+[sub_resource type="Texture2D" id="Texture2D_fyblv"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("13_i8e2d")
+atlas = ExtResource("12_2boas")
+
 [resource]
 script = ExtResource("1_xs4dc")
 name = "stage.cavern"
 bg = ExtResource("3_fyblv")
-monster_texture = ExtResource("12_2boas")
+monster_texture = SubResource("Texture2D_fyblv")
 monster_name_pool = SubResource("Resource_oomwx")
 music = ExtResource("13_liepk")
 ambience_a = ExtResource("1_rce27")

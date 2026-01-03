@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://bxrt45hmk0u5e"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=18 format=3 uid="uid://bxrt45hmk0u5e"]
 
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_5v5jp"]
 [ext_resource type="AudioStream" uid="uid://5jv3474iedjw" path="res://assets/skins/brink/ambience_a.ogg" id="1_ssrkk"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dh20r1b3dt4ph" path="res://assets/skins/brink/full.png" id="10_5wmfq"]
 [ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_q8lp3"]
 [ext_resource type="Texture2D" uid="uid://cy606qxkx0i2y" path="res://assets/skins/brink/monster.png" id="12_jjvnx"]
+[ext_resource type="Script" uid="uid://fagfups2w8dt" path="res://engine/resources/helper_objects/animated_texture_sequence.gd" id="13_cvlbf"]
 [ext_resource type="AudioStream" uid="uid://clkl0wkw2o7y5" path="res://assets/skins/brink/music.ogg" id="13_iokl3"]
 
 [sub_resource type="Resource" id="Resource_rikgp"]
@@ -21,11 +22,17 @@ data = {
 &"en": PackedStringArray("Behelder", "Aberration", "Cacodemon", "Gazer", "Tyrant")
 }
 
+[sub_resource type="Texture2D" id="Texture2D_b8od3"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("13_cvlbf")
+atlas = ExtResource("12_jjvnx")
+
 [resource]
 script = ExtResource("1_5v5jp")
 name = "stage.brink"
 bg = ExtResource("3_b8od3")
-monster_texture = ExtResource("12_jjvnx")
+monster_texture = SubResource("Texture2D_b8od3")
 monster_name_pool = SubResource("Resource_rikgp")
 music = ExtResource("13_iokl3")
 ambience_a = ExtResource("1_ssrkk")

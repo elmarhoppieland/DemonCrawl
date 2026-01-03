@@ -18,10 +18,12 @@ static func create_stage_files() -> void:
 		else:
 			stage_file = StageFile.new()
 		
-		await stage_file._autofill()
+		await stage_file._autofill(false)
 		
 		ResourceSaver.save(stage_file, path, ResourceSaver.FLAG_CHANGE_PATH)
 		await get_tree().process_frame
+		
+		DemonCrawl.get_full_registry().stages.append(load(path))
 
 
 static func convert_filenames_to_snake_case() -> void:

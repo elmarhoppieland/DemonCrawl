@@ -13,6 +13,7 @@
 script = ExtResource("1_2w6p0")
 name = "stage.october-8-th-1990"
 bg = ExtResource("1_2ejpy")
+normal = false
 music = ExtResource("7_jl56n")
 cell_bg = ExtResource("2_4alje")
 cell_hidden = ExtResource("6_y7tjh")

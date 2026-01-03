@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://bihbwlds868o1"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=18 format=3 uid="uid://bihbwlds868o1"]
 
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_3be0g"]
 [ext_resource type="AudioStream" uid="uid://bexg0brxfjcrd" path="res://assets/skins/desert/ambience_a.ogg" id="1_lvsbo"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b1kwis4rijv63" path="res://assets/skins/desert/full.png" id="10_p425u"]
 [ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_qy3mh"]
 [ext_resource type="Texture2D" uid="uid://n3vngpyfacng" path="res://assets/skins/desert/monster.png" id="12_g7fhl"]
+[ext_resource type="Script" uid="uid://fagfups2w8dt" path="res://engine/resources/helper_objects/animated_texture_sequence.gd" id="13_joiul"]
 [ext_resource type="AudioStream" uid="uid://buktbynj7xn28" path="res://assets/skins/desert/music.ogg" id="13_l3i6f"]
 
 [sub_resource type="Resource" id="Resource_fu3wr"]
@@ -21,11 +22,17 @@ data = {
 &"en": PackedStringArray("Scorpion", "Stinger", "Pincher", "Venom")
 }
 
+[sub_resource type="Texture2D" id="Texture2D_hkr8r"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("13_joiul")
+atlas = ExtResource("12_g7fhl")
+
 [resource]
 script = ExtResource("1_3be0g")
 name = "stage.desert"
 bg = ExtResource("3_hkr8r")
-monster_texture = ExtResource("12_g7fhl")
+monster_texture = SubResource("Texture2D_hkr8r")
 monster_name_pool = SubResource("Resource_fu3wr")
 music = ExtResource("13_l3i6f")
 ambience_a = ExtResource("1_lvsbo")

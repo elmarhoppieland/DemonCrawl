@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://ctfrgoji4wr1n"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=18 format=3 uid="uid://ctfrgoji4wr1n"]
 
 [ext_resource type="AudioStream" uid="uid://djbsurw18a07" path="res://assets/skins/arctic/ambience_a.ogg" id="1_70xd8"]
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_dwg2t"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cr431lyo7j7u5" path="res://assets/skins/arctic/full.png" id="10_o6yxk"]
 [ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_erlyd"]
 [ext_resource type="Texture2D" uid="uid://bnhlty017dalq" path="res://assets/skins/arctic/monster.png" id="12_p1uph"]
+[ext_resource type="Script" uid="uid://fagfups2w8dt" path="res://engine/resources/helper_objects/animated_texture_sequence.gd" id="13_dfynh"]
 [ext_resource type="AudioStream" uid="uid://h3rn0gpancxq" path="res://assets/skins/arctic/music.ogg" id="13_mdav0"]
 
 [sub_resource type="Resource" id="Resource_13l5t"]
@@ -21,11 +22,17 @@ data = {
 &"en": PackedStringArray("Yeti", "Abominable Snowman", "Bigfoot", "Sasquatch")
 }
 
+[sub_resource type="Texture2D" id="Texture2D_mlraq"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("13_dfynh")
+atlas = ExtResource("12_p1uph")
+
 [resource]
 script = ExtResource("1_dwg2t")
 name = "stage.arctic"
 bg = ExtResource("3_mlraq")
-monster_texture = ExtResource("12_p1uph")
+monster_texture = SubResource("Texture2D_mlraq")
 monster_name_pool = SubResource("Resource_13l5t")
 music = ExtResource("13_mdav0")
 ambience_a = ExtResource("1_70xd8")

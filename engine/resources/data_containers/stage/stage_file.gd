@@ -15,26 +15,28 @@ static var _monster_pools_reloaded := Signal() :
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Autofill") var _tool_button_autofill := _autofill
 
-@export var name := ""
+@export var name := "" ## The name of the stage, as a translation [String].
 
-@export var bg: Texture2D
+@export var bg: Texture2D ## The background texture used for this stage. This texture will also be used for the stage icon.
+
+@export var normal := true ## If [code]true[/code], this stage may be chosen by [RandomStageTemplate] and similar classes.
 
 @export_group("Monsters", "monster_")
-@export var monster_texture: Texture2D
-@export var monster_name_pool: StringTable
+@export var monster_texture: Texture2D ## The texture used for the monsters in this stage.
+@export var monster_name_pool: StringTable ## The name pool used for the monsters in this stage.
 
-@export var music: AudioStream
-@export var ambience_a: AudioStream
-@export var ambience_b: AudioStream
+@export var music: AudioStream ## The music played in this stage.
+@export var ambience_a: AudioStream ## The ambience A played in this stage.
+@export var ambience_b: AudioStream ## The ambience B played in this stage.
 
 @export_group("Cell", "cell_")
-@export var cell_bg: Texture2D
-@export var cell_hidden: Texture2D
-@export var cell_checking: Texture2D
-@export var cell_flag: Texture2D
-@export var cell_flag_bg: Texture2D
-@export var cell_coin_palette: Texture2D
-@export var cell_heart_palette: Texture2D
+@export var cell_bg: Texture2D ## The background texture used for visible cells in this stage.
+@export var cell_hidden: Texture2D ## The texture used for hidden cells in this stage.
+@export var cell_checking: Texture2D ## The texture used for cells in this stage that are being checked (i.e. visually pressed down).
+@export var cell_flag: Texture2D ## The texture used for the flag on cells in this stage that are flagged. This will appear on top of [member cell_flag_bg].
+@export var cell_flag_bg: Texture2D ## The background texture used for cells in this stage that are flagged. This will appear below [cell_flag]
+@export var cell_coin_palette: Texture2D ## The palette used for coins in this stage. If set to [code]null[/code], will use the default palette.
+@export var cell_heart_palette: Texture2D ## The palette used for hearts in this stage. If set to [code]null[/code], will use the default palette.
 # ==============================================================================
 var _theme_cache: Theme
 # ==============================================================================
@@ -69,7 +71,7 @@ func create_theme() -> Theme:
 	return theme
 
 
-func _autofill() -> void:
+func _autofill(use_wiki: bool = true) -> void:
 	if resource_path.is_empty():
 		return
 	
@@ -97,7 +99,8 @@ func _autofill() -> void:
 		cell_heart_palette = load(dir.path_join("heart.png"))
 	
 	if ResourceLoader.exists(dir.path_join("monster.png")):
-		monster_texture = load(dir.path_join("monster.png"))
+		monster_texture = AnimatedTextureSequence.new()
+		monster_texture.atlas = load(dir.path_join("monster.png"))
 	
 	if ResourceLoader.exists(dir.path_join("ambience_a.ogg")):
 		ambience_a = load(dir.path_join("ambience_a.ogg"))
@@ -106,10 +109,10 @@ func _autofill() -> void:
 	if ResourceLoader.exists(dir.path_join("music.ogg")):
 		music = load(dir.path_join("music.ogg"))
 	
-	await _autofill_monster_names()
+	await _autofill_monster_names(use_wiki)
 
 
-func _autofill_monster_names() -> void:
+func _autofill_monster_names(use_wiki: bool = true) -> void:
 	if _monster_pools_reloading:
 		await _monster_pools_reloaded
 	
@@ -133,6 +136,9 @@ func _autofill_monster_names() -> void:
 		if not monster_name_pool:
 			monster_name_pool = StringTable.new()
 		monster_name_pool.data.en = _monster_pools_cache[name]
+		return
+	
+	if not use_wiki:
 		return
 	
 	_monster_pools_reloading = true
