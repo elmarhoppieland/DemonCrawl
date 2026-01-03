@@ -21,8 +21,8 @@ class_name StageBase
 		
 		emit_changed()
 # ==============================================================================
-var _icon_small: Texture2D = null : get = get_small_icon
-var _icon_large: Texture2D = null : get = get_large_icon
+var _icon_small: Texture2D = null
+var _icon_large: Texture2D = null
 # ==============================================================================
 
 ## Returns whether this is a special stage. Special stages are skipped when unlocking

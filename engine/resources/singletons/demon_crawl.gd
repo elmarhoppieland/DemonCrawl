@@ -4,6 +4,8 @@ class_name DemonCrawl
 
 # ==============================================================================
 static var _initialized := false
+
+static var _full_registry: Registry : get = get_full_registry
 # ==============================================================================
 
 static func _static_init() -> void:
@@ -30,4 +32,6 @@ static func _static_init() -> void:
 
 
 static func get_full_registry() -> Registry:
-	return load("res://assets/registry.tres")
+	if not _full_registry:
+		_full_registry = load("res://assets/registry.tres")
+	return _full_registry
