@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=18 format=3 uid="uid://bgbu2msnrdx2v"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://bgbu2msnrdx2v"]
 
 [ext_resource type="AudioStream" uid="uid://2y1jfsiuer2s" path="res://assets/skins/ocean/ambience_a.ogg" id="1_46mqv"]
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_gwk17"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://c7rnjll7ldlyo" path="res://assets/skins/ocean/monster.png" id="11_ccu7j"]
 [ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_kofj0"]
 [ext_resource type="AudioStream" uid="uid://crq3yk2cvlvrh" path="res://assets/skins/ocean/music.ogg" id="12_jalr4"]
-[ext_resource type="Script" uid="uid://fagfups2w8dt" path="res://engine/resources/helper_objects/animated_texture_sequence.gd" id="13_t2rvo"]
 
 [sub_resource type="Resource" id="Resource_t2rvo"]
 script = ExtResource("11_kofj0")
@@ -22,17 +21,11 @@ data = {
 &"en": PackedStringArray("Jelly", "Man of War", "Medusa", "Polyp")
 }
 
-[sub_resource type="Texture2D" id="Texture2D_10ojk"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("13_t2rvo")
-atlas = ExtResource("11_ccu7j")
-
 [resource]
 script = ExtResource("1_gwk17")
 name = "stage.ocean"
 bg = ExtResource("3_t2rvo")
-monster_texture = SubResource("Texture2D_10ojk")
+monster_texture = ExtResource("11_ccu7j")
 monster_name_pool = SubResource("Resource_t2rvo")
 music = ExtResource("12_jalr4")
 ambience_a = ExtResource("1_46mqv")

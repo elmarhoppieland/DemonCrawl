@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=18 format=3 uid="uid://rmsx0avfbx3d"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://rmsx0avfbx3d"]
 
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_387ei"]
 [ext_resource type="AudioStream" uid="uid://cnyggskuxp7wg" path="res://assets/skins/wilds/ambience_a.ogg" id="1_k6cyf"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://d162jfm5notoy" path="res://assets/skins/wilds/full.png" id="10_7u8ow"]
 [ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_qi4lt"]
 [ext_resource type="Texture2D" uid="uid://dyctxslmcd76g" path="res://assets/skins/wilds/monster.png" id="12_wnvuv"]
-[ext_resource type="Script" uid="uid://fagfups2w8dt" path="res://engine/resources/helper_objects/animated_texture_sequence.gd" id="13_awccp"]
 [ext_resource type="AudioStream" uid="uid://c46mppcanr2s0" path="res://assets/skins/wilds/music.ogg" id="13_js1lq"]
 
 [sub_resource type="Resource" id="Resource_xhrsj"]
@@ -22,17 +21,11 @@ data = {
 &"en": PackedStringArray("Kobold", "Bugbear", "Greenskin", "Ogre", "Orc")
 }
 
-[sub_resource type="Texture2D" id="Texture2D_k0yy4"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("13_awccp")
-atlas = ExtResource("12_wnvuv")
-
 [resource]
 script = ExtResource("1_387ei")
 name = "stage.wilds"
 bg = ExtResource("3_k0yy4")
-monster_texture = SubResource("Texture2D_k0yy4")
+monster_texture = ExtResource("12_wnvuv")
 monster_name_pool = SubResource("Resource_xhrsj")
 music = ExtResource("13_js1lq")
 ambience_a = ExtResource("1_k6cyf")

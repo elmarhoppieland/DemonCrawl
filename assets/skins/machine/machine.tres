@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=18 format=3 uid="uid://bfl6u4kkf4vdk"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://bfl6u4kkf4vdk"]
 
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_ds4xu"]
 [ext_resource type="AudioStream" uid="uid://bps32mbgl2r6j" path="res://assets/skins/machine/ambience_a.ogg" id="1_u33jv"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://ls6p4gqleko2" path="res://assets/skins/machine/full.png" id="10_50ft8"]
 [ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_0c4e6"]
 [ext_resource type="Texture2D" uid="uid://cooqvbi64exae" path="res://assets/skins/machine/monster.png" id="12_uylhe"]
-[ext_resource type="Script" uid="uid://fagfups2w8dt" path="res://engine/resources/helper_objects/animated_texture_sequence.gd" id="13_4eoky"]
 [ext_resource type="AudioStream" uid="uid://c8y3t3bx4hklw" path="res://assets/skins/machine/music.ogg" id="13_pesf3"]
 
 [sub_resource type="Resource" id="Resource_bxcbp"]
@@ -22,17 +21,11 @@ data = {
 &"en": PackedStringArray("Experiment", "Abomination", "Perversion", "Product")
 }
 
-[sub_resource type="Texture2D" id="Texture2D_smgct"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("13_4eoky")
-atlas = ExtResource("12_uylhe")
-
 [resource]
 script = ExtResource("1_ds4xu")
 name = "stage.machine"
 bg = ExtResource("3_smgct")
-monster_texture = SubResource("Texture2D_smgct")
+monster_texture = ExtResource("12_uylhe")
 monster_name_pool = SubResource("Resource_bxcbp")
 music = ExtResource("13_pesf3")
 ambience_a = ExtResource("1_u33jv")

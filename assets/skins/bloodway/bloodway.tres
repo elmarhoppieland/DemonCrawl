@@ -23,6 +23,7 @@ data = {
 script = ExtResource("1_nlxbk")
 name = "stage.bloodway"
 bg = ExtResource("3_s6f0j")
+normal = null
 monster_name_pool = SubResource("Resource_yo5tl")
 music = ExtResource("11_wuayc")
 ambience_a = ExtResource("1_tsiqd")

@@ -59,10 +59,12 @@ func create_theme() -> Theme:
 	theme.set_icon("flag_bg", "Cell", cell_flag_bg)
 	theme.set_icon("hidden", "Cell", cell_hidden)
 	if monster_texture:
+		var animated := AnimatedTextureSequence.new()
+		animated.atlas = monster_texture
 		if Engine.is_editor_hint():
-			theme.set_icon("monster", "Cell", CustomTextureBase.new(monster_texture))
+			theme.set_icon("monster", "Cell", CustomTextureBase.new(animated))
 		else:
-			theme.set_icon("monster", "Cell", monster_texture)
+			theme.set_icon("monster", "Cell", animated)
 	
 	theme.set_icon("bg", "StageScene", bg)
 	
@@ -99,8 +101,7 @@ func _autofill(use_wiki: bool = true) -> void:
 		cell_heart_palette = load(dir.path_join("heart.png"))
 	
 	if ResourceLoader.exists(dir.path_join("monster.png")):
-		monster_texture = AnimatedTextureSequence.new()
-		monster_texture.atlas = load(dir.path_join("monster.png"))
+		monster_texture = load(dir.path_join("monster.png"))
 	
 	if ResourceLoader.exists(dir.path_join("ambience_a.ogg")):
 		ambience_a = load(dir.path_join("ambience_a.ogg"))

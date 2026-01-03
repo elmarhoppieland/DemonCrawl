@@ -24,6 +24,7 @@ data = {
 script = ExtResource("1_iir0o")
 name = "stage.convoy"
 bg = ExtResource("3_3awup")
+normal = null
 monster_name_pool = SubResource("Resource_s3tdd")
 music = ExtResource("12_csq5m")
 ambience_a = ExtResource("1_dl2x5")

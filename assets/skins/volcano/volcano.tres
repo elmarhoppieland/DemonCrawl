@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=18 format=3 uid="uid://caiqjhvy4vgtp"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://caiqjhvy4vgtp"]
 
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_4vf1g"]
 [ext_resource type="AudioStream" uid="uid://btwrkqlrk3mui" path="res://assets/skins/volcano/ambience_a.ogg" id="1_ole0u"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://dayjkn5s473eq" path="res://assets/skins/volcano/full.png" id="10_b74sp"]
 [ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_awevl"]
 [ext_resource type="Texture2D" uid="uid://d4gv54cp7lxkg" path="res://assets/skins/volcano/monster.png" id="12_siv5h"]
-[ext_resource type="Script" uid="uid://fagfups2w8dt" path="res://engine/resources/helper_objects/animated_texture_sequence.gd" id="13_5hk87"]
 [ext_resource type="AudioStream" uid="uid://opngtks1i2me" path="res://assets/skins/volcano/music.ogg" id="13_uq5rw"]
 
 [sub_resource type="Resource" id="Resource_5feig"]
@@ -22,17 +21,11 @@ data = {
 &"en": PackedStringArray("Magma", "Ember", "Flame", "Ifrit")
 }
 
-[sub_resource type="Texture2D" id="Texture2D_qj52n"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("13_5hk87")
-atlas = ExtResource("12_siv5h")
-
 [resource]
 script = ExtResource("1_4vf1g")
 name = "stage.volcano"
 bg = ExtResource("3_qj52n")
-monster_texture = SubResource("Texture2D_qj52n")
+monster_texture = ExtResource("12_siv5h")
 monster_name_pool = SubResource("Resource_5feig")
 music = ExtResource("13_uq5rw")
 ambience_a = ExtResource("1_ole0u")

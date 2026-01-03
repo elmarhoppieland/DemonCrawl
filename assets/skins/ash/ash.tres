@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=18 format=3 uid="uid://cq7dy8dsruc4u"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://cq7dy8dsruc4u"]
 
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_4gmk2"]
 [ext_resource type="AudioStream" uid="uid://711p5gs5h4dt" path="res://assets/skins/ash/ambience_a.ogg" id="1_hpgss"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="11_b7cp2"]
 [ext_resource type="Texture2D" uid="uid://dbq3tjog3tb34" path="res://assets/skins/ash/monster.png" id="12_vubh8"]
 [ext_resource type="AudioStream" uid="uid://dvee2vpjaoq03" path="res://assets/skins/ash/music.ogg" id="13_m4301"]
-[ext_resource type="Script" uid="uid://fagfups2w8dt" path="res://engine/resources/helper_objects/animated_texture_sequence.gd" id="13_vhuw7"]
 
 [sub_resource type="Resource" id="Resource_y7mdj"]
 script = ExtResource("11_b7cp2")
@@ -22,17 +21,11 @@ data = {
 &"en": PackedStringArray("Wanderer", "Spirit", "Will-o-Wisp")
 }
 
-[sub_resource type="Texture2D" id="Texture2D_4dsh7"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("13_vhuw7")
-atlas = ExtResource("12_vubh8")
-
 [resource]
 script = ExtResource("1_4gmk2")
 name = "stage.ash"
 bg = ExtResource("3_4dsh7")
-monster_texture = SubResource("Texture2D_4dsh7")
+monster_texture = ExtResource("12_vubh8")
 monster_name_pool = SubResource("Resource_y7mdj")
 music = ExtResource("13_m4301")
 ambience_a = ExtResource("1_hpgss")

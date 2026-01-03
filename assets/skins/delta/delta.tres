@@ -24,6 +24,7 @@ data = {
 script = ExtResource("1_jywa1")
 name = "stage.delta"
 bg = ExtResource("3_ekql7")
+normal = null
 monster_name_pool = SubResource("Resource_h3gai")
 music = ExtResource("12_yruon")
 ambience_a = ExtResource("1_jsl5e")

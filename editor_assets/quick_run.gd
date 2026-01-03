@@ -8,6 +8,8 @@ func _run() -> void:
 
 
 static func create_stage_files() -> void:
+	DemonCrawl.get_full_registry().stages.clear()
+	
 	const BASE := "res://assets/skins/"
 	for stage in DirAccess.get_directories_at(BASE):
 		var dir := BASE.path_join(stage)

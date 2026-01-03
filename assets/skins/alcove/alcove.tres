@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=17 format=3 uid="uid://cenuiwh3u4ogb"]
+[gd_resource type="Resource" script_class="StageFile" load_steps=15 format=3 uid="uid://cenuiwh3u4ogb"]
 
 [ext_resource type="AudioStream" uid="uid://0sri35o4tuqe" path="res://assets/skins/alcove/ambience_a.ogg" id="1_3oojo"]
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_5iehn"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://coet67b3cv713" path="res://assets/skins/alcove/full.png" id="9_7wys4"]
 [ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="10_ngue4"]
 [ext_resource type="Texture2D" uid="uid://bpc23a5ruhjej" path="res://assets/skins/alcove/monster.png" id="11_k0qlv"]
-[ext_resource type="Script" uid="uid://fagfups2w8dt" path="res://engine/resources/helper_objects/animated_texture_sequence.gd" id="12_2rhhl"]
 [ext_resource type="AudioStream" uid="uid://bv8rkq186g6tn" path="res://assets/skins/alcove/music.ogg" id="12_sdw6e"]
 
 [sub_resource type="Resource" id="Resource_jdp81"]
@@ -21,17 +20,11 @@ data = {
 &"en": PackedStringArray("Lizard", "Gecko", "Komodo", "Newt", "Reptile", "Salamander")
 }
 
-[sub_resource type="Texture2D" id="Texture2D_mw1fm"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("12_2rhhl")
-atlas = ExtResource("11_k0qlv")
-
 [resource]
 script = ExtResource("1_5iehn")
 name = "stage.alcove"
 bg = ExtResource("3_mw1fm")
-monster_texture = SubResource("Texture2D_mw1fm")
+monster_texture = ExtResource("11_k0qlv")
 monster_name_pool = SubResource("Resource_jdp81")
 music = ExtResource("12_sdw6e")
 ambience_a = ExtResource("1_3oojo")

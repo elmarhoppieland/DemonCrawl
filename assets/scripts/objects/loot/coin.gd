@@ -22,7 +22,7 @@ func _get_palette() -> CompressedTexture2D:
 
 
 func _collect() -> bool:
-	var value: int = EffectManager.propagate_mutable((get_quest().get_event_bus(CoinEffects) as CoinEffects).get_coin_value, 1, self, 1)
+	var value: int = EffectManager.propagate_mutable((get_stage_instance().get_event_bus(CoinEffects) as CoinEffects).get_coin_value, 1, self, 1)
 	get_stats().coins += value
 	
 	get_cell().add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)

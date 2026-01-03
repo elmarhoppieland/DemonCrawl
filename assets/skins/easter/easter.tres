@@ -22,6 +22,7 @@ data = {
 script = ExtResource("1_2hecb")
 name = "stage.easter"
 bg = ExtResource("1_pykua")
+normal = null
 monster_name_pool = SubResource("Resource_empae")
 music = ExtResource("10_nnhrh")
 cell_bg = ExtResource("2_6gcnn")

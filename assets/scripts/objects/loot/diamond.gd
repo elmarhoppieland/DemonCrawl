@@ -23,7 +23,7 @@ func _get_material() -> Material:
 
 
 func _collect() -> bool:
-	var value: int = EffectManager.propagate_mutable((get_quest().get_event_bus(DiamondEffects) as DiamondEffects).get_diamond_value, 1, self, 5)
+	var value: int = EffectManager.propagate_mutable((get_stage_instance().get_event_bus(DiamondEffects) as DiamondEffects).get_diamond_value, 1, self, 5)
 	get_stats().coins += value
 	
 	get_cell().add_text_particle("+" + str(value), TextParticles.ColorPreset.COINS)
