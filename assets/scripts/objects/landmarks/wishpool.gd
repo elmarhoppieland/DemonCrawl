@@ -27,11 +27,15 @@ func _get_material() -> Material:
 
 
 func _enter_tree() -> void:
+	if get_parent() is not CellData or get_cell().is_hidden():
+		return
+
 	get_quest().get_attributes().property_changed.connect(_attribute_changed)
 
 
 func _exit_tree() -> void:
-	get_quest().get_attributes().property_changed.disconnect(_attribute_changed)
+	if get_quest().get_attributes().property_changed.is_connected(_attribute_changed):
+		get_quest().get_attributes().property_changed.disconnect(_attribute_changed)
 
 
 func _is_active() -> bool:
@@ -71,6 +75,10 @@ func _interact() -> void:
 	Toasts.add_toast(tr("object.wishpool.collect"), _get_texture())
 	
 	flee()
+
+
+func _get_annotation_title() -> String:
+	return "WISHPOOL"
 
 
 func _get_annotation_subtext() -> String:
