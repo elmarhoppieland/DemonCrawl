@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="WishpoolCoinReward" load_steps=2 format=3 uid="uid://c16e7i8x0nf3t"]
+
+[ext_resource type="Script" uid="uid://ddq42rc78dyrd" path="res://assets/scripts/objects/wishpool_rewards/wishpool_coin_reward.gd" id="1_kjxkv"]
+
+[resource]
+resource_name = "Coin"
+script = ExtResource("1_kjxkv")
+reward_per_charge = 5

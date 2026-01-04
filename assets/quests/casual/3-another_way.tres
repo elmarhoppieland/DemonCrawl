@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="QuestFile" load_steps=17 format=3 uid="uid://0euvigsmjxu2"]
 
-[ext_resource type="Resource" uid="uid://cmgsgbfsp2eq7" path="res://assets/quests/default_generation_sequence.tres" id="1_31pur"]
+[ext_resource type="Resource" uid="uid://c5ovbpehuvyni" path="res://assets/quests/default_generation_sequence.tres" id="1_31pur"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_sa0ob"]
 [ext_resource type="Script" uid="uid://7q8ir1fur7xb" path="res://engine/resources/data_containers/quest/quest_file.gd" id="2_fpins"]
 [ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_file/stage_file_base.gd" id="3_v2nvt"]

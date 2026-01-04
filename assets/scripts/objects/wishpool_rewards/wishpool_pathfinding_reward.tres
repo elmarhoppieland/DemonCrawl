@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="WishpoolPathfindingReward" load_steps=2 format=3 uid="uid://cm75ygebjk367"]
+
+[ext_resource type="Script" uid="uid://uugkaifyfmu8" path="res://assets/scripts/objects/wishpool_rewards/wishpool_pathfinding_reward.gd" id="1_ufmve"]
+
+[resource]
+resource_name = "Pathfinding"
+script = ExtResource("1_ufmve")
+reward_per_charge = 1

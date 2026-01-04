@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=95 format=3 uid="uid://b442tpxg2qr7y"]
+[gd_resource type="Theme" load_steps=115 format=3 uid="uid://b442tpxg2qr7y"]
 
 [ext_resource type="StyleBox" uid="uid://cokg66aqb3ro1" path="res://engine/resources/xp_bar_fill.tres" id="1_0ok7g"]
 [ext_resource type="Texture2D" uid="uid://jc6ny48plub6" path="res://assets/skins/default/bg.png" id="1_3w34f"]
@@ -20,9 +20,18 @@
 [ext_resource type="Texture2D" uid="uid://dd1crh66ia8h" path="res://assets/sprites/strangers/hungry_plant.png" id="11_nlc7e"]
 [ext_resource type="Texture2D" uid="uid://c4tdqt4t43c4o" path="res://assets/sprites/strangers/elder.png" id="12_ufe7c"]
 [ext_resource type="Texture2D" uid="uid://c4g8elig1ldk3" path="res://assets/sprites/masteries.png" id="12_vsprt"]
+[ext_resource type="Texture2D" uid="uid://cafg0d4k08s7e" path="res://assets/sprites/landmarks/angel_statue.png" id="13_7qad8"]
 [ext_resource type="Texture2D" uid="uid://be6knajjvr1k0" path="res://assets/sprites/strangers/gambler.png" id="13_p3b2n"]
+[ext_resource type="Texture2D" uid="uid://g8sl35kjd46n" path="res://assets/sprites/landmarks/barrel.png" id="14_nrk2r"]
+[ext_resource type="Texture2D" uid="uid://cxspa1juwoot6" path="res://assets/sprites/landmarks/dimensional_portal.png" id="15_1ntb0"]
+[ext_resource type="Texture2D" uid="uid://ctwawc22fac0e" path="res://assets/sprites/landmarks/meteorite.png" id="16_d1fb0"]
 [ext_resource type="Texture2D" uid="uid://tr7008np2jsg" path="res://assets/sprites/strangers/doctor.png" id="16_gwo35"]
+[ext_resource type="Texture2D" uid="uid://c7okdatrq8x2v" path="res://assets/sprites/landmarks/obelisk_active.png" id="17_c8grl"]
+[ext_resource type="Texture2D" uid="uid://cwiwt4m2x7t3d" path="res://assets/sprites/landmarks/sign.png" id="18_bpwy3"]
+[ext_resource type="Texture2D" uid="uid://d2w53hg6gpd33" path="res://assets/sprites/landmarks/stairwell.png" id="19_ggcwh"]
+[ext_resource type="Texture2D" uid="uid://de8tb7fopqlyb" path="res://assets/sprites/landmarks/vault.png" id="20_31mc2"]
 [ext_resource type="Script" uid="uid://b6mfeukh61djr" path="res://engine/resources/helper_objects/custom_texture_base.gd" id="21_5cqxe"]
+[ext_resource type="Texture2D" uid="uid://tt1s66a36w1m" path="res://assets/sprites/landmarks/wishpool.png" id="21_uefja"]
 [ext_resource type="Texture2D" uid="uid://ctnch8iol5ldq" path="res://assets/sprites/strangers/priest.png" id="22_1ehdr"]
 [ext_resource type="Texture2D" uid="uid://b7p6lugnsfrp" path="res://assets/sprites/strangers/mercenary.png" id="22_33vuc"]
 [ext_resource type="Texture2D" uid="uid://bewssi5q0inom" path="res://assets/sprites/strangers/mage.png" id="22_kmkag"]
@@ -169,6 +178,83 @@ axis_stretch_vertical = 1
 [sub_resource type="AtlasTexture" id="AtlasTexture_pqs50"]
 atlas = ExtResource("11_010p6")
 region = Rect2(64, 86, 16, 16)
+
+[sub_resource type="Texture2D" id="Texture2D_hfal3"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("21_5cqxe")
+_instance = ExtResource("13_7qad8")
+metadata/_custom_type_script = "uid://b6mfeukh61djr"
+
+[sub_resource type="Texture2D" id="Texture2D_03mnq"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("21_5cqxe")
+_instance = ExtResource("14_nrk2r")
+metadata/_custom_type_script = "uid://b6mfeukh61djr"
+
+[sub_resource type="Texture2D" id="Texture2D_11kag"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("21_5cqxe")
+_instance = ExtResource("15_1ntb0")
+metadata/_custom_type_script = "uid://b6mfeukh61djr"
+
+[sub_resource type="Texture2D" id="Texture2D_akgky"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("21_5cqxe")
+_instance = ExtResource("16_d1fb0")
+metadata/_custom_type_script = "uid://b6mfeukh61djr"
+
+[sub_resource type="Texture2D" id="Texture2D_3qn6v"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
+atlas = ExtResource("17_c8grl")
+metadata/_custom_type_script = "uid://fagfups2w8dt"
+
+[sub_resource type="Texture2D" id="Texture2D_sub6q"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("21_5cqxe")
+_instance = SubResource("Texture2D_3qn6v")
+metadata/_custom_type_script = "uid://b6mfeukh61djr"
+
+[sub_resource type="Texture2D" id="Texture2D_hlc2v"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("21_5cqxe")
+_instance = ExtResource("18_bpwy3")
+metadata/_custom_type_script = "uid://b6mfeukh61djr"
+
+[sub_resource type="Texture2D" id="Texture2D_cgkkp"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("21_5cqxe")
+_instance = ExtResource("19_ggcwh")
+metadata/_custom_type_script = "uid://b6mfeukh61djr"
+
+[sub_resource type="Texture2D" id="Texture2D_ips1h"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("21_5cqxe")
+_instance = ExtResource("20_31mc2")
+metadata/_custom_type_script = "uid://b6mfeukh61djr"
+
+[sub_resource type="Texture2D" id="Texture2D_p4ris"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("23_6lsge")
+atlas = ExtResource("21_uefja")
+metadata/_custom_type_script = "uid://fagfups2w8dt"
+
+[sub_resource type="Texture2D" id="Texture2D_5royr"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("21_5cqxe")
+_instance = SubResource("Texture2D_p4ris")
+metadata/_custom_type_script = "uid://b6mfeukh61djr"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yxumr"]
 content_margin_left = 4.0
@@ -468,6 +554,15 @@ Icons/icons/locked_flat = SubResource("AtlasTexture_pqs50")
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/line_spacing = 0
 Label/constants/outline_size = 3
+Landmark/icons/angel_statue = SubResource("Texture2D_hfal3")
+Landmark/icons/barrel = SubResource("Texture2D_03mnq")
+Landmark/icons/dimensional_portal = SubResource("Texture2D_11kag")
+Landmark/icons/meteorite = SubResource("Texture2D_akgky")
+Landmark/icons/obelisk_active = SubResource("Texture2D_sub6q")
+Landmark/icons/sign = SubResource("Texture2D_hlc2v")
+Landmark/icons/stairwell = SubResource("Texture2D_cgkkp")
+Landmark/icons/vault = SubResource("Texture2D_ips1h")
+Landmark/icons/wishpool = SubResource("Texture2D_5royr")
 LineEdit/constants/caret_width = 8
 LineEdit/styles/focus = SubResource("StyleBoxTexture_yxumr")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_olyl8")

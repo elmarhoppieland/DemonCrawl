@@ -84,3 +84,14 @@ object.waterboy.move.fail;I cannot move there!
 
 object.mercenary;Mercenary
 object.mercenary.description;Give me {cost} coins and I will fight for you!
+
+object.wishpool;Wishpool
+object.wishpool.increase;Increase this value by {reward_per_charge} whenever you open {charge_cell_count} cells without making a mistake.
+object.wishpool.coin;Gain {total_reward} coins. 
+object.wishpool.life;Restore {total_reward} lives.
+object.wishpool.mana;Gain {total_reward} mana.
+object.wishpool.minion;Gain {total_reward} Minions.
+object.wishpool.pathfinding;Gain {total_reward} pathfinding.
+object.wishpool.shimmer;The wishpool shimmers with light...
+object.wishpool.collect;The wishpool dries up.
+object.wishpool.empty;The wishpool is empty right now.
