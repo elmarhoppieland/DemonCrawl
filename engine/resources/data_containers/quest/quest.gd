@@ -15,7 +15,7 @@ static var current_changed := Signal() :
 		return current_changed
 # ==============================================================================
 @export var source_file: QuestFile = null
-@export var source_difficulty: Difficulty = null
+@export var source_difficulty: DifficultyBase = null
 
 @export var selected_stage_idx := 0 :
 	set(value):
@@ -65,11 +65,11 @@ func _ready() -> void:
 	
 	get_event_bus_manager()
 	
-	get_stage_effects().get_guaranteed_objects.connect(source_difficulty.get_guaranteed_objects)
+	get_stage_effects().get_guaranteed_objects.connect(source_difficulty.parse_guaranteed_objects)
 
 
 func _exit_tree() -> void:
-	get_stage_effects().get_guaranteed_objects.disconnect(source_difficulty.get_guaranteed_objects)
+	get_stage_effects().get_guaranteed_objects.disconnect(source_difficulty.parse_guaranteed_objects)
 
 #endregion
 

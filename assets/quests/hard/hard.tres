@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://cg7k2pp8icuip" path="res://assets/quests/hard/5-shadowman.tres" id="6_t0kgu"]
 [ext_resource type="Resource" uid="uid://cnleqtnuvvj7y" path="res://assets/quests/hard/6-endless_multiverse.tres" id="7_7yuxm"]
 [ext_resource type="Resource" uid="uid://egb3ted806hu" path="res://assets/quests/hard/7-hero_trials.tres" id="8_rbhev"]
-[ext_resource type="Script" uid="uid://dx8sic8p7f7lp" path="res://engine/resources/data_containers/difficulty.gd" id="10_e001k"]
+[ext_resource type="Script" uid="uid://dx8sic8p7f7lp" path="res://engine/resources/data_containers/difficulty/difficulty.gd" id="10_e001k"]
 
 [sub_resource type="Resource" id="Resource_8gmwo"]
 script = ExtResource("1_qipl7")

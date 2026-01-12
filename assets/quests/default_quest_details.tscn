@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp2bx348sgf6g"]
+
+[ext_resource type="Shader" uid="uid://50cnnobypta" path="res://engine/scenes/quest_select/background_line.gdshader" id="1_3hya2"]
+[ext_resource type="Script" uid="uid://d0q4ik8b0ykxb" path="res://assets/quests/default_quest_details.gd" id="1_hsu6r"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_hsu6r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_thp31"]
+shader = ExtResource("1_3hya2")
+
+[sub_resource type="LabelSettings" id="LabelSettings_64wbd"]
+font = ExtResource("2_hsu6r")
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oq5d8"]
+line_spacing = 0.0
+font_size = 8
+outline_size = 3
+outline_color = Color(0.0862745, 0.145098, 0.258824, 1)
+
+[node name="DefaultQuestDetails" type="VBoxContainer"]
+size_flags_vertical = 0
+theme_override_constants/separation = 7
+script = ExtResource("1_hsu6r")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -10
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_thp31")
+custom_minimum_size = Vector2(215, 8)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
+
+[node name="NameLabel" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Glory Days"
+label_settings = SubResource("LabelSettings_64wbd")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+
+[node name="LoreLabel" type="Label" parent="MarginContainer2"]
+unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+text = "Years have gone by in the flash of an eye. The glory days are long behind you. How exactly did your adventure end? What lay beyond the brink? It seems you've grown a bit fuzzy on the details. Regardless, there are more pressing matters to attend to - your quiet farm life has been interrupted by a strange new evil!"
+label_settings = SubResource("LabelSettings_oq5d8")
+autowrap_mode = 3

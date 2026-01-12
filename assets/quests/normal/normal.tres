@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://bk14shjgawsbt" path="res://assets/quests/normal/3-another_way.tres" id="5_ldfkd"]
 [ext_resource type="Resource" uid="uid://c24u78kr4evmt" path="res://assets/quests/normal/4-around_the_bend.tres" id="6_lqhvi"]
 [ext_resource type="Resource" uid="uid://xvwdvsqap7uq" path="res://assets/quests/normal/5-shadowman.tres" id="7_mot14"]
-[ext_resource type="Script" uid="uid://dx8sic8p7f7lp" path="res://engine/resources/data_containers/difficulty.gd" id="8_f1lbq"]
+[ext_resource type="Script" uid="uid://dx8sic8p7f7lp" path="res://engine/resources/data_containers/difficulty/difficulty.gd" id="8_f1lbq"]
 
 [sub_resource type="Texture2D" id="Texture2D_fnfsu"]
 resource_local_to_scene = false
