@@ -41,9 +41,8 @@ func redraw_quests() -> void:
 func change_difficulty(direction: int) -> void:
 	QuestsManager.selected_difficulty.begin_button_visibility_requested.disconnect(begin_button_visibility_requested.emit)
 	
-	var selected_idx := QuestsManager.selected_difficulty.get_selected_quest_index()
+	var selected_idx := QuestsManager.selected_quest_index
 	QuestsManager.change_difficulty(direction)
-	selected_idx = clampi(selected_idx, 0, QuestsManager.selected_difficulty.quests.size() - 1)
 	QuestsManager.selected_difficulty.select_quest_index(selected_idx)
 	
 	redraw_quests()

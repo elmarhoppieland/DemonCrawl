@@ -5,9 +5,9 @@ class_name Difficulty
 @export var name := ""  ## The name of the difficulty.
 @export var icon: Texture2D = null  ## The icon of the difficulty.
 
-@export var conditions: Array[Condition] = []
+@export var conditions: Array[Condition] = [] ## The conditions for this difficulty to be visible. If empty, this difficulty is always visible.
 
-@export var quests: Array[QuestFile] = []  ## This difficulty's quests.
+@export var quests: Array[QuestFile] = [] ## This difficulty's quests.
 
 @export var guaranteed_chests := 1 ## The number of guaranteed chests per stage.
 
@@ -70,12 +70,6 @@ func _update_quest_details(quest: QuestFile) -> void:
 		quest_details.quest_name = tr(quest.name)
 		quest_details.quest_lore = tr(quest.lore)
 		show_begin_button()
-
-
-func _get_selected_quest_index() -> int:
-	if not quest_selection:
-		return 0
-	return quests.find(quest_selection.selected_quest)
 
 
 func _select_quest_index(quest_index: int) -> void:

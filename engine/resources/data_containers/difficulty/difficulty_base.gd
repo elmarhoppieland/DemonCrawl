@@ -68,15 +68,6 @@ func get_quest_details_node() -> Node:
 @abstract func _get_quest_details_node() -> Node
 
 
-## Returns the index of the currently selected quest.
-func get_selected_quest_index() -> int:
-	return _get_selected_quest_index()
-
-
-## Virtual method. Should return the index of the currently selected quest.
-@abstract func _get_selected_quest_index() -> int
-
-
 ## Selects the quest at the given [param quest_index].
 func select_quest_index(quest_index: int) -> void:
 	_select_quest_index(quest_index)

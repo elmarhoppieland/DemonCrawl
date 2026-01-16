@@ -201,6 +201,27 @@ static func _get_mastery_from_list(mastery: Variant, list: Array[MasteryInstance
 	return null
 
 
+static func get_artifacts(stage: StageFile) -> int:
+	return artifacts.get(stage, 0)
+
+
+static func gain_artifact(stage: StageFile, artifact_count: int = 1) -> void:
+	artifacts[stage] = get_artifacts(stage) + artifact_count
+
+
+static func lose_artifact(stage: StageFile, artifact_count: int = 1) -> void:
+	artifacts[stage] = get_artifacts(stage) - artifact_count
+	if get_artifacts(stage) <= 0:
+		artifacts.erase(stage)
+
+
+static func get_total_artifact_count() -> int:
+	var total_count := 0
+	for stage in artifacts:
+		total_count += artifacts[stage]
+	return total_count
+
+
 class Heirloom extends Resource:
 	@export var item: ItemData = null :
 		set(value):

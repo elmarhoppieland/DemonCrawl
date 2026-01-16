@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmaxlfg8mxen4"]
+
+[ext_resource type="Shader" uid="uid://50cnnobypta" path="res://engine/scenes/quest_select/background_line.gdshader" id="1_0d2s1"]
+[ext_resource type="Script" uid="uid://bn46lxhuaadhe" path="res://assets/quests/beyond/beyond_quest_details.gd" id="1_s3ygx"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_r188l"]
+[ext_resource type="PackedScene" uid="uid://cp84kuiwwmn4j" path="res://assets/quests/beyond/beyond_artifact_selection.tscn" id="3_r188l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s3ygx"]
+shader = ExtResource("1_0d2s1")
+
+[sub_resource type="LabelSettings" id="LabelSettings_n2od4"]
+font = ExtResource("2_r188l")
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 1)
+
+[node name="BeyondQuestDetails" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_s3ygx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -10
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_s3ygx")
+custom_minimum_size = Vector2(215, 8)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "difficulty.beyond"
+label_settings = SubResource("LabelSettings_n2od4")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BeyondArtifactSelection" parent="VBoxContainer/MarginContainer2" instance=ExtResource("3_r188l")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="artifact_selected" from="VBoxContainer/MarginContainer2/BeyondArtifactSelection" to="." method="_on_artifact_selected"]

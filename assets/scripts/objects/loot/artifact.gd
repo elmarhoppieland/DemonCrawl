@@ -3,6 +3,8 @@ extends Loot
 class_name Artifact
 
 # ==============================================================================
+const TITLE_COLOR := Color("c54bfd")
+# ==============================================================================
 @export var stage_file: StageFile
 # ==============================================================================
 
@@ -55,4 +57,8 @@ func _get_annotation_subtext() -> String:
 
 
 func _get_annotation_title_color() -> Color:
-	return Color("c54bfd")
+	return TITLE_COLOR
+
+
+static func _can_spawn(cell: CellData) -> bool:
+	return cell.get_stage().file.artifact_texture != null

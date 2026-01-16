@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://kwco715ga5g0"]
 
-[ext_resource type="Script" uid="uid://b2o6vxxglfsfr" path="res://Engine/Resources/Scenes/Frame.gd" id="1_6vjry"]
-[ext_resource type="Script" uid="uid://k2n0orq8v38q" path="res://Engine/Resources/UtilityNode/Grabber.gd" id="2_fxvcn"]
+[ext_resource type="Script" uid="uid://b2o6vxxglfsfr" path="res://engine/resources/scenes/frame.gd" id="1_6vjry"]
+[ext_resource type="Script" uid="uid://k2n0orq8v38q" path="res://engine/resources/utility_node/grabber.gd" id="2_fxvcn"]
 
 [node name="Frame" type="MarginContainer"]
 theme_override_constants/margin_left = 3
@@ -25,7 +25,8 @@ theme_override_constants/margin_bottom = -3
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="CollectibleContainer/ColorRect"]
+[node name="InnerBorderRect" type="ColorRect" parent="CollectibleContainer/ColorRect"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -38,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.545098, 0.545098, 0.545098, 1)
 
-[node name="ColorRect" type="ColorRect" parent="CollectibleContainer/ColorRect/ColorRect"]
+[node name="ColorRect" type="ColorRect" parent="CollectibleContainer/ColorRect/InnerBorderRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -52,3 +53,4 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [connection signal="interacted" from="Grabber" to="." method="_on_interacted"]
+[connection signal="second_interacted" from="Grabber" to="." method="_on_second_interacted"]

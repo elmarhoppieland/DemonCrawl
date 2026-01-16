@@ -168,14 +168,17 @@ func get_name_id() -> String:
 @abstract func _get_name_id() -> String
 
 
-## Returns whether an object of this type can spawn. If this returns [code]false[/code],
-## a [Cell] that attempts to spawn this object will try again.
-static func can_spawn(object: Script) -> bool:
-	return object._can_spawn()
+## Returns whether an object of this type can spawn in the given [param cell].
+## If this returns [code]false[/code], a [Cell] that attempts to spawn this
+## object should try again.
+static func can_spawn(object: Script, cell: CellData) -> bool:
+	return object._can_spawn(cell)
 
 
-## Virtual method to override the return value of [method can_spawn].
-static func _can_spawn() -> bool:
+## Virtual method. Should return [code]true[/code] if an object of this type can
+## spawn in the given [param cell].
+@warning_ignore("unused_parameter")
+static func _can_spawn(cell: CellData) -> bool:
 	return true
 
 

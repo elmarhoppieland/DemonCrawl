@@ -20,6 +20,8 @@ outline_size = 3
 outline_color = Color(0.0862745, 0.145098, 0.258824, 1)
 
 [node name="DefaultQuestDetails" type="VBoxContainer"]
+offset_right = 217.0
+offset_bottom = 92.0
 size_flags_vertical = 0
 theme_override_constants/separation = 7
 script = ExtResource("1_hsu6r")
@@ -44,11 +46,17 @@ layout_mode = 2
 text = "Glory Days"
 label_settings = SubResource("LabelSettings_64wbd")
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 theme_override_constants/margin_left = 4
 
-[node name="LoreLabel" type="Label" parent="MarginContainer2"]
+[node name="LoreLabel" type="Label" parent="HBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 z_index = 1
 custom_minimum_size = Vector2(1, 0)
@@ -56,3 +64,7 @@ layout_mode = 2
 text = "Years have gone by in the flash of an eye. The glory days are long behind you. How exactly did your adventure end? What lay beyond the brink? It seems you've grown a bit fuzzy on the details. Regardless, there are more pressing matters to attend to - your quiet farm life has been interrupted by a strange new evil!"
 label_settings = SubResource("LabelSettings_oq5d8")
 autowrap_mode = 3
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

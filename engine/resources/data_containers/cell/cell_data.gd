@@ -158,7 +158,7 @@ func _open(active: bool = true, allow_loot: bool = true) -> bool:
 	Quest.get_current().get_inventory().mana_gain(value, self)
 	
 	if allow_loot and not is_occupied() and value == 0:
-		spawn_base(get_stage_instance().generate_cell_content(Quest.get_current().get_attributes().rare_loot_modifier))
+		spawn_base(get_stage_instance().generate_cell_content(self, get_quest().get_attributes().rare_loot_modifier))
 	
 	if is_occupied():
 		get_object().notify_revealed(active)
@@ -568,6 +568,13 @@ func get_stage_instance() -> StageInstance:
 func get_stage() -> Stage:
 	var instance := get_stage_instance()
 	return instance.get_stage() if instance else null
+
+
+func get_quest() -> Quest:
+	var base := get_parent()
+	while base != null and base is not Quest:
+		base = base.get_parent()
+	return base
 
 
 func get_position() -> Vector2i:

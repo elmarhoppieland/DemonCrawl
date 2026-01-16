@@ -9,8 +9,12 @@ enum ContextMode {
 	ANCESTOR, ## Use a [TooltipContext] that is an ancestor of this node.
 }
 # ==============================================================================
-@export_multiline var text := "" ## The text to be displayed (in white) as the first line in the tooltip. If this is empty, no tooltip will be shown.
-@export_multiline var subtext := "" ## The subtext to be displayed (in gray) underneath the [member text]. If this is empty, only the [member text] will be shown.
+@export_multiline var text := "" ## The text to be displayed (in white by default) as the first line in the tooltip. If this is empty, no tooltip will be shown.
+@export_multiline var subtext := "" ## The subtext to be displayed (in gray by default) underneath the [member text]. If this is empty, only the [member text] will be shown.
+
+@export var text_color := Color.WHITE ## The color that is used to display the [member text].
+@export var subtext_color := Color("c3c3c3") ## The color that is used to display the [member subtext].
+
 @export var context_mode := ContextMode.CURRENT ## The [enum ContextMode] to use.
 @export var translate := true ## Whether both the [member text] and the [member subtext] should be translated before being shown.
 @export var c_unescape := false ## Whether all escape sequences (e.g. [code]\n[/code]) should be unescaped before showing the tooltip.
@@ -41,16 +45,19 @@ func hover() -> void:
 	if c_unescape:
 		formatted_text = formatted_text.c_unescape()
 	
+	var title_text := "[color=#%s]%s[/color]" % [text_color.to_html(), formatted_text]
+	
 	if subtext.is_empty():
-		Tooltip.show_text(formatted_text, context)
+		Tooltip.show_text(title_text, context)
 		return
 	
 	var formatted_subtext := Tooltip.limit_line_length(tr(subtext) if translate else subtext, max_line_length)
 	if c_unescape:
 		formatted_subtext = formatted_subtext.c_unescape()
 	
-	Tooltip.show_text("%s\n[color=gray]%s[/color]" % [
-		formatted_text,
+	Tooltip.show_text("%s\n[color=#%s]%s[/color]" % [
+		title_text,
+		subtext_color.to_html(),
 		formatted_subtext
 	], context)
 

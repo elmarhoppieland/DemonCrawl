@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("1_lj43r")
 name = "stage.hidden"
+normal = false
 music = ExtResource("1_kl70m")

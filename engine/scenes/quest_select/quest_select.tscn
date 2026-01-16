@@ -382,8 +382,6 @@ label_settings = SubResource("LabelSettings_y818d")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MainContent/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 24
 
@@ -410,10 +408,6 @@ script = ExtResource("8_ce8b2")
 text = "scene-return.main"
 context_mode = 0
 metadata/_custom_type_script = "uid://fhgkw1iml6g3"
-
-[node name="MarginContainer2" type="MarginContainer" parent="MainContent"]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="ForegroundTexture" type="TextureRect" parent="."]
 layout_mode = 0

@@ -14,6 +14,12 @@ class_name QuestFile
 # ==============================================================================
 
 func generate() -> Quest:
+	return _generate(stage_list)
+
+
+# we need this so that Beyond quests can override the stage list
+@warning_ignore("shadowed_variable")
+func _generate(stage_list: Array[StageTemplateBase]) -> Quest:
 	var quest := Quest.new()
 	quest.source_file = self
 	if Codex.selected_mastery:

@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="BeyondQuestFile" load_steps=16 format=3 uid="uid://1vybaxy3pbps"]
+
+[ext_resource type="Script" uid="uid://br0qdxnl43jqu" path="res://assets/quests/beyond/quest_files/beyond_quest_file.gd" id="1_7i470"]
+[ext_resource type="Script" uid="uid://ydkmagetydc8" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_base.gd" id="1_lggfu"]
+[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template.gd" id="2_7i470"]
+[ext_resource type="Script" uid="uid://cfljp5ptsudds" path="res://engine/resources/data_containers/quest/generation/quest_generation_stage_sequence.gd" id="2_243yq"]
+[ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template_base.gd" id="2_j8ohe"]
+[ext_resource type="Resource" uid="uid://bkvdrhrm24htj" path="res://assets/quests/stage_sequence_item_shop.tres" id="3_vjofr"]
+[ext_resource type="Resource" uid="uid://csjsuy0orxi38" path="res://assets/quests/normal/stage_sequence_special.tres" id="4_ea8tw"]
+[ext_resource type="Script" uid="uid://cm3ocgxiu0dbf" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_array.gd" id="5_kwe6y"]
+
+[sub_resource type="Resource" id="Resource_243yq"]
+script = ExtResource("2_243yq")
+length_distribution_count = 1
+length_distribution_0/length = 1
+length_distribution_0/weight = 1.0
+metadata/_custom_type_script = "uid://cfljp5ptsudds"
+
+[sub_resource type="Resource" id="Resource_vjofr"]
+script = ExtResource("2_243yq")
+length_distribution_count = 1
+length_distribution_0/length = 1
+length_distribution_0/weight = 1.0
+metadata/_custom_type_script = "uid://cfljp5ptsudds"
+
+[sub_resource type="Resource" id="Resource_ea8tw"]
+script = ExtResource("2_243yq")
+length_distribution_count = 1
+length_distribution_0/length = 1
+length_distribution_0/weight = 1.0
+metadata/_custom_type_script = "uid://cfljp5ptsudds"
+
+[sub_resource type="Resource" id="Resource_kwe6y"]
+script = ExtResource("5_kwe6y")
+generation_sequence = Array[ExtResource("1_lggfu")]([SubResource("Resource_243yq"), ExtResource("3_vjofr"), ExtResource("4_ea8tw"), SubResource("Resource_vjofr"), ExtResource("3_vjofr"), ExtResource("3_vjofr"), SubResource("Resource_ea8tw")])
+metadata/_custom_type_script = "uid://cm3ocgxiu0dbf"
+
+[sub_resource type="Resource" id="Resource_4ubjb"]
+script = ExtResource("2_7i470")
+min_power_minimum = 1
+min_power_maximum = 1
+max_power_minimum = 2
+max_power_maximum = 2
+density_minimum = 0.16
+density_maximum = 0.16
+size_minimum = 14
+size_maximum = 14
+metadata/_custom_type_script = "uid://crks80grc6jj0"
+
+[sub_resource type="Resource" id="Resource_saa4u"]
+script = ExtResource("2_7i470")
+min_power_minimum = 2
+min_power_maximum = 2
+max_power_minimum = 4
+max_power_maximum = 4
+density_minimum = 0.21
+density_maximum = 0.21
+size_minimum = 19
+size_maximum = 19
+metadata/_custom_type_script = "uid://crks80grc6jj0"
+
+[sub_resource type="Resource" id="Resource_2koyg"]
+script = ExtResource("2_7i470")
+min_power_minimum = 3
+min_power_maximum = 3
+max_power_minimum = 6
+max_power_maximum = 6
+density_minimum = 0.26
+density_maximum = 0.26
+size_minimum = 24
+size_maximum = 24
+metadata/_custom_type_script = "uid://crks80grc6jj0"
+
+[resource]
+script = ExtResource("1_7i470")
+name = "difficulty.beyond"
+stage_list = Array[ExtResource("2_j8ohe")]([SubResource("Resource_4ubjb"), SubResource("Resource_saa4u"), SubResource("Resource_2koyg")])
+generation_sequence = SubResource("Resource_kwe6y")
+metadata/_custom_type_script = "uid://7q8ir1fur7xb"

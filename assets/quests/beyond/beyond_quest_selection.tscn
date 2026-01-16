@@ -1,0 +1,166 @@
+[gd_scene load_steps=7 format=3 uid="uid://xdjq6np1uwg2"]
+
+[ext_resource type="Script" uid="uid://bt87ti14myaco" path="res://assets/quests/beyond/beyond_quest_selection.gd" id="1_c14nh"]
+[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="1_ppxvw"]
+[ext_resource type="Texture2D" uid="uid://cldpcjjyer5ql" path="res://assets/sprites/token.png" id="2_pi5wt"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="3_ktdn0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c14nh"]
+atlas = ExtResource("2_pi5wt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pi5wt"]
+font_size = 8
+font_color = Color(0.7647059, 0.7647059, 0.7647059, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="BeyondQuestSelection" type="MarginContainer"]
+script = ExtResource("1_c14nh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="ArtifactFrame1" parent="HBoxContainer/HBoxContainer" instance=ExtResource("1_ppxvw")]
+unique_name_in_owner = true
+layout_mode = 2
+inner_border_color = Color(1, 1, 1, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame1"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_constants/margin_left = -3
+theme_override_constants/margin_top = -3
+theme_override_constants/margin_right = -3
+theme_override_constants/margin_bottom = -3
+
+[node name="ArtifactTextureRect1" type="TextureRect" parent="HBoxContainer/HBoxContainer/ArtifactFrame1/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/HBoxContainer/ArtifactFrame1/MarginContainer/ArtifactTextureRect1"]
+script = ExtResource("3_ktdn0")
+text = "difficulty.beyond.artifact-slot-tooltip"
+metadata/_custom_type_script = "uid://fhgkw1iml6g3"
+
+[node name="ArtifactFrame2" parent="HBoxContainer/HBoxContainer" instance=ExtResource("1_ppxvw")]
+unique_name_in_owner = true
+layout_mode = 2
+inner_border_color = Color(1, 1, 1, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame2"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_constants/margin_left = -3
+theme_override_constants/margin_top = -3
+theme_override_constants/margin_right = -3
+theme_override_constants/margin_bottom = -3
+
+[node name="ArtifactTextureRect2" type="TextureRect" parent="HBoxContainer/HBoxContainer/ArtifactFrame2/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/HBoxContainer/ArtifactFrame2/MarginContainer/ArtifactTextureRect2"]
+script = ExtResource("3_ktdn0")
+text = "difficulty.beyond.artifact-slot-tooltip"
+metadata/_custom_type_script = "uid://fhgkw1iml6g3"
+
+[node name="ArtifactFrame3" parent="HBoxContainer/HBoxContainer" instance=ExtResource("1_ppxvw")]
+unique_name_in_owner = true
+layout_mode = 2
+inner_border_color = Color(1, 1, 1, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame3"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_constants/margin_left = -3
+theme_override_constants/margin_top = -3
+theme_override_constants/margin_right = -3
+theme_override_constants/margin_bottom = -3
+
+[node name="ArtifactTextureRect3" type="TextureRect" parent="HBoxContainer/HBoxContainer/ArtifactFrame3/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/HBoxContainer/ArtifactFrame3/MarginContainer/ArtifactTextureRect3"]
+script = ExtResource("3_ktdn0")
+text = "difficulty.beyond.artifact-slot-tooltip"
+metadata/_custom_type_script = "uid://fhgkw1iml6g3"
+
+[node name="EmblemFrame" parent="HBoxContainer" instance=ExtResource("1_ppxvw")]
+unique_name_in_owner = true
+layout_mode = 2
+inner_border_color = Color(0.47843137, 0.84705883, 1, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/EmblemFrame"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_constants/margin_left = -3
+theme_override_constants/margin_top = -3
+theme_override_constants/margin_right = -3
+theme_override_constants/margin_bottom = -3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/EmblemFrame/MarginContainer"]
+layout_mode = 2
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/EmblemFrame/MarginContainer/TextureRect"]
+script = ExtResource("3_ktdn0")
+text = "difficulty.beyond.emblem-slot-tooltip"
+metadata/_custom_type_script = "uid://fhgkw1iml6g3"
+
+[node name="GlintFrame" parent="HBoxContainer" instance=ExtResource("1_ppxvw")]
+unique_name_in_owner = true
+layout_mode = 2
+inner_border_color = Color(1, 0.89411765, 0.47843137, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/GlintFrame"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_constants/margin_left = -3
+theme_override_constants/margin_top = -3
+theme_override_constants/margin_right = -3
+theme_override_constants/margin_bottom = -3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/GlintFrame/MarginContainer"]
+layout_mode = 2
+
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/GlintFrame/MarginContainer/TextureRect"]
+script = ExtResource("3_ktdn0")
+text = "difficulty.beyond.glint-slot-tooltip"
+metadata/_custom_type_script = "uid://fhgkw1iml6g3"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_c14nh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="FeeLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "difficulty.beyond.fee"
+uppercase = true
+
+[node name="CurrentTokensLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "difficulty.beyond.current-tokens"
+label_settings = SubResource("LabelSettings_pi5wt")
+uppercase = true
+
+[connection signal="interacted" from="HBoxContainer/HBoxContainer/ArtifactFrame1" to="." method="_on_slot_interacted" binds= [0]]
+[connection signal="second_interacted" from="HBoxContainer/HBoxContainer/ArtifactFrame1" to="." method="_on_slot_second_interacted" binds= [0]]
+[connection signal="interacted" from="HBoxContainer/HBoxContainer/ArtifactFrame2" to="." method="_on_slot_interacted" binds= [1]]
+[connection signal="second_interacted" from="HBoxContainer/HBoxContainer/ArtifactFrame2" to="." method="_on_slot_second_interacted" binds= [1]]
+[connection signal="interacted" from="HBoxContainer/HBoxContainer/ArtifactFrame3" to="." method="_on_slot_interacted" binds= [2]]
+[connection signal="second_interacted" from="HBoxContainer/HBoxContainer/ArtifactFrame3" to="." method="_on_slot_second_interacted" binds= [2]]
+[connection signal="interacted" from="HBoxContainer/EmblemFrame" to="." method="_on_slot_interacted" binds= [3]]
+[connection signal="second_interacted" from="HBoxContainer/EmblemFrame" to="." method="_on_slot_second_interacted" binds= [3]]
+[connection signal="interacted" from="HBoxContainer/GlintFrame" to="." method="_on_slot_interacted" binds= [4]]
+[connection signal="second_interacted" from="HBoxContainer/GlintFrame" to="." method="_on_slot_second_interacted" binds= [4]]

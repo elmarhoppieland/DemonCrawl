@@ -34,10 +34,11 @@ func create(stage: Stage) -> CellObject:
 	return instance
 
 
-func can_spawn() -> bool:
+## Returns [code]true[/code] if this object can spawn on the given [param cell].
+func can_spawn(cell: CellData) -> bool:
 	if not base_script:
 		return false
-	return CellObject.can_spawn(base_script)
+	return CellObject.can_spawn(base_script, cell)
 
 
 func _get_property_list() -> Array[Dictionary]:

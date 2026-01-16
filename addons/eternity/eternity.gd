@@ -34,8 +34,8 @@ static var _initializer: Initializer :
 
 static func _editor_init() -> void:
 	if ProjectSettings.has_setting("eternity/editor/editor_save_path") and not ProjectSettings.get_setting("eternity/editor/editor_save_path").is_empty():
-		var editor_save_file := EternalFile.new()
-		editor_save_file.load(ProjectSettings.get_setting("eternity/editor/editor_save_path"))
+		var editor_save_file_loader := EternalFileLoader.new()
+		var editor_save_file := editor_save_file_loader.load(ProjectSettings.get_setting("eternity/editor/editor_save_path"))
 		
 		for script_name in editor_save_file.get_scripts():
 			var script := UserClassDB.class_get_script(script_name)

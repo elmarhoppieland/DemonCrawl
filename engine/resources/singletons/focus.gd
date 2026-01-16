@@ -9,6 +9,8 @@ static var _instance: Focus
 static var _focused_node: CanvasItem : get = get_focused_node ## The node that is currently focused.
 #var saved_focus: CanvasItem ## A saved copy of the focused node. A focus can be saved using [method save_current] and loaded using [method load_saved].
 # ==============================================================================
+var _is_tweening := false
+# ==============================================================================
 @onready var _focus: MarginContainer = %MarginContainer
 # ==============================================================================
 
@@ -27,8 +29,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if is_instance_valid(_focused_node) and _focused_node.is_visible_in_tree():
-		_focus.global_position = _focused_node.get_screen_transform().origin
-		_focus.scale = _focused_node.get_screen_transform().get_scale()
+		if not _is_tweening:
+			_focus.global_position = _focused_node.get_screen_transform().origin
+			_focus.scale = _focused_node.get_screen_transform().get_scale()
 		show()
 	else:
 		hide()
@@ -45,8 +48,11 @@ static func move_to(node: CanvasItem, force_instant: bool = false, size: Vector2
 		_instance._focus.size = Vector2(16, 16)
 	
 	if not force_instant and is_instance_valid(_focused_node) and _instance.visible:
-		_instance.create_tween().tween_property(_instance._focus, "global_position", node.get_screen_transform().origin, 0.2)\
+		_instance._is_tweening = true
+		var tween := _instance.create_tween()
+		tween.tween_property(_instance._focus, "global_position", node.get_screen_transform().origin, 0.2)\
 			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+		tween.finished.connect(func() -> void: _instance._is_tweening = false, CONNECT_ONE_SHOT)
 	else:
 		_instance._focus.position = node.get_screen_transform().origin
 	

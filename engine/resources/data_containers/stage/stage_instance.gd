@@ -229,7 +229,7 @@ func get_cell_content_quality(rare_loot_modifier: float = 1.0) -> float:
 	return rare_loot_modifier * (1 + get_stage().get_mods_difficulty() / MOD_FACTOR) / (1 - get_stage().get_density())
 
 
-func generate_cell_content(rare_loot_modifier: float = 1.0) -> CellObjectBase:
+func generate_cell_content(cell: CellData, rare_loot_modifier: float = 1.0) -> CellObjectBase:
 	if randf() > get_cell_content_spawn_rate():
 		return null
 	
@@ -240,7 +240,7 @@ func generate_cell_content(rare_loot_modifier: float = 1.0) -> CellObjectBase:
 	var quality := get_cell_content_quality(rare_loot_modifier)
 	var content: CellObjectBase = table.generate(quality)
 	var i := 0
-	while not content or not content.can_spawn():
+	while not content or not content.can_spawn(cell):
 		if i > 100:
 			Debug.log_error("LootTable '%s' could not generate a cell's content." % table.resource_path)
 			return null
