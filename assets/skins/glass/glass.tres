@@ -26,6 +26,7 @@ bg = ExtResource("3_53vft")
 monster_name_pool = SubResource("Resource_ewxic")
 artifact_texture = ExtResource("3_l831n")
 artifact_name = "stage.glass.artifact"
+artifact_name_plural = "stage.glass.artifact.plural"
 music = ExtResource("10_hynai")
 ambience_a = ExtResource("1_n7vkl")
 ambience_b = ExtResource("2_l831n")

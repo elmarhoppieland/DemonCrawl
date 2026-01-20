@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://5mjke75812jq"]
+
+[ext_resource type="Script" uid="uid://cs8kiwbuguqui" path="res://assets/beyond/emblems/level_1/the_descent.gd" id="1_mw3hw"]
+[ext_resource type="Texture2D" uid="uid://bkyh8s0j62iix" path="res://assets/beyond/emblems/level_1/the_descent.png" id="2_4r0xg"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_a8rir"]
+
+[resource]
+script = ExtResource("3_a8rir")
+name = "beyond.emblem.the-descent"
+icon = ExtResource("2_4r0xg")
+lore = "beyond.emblem.the-descent.lore"
+emblem_script = ExtResource("1_mw3hw")

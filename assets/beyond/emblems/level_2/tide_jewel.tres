@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://cyjawefg360yl"]
+
+[ext_resource type="Script" uid="uid://h13uwyevpwl4" path="res://assets/beyond/emblems/level_2/tide_jewel.gd" id="1_8nd56"]
+[ext_resource type="Texture2D" uid="uid://bnmg8sdlcc0x0" path="res://assets/beyond/emblems/level_2/tide_jewel.png" id="2_qc2f0"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_dbij2"]
+
+[resource]
+script = ExtResource("3_dbij2")
+name = "beyond.emblem.tide-jewel"
+icon = ExtResource("2_qc2f0")
+level = 2
+artifact_cost = 100
+token_cost = 100
+lore = "beyond.emblem.tide-jewel.lore"
+emblem_script = ExtResource("1_8nd56")

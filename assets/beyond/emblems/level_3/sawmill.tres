@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://bxfv3pohqys73"]
+
+[ext_resource type="Script" uid="uid://cmdab5hjdkhbw" path="res://assets/beyond/emblems/level_3/sawmill.gd" id="1_3aura"]
+[ext_resource type="Texture2D" uid="uid://3bpgppia471k" path="res://assets/beyond/emblems/level_3/sawmill.png" id="2_byleq"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_nupwm"]
+
+[resource]
+script = ExtResource("3_nupwm")
+name = "beyond.emblem.sawmill"
+icon = ExtResource("2_byleq")
+level = 3
+artifact_cost = 1000
+token_cost = 1000
+lore = "beyond.emblem.sawmill.lore"
+emblem_script = ExtResource("1_3aura")

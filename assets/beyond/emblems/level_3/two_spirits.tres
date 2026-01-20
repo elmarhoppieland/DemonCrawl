@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://ooxb50w5re5i"]
+
+[ext_resource type="Script" path="res://assets/beyond/emblems/level_3/two_spirits.gd" id="1_w61t2"]
+[ext_resource type="Texture2D" uid="uid://bhxtiawkydula" path="res://assets/beyond/emblems/level_3/two_spirits.png" id="2_vviaf"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_0cho8"]
+
+[resource]
+script = ExtResource("3_0cho8")
+name = "beyond.emblem.two-spirits"
+icon = ExtResource("2_vviaf")
+level = 3
+artifact_cost = 1000
+token_cost = 1000
+lore = "beyond.emblem.two-spirits.lore"
+emblem_script = ExtResource("1_w61t2")

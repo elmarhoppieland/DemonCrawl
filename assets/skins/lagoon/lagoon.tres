@@ -27,6 +27,7 @@ bg = ExtResource("3_x0asq")
 monster_name_pool = SubResource("Resource_f0kgh")
 artifact_texture = ExtResource("3_k084y")
 artifact_name = "stage.lagoon.artifact"
+artifact_name_plural = "stage.lagoon.artifact.plural"
 music = ExtResource("11_pch0b")
 ambience_a = ExtResource("1_btvwf")
 ambience_b = ExtResource("2_k084y")

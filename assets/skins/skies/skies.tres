@@ -28,6 +28,7 @@ bg = ExtResource("3_uvdig")
 monster_name_pool = SubResource("Resource_h7t81")
 artifact_texture = ExtResource("3_ydris")
 artifact_name = "stage.skies.artifact"
+artifact_name_plural = "stage.skies.artifact.plural"
 music = ExtResource("12_guwdt")
 ambience_a = ExtResource("1_gr83i")
 ambience_b = ExtResource("2_ydris")

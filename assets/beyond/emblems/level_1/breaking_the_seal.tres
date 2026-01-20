@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://wgd0l41k0nu"]
+
+[ext_resource type="Script" uid="uid://cnwmiq0e2ofi8" path="res://assets/beyond/emblems/level_1/breaking_the_seal.gd" id="1_ejg13"]
+[ext_resource type="Texture2D" uid="uid://btntsi748ust7" path="res://assets/beyond/emblems/level_1/breaking_the_seal.png" id="2_yepxj"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_4eyoo"]
+
+[resource]
+script = ExtResource("3_4eyoo")
+name = "beyond.emblem.breaking-the-seal"
+icon = ExtResource("2_yepxj")
+lore = "beyond.emblem.breaking-the-seal.lore"
+emblem_script = ExtResource("1_ejg13")

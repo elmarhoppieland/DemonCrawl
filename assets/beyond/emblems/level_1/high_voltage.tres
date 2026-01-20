@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://c6mvf86hgxb35"]
+
+[ext_resource type="Script" uid="uid://bplxp7lwer1uc" path="res://assets/beyond/emblems/level_1/high_voltage.gd" id="1_kbe6i"]
+[ext_resource type="Texture2D" uid="uid://e26w64vdx2g" path="res://assets/beyond/emblems/level_1/high_voltage.png" id="2_wfyud"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_nmolm"]
+
+[resource]
+script = ExtResource("3_nmolm")
+name = "beyond.emblem.high-voltage"
+icon = ExtResource("2_wfyud")
+lore = "beyond.emblem.high-voltage.lore"
+emblem_script = ExtResource("1_kbe6i")

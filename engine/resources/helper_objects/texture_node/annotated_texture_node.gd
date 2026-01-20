@@ -90,3 +90,14 @@ func get_annotation_subtext_color() -> Color:
 ## Virtual method to override the color of the subtext.
 func _get_annotation_subtext_color() -> Color:
 	return Color.GRAY
+
+
+## Returns the maximum number of character that can appear on a single line.
+func get_annotation_max_line_length() -> int:
+	return _get_annotation_max_line_length()
+
+
+## Virtual method. Should return the maximum number of character that may appear
+## on a single line.
+func _get_annotation_max_line_length() -> int:
+	return 32

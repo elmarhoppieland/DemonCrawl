@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://b1qqxosd5021n"]
+
+[ext_resource type="Script" uid="uid://b5hbqlcibd1ka" path="res://assets/beyond/emblems/level_1/midnight_voyage.gd" id="1_5hby1"]
+[ext_resource type="Texture2D" uid="uid://bfv3304drym3a" path="res://assets/beyond/emblems/level_1/midnight_voyage.png" id="2_yype5"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_2c71a"]
+
+[resource]
+script = ExtResource("3_2c71a")
+name = "beyond.emblem.midnight-voyage"
+icon = ExtResource("2_yype5")
+lore = "beyond.emblem.midnight-voyage.lore"
+emblem_script = ExtResource("1_5hby1")

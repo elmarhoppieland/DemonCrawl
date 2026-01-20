@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://dcv1cyv1eyrte"]
+
+[ext_resource type="Script" uid="uid://cg8oc3kfr6hr4" path="res://assets/beyond/emblems/level_2/utopia.gd" id="1_071ot"]
+[ext_resource type="Texture2D" uid="uid://77gs213wmjuq" path="res://assets/beyond/emblems/level_2/utopia.png" id="2_kab88"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_ik7md"]
+
+[resource]
+script = ExtResource("3_ik7md")
+name = "beyond.emblem.utopia"
+icon = ExtResource("2_kab88")
+level = 2
+artifact_cost = 100
+token_cost = 100
+lore = "beyond.emblem.utopia.lore"
+emblem_script = ExtResource("1_071ot")

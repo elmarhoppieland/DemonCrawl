@@ -39,6 +39,8 @@ static var tokens: int = Eternal.create(0)
 
 static var artifacts: Dictionary[StageFile, int] = Eternal.create({} as Dictionary[StageFile, int])
 
+static var emblems: Dictionary[EmblemData, int] = Eternal.create({} as Dictionary[EmblemData, int])
+
 static var xp: int = Eternal.create(0) :
 	set(new_xp):
 		xp = new_xp
@@ -219,6 +221,21 @@ static func get_total_artifact_count() -> int:
 	var total_count := 0
 	for stage in artifacts:
 		total_count += artifacts[stage]
+	return total_count
+
+
+static func get_emblems(emblem: EmblemData) -> int:
+	return emblems.get(emblem, 0)
+
+
+static func gain_emblem(emblem: EmblemData, emblem_count: int = 1) -> void:
+	emblems[emblem] = get_emblems(emblem) + emblem_count
+
+
+static func get_total_emblem_count() -> int:
+	var total_count := 0
+	for emblem in emblems:
+		total_count += emblems[emblem]
 	return total_count
 
 

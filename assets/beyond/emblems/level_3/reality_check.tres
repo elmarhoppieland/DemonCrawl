@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://clqwu5s8mfbrb"]
+
+[ext_resource type="Script" uid="uid://ch7konq737b2m" path="res://assets/beyond/emblems/level_3/reality_check.gd" id="1_tg5n7"]
+[ext_resource type="Texture2D" uid="uid://bc5b4ruqbpcp6" path="res://assets/beyond/emblems/level_3/reality_check.png" id="2_s855u"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_ydf5b"]
+
+[resource]
+script = ExtResource("3_ydf5b")
+name = "beyond.emblem.reality-check"
+icon = ExtResource("2_s855u")
+level = 3
+artifact_cost = 1000
+token_cost = 1000
+lore = "beyond.emblem.reality-check.lore"
+emblem_script = ExtResource("1_tg5n7")

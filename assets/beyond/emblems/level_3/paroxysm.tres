@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://cw0bdwf1agvij"]
+
+[ext_resource type="Script" uid="uid://d1haycykix2vq" path="res://assets/beyond/emblems/level_3/paroxysm.gd" id="1_cjo7e"]
+[ext_resource type="Texture2D" uid="uid://bwnasetsp8nwy" path="res://assets/beyond/emblems/level_3/paroxysm.png" id="2_vp3od"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_nq0ml"]
+
+[resource]
+script = ExtResource("3_nq0ml")
+name = "beyond.emblem.paroxysm"
+icon = ExtResource("2_vp3od")
+level = 3
+artifact_cost = 1000
+token_cost = 1000
+lore = "beyond.emblem.paroxysm.lore"
+emblem_script = ExtResource("1_cjo7e")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://ccfjymudbk4r5"]
+
+[ext_resource type="Script" uid="uid://csr8lu5bqlw30" path="res://assets/beyond/emblems/level_1/barrels_of_fun.gd" id="1_l5gu5"]
+[ext_resource type="Texture2D" uid="uid://cachmijqbtvfm" path="res://assets/beyond/emblems/level_1/barrels_of_fun.png" id="2_vto41"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_3bxj6"]
+
+[resource]
+script = ExtResource("3_3bxj6")
+name = "beyond.emblem.barrels-of-fun"
+icon = ExtResource("2_vto41")
+lore = "beyond.emblem.barrels-of-fun.lore"
+effects = Array[String](["beyond.emblem.barrels-of-fun.effect.1", "beyond.emblem.barrels-of-fun.effect.2"])
+emblem_script = ExtResource("1_l5gu5")

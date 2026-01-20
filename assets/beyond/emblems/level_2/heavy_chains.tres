@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://rno36q1k6d01"]
+
+[ext_resource type="Script" uid="uid://ctv6ra7y42auf" path="res://assets/beyond/emblems/level_2/heavy_chains.gd" id="1_hfbtc"]
+[ext_resource type="Texture2D" uid="uid://dobeeqhracb40" path="res://assets/beyond/emblems/level_2/heavy_chains.png" id="2_xfmdv"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_rn1k3"]
+
+[resource]
+script = ExtResource("3_rn1k3")
+name = "beyond.emblem.heavy-chains"
+icon = ExtResource("2_xfmdv")
+level = 2
+artifact_cost = 100
+token_cost = 100
+lore = "beyond.emblem.heavy-chains.lore"
+emblem_script = ExtResource("1_hfbtc")

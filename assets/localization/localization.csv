@@ -92,12 +92,6 @@ difficulty.casual;Casual
 difficulty.normal;Normal
 difficulty.hard;Hard
 difficulty.beyond;Beyond
-difficulty.beyond.current-artifacts;You have {artifacts} artifacts:
-difficulty.beyond.fee;{token_fee} Token fee
-difficulty.beyond.current-tokens;(you have {tokens} Tokens)
-difficulty.beyond.artifact-slot-tooltip;INSERT ARTIFACT HERE
-difficulty.beyond.emblem-slot-tooltip;INSERT OPTIONAL EMBLEM HERE
-difficulty.beyond.glint-slot-tooltip;INSERT OPTIONAL GLINT HERE
 
 quest.tutorial;Tutorial
 quest.tutorial.lore;Learn the basics of DemonCrawl!

@@ -30,6 +30,7 @@ monster_texture = ExtResource("11_ccu7j")
 monster_name_pool = SubResource("Resource_t2rvo")
 artifact_texture = ExtResource("3_10ojk")
 artifact_name = "stage.ocean.artifact"
+artifact_name_plural = "stage.ocean.artifact.plural"
 music = ExtResource("12_jalr4")
 ambience_a = ExtResource("1_46mqv")
 ambience_b = ExtResource("2_kofj0")

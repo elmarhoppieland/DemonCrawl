@@ -15,6 +15,8 @@ class_name Registry
 @export var items: Array[ItemData] = [] ## A list of available items.
 
 @export var stages: Array[StageFile] = [] ## A list of available stages.
+
+@export var emblems: Array[EmblemData] = [] ## A list of available emblems.
 # ==============================================================================
 
 func get_elemental_auras() -> Array[Aura]:

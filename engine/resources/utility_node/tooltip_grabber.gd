@@ -68,3 +68,7 @@ func unhover() -> void:
 
 func interact() -> void:
 	hover.call_deferred()
+
+
+func second_interact() -> void:
+	hover.call_deferred()

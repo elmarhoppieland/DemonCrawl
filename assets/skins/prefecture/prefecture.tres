@@ -28,6 +28,7 @@ bg = ExtResource("3_yb8yb")
 monster_name_pool = SubResource("Resource_xkyet")
 artifact_texture = ExtResource("3_c48gn")
 artifact_name = "stage.prefecture.artifact"
+artifact_name_plural = "stage.prefecture.artifact.plural"
 music = ExtResource("12_kisgo")
 ambience_a = ExtResource("1_tl0ti")
 ambience_b = ExtResource("2_c48gn")

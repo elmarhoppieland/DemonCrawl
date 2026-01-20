@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://btjkn4ibd065f"
+
+[deps]
+
+files=["res://assets/localization/localization-beyond.en.translation"]
+
+source_file="res://assets/localization/localization-beyond.csv"
+dest_files=["res://assets/localization/localization-beyond.en.translation"]
+
+[params]
+
+compress=true
+delimiter=1

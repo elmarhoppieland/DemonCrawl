@@ -1,0 +1,124 @@
+key;en
+
+beyond.current-artifacts;You have {artifacts} artifacts:
+beyond.current-emblems;You have {emblems} emblems:
+beyond.fee;{token_fee} Token fee
+beyond.current-tokens;(you have {tokens} Tokens)
+beyond.artifact-slot-tooltip;INSERT ARTIFACT HERE
+beyond.emblem-slot-tooltip;INSERT OPTIONAL EMBLEM HERE
+beyond.glint-slot-tooltip;INSERT OPTIONAL GLINT HERE
+beyond.artifact-too-expensive;Your selected emblem requires at least {artifact_cost} {artifact_name}!
+
+beyond.emblem.description.level;Lv{level} Emblem
+beyond.emblem.description.cost;Costs {tokens} Tokens and {artifacts} artifacts per slot
+
+beyond.emblem.area-51;Area 51
+beyond.emblem.area-51.lore;They're not just here to chew our bubblegum.
+beyond.emblem.barrels-of-fun;Barrels of Fun
+beyond.emblem.barrels-of-fun.lore;Don't try this at home.
+beyond.emblem.barrels-of-fun.effect.1;Gain 8 Powder Kegs
+beyond.emblem.barrels-of-fun.effect.2;Gain 4 Morel
+beyond.emblem.beach-resort;Beach Resort
+beyond.emblem.beach-resort.lore;We'll provide the Beach Balls.
+beyond.emblem.big-bang;Big Bang
+beyond.emblem.big-bang.lore;Size matters.
+beyond.emblem.breaking-the-seal;Breaking the Seal
+beyond.emblem.breaking-the-seal.lore;What's mine is mine.
+beyond.emblem.computer-simulation;Computer Simulation
+beyond.emblem.computer-simulation.lore;0111010001101000011010
+beyond.emblem.constant-reminder;Constant Reminder
+beyond.emblem.constant-reminder.lore;Time moves slow.
+beyond.emblem.day-of-reckoning;Day of Reckoning
+beyond.emblem.day-of-reckoning.lore;The disaster of today is the discovery of tomorrow.
+beyond.emblem.exclusion-zone;Exclusion Zone
+beyond.emblem.exclusion-zone.lore;The air is not fit for breathing.
+beyond.emblem.high-voltage;High Voltage
+beyond.emblem.high-voltage.lore;The harnessing of human nature to meet human needs.
+beyond.emblem.house-of-santa;House of Santa
+beyond.emblem.house-of-santa.lore;Next stop: the North Pole!
+beyond.emblem.infinity-knot;Infinity Knot
+beyond.emblem.infinity-knot.lore;When you look into an abyss, the abyss also looks into you.
+beyond.emblem.information-overload;Information Overload
+beyond.emblem.information-overload.lore;My brain hurts.
+beyond.emblem.lost-soul;Lost Soul
+beyond.emblem.lost-soul.lore;Figures from the past stand tall.
+beyond.emblem.maniacs-heart;Maniac's Heart
+beyond.emblem.maniacs-heart.lore;The heart wants what the heart wants.
+beyond.emblem.midnight-voyage;Midnight Voyage
+beyond.emblem.midnight-voyage.lore;What dangers lie in the dark?
+beyond.emblem.no-tomorrow;No Tomorrow
+beyond.emblem.no-tomorrow.lore;A quest begun is half done.
+beyond.emblem.pumpkin-patch;Pumpkin Patch
+beyond.emblem.pumpkin-patch.lore;Trick or treat, monsters cheat!
+beyond.emblem.rabbit-hole;Rabbit Hole
+beyond.emblem.rabbit-hole.lore;That's one deep hole.
+beyond.emblem.reclamation;Reclamation
+beyond.emblem.reclamation.lore;Gone today, here tomorrow.
+beyond.emblem.the-descent;The Descent
+beyond.emblem.the-descent.lore;Tunnels all the way down.
+beyond.emblem.tornado-alley;Tornado Alley
+beyond.emblem.tornado-alley.lore;This blows.
+beyond.emblem.wester-side-story;Wester Side Story
+beyond.emblem.wester-side-story.lore;A gang that don't own the street is nothin'!
+beyond.emblem.whispers-of-wisdom;Whispers of Wisdom
+beyond.emblem.whispers-of-wisdom.lore;Listen to silence. It has much to say.
+beyond.emblem.all-bark;All Bark
+beyond.emblem.all-bark.lore;Some bite.
+beyond.emblem.blood-of-the-heretic;Blood of the Heretic
+beyond.emblem.blood-of-the-heretic.lore;Put everything on the line.
+beyond.emblem.cosmic-hysteria;Cosmic Hysteria
+beyond.emblem.cosmic-hysteria.lore;No great mind has ever existed without a touch of madness.
+beyond.emblem.den-of-thieves;Den of Thieves
+beyond.emblem.den-of-thieves.lore;You will not survive in the land of wolves.
+beyond.emblem.dread-harvest;Dread Harvest
+beyond.emblem.dread-harvest.lore;The time has come to collect.
+beyond.emblem.elemental-triumvirate;Elemental Triumvirate
+beyond.emblem.elemental-triumvirate.lore;The mind is not a vessel to be filled but a fire to be kindled.
+beyond.emblem.evil-dealings;Evil Dealings
+beyond.emblem.evil-dealings.lore;You ever dance with the devil?
+beyond.emblem.foam-at-the-mouth;Foam at the Mouth
+beyond.emblem.foam-at-the-mouth.lore;No such thing as too many bubbles.
+beyond.emblem.global-warming;Global Warming
+beyond.emblem.global-warming.lore;We didn't start the fire.
+beyond.emblem.heavy-chains;Heavy Chains
+beyond.emblem.heavy-chains.lore;We forge the chains we wear in life.
+beyond.emblem.hivemind;Hivemind
+beyond.emblem.hivemind.lore;The colony must go on.
+beyond.emblem.ice-age;Ice Age
+beyond.emblem.ice-age.lore;Bring a coat.
+beyond.emblem.original-sin;Original Sin
+beyond.emblem.original-sin.lore;Beware the serpent.
+beyond.emblem.shell-shocked;Shell Shocked
+beyond.emblem.shell-shocked.lore;Are you good at solving passwords?
+beyond.emblem.sky-song;Sky Song
+beyond.emblem.sky-song.lore;There is a tension in the harmony of opposites.
+beyond.emblem.solidarity;Solidarity
+beyond.emblem.solidarity.lore;One for all, and all for one.
+beyond.emblem.spawn-of-satan;Spawn of Satan
+beyond.emblem.spawn-of-satan.lore;The greatest trick the Devil ever pulled was convincing the world he didn't exist.
+beyond.emblem.the-boneyard;The Boneyard
+beyond.emblem.the-boneyard.lore;We crawl in the land of the dead.
+beyond.emblem.tide-jewel;Tide Jewel
+beyond.emblem.tide-jewel.lore;A remembrance of past worlds.
+beyond.emblem.true-sight;True Sight
+beyond.emblem.true-sight.lore;Ultimate power may seep through the cracks.
+beyond.emblem.utopia;Utopia
+beyond.emblem.utopia.lore;The lie became the truth.
+beyond.emblem.wild-west;Wild West
+beyond.emblem.wild-west.lore;What do you know of the fisticuffs?
+beyond.emblem.murderous-intent;Murderous Intent
+beyond.emblem.murderous-intent.lore;Hide the bodies.
+beyond.emblem.paroxysm;Paroxysm
+beyond.emblem.paroxysm.lore;It evolves.
+beyond.emblem.reality-check;Reality Check
+beyond.emblem.reality-check.lore;Life is a matter of perspective.
+beyond.emblem.sacred-ground;Sacred Ground
+beyond.emblem.sacred-ground.lore;Lands unspoiled.
+beyond.emblem.sawmill;Sawmill
+beyond.emblem.sawmill.lore;Watch your fingers.
+beyond.emblem.sleep-paralysis;Sleep Paralysis
+beyond.emblem.sleep-paralysis.lore;Blurring the line between dreams and reality.
+beyond.emblem.the-ascent;The Ascent
+beyond.emblem.the-ascent.lore;You have learned to crawl, but now you must learn to climb.
+beyond.emblem.two-spirits;Two Spirits
+beyond.emblem.two-spirits.lore;The dance of light and dark.

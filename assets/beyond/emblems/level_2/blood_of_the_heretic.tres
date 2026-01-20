@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://okt0yw5feqh3"]
+
+[ext_resource type="Script" uid="uid://dtnwyvepquwnd" path="res://assets/beyond/emblems/level_2/blood_of_the_heretic.gd" id="1_5mfsd"]
+[ext_resource type="Texture2D" uid="uid://c568iunxrxbdl" path="res://assets/beyond/emblems/level_2/blood_of_the_heretic.png" id="2_l6ef5"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_3tw7b"]
+
+[resource]
+script = ExtResource("3_3tw7b")
+name = "beyond.emblem.blood-of-the-heretic"
+icon = ExtResource("2_l6ef5")
+level = 2
+artifact_cost = 100
+token_cost = 100
+lore = "beyond.emblem.blood-of-the-heretic.lore"
+emblem_script = ExtResource("1_5mfsd")

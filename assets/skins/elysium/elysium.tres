@@ -28,6 +28,7 @@ bg = ExtResource("3_lopjm")
 monster_name_pool = SubResource("Resource_cgcqr")
 artifact_texture = ExtResource("3_3p3xk")
 artifact_name = "stage.elysium.artifact"
+artifact_name_plural = "stage.elysium.artifact.plural"
 music = ExtResource("12_qujss")
 ambience_a = ExtResource("1_kx1fw")
 ambience_b = ExtResource("2_3p3xk")

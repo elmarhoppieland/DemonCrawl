@@ -12,6 +12,7 @@ object.token;Token
 object.token.spawned;A token has spawned!
 object.artifact;Artifact
 object.artifact.description;{stage} artifact
+object.emblem;Emblem
 
 object.nomad;Nomad
 object.nomad.price;Price: {cost} coins

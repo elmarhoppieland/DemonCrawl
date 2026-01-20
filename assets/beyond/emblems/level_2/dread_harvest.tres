@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://bpgfyivt1qies"]
+
+[ext_resource type="Script" uid="uid://b2gv37mtik68v" path="res://assets/beyond/emblems/level_2/dread_harvest.gd" id="1_ham2c"]
+[ext_resource type="Texture2D" uid="uid://c43go3qnub8ix" path="res://assets/beyond/emblems/level_2/dread_harvest.png" id="2_o04h8"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_t58ub"]
+
+[resource]
+script = ExtResource("3_t58ub")
+name = "beyond.emblem.dread-harvest"
+icon = ExtResource("2_o04h8")
+level = 2
+artifact_cost = 100
+token_cost = 100
+lore = "beyond.emblem.dread-harvest.lore"
+emblem_script = ExtResource("1_ham2c")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://w06285kpv165"]
+
+[ext_resource type="Script" uid="uid://dcsfuqctmb7pn" path="res://assets/beyond/emblems/level_2/solidarity.gd" id="1_lnul6"]
+[ext_resource type="Texture2D" uid="uid://c4e1t4x8s8r8x" path="res://assets/beyond/emblems/level_2/solidarity.png" id="2_ybece"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_jamoi"]
+
+[resource]
+script = ExtResource("3_jamoi")
+name = "beyond.emblem.solidarity"
+icon = ExtResource("2_ybece")
+level = 2
+artifact_cost = 100
+token_cost = 100
+lore = "beyond.emblem.solidarity.lore"
+emblem_script = ExtResource("1_lnul6")

@@ -5,7 +5,73 @@ class_name QuickRun
 const LOCALIZATION_STAGES_EN = preload("uid://cilbh6dvprp5")
 
 func _run() -> void:
-	load_artifacts_to_stage_files()
+	import_emblems()
+
+
+static func import_emblems() -> void:
+	var client := await connect_to_host()
+	var html := await get_url_text(client, "/wiki/index.php/Emblems")
+	FileAccess.open("user://temp.txt", FileAccess.WRITE).store_string(html)
+	
+	var localization := FileAccess.open("res://assets/localization/localization-beyond.csv", FileAccess.READ_WRITE)
+	assert(localization != null, "Could not open localization file: " + error_string(FileAccess.get_open_error()))
+	localization.seek_end()
+	
+	var i := 0
+	
+	var filesystem := EditorInterface.get_resource_filesystem()
+	
+	for level in range(1, 4):
+		i = html.find("<table", i)
+		while html.find("<tr>", i) < html.find("</table>", i):
+			i = html.find("<tr>", i)
+			i = html.find("<td class=\"field__pageName\">", i)
+			i = html.find("<a", i)
+			i = html.find(">", i) + 1
+			
+			var emblem_name := html.substr(i, html.find("<", i) - i)
+			var emblem_localization := emblem_name.replace("'", "").to_kebab_case()
+			
+			localization.store_line("beyond.emblem.%s;%s" % [emblem_localization, emblem_name])
+			
+			var image := DCPlugin.get_data_win_image(emblem_name.replace("'", "").to_snake_case())
+			if not image:
+				print("No image found for emblem '%s'" % emblem_name)
+				continue
+			
+			var base_path := "res://assets/beyond/emblems/level_%d/" % level
+			var image_path := base_path.path_join("%s.png" % emblem_name.replace("'", "").to_snake_case())
+			image.save_png(image_path)
+			print("Saved image for emblem '%s'" % emblem_name)
+			
+			while filesystem.is_scanning():
+				await get_tree().process_frame
+			
+			filesystem.scan_sources()
+			
+			while filesystem.is_scanning():
+				await get_tree().process_frame
+			
+			var emblem_data := EmblemData.new()
+			emblem_data.name = "beyond.emblem." + emblem_name.to_kebab_case()
+			emblem_data.icon = load(image_path)
+			emblem_data.level = level
+			emblem_data.artifact_cost = 10 ** level
+			emblem_data.token_cost = 10 ** level
+			emblem_data.lore = "beyond.emblem." + emblem_name.to_kebab_case() + ".lore"
+			
+			i = html.find("<td class=\"field_Description\">", i) + 30
+			
+			localization.store_line("beyond.emblem.%s.lore;%s" % [emblem_localization, html.substr(i, html.find("<", i) - i)])
+			
+			var script_path := image_path.get_basename() + ".gd"
+			FileAccess.open(script_path, FileAccess.WRITE).store_string("extends Emblem
+
+# ==============================================================================
+")
+			emblem_data.emblem_script = load(script_path)
+			
+			ResourceSaver.save(emblem_data, image_path.get_basename() + ".tres")
 
 
 static func load_artifacts_to_stage_files() -> void:
@@ -658,7 +724,8 @@ static func get_url_text(client: HTTPClient, url: String) -> String:
 	return text\
 		.replace("&quot;", "\"")\
 		.replace("&lt;", "<")\
-		.replace("&#160;", "") # this is technically a no-break space but we ignore it
+		.replace("&#160;", "")\
+		.replace("&#39;", "'")
 
 
 static func remove_tags(text: String) -> String:

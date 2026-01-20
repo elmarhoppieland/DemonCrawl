@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://drl7t1jwsw8wq"]
+
+[ext_resource type="Script" uid="uid://bev3ba7ygesje" path="res://assets/beyond/emblems/level_3/sacred_ground.gd" id="1_tjkqf"]
+[ext_resource type="Texture2D" uid="uid://cnknpcseccfb1" path="res://assets/beyond/emblems/level_3/sacred_ground.png" id="2_msyk0"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_mycj1"]
+
+[resource]
+script = ExtResource("3_mycj1")
+name = "beyond.emblem.sacred-ground"
+icon = ExtResource("2_msyk0")
+level = 3
+artifact_cost = 1000
+token_cost = 1000
+lore = "beyond.emblem.sacred-ground.lore"
+emblem_script = ExtResource("1_tjkqf")

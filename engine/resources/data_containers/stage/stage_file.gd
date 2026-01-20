@@ -28,6 +28,7 @@ static var _monster_pools_reloaded := Signal() :
 @export_group("Artifact", "artifact_")
 @export var artifact_texture: Texture2D ## The texture used for this stage's artifact.
 @export var artifact_name := "" ## The name of this stage's artifact.
+@export var artifact_name_plural := "" ## The pluralized name of this stage's artifact.
 
 @export var music: AudioStream ## The music played in this stage.
 @export var ambience_a: AudioStream ## The ambience A played in this stage.

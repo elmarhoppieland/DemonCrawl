@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/data_containers/condition/condition.gd" id="1_vq7ha"]
 [ext_resource type="Script" uid="uid://ddeq2y3c5x2gj" path="res://engine/resources/data_containers/condition/flag_condition.gd" id="2_2koyg"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://assets/sprites/icons.png" id="2_avpjk"]
-[ext_resource type="Script" uid="uid://d3j1llc6oem2k" path="res://assets/quests/beyond/beyond_difficulty.gd" id="2_fbu33"]
+[ext_resource type="Script" uid="uid://d3j1llc6oem2k" path="res://engine/resources/beyond/beyond_difficulty.gd" id="2_fbu33"]
 [ext_resource type="Resource" uid="uid://1vybaxy3pbps" path="res://assets/quests/beyond/quest_files/beyond_quest_no_emblem.tres" id="4_2koyg"]
-[ext_resource type="Script" uid="uid://br0qdxnl43jqu" path="res://assets/quests/beyond/quest_files/beyond_quest_file.gd" id="4_4ubjb"]
+[ext_resource type="Script" uid="uid://br0qdxnl43jqu" path="res://engine/resources/beyond/beyond_quest_file.gd" id="4_4ubjb"]
 
 [sub_resource type="Resource" id="Resource_4ubjb"]
 script = ExtResource("2_2koyg")

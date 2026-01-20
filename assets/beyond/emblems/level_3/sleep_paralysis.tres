@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://38fkwghmdqrc"]
+
+[ext_resource type="Script" uid="uid://cafrko8e32w7v" path="res://assets/beyond/emblems/level_3/sleep_paralysis.gd" id="1_0w7as"]
+[ext_resource type="Texture2D" uid="uid://cvgwtwt50gcm1" path="res://assets/beyond/emblems/level_3/sleep_paralysis.png" id="2_wrnn1"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_2jbit"]
+
+[resource]
+script = ExtResource("3_2jbit")
+name = "beyond.emblem.sleep-paralysis"
+icon = ExtResource("2_wrnn1")
+level = 3
+artifact_cost = 1000
+token_cost = 1000
+lore = "beyond.emblem.sleep-paralysis.lore"
+emblem_script = ExtResource("1_0w7as")

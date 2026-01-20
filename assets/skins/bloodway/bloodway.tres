@@ -27,6 +27,7 @@ bg = ExtResource("3_s6f0j")
 monster_name_pool = SubResource("Resource_yo5tl")
 artifact_texture = ExtResource("3_ejqqj")
 artifact_name = "stage.bloodway.artifact"
+artifact_name_plural = "stage.bloodway.artifact.plural"
 music = ExtResource("11_wuayc")
 ambience_a = ExtResource("1_tsiqd")
 ambience_b = ExtResource("2_ejqqj")

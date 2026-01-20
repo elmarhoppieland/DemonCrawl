@@ -26,6 +26,7 @@ bg = ExtResource("1_io25q")
 monster_name_pool = SubResource("Resource_iugm1")
 artifact_texture = ExtResource("1_7wlax")
 artifact_name = "stage.salem.artifact"
+artifact_name_plural = "stage.salem.artifact.plural"
 music = ExtResource("10_xxv2f")
 cell_bg = ExtResource("2_7wlax")
 cell_hidden = ExtResource("8_4481u")

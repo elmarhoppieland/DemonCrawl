@@ -69,8 +69,15 @@ func _get_annotation_text() -> String:
 	return ""
 
 
+## Virtual method. Should return the maximum number of character that may appear
+## on a single line.
+func _get_annotation_max_line_length() -> int:
+	return 32
+
+
 func _on_tooltip_grabber_about_to_show() -> void:
 	_tooltip_grabber.text = _get_annotation_text()
+	_tooltip_grabber.max_line_length = _get_annotation_max_line_length()
 
 
 func _validate_property(property: Dictionary) -> void:

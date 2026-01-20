@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://o2pgm7b112g8"]
+
+[ext_resource type="Script" uid="uid://i8wcioahm4w6" path="res://assets/beyond/emblems/level_2/the_boneyard.gd" id="1_rptl3"]
+[ext_resource type="Texture2D" uid="uid://nb1mcy3ru8sj" path="res://assets/beyond/emblems/level_2/the_boneyard.png" id="2_a4qds"]
+[ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="3_kn8rw"]
+
+[resource]
+script = ExtResource("3_kn8rw")
+name = "beyond.emblem.the-boneyard"
+icon = ExtResource("2_a4qds")
+level = 2
+artifact_cost = 100
+token_cost = 100
+lore = "beyond.emblem.the-boneyard.lore"
+emblem_script = ExtResource("1_rptl3")

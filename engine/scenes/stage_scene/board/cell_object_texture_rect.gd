@@ -56,6 +56,12 @@ func _get_annotation_text() -> String:
 	return _cell.get_object().get_annotation_text()
 
 
+## Virtual method. Should return the maximum number of character that may appear
+## on a single line.
+func _get_annotation_max_line_length() -> int:
+	return _cell.get_object().get_annotation_max_line_length()
+
+
 func _get_modulate() -> Color:
 	return _cell.get_object().get_modulate()
 
