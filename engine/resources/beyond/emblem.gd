@@ -9,7 +9,7 @@ class_name Emblem
 # ==============================================================================
 
 @warning_ignore("shadowed_variable")
-func _init(data: EmblemData) -> void:
+func _init(data: EmblemData = null) -> void:
 	self.data = data
 
 
@@ -28,11 +28,11 @@ func _parse_stage_list(artifacts: Array[StageFile], stage_list: Array[StageTempl
 func _enter_tree() -> void:
 	get_quest().started.connect(_quest_start)
 	
-	var base := self
+	var base: Node = self
 	while base != null:
 		if not base.is_node_ready():
 			await base.ready
-		base = get_parent()
+		base = base.get_parent()
 	
 	_enable()
 

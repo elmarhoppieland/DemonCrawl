@@ -1,6 +1,6 @@
 extends Emblem
 
-# TODO: actually do what is should do (this requires Powder Keg and therefore Barrels)
+# TODO: actually do what it should do (this requires Powder Keg and therefore Barrels)
 
 # ==============================================================================
 const APPLE := preload("res://assets/items/apple.tres")

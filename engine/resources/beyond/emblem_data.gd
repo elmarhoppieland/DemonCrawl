@@ -11,6 +11,8 @@ class_name EmblemData
 @export var artifact_cost := 10 ## The number of artifacts this emblem costs, per slot.
 @export var token_cost := 10 ## The number of tokens this emblem costs.
 
+@export var normal := true ## If [code]true[/code], this emblem may drop randomly.
+
 ## The lore of this emblem, to be displayed in quotes at the top of the emblem's
 ## description.
 @export_multiline var lore := ""

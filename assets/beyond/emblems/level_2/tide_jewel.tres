@@ -11,5 +11,6 @@ icon = ExtResource("2_qc2f0")
 level = 2
 artifact_cost = 100
 token_cost = 100
+normal = false
 lore = "beyond.emblem.tide-jewel.lore"
 emblem_script = ExtResource("1_8nd56")

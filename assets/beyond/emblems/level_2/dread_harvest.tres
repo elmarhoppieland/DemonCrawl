@@ -11,5 +11,6 @@ icon = ExtResource("2_o04h8")
 level = 2
 artifact_cost = 100
 token_cost = 100
+normal = false
 lore = "beyond.emblem.dread-harvest.lore"
 emblem_script = ExtResource("1_ham2c")

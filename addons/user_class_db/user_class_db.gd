@@ -514,7 +514,7 @@ static func get_parent_class(name: StringName) -> StringName:
 
 
 ## Creates an instance of class [param name].
-static func instantiate(name: StringName, args: Array = []) -> Object:
+static func instantiate(name: StringName, ...args: Array) -> Object:
 	if not class_can_instantiate(name):
 		return null
 	

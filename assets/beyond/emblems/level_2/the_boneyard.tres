@@ -11,5 +11,6 @@ icon = ExtResource("2_a4qds")
 level = 2
 artifact_cost = 100
 token_cost = 100
+normal = false
 lore = "beyond.emblem.the-boneyard.lore"
 emblem_script = ExtResource("1_rptl3")

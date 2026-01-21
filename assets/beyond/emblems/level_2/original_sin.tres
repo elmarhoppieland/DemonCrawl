@@ -11,5 +11,6 @@ icon = ExtResource("2_2xfxy")
 level = 2
 artifact_cost = 100
 token_cost = 100
+normal = false
 lore = "beyond.emblem.original-sin.lore"
 emblem_script = ExtResource("1_br174")

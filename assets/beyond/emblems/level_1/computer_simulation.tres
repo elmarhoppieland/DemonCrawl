@@ -8,5 +8,6 @@
 script = ExtResource("3_5yfyq")
 name = "beyond.emblem.computer-simulation"
 icon = ExtResource("2_eql5u")
+normal = false
 lore = "beyond.emblem.computer-simulation.lore"
 emblem_script = ExtResource("1_ywcta")

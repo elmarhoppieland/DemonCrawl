@@ -11,5 +11,6 @@ icon = ExtResource("2_tqeat")
 level = 2
 artifact_cost = 100
 token_cost = 100
+normal = false
 lore = "beyond.emblem.shell-shocked.lore"
 emblem_script = ExtResource("1_wikyb")

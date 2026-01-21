@@ -8,5 +8,6 @@
 script = ExtResource("3_e1ohj")
 name = "beyond.emblem.pumpkin-patch"
 icon = ExtResource("2_mgiyq")
+normal = false
 lore = "beyond.emblem.pumpkin-patch.lore"
 emblem_script = ExtResource("1_ep2pb")

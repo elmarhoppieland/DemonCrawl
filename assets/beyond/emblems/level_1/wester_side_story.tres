@@ -8,5 +8,6 @@
 script = ExtResource("3_kkeh5")
 name = "beyond.emblem.wester-side-story"
 icon = ExtResource("2_b0him")
+normal = false
 lore = "beyond.emblem.wester-side-story.lore"
 emblem_script = ExtResource("1_v5ynw")

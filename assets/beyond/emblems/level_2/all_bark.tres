@@ -11,5 +11,6 @@ icon = ExtResource("2_hwbjj")
 level = 2
 artifact_cost = 100
 token_cost = 100
+normal = false
 lore = "beyond.emblem.all-bark.lore"
 emblem_script = ExtResource("1_di3jt")

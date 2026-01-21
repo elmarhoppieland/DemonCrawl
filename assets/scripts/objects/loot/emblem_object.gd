@@ -10,7 +10,18 @@ const MAX_LINE_LENGTH := 45
 # ==============================================================================
 
 func _spawn() -> void:
-	emblem = DemonCrawl.get_full_registry().emblems.pick_random()
+	# TODO: maximum emblem level
+	var emblem_list: Array[EmblemData] = []
+	emblem_list.assign(DemonCrawl.get_full_registry().emblems.filter(func(e: EmblemData) -> bool:
+		return e.normal
+	))
+	
+	if emblem_list.is_empty():
+		Debug.log_error("No valid normal emblems found. Clearing the emblem object...")
+		clear()
+		return
+	
+	emblem = emblem_list.pick_random()
 
 
 func _get_name_id() -> String:
