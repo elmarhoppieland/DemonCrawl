@@ -86,6 +86,8 @@ generic.armor.head;head
 generic.armor.body;body
 generic.armor.leg;leg
 
+generic.not-implemented;Not (fully) implemented
+
 gui.search;Search...
 
 difficulty.casual;Casual
