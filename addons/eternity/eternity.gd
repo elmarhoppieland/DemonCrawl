@@ -45,9 +45,9 @@ static func _editor_init() -> void:
 
 static func get_saved_value(save_path: String, script: Script, key: String) -> Variant:
 	var script_class := UserClassDB.script_get_identifier(script)
-	var cfg := EternalFile.new()
-	cfg.load(save_path)
-	return cfg.get_eternal(script_class, key, get_defaults_cfg().get_eternal(script_class, key))
+	var loader := EternalFileLoader.new()
+	var file := loader.load(save_path)
+	return file.get_eternal(script_class, key, get_defaults_cfg().get_eternal(script_class, key))
 
 
 static func save(path_name: String = "") -> void:

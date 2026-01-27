@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://c3yut5pml4y4v"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c3yut5pml4y4v"]
 
 [ext_resource type="Script" uid="uid://beicvvxp1owoo" path="res://assets/items/nomad_medal.gd" id="1_545dk"]
 [ext_resource type="Texture2D" uid="uid://bodfx76fbeg35" path="res://assets/items/nomad_medal.png" id="1_675py"]

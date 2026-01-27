@@ -1,14 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cumgux0onyrup"]
+[gd_scene format=3 uid="uid://cumgux0onyrup"]
 
-[ext_resource type="Script" uid="uid://bbmovn0chyqci" path="res://Engine/Resources/Singletons/StatusEffectsOverlay.gd" id="1_d2m47"]
+[ext_resource type="Script" uid="uid://bbmovn0chyqci" path="res://engine/resources/singletons/status_effects_overlay.gd" id="1_d2m47"]
 
-[node name="StatusEffectsOverlay" type="CanvasLayer"]
+[node name="StatusEffectsOverlay" type="CanvasLayer" unique_id=126951909]
 layer = 20
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 0)
 script = ExtResource("1_d2m47")
 
-[node name="StatusEffectContainer" type="VBoxContainer" parent="."]
+[node name="StatusEffectContainer" type="VBoxContainer" parent="." unique_id=87440721]
 unique_name_in_owner = true
 offset_left = 4.0
 offset_top = 40.0

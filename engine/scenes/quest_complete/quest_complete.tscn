@@ -1,0 +1,457 @@
+[gd_scene format=3 uid="uid://c2jmpjlrtuwcc"]
+
+[ext_resource type="Script" uid="uid://whrdbt0xwnet" path="res://engine/scenes/quest_complete/quest_complete.gd" id="1_rcn3b"]
+[ext_resource type="AudioStream" uid="uid://c23pal2bespi0" path="res://assets/music/quest_complete.ogg" id="2_5kbqk"]
+[ext_resource type="Texture2D" uid="uid://b2wvoykvb8fha" path="res://assets/backgrounds/quest_complete.png" id="2_vhutr"]
+[ext_resource type="Theme" uid="uid://xdwwohetfem2" path="res://engine/scenes/quest_complete/quest_complete_text.theme" id="3_3i8v7"]
+[ext_resource type="Theme" uid="uid://mxgusstu16t2" path="res://engine/scenes/quest_complete/quest_complete.theme" id="3_pcgx3"]
+[ext_resource type="Texture2D" uid="uid://co7maglvq1akc" path="res://assets/sprites/finish_bg.png" id="4_wnlgy"]
+[ext_resource type="Shader" uid="uid://clyilqfo1ig34" path="res://engine/scenes/stage_scene/finish_button.gdshader" id="5_pcgx3"]
+[ext_resource type="Texture2D" uid="uid://dfwsoi1dna1xn" path="res://assets/skins/forest/monster.png" id="5_yo5yf"]
+[ext_resource type="Script" uid="uid://fagfups2w8dt" path="res://engine/resources/helper_objects/animated_texture_sequence.gd" id="6_5kbqk"]
+[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://engine/resources/utility_node/avatar_atlas.tres" id="10_13ncb"]
+[ext_resource type="Script" uid="uid://d16rb2jruql4e" path="res://engine/resources/utility_node/avatar.gd" id="11_epibk"]
+[ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://engine/resources/utility_node/xp_bar.gd" id="14_upth8"]
+[ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://engine/resources/utility_node/profile_name_label.gd" id="15_gq2by"]
+[ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://engine/resources/utility_node/profile_level_label.gd" id="16_vgfa3"]
+
+[sub_resource type="Texture2D" id="Texture2D_0rn3y"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("6_5kbqk")
+duration = 1.5
+atlas = ExtResource("5_yo5yf")
+metadata/_custom_type_script = "uid://fagfups2w8dt"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pcgx3"]
+shader = ExtResource("5_pcgx3")
+shader_parameter/color = Vector3(1, 1, 1)
+shader_parameter/speed = 0.667
+
+[sub_resource type="LabelSettings" id="LabelSettings_nwnoq"]
+font_size = 8
+font_color = Color(0.74509805, 0.74509805, 0.74509805, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_nwwge"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SummaryLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SummaryLabel:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ScoreLabel:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ScoreLabel:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MonsterTaunt/MonsterBox/MonsterSprite:scale:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MonsterTaunt/MonsterBox/MonsterSprite:scale:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DoneButton/TextureRect:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DoneButton:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_loqg5"]
+resource_name = "quest_finished"
+length = 2.31
+step = 0.0166
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-508, 0, 0, 0.25, 0, 128, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SummaryLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(336, -0.25, 0, 0.25, 0, 304, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.6, 1.1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SummaryLabel:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.6, 1.1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ScoreLabel:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(376, -0.25, 0, 0.25, 0, 344, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.2166667, 1.7)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ScoreLabel:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.2166667, 1.7)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MonsterTaunt/MonsterBox/MonsterSprite:scale:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.04444444, 0, 1.5, -0.04444444, 0, 0.022222202, 0, 0.86705685, -0.022222202, 0, 0.016666692, 0, 1, -0.016666692, 0, 0, 0),
+"times": PackedFloat32Array(1.7333333, 1.8666667, 1.9333333, 1.9833333)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MonsterTaunt/MonsterBox/MonsterSprite:scale:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.04444444, 0, 1.5, -0.04444444, 0, 0.022222202, 0, 0.86705685, -0.022222202, 0, 0.016666692, 0, 1, -0.016666692, 0, 0, 0),
+"times": PackedFloat32Array(1.7333333, 1.8666667, 1.9333333, 1.9833333)
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.7166667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animate_monster_taunt"
+}]
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DoneButton:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1248, -0.25, 0, 0.25, 0, 1012, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.7333333, 2.3)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("DoneButton/TextureRect:position:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(16, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.7333333, 2.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nwwge"]
+_data = {
+&"RESET": SubResource("Animation_nwwge"),
+&"quest_finished": SubResource("Animation_loqg5")
+}
+
+[node name="QuestComplete" type="Control" unique_id=580324338]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rcn3b")
+
+[node name="AudioPlayers" type="Node" parent="." unique_id=1480028393]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="AudioPlayers" unique_id=1091331606]
+unique_name_in_owner = true
+stream = ExtResource("2_5kbqk")
+autoplay = true
+
+[node name="Background" type="TextureRect" parent="." unique_id=293143483]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vhutr")
+
+[node name="Title" type="Label" parent="." unique_id=632900823]
+layout_mode = 0
+offset_top = 200.0
+offset_right = 245.24973
+offset_bottom = 221.0
+scale = Vector2(4, 4)
+theme = ExtResource("3_pcgx3")
+text = "quest-finished.title"
+
+[node name="SummaryLabel" type="RichTextLabel" parent="." unique_id=1660252378]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 128.0
+offset_right = 287.0
+offset_bottom = 8.25
+scale = Vector2(4, 4)
+theme = ExtResource("3_3i8v7")
+bbcode_enabled = true
+text = "quest-finished.summary"
+fit_content = true
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=529743179]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 128.0
+offset_right = 235.0
+offset_bottom = 8.0
+scale = Vector2(4, 4)
+theme = ExtResource("3_3i8v7")
+text = "quest-finished.score"
+
+[node name="MonsterTaunt" type="HBoxContainer" parent="." unique_id=235669538]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 450.0
+offset_right = 291.0
+offset_bottom = 466.0
+scale = Vector2(4, 4)
+theme = ExtResource("3_3i8v7")
+theme_override_constants/separation = 1
+
+[node name="MonsterBox" type="Control" parent="MonsterTaunt" unique_id=252122166]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MonsterSprite" type="TextureRect" parent="MonsterTaunt/MonsterBox" unique_id=1712024761]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(8, 8)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("Texture2D_0rn3y")
+
+[node name="MonsterText" type="Label" parent="MonsterTaunt" unique_id=938497421]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.51718444, 0.5171845, 0.51718444, 1)
+text = "MONSTER is literally crashing out!"
+
+[node name="DoneButton" type="Control" parent="." unique_id=1701504290]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1280.0
+offset_top = -92.0
+offset_right = -1224.0
+offset_bottom = -71.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(4, 4)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_3i8v7")
+
+[node name="TextureRect" type="TextureRect" parent="DoneButton" unique_id=1551925709]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_pcgx3")
+layout_mode = 0
+offset_top = 2.0
+offset_right = 56.0001
+offset_bottom = 19.0
+size_flags_vertical = 4
+texture = ExtResource("4_wnlgy")
+
+[node name="Button" type="Button" parent="DoneButton" unique_id=329266519]
+clip_contents = true
+layout_mode = 0
+offset_top = 2.0
+offset_right = 56.0
+offset_bottom = 23.0
+size_flags_vertical = 4
+theme = ExtResource("3_pcgx3")
+text = "done!"
+
+[node name="ProfileContainer" type="HBoxContainer" parent="." unique_id=604647209]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.006
+anchor_top = 1.0
+anchor_right = 0.006
+anchor_bottom = 1.0
+offset_top = -84.0
+offset_right = 128.0
+offset_bottom = -63.0
+grow_vertical = 0
+scale = Vector2(4, 4)
+theme_override_constants/separation = 0
+
+[node name="Avatar" type="TextureRect" parent="ProfileContainer" unique_id=1365418382]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("10_13ncb")
+script = ExtResource("11_epibk")
+
+[node name="Control" type="Control" parent="ProfileContainer" unique_id=743989895]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+
+[node name="XPBar" type="ProgressBar" parent="ProfileContainer" unique_id=1646170747]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 93.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("14_upth8")
+
+[node name="Control3" type="Control" parent="ProfileContainer" unique_id=1885677920]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ProfileContainer" unique_id=639005192]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = -1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ProfileContainer/MarginContainer" unique_id=562229145]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="ProfileNameLabel" type="Label" parent="ProfileContainer/MarginContainer/VBoxContainer" unique_id=595519106]
+layout_mode = 2
+text = "<profile-name>"
+script = ExtResource("15_gq2by")
+
+[node name="ProfileLevelLabel" type="Label" parent="ProfileContainer/MarginContainer/VBoxContainer" unique_id=189026527]
+layout_mode = 2
+text = "generic.level.abbr.0"
+label_settings = SubResource("LabelSettings_nwnoq")
+script = ExtResource("16_vgfa3")
+
+[node name="QuestCompleteAP" type="AnimationPlayer" parent="." unique_id=324409805]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_nwwge")
+
+[connection signal="pressed" from="DoneButton/Button" to="." method="_on_done_pressed"]

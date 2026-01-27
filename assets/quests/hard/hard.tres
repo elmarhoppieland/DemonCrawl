@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Difficulty" load_steps=15 format=3 uid="uid://im6g8j5omb54"]
+[gd_resource type="Resource" script_class="Difficulty" format=3 uid="uid://im6g8j5omb54"]
 
 [ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/data_containers/condition/condition.gd" id="1_biiur"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_lpgkx"]
@@ -27,6 +27,7 @@ name = "difficulties/Hard"
 script = ExtResource("10_e001k")
 name = "difficulty.hard"
 icon = SubResource("Texture2D_fnfsu")
+color = Color(0.8784314, 0.12156863, 0.08627451, 1)
 conditions = Array[ExtResource("1_biiur")]([SubResource("Resource_8gmwo")])
 quests = Array[ExtResource("4_ccner")]([ExtResource("2_8miv4"), ExtResource("3_8s1ny"), ExtResource("4_bg8b8"), ExtResource("5_dmv15"), ExtResource("6_t0kgu"), ExtResource("7_7yuxm"), ExtResource("8_rbhev")])
 max_life = 3

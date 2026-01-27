@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0ulv1pxmpr77"]
+[gd_scene format=3 uid="uid://d0ulv1pxmpr77"]
 
 [ext_resource type="Script" uid="uid://bjonssjjjk2ag" path="res://addons/dc_plugin/add_item.gd" id="1_pk35f"]
 [ext_resource type="PackedScene" uid="uid://c4ooeq4f4j6ec" path="res://addons/dc_plugin/data_win_config_popup.tscn" id="2_1i1p2"]
 
-[node name="AddItem" type="PopupPanel"]
+[node name="AddItem" type="PopupPanel" unique_id=1539089757]
 oversampling_override = 1.0
 title = "Add Item..."
 size = Vector2i(289, 258)
@@ -11,75 +11,75 @@ visible = true
 borderless = false
 script = ExtResource("1_pk35f")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=968479885]
 custom_minimum_size = Vector2(256, 192)
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 285.0
 offset_bottom = 254.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1158678228]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=601793459]
 layout_mode = 2
 text = "Name"
 
-[node name="NameEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="NameEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=439137442]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 keep_editing_on_text_submit = true
 
-[node name="NameEditTimer" type="Timer" parent="VBoxContainer/HBoxContainer/NameEdit"]
+[node name="NameEditTimer" type="Timer" parent="VBoxContainer/HBoxContainer/NameEdit" unique_id=1788511457]
 unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
-[node name="DisableTranslationStringsButton" type="Button" parent="VBoxContainer"]
+[node name="DisableTranslationStringsButton" type="Button" parent="VBoxContainer" unique_id=1807446905]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Disable Translation Strings"
 
-[node name="DescriptionEditContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="DescriptionEditContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=848876264]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DescriptionEditContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DescriptionEditContainer" unique_id=802036278]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/DescriptionEditContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/DescriptionEditContainer/HBoxContainer" unique_id=1971442928]
 layout_mode = 2
 text = "Description"
 
-[node name="EnableTranslationStringsButton" type="Button" parent="VBoxContainer/DescriptionEditContainer/HBoxContainer"]
+[node name="EnableTranslationStringsButton" type="Button" parent="VBoxContainer/DescriptionEditContainer/HBoxContainer" unique_id=815060158]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Enable Translation Strings"
 
-[node name="DescriptionEdit" type="TextEdit" parent="VBoxContainer/DescriptionEditContainer"]
+[node name="DescriptionEdit" type="TextEdit" parent="VBoxContainer/DescriptionEditContainer" unique_id=1857635575]
 unique_name_in_owner = true
 layout_mode = 2
 wrap_mode = 1
 scroll_fit_content_height = true
 
-[node name="AddManaButton" type="Button" parent="VBoxContainer"]
+[node name="AddManaButton" type="Button" parent="VBoxContainer" unique_id=642643251]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Add Mana"
 
-[node name="ManaEditContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="ManaEditContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=855904527]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ManaEditContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ManaEditContainer" unique_id=481870163]
 layout_mode = 2
 text = "Mana"
 
-[node name="ManaEdit" type="SpinBox" parent="VBoxContainer/ManaEditContainer"]
+[node name="ManaEdit" type="SpinBox" parent="VBoxContainer/ManaEditContainer" unique_id=469470471]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -88,14 +88,14 @@ allow_lesser = true
 custom_arrow_step = 1.0
 select_all_on_focus = true
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=1782203475]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=1907686628]
 layout_mode = 2
 text = "Cost"
 
-[node name="CostEdit" type="SpinBox" parent="VBoxContainer/HBoxContainer3"]
+[node name="CostEdit" type="SpinBox" parent="VBoxContainer/HBoxContainer3" unique_id=1356451020]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -104,46 +104,46 @@ allow_lesser = true
 custom_arrow_step = 1.0
 select_all_on_focus = true
 
-[node name="UseDataWinButton" type="Button" parent="VBoxContainer"]
+[node name="UseDataWinButton" type="Button" parent="VBoxContainer" unique_id=2106388365]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Use Sprite From data.win..."
 
-[node name="DataWinContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="DataWinContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=144261692]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DataWinContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DataWinContainer" unique_id=1382857326]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="DataWinCheckBox" type="CheckBox" parent="VBoxContainer/DataWinContainer/VBoxContainer"]
+[node name="DataWinCheckBox" type="CheckBox" parent="VBoxContainer/DataWinContainer/VBoxContainer" unique_id=1582543234]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 button_pressed = true
 text = "Use Sprite From data.win:"
 
-[node name="LocateDataWinButton" type="Button" parent="VBoxContainer/DataWinContainer/VBoxContainer"]
+[node name="LocateDataWinButton" type="Button" parent="VBoxContainer/DataWinContainer/VBoxContainer" unique_id=812705602]
 layout_mode = 2
 text = "Locate Files..."
 
-[node name="DataWinTextureRect" type="TextureRect" parent="VBoxContainer/DataWinContainer"]
+[node name="DataWinTextureRect" type="TextureRect" parent="VBoxContainer/DataWinContainer" unique_id=1295091752]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer" unique_id=424382103]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4" unique_id=254809114]
 layout_mode = 2
 text = "Type"
 
-[node name="TypeOptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer4"]
+[node name="TypeOptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer4" unique_id=392824328]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -162,27 +162,27 @@ popup/item_4/id = 4
 popup/item_5/text = "Passive"
 popup/item_5/id = 5
 
-[node name="RegistryCheckBox" type="CheckBox" parent="VBoxContainer"]
+[node name="RegistryCheckBox" type="CheckBox" parent="VBoxContainer" unique_id=1135623669]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 button_pressed = true
 text = "Add To Registry"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1044930072]
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=1790139739]
 layout_mode = 2
 text = "Cancel"
 
-[node name="CreateButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="CreateButton" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=954326465]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Create"
 
-[node name="DataWinConfigPopup" parent="." instance=ExtResource("2_1i1p2")]
+[node name="DataWinConfigPopup" parent="." unique_id=1198026822 instance=ExtResource("2_1i1p2")]
 unique_name_in_owner = true
 position = Vector2i(512, 0)
 size = Vector2i(256, 4503)

@@ -1,20 +1,20 @@
-[gd_scene load_steps=24 format=3 uid="uid://di6wvg6vsnpk6"]
+[gd_scene format=3 uid="uid://di6wvg6vsnpk6"]
 
-[ext_resource type="Script" uid="uid://debg0clccftwj" path="res://Engine/Scenes/QuestSelect/QuestSelectStatbar.gd" id="1_nscr4"]
-[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Engine/Resources/UtilityNode/Avatar_atlas.tres" id="1_tyv50"]
+[ext_resource type="Script" uid="uid://debg0clccftwj" path="res://engine/scenes/quest_select/quest_select_statbar.gd" id="1_nscr4"]
+[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://engine/resources/utility_node/avatar_atlas.tres" id="1_tyv50"]
 [ext_resource type="Texture2D" uid="uid://cgfs56fiqf8o6" path="res://assets/sprites/equipment_bg.png" id="2_71fui"]
-[ext_resource type="Script" uid="uid://d16rb2jruql4e" path="res://Engine/Resources/UtilityNode/Avatar.gd" id="2_jw1sc"]
-[ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://Engine/Resources/UtilityNode/XPBar.gd" id="3_hdwrk"]
-[ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://Engine/Resources/UtilityNode/ProfileNameLabel.gd" id="4_itjbr"]
-[ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://Engine/Resources/UtilityNode/ProfileLevelLabel.gd" id="5_1gbmc"]
+[ext_resource type="Script" uid="uid://d16rb2jruql4e" path="res://engine/resources/utility_node/avatar.gd" id="2_jw1sc"]
+[ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://engine/resources/utility_node/xp_bar.gd" id="3_hdwrk"]
+[ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://engine/resources/utility_node/profile_name_label.gd" id="4_itjbr"]
+[ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://engine/resources/utility_node/profile_level_label.gd" id="5_1gbmc"]
 [ext_resource type="Texture2D" uid="uid://c0wy5rmhyi3c7" path="res://assets/sprites/equipment_edit.png" id="6_84hrg"]
 [ext_resource type="Texture2D" uid="uid://b5mp7d5mu531t" path="res://assets/sprites/equipment_edit_hover.png" id="7_fgbfb"]
-[ext_resource type="Texture2D" uid="uid://c4g8elig1ldk3" path="res://assets/sprites/Masteries.png" id="8_mxn6j"]
-[ext_resource type="Script" uid="uid://b3p4tgo8c53wu" path="res://Engine/Resources/UtilityNode/ProfileMastery.gd" id="8_y3cea"]
-[ext_resource type="Script" uid="uid://ci3br140mitsg" path="res://Engine/Resources/UtilityNode/ProfileSpecialChest.gd" id="10_avyii"]
+[ext_resource type="Texture2D" uid="uid://c4g8elig1ldk3" path="res://assets/sprites/masteries.png" id="8_mxn6j"]
+[ext_resource type="Script" uid="uid://b3p4tgo8c53wu" path="res://engine/resources/utility_node/profile_mastery.gd" id="8_y3cea"]
+[ext_resource type="Script" uid="uid://ci3br140mitsg" path="res://engine/resources/utility_node/profile_special_chest.gd" id="10_avyii"]
 [ext_resource type="Texture2D" uid="uid://cpfdt0p3bkl2x" path="res://assets/sprites/chests.png" id="11_lkdpv"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://assets/sprites/icons.png" id="11_nvijv"]
-[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="12_u62r3"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="12_u62r3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j7eoj"]
 font_size = 8
@@ -23,7 +23,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_13o6w"]
 font_size = 8
-font_color = Color(0.745098, 0.745098, 0.745098, 1)
+font_color = Color(0.74509805, 0.74509805, 0.74509805, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
@@ -82,25 +82,25 @@ _data = {
 &"equipment_button_show": SubResource("Animation_7eyid")
 }
 
-[node name="QuestSelectStatbar" type="MarginContainer"]
+[node name="QuestSelectStatbar" type="MarginContainer" unique_id=533896621]
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_bottom = 2
 script = ExtResource("1_nscr4")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1991143856]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="Avatar" type="TextureRect" parent="HBoxContainer"]
+[node name="Avatar" type="TextureRect" parent="HBoxContainer" unique_id=1607977799]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("1_tyv50")
 script = ExtResource("2_jw1sc")
 
-[node name="XPBar" type="ProgressBar" parent="HBoxContainer"]
+[node name="XPBar" type="ProgressBar" parent="HBoxContainer" unique_id=686089274]
 custom_minimum_size = Vector2(4, 16)
 layout_mode = 2
 size_flags_vertical = 1
@@ -110,61 +110,61 @@ fill_mode = 3
 show_percentage = false
 script = ExtResource("3_hdwrk")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=927827363]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_right = 13
 theme_override_constants/margin_bottom = -1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer" unique_id=1667056003]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="ProfileNameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="ProfileNameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=2040250009]
 layout_mode = 2
 text = "<profile-name>"
 label_settings = SubResource("LabelSettings_j7eoj")
 script = ExtResource("4_itjbr")
 
-[node name="ProfileLevelLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="ProfileLevelLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=1389418424]
 layout_mode = 2
-text = "Lv1"
+text = "generic.level.abbr.0"
 label_settings = SubResource("LabelSettings_13o6w")
 script = ExtResource("5_1gbmc")
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=1438494233]
 layout_mode = 2
 theme_override_constants/margin_top = -1
 theme_override_constants/margin_bottom = -1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2" unique_id=593919265]
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_71fui")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2" unique_id=1909207968]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/MarginContainer" unique_id=757918176]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="ProfileMastery" type="TextureRect" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
+[node name="ProfileMastery" type="TextureRect" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer" unique_id=517347389]
 layout_mode = 2
 texture = SubResource("AtlasTexture_51dt4")
 script = ExtResource("8_y3cea")
 
-[node name="Control" type="Control" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer" unique_id=902493513]
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
-[node name="ProfileSpecialChest" type="TextureRect" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
+[node name="ProfileSpecialChest" type="TextureRect" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer" unique_id=89733157]
 custom_minimum_size = Vector2(16, 15)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -173,40 +173,38 @@ texture = SubResource("AtlasTexture_gvtrs")
 stretch_mode = 3
 script = ExtResource("10_avyii")
 
-[node name="Control2" type="Control" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
+[node name="Control2" type="Control" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer" unique_id=406784828]
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
-[node name="ProfileSigil" type="TextureRect" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
+[node name="ProfileSigil" type="TextureRect" parent="HBoxContainer/MarginContainer2/MarginContainer/HBoxContainer" unique_id=895316877]
 layout_mode = 2
 texture = SubResource("AtlasTexture_auwo4")
 stretch_mode = 3
 
-[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer" unique_id=692296655]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = -3
 theme_override_constants/margin_bottom = -1
 
-[node name="EquipmentButton" type="MarginContainer" parent="HBoxContainer/MarginContainer3"]
+[node name="EquipmentButton" type="MarginContainer" parent="HBoxContainer/MarginContainer3" unique_id=980333386]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer3/EquipmentButton"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer3/EquipmentButton" unique_id=2130813105]
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("6_84hrg")
 
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/MarginContainer3/EquipmentButton"]
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/MarginContainer3/EquipmentButton" unique_id=247741320]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("7_fgbfb")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=313523842]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_b1u58")
-}
+libraries/ = SubResource("AnimationLibrary_b1u58")
 
 [connection signal="mouse_entered" from="HBoxContainer/MarginContainer3/EquipmentButton" to="." method="_on_equipment_button_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/MarginContainer3/EquipmentButton" to="." method="_on_equipment_button_mouse_exited"]

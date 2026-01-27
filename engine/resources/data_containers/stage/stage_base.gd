@@ -91,6 +91,15 @@ func get_bg() -> Texture2D:
 @abstract func _get_bg() -> Texture2D
 
 
+## Returns this stage's theme.
+func get_theme() -> Theme:
+	return _get_theme()
+
+
+## Virtual method. Should return this stages's theme.
+@abstract func _get_theme() -> Theme
+
+
 ## Returns this [Stage]'s small icon (the one shown in the [StageSelect] screen,
 ## in the [StagesOverview]).
 func get_small_icon() -> Texture2D:

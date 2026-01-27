@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://prterke35hgb"]
+[gd_scene format=3 uid="uid://prterke35hgb"]
 
 [ext_resource type="Script" uid="uid://cgyilf3bvf1pv" path="res://addons/dc_plugin/add_mastery_popup.gd" id="1_jktqe"]
 [ext_resource type="PackedScene" uid="uid://c4ooeq4f4j6ec" path="res://addons/dc_plugin/data_win_config_popup.tscn" id="2_m67ok"]
 
-[node name="AddMastery" type="PopupPanel"]
+[node name="AddMastery" type="PopupPanel" unique_id=998645322]
 oversampling_override = 1.0
 title = "Add Mastery..."
 position = Vector2i(0, 36)
@@ -14,120 +14,120 @@ borderless = false
 popup_wm_hint = false
 script = ExtResource("1_jktqe")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=381729992]
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 221.0
 offset_bottom = 493.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1881333202]
 custom_minimum_size = Vector2(0, 446)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=81699100]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1902793847]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1007503370]
 layout_mode = 2
 text = "Name"
 
-[node name="NameEdit" type="LineEdit" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="NameEdit" type="LineEdit" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1377545033]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="NameEditTimer" type="Timer" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/NameEdit"]
+[node name="NameEditTimer" type="Timer" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/NameEdit" unique_id=1353675471]
 unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
-[node name="DisableTranslationStringsButton" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="DisableTranslationStringsButton" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1045515934]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Disable Translation Strings"
 
-[node name="DescriptionContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="DescriptionContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1390080163]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/DescriptionContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/DescriptionContainer" unique_id=1677907700]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/DescriptionContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/DescriptionContainer/HBoxContainer" unique_id=516222275]
 layout_mode = 2
 text = "Description"
 
-[node name="EnableTranslationStringsButton" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer/DescriptionContainer/HBoxContainer"]
+[node name="EnableTranslationStringsButton" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer/DescriptionContainer/HBoxContainer" unique_id=503359082]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Enable Translation Strings"
 
-[node name="DescriptionEditsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/DescriptionContainer"]
+[node name="DescriptionEditsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/DescriptionContainer" unique_id=1390681660]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="UnlockTextContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="UnlockTextContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=736534910]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/UnlockTextContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/UnlockTextContainer" unique_id=1120313461]
 layout_mode = 2
 text = "Unlock Text"
 
-[node name="UnlockTextEditsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/UnlockTextContainer"]
+[node name="UnlockTextEditsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/UnlockTextContainer" unique_id=1864771129]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="EnableDataWinButton" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="EnableDataWinButton" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=958748900]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Use Icons From data.win"
 
-[node name="DataWinIconsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="DataWinIconsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=813326773]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/DataWinIconsContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/DataWinIconsContainer" unique_id=1051632271]
 layout_mode = 2
 
-[node name="DataWinEnabledCheckBox" type="CheckBox" parent="VBoxContainer/ScrollContainer/VBoxContainer/DataWinIconsContainer/HBoxContainer2"]
+[node name="DataWinEnabledCheckBox" type="CheckBox" parent="VBoxContainer/ScrollContainer/VBoxContainer/DataWinIconsContainer/HBoxContainer2" unique_id=1445509254]
 unique_name_in_owner = true
 layout_mode = 2
 button_pressed = true
 text = "Use Icons From data.win:"
 
-[node name="LocateButton" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer/DataWinIconsContainer/HBoxContainer2"]
+[node name="LocateButton" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer/DataWinIconsContainer/HBoxContainer2" unique_id=1118347214]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Locate Export..."
 
-[node name="DataWinIconRectsContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/DataWinIconsContainer"]
+[node name="DataWinIconRectsContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/DataWinIconsContainer" unique_id=505327194]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1069316282]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer5" unique_id=1984959305]
 layout_mode = 2
 text = "Levels"
 
-[node name="LevelsEdit" type="SpinBox" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
+[node name="LevelsEdit" type="SpinBox" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer5" unique_id=434929414]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -135,53 +135,53 @@ value = 3.0
 allow_greater = true
 select_all_on_focus = true
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1633761243]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=246651898]
 layout_mode = 2
 text = "Charges"
 
-[node name="ChargesEdit" type="SpinBox" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+[node name="ChargesEdit" type="SpinBox" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1718677158]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 allow_greater = true
 select_all_on_focus = true
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=500312417]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=1448892156]
 layout_mode = 2
 text = "Cost"
 
-[node name="CostEditsContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+[node name="CostEditsContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=158533812]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="RegistryCheckBox" type="CheckBox" parent="VBoxContainer"]
+[node name="RegistryCheckBox" type="CheckBox" parent="VBoxContainer" unique_id=2130804747]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 button_pressed = true
 text = "Add To Registry"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=967262268]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=1440363315]
 layout_mode = 2
 text = "Cancel"
 
-[node name="CreateButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="CreateButton" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=842711558]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Create"
 
-[node name="DataWinConfigPopup" parent="." instance=ExtResource("2_m67ok")]
+[node name="DataWinConfigPopup" parent="." unique_id=1601744491 instance=ExtResource("2_m67ok")]
 unique_name_in_owner = true
 position = Vector2i(512, 0)
 visible = false

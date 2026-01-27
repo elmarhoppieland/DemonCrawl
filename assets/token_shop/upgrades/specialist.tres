@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TokenShopLevelItem" load_steps=8 format=3 uid="uid://cnbevbtob1jom"]
+[gd_resource type="Resource" script_class="TokenShopLevelItem" format=3 uid="uid://cnbevbtob1jom"]
 
 [ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/data_containers/condition/condition.gd" id="1_6fm5f"]
 [ext_resource type="Script" uid="uid://ba12xyhtl3546" path="res://engine/resources/data_containers/token_shop/token_shop_level_item.gd" id="1_csfp4"]

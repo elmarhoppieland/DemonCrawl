@@ -205,10 +205,24 @@ func unlock_next_stage(skip_special_stages: bool = true, start_stage_index: int 
 
 ## Finishes this quest.
 func finish() -> void:
+	var data := QuestsManager.get_completion_data(source_file)
+	data.completion_count += 1
+	if data.best_score < get_attributes().score:
+		data.best_score = get_attributes().score
+		HighScorePopup.show_score(data.best_score)
+	data.save()
+	
+	# Quest Unlock Popup
+	var quest_to_unlock := source_difficulty.quests[min(source_difficulty.quests.find(source_file) + 1, len(source_difficulty.quests) - 1)]
+	if data.completion_count == 1 and quest_to_unlock != source_file:
+		QuestUnlockedPopup.show_quest_unlock(quest_to_unlock.token_shop_purchase != null, quest_to_unlock.name)
+	
 	for unlocker in get_mastery_unlockers():
 		unlocker.notify_quest_won()
 	
 	won.emit()
+	
+	await DCPopup.wait_for_popups_dismissed()
 	
 	#Effects.quest_finish(self)
 	
@@ -217,15 +231,12 @@ func finish() -> void:
 		#source_file.name
 	#])
 	
-	var data := QuestsManager.get_completion_data(source_file)
-	data.completion_count += 1
-	if data.best_score < get_attributes().score:
-		data.best_score = get_attributes().score
-	data.save()
+	if Quest.get_current() == self:
+		Quest.clear_current()
 	
-	while GuiLayer.get_mastery_achieved_popup().is_popup_visible():
-		await GuiLayer.get_mastery_achieved_popup().popup_hidden
+	Eternity.save()
 	
+	get_tree().change_scene_to_file("res://engine/scenes/main_menu/main_menu.tscn")
 	#notify_unloaded()
 
 
@@ -252,15 +263,8 @@ func _on_stage_finished(stage_instance: StageInstanceBase) -> void:
 			idx += 1
 		
 		if is_finished():
-			await finish()
-			
-			if Quest.get_current() == self:
-				Quest.clear_current()
-			
-			Eternity.save()
-			
-			# TODO: send player to "quest finished" scene
-			get_tree().change_scene_to_file("res://engine/scenes/main_menu/main_menu.tscn")
+			# send player to "quest finished" scene
+			get_tree().change_scene_to_file("res://engine/scenes/quest_complete/quest_complete.tscn")
 			
 			return
 	

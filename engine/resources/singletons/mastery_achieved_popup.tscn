@@ -1,15 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bthrn51ys1b40"]
+[gd_scene format=3 uid="uid://bthrn51ys1b40"]
 
-[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/Fonts/Lady Radical.ttf" id="1_6cy50"]
-[ext_resource type="Script" uid="uid://bw6y1ekoixlwm" path="res://Engine/Resources/Singletons/MasteryAchievedPopup.gd" id="1_7vwnw"]
-[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://Engine/Resources/Scenes/Frame.tscn" id="2_7vwnw"]
-[ext_resource type="PackedScene" uid="uid://l26wus4d320" path="res://Engine/Resources/Scenes/MasteryDisplay.tscn" id="3_07yfn"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="1_6cy50"]
+[ext_resource type="Script" uid="uid://bw6y1ekoixlwm" path="res://engine/resources/singletons/mastery_achieved_popup.gd" id="1_7vwnw"]
+[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="2_7vwnw"]
+[ext_resource type="PackedScene" uid="uid://l26wus4d320" path="res://engine/resources/scenes/mastery_display.tscn" id="3_07yfn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uq8y3"]
 font = ExtResource("1_6cy50")
 font_color = Color(0.0627451, 0.87451, 0.501961, 1)
 
-[node name="MasteryAchievedPopup" type="Control"]
+[node name="MasteryAchievedPopup" type="Control" unique_id=722435799]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7vwnw")
 
-[node name="ContentsAnchor_MarginContainer#VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=874195066]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -32,24 +32,24 @@ offset_bottom = 21.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="ContentsAnchor_MarginContainer#VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=626147185]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "popup.mastery-achieved.title"
 label_settings = SubResource("LabelSettings_uq8y3")
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="ContentsAnchor_MarginContainer#VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1084014191]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "popup.mastery-achieved.text"
 horizontal_alignment = 1
 
-[node name="Frame" parent="ContentsAnchor_MarginContainer#VBoxContainer" instance=ExtResource("2_7vwnw")]
+[node name="Frame" parent="VBoxContainer" unique_id=1416504466 instance=ExtResource("2_7vwnw")]
 layout_mode = 2
 size_flags_horizontal = 4
 show_focus = false
 
-[node name="MasteryDisplay" parent="ContentsAnchor_MarginContainer#VBoxContainer/Frame" instance=ExtResource("3_07yfn")]
+[node name="MasteryDisplay" parent="VBoxContainer/Frame" unique_id=2033725495 instance=ExtResource("3_07yfn")]
 unique_name_in_owner = true
 layout_mode = 2

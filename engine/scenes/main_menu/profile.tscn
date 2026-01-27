@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqpukafo2v0vv"]
+[gd_scene format=3 uid="uid://bqpukafo2v0vv"]
 
 [ext_resource type="Texture2D" uid="uid://t6f814mrrtwh" path="res://assets/sprites/avatar.png" id="1_m4tbc"]
-[ext_resource type="Script" uid="uid://bii02mubpluqg" path="res://Engine/Scenes/MainMenu/MainMenuProfile.gd" id="1_p4qr1"]
+[ext_resource type="Script" uid="uid://bii02mubpluqg" path="res://engine/scenes/main_menu/main_menu_profile.gd" id="1_p4qr1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1hhb"]
 atlas = ExtResource("1_m4tbc")
@@ -13,25 +13,25 @@ font_color = Color(0.745098, 0.745098, 0.745098, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="MainMenuProfile" type="HBoxContainer"]
+[node name="MainMenuProfile" type="HBoxContainer" unique_id=1454432020]
 script = ExtResource("1_p4qr1")
 
-[node name="Avatar" type="TextureRect" parent="."]
+[node name="Avatar" type="TextureRect" parent="." unique_id=714586404]
 unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_v1hhb")
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1029837111]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="NameLabel" type="Label" parent="VBoxContainer"]
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=1872435674]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Analysis"
 
-[node name="LevelLabel" type="Label" parent="VBoxContainer"]
+[node name="LevelLabel" type="Label" parent="VBoxContainer" unique_id=325215291]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Lv10"

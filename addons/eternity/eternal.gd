@@ -55,7 +55,7 @@ static func _get_calling_var_key(stack: Array[Dictionary]) -> String:
 		push_error("Could not open source '%s': %s." % [source, FileAccess.get_open_error()])
 		return ""
 	
-	var text := file.get_as_text(true).replace("\\\n", " ")
+	var text := file.get_as_text().replace("\\\n", " ")
 	while "  " in text:
 		text = text.replace("  ", " ")
 	var lines := text.split("\n")

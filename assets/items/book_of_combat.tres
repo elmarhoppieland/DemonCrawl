@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://b4dary20o0gcv"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b4dary20o0gcv"]
 
 [ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="1_redvf"]
 [ext_resource type="Texture2D" uid="uid://da7vx6rtc5qk2" path="res://assets/items/book_of_combat.png" id="1_w0ru5"]

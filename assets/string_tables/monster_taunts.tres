@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StringTable" format=3 uid="uid://dwdxqru2woqh4"]
+
+[ext_resource type="Script" uid="uid://b42nsuurrafgv" path="res://engine/resources/data_containers/string_table.gd" id="1_ufq7c"]
+
+[resource]
+script = ExtResource("1_ufq7c")
+data = {
+"en": PackedStringArray("{monster} can\'t beleive you made it!", "{monster} thinks you cheated.", "It\'s a good thing you didn\'t run into {monster}!", "{monster} is very proud of you!", "{monster} would like to know your secret!", "{monster} dares you to try again!", "{monster} knew you could do it!", "{monster} had one job...", "{monster} will be demoted for this!", "{monster} is a little jealous of your accomplishment.", "Now who is {monster} supposed to eat?", "{monster} underestimated you!", "{monster} wants your autograph!", "{monster} is disappointed in all of monsterkind.", "{monster} is getting too old for this.", "{monster} wants a buff.")
+}
+metadata/_custom_type_script = "uid://b42nsuurrafgv"

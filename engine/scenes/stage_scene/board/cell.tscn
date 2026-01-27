@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bl8bwoewf0m57"]
+[gd_scene format=3 uid="uid://bl8bwoewf0m57"]
 
 [ext_resource type="Script" uid="uid://bk5gpwf2tbj5e" path="res://engine/scenes/stage_scene/board/cell.gd" id="1_e3wqt"]
 [ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://assets/skins/default/empty.png" id="3_j2awk"]
@@ -32,7 +32,7 @@ shader_parameter/wait_time = 0.1
 shader_parameter/start_offset = -2.0
 shader_parameter/end_offset = 1.0
 
-[node name="Cell" type="Control"]
+[node name="Cell" type="Control" unique_id=1543365072]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 16.0
@@ -40,7 +40,7 @@ offset_bottom = 16.0
 mouse_filter = 1
 script = ExtResource("1_e3wqt")
 
-[node name="CellAuraModulator" type="Control" parent="."]
+[node name="CellAuraModulator" type="Control" parent="." unique_id=2049469915]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -51,7 +51,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("4_ocqma")
 
-[node name="CellTextureRect" type="TextureRect" parent="CellAuraModulator"]
+[node name="CellTextureRect" type="TextureRect" parent="CellAuraModulator" unique_id=221765924]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 16.0
@@ -60,7 +60,7 @@ mouse_filter = 2
 texture = ExtResource("3_j2awk")
 script = ExtResource("3_te1nx")
 
-[node name="CellValueLabel" type="Label" parent="CellAuraModulator"]
+[node name="CellValueLabel" type="Label" parent="CellAuraModulator" unique_id=455490914]
 unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0.8)
@@ -81,7 +81,7 @@ text = "-256"
 horizontal_alignment = 1
 script = ExtResource("4_3k5be")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=2028100271]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -92,9 +92,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Anchor" type="Node2D" parent="Control"]
+[node name="Anchor" type="Node2D" parent="Control" unique_id=768511122]
 
-[node name="CellObjectTextureRect" type="TextureRect" parent="Control/Anchor"]
+[node name="CellObjectTextureRect" type="TextureRect" parent="Control/Anchor" unique_id=536817324]
 unique_name_in_owner = true
 visible = false
 z_index = 1
@@ -112,17 +112,17 @@ grow_vertical = 2
 stretch_mode = 3
 script = ExtResource("7_3xaxv")
 
-[node name="TooltipGrabber" type="Node" parent="Control/Anchor/CellObjectTextureRect"]
+[node name="TooltipGrabber" type="Node" parent="Control/Anchor/CellObjectTextureRect" unique_id=1541130873]
 script = ExtResource("7_ggwll")
 text = "STRANGER_MAGE"
 
-[node name="CellFlagSprite" type="Sprite2D" parent="."]
+[node name="CellFlagSprite" type="Sprite2D" parent="." unique_id=1170882267]
 visible = false
 position = Vector2(8, 8)
 texture = ExtResource("8_cbs4h")
 script = ExtResource("6_ty2a2")
 
-[node name="TextParticles" type="CPUParticles2D" parent="." node_paths=PackedStringArray("particle_viewport", "particle_label")]
+[node name="TextParticles" type="CPUParticles2D" parent="." unique_id=1215148876 node_paths=PackedStringArray("particle_viewport", "particle_label")]
 unique_name_in_owner = true
 position = Vector2(8, 8)
 emitting = false
@@ -140,28 +140,28 @@ text_color_preset = 2
 particle_viewport = NodePath("../SubViewport")
 particle_label = NodePath("../SubViewport/Label")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=562301856]
 transparent_bg = true
 gui_disable_input = true
 size = Vector2i(8, 8)
 
-[node name="Label" type="Label" parent="SubViewport"]
+[node name="Label" type="Label" parent="SubViewport" unique_id=1420588454]
 offset_left = 1.0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "+1"
 label_settings = SubResource("LabelSettings_rm8r2")
 
-[node name="Grabber" type="Node" parent="."]
+[node name="Grabber" type="Node" parent="." unique_id=1338574923]
 script = ExtResource("13_tuktl")
 
-[node name="TextureShatter" parent="." instance=ExtResource("13_mfvjy")]
+[node name="TextureShatter" parent="." unique_id=824778874 instance=ExtResource("13_mfvjy")]
 unique_name_in_owner = true
 visible = false
 z_index = 2
 position = Vector2(8, 8)
 
-[node name="DirectionArrow" type="Sprite2D" parent="."]
+[node name="DirectionArrow" type="Sprite2D" parent="." unique_id=1753389813]
 unique_name_in_owner = true
 visible = false
 z_index = 10

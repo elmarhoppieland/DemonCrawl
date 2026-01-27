@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c6ya0ralarli8"]
+[gd_scene format=3 uid="uid://c6ya0ralarli8"]
 
 [ext_resource type="Script" uid="uid://bijc51hjplour" path="res://engine/resources/singletons/debug/debug_tools_overlay.gd" id="1_wa8x0"]
 [ext_resource type="Texture2D" uid="uid://c7bnfk2x7amtj" path="res://assets/sprites/button.png" id="2_u6x6t"]
@@ -83,27 +83,27 @@ border_width_right = 1
 border_width_bottom = 1
 corner_detail = 5
 
-[node name="DebugToolsOverlay" type="CanvasLayer"]
+[node name="DebugToolsOverlay" type="CanvasLayer" unique_id=1268862088]
 process_mode = 3
 layer = 40
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 0)
 script = ExtResource("1_wa8x0")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1176674866]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1182168328]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(320, 180)
 render_target_update_mode = 4
 
-[node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport"]
+[node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport" unique_id=1431508248]
 unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,53 +112,53 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_xgnre")
 
-[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/PanelContainer" unique_id=198342142]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer" unique_id=638028665]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer" unique_id=900624115]
 layout_mode = 2
 
-[node name="DebugToolsContainer" type="HFlowContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="DebugToolsContainer" type="HFlowContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=827210543]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="DebugToolItems" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer"]
+[node name="DebugToolItems" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer" unique_id=435307015]
 layout_mode = 2
 text = "Items"
 script = ExtResource("3_rptbx")
 metadata/_custom_type_script = "uid://sg5wikaqom71"
 
-[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolItems"]
+[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolItems" unique_id=1823053557]
 script = ExtResource("3_pdqtg")
 main = true
 metadata/_custom_type_script = "uid://mfu7hnfru68d"
 
-[node name="DebugToolObjects" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer"]
+[node name="DebugToolObjects" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer" unique_id=172894123]
 layout_mode = 2
 text = "Objects"
 script = ExtResource("5_yfhv8")
 metadata/_custom_type_script = "uid://dj15jrukfw1qs"
 
-[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolObjects"]
+[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolObjects" unique_id=860214450]
 script = ExtResource("3_pdqtg")
 metadata/_custom_type_script = "uid://mfu7hnfru68d"
 
-[node name="DebugToolAuras" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer"]
+[node name="DebugToolAuras" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer" unique_id=1126345304]
 layout_mode = 2
 text = "Auras"
 script = ExtResource("6_7u2oj")
 metadata/_custom_type_script = "uid://ceob43rxtruwu"
 
-[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolAuras"]
+[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolAuras" unique_id=552482941]
 script = ExtResource("3_pdqtg")
 metadata/_custom_type_script = "uid://mfu7hnfru68d"
 
@@ -172,19 +172,19 @@ metadata/_custom_type_script = "uid://t7wk1kjokve4"
 script = ExtResource("3_pdqtg")
 metadata/_custom_type_script = "uid://mfu7hnfru68d"
 
-[node name="ClearBoundButton" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ClearBoundButton" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2107429127]
 layout_mode = 2
 text = "Clear Bound Actions..."
 
-[node name="HSplitContainer" type="HSplitContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer" unique_id=1623231264]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer" unique_id=656331214]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SearchBox" type="LineEdit" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="SearchBox" type="LineEdit" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer" unique_id=1492674492]
 layout_mode = 2
 placeholder_text = "Search..."
 caret_blink = true
@@ -193,23 +193,23 @@ script = ExtResource("5_3nk64")
 wait_enabled = false
 wait_time = 0.2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer" unique_id=1173357187]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ItemsContainer" type="HFlowContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/ScrollContainer"]
+[node name="ItemsContainer" type="HFlowContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/ScrollContainer" unique_id=520382578]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 1
 theme_override_constants/v_separation = 1
 
-[node name="ItemDetailsContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer"]
+[node name="ItemDetailsContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer" unique_id=1832008996]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InputBinder" type="PanelContainer" parent="SubViewportContainer/SubViewport"]
+[node name="InputBinder" type="PanelContainer" parent="SubViewportContainer/SubViewport" unique_id=357045798]
 unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
@@ -225,34 +225,34 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qlxe7")
 script = ExtResource("6_qlxe7")
 
-[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/InputBinder"]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/InputBinder" unique_id=127808653]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer" unique_id=433778743]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer" unique_id=15489741]
 layout_mode = 2
 text = "Listening for input..."
 
-[node name="InputLabel" type="Label" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer"]
+[node name="InputLabel" type="Label" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer" unique_id=1460910661]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "No action pressed"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer" unique_id=1234115393]
 layout_mode = 2
 
-[node name="CancelButton" type="Button" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="CancelButton" type="Button" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer" unique_id=798327979]
 layout_mode = 2
 text = "Cancel"
 
-[node name="ConfirmButton" type="Button" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ConfirmButton" type="Button" parent="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1029290082]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Confirm"

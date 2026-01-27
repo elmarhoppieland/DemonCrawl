@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhicldaxdmq7s"]
+[gd_scene format=3 uid="uid://dhicldaxdmq7s"]
 
 [ext_resource type="Script" uid="uid://d35xerwxburc2" path="res://engine/resources/singletons/debug/debug_tool_aura_details.gd" id="1_u8cmb"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_m6m5l"]
@@ -9,7 +9,7 @@
 font = ExtResource("2_m6m5l")
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="DebugToolAuraDetails" type="MarginContainer"]
+[node name="DebugToolAuraDetails" type="MarginContainer" unique_id=323136274]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,49 +17,49 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u8cmb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1801502303]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=1629392387]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "aura.burning"
 label_settings = SubResource("LabelSettings_eqoxe")
 
-[node name="Frame" parent="VBoxContainer" instance=ExtResource("3_r4fxw")]
+[node name="Frame" parent="VBoxContainer" unique_id=1620032133 instance=ExtResource("3_r4fxw")]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="CellTextureRect" type="TextureRect" parent="VBoxContainer/Frame"]
+[node name="CellTextureRect" type="TextureRect" parent="VBoxContainer/Frame" unique_id=1647827843]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("4_m6m5l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=633980709]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=697963223]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="SpawnRandomButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="SpawnRandomButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer" unique_id=218186019]
 layout_mode = 2
 text = "Spawn on Random Cell"
 
-[node name="BindSpawnRandomButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="BindSpawnRandomButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer" unique_id=1700649369]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Bind..."
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer" unique_id=949291241]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=916206902]
 layout_mode = 2
 
-[node name="BindSpawnHoveredButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
+[node name="BindSpawnHoveredButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer2" unique_id=283452813]
 layout_mode = 2
 size_flags_vertical = 4
 text = "Spawn on

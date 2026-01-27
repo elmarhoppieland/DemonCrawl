@@ -60,3 +60,8 @@ func _popup_hide() -> void:
 
 static func is_popup_visible() -> bool:
 	return _instance._popup_visible
+
+
+static func wait_for_popups_dismissed() -> void:
+	while DCPopup.is_popup_visible():
+		await _instance._popup_hidden

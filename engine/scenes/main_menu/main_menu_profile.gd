@@ -51,7 +51,7 @@ func _process(_delta: float) -> void:
 		selected.emit()
 
 
-static func create(_profile_name: String = "", _avatar_atlas_position: Vector2i = Vector2i.ZERO, _level: int = 0) -> MainMenuProfile:
+static func create(_profile_name: String = "", _avatar_atlas_position: Vector2i = Vector2i.ZERO, _level: int = 1) -> MainMenuProfile:
 	var profile: MainMenuProfile = load("res://engine/scenes/main_menu/profile.tscn").instantiate()
 	profile.profile_name = _profile_name
 	profile.avatar_atlas_position = _avatar_atlas_position

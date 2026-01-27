@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3fpf8gbjxsbx"]
+[gd_scene format=3 uid="uid://d3fpf8gbjxsbx"]
 
 [ext_resource type="Texture2D" uid="uid://bjyk0v2cs40fy" path="res://assets/special_stages/item_shop/shop_coin.png" id="1_ag3je"]
 [ext_resource type="Script" uid="uid://cbpc3674hpbf8" path="res://engine/resources/scenes/coin_value.gd" id="1_og3kn"]
@@ -11,19 +11,19 @@ shadow_size = 0
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 1)
 
-[node name="CoinValue" type="HBoxContainer"]
+[node name="CoinValue" type="HBoxContainer" unique_id=1747692350]
 script = ExtResource("1_og3kn")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1957783661]
 layout_mode = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=1301153817]
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("1_ag3je")
 
-[node name="CostLabel" type="Label" parent="."]
+[node name="CostLabel" type="Label" parent="." unique_id=927371716]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"

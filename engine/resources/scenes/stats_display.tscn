@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://db1krtggvj6tl"]
+[gd_scene format=3 uid="uid://db1krtggvj6tl"]
 
-[ext_resource type="Script" uid="uid://dkhp6ha2mykik" path="res://Engine/Resources/Scenes/StatsDisplay.gd" id="1_rnw70"]
-[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="3_3hoyx"]
-[ext_resource type="Script" uid="uid://dr18xwgnh0bau" path="res://Engine/Resources/DataContainers/Quest/QuestStats.gd" id="4_rnw70"]
-[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_t6l3w"]
+[ext_resource type="Script" uid="uid://dkhp6ha2mykik" path="res://engine/resources/scenes/stats_display.gd" id="1_rnw70"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="3_3hoyx"]
+[ext_resource type="Script" uid="uid://dr18xwgnh0bau" path="res://engine/resources/data_containers/quest/quest_stats.gd" id="4_rnw70"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="4_t6l3w"]
 
 [sub_resource type="Texture2D" id="Texture2D_3hoyx"]
 resource_local_to_scene = false
@@ -116,27 +116,27 @@ _data = {
 &"coin_gain": SubResource("Animation_011nx")
 }
 
-[node name="StatsDisplay" type="MarginContainer"]
+[node name="StatsDisplay" type="MarginContainer" unique_id=1494760419]
 script = ExtResource("1_rnw70")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=951299376]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1888725718]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer" unique_id=1425383988]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer/HBoxContainer" unique_id=1330450141]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 theme_override_constants/margin_bottom = 1
 
-[node name="ReviveTextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="ReviveTextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer" unique_id=161558246]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -144,98 +144,96 @@ size_flags_vertical = 0
 texture = SubResource("Texture2D_3hoyx")
 stretch_mode = 4
 
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer" unique_id=1158182931]
 layout_mode = 2
 size_flags_vertical = 8
 texture = SubResource("Texture2D_rnw70")
 stretch_mode = 4
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer/TextureRect2"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer/TextureRect2" unique_id=1338763920]
 script = ExtResource("4_t6l3w")
 text = "stats.lives.hover.text"
 subtext = "stats.lives.hover.subtext"
 
-[node name="LifeLabel" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="LifeLabel" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer" unique_id=1259439554]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 text = "-/-"
 label_settings = SubResource("LabelSettings_wbxxu")
 
-[node name="Control" type="Control" parent="HBoxContainer"]
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1174884200]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=849215915]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2" unique_id=345063592]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2/HBoxContainer" unique_id=1618692287]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/margin_bottom = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2/HBoxContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2/HBoxContainer/MarginContainer" unique_id=518932886]
 layout_mode = 2
 size_flags_vertical = 8
 texture = SubResource("Texture2D_nomq8")
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/TextureRect"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/TextureRect" unique_id=74941628]
 script = ExtResource("4_t6l3w")
 text = "stats.defense.hover.text"
 subtext = "stats.defense.hover.subtext"
 
-[node name="DefenseLabel" type="Label" parent="HBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="DefenseLabel" type="Label" parent="HBoxContainer/MarginContainer2/HBoxContainer" unique_id=44230384]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 text = "-"
 label_settings = SubResource("LabelSettings_67yyp")
 
-[node name="Control2" type="Control" parent="HBoxContainer"]
+[node name="Control2" type="Control" parent="HBoxContainer" unique_id=1533213996]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer" unique_id=2080035731]
 layout_mode = 2
 theme_override_constants/margin_top = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer3" unique_id=1982525966]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer" unique_id=1752711113]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/margin_bottom = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer3/HBoxContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer3/HBoxContainer/MarginContainer" unique_id=1680234142]
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("Texture2D_urj4q")
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/MarginContainer3/HBoxContainer/MarginContainer/TextureRect"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/MarginContainer3/HBoxContainer/MarginContainer/TextureRect" unique_id=2013532492]
 script = ExtResource("4_t6l3w")
 text = "stats.coins.hover.text"
 subtext = "stats.coins.hover.subtext"
 
-[node name="CoinsLabel" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer"]
+[node name="CoinsLabel" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer" unique_id=1085185615]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 text = "-"
 label_settings = SubResource("LabelSettings_lfiwm")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2027436689]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_gmjjv")
-}
+libraries/ = SubResource("AnimationLibrary_gmjjv")
 
-[node name="QuestStats" type="Node" parent="."]
+[node name="QuestStats" type="Node" parent="." unique_id=2097306986]
 script = ExtResource("4_rnw70")
 max_life = 9
 life = 2

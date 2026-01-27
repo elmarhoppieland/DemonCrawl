@@ -1,14 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://na7oyge0vot4"]
+[gd_scene format=3 uid="uid://na7oyge0vot4"]
 
-[ext_resource type="Script" uid="uid://r6opnbvykuc2" path="res://Engine/Resources/Singletons/Toasts.gd" id="1_l3kai"]
+[ext_resource type="Script" uid="uid://r6opnbvykuc2" path="res://engine/resources/singletons/toasts.gd" id="1_l3kai"]
 
-[node name="Toasts" type="CanvasLayer"]
+[node name="Toasts" type="CanvasLayer" unique_id=2024651395]
 layer = 20
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 0)
 script = ExtResource("1_l3kai")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1131314021]
 anchors_preset = -1
 anchor_top = 0.25
 anchor_bottom = 0.25
@@ -16,7 +16,7 @@ offset_bottom = -24.0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="ToastsContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="ToastsContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1815892104]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8

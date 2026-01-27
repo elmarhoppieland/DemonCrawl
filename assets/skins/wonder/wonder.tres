@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://ca4rpm3yl867b"]
+[gd_resource type="Resource" script_class="StageFile" format=3 uid="uid://ca4rpm3yl867b"]
 
 [ext_resource type="Texture2D" uid="uid://bsrmgx7wovtvl" path="res://assets/skins/wonder/bg.png" id="1_aub2o"]
 [ext_resource type="Texture2D" uid="uid://bicj0xnnkc1ey" path="res://assets/skins/wonder/artifact.png" id="1_npnmk"]

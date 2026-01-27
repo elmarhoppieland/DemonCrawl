@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl07eret4ujpn"]
+[gd_scene format=3 uid="uid://bl07eret4ujpn"]
 
 [ext_resource type="Texture2D" uid="uid://co56d710r6qow" path="res://assets/sprites/inventory.png" id="1_0ehd2"]
 [ext_resource type="Script" uid="uid://bak3r6abwmdql" path="res://engine/resources/scenes/inventory.gd" id="1_6hkni"]
 
-[node name="Inventory" type="MarginContainer"]
+[node name="Inventory" type="MarginContainer" unique_id=498663935]
 anchors_preset = -1
 anchor_left = 0.25
 anchor_right = 0.25
@@ -14,23 +14,23 @@ grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("1_6hkni")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2010584707]
 layout_mode = 2
 theme_override_constants/margin_left = -3
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=1968751956]
 layout_mode = 2
 texture = ExtResource("1_0ehd2")
 stretch_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=737740109]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 47
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="ItemGrid" type="GridContainer" parent="MarginContainer2"]
+[node name="ItemGrid" type="GridContainer" parent="MarginContainer2" unique_id=702124566]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 3

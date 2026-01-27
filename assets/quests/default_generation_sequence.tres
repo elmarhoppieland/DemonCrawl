@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuestGenerationSequenceArray" load_steps=9 format=3 uid="uid://c5ovbpehuvyni"]
+[gd_resource type="Resource" script_class="QuestGenerationSequenceArray" format=3 uid="uid://c5ovbpehuvyni"]
 
 [ext_resource type="Script" uid="uid://ydkmagetydc8" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_base.gd" id="1_vx3yv"]
 [ext_resource type="Resource" uid="uid://d0hl7wuana0ud" path="res://assets/quests/stage_sequence_start.tres" id="2_3l24j"]

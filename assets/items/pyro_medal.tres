@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://c8t37ymwf4k6s"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c8t37ymwf4k6s"]
 
 [ext_resource type="Script" uid="uid://dffewvikq6xqm" path="res://assets/items/pyro_medal.gd" id="1_27t4p"]
 [ext_resource type="Texture2D" uid="uid://to1eapk1jxns" path="res://assets/items/pyro_medal.png" id="1_dhbbn"]

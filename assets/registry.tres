@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Registry" load_steps=204 format=3 uid="uid://dbtam61joj2mf"]
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://dbtam61joj2mf"]
 
 [ext_resource type="Script" uid="uid://pefpigd10fyq" path="res://engine/resources/data_containers/registry.gd" id="1_8420k"]
 [ext_resource type="Resource" uid="uid://caiig2eupe0vb" path="res://assets/quests/casual/casual.tres" id="1_srnaq"]

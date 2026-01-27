@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dy7h614yc7ptg"]
+[gd_scene format=3 uid="uid://dy7h614yc7ptg"]
 
 [ext_resource type="Script" uid="uid://bjsw7yj8ahomy" path="res://engine/resources/singletons/tooltip.gd" id="1_errb6"]
 [ext_resource type="Texture2D" uid="uid://bvlywjjg0tpt1" path="res://assets/sprites/tooltip_bg.png" id="1_yrkkl"]
@@ -92,7 +92,7 @@ _data = {
 &"show": SubResource("Animation_bxy1y")
 }
 
-[node name="Tooltip" type="CanvasLayer"]
+[node name="Tooltip" type="CanvasLayer" unique_id=58778159]
 process_mode = 3
 layer = 100
 offset = Vector2(0, 16)
@@ -100,13 +100,13 @@ scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 16)
 script = ExtResource("1_errb6")
 
-[node name="Panel" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="." unique_id=2108675751]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_4aptq")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel" unique_id=1424550065]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
@@ -116,8 +116,6 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1563412936]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_sg3rk")
-}
+libraries/ = SubResource("AnimationLibrary_sg3rk")

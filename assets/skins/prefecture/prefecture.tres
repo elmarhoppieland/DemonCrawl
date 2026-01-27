@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://3jthla43mcs4"]
+[gd_resource type="Resource" script_class="StageFile" format=3 uid="uid://3jthla43mcs4"]
 
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_o8u04"]
 [ext_resource type="AudioStream" uid="uid://diwp3xkmvakw3" path="res://assets/skins/prefecture/ambience_a.ogg" id="1_tl0ti"]

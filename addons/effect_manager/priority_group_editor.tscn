@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://v3wapvvbuaub"]
+[gd_scene format=3 uid="uid://v3wapvvbuaub"]
 
-[ext_resource type="Script" uid="uid://dhfu6dplk3b5n" path="res://addons/EffectManager/PriorityGroupEditor.gd" id="1"]
+[ext_resource type="Script" uid="uid://dhfu6dplk3b5n" path="res://addons/effect_manager/priority_group_editor.gd" id="1"]
 
-[node name="PriorityGroupEditor" type="PopupPanel"]
+[node name="PriorityGroupEditor" type="PopupPanel" unique_id=1116378374]
+oversampling_override = 1.0
 title = "Edit Priority Group..."
 position = Vector2i(0, 36)
 size = Vector2i(500, 300)
@@ -11,43 +12,43 @@ unresizable = false
 borderless = false
 script = ExtResource("1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=494443478]
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 496.0
 offset_bottom = 296.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=814064692]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=2130932010]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=531170811]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1790714610]
 layout_mode = 2
 text = "Name"
 
-[node name="NameEdit" type="LineEdit" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="NameEdit" type="LineEdit" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1265391675]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 expand_to_text_length = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1444415349]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1937922465]
 layout_mode = 2
 text = "Type"
 
-[node name="TypeButton" type="OptionButton" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="TypeButton" type="OptionButton" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=795136783]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -59,35 +60,35 @@ popup/item_1/id = 1
 popup/item_2/text = "Script Singleton"
 popup/item_2/id = 2
 
-[node name="ScriptInstancesSettingsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ScriptInstancesSettingsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1962663351]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/ScriptInstancesSettingsContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/ScriptInstancesSettingsContainer" unique_id=1371467238]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/ScriptInstancesSettingsContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/ScriptInstancesSettingsContainer/HBoxContainer" unique_id=1231529267]
 layout_mode = 2
 text = "Script"
 
-[node name="SelectScriptButton" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer/ScriptInstancesSettingsContainer/HBoxContainer"]
+[node name="SelectScriptButton" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer/ScriptInstancesSettingsContainer/HBoxContainer" unique_id=798983525]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Select Script..."
 
-[node name="NodeChildrenSettingsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="NodeChildrenSettingsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=134776746]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/NodeChildrenSettingsContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer/NodeChildrenSettingsContainer" unique_id=1043836231]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/NodeChildrenSettingsContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/NodeChildrenSettingsContainer/HBoxContainer" unique_id=1118219918]
 layout_mode = 2
 text = "Node Path"
 
-[node name="NodePathEdit" type="LineEdit" parent="VBoxContainer/ScrollContainer/VBoxContainer/NodeChildrenSettingsContainer/HBoxContainer"]
+[node name="NodePathEdit" type="LineEdit" parent="VBoxContainer/ScrollContainer/VBoxContainer/NodeChildrenSettingsContainer/HBoxContainer" unique_id=1447596969]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -95,20 +96,20 @@ text = "/root/"
 placeholder_text = "/root/"
 expand_to_text_length = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1241375559]
 layout_mode = 2
 
-[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1209383131]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Cancel"
 
-[node name="ApplyButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="ApplyButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1728990293]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Apply"
 
-[node name="ConfirmButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="ConfirmButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1673750794]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Confirm"

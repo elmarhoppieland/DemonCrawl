@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=14 format=3 uid="uid://t3c8e7qfdctb"]
+[gd_resource type="Resource" script_class="StageFile" format=3 uid="uid://t3c8e7qfdctb"]
 
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_2hecb"]
 [ext_resource type="Texture2D" uid="uid://crbbar3gj4umn" path="res://assets/skins/easter/artifact.png" id="1_6gcnn"]

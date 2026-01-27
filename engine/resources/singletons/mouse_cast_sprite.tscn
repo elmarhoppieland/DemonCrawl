@@ -1,21 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnbk18l62cltc"]
+[gd_scene format=3 uid="uid://cnbk18l62cltc"]
 
 [ext_resource type="Script" uid="uid://cntetxxccph5h" path="res://engine/resources/singletons/mouse_cast_sprite.gd" id="1_7sjwv"]
 [ext_resource type="Texture2D" uid="uid://b6eoq6u51c7nn" path="res://assets/sprites/mouse_cast_sprite_bg.png" id="1_cb20a"]
 
-[node name="MouseCastSprite" type="CanvasLayer"]
+[node name="MouseCastSprite" type="CanvasLayer" unique_id=2004505425]
 layer = 50
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 0)
 script = ExtResource("1_7sjwv")
 
-[node name="Anchor" type="Node2D" parent="."]
+[node name="Anchor" type="Node2D" parent="." unique_id=748862651]
 unique_name_in_owner = true
 
-[node name="Node2D" type="Node2D" parent="Anchor"]
+[node name="Node2D" type="Node2D" parent="Anchor" unique_id=1445940855]
 position = Vector2(16.5, 16.5)
 
-[node name="Background" type="TextureRect" parent="Anchor/Node2D"]
+[node name="Background" type="TextureRect" parent="Anchor/Node2D" unique_id=1628276154]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -25,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_cb20a")
 
-[node name="Foreground" type="TextureRect" parent="Anchor/Node2D"]
+[node name="Foreground" type="TextureRect" parent="Anchor/Node2D" unique_id=1718339014]
 unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_cb20a")
 
-[node name="MouseBlocker" type="Control" parent="."]
+[node name="MouseBlocker" type="Control" parent="." unique_id=949597387]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

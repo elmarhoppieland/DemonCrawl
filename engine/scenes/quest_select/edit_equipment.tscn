@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckftsugq2vfat"]
+[gd_scene format=3 uid="uid://ckftsugq2vfat"]
 
 [ext_resource type="Script" uid="uid://dqqqo4430laq0" path="res://engine/scenes/quest_select/edit_equipment.gd" id="1_78tgn"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://assets/sprites/icons.png" id="3_1tjlh"]
@@ -40,7 +40,7 @@ region = Rect2(128, 16, 16, 16)
 script = ExtResource("4_hcstr")
 name = "button_sigils"
 
-[node name="EditEquipment" type="Control"]
+[node name="EditEquipment" type="Control" unique_id=782602992]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,7 +49,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_78tgn")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=951522280]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,141 +58,141 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer" unique_id=384471400]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 6
 
-[node name="FadeButton" type="MarginContainer" parent="VBoxContainer/MarginContainer3"]
+[node name="FadeButton" type="MarginContainer" parent="VBoxContainer/MarginContainer3" unique_id=1404164069]
 layout_mode = 2
 script = ExtResource("3_bw2v2")
 texture_normal = SubResource("AtlasTexture_so3ln")
 texture_hover = SubResource("AtlasTexture_bw2v2")
 metadata/_custom_type_script = "uid://bp8kqfn8liwqp"
 
-[node name="TooltipGrabber" type="Node" parent="VBoxContainer/MarginContainer3/FadeButton"]
+[node name="TooltipGrabber" type="Node" parent="VBoxContainer/MarginContainer3/FadeButton" unique_id=627900086]
 script = ExtResource("6_i6q32")
 text = "scene-return.quests"
 context_mode = 0
 metadata/_custom_type_script = "uid://fhgkw1iml6g3"
 
-[node name="Control" type="Control" parent="VBoxContainer"]
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=607390050]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1199613013]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=839984536]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=1949245014]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1902060284]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer" unique_id=606819143]
 layout_mode = 2
 text = "edit-equipment.title"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=359742439]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="MasteriesButton" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="MasteriesButton" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=97753264]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton" unique_id=763423135]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = -1
 theme_override_constants/margin_bottom = -1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton/MarginContainer" unique_id=2089842166]
 layout_mode = 2
 texture = SubResource("AtlasTexture_a24e1")
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton" unique_id=1621884377]
 layout_mode = 2
 texture = SubResource("AtlasTexture_t6qwc")
 
-[node name="FocusGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton"]
+[node name="FocusGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton" unique_id=72419509]
 script = ExtResource("5_w562y")
 
-[node name="TooltipGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton"]
+[node name="TooltipGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasteriesButton" unique_id=1870307881]
 script = ExtResource("6_i6q32")
 text = "edit-equipment.masteries.title"
 subtext = "edit-equipment.masteries.subtext"
 context_mode = 0
 
-[node name="ChestsButton" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="ChestsButton" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=911995188]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton" unique_id=1670052532]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = -1
 theme_override_constants/margin_bottom = -1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton/MarginContainer" unique_id=94972861]
 layout_mode = 2
 texture = SubResource("AtlasTexture_a24e1")
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton" unique_id=669084582]
 layout_mode = 2
 texture = SubResource("AtlasTexture_k4tul")
 
-[node name="FocusGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton"]
+[node name="FocusGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton" unique_id=1779487199]
 script = ExtResource("5_w562y")
 
-[node name="TooltipGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton"]
+[node name="TooltipGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/ChestsButton" unique_id=1835601685]
 script = ExtResource("6_i6q32")
 text = "edit-equipment.chests.title"
 subtext = "edit-equipment.chests.subtext"
 context_mode = 0
 
-[node name="SigilsButton" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="SigilsButton" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=474172895]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton" unique_id=749745161]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = -1
 theme_override_constants/margin_bottom = -1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton/MarginContainer" unique_id=1440162144]
 layout_mode = 2
 texture = SubResource("AtlasTexture_a24e1")
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton" unique_id=998753767]
 layout_mode = 2
 texture = SubResource("AtlasTexture_syfkg")
 
-[node name="FocusGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton"]
+[node name="FocusGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton" unique_id=1917197077]
 script = ExtResource("5_w562y")
 
-[node name="TooltipGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton"]
+[node name="TooltipGrabber" type="Node" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/SigilsButton" unique_id=1181117409]
 script = ExtResource("6_i6q32")
 text = "edit-equipment.sigils.title"
 subtext = "edit-equipment.sigils.subtext"
 context_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=459268926]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 3
 
-[node name="DCLineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="DCLineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HBoxContainer/MarginContainer" unique_id=2147227077]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -200,21 +200,21 @@ size_flags_vertical = 8
 placeholder_text = "gui.search"
 script = ExtResource("7_t2hu2")
 
-[node name="Control2" type="Control" parent="VBoxContainer"]
+[node name="Control2" type="Control" parent="VBoxContainer" unique_id=1735058414]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer" unique_id=921804012]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer2" unique_id=1898737075]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FlowContainer" type="HFlowContainer" parent="VBoxContainer/MarginContainer2/ScrollContainer"]
+[node name="FlowContainer" type="HFlowContainer" parent="VBoxContainer/MarginContainer2/ScrollContainer" unique_id=379170625]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

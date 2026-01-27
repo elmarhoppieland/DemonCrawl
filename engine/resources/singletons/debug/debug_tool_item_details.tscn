@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8ybql6aglnji"]
+[gd_scene format=3 uid="uid://c8ybql6aglnji"]
 
 [ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="1_1crv3"]
 [ext_resource type="Script" uid="uid://bscio0od1mqyf" path="res://engine/resources/singletons/debug/debug_tool_item_details.gd" id="1_eqoxe"]
@@ -9,7 +9,7 @@
 font = ExtResource("1_vfc82")
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="DebugToolItemDetails" type="MarginContainer"]
+[node name="DebugToolItemDetails" type="MarginContainer" unique_id=1974604036]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,44 +17,44 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eqoxe")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1284490712]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=300805487]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "item.lyre"
 label_settings = SubResource("LabelSettings_eqoxe")
 
-[node name="Frame" parent="VBoxContainer" instance=ExtResource("1_1crv3")]
+[node name="Frame" parent="VBoxContainer" unique_id=968360968 instance=ExtResource("1_1crv3")]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="CollectibleDisplay" parent="VBoxContainer/Frame" instance=ExtResource("2_vfc82")]
+[node name="CollectibleDisplay" parent="VBoxContainer/Frame" unique_id=2104057738 instance=ExtResource("2_vfc82")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer" unique_id=466076295]
 unique_name_in_owner = true
 layout_mode = 2
 text = "item.lyre.description"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=805426979]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=441758613]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="AddToInventoryButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="AddToInventoryButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer" unique_id=256698186]
 layout_mode = 2
 text = "Add to Inventory"
 
-[node name="BindAddToInventoryButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="BindAddToInventoryButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer" unique_id=2146281481]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Bind..."

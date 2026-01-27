@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://blkfq3rsl3dag"]
+[gd_scene format=3 uid="uid://blkfq3rsl3dag"]
 
-[ext_resource type="Script" uid="uid://cetyk65vjtuji" path="res://Engine/Resources/Scenes/StatusEffectDisplay.gd" id="1_cw27g"]
+[ext_resource type="Script" uid="uid://cetyk65vjtuji" path="res://engine/resources/scenes/status_effect_display.gd" id="1_cw27g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eyao0"]
 resource_local_to_scene = true
@@ -9,18 +9,18 @@ font_color = Color(0.972549, 0.705882, 0.0705882, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="StatusEffectDisplay" type="MarginContainer"]
+[node name="StatusEffectDisplay" type="MarginContainer" unique_id=11096800]
 script = ExtResource("1_cw27g")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1958139006]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1133492850]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=677478979]
 unique_name_in_owner = true
 layout_mode = 2
 label_settings = SubResource("LabelSettings_eyao0")

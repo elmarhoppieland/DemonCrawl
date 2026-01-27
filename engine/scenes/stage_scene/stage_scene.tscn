@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://csnbqhntbeb87"]
+[gd_scene format=3 uid="uid://csnbqhntbeb87"]
 
 [ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://assets/skins/default/empty.png" id="1_ar66c"]
 [ext_resource type="Script" uid="uid://cflm1c1qa0xf6" path="res://engine/scenes/stage_scene/stage_scene.gd" id="1_ene3y"]
@@ -57,7 +57,7 @@ resource_name = ""
 script = ExtResource("16_4hyf5")
 name = "icons/power8"
 
-[node name="StageScene" type="Control"]
+[node name="StageScene" type="Control" unique_id=1879502043]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,21 +67,21 @@ grow_vertical = 2
 theme = SubResource("Theme_7mm6j")
 script = ExtResource("1_ene3y")
 
-[node name="AudioPlayers" type="Node" parent="."]
+[node name="AudioPlayers" type="Node" parent="." unique_id=560224933]
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="AudioPlayers" unique_id=697413353]
 unique_name_in_owner = true
 
-[node name="AmbienceAPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+[node name="AmbienceAPlayer" type="AudioStreamPlayer" parent="AudioPlayers" unique_id=24318285]
 unique_name_in_owner = true
 
-[node name="AmbienceBPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+[node name="AmbienceBPlayer" type="AudioStreamPlayer" parent="AudioPlayers" unique_id=1877843142]
 unique_name_in_owner = true
 
-[node name="BackgroundCanvas" type="CanvasLayer" parent="."]
+[node name="BackgroundCanvas" type="CanvasLayer" parent="." unique_id=1322903890]
 layer = -20
 
-[node name="StageBackground" type="TextureRect" parent="BackgroundCanvas"]
+[node name="StageBackground" type="TextureRect" parent="BackgroundCanvas" unique_id=1471017893]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_sxuvl")
 anchors_preset = 15
@@ -93,10 +93,10 @@ texture = ExtResource("6_n7lcx")
 stretch_mode = 6
 script = ExtResource("3_gkgt8")
 
-[node name="ForegroundCanvas" type="CanvasLayer" parent="."]
+[node name="ForegroundCanvas" type="CanvasLayer" parent="." unique_id=1842178786]
 layer = 20
 
-[node name="FinishButton" parent="ForegroundCanvas" instance=ExtResource("4_dhd0n")]
+[node name="FinishButton" parent="ForegroundCanvas" unique_id=73878702 instance=ExtResource("4_dhd0n")]
 unique_name_in_owner = true
 anchors_preset = 5
 anchor_left = 0.5
@@ -107,83 +107,83 @@ offset_right = 112.0
 offset_bottom = 88.0
 grow_horizontal = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ForegroundCanvas"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ForegroundCanvas" unique_id=1380456677]
 offset_left = 12.0
 offset_top = 16.0
 offset_right = 35.0
 offset_bottom = 171.0
 scale = Vector2(4, 4)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ForegroundCanvas/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ForegroundCanvas/VBoxContainer" unique_id=1853869727]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ForegroundCanvas/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ForegroundCanvas/VBoxContainer/VBoxContainer" unique_id=1522229095]
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="TextureRect" type="TextureRect" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=2125858348]
 layout_mode = 2
 texture = SubResource("Texture2D_yi678")
 
-[node name="TimerLabel" type="Label" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="TimerLabel" type="Label" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1153760634]
 layout_mode = 2
 text = "23"
 label_settings = SubResource("LabelSettings_b7nsv")
 script = ExtResource("14_ffsll")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ForegroundCanvas/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ForegroundCanvas/VBoxContainer/VBoxContainer" unique_id=668978659]
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="TextureRect" type="TextureRect" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=2103509211]
 layout_mode = 2
 texture = SubResource("Texture2D_vh6wl")
 
-[node name="MonsterCountLabel" type="Label" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="MonsterCountLabel" type="Label" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=810094423]
 layout_mode = 2
 text = "12"
 label_settings = SubResource("LabelSettings_b7nsv")
 script = ExtResource("15_nadoc")
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="ForegroundCanvas/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="ForegroundCanvas/VBoxContainer/VBoxContainer" unique_id=765633072]
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="TextureRect" type="TextureRect" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="TextureRect" type="TextureRect" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=738436492]
 layout_mode = 2
 texture = SubResource("Texture2D_nrper")
 
-[node name="PowerLabel" type="Label" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="PowerLabel" type="Label" parent="ForegroundCanvas/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=994585344]
 layout_mode = 2
 text = "1-2"
 label_settings = SubResource("LabelSettings_b7nsv")
 script = ExtResource("16_vj40o")
 
-[node name="StatusEffectList" parent="ForegroundCanvas/VBoxContainer" instance=ExtResource("15_fwvnx")]
+[node name="StatusEffectList" parent="ForegroundCanvas/VBoxContainer" unique_id=501034622 instance=ExtResource("15_fwvnx")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 
-[node name="TweenerCanvas" type="CanvasLayer" parent="."]
+[node name="TweenerCanvas" type="CanvasLayer" parent="." unique_id=496484775]
 unique_name_in_owner = true
 
-[node name="MouseCastSprite" parent="." instance=ExtResource("10_m6ujj")]
+[node name="MouseCastSprite" parent="." unique_id=879457341 instance=ExtResource("10_m6ujj")]
 unique_name_in_owner = true
 visible = false
 
-[node name="FinishPopup" parent="." instance=ExtResource("15_df000")]
+[node name="FinishPopup" parent="." unique_id=888028530 instance=ExtResource("15_df000")]
 unique_name_in_owner = true
 
-[node name="Board" parent="." instance=ExtResource("4_xuksn")]
+[node name="Board" parent="." unique_id=1564397498 instance=ExtResource("4_xuksn")]
 unique_name_in_owner = true
 layout_mode = 1
 
-[node name="Projectiles" type="Node2D" parent="Board"]
+[node name="Projectiles" type="Node2D" parent="Board" unique_id=1640089269]
 unique_name_in_owner = true
 
-[node name="GuiEnabler" type="Node" parent="."]
+[node name="GuiEnabler" type="Node" parent="." unique_id=865610882]
 script = ExtResource("19_kjs20")
 _disabled = 0
 

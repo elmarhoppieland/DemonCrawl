@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bibx36r3yoaad"]
+[gd_scene format=3 uid="uid://bibx36r3yoaad"]
 
-[ext_resource type="Script" uid="uid://ckbx7u1ehyd6m" path="res://addons/CustomTexturePreview/CustomTexturePreview.gd" id="1_ir4lm"]
+[ext_resource type="Script" uid="uid://ckbx7u1ehyd6m" path="res://addons/custom_texture_preview/custom_texture_preview.gd" id="1_ir4lm"]
 
-[node name="CustomTexturePreview" type="Control"]
+[node name="CustomTexturePreview" type="Control" unique_id=1356612980]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ir4lm")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=552068045]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15

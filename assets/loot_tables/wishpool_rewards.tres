@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LootTable" load_steps=7 format=3 uid="uid://c2t5kvnndcbah"]
+[gd_resource type="Resource" script_class="LootTable" format=3 uid="uid://c2t5kvnndcbah"]
 
 [ext_resource type="Resource" uid="uid://c16e7i8x0nf3t" path="res://assets/scripts/objects/wishpool_rewards/wishpool_coin_reward.tres" id="1_sadp2"]
 [ext_resource type="Resource" uid="uid://bt10cv26gqoym" path="res://assets/scripts/objects/wishpool_rewards/wishpool_life_reward.tres" id="2_n6d7b"]

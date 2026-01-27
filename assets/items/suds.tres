@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://cllalcfw33nx2"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cllalcfw33nx2"]
 
 [ext_resource type="Texture2D" uid="uid://4rut3156liue" path="res://assets/items/suds.png" id="1_bl2a8"]
 [ext_resource type="Script" uid="uid://8adxky443wch" path="res://assets/items/suds.gd" id="2_6bnhj"]
@@ -10,5 +10,6 @@ name = "item.suds"
 description = "item.suds.description"
 mana = 100
 cost = 22
+tags = Array[String](["_targeted"])
 icon = ExtResource("1_bl2a8")
 item_script = ExtResource("2_6bnhj")

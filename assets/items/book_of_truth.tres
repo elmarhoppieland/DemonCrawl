@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://bcfbmlaekrmla"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bcfbmlaekrmla"]
 
 [ext_resource type="Script" uid="uid://d3condc7la4l7" path="res://assets/items/book_of_truth.gd" id="1_d36je"]
 [ext_resource type="Texture2D" uid="uid://b7qysqm2g4s74" path="res://assets/items/book_of_truth.png" id="1_pu5ca"]

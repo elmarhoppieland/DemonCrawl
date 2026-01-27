@@ -1,15 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4tqham7nhwam"]
+[gd_scene format=3 uid="uid://b4tqham7nhwam"]
 
-[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Engine/Resources/UtilityNode/Avatar_atlas.tres" id="1_1vjny"]
-[ext_resource type="Script" uid="uid://lbfq8siua0xq" path="res://Engine/Scenes/MainMenu/MainMenuAvatar.gd" id="2_7b5x2"]
+[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://engine/resources/utility_node/avatar_atlas.tres" id="1_1vjny"]
+[ext_resource type="Script" uid="uid://lbfq8siua0xq" path="res://engine/scenes/main_menu/main_menu_avatar.gd" id="2_7b5x2"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://assets/sprites/icons.png" id="3_7isr5"]
-[ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://Engine/Resources/UtilityNode/XPBar.gd" id="3_s4lan"]
-[ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://Engine/Resources/UtilityNode/ProfileNameLabel.gd" id="4_ggtkl"]
-[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_vjit2"]
-[ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://Engine/Resources/UtilityNode/ProfileLevelLabel.gd" id="5_omnn8"]
-[ext_resource type="Shader" uid="uid://duejth3p8iwji" path="res://Engine/Scenes/MainMenu/ProfileSelect.gdshader" id="8_kc2e0"]
-[ext_resource type="Script" uid="uid://b3qcpnajlngow" path="res://Engine/Scenes/MainMenu/ProfileList.gd" id="8_vj2yj"]
-[ext_resource type="Script" uid="uid://cypm6gm4lirv1" path="res://Engine/Scenes/MainMenu/ChangePageButton.gd" id="9_u54pt"]
+[ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://engine/resources/utility_node/xp_bar.gd" id="3_s4lan"]
+[ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://engine/resources/utility_node/profile_name_label.gd" id="4_ggtkl"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="4_vjit2"]
+[ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://engine/resources/utility_node/profile_level_label.gd" id="5_omnn8"]
+[ext_resource type="Shader" uid="uid://duejth3p8iwji" path="res://engine/scenes/main_menu/profile_select.gdshader" id="8_kc2e0"]
+[ext_resource type="Script" uid="uid://b3qcpnajlngow" path="res://engine/scenes/main_menu/profile_list.gd" id="8_vj2yj"]
+[ext_resource type="Script" uid="uid://cypm6gm4lirv1" path="res://engine/scenes/main_menu/change_page_button.gd" id="9_u54pt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3nds"]
 atlas = ExtResource("3_7isr5")
@@ -36,7 +36,7 @@ region = Rect2(80, 17, 16, 14)
 shader = ExtResource("8_kc2e0")
 shader_parameter/inversion = 0.0
 
-[node name="ProfileSelect" type="Control"]
+[node name="ProfileSelect" type="Control" unique_id=483432286]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,7 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2007488760]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -55,24 +55,24 @@ offset_bottom = -2.0
 grow_vertical = 0
 theme_override_constants/separation = 1
 
-[node name="Avatar" type="TextureRect" parent="HBoxContainer"]
+[node name="Avatar" type="TextureRect" parent="HBoxContainer" unique_id=1655666735]
 layout_mode = 2
 texture = ExtResource("1_1vjny")
 script = ExtResource("2_7b5x2")
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Avatar"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Avatar" unique_id=1156162068]
 visible = false
 layout_mode = 1
 offset_right = 14.0
 offset_bottom = 14.0
 texture = SubResource("AtlasTexture_h3nds")
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/Avatar"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/Avatar" unique_id=1827074008]
 script = ExtResource("4_vjit2")
 text = "menu.button.change-profile"
 context_mode = 0
 
-[node name="XPBar" type="ProgressBar" parent="HBoxContainer"]
+[node name="XPBar" type="ProgressBar" parent="HBoxContainer" unique_id=1860562487]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 1
@@ -81,30 +81,30 @@ fill_mode = 3
 show_percentage = false
 script = ExtResource("3_s4lan")
 
-[node name="Control" type="Control" parent="HBoxContainer"]
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=2036314899]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=952478453]
 layout_mode = 2
 theme_override_constants/margin_bottom = -1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer" unique_id=575757444]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="ProfileNameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="ProfileNameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=1227712147]
 layout_mode = 2
 text = "<profile-name>"
 script = ExtResource("4_ggtkl")
 
-[node name="ProfileLevelLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="ProfileLevelLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=667454575]
 layout_mode = 2
 size_flags_vertical = 0
 text = "generic.level.abbr.0"
 label_settings = SubResource("LabelSettings_m84bi")
 script = ExtResource("5_omnn8")
 
-[node name="ProfileListContainer" type="VBoxContainer" parent="."]
+[node name="ProfileListContainer" type="VBoxContainer" parent="." unique_id=134292711]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -115,11 +115,11 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 1
 
-[node name="Label" type="Label" parent="ProfileListContainer"]
+[node name="Label" type="Label" parent="ProfileListContainer" unique_id=913757740]
 layout_mode = 2
 text = "menu.select-profile.title"
 
-[node name="ProfileList" type="MarginContainer" parent="ProfileListContainer"]
+[node name="ProfileList" type="MarginContainer" parent="ProfileListContainer" unique_id=616459100]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -127,21 +127,21 @@ theme = SubResource("Theme_6ocda")
 theme_override_constants/margin_left = -1
 script = ExtResource("8_vj2yj")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ProfileListContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ProfileListContainer" unique_id=1392474181]
 layout_mode = 2
 
-[node name="PrevPage" type="TextureRect" parent="ProfileListContainer/HBoxContainer" node_paths=PackedStringArray("target")]
+[node name="PrevPage" type="TextureRect" parent="ProfileListContainer/HBoxContainer" unique_id=896343531 node_paths=PackedStringArray("target")]
 material = SubResource("ShaderMaterial_vpbv7")
 layout_mode = 2
 texture = SubResource("AtlasTexture_t27co")
 script = ExtResource("9_u54pt")
 target = NodePath("../../ProfileList")
 
-[node name="Label" type="Label" parent="ProfileListContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="ProfileListContainer/HBoxContainer" unique_id=914799699]
 layout_mode = 2
 text = "1 of 3"
 
-[node name="NextPage" type="TextureRect" parent="ProfileListContainer/HBoxContainer" node_paths=PackedStringArray("target")]
+[node name="NextPage" type="TextureRect" parent="ProfileListContainer/HBoxContainer" unique_id=562127126 node_paths=PackedStringArray("target")]
 material = SubResource("ShaderMaterial_1keeg")
 layout_mode = 2
 texture = SubResource("AtlasTexture_t27co")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dg7urpy77cvi8"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dg7urpy77cvi8"]
 
 [ext_resource type="Script" uid="uid://cwg1ec6bdvlot" path="res://assets/items/mage_medal.gd" id="1_b8l2l"]
 [ext_resource type="Texture2D" uid="uid://c4vfpv72a4ilk" path="res://assets/items/mage_medal.png" id="1_hv8cs"]

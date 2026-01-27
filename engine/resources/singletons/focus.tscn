@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ke1qun0x7lx3"]
+[gd_scene format=3 uid="uid://ke1qun0x7lx3"]
 
 [ext_resource type="Script" uid="uid://e3jnrx6g7wot" path="res://engine/resources/singletons/focus.gd" id="1_g54rn"]
 [ext_resource type="Texture2D" uid="uid://fk4ds8n78usp" path="res://assets/sprites/stage_icon_focus0.png" id="1_vpuug"]
@@ -112,12 +112,12 @@ _data = {
 &"idle": SubResource("Animation_2817v")
 }
 
-[node name="Focus" type="CanvasLayer"]
+[node name="Focus" type="CanvasLayer" unique_id=763786237]
 process_mode = 3
 layer = 50
 script = ExtResource("1_g54rn")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1164404638]
 unique_name_in_owner = true
 offset_right = 12.0
 offset_bottom = 12.0
@@ -128,7 +128,7 @@ theme_override_constants/margin_top = -1
 theme_override_constants/margin_right = -1
 theme_override_constants/margin_bottom = -1
 
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer" unique_id=1332234159]
 layout_mode = 2
 texture = ExtResource("1_vpuug")
 patch_margin_left = 6
@@ -136,9 +136,7 @@ patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1334210102]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_crwsi")
-}
-autoplay = "idle"
+libraries/ = SubResource("AnimationLibrary_crwsi")
+autoplay = &"idle"

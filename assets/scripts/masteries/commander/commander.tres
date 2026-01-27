@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MasteryData" load_steps=6 format=3 uid="uid://cyflbs5o34kgs"]
+[gd_resource type="Resource" script_class="MasteryData" format=3 uid="uid://cyflbs5o34kgs"]
 
 [ext_resource type="Texture2D" uid="uid://b58dgxv2fvq7i" path="res://assets/scripts/masteries/commander/commander_0.png" id="1_bojl2"]
 [ext_resource type="Script" uid="uid://8hcwgbxnbkuw" path="res://engine/resources/data_containers/mastery/mastery_data.gd" id="1_t8p3j"]

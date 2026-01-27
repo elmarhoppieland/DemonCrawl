@@ -1,23 +1,23 @@
-[gd_scene load_steps=22 format=3 uid="uid://bqgqlnp8nk2x2"]
+[gd_scene format=3 uid="uid://bqgqlnp8nk2x2"]
 
-[ext_resource type="Script" uid="uid://d1iul338ly6s" path="res://Engine/Resources/Scenes/Statbar.gd" id="1_nycng"]
-[ext_resource type="Script" uid="uid://d16rb2jruql4e" path="res://Engine/Resources/UtilityNode/Avatar.gd" id="2_kk3qc"]
-[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://Engine/Resources/UtilityNode/Avatar_atlas.tres" id="2_kuo8t"]
-[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_gcjxo"]
-[ext_resource type="PackedScene" uid="uid://l26wus4d320" path="res://Engine/Resources/Scenes/MasteryDisplay.tscn" id="5_upqp3"]
-[ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://Engine/Resources/UtilityNode/XPBar.gd" id="6_fmgjo"]
-[ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://Engine/Resources/UtilityNode/ProfileNameLabel.gd" id="7_8d5yt"]
-[ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://Engine/Resources/UtilityNode/ProfileLevelLabel.gd" id="8_flfi7"]
+[ext_resource type="Script" uid="uid://d1iul338ly6s" path="res://engine/resources/scenes/statbar.gd" id="1_nycng"]
+[ext_resource type="Script" uid="uid://d16rb2jruql4e" path="res://engine/resources/utility_node/avatar.gd" id="2_kk3qc"]
+[ext_resource type="Texture2D" uid="uid://vgunvr0juctc" path="res://engine/resources/utility_node/avatar_atlas.tres" id="2_kuo8t"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="4_gcjxo"]
+[ext_resource type="PackedScene" uid="uid://l26wus4d320" path="res://engine/resources/scenes/mastery_display.tscn" id="5_upqp3"]
+[ext_resource type="Script" uid="uid://bdhw3j6nfg2h1" path="res://engine/resources/utility_node/xp_bar.gd" id="6_fmgjo"]
+[ext_resource type="Script" uid="uid://cqt7ciq3ocqkl" path="res://engine/resources/utility_node/profile_name_label.gd" id="7_8d5yt"]
+[ext_resource type="Script" uid="uid://bs8ee2q1jttgb" path="res://engine/resources/utility_node/profile_level_label.gd" id="8_flfi7"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://assets/sprites/icons.png" id="9_15a5f"]
-[ext_resource type="PackedScene" uid="uid://db1krtggvj6tl" path="res://Engine/Resources/Scenes/StatsDisplay.tscn" id="9_eg8cx"]
-[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="10_0f8tq"]
-[ext_resource type="PackedScene" uid="uid://qyb7vtjc4d6o" path="res://Engine/Resources/Scenes/HeirloomDisplay.tscn" id="10_j6p5i"]
-[ext_resource type="Script" uid="uid://bp8kqfn8liwqp" path="res://Engine/Resources/UtilityNode/FadeButton.gd" id="13_u30up"]
-[ext_resource type="PackedScene" uid="uid://bl07eret4ujpn" path="res://Engine/Resources/Scenes/Inventory.tscn" id="15_6x8ea"]
+[ext_resource type="PackedScene" uid="uid://db1krtggvj6tl" path="res://engine/resources/scenes/stats_display.tscn" id="9_eg8cx"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="10_0f8tq"]
+[ext_resource type="PackedScene" uid="uid://qyb7vtjc4d6o" path="res://engine/resources/scenes/heirloom_display.tscn" id="10_j6p5i"]
+[ext_resource type="Script" uid="uid://bp8kqfn8liwqp" path="res://engine/resources/utility_node/fade_button.gd" id="13_u30up"]
+[ext_resource type="PackedScene" uid="uid://bl07eret4ujpn" path="res://engine/resources/scenes/inventory.tscn" id="15_6x8ea"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hxu7"]
 font_size = 8
-font_color = Color(0.745098, 0.745098, 0.745098, 1)
+font_color = Color(0.74509805, 0.74509805, 0.74509805, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
@@ -124,59 +124,63 @@ _data = {
 &"inventory_show": SubResource("Animation_tuys5")
 }
 
-[node name="Statbar" type="MarginContainer"]
+[node name="Statbar" type="MarginContainer" unique_id=1852975378]
 anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 0.25
 anchor_bottom = 1.0
-offset_bottom = -54.0
+offset_top = -80.0
+offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(4, 4)
 size_flags_vertical = 8
+theme_override_constants/margin_bottom = 0
 script = ExtResource("1_nycng")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1796901804]
 custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
 color = Color(0, 0, 0, 0.8)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1289718327]
 layout_mode = 2
-theme_override_constants/margin_right = 1
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1592326523]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_constants/separation = 0
 
-[node name="Avatar" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="Avatar" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=82727093]
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("2_kuo8t")
 script = ExtResource("2_kk3qc")
 
-[node name="StatsTooltipGrabber" type="Node" parent="MarginContainer/HBoxContainer/Avatar"]
+[node name="StatsTooltipGrabber" type="Node" parent="MarginContainer/HBoxContainer/Avatar" unique_id=867420558]
 unique_name_in_owner = true
 script = ExtResource("4_gcjxo")
 text = "stats.overview.header"
 max_line_length = 48
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer" unique_id=343869120]
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 
-[node name="MasteryDisplay" parent="MarginContainer/HBoxContainer" instance=ExtResource("5_upqp3")]
+[node name="MasteryDisplay" parent="MarginContainer/HBoxContainer" unique_id=1284131581 instance=ExtResource("5_upqp3")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1107934528]
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 
-[node name="XPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer"]
+[node name="XPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer" unique_id=80703579]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 4
@@ -185,97 +189,97 @@ fill_mode = 3
 show_percentage = false
 script = ExtResource("6_fmgjo")
 
-[node name="Control3" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Control3" type="Control" parent="MarginContainer/HBoxContainer" unique_id=571486349]
 custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=1958915670]
 layout_mode = 2
 theme_override_constants/margin_bottom = -1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=1521595744]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="ProfileNameLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="ProfileNameLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1273097024]
 layout_mode = 2
 text = "<profile-name>"
 script = ExtResource("7_8d5yt")
 
-[node name="ProfileLevelLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="ProfileLevelLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1137630855]
 layout_mode = 2
 text = "generic.level.abbr.0"
 label_settings = SubResource("LabelSettings_0hxu7")
 script = ExtResource("8_flfi7")
 
-[node name="Control4" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Control4" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1748968590]
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 
-[node name="StatsDisplay" parent="MarginContainer/HBoxContainer" instance=ExtResource("9_eg8cx")]
+[node name="StatsDisplay" parent="MarginContainer/HBoxContainer" unique_id=780966601 instance=ExtResource("9_eg8cx")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_top = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer" unique_id=1345128923]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_constants/separation = 0
 
-[node name="HeirloomDisplay3" parent="MarginContainer/HBoxContainer2" instance=ExtResource("10_j6p5i")]
+[node name="HeirloomDisplay3" parent="MarginContainer/HBoxContainer2" unique_id=1093946391 instance=ExtResource("10_j6p5i")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 slot_idx = 2
 
-[node name="Control7" type="Control" parent="MarginContainer/HBoxContainer2"]
+[node name="Control7" type="Control" parent="MarginContainer/HBoxContainer2" unique_id=1730442019]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="HeirloomDisplay2" parent="MarginContainer/HBoxContainer2" instance=ExtResource("10_j6p5i")]
+[node name="HeirloomDisplay2" parent="MarginContainer/HBoxContainer2" unique_id=1647321417 instance=ExtResource("10_j6p5i")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 slot_idx = 1
 
-[node name="Control8" type="Control" parent="MarginContainer/HBoxContainer2"]
+[node name="Control8" type="Control" parent="MarginContainer/HBoxContainer2" unique_id=966113788]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="HeirloomDisplay1" parent="MarginContainer/HBoxContainer2" instance=ExtResource("10_j6p5i")]
+[node name="HeirloomDisplay1" parent="MarginContainer/HBoxContainer2" unique_id=1956355321 instance=ExtResource("10_j6p5i")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Control9" type="Control" parent="MarginContainer/HBoxContainer2"]
+[node name="Control9" type="Control" parent="MarginContainer/HBoxContainer2" unique_id=316163810]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
-[node name="TextureRect6" type="TextureRect" parent="MarginContainer/HBoxContainer2"]
+[node name="TextureRect6" type="TextureRect" parent="MarginContainer/HBoxContainer2" unique_id=726385623]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_yimff")
 
-[node name="Control10" type="Control" parent="MarginContainer/HBoxContainer2"]
+[node name="Control10" type="Control" parent="MarginContainer/HBoxContainer2" unique_id=1352259486]
 custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 
-[node name="InventoryIcon" type="MarginContainer" parent="MarginContainer/HBoxContainer2"]
+[node name="InventoryIcon" type="MarginContainer" parent="MarginContainer/HBoxContainer2" unique_id=1951951203]
 layout_mode = 2
 script = ExtResource("13_u30up")
 texture_normal = SubResource("AtlasTexture_c2k4t")
 texture_hover = SubResource("AtlasTexture_sj3wt")
 metadata/_custom_type_script = "uid://bp8kqfn8liwqp"
 
-[node name="InventoryCanvas" type="CanvasLayer" parent="."]
+[node name="InventoryCanvas" type="CanvasLayer" parent="." unique_id=77488202]
 visible = false
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 0)
 
-[node name="ColorRect" type="ColorRect" parent="InventoryCanvas"]
+[node name="ColorRect" type="ColorRect" parent="InventoryCanvas" unique_id=361007440]
 anchors_preset = -1
 anchor_right = 0.25
 anchor_bottom = 0.25
@@ -284,16 +288,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
-[node name="Inventory" parent="InventoryCanvas" instance=ExtResource("15_6x8ea")]
+[node name="Inventory" parent="InventoryCanvas" unique_id=1065426496 instance=ExtResource("15_6x8ea")]
 unique_name_in_owner = true
 offset_left = 0.0
+offset_right = 77.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1107066704]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_sehu4")
-}
-autoplay = "RESET"
+libraries/ = SubResource("AnimationLibrary_sehu4")
+autoplay = &"RESET"
 
 [connection signal="about_to_show" from="MarginContainer/HBoxContainer/Avatar/StatsTooltipGrabber" to="." method="_on_stats_tooltip_grabber_about_to_show"]
 [connection signal="interacted" from="MarginContainer/HBoxContainer2/HeirloomDisplay3" to="." method="_on_heirloom_display_interacted" binds= [2]]

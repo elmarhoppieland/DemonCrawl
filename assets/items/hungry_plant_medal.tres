@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://b24af1d1nksd2"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b24af1d1nksd2"]
 
 [ext_resource type="Texture2D" uid="uid://bb57jhrrjo2wc" path="res://assets/items/hungry_plant_medal.png" id="1_4c2wq"]
 [ext_resource type="Script" uid="uid://d10mlvcmrlfoy" path="res://assets/items/hungry_plant_medal.gd" id="1_j0lkf"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://hhy78o5qolno"]
+[gd_scene format=3 uid="uid://hhy78o5qolno"]
 
 [ext_resource type="Script" uid="uid://bwnfpelh2b222" path="res://engine/scenes/stage_select/stage_select.gd" id="1_0kr35"]
 [ext_resource type="Texture2D" uid="uid://dqe6i8xvwotle" path="res://assets/backgrounds/stages0.png" id="1_6aai7"]
@@ -33,7 +33,7 @@ region = Rect2(0, 0, 8, 8)
 atlas = ExtResource("10_0nt55")
 region = Rect2(8, 0, 8, 8)
 
-[node name="StageSelect" type="Control"]
+[node name="StageSelect" type="Control" unique_id=1616763624]
 layout_mode = 3
 anchor_right = 0.25
 anchor_bottom = 0.25
@@ -42,7 +42,7 @@ grow_vertical = 2
 scale = Vector2(4, 4)
 script = ExtResource("1_0kr35")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=2111481194]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,7 +52,7 @@ grow_vertical = 2
 texture = ExtResource("1_6aai7")
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1690964595]
 layout_mode = 0
 offset_right = 335.0
 offset_bottom = 144.0
@@ -61,19 +61,19 @@ size_flags_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1831061417]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="StagesOverview" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_nrtxk")]
+[node name="StagesOverview" parent="MarginContainer/VBoxContainer" unique_id=181392300 instance=ExtResource("2_nrtxk")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="StageDetails" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_26rrt")]
+[node name="StageDetails" parent="MarginContainer/VBoxContainer" unique_id=2049448766 instance=ExtResource("4_26rrt")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="QuestNameLabel" type="Label" parent="."]
+[node name="QuestNameLabel" type="Label" parent="." unique_id=1215929600]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -86,37 +86,37 @@ size_flags_vertical = 1
 text = "quest.glory-days"
 label_settings = SubResource("LabelSettings_pehmt")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=966589810]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 10.0
 offset_top = 7.0
 
-[node name="BackToMenuButton" type="MarginContainer" parent="HBoxContainer"]
+[node name="BackToMenuButton" type="MarginContainer" parent="HBoxContainer" unique_id=1996761404]
 layout_mode = 2
 script = ExtResource("9_xkiay")
 texture_normal = SubResource("AtlasTexture_baxs2")
 texture_hover = SubResource("AtlasTexture_yjf3c")
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/BackToMenuButton"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/BackToMenuButton" unique_id=408164603]
 script = ExtResource("11_dcp1b")
 text = "scene-return.main"
 
-[node name="AbandonButton" type="MarginContainer" parent="HBoxContainer"]
+[node name="AbandonButton" type="MarginContainer" parent="HBoxContainer" unique_id=104967614]
 layout_mode = 2
 script = ExtResource("9_xkiay")
 texture_normal = SubResource("AtlasTexture_hle2i")
 texture_hover = SubResource("AtlasTexture_t66ta")
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/AbandonButton"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/AbandonButton" unique_id=1294695175]
 script = ExtResource("11_dcp1b")
 text = "stage-select.button.abandon.title"
 subtext = "stage-select.button.abandon.subtext"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1533407309]
 position = Vector2(160, 90)
 
-[node name="GuiEnabler" type="Node" parent="."]
+[node name="GuiEnabler" type="Node" parent="." unique_id=173335549]
 script = ExtResource("9_a0qlk")
 _disabled = 0
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TokenShopItem" load_steps=10 format=3 uid="uid://crenv4t4ujhim"]
+[gd_resource type="Resource" script_class="TokenShopItem" format=3 uid="uid://crenv4t4ujhim"]
 
 [ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/data_containers/condition/condition.gd" id="1_mslu5"]
 [ext_resource type="Resource" uid="uid://lrnl8lh2wikh" path="res://assets/quests/hard/4-around_the_bend.tres" id="2_rgbhv"]

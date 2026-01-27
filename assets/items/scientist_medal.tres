@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://hsbhp0twtfnm"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://hsbhp0twtfnm"]
 
 [ext_resource type="Script" uid="uid://e57u77n5a3vj" path="res://assets/items/scientist_medal.gd" id="1_lk7l2"]
 [ext_resource type="Texture2D" uid="uid://dimfhcvge4ag4" path="res://assets/items/scientist_medal.png" id="1_y0b67"]

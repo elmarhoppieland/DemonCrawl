@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dppdeqskdv8hc"]
+[gd_scene format=3 uid="uid://dppdeqskdv8hc"]
 
 [ext_resource type="Script" uid="uid://cx3bhmrancadt" path="res://engine/resources/scenes/collectible_display.gd" id="1_mhrok"]
 [ext_resource type="Shader" uid="uid://bkn3o0cujs67t" path="res://engine/resources/scenes/collectible_texture.gdshader" id="3_g7q54"]
@@ -17,7 +17,7 @@ expand_margin_top = 1.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kwqat"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="CollectibleDisplay" type="Control"]
+[node name="CollectibleDisplay" type="Control" unique_id=585105234]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 3
 anchors_preset = 0
@@ -26,7 +26,7 @@ offset_bottom = 16.0
 mouse_filter = 1
 script = ExtResource("1_mhrok")
 
-[node name="BGRect" type="ColorRect" parent="."]
+[node name="BGRect" type="ColorRect" parent="." unique_id=1748855408]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -36,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
-[node name="CollectibleTexture" type="TextureRect" parent="."]
+[node name="CollectibleTexture" type="TextureRect" parent="." unique_id=1151001347]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_0nv3h")
 layout_mode = 1
@@ -47,7 +47,7 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=401231543]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0.0627451, 0.87451, 0.501961, 1)
@@ -65,7 +65,7 @@ max_value = 80.0
 value = 80.0
 show_percentage = false
 
-[node name="TooltipGrabber" type="Node" parent="."]
+[node name="TooltipGrabber" type="Node" parent="." unique_id=616793731]
 unique_name_in_owner = true
 script = ExtResource("4_qke8a")
 

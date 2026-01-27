@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="TokenShopInfiniteItem" load_steps=5 format=3 uid="uid://crmxudsgrgcxw"]
+[gd_resource type="Resource" script_class="TokenShopInfiniteItem" format=3 uid="uid://crmxudsgrgcxw"]
 
-[ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/DataContainers/Condition/Condition.gd" id="1_58s2e"]
-[ext_resource type="Script" uid="uid://cx8uhm7il36dy" path="res://engine/resources/DataContainers/TokenShop/TokenShopInfiniteItem.gd" id="1_tl66k"]
-[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="1_vngus"]
+[ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/data_containers/condition/condition.gd" id="1_58s2e"]
+[ext_resource type="Script" uid="uid://cx8uhm7il36dy" path="res://engine/resources/data_containers/token_shop/token_shop_infinite_item.gd" id="1_tl66k"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_vngus"]
 
 [sub_resource type="Texture2D" id="Texture2D_oyf6t"]
 resource_local_to_scene = false
@@ -16,5 +16,3 @@ name = "token-shop.category.upgrades.xp-boost"
 description = "token-shop.category.upgrades.xp-boost.description"
 icon = SubResource("Texture2D_oyf6t")
 cost = 5
-conditions = Array[ExtResource("1_58s2e")]([])
-unlock_conditions = Array[ExtResource("1_58s2e")]([])

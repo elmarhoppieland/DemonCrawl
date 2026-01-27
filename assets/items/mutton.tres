@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://di748dmo0j3jm"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://di748dmo0j3jm"]
 
 [ext_resource type="Script" uid="uid://defhv02tvleo7" path="res://assets/items/mutton.gd" id="1_km1p8"]
 [ext_resource type="Texture2D" uid="uid://djm8ihqwuniny" path="res://assets/items/mutton.png" id="1_qtp0j"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cf6pwvend36k4"]
+[gd_scene format=3 uid="uid://cf6pwvend36k4"]
 
 [ext_resource type="Script" uid="uid://dlk23qy0u2xwh" path="res://assets/special_stages/item_shop/item_shop_scene.gd" id="1_3moa5"]
 [ext_resource type="Texture2D" uid="uid://bgg7dvorx22m1" path="res://assets/backgrounds/item_shop.png" id="1_hllyk"]
@@ -22,7 +22,7 @@ shader = ExtResource("4_6l62f")
 font = ExtResource("2_7h07o")
 font_color = Color(1, 0.819608, 0.458824, 1)
 
-[node name="ItemShop" type="Control"]
+[node name="ItemShop" type="Control" unique_id=1378971273]
 layout_mode = 3
 anchor_right = 0.25
 anchor_bottom = 0.25
@@ -31,7 +31,7 @@ grow_vertical = 2
 scale = Vector2(4, 4)
 script = ExtResource("1_3moa5")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=694731193]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,12 +40,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_hllyk")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1566183540]
 layer = 20
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 0)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1304734830]
 anchors_preset = -1
 anchor_left = 0.125
 anchor_right = 0.125
@@ -53,71 +53,71 @@ offset_top = 35.0
 grow_horizontal = 2
 theme_override_constants/separation = 7
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer" unique_id=1130737830]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer" unique_id=749741910]
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 color = Color(1, 0.819608, 0.458824, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer" unique_id=1301011887]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 color = Color(0.890196, 0.623529, 0.262745, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer" unique_id=383782783]
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/VBoxContainer" unique_id=1429139159]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer" unique_id=155430908]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer" unique_id=2062137035]
 layout_mode = 2
 text = "stage.special.item-shop"
 label_settings = SubResource("LabelSettings_g72nf")
 
-[node name="Label2" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer"]
+[node name="Label2" type="Label" parent="CanvasLayer/HBoxContainer/MarginContainer" unique_id=358437065]
 material = SubResource("ShaderMaterial_by0ps")
 layout_mode = 2
 text = "stage.special.item-shop"
 label_settings = SubResource("LabelSettings_w6k33")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer" unique_id=1548158228]
 custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer2" unique_id=457560250]
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 color = Color(1, 0.819608, 0.458824, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer2" unique_id=891515126]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 color = Color(0.890196, 0.623529, 0.262745, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/HBoxContainer/VBoxContainer2" unique_id=1591766732]
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/VBoxContainer2" unique_id=2122516290]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=498201209]
 anchors_preset = -1
 anchor_left = 0.125
 anchor_right = 0.125
@@ -128,7 +128,7 @@ offset_bottom = 42.0
 grow_horizontal = 2
 texture = ExtResource("5_gc6dr")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1880992601]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -139,30 +139,30 @@ offset_bottom = 9.25999
 grow_horizontal = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=946089381]
 layout_mode = 2
 text = "stage.special.item-shop.text"
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="VBoxContainer"]
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=2016890750]
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=2082569960]
 layout_mode = 2
 vertical_scroll_mode = 0
 
-[node name="OffersContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="OffersContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=1252792341]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_constants/separation = 10
 
-[node name="Control2" type="Control" parent="VBoxContainer"]
+[node name="Control2" type="Control" parent="VBoxContainer" unique_id=1946624536]
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 
-[node name="BuyButton" parent="VBoxContainer" instance=ExtResource("5_3qi0c")]
+[node name="BuyButton" parent="VBoxContainer" unique_id=1642623809 instance=ExtResource("5_3qi0c")]
 unique_name_in_owner = true
 physics_interpolation_mode = 2
 auto_translate_mode = 1
@@ -182,11 +182,11 @@ color = Color(0.0627451, 0.87451, 0.501961, 1)
 bg_color = Color(0, 0, 0, 1)
 text = "stage.special.item-shop.confirm"
 
-[node name="Control3" type="Control" parent="VBoxContainer"]
+[node name="Control3" type="Control" parent="VBoxContainer" unique_id=1596101399]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
-[node name="LeaveButton" parent="VBoxContainer" instance=ExtResource("5_3qi0c")]
+[node name="LeaveButton" parent="VBoxContainer" unique_id=176136861 instance=ExtResource("5_3qi0c")]
 unique_name_in_owner = true
 physics_interpolation_mode = 2
 auto_translate_mode = 1
@@ -206,7 +206,7 @@ color = Color(0.862745, 0.121569, 0.121569, 1)
 bg_color = Color(0, 0, 0, 1)
 text = "stage.special.item-shop.leave"
 
-[node name="GuiEnabler" type="Node" parent="."]
+[node name="GuiEnabler" type="Node" parent="." unique_id=1714879953]
 script = ExtResource("7_57vr3")
 _disabled = 0
 metadata/_custom_type_script = "uid://d1c6fxxsk1ugt"

@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="MasteryUnlockerData" load_steps=4 format=3 uid="uid://1jraugo6psdf"]
+[gd_resource type="Resource" script_class="MasteryUnlockerData" format=3 uid="uid://1jraugo6psdf"]
 
-[ext_resource type="Script" uid="uid://dpylrkh0r76lw" path="res://engine/resources/DataContainers/Mastery/MasteryUnlockerData.gd" id="1_6c2gp"]
-[ext_resource type="Resource" uid="uid://drilv0kg264wg" path="res://assets/Scripts/Masteries/Survivor/Survivor.tres" id="1_npjh1"]
-[ext_resource type="Script" uid="uid://5roo2onn78ne" path="res://assets/Scripts/Masteries/Survivor/SurvivorUnlocker.gd" id="3_v1ne1"]
+[ext_resource type="Script" uid="uid://dpylrkh0r76lw" path="res://engine/resources/data_containers/mastery/mastery_unlocker_data.gd" id="1_6c2gp"]
+[ext_resource type="Resource" uid="uid://drilv0kg264wg" path="res://assets/scripts/masteries/survivor/survivor.tres" id="1_npjh1"]
+[ext_resource type="Script" uid="uid://5roo2onn78ne" path="res://assets/scripts/masteries/survivor/survivor_unlocker.gd" id="3_v1ne1"]
 
 [resource]
 script = ExtResource("1_6c2gp")

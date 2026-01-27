@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://ckperdbk5nfyk"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://ckperdbk5nfyk"]
 
 [ext_resource type="Script" uid="uid://27tcwxs2nnb5" path="res://assets/items/treasure_amulet.gd" id="1_5hnyh"]
 [ext_resource type="Texture2D" uid="uid://b7hf4ayu566mq" path="res://assets/items/treasure_amulet.png" id="1_qvx8c"]

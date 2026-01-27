@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TokenShopItem" load_steps=10 format=3 uid="uid://b58ybksdysnl7"]
+[gd_resource type="Resource" script_class="TokenShopItem" format=3 uid="uid://b58ybksdysnl7"]
 
 [ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/data_containers/condition/condition.gd" id="1_wcjji"]
 [ext_resource type="Resource" uid="uid://7rcj8aaeg57t" path="res://assets/quests/normal/1-glory_days.tres" id="2_q657x"]

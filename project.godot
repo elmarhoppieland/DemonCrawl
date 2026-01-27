@@ -12,7 +12,7 @@ config_version=5
 
 config/name="DemonCrawl"
 run/main_scene="uid://duasdk788nmel"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -27,7 +27,9 @@ DebugToolsOverlay="res://engine/resources/singletons/debug/debug_tools_overlay.t
 
 [debug]
 
-gdscript/warnings/exclude_addons=false
+gdscript/warnings/directory_rules={
+"res://addons": 1
+}
 gdscript/warnings/integer_division=0
 gdscript/warnings/confusable_local_declaration=0
 

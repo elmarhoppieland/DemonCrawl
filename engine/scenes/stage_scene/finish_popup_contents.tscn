@@ -1,46 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjx67qhbqro41"]
+[gd_scene format=3 uid="uid://cjx67qhbqro41"]
 
-[ext_resource type="Script" uid="uid://y4mdeltue3mp" path="res://Engine/Scenes/StageScene/FinishPopupContents.gd" id="1_o1mly"]
+[ext_resource type="Script" uid="uid://y4mdeltue3mp" path="res://engine/scenes/stage_scene/finish_popup_contents.gd" id="1_o1mly"]
 [ext_resource type="Texture2D" uid="uid://w0eac00tgi4" path="res://assets/sprites/text_stage_clear.png" id="1_t7kn7"]
 [ext_resource type="Texture2D" uid="uid://crx85kipjfvqw" path="res://assets/sprites/hxpbar_bg.png" id="5_ox33d"]
 
-[node name="FinishPopupContents" type="VBoxContainer"]
+[node name="FinishPopupContents" type="VBoxContainer" unique_id=971687225]
 theme_override_constants/separation = 0
 script = ExtResource("1_o1mly")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=387538107]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("1_t7kn7")
 stretch_mode = 3
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1493116674]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="StageClearRewardsContainer" type="HBoxContainer" parent="."]
+[node name="StageClearRewardsContainer" type="HBoxContainer" parent="." unique_id=2032251698]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Control3" type="Control" parent="."]
+[node name="Control3" type="Control" parent="." unique_id=822983659]
 custom_minimum_size = Vector2(0, 11)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1643905537]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 theme_override_constants/separation = 1
 
-[node name="XPLabel" type="Label" parent="VBoxContainer"]
+[node name="XPLabel" type="Label" parent="VBoxContainer" unique_id=1759854871]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 text = "2520/2720"
 
-[node name="XPProgressBar" type="TextureProgressBar" parent="VBoxContainer"]
+[node name="XPProgressBar" type="TextureProgressBar" parent="VBoxContainer" unique_id=1390759703]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 4)
 layout_mode = 2

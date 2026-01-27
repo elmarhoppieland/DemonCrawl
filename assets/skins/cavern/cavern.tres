@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=17 format=3 uid="uid://2pddyb3wf24c"]
+[gd_resource type="Resource" script_class="StageFile" format=3 uid="uid://2pddyb3wf24c"]
 
 [ext_resource type="AudioStream" uid="uid://b3oqa5eswgx17" path="res://assets/skins/cavern/ambience_a.ogg" id="1_rce27"]
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_xs4dc"]

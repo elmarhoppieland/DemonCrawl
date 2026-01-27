@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5ah2uj72bhgs"]
+[gd_scene format=3 uid="uid://b5ah2uj72bhgs"]
 
-[ext_resource type="Script" uid="uid://dlqdmpl77f2vu" path="res://Engine/Scenes/TokenShop/TokenShopCategoryDisplay.gd" id="1_lfkl3"]
+[ext_resource type="Script" uid="uid://dlqdmpl77f2vu" path="res://engine/scenes/token_shop/token_shop_category_display.gd" id="1_lfkl3"]
 
-[node name="TokenShopCategoryDisplay" type="Control"]
+[node name="TokenShopCategoryDisplay" type="Control" unique_id=1772505575]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lfkl3")
 
-[node name="ItemsContainer" type="VFlowContainer" parent="."]
+[node name="ItemsContainer" type="VFlowContainer" parent="." unique_id=124709953]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15

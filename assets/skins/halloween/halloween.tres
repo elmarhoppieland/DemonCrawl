@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=14 format=3 uid="uid://cesesm3cs7l8c"]
+[gd_resource type="Resource" script_class="StageFile" format=3 uid="uid://cesesm3cs7l8c"]
 
 [ext_resource type="Texture2D" uid="uid://cbgqt05gio1dk" path="res://assets/skins/halloween/bg.png" id="1_7d1af"]
 [ext_resource type="Texture2D" uid="uid://cr7wb5ifu3fm1" path="res://assets/skins/halloween/artifact.png" id="1_mx27x"]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuestFile" load_steps=28 format=3 uid="uid://bnceos644ncor"]
+[gd_resource type="Resource" script_class="QuestFile" format=3 uid="uid://bnceos644ncor"]
 
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_25enw"]
 [ext_resource type="Resource" uid="uid://c5ovbpehuvyni" path="res://assets/quests/default_generation_sequence.tres" id="1_ukvt7"]

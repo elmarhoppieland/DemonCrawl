@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dpbvhpo6h1cog"]
 
-[node name="MarginContainer" type="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" unique_id=360771128]
 custom_minimum_size = Vector2(16, 16)
 theme_override_constants/margin_top = -3
 theme_override_constants/margin_bottom = 3
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1311639441]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
@@ -14,7 +14,7 @@ size_flags_vertical = 8
 mouse_filter = 2
 color = Color(0.94902, 0.686275, 0.0705882, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2110316058]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.7)
 position = Vector2(2, 1)

@@ -1,18 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyw23q7ecmq1i"]
+[gd_scene format=3 uid="uid://cyw23q7ecmq1i"]
 
 [ext_resource type="Script" uid="uid://ba11085yih1jw" path="res://engine/resources/singletons/gui_layer.gd" id="1_17xuq"]
 [ext_resource type="PackedScene" uid="uid://bqgqlnp8nk2x2" path="res://engine/resources/scenes/statbar.tscn" id="1_gfntl"]
 [ext_resource type="PackedScene" uid="uid://xngqg6hwurpe" path="res://engine/resources/singletons/orb_layer.tscn" id="3_3qee7"]
 [ext_resource type="Script" uid="uid://bqbd1nck2c2ye" path="res://engine/resources/singletons/texture_tweener.gd" id="4_ruhnq"]
 
-[node name="GuiLayer" type="CanvasLayer"]
+[node name="GuiLayer" type="CanvasLayer" unique_id=1668006223]
 layer = 25
 script = ExtResource("1_17xuq")
 
-[node name="Statbar" parent="." instance=ExtResource("1_gfntl")]
+[node name="Statbar" parent="." unique_id=2016203418 instance=ExtResource("1_gfntl")]
 
-[node name="OrbLayer" parent="." instance=ExtResource("3_3qee7")]
+[node name="OrbLayer" parent="." unique_id=538618709 instance=ExtResource("3_3qee7")]
 offset_bottom = -80.0
 
-[node name="TextureTweener" type="Node" parent="."]
+[node name="TextureTweener" type="Node" parent="." unique_id=481225086]
 script = ExtResource("4_ruhnq")

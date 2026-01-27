@@ -1,15 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cy08xwud1qrel"]
+[gd_scene format=3 uid="uid://cy08xwud1qrel"]
 
-[ext_resource type="Script" uid="uid://db2ob6vqs80x4" path="res://assets/Scripts/Orbs/BubbleSprite.gd" id="1_w38gm"]
-[ext_resource type="Script" uid="uid://t6t4jruv71wg" path="res://assets/Scripts/Orbs/BubbleObjectTextureRect.gd" id="2_qbfpm"]
-[ext_resource type="Texture2D" uid="uid://bc2ef0emg0dfm" path="res://assets/sprites/Orbs/orb_bubble.png" id="3_bhg3n"]
+[ext_resource type="Script" uid="uid://db2ob6vqs80x4" path="res://assets/scripts/orbs/bubble_sprite.gd" id="1_w38gm"]
+[ext_resource type="Script" uid="uid://t6t4jruv71wg" path="res://assets/scripts/orbs/bubble_object_texture_rect.gd" id="2_qbfpm"]
+[ext_resource type="Texture2D" uid="uid://bc2ef0emg0dfm" path="res://assets/sprites/orbs/orb_bubble.png" id="3_bhg3n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7tr5"]
 
-[node name="BubbleSprite" type="Node2D"]
+[node name="BubbleSprite" type="Node2D" unique_id=857381016]
 script = ExtResource("1_w38gm")
 
-[node name="BubbleObjectTextureRect" type="TextureRect" parent="."]
+[node name="BubbleObjectTextureRect" type="TextureRect" parent="." unique_id=1590670683]
 unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
@@ -23,11 +23,11 @@ stretch_mode = 3
 script = ExtResource("2_qbfpm")
 metadata/_custom_type_script = "uid://t6t4jruv71wg"
 
-[node name="OrbSprite" type="Sprite2D" parent="."]
+[node name="OrbSprite" type="Sprite2D" parent="." unique_id=351348079]
 texture = ExtResource("3_bhg3n")
 
-[node name="CollisionArea2D" type="Area2D" parent="."]
+[node name="CollisionArea2D" type="Area2D" parent="." unique_id=1023128103]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D" unique_id=1027537157]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_r7tr5")

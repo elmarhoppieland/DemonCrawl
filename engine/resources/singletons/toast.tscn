@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi0bprh7rf3v0"]
+[gd_scene format=3 uid="uid://bi0bprh7rf3v0"]
 
 [ext_resource type="Theme" uid="uid://b442tpxg2qr7y" path="res://engine/resources/default_theme.tres" id="1_jgrmq"]
 [ext_resource type="Script" uid="uid://c202mpk585bpx" path="res://engine/resources/singletons/toast.gd" id="1_jsfq5"]
@@ -6,7 +6,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_2hpc4"]
 font_size = 8
 
-[node name="Toast" type="Control"]
+[node name="Toast" type="Control" unique_id=2028708913]
 visible = false
 custom_minimum_size = Vector2(15, 20)
 layout_mode = 3
@@ -17,23 +17,23 @@ mouse_filter = 2
 theme = ExtResource("1_jgrmq")
 script = ExtResource("1_jsfq5")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="." unique_id=1959744360]
 position = Vector2(-15, 0)
 
-[node name="BaseContainer" type="MarginContainer" parent="Node2D"]
+[node name="BaseContainer" type="MarginContainer" parent="Node2D" unique_id=1404768235]
 unique_name_in_owner = true
 offset_right = 15.0
 offset_bottom = 20.0
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="Node2D/BaseContainer"]
+[node name="ColorRect" type="ColorRect" parent="Node2D/BaseContainer" unique_id=126124318]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.8039216)
 layout_mode = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.8)
 
-[node name="MarginContainer" type="MarginContainer" parent="Node2D/BaseContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Node2D/BaseContainer" unique_id=772961765]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 4
@@ -41,19 +41,19 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Node2D/BaseContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Node2D/BaseContainer/MarginContainer" unique_id=479585718]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 2
 
-[node name="IconRect" type="TextureRect" parent="Node2D/BaseContainer/MarginContainer/HBoxContainer"]
+[node name="IconRect" type="TextureRect" parent="Node2D/BaseContainer/MarginContainer/HBoxContainer" unique_id=1107291638]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Node2D/BaseContainer/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Node2D/BaseContainer/MarginContainer/HBoxContainer" unique_id=1575224208]
 unique_name_in_owner = true
 layout_mode = 2
 label_settings = SubResource("LabelSettings_2hpc4")

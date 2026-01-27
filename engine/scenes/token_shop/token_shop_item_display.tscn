@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dml1nvpclhf7"]
+[gd_scene format=3 uid="uid://dml1nvpclhf7"]
 
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://assets/sprites/icons.png" id="1_05fa6"]
-[ext_resource type="Script" uid="uid://t4ci38oq6hsx" path="res://Engine/Scenes/TokenShop/TokenShopItemDisplay.gd" id="1_t3k8l"]
-[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="2_nqj62"]
-[ext_resource type="Resource" uid="uid://cnbevbtob1jom" path="res://assets/TokenShop/Upgrades/Specialist.tres" id="2_xy8jt"]
-[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_ebpj2"]
+[ext_resource type="Script" uid="uid://t4ci38oq6hsx" path="res://engine/scenes/token_shop/token_shop_item_display.gd" id="1_t3k8l"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="2_nqj62"]
+[ext_resource type="Resource" uid="uid://cnbevbtob1jom" path="res://assets/token_shop/upgrades/specialist.tres" id="2_xy8jt"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="4_ebpj2"]
 
 [sub_resource type="Texture2D" id="Texture2D_nhp6q"]
 resource_local_to_scene = false
@@ -49,130 +49,130 @@ font_color = Color(0.972549, 0.705882, 0.0705882, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="TokenShopItemDisplay" type="MarginContainer"]
+[node name="TokenShopItemDisplay" type="MarginContainer" unique_id=1096942108]
 offset_right = 122.0
 offset_bottom = 22.0
 script = ExtResource("1_t3k8l")
 item = ExtResource("2_xy8jt")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1885429493]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Icon" type="MarginContainer" parent="HBoxContainer"]
+[node name="Icon" type="MarginContainer" parent="HBoxContainer" unique_id=1403074786]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Icon"]
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Icon" unique_id=105740152]
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Icon"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Icon" unique_id=907129480]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Icon/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Icon/MarginContainer" unique_id=1281410564]
 layout_mode = 2
 color = Color(0.545098, 0.545098, 0.545098, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Icon/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Icon/MarginContainer" unique_id=2096788150]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer" unique_id=902996468]
 layout_mode = 2
 color = Color(0.0352941, 0.0352941, 0.0352941, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Icon/MarginContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Icon/MarginContainer/MarginContainer" unique_id=1001184265]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="IconRect" type="TextureRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer/MarginContainer"]
+[node name="IconRect" type="TextureRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer/MarginContainer" unique_id=632459260]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = SubResource("Texture2D_nhp6q")
 stretch_mode = 3
 
-[node name="Lock" type="TextureRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer/MarginContainer"]
+[node name="Lock" type="TextureRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer/MarginContainer" unique_id=825633583]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture = SubResource("Texture2D_r7k7g")
 
-[node name="Checkmark" type="TextureRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer/MarginContainer"]
+[node name="Checkmark" type="TextureRect" parent="HBoxContainer/Icon/MarginContainer/MarginContainer/MarginContainer" unique_id=10196358]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture = SubResource("AtlasTexture_5p4qq")
 stretch_mode = 3
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/Icon"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/Icon" unique_id=1186866661]
 unique_name_in_owner = true
 script = ExtResource("4_ebpj2")
-text = "SPECIALIST I"
-subtext = "TOKEN_SHOP_UPGRADE_SPECIALIST_DESCRIPTION"
+text = "token-shop.category.upgrades.specialist I"
+subtext = "token-shop.category.upgrades.specialist.description"
 context_mode = 0
 c_unescape = true
 
-[node name="Node2D" type="Node2D" parent="HBoxContainer/Icon"]
+[node name="Node2D" type="Node2D" parent="HBoxContainer/Icon" unique_id=799065116]
 position = Vector2(3, 2)
 
-[node name="HoverAnchor" type="Node2D" parent="HBoxContainer/Icon/Node2D"]
+[node name="HoverAnchor" type="Node2D" parent="HBoxContainer/Icon/Node2D" unique_id=373329797]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 4)
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Icon/Node2D/HoverAnchor"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Icon/Node2D/HoverAnchor" unique_id=272893419]
 offset_right = 16.0
 offset_bottom = 16.0
 texture = SubResource("Texture2D_urhtn")
 stretch_mode = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=774842975]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2" unique_id=785680532]
 layout_mode = 2
 texture = SubResource("GradientTexture1D_4lfha")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2" unique_id=1812462473]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/MarginContainer" unique_id=607870862]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="NameLabel" type="Label" parent="HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer" unique_id=352787660]
 unique_name_in_owner = true
 layout_mode = 2
-text = "SPECIALIST I"
+text = "token-shop.category.upgrades.specialist I"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1995165789]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=751428857]
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 size_flags_vertical = 0
 texture = SubResource("AtlasTexture_x8yt5")
 stretch_mode = 3
 
-[node name="CostLabel" type="Label" parent="HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="CostLabel" type="Label" parent="HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=919303384]
 unique_name_in_owner = true
 layout_mode = 2
 text = "30"

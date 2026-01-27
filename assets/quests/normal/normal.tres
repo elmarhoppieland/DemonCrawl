@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Difficulty" load_steps=12 format=3 uid="uid://c8r0jgj2jdnl"]
+[gd_resource type="Resource" script_class="Difficulty" format=3 uid="uid://c8r0jgj2jdnl"]
 
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="1_jd80n"]
 [ext_resource type="Script" uid="uid://c7uug1dwy6rrx" path="res://engine/resources/data_containers/condition/condition.gd" id="1_vtmt6"]
@@ -21,4 +21,5 @@ name = "difficulties/Normal"
 script = ExtResource("8_f1lbq")
 name = "difficulty.normal"
 icon = SubResource("Texture2D_fnfsu")
+color = Color(0.043137256, 0.8784314, 0.5176471, 1)
 quests = Array[ExtResource("3_c6frc")]([ExtResource("2_5afsg"), ExtResource("3_cc6qd"), ExtResource("4_wa072"), ExtResource("5_ldfkd"), ExtResource("6_lqhvi"), ExtResource("7_mot14")])

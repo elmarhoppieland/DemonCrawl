@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhymmrd8j6du3"]
+[gd_scene format=3 uid="uid://dhymmrd8j6du3"]
 
-[ext_resource type="Script" uid="uid://c1jvttml1fuj3" path="res://Engine/Resources/Scenes/DCPopup.gd" id="1_hs0ji"]
-[ext_resource type="AnimationLibrary" uid="uid://cgc18ruj3xe6x" path="res://Engine/Resources/DCPopupAnimationLibrary.tres" id="5_5yx61"]
+[ext_resource type="Script" uid="uid://c1jvttml1fuj3" path="res://engine/resources/scenes/dc_popup.gd" id="1_hs0ji"]
+[ext_resource type="AnimationLibrary" uid="uid://cgc18ruj3xe6x" path="res://engine/resources/dc_popup_animation_library.tres" id="5_5yx61"]
 
-[node name="DCPopup" type="CanvasLayer"]
+[node name="DCPopup" type="CanvasLayer" unique_id=1239486773]
 layer = 20
 visible = false
 offset = Vector2(640, 360)
@@ -11,7 +11,7 @@ scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 640, 360)
 script = ExtResource("1_hs0ji")
 
-[node name="MouseBlocker" type="ColorRect" parent="."]
+[node name="MouseBlocker" type="ColorRect" parent="." unique_id=1973855185]
 visible = false
 anchors_preset = -1
 anchor_left = -0.125
@@ -22,10 +22,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
-[node name="BackgroundAnchor" type="Node2D" parent="."]
+[node name="BackgroundAnchor" type="Node2D" parent="." unique_id=1270588383]
 scale = Vector2(1, 1e-05)
 
-[node name="MarginContainer" type="MarginContainer" parent="BackgroundAnchor"]
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundAnchor" unique_id=188753222]
 custom_minimum_size = Vector2(320, 80)
 anchors_preset = 8
 anchor_left = 0.5
@@ -39,16 +39,16 @@ offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="BackgroundAnchor/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="BackgroundAnchor/MarginContainer" unique_id=1199219211]
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="ContentsAnchor" type="Node2D" parent="."]
+[node name="ContentsAnchor" type="Node2D" parent="." unique_id=245858422]
 visible = false
 modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 8)
 
-[node name="ContentsContainer" type="MarginContainer" parent="ContentsAnchor"]
+[node name="ContentsContainer" type="MarginContainer" parent="ContentsAnchor" unique_id=40714683]
 unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
@@ -64,8 +64,6 @@ grow_vertical = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 7
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=986961340]
 unique_name_in_owner = true
-libraries = {
-&"": ExtResource("5_5yx61")
-}
+libraries/ = ExtResource("5_5yx61")

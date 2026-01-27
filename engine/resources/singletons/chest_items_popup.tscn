@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvje67ratt3te"]
+[gd_scene format=3 uid="uid://bvje67ratt3te"]
 
-[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/Fonts/Lady Radical.ttf" id="1_3y7ev"]
-[ext_resource type="Script" uid="uid://c36k6v6ofw2ym" path="res://Engine/Resources/Singletons/ChestItemsPopup.gd" id="1_smofu"]
-[ext_resource type="Script" uid="uid://b24k0h0ivk3t0" path="res://Engine/Resources/UtilityNode/StringTableLabel.gd" id="2_smofu"]
-[ext_resource type="Resource" uid="uid://eswndy3mivp6" path="res://assets/StringTables/Chest/Item.tres" id="4_q71os"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="1_3y7ev"]
+[ext_resource type="Script" uid="uid://c36k6v6ofw2ym" path="res://engine/resources/singletons/chest_items_popup.gd" id="1_smofu"]
+[ext_resource type="Script" uid="uid://b24k0h0ivk3t0" path="res://engine/resources/utility_node/string_table_label.gd" id="2_smofu"]
+[ext_resource type="Resource" uid="uid://eswndy3mivp6" path="res://assets/string_tables/chest/item.tres" id="4_q71os"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tr7p1"]
 font = ExtResource("1_3y7ev")
@@ -12,7 +12,7 @@ font = ExtResource("1_3y7ev")
 font_size = 8
 font_color = Color(0.764706, 0.764706, 0.764706, 1)
 
-[node name="ChestItemsPopup" type="Control"]
+[node name="ChestItemsPopup" type="Control" unique_id=74710285]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_smofu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2077565957]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,27 +36,27 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1663833732]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
 text = "popup.chest.title"
 label_settings = SubResource("LabelSettings_tr7p1")
 
-[node name="Control" type="Control" parent="VBoxContainer"]
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=1875028115]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="RewardsContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="RewardsContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=948165146]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Control2" type="Control" parent="VBoxContainer"]
+[node name="Control2" type="Control" parent="VBoxContainer" unique_id=1400254519]
 custom_minimum_size = Vector2(0, 7)
 layout_mode = 2
 
-[node name="StringTableLabel" type="Label" parent="VBoxContainer"]
+[node name="StringTableLabel" type="Label" parent="VBoxContainer" unique_id=773350133]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4

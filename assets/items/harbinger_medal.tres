@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://bbcb4uofuknbx"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bbcb4uofuknbx"]
 
 [ext_resource type="Script" uid="uid://cqt4walojdbtv" path="res://assets/items/harbinger_medal.gd" id="1_5lp2d"]
 [ext_resource type="Texture2D" uid="uid://shdo1qygp4fc" path="res://assets/items/harbinger_medal.png" id="1_wn63e"]

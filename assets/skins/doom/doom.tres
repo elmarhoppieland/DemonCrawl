@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=14 format=3 uid="uid://di1y00xpxjj22"]
+[gd_resource type="Resource" script_class="StageFile" format=3 uid="uid://di1y00xpxjj22"]
 
 [ext_resource type="Texture2D" uid="uid://8we0trwrny0m" path="res://assets/skins/doom/artifact.png" id="1_5e7yn"]
 [ext_resource type="Texture2D" uid="uid://c5gtwgap6hbkb" path="res://assets/skins/doom/bg.png" id="1_cuqc0"]

@@ -47,7 +47,8 @@ func _update() -> void:
 	_coin_value.coin_value = price
 	if stats:
 		_update_font_color()
-		stats.changed.connect(_update_font_color)
+		if not stats.changed.is_connected(_update_font_color):
+			stats.changed.connect(_update_font_color)
 	else:
 		_coin_value.color = Color.WHITE
 

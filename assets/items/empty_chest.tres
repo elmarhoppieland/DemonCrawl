@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://x23qq7prxd7"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://x23qq7prxd7"]
 
 [ext_resource type="Texture2D" uid="uid://oxa52hi0u8xy" path="res://assets/items/empty_chest.png" id="1_iicl5"]
 [ext_resource type="Script" uid="uid://jif6rg15x58v" path="res://assets/items/empty_chest.gd" id="1_qee25"]

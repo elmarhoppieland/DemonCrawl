@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvi3a1hhaotk8"]
+[gd_scene format=3 uid="uid://cvi3a1hhaotk8"]
 
 [ext_resource type="Script" uid="uid://dd6lfockqbyik" path="res://engine/resources/singletons/debug/debug_tool_object_details.gd" id="1_f22g6"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_wp5p3"]
@@ -9,7 +9,7 @@
 font = ExtResource("2_wp5p3")
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="DebugToolObjectDetails" type="MarginContainer"]
+[node name="DebugToolObjectDetails" type="MarginContainer" unique_id=1592885453]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,21 +17,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f22g6")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=607211594]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=1053998704]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "object.coin"
 label_settings = SubResource("LabelSettings_eqoxe")
 
-[node name="Frame" parent="VBoxContainer" instance=ExtResource("3_kafo5")]
+[node name="Frame" parent="VBoxContainer" unique_id=1146091492 instance=ExtResource("3_kafo5")]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TextureNodeDisplay" type="TextureRect" parent="VBoxContainer/Frame"]
+[node name="TextureNodeDisplay" type="TextureRect" parent="VBoxContainer/Frame" unique_id=1764660619]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
@@ -40,30 +40,30 @@ stretch_mode = 3
 script = ExtResource("4_f22g6")
 metadata/_custom_type_script = "uid://nqubiv4s4ucx"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=929712987]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=807817283]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="SpawnRandomButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="SpawnRandomButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer" unique_id=447932038]
 layout_mode = 2
 text = "Spawn on Random Cell"
 
-[node name="BindSpawnRandomButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="BindSpawnRandomButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer" unique_id=435367904]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Bind..."
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer" unique_id=1644061650]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=1850294993]
 layout_mode = 2
 
-[node name="BindSpawnHoveredButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
+[node name="BindSpawnHoveredButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer2" unique_id=1186518782]
 layout_mode = 2
 size_flags_vertical = 4
 text = "Spawn on

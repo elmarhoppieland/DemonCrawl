@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=13 format=3 uid="uid://bp2sr5bqgar5p"]
+[gd_resource type="Resource" script_class="StageFile" format=3 uid="uid://bp2sr5bqgar5p"]
 
 [ext_resource type="Texture2D" uid="uid://cia8rlg5u81fk" path="res://assets/skins/b/artifact.png" id="1_fp3es"]
 [ext_resource type="Texture2D" uid="uid://c24oxyj4osk7p" path="res://assets/skins/b/bg.png" id="1_n85gu"]

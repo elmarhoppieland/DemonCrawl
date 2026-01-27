@@ -19,14 +19,17 @@ var tab_container: TabContainer :
 		if not tab_container and self.is_inside_tree():
 			tab_container = errors.get_parent()
 		return tab_container
-var debugger: Button :
+var debugger: EditorDock :
 	get:
 		if not debugger and self.is_inside_tree():
 			var queue: Array[Node] = [get_tree().root]
 			while not queue.is_empty():
 				var node := queue.pop_back() as Node
-				if node is Button and node.text.match("Debugger*"):
-					debugger = node
+				if node is TabContainer:
+					for i in node.get_tab_count():
+						if node.get_tab_title(i).match("Debugger*"):
+							debugger = node.get_child(i)
+							return debugger
 				
 				queue.append_array(node.get_children())
 		return debugger
@@ -60,9 +63,9 @@ func _process(_delta: float) -> void:
 		get_tree().process_frame.connect(get_tree().process_frame.connect.bind(func() -> void:
 			errors.name = "Errors"
 			tab_container.set_tab_icon(errors.get_index(), null)
-			debugger.text = "Debugger"
-			debugger.icon = null
-			debugger.remove_theme_color_override("font_color")
+			debugger.title = "Debugger"
+			debugger.dock_icon = null
+			debugger.title_color = debugger.get_parent().get_child(0).title_color
 		, CONNECT_DEFERRED | CONNECT_ONE_SHOT), CONNECT_ONE_SHOT)
 	else:
 		get_tree().process_frame.connect(get_tree().process_frame.connect.bind(func() -> void:
@@ -80,9 +83,9 @@ func _process(_delta: float) -> void:
 					icon = errors_tree.get_theme_icon("ErrorWarning", "EditorIcons")
 					color = errors_tree.get_theme_color("error_color", "Editor")
 			tab_container.set_tab_icon(errors.get_index(), icon)
-			debugger.text = "Debugger (%d)" % new_error_count
-			debugger.icon = icon
-			debugger.add_theme_color_override("font_color", color)
+			debugger.title = "Debugger (%d)" % new_error_count
+			debugger.dock_icon = icon
+			debugger.title_color = color
 		, CONNECT_DEFERRED | CONNECT_ONE_SHOT), CONNECT_ONE_SHOT)
 	
 	if old_error_count > new_error_count:

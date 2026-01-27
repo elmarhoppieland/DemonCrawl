@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StageFile" load_steps=16 format=3 uid="uid://budfv4n1wfppc"]
+[gd_resource type="Resource" script_class="StageFile" format=3 uid="uid://budfv4n1wfppc"]
 
 [ext_resource type="Script" uid="uid://kiiq15yipd8v" path="res://engine/resources/data_containers/stage/stage_file.gd" id="1_f7nnh"]
 [ext_resource type="AudioStream" uid="uid://dclcwvcv3h2dx" path="res://assets/skins/entropy/ambience_a.ogg" id="1_n4lfg"]

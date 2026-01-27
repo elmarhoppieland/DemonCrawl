@@ -111,7 +111,7 @@ func _get_description_id() -> String:
 
 ## Returns a [Theme] instance for this [Stage], with all relevant properties set
 ## to this [Stage]'s theme.
-func get_theme() -> Theme:
+func _get_theme() -> Theme:
 	return file.create_theme() if file else null
 
 

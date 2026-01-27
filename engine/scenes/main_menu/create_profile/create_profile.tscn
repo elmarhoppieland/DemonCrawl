@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0xuhqy23ofnt"]
+[gd_scene format=3 uid="uid://c0xuhqy23ofnt"]
 
 [ext_resource type="Texture2D" uid="uid://t6f814mrrtwh" path="res://assets/sprites/avatar.png" id="1_73b04"]
-[ext_resource type="Script" uid="uid://s3kkq7wypxeg" path="res://Engine/Scenes/MainMenu/CreateProfile/CreateProfile.gd" id="1_wmvix"]
-[ext_resource type="Script" uid="uid://0dvg6vecmv8w" path="res://Engine/Resources/UtilityNode/DCButton.gd" id="1_wpoxc"]
-[ext_resource type="Script" uid="uid://wfbymt7ph35t" path="res://Engine/Scenes/MainMenu/CreateProfile/CreateProfileLineEdit.gd" id="3_kf0gw"]
+[ext_resource type="Script" uid="uid://s3kkq7wypxeg" path="res://engine/scenes/main_menu/create_profile/create_profile.gd" id="1_wmvix"]
+[ext_resource type="Script" uid="uid://0dvg6vecmv8w" path="res://engine/resources/utility_node/dc_button.gd" id="1_wpoxc"]
+[ext_resource type="Script" uid="uid://wfbymt7ph35t" path="res://engine/scenes/main_menu/create_profile/create_profile_line_edit.gd" id="3_kf0gw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ardet"]
 atlas = ExtResource("1_73b04")
@@ -183,32 +183,32 @@ _data = {
 &"popup_show": SubResource("Animation_mpr8n")
 }
 
-[node name="CreateProfile" type="CanvasLayer"]
+[node name="CreateProfile" type="CanvasLayer" unique_id=945071225]
 visible = false
 offset = Vector2(0, 360)
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 360)
 script = ExtResource("1_wmvix")
 
-[node name="BackgroundAnchor" type="Node2D" parent="."]
+[node name="BackgroundAnchor" type="Node2D" parent="." unique_id=1706405610]
 unique_name_in_owner = true
 scale = Vector2(1, 1e-05)
 
-[node name="MarginContainer" type="MarginContainer" parent="BackgroundAnchor"]
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundAnchor" unique_id=1771105001]
 custom_minimum_size = Vector2(320, 80)
 anchors_preset = -1
 anchor_bottom = 0.5
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="BackgroundAnchor/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="BackgroundAnchor/MarginContainer" unique_id=1015918157]
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="ContentsAnchor" type="Node2D" parent="."]
+[node name="ContentsAnchor" type="Node2D" parent="." unique_id=1406596951]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 
-[node name="MarginContainer" type="MarginContainer" parent="ContentsAnchor"]
+[node name="MarginContainer" type="MarginContainer" parent="ContentsAnchor" unique_id=635213101]
 anchors_preset = -1
 anchor_right = 0.5
 offset_top = -39.5
@@ -218,29 +218,29 @@ grow_vertical = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 9
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ContentsAnchor/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentsAnchor/MarginContainer" unique_id=1021085096]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="TextureRect" type="TextureRect" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="ContentsAnchor/MarginContainer/VBoxContainer" unique_id=839834260]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = SubResource("AtlasTexture_ardet")
 stretch_mode = 3
 
-[node name="Control" type="Control" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="ContentsAnchor/MarginContainer/VBoxContainer" unique_id=779001171]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ContentsAnchor/MarginContainer/VBoxContainer" unique_id=1019120665]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "menu.select-profile.header"
 
-[node name="Control2" type="Control" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+[node name="Control2" type="Control" parent="ContentsAnchor/MarginContainer/VBoxContainer" unique_id=1178498291]
 layout_mode = 2
 
-[node name="Input" type="LineEdit" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+[node name="Input" type="LineEdit" parent="ContentsAnchor/MarginContainer/VBoxContainer" unique_id=688548018]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
@@ -248,12 +248,11 @@ size_flags_horizontal = 4
 caret_blink = true
 script = ExtResource("3_kf0gw")
 
-[node name="Control3" type="Control" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
+[node name="Control3" type="Control" parent="ContentsAnchor/MarginContainer/VBoxContainer" unique_id=1890226723]
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 
-[node name="ConfirmButton" type="BaseButton" parent="ContentsAnchor/MarginContainer/VBoxContainer"]
-_import_path = NodePath("")
+[node name="ConfirmButton" type="BaseButton" parent="ContentsAnchor/MarginContainer/VBoxContainer" unique_id=50127025]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -294,9 +293,18 @@ focus_neighbor_bottom = NodePath("")
 focus_next = NodePath("")
 focus_previous = NodePath("")
 focus_mode = 2
+focus_behavior_recursive = 0
 mouse_filter = 0
+mouse_behavior_recursive = 0
 mouse_force_pass_scroll_events = true
 mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 theme = null
 theme_type_variation = &""
 disabled = false
@@ -313,10 +321,8 @@ script = ExtResource("1_wpoxc")
 type = 1
 text = "menu.create-profile.confirm"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1241087520]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_x74cr")
-}
+libraries/ = SubResource("AnimationLibrary_x74cr")
 
 [connection signal="pressed" from="ContentsAnchor/MarginContainer/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

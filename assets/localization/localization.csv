@@ -13,6 +13,7 @@ menu.button.token-shop;TOKEN SHOP
 menu.button.codex;CODEX
 menu.button.quit;QUIT
 
+token-shop.label;Token Shop
 token-shop.title;SELECT A CATEGORY:
 token-shop.category.upgrades;Upgrades
 token-shop.category.upgrades.tokeneer;Tokeneer
@@ -112,6 +113,10 @@ quest.endless-multiverse.lore;Infinite variations. One destination. Delay the in
 quest.hero-trials;Hero Trials
 quest.hero-trials.lore;Put your mettle to the test with a new adventure every day! Can you survive these wartorn lands?
 
+quest-finished.title;Quest Complete!
+quest-finished.summary;"""{quest_name}"" on [color=#{color}]{difficulty_name}[/color]"
+quest-finished.score;YOUR FINAL SCORE: {score}
+
 stage.reward.victory;Victory
 stage.reward.victory.subtext;You beat the stage.
 stage.reward.flagless;Flagless
@@ -148,6 +153,13 @@ stats.overview.research-subject;"You are an expert at finding ""{subject}"" item
 popup.mastery-achieved.title;mastery achieved!
 popup.mastery-achieved.text;A new Mastery is available in the Token Shop:
 popup.chest.title;treasure found!
+popup.highscore.title;Congratulations!
+popup.highscore.text;YOU SET A NEW HIGH SCORE OF {score}
+popup.legendary.title;legendary unlocked!
+popup.legendary.text;You may now find this item in chests or shops:
+popup.new-quest.title;new quest discovered!
+popup.new-quest.unlocked;{quest_name} is now available to play.
+popup.new-quest.locked;{quest_name} is available for purchase from the Token Shop.
 
 stage.special.item-shop;Item Shop
 stage.special.item-shop.description;Spend coins to buy items. 

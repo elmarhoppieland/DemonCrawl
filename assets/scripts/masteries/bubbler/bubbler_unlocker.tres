@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="MasteryUnlockerData" load_steps=4 format=3 uid="uid://whssnvn1u4k4"]
+[gd_resource type="Resource" script_class="MasteryUnlockerData" format=3 uid="uid://whssnvn1u4k4"]
 
-[ext_resource type="Script" uid="uid://dpylrkh0r76lw" path="res://engine/resources/DataContainers/Mastery/MasteryUnlockerData.gd" id="1_6garc"]
-[ext_resource type="Resource" uid="uid://bqik2twslngev" path="res://assets/Scripts/Masteries/Bubbler/Bubbler.tres" id="1_crk1b"]
-[ext_resource type="Script" uid="uid://dt37g5l1wbc05" path="res://assets/Scripts/Masteries/Bubbler/BubblerUnlocker.gd" id="3_1h3ve"]
+[ext_resource type="Script" uid="uid://dpylrkh0r76lw" path="res://engine/resources/data_containers/mastery/mastery_unlocker_data.gd" id="1_6garc"]
+[ext_resource type="Resource" uid="uid://bqik2twslngev" path="res://assets/scripts/masteries/bubbler/bubbler.tres" id="1_crk1b"]
+[ext_resource type="Script" uid="uid://dt37g5l1wbc05" path="res://assets/scripts/masteries/bubbler/bubbler_unlocker.gd" id="3_1h3ve"]
 
 [resource]
 script = ExtResource("1_6garc")

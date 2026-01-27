@@ -1,4 +1,4 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://or06r6apdhlw"]
+[gd_resource type="AtlasTexture" format=3 uid="uid://or06r6apdhlw"]
 
 [ext_resource type="Texture2D" uid="uid://c4g8elig1ldk3" path="res://assets/sprites/masteries.png" id="1_guq5o"]
 

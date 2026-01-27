@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpq1vnwdb6sb0"]
+[gd_scene format=3 uid="uid://dpq1vnwdb6sb0"]
 
-[ext_resource type="Script" uid="uid://dh6plq7jbdxb4" path="res://Engine/Scenes/StageScene/StageClearReward.gd" id="1_ldqm5"]
+[ext_resource type="Script" uid="uid://dh6plq7jbdxb4" path="res://engine/scenes/stage_scene/stage_clear_reward.gd" id="1_ldqm5"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://assets/sprites/icons.png" id="2_qhlw7"]
-[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/IconManager/Icon.gd" id="3_bxsns"]
-[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="4_t24t8"]
+[ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="3_bxsns"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="4_t24t8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrrtb"]
 resource_local_to_scene = true
@@ -73,18 +73,18 @@ _data = {
 &"show": SubResource("Animation_6ynwr")
 }
 
-[node name="StageClearReward" type="Control"]
+[node name="StageClearReward" type="Control" unique_id=268017503]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 0
 script = ExtResource("1_ldqm5")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="." unique_id=880616828]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(8, 8)
 
-[node name="Icon" type="TextureRect" parent="Node2D"]
+[node name="Icon" type="TextureRect" parent="Node2D" unique_id=2045866391]
 unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,14 +93,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_vrrtb")
 
-[node name="TooltipGrabber" type="Node" parent="Node2D/Icon"]
+[node name="TooltipGrabber" type="Node" parent="Node2D/Icon" unique_id=237137209]
 unique_name_in_owner = true
 script = ExtResource("4_t24t8")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1026758634]
 unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_78xsv")
-}
+libraries/ = SubResource("AnimationLibrary_78xsv")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

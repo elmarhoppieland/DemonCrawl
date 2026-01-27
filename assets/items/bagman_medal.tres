@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://cgct8thtg8ykt"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cgct8thtg8ykt"]
 
 [ext_resource type="Script" uid="uid://bggqxfahjc3dg" path="res://assets/items/bagman_medal.gd" id="1_315at"]
 [ext_resource type="Texture2D" uid="uid://bcjqjroibnw1x" path="res://assets/items/bagman_medal.png" id="1_benc3"]

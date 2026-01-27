@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwse66eo4god5"]
+[gd_scene format=3 uid="uid://bwse66eo4god5"]
 
-[ext_resource type="Script" uid="uid://c6sym3fnkcxkb" path="res://Engine/Scenes/TokenShop/TokenShopCategoryIcon.gd" id="1_rm7s6"]
-[ext_resource type="Script" uid="uid://631a8dlwe7ms" path="res://Engine/Resources/UtilityNode/FocusGrabber.gd" id="2_abnkn"]
-[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://Engine/Resources/UtilityNode/TooltipGrabber.gd" id="3_j82o3"]
+[ext_resource type="Script" uid="uid://c6sym3fnkcxkb" path="res://engine/scenes/token_shop/token_shop_category_icon.gd" id="1_rm7s6"]
+[ext_resource type="Script" uid="uid://631a8dlwe7ms" path="res://engine/resources/utility_node/focus_grabber.gd" id="2_abnkn"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="3_j82o3"]
 
-[node name="TokenShopCategoryIcon" type="TextureRect"]
+[node name="TokenShopCategoryIcon" type="TextureRect" unique_id=1858805333]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,12 +12,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rm7s6")
 
-[node name="FocusGrabber" type="Node" parent="."]
+[node name="FocusGrabber" type="Node" parent="." unique_id=1442909214]
 unique_name_in_owner = true
 script = ExtResource("2_abnkn")
 main = true
 
-[node name="TooltipGrabber" type="Node" parent="."]
+[node name="TooltipGrabber" type="Node" parent="." unique_id=2120937651]
 unique_name_in_owner = true
 script = ExtResource("3_j82o3")
 context_mode = 0
