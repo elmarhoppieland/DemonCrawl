@@ -2,6 +2,8 @@
 @abstract
 class_name Codex
 
+## Stores global player data.
+
 # ==============================================================================
 static var _heirlooms: Array[Heirloom] = Eternal.create([] as Array[Heirloom]) :
 	set(value):
@@ -12,6 +14,7 @@ static var _heirlooms: Array[Heirloom] = Eternal.create([] as Array[Heirloom]) :
 				value[i].changed.connect(func() -> void: heirlooms_changed.emit())
 		heirlooms_changed.emit()
 
+## Emitted when the player's Heirlooms have changed.
 static var heirlooms_changed := Signal() :
 	get:
 		if heirlooms_changed.is_null():
@@ -19,15 +22,19 @@ static var heirlooms_changed := Signal() :
 			heirlooms_changed = Signal(Codex, "heirlooms_changed")
 		return heirlooms_changed
 
+## The items that the player has Favored.
 static var favored_items: Array[Favor] = Eternal.create([] as Array[Favor])
 
+## The currently selected mastery.
 static var selected_mastery: MasteryData = Eternal.create(null) :
 	set(value):
 		selected_mastery = value
 		selected_mastery_changed.emit()
-static var selectable_masteries: Array[MasteryInstanceData] = Eternal.create([] as Array[MasteryInstanceData])
-static var unlocked_masteries: Array[MasteryInstanceData] = Eternal.create([] as Array[MasteryInstanceData])
+static var _selectable_masteries: Array[MasteryInstanceData] = Eternal.create([] as Array[MasteryInstanceData])
+static var _unlocked_masteries: Array[MasteryInstanceData] = Eternal.create([] as Array[MasteryInstanceData])
 
+## Emitted when the player selects a new mastery.
+## [br][br][b]Note:[/b] This is [b]not[/b] emitted when a [Quest]'s mastery changes.
 static var selected_mastery_changed := Signal() :
 	get:
 		if selected_mastery_changed.is_null():
@@ -35,12 +42,22 @@ static var selected_mastery_changed := Signal() :
 			selected_mastery_changed = Signal(Codex, "_selected_mastery_changed")
 		return selected_mastery_changed
 
+## The number of tokens the player has.
 static var tokens: int = Eternal.create(0)
 
-static var artifacts: Dictionary[StageFile, int] = Eternal.create({} as Dictionary[StageFile, int])
+static var _artifacts: Dictionary[StageFile, int] = Eternal.create({} as Dictionary[StageFile, int])
 
-static var emblems: Dictionary[EmblemData, int] = Eternal.create({} as Dictionary[EmblemData, int])
+static var _emblems: Dictionary[EmblemData, int] = Eternal.create({} as Dictionary[EmblemData, int])
+## Emitted when the player's emblem inventory changes.
+static var emblems_changed := Signal() :
+	get:
+		if emblems_changed.is_null():
+			(Codex as GDScript).add_user_signal("_emblems_changed")
+			emblems_changed = Signal(Codex, "_emblems_changed")
+		return emblems_changed
 
+## The player's current xp. Setting this property to a value greater than [method get_next_level_xp]
+## will automatically level up the player.
 static var xp: int = Eternal.create(0) :
 	set(new_xp):
 		xp = new_xp
@@ -50,8 +67,10 @@ static var xp: int = Eternal.create(0) :
 			level += 1
 		xp_changed.emit()
 
+## The player's current level.
 static var level: int = Eternal.create(1)
 
+## Emitted when the player's amount of xp changes (i.e. when [member xp] changes).
 static var xp_changed := Signal() :
 	get:
 		if xp_changed.is_null():
@@ -59,18 +78,23 @@ static var xp_changed := Signal() :
 			xp_changed = Signal(Codex, "xp_changed")
 		return xp_changed
 
+## The [Codex.CodexProfile]s the player has.
 static var profiles: Array[CodexProfile] = Eternal.create([] as Array[CodexProfile])
 # ==============================================================================
 
+## Adds a new empty Heirloom slot.
 static func add_heirloom_slot() -> void:
 	_heirlooms.append(null)
 	heirlooms_changed.emit()
 
 
+## Returns the number of Heirloom slots the player has.
 static func get_heirloom_slots() -> int:
 	return _heirlooms.size()
 
 
+## Sets the item of the Heirloom at the given [param index] to [param item].
+## Sets the item count of the Heirloom to [param count].
 static func set_heirloom(index: int, item: ItemData, count: int = 1) -> void:
 	if index >= _heirlooms.size():
 		Debug.log_error("Attempted to set an heirloom to '%s' at locked or nonexistent slot #%d." % [item, index])
@@ -98,6 +122,7 @@ static func set_heirloom(index: int, item: ItemData, count: int = 1) -> void:
 	heirlooms_changed.emit()
 
 
+## Removes the Heirloom at the given [param index]. This method allows for negative indices.
 static func clear_heirloom(index: int) -> void:
 	if _heirlooms[index] and _heirlooms[index].changed.is_connected(notify_heirlooms_changed):
 		_heirlooms[index].changed.disconnect(notify_heirlooms_changed)
@@ -107,6 +132,9 @@ static func clear_heirloom(index: int) -> void:
 	heirlooms_changed.emit()
 
 
+## Uses the Heirloom at the given [param index] and returns its [Item] instance.
+## Does nothing if the player does not have an Heirloom at the given [param index].
+## This method allows for negative indices.
 static func use_heirloom(index: int) -> Item:
 	if not has_heirloom(index):
 		return null
@@ -115,6 +143,8 @@ static func use_heirloom(index: int) -> Item:
 	return item
 
 
+## Returns the [ItemData] of the Heirloom at the given [param index]. This method
+## allows for negative indices.
 static func get_heirloom(index: int) -> ItemData:
 	if not has_heirloom(index):
 		return null
@@ -122,6 +152,8 @@ static func get_heirloom(index: int) -> ItemData:
 	return _heirlooms[index].item
 
 
+## Returns the [Codex.Heirloom] data at the given [param index]. This method
+## allows for negative indices.
 static func get_heirloom_data(index: int) -> Heirloom:
 	if not has_heirloom(index):
 		return null
@@ -129,6 +161,8 @@ static func get_heirloom_data(index: int) -> Heirloom:
 	return _heirlooms[index]
 
 
+## Returns the number of items the Heirloom at the given [param index] holds.
+## This method allows for negative indices.
 static func get_heirloom_count(index: int) -> int:
 	if not has_heirloom(index):
 		return 0
@@ -136,6 +170,8 @@ static func get_heirloom_count(index: int) -> int:
 	return _heirlooms[index].count
 
 
+## Returns whether the player has an Heirloom at the given [param index]. This
+## method allows for negative indices.
 static func has_heirloom(index: int) -> bool:
 	if index >= _heirlooms.size() or index < -_heirlooms.size():
 		return false
@@ -144,15 +180,18 @@ static func has_heirloom(index: int) -> bool:
 	return true
 
 
+## Notifies the [Codex] that the heirlooms changed.
 static func notify_heirlooms_changed() -> void:
 	heirlooms_changed.emit()
 
 
+## Adds an empty [Codex.CodexProfile] slot.
 static func add_profile_slot() -> void:
 	profiles.append(CodexProfile.new())
 
 
-# TODO: not 100% accurate yet
+## Returns the amount of xp the player has to gain to level up.
+## [br][br][b]TODO:[/b] This method does not return 100% accurately yet.
 static func get_next_level_xp() -> int:
 	if level < 23:
 		return (level + 13) * level / 2 + 93
@@ -160,10 +199,19 @@ static func get_next_level_xp() -> int:
 	return (level + 80) * 5
 
 
+## Returns the [MasteryInstanceData] representing the [param mastery] that the player
+## may select. The mastery will be unlocked up to the level of the returned
+## [MasteryInstanceData], and possibly higher. See also [method get_unlocked_mastery].
+## [br][br][b]Note:[/b] The returned [MasteryInstanceData] will not have its
+## [member MasteryInstanceData.charges] member set. Using it may result in unexpected
+## behavior.
 static func get_selectable_mastery(mastery: Variant) -> MasteryInstanceData:
-	return _get_mastery_from_list(mastery, selectable_masteries)
+	return _get_mastery_from_list(mastery, _selectable_masteries)
 
 
+## Returns the level of the given [param mastery] the player may select. The mastery
+## will be unlocked up to the returned level, and possibly higher. See also
+## [method get_unlocked_mastery_level].
 static func get_selectable_mastery_level(mastery: Variant) -> int:
 	var selectable := get_selectable_mastery(mastery)
 	if selectable:
@@ -171,15 +219,57 @@ static func get_selectable_mastery_level(mastery: Variant) -> int:
 	return 0
 
 
+## Makes the given [param mastery] selectable at the given [param level]. If the
+## mastery was not unlocked to this level, logs a warning and unlocks it at this level.
+@warning_ignore("shadowed_variable")
+static func add_selectable_mastery(mastery: MasteryData, level: int) -> void:
+	if get_unlocked_mastery_level(mastery) < level:
+		Debug.log_warning("Attempted to add selectable mastery '%s' at level %d, but this mastery was only unlocked at level %d. Unlocking the mastery..." % [TranslationServer.tr(mastery.name), level, get_unlocked_mastery_level(mastery)])
+		unlock_mastery(mastery, level)
+	
+	var instance := get_selectable_mastery(mastery)
+	if instance:
+		if instance.level >= level:
+			Debug.log_warning("Attempted to add selectable mastery '%s' at level %d, but it was already selectable at level %d." % [TranslationServer.tr(mastery.name), level, instance.level])
+			return
+		instance.level = level
+	else:
+		instance = mastery.instantiate(level)
+		_selectable_masteries.append(instance)
+
+
+## Returns the [MasteryInstanceData] representing the [param mastery] that the player
+## has unlocked. The mastery may or may not be selectable up to the level of the
+## returned [MasteryInstanceData]. See also [method get_selectable_mastery].
+## [br][br][b]Note:[/b] The returned [MasteryInstanceData] will not have its
+## [member MasteryInstanceData.charges] member set. Using it may result in unexpected
+## behavior.
 static func get_unlocked_mastery(mastery: Variant) -> MasteryInstanceData:
-	return _get_mastery_from_list(mastery, unlocked_masteries)
+	return _get_mastery_from_list(mastery, _unlocked_masteries)
 
 
+## Returns the level of the given [param mastery] the player has unlocked. The
+## mastery may or may not be selectable up to the returned level. See also
+## [method get_selectable_mastery_level].
 static func get_unlocked_mastery_level(mastery: Variant) -> int:
 	var unlocked := get_unlocked_mastery(mastery)
 	if unlocked:
 		return unlocked.level
 	return 0
+
+
+## Unlocks the given [param mastery] at the given [param level].
+@warning_ignore("shadowed_variable")
+static func unlock_mastery(mastery: MasteryData, level: int) -> void:
+	var instance := get_unlocked_mastery(mastery)
+	if instance:
+		if instance.level >= level:
+			Debug.log_warning("Attempted to unlock mastery '%s' at level %d, but it was already unlocked at level %d." % [TranslationServer.tr(mastery.name), level, instance.level])
+			return
+		instance.level = level
+	else:
+		instance = mastery.instantiate(level)
+		_unlocked_masteries.append(instance)
 
 
 static func _get_mastery_from_list(mastery: Variant, list: Array[MasteryInstanceData]) -> MasteryInstanceData:
@@ -203,49 +293,67 @@ static func _get_mastery_from_list(mastery: Variant, list: Array[MasteryInstance
 	return null
 
 
+## Returns the number of _artifacts of the given [param stage] the player has.
 static func get_artifacts(stage: StageFile) -> int:
-	return artifacts.get(stage, 0)
+	return _artifacts.get(stage, 0)
 
 
+## Increases the number of _artifacts of the given [param stage] the player has by [param artifact_count].
 static func gain_artifact(stage: StageFile, artifact_count: int = 1) -> void:
-	artifacts[stage] = get_artifacts(stage) + artifact_count
+	_artifacts[stage] = get_artifacts(stage) + artifact_count
 
 
+## Decreases the number of _artifacts of the given [param stage] the player has by [param artifact_count].
 static func lose_artifact(stage: StageFile, artifact_count: int = 1) -> void:
-	artifacts[stage] = get_artifacts(stage) - artifact_count
+	_artifacts[stage] = get_artifacts(stage) - artifact_count
 	if get_artifacts(stage) <= 0:
-		artifacts.erase(stage)
+		_artifacts.erase(stage)
 
 
+## Returns the total number of _artifacts the player has, across all stages.
 static func get_total_artifact_count() -> int:
 	var total_count := 0
-	for stage in artifacts:
-		total_count += artifacts[stage]
+	for stage in _artifacts:
+		total_count += _artifacts[stage]
 	return total_count
 
 
+## Returns the number of copies of the given [param emblem] the player has.
 static func get_emblems(emblem: EmblemData) -> int:
-	return emblems.get(emblem, 0)
+	return _emblems.get(emblem, 0)
 
 
+## Increases the number of copies of the given [param emblem] the player has by [param emblem_count].
 static func gain_emblem(emblem: EmblemData, emblem_count: int = 1) -> void:
-	emblems[emblem] = get_emblems(emblem) + emblem_count
+	_emblems[emblem] = get_emblems(emblem) + emblem_count
+	emblems_changed.emit()
 
 
+## Decreases the number of copies of the given [param emblem] the player has by [param emblem_count].
+static func lose_emblem(emblem: EmblemData, emblem_count: int = 1) -> void:
+	_emblems[emblem] = get_emblems(emblem) - emblem_count
+	if get_emblems(emblem) <= 0:
+		_emblems.erase(emblem)
+
+
+## Returns the total number of _emblems the player has.
 static func get_total_emblem_count() -> int:
 	var total_count := 0
-	for emblem in emblems:
-		total_count += emblems[emblem]
+	for emblem in _emblems:
+		total_count += _emblems[emblem]
 	return total_count
 
 
+## Stores information about an Heirloom.
 class Heirloom extends Resource:
+	## The item that exists in the Heirloom.
 	@export var item: ItemData = null :
 		set(value):
 			if value and value.resource_path.is_empty():
 				value = load(value.get_origin_path())
 			item = value
 			emit_changed()
+	## The number of items that exist in the Heirloom.
 	@export var count := 1 :
 		set(value):
 			count = value
@@ -253,7 +361,7 @@ class Heirloom extends Resource:
 				emptied.emit()
 			emit_changed()
 	# ==========================================================================
-	signal emptied()
+	signal emptied() ## Emitted when the number of items in the Heirloom reaches zero or when it is manually emptied in the Codex.
 	# ==========================================================================
 	
 	@warning_ignore("shadowed_variable")
@@ -261,6 +369,7 @@ class Heirloom extends Resource:
 		self.item = item
 		self.count = count
 	
+	## Uses this Heirloom and returns an instance of this Heirloom's [member item].
 	func use() -> Item:
 		if count <= 0:
 			Debug.log_error("Attempted to use an empty heirloom (of item '%s')." % item.resource_path)
@@ -270,15 +379,21 @@ class Heirloom extends Resource:
 		return item.create()
 
 
+## Stores information about a Favored item.
 class Favor extends Resource:
+	## The item that is Favored or Unfavored.
 	@export var item: ItemData = null :
 		set(value):
 			if value and value.resource_path.is_empty():
 				value = load(value.get_origin_path())
 			item = value
 			emit_changed()
+	## If [code]true[/code], the [member item] will appear less often than usual.
+	## If [code]false[/code], the [member item] will appear more often than usual.
 	@export var inverted := false
 
 
+## Stores information about a Profile in the Codex.
 class CodexProfile extends Resource:
+	## The items that are Favored or Unfavored in the Profile.
 	@export var favored_items: Array[Favor] = []

@@ -2,7 +2,6 @@
 extends MarginContainer
 class_name DebugToolAuraDetails
 
-
 # ==============================================================================
 @export var aura: Aura :
 	set(value):

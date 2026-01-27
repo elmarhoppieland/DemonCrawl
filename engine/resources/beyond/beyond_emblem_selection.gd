@@ -13,7 +13,18 @@ signal emblem_selected(emblem: EmblemData)
 # ==============================================================================
 
 func _ready() -> void:
+	_update()
+	
+	Codex.emblems_changed.connect(_update)
+
+
+func _update() -> void:
 	_emblem_count_label.text = tr(EMBLEM_COUNT_TEXT).format({ "emblems": Codex.get_total_emblem_count() })
+	
+	for child in _emblems_container.get_children():
+		child.queue_free()
+	
+	_emblem_frames.clear()
 	
 	for emblem in DemonCrawl.get_full_registry().emblems:
 		var emblem_count := Codex.get_emblems(emblem)

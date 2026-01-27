@@ -26,14 +26,11 @@ func _can_interact() -> bool:
 
 func _collect() -> bool:
 	var file := stage_file if stage_file else get_stage().file # we require one of these to exist 
-	if file in Codex.artifacts:
-		Codex.artifacts[file] += 1
-	else:
-		Codex.artifacts[file] = 1
+	Codex.gain_artifact(file)
 	
 	tween_texture_to(GuiLayer.get_statbar().position + Vector2(0.0, 16.0))
 	
-	Toasts.add_toast(str(Codex.artifacts[file]), get_texture())
+	Toasts.add_toast(str(Codex.get_artifacts(file)), get_texture())
 	
 	return true
 

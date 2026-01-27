@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://cg4fdmat28t1e"]
+
+[ext_resource type="Script" uid="uid://lxog5pw4dd2y" path="res://engine/resources/singletons/debug/debug_tool_emblem_details.gd" id="1_sd1ma"]
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_n64lh"]
+[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="3_rgx7p"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="4_aby7o"]
+[ext_resource type="Texture2D" uid="uid://cachmijqbtvfm" path="res://assets/beyond/emblems/level_1/barrels_of_fun.png" id="5_twe11"]
+[ext_resource type="Resource" uid="uid://ccfjymudbk4r5" path="res://assets/beyond/emblems/level_1/barrels_of_fun.tres" id="6_3mpe6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eqoxe"]
+font = ExtResource("2_n64lh")
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="DebugToolEmblemDetails" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sd1ma")
+emblem = ExtResource("6_3mpe6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "beyond.emblem.barrels-of-fun"
+label_settings = SubResource("LabelSettings_eqoxe")
+
+[node name="CurrentCountLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "In Inventory: 0"
+
+[node name="Frame" parent="VBoxContainer" instance=ExtResource("3_rgx7p")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Frame"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_twe11")
+
+[node name="TooltipGrabber" type="Node" parent="VBoxContainer/Frame/TextureRect"]
+unique_name_in_owner = true
+script = ExtResource("4_aby7o")
+text = "beyond.emblem.barrels-of-fun"
+subtext = "beyond.emblem.description.level
+\"beyond.emblem.barrels-of-fun.lore\"
+• beyond.emblem.description.cost
+• beyond.emblem.barrels-of-fun.effect.1
+• beyond.emblem.barrels-of-fun.effect.2
+• generic.not-implemented"
+text_color = Color(0.47843137, 0.89411765, 1, 1)
+max_line_length = 45
+metadata/_custom_type_script = "uid://fhgkw1iml6g3"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AddToInventoryButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Add to Inventory"
+
+[node name="BindAddToInventoryButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Bind..."
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/VBoxContainer3/AddToInventoryButton" to="." method="_on_add_to_inventory_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/VBoxContainer3/BindAddToInventoryButton" to="." method="_on_bind_add_to_inventory_button_pressed"]

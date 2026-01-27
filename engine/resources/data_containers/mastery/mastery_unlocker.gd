@@ -54,15 +54,7 @@ func _unlock(level: int) -> void:
 	if Codex.get_unlocked_mastery_level(data.data) >= level:
 		return
 	
-	var mastery := Codex.get_unlocked_mastery(data.data)
-	if not mastery:
-		if level > 1:
-			return
-		mastery = data.data.instantiate(level)
-		Codex.unlocked_masteries.append(mastery)
-	
-	if mastery.level == level - 1:
-		mastery.level = level
+	Codex.unlock_mastery(data.data, level)
 
 
 func get_quest() -> Quest:

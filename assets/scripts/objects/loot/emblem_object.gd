@@ -6,7 +6,12 @@ class_name EmblemObject
 const TITLE_COLOR := Color("7ae4ff")
 const MAX_LINE_LENGTH := 45
 # ==============================================================================
-@export var emblem: EmblemData
+@export var emblem: EmblemData :
+	set(value):
+		emblem = value
+		
+		clear_texture_cache()
+		emit_changed()
 # ==============================================================================
 
 static func _can_spawn(cell: CellData) -> bool:

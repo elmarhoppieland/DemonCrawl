@@ -16,10 +16,7 @@ func _ready() -> void:
 	_artifact_count_label.text = tr(ARTIFACT_COUNT_TEXT).format({ "artifacts": Codex.get_total_artifact_count() })
 	
 	for stage in DemonCrawl.get_full_registry().stages:
-		if stage not in Codex.artifacts:
-			continue
-		
-		var artifact_count := Codex.artifacts[stage]
+		var artifact_count := Codex.get_artifacts(stage)
 		if not artifact_count:
 			continue
 		

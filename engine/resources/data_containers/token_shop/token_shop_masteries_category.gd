@@ -43,11 +43,7 @@ class MasteryItem extends TokenShopItemBase:
 	func _purchase() -> void:
 		Codex.tokens -= get_cost()
 		
-		var selectable := Codex.get_selectable_mastery(mastery)
-		if selectable:
-			selectable.level = mastery.level
-		else:
-			Codex.selectable_masteries.append(mastery.duplicate())
+		Codex.add_selectable_mastery(mastery.data, mastery.level)
 	
 	func _get_name() -> String:
 		return mastery.get_name_text()

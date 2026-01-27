@@ -1,17 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhicldaxdmq7s"]
+[gd_scene load_steps=6 format=3 uid="uid://dhicldaxdmq7s"]
 
 [ext_resource type="Script" uid="uid://d35xerwxburc2" path="res://engine/resources/singletons/debug/debug_tool_aura_details.gd" id="1_u8cmb"]
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_m6m5l"]
 [ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="3_r4fxw"]
 [ext_resource type="Texture2D" uid="uid://cho6tgadoqphe" path="res://assets/skins/default/empty.png" id="4_m6m5l"]
-[ext_resource type="Script" uid="uid://bk3q4kpv0inpn" path="res://assets/scripts/auras/burning.gd" id="5_m6m5l"]
-[ext_resource type="Script" uid="uid://rsacscnpkr1d" path="res://assets/scripts/auras/sanctified.gd" id="6_r4fxw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eqoxe"]
 font = ExtResource("2_m6m5l")
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="DebugToolObjectDetails" type="MarginContainer"]
+[node name="DebugToolAuraDetails" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -66,14 +64,6 @@ layout_mode = 2
 size_flags_vertical = 4
 text = "Spawn on
 Hovered Cell (Bind...)"
-
-[node name="Burning" type="Node" parent="."]
-script = ExtResource("5_m6m5l")
-metadata/_custom_type_script = "uid://bk3q4kpv0inpn"
-
-[node name="Sanctified" type="Node" parent="."]
-script = ExtResource("6_r4fxw")
-metadata/_custom_type_script = "uid://rsacscnpkr1d"
 
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/VBoxContainer/SpawnRandomButton" to="." method="_on_spawn_random_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/VBoxContainer/BindSpawnRandomButton" to="." method="_on_bind_spawn_random_button_pressed"]

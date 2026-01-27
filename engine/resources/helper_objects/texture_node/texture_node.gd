@@ -78,8 +78,18 @@ func _get_palette() -> Texture2D:
 	return null
 
 
+## Removes the [Texture2D] that is currently cached, if any. This is useful when
+## a different [Texture2D] should start being used.
+## [br][br][b]Note:[/b] This method does not automaticaly call [method emit_changed].
 func clear_texture_cache() -> void:
 	_texture = null
+
+
+## Removes the [Material] that is currently cached, if any. This is useful when
+## a different [Material] should start being used.
+## [br][br][b]Note:[/b] This method does not automaticaly call [method emit_changed].
+func clear_material_cache() -> void:
+	_material = null
 
 
 func get_width() -> int:
