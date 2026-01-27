@@ -76,4 +76,5 @@ script = ExtResource("1_7i470")
 name = "difficulty.beyond"
 stage_list = Array[ExtResource("2_j8ohe")]([SubResource("Resource_4ubjb"), SubResource("Resource_saa4u"), SubResource("Resource_2koyg")])
 generation_sequence = SubResource("Resource_kwe6y")
+emblem_level = 1
 metadata/_custom_type_script = "uid://7q8ir1fur7xb"

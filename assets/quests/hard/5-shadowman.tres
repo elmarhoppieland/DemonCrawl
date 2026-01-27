@@ -151,3 +151,4 @@ token_shop_purchase = ExtResource("5_2qvfl")
 icon = SubResource("Texture2D_bpcax")
 stage_list = Array[ExtResource("3_vkys1")]([SubResource("Resource_8oyvu"), SubResource("Resource_rgivt"), SubResource("Resource_wpbqx"), SubResource("Resource_pp2ut"), SubResource("Resource_qwhsj"), SubResource("Resource_sww72"), SubResource("Resource_gqq0w"), SubResource("Resource_jh6r2"), SubResource("Resource_n4513"), SubResource("Resource_w03sx")])
 generation_sequence = ExtResource("1_bwtjy")
+emblem_level = 1

@@ -128,3 +128,4 @@ lore = "quest.hero-trials.lore"
 icon = SubResource("Texture2D_bpcax")
 stage_list = Array[ExtResource("3_uwq0t")]([SubResource("Resource_xniog"), SubResource("Resource_p5u11"), SubResource("Resource_thi6w"), SubResource("Resource_hxiju"), SubResource("Resource_gwavl"), SubResource("Resource_t2hxq"), SubResource("Resource_xvww4"), SubResource("Resource_3f7c8"), SubResource("Resource_rk7nb"), SubResource("Resource_gq67k")])
 generation_sequence = ExtResource("1_aq83c")
+emblem_level = 1

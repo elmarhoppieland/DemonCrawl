@@ -149,3 +149,4 @@ lore = "quest.glory-days.lore"
 icon = SubResource("Texture2D_kpscn")
 stage_list = Array[ExtResource("3_uh40y")]([SubResource("Resource_arluq"), SubResource("Resource_0fprk"), SubResource("Resource_7sity"), SubResource("Resource_avld4"), SubResource("Resource_ccxup"), SubResource("Resource_4lmxs"), SubResource("Resource_sivim"), SubResource("Resource_3jn66"), SubResource("Resource_72pru"), SubResource("Resource_c8ijh")])
 generation_sequence = ExtResource("1_jci61")
+emblem_level = 1

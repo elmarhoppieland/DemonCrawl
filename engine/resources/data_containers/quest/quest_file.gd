@@ -10,7 +10,9 @@ class_name QuestFile
 
 @export var stage_list: Array[StageTemplateBase] = []  ## The order that the stages should appear in the quest. Special stages will be inserted in-between these stages.
 
-@export var generation_sequence: QuestGenerationSequenceBase
+@export var generation_sequence: QuestGenerationSequenceBase ## The generation sequence to use for generating the quest.
+
+@export var emblem_level := 0 ## The maximum level of an [Emblem] that may spawn. If set to [code]0[/code], no [Emblem]s will spawn.
 # ==============================================================================
 
 func generate() -> Quest:

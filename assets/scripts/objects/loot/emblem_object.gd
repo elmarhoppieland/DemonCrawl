@@ -9,11 +9,18 @@ const MAX_LINE_LENGTH := 45
 @export var emblem: EmblemData
 # ==============================================================================
 
+static func _can_spawn(cell: CellData) -> bool:
+	return cell.get_quest().source_file.emblem_level >= 1
+
+
 func _spawn() -> void:
-	# TODO: maximum emblem level
 	var emblem_list: Array[EmblemData] = []
 	emblem_list.assign(DemonCrawl.get_full_registry().emblems.filter(func(e: EmblemData) -> bool:
-		return e.normal
+		if not e.normal:
+			return false
+		if e.level <= 1:
+			return true
+		return e.level <= get_quest().source_file.emblem_level
 	))
 	
 	if emblem_list.is_empty():
