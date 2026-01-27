@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://xdjq6np1uwg2"]
+[gd_scene format=3 uid="uid://xdjq6np1uwg2"]
 
 [ext_resource type="Script" uid="uid://bt87ti14myaco" path="res://engine/resources/beyond/beyond_quest_selection.gd" id="1_c14nh"]
 [ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="1_ppxvw"]
@@ -15,22 +15,22 @@ font_color = Color(0.7647059, 0.7647059, 0.7647059, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="BeyondQuestSelection" type="MarginContainer"]
+[node name="BeyondQuestSelection" type="MarginContainer" unique_id=1354465422]
 script = ExtResource("1_c14nh")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1272858956]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=40891539]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="ArtifactFrame1" parent="HBoxContainer/HBoxContainer" instance=ExtResource("1_ppxvw")]
+[node name="ArtifactFrame1" parent="HBoxContainer/HBoxContainer" unique_id=722257699 instance=ExtResource("1_ppxvw")]
 unique_name_in_owner = true
 layout_mode = 2
 inner_border_color = Color(1, 1, 1, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame1"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame1" unique_id=2139243728]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 theme_override_constants/margin_left = -3
@@ -38,22 +38,22 @@ theme_override_constants/margin_top = -3
 theme_override_constants/margin_right = -3
 theme_override_constants/margin_bottom = -3
 
-[node name="ArtifactTextureRect1" type="TextureRect" parent="HBoxContainer/HBoxContainer/ArtifactFrame1/MarginContainer"]
+[node name="ArtifactTextureRect1" type="TextureRect" parent="HBoxContainer/HBoxContainer/ArtifactFrame1/MarginContainer" unique_id=48625481]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/HBoxContainer/ArtifactFrame1/MarginContainer/ArtifactTextureRect1"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/HBoxContainer/ArtifactFrame1/MarginContainer/ArtifactTextureRect1" unique_id=1179434281]
 script = ExtResource("3_ktdn0")
 text = "beyond.artifact-slot-tooltip"
 metadata/_custom_type_script = "uid://fhgkw1iml6g3"
 
-[node name="Control" type="Control" parent="HBoxContainer/HBoxContainer/ArtifactFrame1"]
+[node name="Control" type="Control" parent="HBoxContainer/HBoxContainer/ArtifactFrame1" unique_id=1621029595]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame1/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame1/Control" unique_id=726489546]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -68,18 +68,18 @@ mouse_filter = 2
 theme_override_constants/margin_right = -1
 theme_override_constants/margin_bottom = -2
 
-[node name="ArtifactCountLabel1" type="Label" parent="HBoxContainer/HBoxContainer/ArtifactFrame1/Control/MarginContainer"]
+[node name="ArtifactCountLabel1" type="Label" parent="HBoxContainer/HBoxContainer/ArtifactFrame1/Control/MarginContainer" unique_id=726040058]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="ArtifactFrame2" parent="HBoxContainer/HBoxContainer" instance=ExtResource("1_ppxvw")]
+[node name="ArtifactFrame2" parent="HBoxContainer/HBoxContainer" unique_id=511481106 instance=ExtResource("1_ppxvw")]
 unique_name_in_owner = true
 layout_mode = 2
 inner_border_color = Color(1, 1, 1, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame2"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame2" unique_id=1289903737]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 theme_override_constants/margin_left = -3
@@ -87,22 +87,22 @@ theme_override_constants/margin_top = -3
 theme_override_constants/margin_right = -3
 theme_override_constants/margin_bottom = -3
 
-[node name="ArtifactTextureRect2" type="TextureRect" parent="HBoxContainer/HBoxContainer/ArtifactFrame2/MarginContainer"]
+[node name="ArtifactTextureRect2" type="TextureRect" parent="HBoxContainer/HBoxContainer/ArtifactFrame2/MarginContainer" unique_id=621045515]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/HBoxContainer/ArtifactFrame2/MarginContainer/ArtifactTextureRect2"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/HBoxContainer/ArtifactFrame2/MarginContainer/ArtifactTextureRect2" unique_id=30146475]
 script = ExtResource("3_ktdn0")
 text = "beyond.artifact-slot-tooltip"
 metadata/_custom_type_script = "uid://fhgkw1iml6g3"
 
-[node name="Control" type="Control" parent="HBoxContainer/HBoxContainer/ArtifactFrame2"]
+[node name="Control" type="Control" parent="HBoxContainer/HBoxContainer/ArtifactFrame2" unique_id=306896771]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame2/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame2/Control" unique_id=351976632]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -117,18 +117,18 @@ mouse_filter = 2
 theme_override_constants/margin_right = -1
 theme_override_constants/margin_bottom = -2
 
-[node name="ArtifactCountLabel2" type="Label" parent="HBoxContainer/HBoxContainer/ArtifactFrame2/Control/MarginContainer"]
+[node name="ArtifactCountLabel2" type="Label" parent="HBoxContainer/HBoxContainer/ArtifactFrame2/Control/MarginContainer" unique_id=1875413869]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="ArtifactFrame3" parent="HBoxContainer/HBoxContainer" instance=ExtResource("1_ppxvw")]
+[node name="ArtifactFrame3" parent="HBoxContainer/HBoxContainer" unique_id=1354857706 instance=ExtResource("1_ppxvw")]
 unique_name_in_owner = true
 layout_mode = 2
 inner_border_color = Color(1, 1, 1, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame3"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame3" unique_id=796141518]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 theme_override_constants/margin_left = -3
@@ -136,22 +136,22 @@ theme_override_constants/margin_top = -3
 theme_override_constants/margin_right = -3
 theme_override_constants/margin_bottom = -3
 
-[node name="ArtifactTextureRect3" type="TextureRect" parent="HBoxContainer/HBoxContainer/ArtifactFrame3/MarginContainer"]
+[node name="ArtifactTextureRect3" type="TextureRect" parent="HBoxContainer/HBoxContainer/ArtifactFrame3/MarginContainer" unique_id=2090250806]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/HBoxContainer/ArtifactFrame3/MarginContainer/ArtifactTextureRect3"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/HBoxContainer/ArtifactFrame3/MarginContainer/ArtifactTextureRect3" unique_id=1974527324]
 script = ExtResource("3_ktdn0")
 text = "beyond.artifact-slot-tooltip"
 metadata/_custom_type_script = "uid://fhgkw1iml6g3"
 
-[node name="Control" type="Control" parent="HBoxContainer/HBoxContainer/ArtifactFrame3"]
+[node name="Control" type="Control" parent="HBoxContainer/HBoxContainer/ArtifactFrame3" unique_id=1436615798]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame3/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ArtifactFrame3/Control" unique_id=80892494]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -166,18 +166,18 @@ mouse_filter = 2
 theme_override_constants/margin_right = -1
 theme_override_constants/margin_bottom = -2
 
-[node name="ArtifactCountLabel3" type="Label" parent="HBoxContainer/HBoxContainer/ArtifactFrame3/Control/MarginContainer"]
+[node name="ArtifactCountLabel3" type="Label" parent="HBoxContainer/HBoxContainer/ArtifactFrame3/Control/MarginContainer" unique_id=151803058]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="EmblemFrame" parent="HBoxContainer" instance=ExtResource("1_ppxvw")]
+[node name="EmblemFrame" parent="HBoxContainer" unique_id=1903384076 instance=ExtResource("1_ppxvw")]
 unique_name_in_owner = true
 layout_mode = 2
 inner_border_color = Color(0.47843137, 0.84705883, 1, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/EmblemFrame"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/EmblemFrame" unique_id=527264484]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 theme_override_constants/margin_left = -3
@@ -185,22 +185,22 @@ theme_override_constants/margin_top = -3
 theme_override_constants/margin_right = -3
 theme_override_constants/margin_bottom = -3
 
-[node name="EmblemTextureRect" type="TextureRect" parent="HBoxContainer/EmblemFrame/MarginContainer"]
+[node name="EmblemTextureRect" type="TextureRect" parent="HBoxContainer/EmblemFrame/MarginContainer" unique_id=1900164593]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/EmblemFrame/MarginContainer/EmblemTextureRect"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/EmblemFrame/MarginContainer/EmblemTextureRect" unique_id=213358940]
 script = ExtResource("3_ktdn0")
 text = "beyond.emblem-slot-tooltip"
 max_line_length = 45
 metadata/_custom_type_script = "uid://fhgkw1iml6g3"
 
-[node name="GlintFrame" parent="HBoxContainer" instance=ExtResource("1_ppxvw")]
+[node name="GlintFrame" parent="HBoxContainer" unique_id=1153882333 instance=ExtResource("1_ppxvw")]
 unique_name_in_owner = true
 layout_mode = 2
 inner_border_color = Color(1, 0.89411765, 0.47843137, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/GlintFrame"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/GlintFrame" unique_id=793590298]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 theme_override_constants/margin_left = -3
@@ -208,29 +208,29 @@ theme_override_constants/margin_top = -3
 theme_override_constants/margin_right = -3
 theme_override_constants/margin_bottom = -3
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/GlintFrame/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/GlintFrame/MarginContainer" unique_id=971369951]
 layout_mode = 2
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/GlintFrame/MarginContainer/TextureRect"]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/GlintFrame/MarginContainer/TextureRect" unique_id=1400740586]
 script = ExtResource("3_ktdn0")
 text = "beyond.glint-slot-tooltip"
 metadata/_custom_type_script = "uid://fhgkw1iml6g3"
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1604530684]
 layout_mode = 2
 texture = SubResource("AtlasTexture_c14nh")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1583624251]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="FeeLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="FeeLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1185491300]
 unique_name_in_owner = true
 layout_mode = 2
 text = "beyond.fee"
 uppercase = true
 
-[node name="CurrentTokensLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="CurrentTokensLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=190197930]
 unique_name_in_owner = true
 layout_mode = 2
 text = "beyond.current-tokens"

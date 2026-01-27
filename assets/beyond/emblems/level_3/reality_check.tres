@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://clqwu5s8mfbrb"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://clqwu5s8mfbrb"]
 
 [ext_resource type="Script" uid="uid://ch7konq737b2m" path="res://assets/beyond/emblems/level_3/reality_check.gd" id="1_tg5n7"]
 [ext_resource type="Texture2D" uid="uid://bc5b4ruqbpcp6" path="res://assets/beyond/emblems/level_3/reality_check.png" id="2_s855u"]

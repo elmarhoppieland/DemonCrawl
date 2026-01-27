@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://b6l5wt2mr8gew"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://b6l5wt2mr8gew"]
 
 [ext_resource type="Script" uid="uid://b2hal64jsnpm4" path="res://assets/beyond/emblems/level_1/lost_soul.gd" id="1_hmq4p"]
 [ext_resource type="Texture2D" uid="uid://bjif411pp1oe7" path="res://assets/beyond/emblems/level_1/lost_soul.png" id="2_qdukv"]

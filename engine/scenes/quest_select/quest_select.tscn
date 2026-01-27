@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c223d84jnw2lw"]
+[gd_scene format=3 uid="uid://c223d84jnw2lw"]
 
 [ext_resource type="Texture2D" uid="uid://cdpd806yu8ood" path="res://assets/backgrounds/quests.png" id="1_7r2xj"]
 [ext_resource type="Script" uid="uid://cholpb2sv88kc" path="res://engine/scenes/quest_select/quest_select.gd" id="1_46gki"]
@@ -205,7 +205,7 @@ _data = {
 &"equipment_edit_back": SubResource("Animation_ck28q")
 }
 
-[node name="QuestSelect" type="Control"]
+[node name="QuestSelect" type="Control" unique_id=1411231640]
 layout_mode = 3
 anchor_right = 0.25
 anchor_bottom = 0.25
@@ -213,7 +213,7 @@ grow_horizontal = 2
 scale = Vector2(4, 4)
 script = ExtResource("1_46gki")
 
-[node name="BackgroundTexture" type="TextureRect" parent="."]
+[node name="BackgroundTexture" type="TextureRect" parent="." unique_id=1739502635]
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 180.0
@@ -221,7 +221,7 @@ size_flags_vertical = 0
 texture = ExtResource("1_7r2xj")
 stretch_mode = 2
 
-[node name="ForegroundTexture" type="TextureRect" parent="."]
+[node name="ForegroundTexture" type="TextureRect" parent="." unique_id=1969148811]
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 580.0
@@ -229,7 +229,7 @@ mouse_filter = 2
 texture = ExtResource("2_5ggq1")
 stretch_mode = 3
 
-[node name="MainContent" type="MarginContainer" parent="."]
+[node name="MainContent" type="MarginContainer" parent="." unique_id=1780525031]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -237,44 +237,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainContent"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContent" unique_id=603083840]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MainContent/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContent/VBoxContainer" unique_id=1718353132]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MainContent/VBoxContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContent/VBoxContainer/MarginContainer" unique_id=1018973670]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
-[node name="Label" type="Label" parent="MainContent/VBoxContainer/MarginContainer/MarginContainer"]
+[node name="Label" type="Label" parent="MainContent/VBoxContainer/MarginContainer/MarginContainer" unique_id=334455235]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Quests"
 label_settings = SubResource("LabelSettings_y818d")
 
-[node name="MarginContainer2" type="MarginContainer" parent="MainContent/VBoxContainer/MarginContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="MainContent/VBoxContainer/MarginContainer" unique_id=540520558]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 24
 
-[node name="QuestsOverview" parent="MainContent/VBoxContainer/MarginContainer/MarginContainer2" instance=ExtResource("4_6l8m7")]
+[node name="QuestsOverview" parent="MainContent/VBoxContainer/MarginContainer/MarginContainer2" unique_id=1103302899 instance=ExtResource("4_6l8m7")]
 layout_mode = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="MainContent/VBoxContainer/MarginContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="MainContent/VBoxContainer/MarginContainer" unique_id=1725828864]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 6
 
-[node name="BackButton" type="MarginContainer" parent="MainContent/VBoxContainer/MarginContainer/MarginContainer3"]
+[node name="BackButton" type="MarginContainer" parent="MainContent/VBoxContainer/MarginContainer/MarginContainer3" unique_id=1066399000]
 layout_mode = 2
 script = ExtResource("8_uuxxj")
 shortcut_action = &"back"
@@ -282,33 +282,33 @@ texture_normal = SubResource("AtlasTexture_ce8b2")
 texture_hover = SubResource("AtlasTexture_uuxxj")
 metadata/_custom_type_script = "uid://bp8kqfn8liwqp"
 
-[node name="TooltipGrabber" type="Node" parent="MainContent/VBoxContainer/MarginContainer/MarginContainer3/BackButton"]
+[node name="TooltipGrabber" type="Node" parent="MainContent/VBoxContainer/MarginContainer/MarginContainer3/BackButton" unique_id=1033556994]
 script = ExtResource("8_ce8b2")
 text = "scene-return.main"
 context_mode = 0
 metadata/_custom_type_script = "uid://fhgkw1iml6g3"
 
-[node name="QuestSelectStatbar" parent="MainContent" instance=ExtResource("12_0mlav")]
+[node name="QuestSelectStatbar" parent="MainContent" unique_id=1357254126 instance=ExtResource("12_0mlav")]
 layout_mode = 2
 
-[node name="BeginButtonContainer" type="MarginContainer" parent="MainContent"]
+[node name="BeginButtonContainer" type="MarginContainer" parent="MainContent" unique_id=1273017673]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="MarginContainer" type="MarginContainer" parent="MainContent/BeginButtonContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContent/BeginButtonContainer" unique_id=805752630]
 layout_mode = 2
 theme_override_constants/margin_right = 13
 theme_override_constants/margin_bottom = 2
 
-[node name="TextureRect" type="TextureRect" parent="MainContent/BeginButtonContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MainContent/BeginButtonContainer/MarginContainer" unique_id=924528728]
 texture_repeat = 2
 material = ExtResource("20_g7kal")
 layout_mode = 2
 texture = ExtResource("20_002ai")
 
-[node name="BeginButton" type="TextureButton" parent="MainContent/BeginButtonContainer/MarginContainer"]
+[node name="BeginButton" type="TextureButton" parent="MainContent/BeginButtonContainer/MarginContainer" unique_id=201464229]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -317,18 +317,16 @@ texture_pressed = ExtResource("23_1rhh3")
 texture_hover = ExtResource("23_05vpt")
 stretch_mode = 3
 
-[node name="EditEquipment" parent="." instance=ExtResource("15_e1val")]
+[node name="EditEquipment" parent="." unique_id=444611241 instance=ExtResource("15_e1val")]
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
 offset_top = 180.0
 offset_bottom = 180.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1556267462]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_f4j6h")
-}
+libraries/ = SubResource("AnimationLibrary_f4j6h")
 
 [connection signal="begin_button_visibility_requested" from="MainContent/VBoxContainer/MarginContainer/MarginContainer2/QuestsOverview" to="." method="_on_quests_overview_begin_button_visibility_requested"]
 [connection signal="pressed" from="MainContent/VBoxContainer/MarginContainer/MarginContainer3/BackButton" to="." method="_on_back_button_pressed"]

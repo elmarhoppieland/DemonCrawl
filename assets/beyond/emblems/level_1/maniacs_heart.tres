@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://cgmphb7ljufum"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://cgmphb7ljufum"]
 
 [ext_resource type="Script" uid="uid://dl34h38j7d0ji" path="res://assets/beyond/emblems/level_1/maniacs_heart.gd" id="1_4gcb4"]
 [ext_resource type="Texture2D" uid="uid://c3krneb6ixtu6" path="res://assets/beyond/emblems/level_1/maniacs_heart.png" id="2_jah1p"]

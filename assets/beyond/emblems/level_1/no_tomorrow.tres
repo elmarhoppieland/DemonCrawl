@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://0850nhi43e3q"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://0850nhi43e3q"]
 
 [ext_resource type="Script" uid="uid://xf17d6juj0fn" path="res://assets/beyond/emblems/level_1/no_tomorrow.gd" id="1_r00k6"]
 [ext_resource type="Texture2D" uid="uid://3m4mu2wtt0ep" path="res://assets/beyond/emblems/level_1/no_tomorrow.png" id="2_s1gk1"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dygsjbwgy0fxa"]
+[gd_scene format=3 uid="uid://dygsjbwgy0fxa"]
 
 [ext_resource type="Script" uid="uid://0ir0ishw0jjk" path="res://assets/quests/default_quest_selection.gd" id="1_m5nj2"]
 
@@ -9,18 +9,18 @@ font_color = Color(0.8, 0.8, 0.8, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="DefaultQuestSelection" type="HBoxContainer"]
+[node name="DefaultQuestSelection" type="HBoxContainer" unique_id=350938235]
 theme_override_constants/separation = 5
 script = ExtResource("1_m5nj2")
 
-[node name="QuestIconsContainer" type="HBoxContainer" parent="."]
+[node name="QuestIconsContainer" type="HBoxContainer" parent="." unique_id=803378110]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 2
 
-[node name="PlayerDataLabel" type="Label" parent="."]
+[node name="PlayerDataLabel" type="Label" parent="." unique_id=1932177927]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0

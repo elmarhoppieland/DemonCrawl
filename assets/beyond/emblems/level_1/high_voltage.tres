@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://c6mvf86hgxb35"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://c6mvf86hgxb35"]
 
 [ext_resource type="Script" uid="uid://bplxp7lwer1uc" path="res://assets/beyond/emblems/level_1/high_voltage.gd" id="1_kbe6i"]
 [ext_resource type="Texture2D" uid="uid://e26w64vdx2g" path="res://assets/beyond/emblems/level_1/high_voltage.png" id="2_wfyud"]

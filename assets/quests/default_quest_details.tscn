@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp2bx348sgf6g"]
+[gd_scene format=3 uid="uid://dp2bx348sgf6g"]
 
 [ext_resource type="Shader" uid="uid://50cnnobypta" path="res://engine/scenes/quest_select/background_line.gdshader" id="1_3hya2"]
 [ext_resource type="Script" uid="uid://d0q4ik8b0ykxb" path="res://assets/quests/default_quest_details.gd" id="1_hsu6r"]
@@ -19,44 +19,44 @@ font_size = 8
 outline_size = 3
 outline_color = Color(0.0862745, 0.145098, 0.258824, 1)
 
-[node name="DefaultQuestDetails" type="VBoxContainer"]
+[node name="DefaultQuestDetails" type="VBoxContainer" unique_id=1954374992]
 offset_right = 217.0
 offset_bottom = 92.0
 size_flags_vertical = 0
 theme_override_constants/separation = 7
 script = ExtResource("1_hsu6r")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=477982269]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=1308571877]
 layout_mode = 2
 theme_override_constants/margin_left = -10
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer" unique_id=857087375]
 material = SubResource("ShaderMaterial_thp31")
 custom_minimum_size = Vector2(215, 8)
 layout_mode = 2
 size_flags_vertical = 4
 color = Color(0, 0, 0, 1)
 
-[node name="NameLabel" type="Label" parent="MarginContainer"]
+[node name="NameLabel" type="Label" parent="MarginContainer" unique_id=1468951454]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Glory Days"
 label_settings = SubResource("LabelSettings_64wbd")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1510311935]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=1384113329]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 theme_override_constants/margin_left = 4
 
-[node name="LoreLabel" type="Label" parent="HBoxContainer/MarginContainer2"]
+[node name="LoreLabel" type="Label" parent="HBoxContainer/MarginContainer2" unique_id=807303070]
 unique_name_in_owner = true
 z_index = 1
 custom_minimum_size = Vector2(1, 0)
@@ -65,6 +65,6 @@ text = "Years have gone by in the flash of an eye. The glory days are long behin
 label_settings = SubResource("LabelSettings_oq5d8")
 autowrap_mode = 3
 
-[node name="Control" type="Control" parent="HBoxContainer"]
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1680362912]
 layout_mode = 2
 size_flags_horizontal = 3

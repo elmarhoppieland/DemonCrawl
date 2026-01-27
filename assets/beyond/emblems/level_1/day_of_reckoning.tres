@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://bsj3iur0xgdlv"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://bsj3iur0xgdlv"]
 
 [ext_resource type="Script" uid="uid://bjmdnwf23iy8x" path="res://assets/beyond/emblems/level_1/day_of_reckoning.gd" id="1_3pudo"]
 [ext_resource type="Texture2D" uid="uid://dresyq1sv30sh" path="res://assets/beyond/emblems/level_1/day_of_reckoning.png" id="2_u4tkp"]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://b0txosnakpmii"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://b0txosnakpmii"]
 
 [ext_resource type="Script" uid="uid://b4w0hgxip3e0s" path="res://assets/beyond/emblems/level_3/the_ascent.gd" id="1_ngq0f"]
 [ext_resource type="Texture2D" uid="uid://deji0u33omaw4" path="res://assets/beyond/emblems/level_3/the_ascent.png" id="2_xpxua"]

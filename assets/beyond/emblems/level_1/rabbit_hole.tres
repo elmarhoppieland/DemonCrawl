@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://dlwdibf1m7w5e"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://dlwdibf1m7w5e"]
 
 [ext_resource type="Script" uid="uid://cix4ivdtky626" path="res://assets/beyond/emblems/level_1/rabbit_hole.gd" id="1_4lor8"]
 [ext_resource type="Texture2D" uid="uid://hsbfxhk0tjat" path="res://assets/beyond/emblems/level_1/rabbit_hole.png" id="2_x288s"]

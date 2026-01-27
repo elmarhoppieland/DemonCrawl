@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://38fkwghmdqrc"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://38fkwghmdqrc"]
 
 [ext_resource type="Script" uid="uid://cafrko8e32w7v" path="res://assets/beyond/emblems/level_3/sleep_paralysis.gd" id="1_0w7as"]
 [ext_resource type="Texture2D" uid="uid://cvgwtwt50gcm1" path="res://assets/beyond/emblems/level_3/sleep_paralysis.png" id="2_wrnn1"]

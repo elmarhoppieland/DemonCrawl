@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://dcv1cyv1eyrte"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://dcv1cyv1eyrte"]
 
 [ext_resource type="Script" uid="uid://cg8oc3kfr6hr4" path="res://assets/beyond/emblems/level_2/utopia.gd" id="1_071ot"]
 [ext_resource type="Texture2D" uid="uid://77gs213wmjuq" path="res://assets/beyond/emblems/level_2/utopia.png" id="2_kab88"]

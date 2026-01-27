@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://olejcy0j1gwb"]
+[gd_scene format=3 uid="uid://olejcy0j1gwb"]
 
 [ext_resource type="Script" uid="uid://b4wggae0nkyb5" path="res://engine/resources/beyond/beyond_emblem_selection.gd" id="1_wiuqn"]
 
@@ -8,27 +8,27 @@ font_color = Color(0.7647059, 0.7647059, 0.7647059, 1)
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="BeyondEmblemSelection" type="MarginContainer"]
+[node name="BeyondEmblemSelection" type="MarginContainer" unique_id=1693530098]
 size_flags_vertical = 3
 script = ExtResource("1_wiuqn")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1977970986]
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="EmblemCountLabel" type="Label" parent="VBoxContainer"]
+[node name="EmblemCountLabel" type="Label" parent="VBoxContainer" unique_id=728585831]
 unique_name_in_owner = true
 layout_mode = 2
 text = "beyond.current-emblems "
 label_settings = SubResource("LabelSettings_wiuqn")
 uppercase = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1077297194]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="EmblemsContainer" type="HFlowContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="EmblemsContainer" type="HFlowContainer" parent="VBoxContainer/ScrollContainer" unique_id=863140425]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

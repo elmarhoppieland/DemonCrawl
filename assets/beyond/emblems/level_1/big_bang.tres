@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://b82afyikbis3p"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://b82afyikbis3p"]
 
 [ext_resource type="Script" uid="uid://bu81674qwygq1" path="res://assets/beyond/emblems/level_1/big_bang.gd" id="1_klaj2"]
 [ext_resource type="Script" uid="uid://chxanlnagwgt2" path="res://engine/resources/beyond/emblem_data.gd" id="1_rrswq"]

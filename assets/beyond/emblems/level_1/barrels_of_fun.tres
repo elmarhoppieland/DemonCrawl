@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://ccfjymudbk4r5"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://ccfjymudbk4r5"]
 
 [ext_resource type="Script" uid="uid://csr8lu5bqlw30" path="res://assets/beyond/emblems/level_1/barrels_of_fun.gd" id="1_l5gu5"]
 [ext_resource type="Texture2D" uid="uid://cachmijqbtvfm" path="res://assets/beyond/emblems/level_1/barrels_of_fun.png" id="2_vto41"]

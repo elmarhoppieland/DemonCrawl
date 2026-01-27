@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://onlhi6r4t78w"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://onlhi6r4t78w"]
 
 [ext_resource type="Script" uid="uid://dgnhc6u5bsgf4" path="res://assets/beyond/emblems/level_1/infinity_knot.gd" id="1_fiqoi"]
 [ext_resource type="Texture2D" uid="uid://ck8kgd8o2ixu1" path="res://assets/beyond/emblems/level_1/infinity_knot.png" id="2_tja35"]

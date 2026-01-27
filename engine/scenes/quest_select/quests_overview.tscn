@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cs4xjk311kxho"]
+[gd_scene format=3 uid="uid://cs4xjk311kxho"]
 
 [ext_resource type="Script" uid="uid://0s6rsunpgv5i" path="res://engine/scenes/quest_select/quests_overview.gd" id="1_denfj"]
 [ext_resource type="Texture2D" uid="uid://mds6jllxer0h" path="res://assets/sprites/icons.png" id="2_a73kc"]
@@ -16,36 +16,36 @@ region = Rect2(16, 166, 16, 16)
 script = ExtResource("3_bq56n")
 name = "difficulty_normal"
 
-[node name="QuestsOverview" type="VBoxContainer"]
+[node name="QuestsOverview" type="VBoxContainer" unique_id=809474514]
 theme_override_constants/separation = 2
 script = ExtResource("1_denfj")
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=15559982]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 
-[node name="Label" type="Label" parent="MarginContainer2"]
+[node name="Label" type="Label" parent="MarginContainer2" unique_id=1092685336]
 layout_mode = 2
 text = "quest-select.overview.header"
 label_settings = SubResource("LabelSettings_pkqqf")
 
-[node name="QuestSelectionContainer" type="HBoxContainer" parent="."]
+[node name="QuestSelectionContainer" type="HBoxContainer" parent="." unique_id=2075918605]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="DifficultySelect" type="TextureRect" parent="QuestSelectionContainer"]
+[node name="DifficultySelect" type="TextureRect" parent="QuestSelectionContainer" unique_id=755419128]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_s0l2f")
 
-[node name="TooltipGrabber" type="Node" parent="QuestSelectionContainer/DifficultySelect"]
+[node name="TooltipGrabber" type="Node" parent="QuestSelectionContainer/DifficultySelect" unique_id=1854013641]
 unique_name_in_owner = true
 script = ExtResource("3_ldj2m")
 text = "NORMAL DIFFICULTY"
 context_mode = 0
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=280796178]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 

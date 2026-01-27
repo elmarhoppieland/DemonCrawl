@@ -162,13 +162,13 @@ metadata/_custom_type_script = "uid://ceob43rxtruwu"
 script = ExtResource("3_pdqtg")
 metadata/_custom_type_script = "uid://mfu7hnfru68d"
 
-[node name="DebugToolEmblems" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer"]
+[node name="DebugToolEmblems" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer" unique_id=69933571]
 layout_mode = 2
 text = "Emblems"
 script = ExtResource("7_i4rwj")
 metadata/_custom_type_script = "uid://t7wk1kjokve4"
 
-[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolEmblems"]
+[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolEmblems" unique_id=2128258533]
 script = ExtResource("3_pdqtg")
 metadata/_custom_type_script = "uid://mfu7hnfru68d"
 

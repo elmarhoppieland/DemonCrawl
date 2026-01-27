@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://cb0r7ua0ubbrv"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://cb0r7ua0ubbrv"]
 
 [ext_resource type="Script" uid="uid://d32b28almlph5" path="res://assets/beyond/emblems/level_2/ice_age.gd" id="1_8kg0i"]
 [ext_resource type="Texture2D" uid="uid://dbtiophqqcljo" path="res://assets/beyond/emblems/level_2/ice_age.png" id="2_leyea"]

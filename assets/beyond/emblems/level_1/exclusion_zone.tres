@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://cfuxo3odguw74"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://cfuxo3odguw74"]
 
 [ext_resource type="Script" uid="uid://dgppe1v52aepb" path="res://assets/beyond/emblems/level_1/exclusion_zone.gd" id="1_y14bl"]
 [ext_resource type="Texture2D" uid="uid://r0340bjei0yu" path="res://assets/beyond/emblems/level_1/exclusion_zone.png" id="2_0q6sk"]

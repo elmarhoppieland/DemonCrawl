@@ -128,7 +128,7 @@ script = ExtResource("4_itjbr")
 
 [node name="ProfileLevelLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=1389418424]
 layout_mode = 2
-text = "generic.level.abbr.0"
+text = "generic.level.abbr.1"
 label_settings = SubResource("LabelSettings_13o6w")
 script = ExtResource("5_1gbmc")
 

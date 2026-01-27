@@ -193,7 +193,7 @@ script = ExtResource("13_nipms")
 [node name="ProfileLevelLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer2/MarginContainer/VBoxContainer" unique_id=1110986090]
 layout_mode = 2
 size_flags_vertical = 10
-text = "generic.level.abbr.0"
+text = "generic.level.abbr.1"
 label_settings = SubResource("LabelSettings_ts3ab")
 script = ExtResource("14_37g46")
 

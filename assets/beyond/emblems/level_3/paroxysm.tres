@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://cw0bdwf1agvij"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://cw0bdwf1agvij"]
 
 [ext_resource type="Script" uid="uid://d1haycykix2vq" path="res://assets/beyond/emblems/level_3/paroxysm.gd" id="1_cjo7e"]
 [ext_resource type="Texture2D" uid="uid://bwnasetsp8nwy" path="res://assets/beyond/emblems/level_3/paroxysm.png" id="2_vp3od"]

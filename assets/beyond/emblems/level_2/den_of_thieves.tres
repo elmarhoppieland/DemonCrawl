@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://o8owdo70jvcm"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://o8owdo70jvcm"]
 
 [ext_resource type="Script" uid="uid://c1q7v2ktk02s3" path="res://assets/beyond/emblems/level_2/den_of_thieves.gd" id="1_xdnmu"]
 [ext_resource type="Texture2D" uid="uid://dtwtslmuy3pi1" path="res://assets/beyond/emblems/level_2/den_of_thieves.png" id="2_sgyii"]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EmblemData" load_steps=4 format=3 uid="uid://b1h7ghpytpnj0"]
+[gd_resource type="Resource" script_class="EmblemData" format=3 uid="uid://b1h7ghpytpnj0"]
 
 [ext_resource type="Script" uid="uid://88kx3nxv8de2" path="res://assets/beyond/emblems/level_3/murderous_intent.gd" id="1_j6uia"]
 [ext_resource type="Texture2D" uid="uid://ih6la8eeohli" path="res://assets/beyond/emblems/level_3/murderous_intent.png" id="2_x3epw"]
