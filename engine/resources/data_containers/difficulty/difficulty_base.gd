@@ -100,6 +100,18 @@ func parse_guaranteed_objects(guaranteed_objects: Array[CellObject]) -> Array[Ce
 @abstract func _parse_guaranteed_objects(guaranteed_objects: Array[CellObject]) -> Array[CellObject]
 
 
+## Shows the next quest to unlock, using [DCPopup].
+func show_next_quest_unlock(quest_played: QuestFile) -> void:
+	_show_next_quest_unlock(quest_played)
+
+
+## Virtual method. Called when the given quest is finished, and should use [DCPopup]
+## to show which quest has been unlocked.
+@warning_ignore("unused_parameter")
+func _show_next_quest_unlock(quest_played: QuestFile) -> void:
+	pass
+
+
 ## Shows the begin button. The begin button is visible by default.
 func show_begin_button() -> void:
 	begin_button_visibility_requested.emit(true)

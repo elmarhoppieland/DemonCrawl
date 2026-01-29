@@ -5,7 +5,7 @@ class_name CommandLine
 const SINGLETON_COLOR := Color("8fffdb")
 const CLASS_COLOR := Color("c7ffed")
 # ==============================================================================
-static var added_vars := {}
+static var added_vars: Dictionary[String, Variant] = {}
 # ==============================================================================
 @onready var command_line_feedback: RichTextLabel = %CommandLineFeedback
 # ==============================================================================

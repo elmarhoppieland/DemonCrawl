@@ -67,7 +67,7 @@ func _get_plugin_name() -> String:
 
 func _make_visible(visible: bool) -> void:
 	if not main_screen:
-		main_screen = preload("res://addons/effect_manager/effect_manager_main_screen.tscn").instantiate()
+		main_screen = load("res://addons/effect_manager/effect_manager_main_screen.tscn").instantiate()
 		EditorInterface.get_editor_main_screen().add_child(main_screen)
 	
 	main_screen.visible = visible

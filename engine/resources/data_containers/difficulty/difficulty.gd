@@ -4,6 +4,7 @@ class_name Difficulty
 # ==============================================================================
 @export var name := ""  ## The name of the difficulty.
 @export var icon: Texture2D = null  ## The icon of the difficulty.
+@export var color := Color.WHITE ## The color of the difficulty.
 
 @export var conditions: Array[Condition] = [] ## The conditions for this difficulty to be visible. If empty, this difficulty is always visible.
 
@@ -28,6 +29,10 @@ func _get_name_id() -> String:
 
 func _get_icon() -> Texture2D:
 	return icon
+
+
+func _get_color() -> Color:
+	return color
 
 
 func _begin_selected_quest() -> Quest:
@@ -113,3 +118,10 @@ func _is_unlocked() -> bool:
 			return false
 	
 	return true
+
+
+func _show_next_quest_unlock(quest_played: QuestFile) -> void:
+	var data := QuestsManager.get_completion_data(quest_played)
+	var quest_to_unlock := quests[mini(quests.find(quest_played) + 1, quests.size() - 1)]
+	if data.completion_count == 1 and quest_to_unlock != quest_played:
+		QuestUnlockedPopup.show_quest_unlock(quest_to_unlock.token_shop_purchase != null, quest_to_unlock.name)
