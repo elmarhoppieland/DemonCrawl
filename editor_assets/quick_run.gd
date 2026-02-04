@@ -5,7 +5,7 @@ class_name QuickRun
 const LOCALIZATION_STAGES_EN := preload("uid://cilbh6dvprp5")
 
 func _run() -> void:
-	import_emblems()
+	pass
 
 
 static func import_emblems() -> void:

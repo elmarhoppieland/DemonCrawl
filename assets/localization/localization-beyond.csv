@@ -24,8 +24,11 @@ beyond.emblem.big-bang;Big Bang
 beyond.emblem.big-bang.lore;Size matters.
 beyond.emblem.breaking-the-seal;Breaking the Seal
 beyond.emblem.breaking-the-seal.lore;What's mine is mine.
+beyond.emblem.breaking-the-seal.descripton.1;All stages gain Sealed mod
+beyond.emblem.breaking-the-seal.descripton.2;Gain Handbell
+beyond.emblem.breaking-the-seal.descripton.3;Gain Medusa Head
 beyond.emblem.computer-simulation;Computer Simulation
-beyond.emblem.computer-simulation.lore;0111010001101000011010
+beyond.emblem.computer-simulation.lore;0111010001101000011010\n0101110011011010010111\n0011011011100110111101\n1101000111010001101000\n0110010101110010011001\n0101100001011011000111\n0111011011110111001001\n10110001100100
 beyond.emblem.constant-reminder;Constant Reminder
 beyond.emblem.constant-reminder.lore;Time moves slow.
 beyond.emblem.day-of-reckoning;Day of Reckoning
@@ -46,6 +49,8 @@ beyond.emblem.maniacs-heart;Maniac's Heart
 beyond.emblem.maniacs-heart.lore;The heart wants what the heart wants.
 beyond.emblem.midnight-voyage;Midnight Voyage
 beyond.emblem.midnight-voyage.lore;What dangers lie in the dark?
+beyond.emblem.midnight-voyage.description.1;All stages gain Dark mod
+beyond.emblem.midnight-voyage.description.2;Gain Lantern
 beyond.emblem.no-tomorrow;No Tomorrow
 beyond.emblem.no-tomorrow.lore;A quest begun is half done.
 beyond.emblem.pumpkin-patch;Pumpkin Patch

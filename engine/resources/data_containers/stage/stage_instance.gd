@@ -145,7 +145,7 @@ func generate(start_cell: CellData) -> void:
 		
 		invalid_indices.insert(invalid_indices.bsearch(idx), idx)
 		
-		get_cells()[idx].set_object(Monster.new(get_stage()))
+		get_cells()[idx].set_object(Monster.new())
 	
 	var objects: Array[CellObject] = EffectManager.propagate_mutable(get_effects().get_guaranteed_objects, 0, [] as Array[CellObject])
 	var cells: Array[CellData] = []

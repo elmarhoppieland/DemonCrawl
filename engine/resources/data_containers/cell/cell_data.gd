@@ -231,19 +231,11 @@ func unglean() -> void:
 	mode &= ~ModeFlags.VALUE_VISIBLE
 
 
-## Removes and resets this [CellData]'s object, if it has one.
-func clear_object() -> void:
-	if not is_occupied():
-		return
-	get_object().reset()
-	get_object().queue_free()
-
-
 ## Sets this [CellData]'s [param object]. If it already has an object, this
-## method will clear the original (see [method clear_object]).
+## method will clear the original (see [method CellObject.clear]).
 func set_object(object: CellObject) -> void:
 	if is_occupied():
-		clear_object()
+		get_object().clear()
 	if object:
 		add_child(object)
 
@@ -468,7 +460,7 @@ func get_release_actions() -> Array[Callable]:
 		for cell in get_nearby_cells():
 			if cell.is_flagged() or (cell.has_monster() and cell.is_visible()):
 				monsters += 1
-			elif cell.get_mode() == Mode.CHECKING:
+			elif cell.is_checking():
 				checked_cells.append(cell)
 		
 		var is_still_hovered := get_stage_instance().get_board().get_hovered_cell() == self

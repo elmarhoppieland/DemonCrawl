@@ -2,6 +2,8 @@ extends DifficultyBase
 class_name BeyondDifficulty
 
 # ==============================================================================
+const BEYOND_COLOR := Color(0.596, 0.008, 0.875, 1.0)
+# ==============================================================================
 @export var name := ""  ## The name of the difficulty.
 @export var icon: Texture2D = null  ## The icon of the difficulty.
 
@@ -32,6 +34,10 @@ func _get_name_id() -> String:
 
 func _get_icon() -> Texture2D:
 	return icon
+
+
+func _get_color() -> Color:
+	return BEYOND_COLOR
 
 
 func _get_quest_selection_node() -> Node:

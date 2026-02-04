@@ -14,7 +14,7 @@ func _ready() -> void:
 	var quest := Quest.get_current()
 	var summary_values := {
 		"quest_name": tr(quest.source_file.name).to_upper(),
-		"color": quest.source_difficulty.color.to_html(false),
+		"color": quest.source_difficulty.get_color().to_html(false),
 		"difficulty_name": tr(quest.source_difficulty.name).to_upper()
 	}
 	_summary_label.text = tr("quest-finished.summary").format(summary_values)

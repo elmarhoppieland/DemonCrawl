@@ -173,12 +173,6 @@ func get_object() -> CellObject:
 	return null
 
 
-## Removes this [Cell]'s [CellObject], if it has one.
-func clear_object() -> void:
-	get_object().reset()
-	_set_object(null)
-
-
 ## Sets the mode of this [Cell] to [param mode]. The mode determines the visibility
 ## of this [Cell] and its contents. See [enum Mode].
 func set_mode(mode: Cell.Mode) -> void:

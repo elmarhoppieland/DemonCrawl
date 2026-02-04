@@ -26,6 +26,15 @@ func get_icon() -> Texture2D:
 @abstract func _get_icon() -> Texture2D
 
 
+## Returns this difficulty's [Color].
+func get_color() -> Color:
+	return _get_color()
+
+
+## Virtual method. Should return this difficulty's [Color].
+@abstract func _get_color() -> Color
+
+
 ## Creates & returns the currently selected quest.
 func begin_selected_quest() -> Quest:
 	return _begin_selected_quest()

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://e2s1m371wkyw"]
+
+[ext_resource type="Texture2D" uid="uid://lk3jb6mapddu" path="res://assets/items/lantern.png" id="1_ocrxe"]
+[ext_resource type="Script" uid="uid://ciq8asow5m8p5" path="res://assets/items/lantern.gd" id="2_v2iso"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="3_qewp7"]
+
+[resource]
+script = ExtResource("3_qewp7")
+name = "item.lantern"
+description = "item.lantern.description"
+mana = 90
+cost = 15
+tags = Array[String](["_targeted"])
+icon = ExtResource("1_ocrxe")
+item_script = ExtResource("2_v2iso")

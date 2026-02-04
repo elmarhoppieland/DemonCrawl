@@ -460,7 +460,7 @@ func clear() -> void:
 	
 	reset()
 	
-	get_cell().clear_object()
+	queue_free()
 
 
 @warning_ignore("shadowed_variable")

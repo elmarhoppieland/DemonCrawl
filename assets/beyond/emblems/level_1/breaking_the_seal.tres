@@ -9,4 +9,5 @@ script = ExtResource("3_4eyoo")
 name = "beyond.emblem.breaking-the-seal"
 icon = ExtResource("2_yepxj")
 lore = "beyond.emblem.breaking-the-seal.lore"
+effects = Array[String](["beyond.emblem.breaking-the-seal.descripton.1", "beyond.emblem.breaking-the-seal.descripton.2", "beyond.emblem.breaking-the-seal.descripton.3", "generic.not-implemented"])
 emblem_script = ExtResource("1_ejg13")

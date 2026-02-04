@@ -347,6 +347,7 @@ func target_cell() -> Array[CellData]:
 
 ## Targets multiple [Cell]s. Waits for the player to select a [Cell] and then
 ## returns all [Cell]s within the given [param radius] of the selected cell.
+## The [param radius] inlcudes the center cell, so a 5x5 area has a radius of 3.
 func target_cells(radius: int) -> Array[CellData]:
 	if not get_quest().has_current_stage():
 		return []
