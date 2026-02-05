@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GlintData" format=3 uid="uid://dra1wwgytxk4k"]
+
+[ext_resource type="Script" uid="uid://cgh6xss5wdjjn" path="res://assets/beyond/glints/atlas_glint.gd" id="1_c5fml"]
+[ext_resource type="Texture2D" uid="uid://bboh5rmf5bg0f" path="res://assets/beyond/glints/atlas_glint.png" id="2_dftaq"]
+[ext_resource type="Script" uid="uid://cpr5j52cpdclm" path="res://engine/resources/beyond/glint_data.gd" id="3_2uwgo"]
+
+[resource]
+script = ExtResource("3_2uwgo")
+name = "beyond.glint.atlas-glint"
+icon = ExtResource("2_dftaq")
+effects = Array[String](["beyond.glint.atlas-glint.description.1"])
+glint_script = ExtResource("1_c5fml")

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GlintData" format=3 uid="uid://cxsgfkawt7isl"]
+
+[ext_resource type="Script" uid="uid://6qil2enilvp5" path="res://assets/beyond/glints/iron_glint.gd" id="1_l3p1r"]
+[ext_resource type="Texture2D" uid="uid://bp762rmkaerw2" path="res://assets/beyond/glints/iron_glint.png" id="2_hdo5t"]
+[ext_resource type="Script" uid="uid://cpr5j52cpdclm" path="res://engine/resources/beyond/glint_data.gd" id="3_dlbba"]
+
+[resource]
+script = ExtResource("3_dlbba")
+name = "beyond.glint.iron-glint"
+icon = ExtResource("2_hdo5t")
+effects = Array[String](["beyond.glint.iron-glint.description.1"])
+glint_script = ExtResource("1_l3p1r")

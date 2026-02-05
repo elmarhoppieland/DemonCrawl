@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GlintData" format=3 uid="uid://82g0js7iawo7"]
+
+[ext_resource type="Script" uid="uid://dga4afmxdkdqc" path="res://assets/beyond/glints/heavenly_glint.gd" id="1_3nfbr"]
+[ext_resource type="Texture2D" uid="uid://meyyogc0okwh" path="res://assets/beyond/glints/heavenly_glint.png" id="2_0msf2"]
+[ext_resource type="Script" uid="uid://cpr5j52cpdclm" path="res://engine/resources/beyond/glint_data.gd" id="3_y35tr"]
+
+[resource]
+script = ExtResource("3_y35tr")
+name = "beyond.glint.heavenly-glint"
+icon = ExtResource("2_0msf2")
+effects = Array[String](["beyond.glint.heavenly-glint.description.1"])
+glint_script = ExtResource("1_3nfbr")

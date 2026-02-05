@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GlintData" format=3 uid="uid://cdg656lnrrg6d"]
+
+[ext_resource type="Script" uid="uid://c61r6fdx20x2f" path="res://assets/beyond/glints/lavish_glint.gd" id="1_ee4x4"]
+[ext_resource type="Texture2D" uid="uid://cm8we72mnciuc" path="res://assets/beyond/glints/lavish_glint.png" id="2_djwh0"]
+[ext_resource type="Script" uid="uid://cpr5j52cpdclm" path="res://engine/resources/beyond/glint_data.gd" id="3_jxc7j"]
+
+[resource]
+script = ExtResource("3_jxc7j")
+name = "beyond.glint.lavish-glint"
+icon = ExtResource("2_djwh0")
+effects = Array[String](["beyond.glint.lavish-glint.description.1"])
+glint_script = ExtResource("1_ee4x4")

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GlintData" format=3 uid="uid://crb5w8ttwm2xk"]
+
+[ext_resource type="Script" uid="uid://dpwtooqyjtbuv" path="res://assets/beyond/glints/duplication_glint.gd" id="1_u8cpd"]
+[ext_resource type="Texture2D" uid="uid://d3bpffgxgddyy" path="res://assets/beyond/glints/duplication_glint.png" id="2_2tjp8"]
+[ext_resource type="Script" uid="uid://cpr5j52cpdclm" path="res://engine/resources/beyond/glint_data.gd" id="3_o3r8e"]
+
+[resource]
+script = ExtResource("3_o3r8e")
+name = "beyond.glint.duplication-glint"
+icon = ExtResource("2_2tjp8")
+effects = Array[String](["beyond.glint.duplication-glint.description.1"])
+glint_script = ExtResource("1_u8cpd")

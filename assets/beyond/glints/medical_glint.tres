@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GlintData" format=3 uid="uid://vjwru34f6pro"]
+
+[ext_resource type="Script" uid="uid://bwffjgjb7uk3p" path="res://assets/beyond/glints/medical_glint.gd" id="1_bcgec"]
+[ext_resource type="Texture2D" uid="uid://cnwx57p70l5uv" path="res://assets/beyond/glints/medical_glint.png" id="2_y7lwt"]
+[ext_resource type="Script" uid="uid://cpr5j52cpdclm" path="res://engine/resources/beyond/glint_data.gd" id="3_irvqi"]
+
+[resource]
+script = ExtResource("3_irvqi")
+name = "beyond.glint.medical-glint"
+icon = ExtResource("2_y7lwt")
+effects = Array[String](["beyond.glint.medical-glint.description.1", "beyond.glint.medical-glint.description.2"])
+glint_script = ExtResource("1_bcgec")

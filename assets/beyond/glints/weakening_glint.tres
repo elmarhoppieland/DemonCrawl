@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GlintData" format=3 uid="uid://cohe1vtyfnif3"]
+
+[ext_resource type="Script" uid="uid://bxibwm8iotvo6" path="res://assets/beyond/glints/weakening_glint.gd" id="1_x3fvi"]
+[ext_resource type="Texture2D" uid="uid://bgf5p2ajmwngb" path="res://assets/beyond/glints/weakening_glint.png" id="2_yx1o4"]
+[ext_resource type="Script" uid="uid://cpr5j52cpdclm" path="res://engine/resources/beyond/glint_data.gd" id="3_4c44h"]
+
+[resource]
+script = ExtResource("3_4c44h")
+name = "beyond.glint.weakening-glint"
+icon = ExtResource("2_yx1o4")
+effects = Array[String](["beyond.glint.weakening-glint.description.1"])
+glint_script = ExtResource("1_x3fvi")

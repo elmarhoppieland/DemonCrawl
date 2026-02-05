@@ -2,10 +2,95 @@
 extends EditorScript
 class_name QuickRun
 
+
 const LOCALIZATION_STAGES_EN := preload("uid://cilbh6dvprp5")
 
+
 func _run() -> void:
-	pass
+	import_glints()
+
+
+static func import_glints() -> void:
+	var text := await get_wiki_page_text("Beyond")
+	FileAccess.open("user://temp.txt", FileAccess.WRITE).store_string(text)
+	
+	var i := text.find("===Glints===")
+	assert(i >= 0)
+	i = text.find("{| class=\"wikitable\"", i)
+	assert(i >= 0)
+	
+	var end := text.find("}", i)
+	
+	#var translation_file := FileAccess.open("res://assets/localization/localization-beyond.csv", FileAccess.READ_WRITE)
+	#translation_file.seek_end()
+	
+	while i < end:
+		i = text.find("\n", i) + 1
+		var line := text.substr(i, text.find("\n", i) - i)
+		
+		if not line.match("|[[File:*]]"):
+			continue
+		
+		i = text.find("\n", i) + 2
+		var glint_name := text.substr(i, text.find("\n", i) - i)
+		
+		i = text.find("\n", i) + 2
+		var glint_description := text.substr(i, text.find("|", i) - i).replace("\n", "")
+		var glint_effects: Array[String] = []
+		glint_effects.assign(glint_description.split("*", false))
+		
+		print("Importing %s..." % glint_name)
+		
+		var glint_icon := DCPlugin.get_data_win_image(glint_name.to_snake_case())
+		
+		var icon_path := "res://assets/beyond/glints/" + glint_name.to_snake_case() + ".png"
+		glint_icon.save_png(icon_path)
+		
+		#translation_file.store_line("beyond.glint.%s;%s" % [glint_name.to_kebab_case(), glint_name])
+		
+		#for j in glint_effects.size():
+			#translation_file.store_line("beyond.glint.%s.description.%d;%s" % [
+				#glint_name.to_kebab_case(),
+				#j + 1,
+				#glint_effects[j]
+			#])
+		
+		await rescan_filesystem()
+		
+		await get_tree().process_frame
+		
+		var glint_data := GlintData.new()
+		glint_data.name = "beyond.glint." + glint_name.to_kebab_case()
+		glint_data.icon = load(icon_path)
+		glint_data.effects.assign(glint_effects.map(func(effect: String) -> String:
+			return "beyond.glint.%s.description.%d" % [
+				glint_name.to_kebab_case(),
+				glint_effects.find(effect) + 1
+			]
+		))
+		
+		var script_path := icon_path.get_basename() + ".gd"
+		FileAccess.open(script_path, FileAccess.WRITE).store_string("extends Glint\n\n# ==============================================================================\n")
+		
+		glint_data.glint_script = load(script_path)
+		
+		ResourceSaver.save(glint_data, script_path.get_basename() + ".tres")
+		
+		await rescan_filesystem()
+		
+		EditorInterface.get_resource_filesystem().update_file(script_path.get_basename() + ".tres")
+
+
+static func rescan_filesystem() -> void:
+	var filesystem := EditorInterface.get_resource_filesystem()
+	
+	while filesystem.is_scanning():
+		await get_tree().process_frame
+	
+	filesystem.scan_sources()
+	
+	while filesystem.is_scanning():
+		await get_tree().process_frame
 
 
 static func import_emblems() -> void:
@@ -65,10 +150,7 @@ static func import_emblems() -> void:
 			localization.store_line("beyond.emblem.%s.lore;%s" % [emblem_localization, html.substr(i, html.find("<", i) - i)])
 			
 			var script_path := image_path.get_basename() + ".gd"
-			FileAccess.open(script_path, FileAccess.WRITE).store_string("extends Emblem
-
-# ==============================================================================
-")
+			FileAccess.open(script_path, FileAccess.WRITE).store_string("extends Emblem\n\n# ==============================================================================\n")
 			emblem_data.emblem_script = load(script_path)
 			
 			ResourceSaver.save(emblem_data, image_path.get_basename() + ".tres")

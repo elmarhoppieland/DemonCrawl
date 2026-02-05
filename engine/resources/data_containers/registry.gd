@@ -2,6 +2,8 @@
 extends Resource
 class_name Registry
 
+## Contains information about available objects.
+
 # ==============================================================================
 @export var masteries: Array[MasteryData] = [] ## A list of all available masteries.
 @export var mastery_unlockers: Array[MasteryUnlockerData] = [] ## A list of available [MasteryUnlocker]s.
@@ -17,6 +19,7 @@ class_name Registry
 @export var stages: Array[StageFile] = [] ## A list of available stages.
 
 @export var emblems: Array[EmblemData] = [] ## A list of available emblems.
+@export var glints: Array[GlintData] = [] ## A list of available glints.
 # ==============================================================================
 
 func get_elemental_auras() -> Array[Aura]:
