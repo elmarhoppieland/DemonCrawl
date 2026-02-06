@@ -67,6 +67,15 @@ static var emblems_changed := Signal() :
 			emblems_changed = Signal(Codex, "_emblems_changed")
 		return emblems_changed
 
+static var _glints: Dictionary[GlintData, int] = Eternal.create({} as Dictionary[GlintData, int])
+## Emitted when the player's glint inventory changes.
+static var glints_changed := Signal() :
+	get:
+		if glints_changed.is_null():
+			(Codex as GDScript).add_user_signal("_glints_changed")
+			glints_changed = Signal(Codex, "_glints_changed")
+		return glints_changed
+
 ## The player's current xp. Setting this property to a value greater than [method get_next_level_xp]
 ## will automatically level up the player.
 static var xp: int = Eternal.create(0) :
@@ -352,6 +361,32 @@ static func get_total_emblem_count() -> int:
 	var total_count := 0
 	for emblem in _emblems:
 		total_count += _emblems[emblem]
+	return total_count
+
+
+## Returns the number of copies of the given [param emblem] the player has.
+static func get_glints(glint: GlintData) -> int:
+	return _glints.get(glint, 0)
+
+
+## Increases the number of copies of the given [param emblem] the player has by [param emblem_count].
+static func gain_glint(glint: GlintData, glint_count: int = 1) -> void:
+	_glints[glint] = get_glints(glint) + glint_count
+	glints_changed.emit()
+
+
+## Decreases the number of copies of the given [param glint] the player has by [param glint_count].
+static func lose_glint(glint: GlintData, glint_count: int = 1) -> void:
+	_glints[glint] = get_glints(glint) - glint_count
+	if get_glints(glint) <= 0:
+		_glints.erase(glint)
+
+
+## Returns the total number of _glints the player has.
+static func get_total_glint_count() -> int:
+	var total_count := 0
+	for glint in _glints:
+		total_count += _glints[glint]
 	return total_count
 
 

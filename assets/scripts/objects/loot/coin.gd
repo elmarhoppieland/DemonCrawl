@@ -40,9 +40,5 @@ func _is_charitable() -> bool:
 	return true
 
 
-func _can_interact() -> bool:
-	return true
-
-
 class CoinEffects extends EventBus:
 	signal get_coin_value(coin: Coin, value: int)

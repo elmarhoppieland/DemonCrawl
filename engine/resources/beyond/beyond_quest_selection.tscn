@@ -208,10 +208,11 @@ theme_override_constants/margin_top = -3
 theme_override_constants/margin_right = -3
 theme_override_constants/margin_bottom = -3
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/GlintFrame/MarginContainer" unique_id=971369951]
+[node name="GlintTextureRect" type="TextureRect" parent="HBoxContainer/GlintFrame/MarginContainer" unique_id=971369951]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TooltipGrabber" type="Node" parent="HBoxContainer/GlintFrame/MarginContainer/TextureRect" unique_id=1400740586]
+[node name="TooltipGrabber" type="Node" parent="HBoxContainer/GlintFrame/MarginContainer/GlintTextureRect" unique_id=1400740586]
 script = ExtResource("3_ktdn0")
 text = "beyond.glint-slot-tooltip"
 metadata/_custom_type_script = "uid://fhgkw1iml6g3"

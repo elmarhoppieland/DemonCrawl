@@ -51,3 +51,7 @@ func _clear_on_collect() -> bool:
 
 func _collect_failed() -> void:
 	pass
+
+
+func _can_interact() -> bool:
+	return true

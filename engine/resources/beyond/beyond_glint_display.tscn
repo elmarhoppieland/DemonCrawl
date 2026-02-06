@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://b8hpf8g3x18jo"]
+
+[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="1_mf6ar"]
+[ext_resource type="Script" uid="uid://ijvvocf6t6dq" path="res://engine/resources/beyond/beyond_glint_display.gd" id="2_mf6ar"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="3_n33j3"]
+
+[node name="BeyondGlintDisplay" unique_id=1196846675 instance=ExtResource("1_mf6ar")]
+script = ExtResource("2_mf6ar")
+glint = null
+count = 0
+
+[node name="Grabber" parent="." index="0" unique_id=989947301]
+unique_name_in_owner = true
+enabled = false
+
+[node name="InnerBorderRect" parent="CollectibleContainer/ColorRect" parent_id_path=PackedInt32Array(1947476968) index="0" unique_id=590435635]
+color = Color(0.545, 0.545, 0.545, 1)
+
+[node name="GlintTexture" type="TextureRect" parent="." index="2" unique_id=136386116]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.5)
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="TooltipGrabber" type="Node" parent="GlintTexture" index="0" unique_id=1950968383]
+unique_name_in_owner = true
+script = ExtResource("3_n33j3")
+text_color = Color(1, 0.89411765, 0.47843137, 1)
+max_line_length = 45
+enabled = false
+metadata/_custom_type_script = "uid://fhgkw1iml6g3"
+
+[node name="Control" type="Control" parent="." index="3" unique_id=499136211]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" index="0" unique_id=1494136234]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_right = -1
+theme_override_constants/margin_bottom = -2
+
+[node name="CountLabel" type="Label" parent="Control/MarginContainer" index="0" unique_id=458461067]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "0"

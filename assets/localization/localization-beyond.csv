@@ -129,74 +129,52 @@ beyond.emblem.two-spirits;Two Spirits
 beyond.emblem.two-spirits.lore;The dance of light and dark.
 
 beyond.glint.treasure-glint;Treasure Glint
-beyond.glint.treasure-glint.description.1;
-beyond.glint.treasure-glint.description.2;Plus 1 guaranteed token per stage
-beyond.glint.treasure-glint.description.3;Plus 2 guaranteed chests per stage
-beyond.glint.treasure-glint.description.4;Plus 3 guaranteed diamonds per stage
+beyond.glint.treasure-glint.description.1;+1 guaranteed token per stage
+beyond.glint.treasure-glint.description.2;+2 guaranteed chests per stage
+beyond.glint.treasure-glint.description.3;+3 guaranteed diamonds per stage
 beyond.glint.atlas-glint;Atlas Glint
-beyond.glint.atlas-glint.description.1;
-beyond.glint.atlas-glint.description.2;Unlock all stages at the start of the quest
+beyond.glint.atlas-glint.description.1;Unlock all stages at the start of the quest
 beyond.glint.bountiful-glint;Bountiful Glint
-beyond.glint.bountiful-glint.description.1;
-beyond.glint.bountiful-glint.description.2;Your prizebox will contain 2 extra rewards
+beyond.glint.bountiful-glint.description.1;Your prizebox will contain 2 extra rewards
 beyond.glint.bargain-glint;Bargain Glint
-beyond.glint.bargain-glint.description.1;
-beyond.glint.bargain-glint.description.2;Your quest will contain 1 extra Item Shop
+beyond.glint.bargain-glint.description.1;Your quest will contain 1 extra Item Shop
 beyond.glint.astral-glint;Astral Glint
-beyond.glint.astral-glint.description.1;
-beyond.glint.astral-glint.description.2;Your quest will contain 3 Starponds
+beyond.glint.astral-glint.description.1;Your quest will contain 3 Starponds
 beyond.glint.lavish-glint;Lavish Glint
-beyond.glint.lavish-glint.description.1;
-beyond.glint.lavish-glint.description.2;Gain a Present at the start of the quest
+beyond.glint.lavish-glint.description.1;Gain a Present at the start of the quest
 beyond.glint.golden-glint;Golden Glint
-beyond.glint.golden-glint.description.1;
-beyond.glint.golden-glint.description.2;Begin the quest with 20 extra coins
+beyond.glint.golden-glint.description.1;Begin the quest with 20 extra coins
 beyond.glint.heavenly-glint;Heavenly Glint
-beyond.glint.heavenly-glint.description.1;
-beyond.glint.heavenly-glint.description.2;Begin the quest with an extra Revive
+beyond.glint.heavenly-glint.description.1;Begin the quest with an extra revive
 beyond.glint.mastery-glint;Mastery Glint
-beyond.glint.mastery-glint.description.1;
-beyond.glint.mastery-glint.description.2;Begin the quest with a fully-charged Mastery
+beyond.glint.mastery-glint.description.1;Begin the quest with a fully-charged mastery
 beyond.glint.medical-glint;Medical Glint
-beyond.glint.medical-glint.description.1;
-beyond.glint.medical-glint.description.2;Gain a Health Potion at the start of the quest
-beyond.glint.medical-glint.description.3;Gain a Mana Potion at the start of the quest
+beyond.glint.medical-glint.description.1;Gain a Health Potion at the start of the quest
+beyond.glint.medical-glint.description.2;Gain a Mana Potion at the start of the quest
 beyond.glint.earthen-glint;Earthen Glint
-beyond.glint.earthen-glint.description.1;
-beyond.glint.earthen-glint.description.2;Remove 2 Stage Mods from the final stage of the quest
+beyond.glint.earthen-glint.description.1;Remove 2 stage mods from the final stage of the quest
 beyond.glint.iron-glint;Iron Glint
-beyond.glint.iron-glint.description.1;
-beyond.glint.iron-glint.description.2;Begin the quest with 2 Defense
+beyond.glint.iron-glint.description.1;Begin the quest with 2 defense
 beyond.glint.shadowy-glint;Shadowy Glint
-beyond.glint.shadowy-glint.description.1;
-beyond.glint.shadowy-glint.description.2;Remove a Boss mod
-beyond.glint.shadowy-glint.description.3;Remove any Dark Hearts that spawn with the boss
+beyond.glint.shadowy-glint.description.1;Remove a boss mod
+beyond.glint.shadowy-glint.description.2;Remove any Dark Hearts that spawn with the boss
 beyond.glint.scary-glint;Scary Glint
-beyond.glint.scary-glint.description.1;
-beyond.glint.scary-glint.description.2;Remove 10 monsters from each stage
+beyond.glint.scary-glint.description.1;Remove 10 monsters from each stage
 beyond.glint.sainted-glint;Sainted Glint
-beyond.glint.sainted-glint.description.1;
-beyond.glint.sainted-glint.description.2;The first stage gains a random positive mod
+beyond.glint.sainted-glint.description.1;The first stage gains a random positive mod
 beyond.glint.special-glint;Special Glint
-beyond.glint.special-glint.description.1;
-beyond.glint.special-glint.description.2;Quadruple your chance to find Special Chests
+beyond.glint.special-glint.description.1;Quadruple your chance to find special chests
 beyond.glint.weakening-glint;Weakening Glint
-beyond.glint.weakening-glint.description.1;
-beyond.glint.weakening-glint.description.2;Reduce the stage power of all stages by 1
+beyond.glint.weakening-glint.description.1;Reduce the stage power of all stages by 1
 beyond.glint.friendly-glint;Friendly Glint
-beyond.glint.friendly-glint.description.1;
-beyond.glint.friendly-glint.description.2;Spawn 5 strangers in bubbles at the start of the quest
+beyond.glint.friendly-glint.description.1;Spawn 5 strangers in bubbles at the start of the quest
 beyond.glint.forward-glint;Forward Glint
-beyond.glint.forward-glint.description.1;
-beyond.glint.forward-glint.description.2;Begin the quest with 50 cells opened since your last mistake
-beyond.glint.forward-glint.description.3;Begin the quest with 3 omens destroyed
-beyond.glint.forward-glint.description.4;Begin the quest with 3 chests opened
+beyond.glint.forward-glint.description.1;Begin the quest with 50 cells opened since your last mistake
+beyond.glint.forward-glint.description.2;Begin the quest with 3 omens destroyed
+beyond.glint.forward-glint.description.3;Begin the quest with 3 chests opened
 beyond.glint.duplication-glint;Duplication Glint
-beyond.glint.duplication-glint.description.1;
-beyond.glint.duplication-glint.description.2;Your quest will contain an additional copy of the first stage.
+beyond.glint.duplication-glint.description.1;Your quest will contain an additional copy of the first stage
 beyond.glint.geo-glint;Geo Glint
-beyond.glint.geo-glint.description.1;
-beyond.glint.geo-glint.description.2;Gain 5% pathfinding at the start of the quest.
+beyond.glint.geo-glint.description.1;Gain 5% pathfinding at the start of the quest
 beyond.glint.mega-glint;Mega Glint
-beyond.glint.mega-glint.description.1;
-beyond.glint.mega-glint.description.2;Reduce the cost of your quest by half
+beyond.glint.mega-glint.description.1;Reduce the cost of your quest by half

@@ -42,7 +42,3 @@ func _get_charitable_amount() -> int:
 
 func _is_charitable() -> bool:
 	return true
-
-
-func _can_interact() -> bool:
-	return true

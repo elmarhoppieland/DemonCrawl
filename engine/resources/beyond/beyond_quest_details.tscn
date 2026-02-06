@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="2_r188l"]
 [ext_resource type="PackedScene" uid="uid://cp84kuiwwmn4j" path="res://engine/resources/beyond/beyond_artifact_selection.tscn" id="3_r188l"]
 [ext_resource type="PackedScene" uid="uid://olejcy0j1gwb" path="res://engine/resources/beyond/beyond_emblem_selection.tscn" id="5_x4wc1"]
+[ext_resource type="PackedScene" uid="uid://bwfetkmjib4qx" path="res://engine/resources/beyond/beyond_glint_selection.tscn" id="6_4uuef"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3ygx"]
 shader = ExtResource("1_0d2s1")
@@ -59,5 +60,10 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="BeyondGlintSelection" parent="VBoxContainer/MarginContainer2" unique_id=1693530098 instance=ExtResource("6_4uuef")]
+unique_name_in_owner = true
+layout_mode = 2
+
 [connection signal="artifact_selected" from="VBoxContainer/MarginContainer2/BeyondArtifactSelection" to="." method="_on_artifact_selected"]
 [connection signal="emblem_selected" from="VBoxContainer/MarginContainer2/BeyondEmblemSelection" to="." method="_on_emblem_selected"]
+[connection signal="glint_selected" from="VBoxContainer/MarginContainer2/BeyondGlintSelection" to="." method="_on_glint_selected"]

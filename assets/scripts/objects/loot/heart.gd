@@ -55,10 +55,6 @@ func _collect() -> bool:
 	return success
 
 
-func _can_interact() -> bool:
-	return true
-
-
 func _collect_failed() -> void:
 	Toasts.add_toast(tr("object.heart.fail"), get_texture())
 

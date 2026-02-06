@@ -45,10 +45,6 @@ func _get_charitable_amount() -> int:
 	return 5
 
 
-func _can_interact() -> bool:
-	return true
-
-
 func get_coin_reward() -> int:
 	var reward: int = randi_range(6, 2 * get_stage().max_power + 6)
 	return EffectManager.propagate_mutable((get_stage_instance().get_event_bus(ChestEffects) as ChestEffects).get_coin_reward, 1, self, reward)

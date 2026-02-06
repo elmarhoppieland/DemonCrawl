@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ceob43rxtruwu" path="res://engine/resources/singletons/debug/debug_tool_auras.gd" id="6_7u2oj"]
 [ext_resource type="Script" uid="uid://ut7dfsq0rbq6" path="res://engine/resources/singletons/debug/input_binder.gd" id="6_qlxe7"]
 [ext_resource type="Script" uid="uid://t7wk1kjokve4" path="res://engine/resources/singletons/debug/debug_tool_emblems.gd" id="7_i4rwj"]
+[ext_resource type="Script" uid="uid://y7cs1n8tymrh" path="res://engine/resources/singletons/debug/debug_tool_glints.gd" id="8_swcay"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mfv00"]
 content_margin_left = 5.0
@@ -172,6 +173,16 @@ metadata/_custom_type_script = "uid://t7wk1kjokve4"
 script = ExtResource("3_pdqtg")
 metadata/_custom_type_script = "uid://mfu7hnfru68d"
 
+[node name="DebugToolGlints" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer" unique_id=938519344]
+layout_mode = 2
+text = "Glints"
+script = ExtResource("8_swcay")
+metadata/_custom_type_script = "uid://y7cs1n8tymrh"
+
+[node name="CheckmarkGrabber" type="Node" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolGlints" unique_id=1394021520]
+script = ExtResource("3_pdqtg")
+metadata/_custom_type_script = "uid://mfu7hnfru68d"
+
 [node name="ClearBoundButton" type="Button" parent="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2107429127]
 layout_mode = 2
 text = "Clear Bound Actions..."
@@ -261,6 +272,7 @@ text = "Confirm"
 [connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolObjects" to="." method="_on_debug_tool_pressed" flags=18]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolAuras" to="." method="_on_debug_tool_pressed" flags=18]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolEmblems" to="." method="_on_debug_tool_pressed" flags=18]
+[connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DebugToolsContainer/DebugToolGlints" to="." method="_on_debug_tool_pressed" flags=18]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ClearBoundButton" to="." method="_on_clear_bound_button_pressed"]
 [connection signal="timeout" from="SubViewportContainer/SubViewport/PanelContainer/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/SearchBox" to="." method="_on_search_box_timeout"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/InputBinder/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="SubViewportContainer/SubViewport/InputBinder" method="_on_cancel_button_pressed"]

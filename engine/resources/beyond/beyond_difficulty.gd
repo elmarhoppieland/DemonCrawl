@@ -67,11 +67,17 @@ func _get_quest_selection_node() -> Node:
 		
 		_quest_details.return_emblem(emblem)
 	)
+	_quest_selection.glint_erased.connect(func(glint: GlintData) -> void:
+		_quest_details.return_glint(glint)
+	)
 	_quest_selection.artifact_slot_selected.connect(func(_slot_idx: int) -> void:
 		_quest_details.show_artifacts()
 	)
 	_quest_selection.emblem_slot_selected.connect(func() -> void:
 		_quest_details.show_emblems()
+	)
+	_quest_selection.glint_slot_selected.connect(func() -> void:
+		_quest_details.show_glints()
 	)
 	return _quest_selection
 
@@ -104,6 +110,9 @@ func _get_quest_details_node() -> Node:
 		else:
 			hide_begin_button()
 	)
+	_quest_details.glint_selected.connect(func(glint: GlintData) -> void:
+		_quest_selection.insert_glint(glint)
+	)
 	return _quest_details
 
 
@@ -111,12 +120,20 @@ func _begin_selected_quest() -> Quest:
 	var artifacts := _quest_selection.get_artifacts()
 	var emblem := _quest_selection.get_emblem()
 	
-	var source_quest := quest_files[emblem.level]
+	var source_quest := quest_files[emblem.level if emblem else 0]
 	
 	for artifact in artifacts:
-		Codex.lose_artifact(artifact, emblem.artifact_cost)
+		Codex.lose_artifact(artifact, emblem.artifact_cost if emblem else 1)
 	
-	return source_quest.generate(artifacts, emblem)
+	if emblem:
+		Codex.lose_emblem(emblem)
+	
+	var glint := _quest_selection.get_glint()
+	
+	if glint:
+		Codex.lose_glint(glint)
+	
+	return source_quest.generate(artifacts, emblem, glint)
 
 
 func _apply_starting_values(quest: Quest) -> void:
@@ -125,8 +142,6 @@ func _apply_starting_values(quest: Quest) -> void:
 	quest.get_stats().revives = revives
 	quest.get_stats().defense = defense
 	quest.get_stats().coins = coins
-	
-	# TODO: apply glint effects
 
 
 func _select_quest_index(quest_index: int) -> void:

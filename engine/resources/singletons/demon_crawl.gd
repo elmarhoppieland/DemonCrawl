@@ -12,6 +12,8 @@ static func _static_init() -> void:
 	if _initialized:
 		return
 	
+	_initialized = true
+	
 	await Promise.defer()
 	if OS.is_debug_build():
 		get_tree().node_added.connect(func(node: Node) -> void:
@@ -20,17 +22,22 @@ static func _static_init() -> void:
 			var script := node.get_script() as Script
 			if not script:
 				return
-			var c := UserClassDB.script_get_class(script)
-			if c.is_empty():
-				return
-			if "::" in c:
-				c = c.substr(c.rfind("::") + 2)
-			node.name = c
+			
+			var base := script
+			var cls := &""
+			while cls.is_empty():
+				if base == null:
+					return
+				
+				cls = UserClassDB.script_get_class(base)
+				base = base.get_base_script()
+			
+			if "::" in cls:
+				cls = cls.substr(cls.rfind("::") + 2)
+			node.name = cls
 		)
 	
 	get_tree().root.close_requested.connect(Eternity.save)
-	
-	_initialized = true
 
 
 static func get_full_registry() -> Registry:

@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://c1g737lu2lio3"]
+
+[ext_resource type="FontFile" uid="uid://dqdbst8avnfuo" path="res://assets/fonts/lady_radical.ttf" id="1_i3j1n"]
+[ext_resource type="Script" uid="uid://ddf4hnees0uba" path="res://engine/resources/singletons/debug/debug_tool_glint_details.gd" id="1_jj5xq"]
+[ext_resource type="Resource" uid="uid://dra1wwgytxk4k" path="res://assets/beyond/glints/atlas_glint.tres" id="2_fn77v"]
+[ext_resource type="PackedScene" uid="uid://kwco715ga5g0" path="res://engine/resources/scenes/frame.tscn" id="2_jj5xq"]
+[ext_resource type="Script" uid="uid://fhgkw1iml6g3" path="res://engine/resources/utility_node/tooltip_grabber.gd" id="4_rll18"]
+[ext_resource type="Texture2D" uid="uid://bboh5rmf5bg0f" path="res://assets/beyond/glints/atlas_glint.png" id="5_rll18"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eqoxe"]
+font = ExtResource("1_i3j1n")
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="DebugToolGlintDetails" type="MarginContainer" unique_id=229424801]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jj5xq")
+glint = ExtResource("2_fn77v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1527614071]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=2144859277]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "beyond.glint.atlas-glint"
+label_settings = SubResource("LabelSettings_eqoxe")
+
+[node name="CurrentCountLabel" type="Label" parent="VBoxContainer" unique_id=1195056342]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "In Inventory: 0"
+
+[node name="Frame" parent="VBoxContainer" unique_id=1871862474 instance=ExtResource("2_jj5xq")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Frame" unique_id=853911616]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_rll18")
+
+[node name="TooltipGrabber" type="Node" parent="VBoxContainer/Frame/TextureRect" unique_id=450366960]
+unique_name_in_owner = true
+script = ExtResource("4_rll18")
+text = "beyond.glint.atlas-glint"
+subtext = "• beyond.glint.atlas-glint.description.1"
+text_color = Color(1, 0.89411765, 0.47843137, 1)
+max_line_length = 45
+metadata/_custom_type_script = "uid://fhgkw1iml6g3"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1216897223]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=703863802]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AddToInventoryButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer3" unique_id=649308178]
+layout_mode = 2
+text = "Add to Inventory"
+
+[node name="BindAddToInventoryButton" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer3" unique_id=771792595]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Bind..."
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/VBoxContainer3/AddToInventoryButton" to="." method="_on_add_to_inventory_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/VBoxContainer3/BindAddToInventoryButton" to="." method="_on_bind_add_to_inventory_button_pressed"]

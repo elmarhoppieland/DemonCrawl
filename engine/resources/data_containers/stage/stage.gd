@@ -14,41 +14,32 @@ static var _theme_cache: Dictionary[String, Theme] = {}
 # ==============================================================================
 @export var file: StageFile :
 	set(value):
-		if file == value:
-			return
-		
 		file = value
 		
 		queue_changed()
 
 @export var size := Vector2i.ZERO : ## The size of the stage.
 	set(value):
-		if size == value:
-			return
-		
 		size = value
 		
 		queue_changed()
 @export var monsters := 0 : ## The number of monsters in the stage.
 	set(value):
-		if monsters == value:
-			return
-		
 		monsters = maxi(1, value)
 		
 		queue_changed()
 @export var min_power := 0 : ## The stage's minimum power.
 	set(value):
-		if min_power == value:
-			return
+		if value < 1:
+			value = 1
 		
 		min_power = value
 		
 		queue_changed()
 @export var max_power := 0 : ## The stage's maximum power.
 	set(value):
-		if max_power == value:
-			return
+		if value < 1:
+			value = 1
 		
 		max_power = value
 		
@@ -56,9 +47,6 @@ static var _theme_cache: Dictionary[String, Theme] = {}
 
 @export var mods: Array[StageMod] = [] : ## The stage's mods.
 	set(value):
-		if mods == value:
-			return
-		
 		mods = value
 		
 		queue_changed()

@@ -4,13 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://c4vsx7phqlc3l" path="res://engine/resources/data_containers/stage/stage_icon_mask.png" id="3_fak40"]
 [ext_resource type="Shader" uid="uid://weam5sy3hita" path="res://engine/resources/shaders/mask.gdshader" id="3_jsaed"]
 [ext_resource type="Script" uid="uid://jkalggo6fr21" path="res://addons/icon_manager/icon.gd" id="4_7x0h2"]
-[ext_resource type="Script" uid="uid://cqn3av0xtweww" path="res://engine/resources/data_containers/stage/stage.gd" id="5_jsaed"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uaped"]
 shader = ExtResource("3_jsaed")
 shader_parameter/mask = ExtResource("3_fak40")
 
-[sub_resource type="DPITexture" id="DPITexture_jsaed"]
+[sub_resource type="DPITexture" id="DPITexture_fak40"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
 "
 
@@ -26,11 +25,10 @@ resource_name = ""
 script = ExtResource("4_7x0h2")
 name = "icons/checkmark"
 
-[node name="StageIcon" type="MarginContainer" unique_id=1295331939 node_paths=PackedStringArray("stage")]
+[node name="StageIcon" type="MarginContainer" unique_id=1295331939]
 custom_minimum_size = Vector2(16, 16)
 focus_mode = 1
 script = ExtResource("1_g5r4x")
-stage = NodePath("Stage")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1444846597]
 layout_mode = 2
@@ -56,7 +54,7 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_uaped")
 layout_mode = 2
 mouse_filter = 2
-texture = SubResource("DPITexture_jsaed")
+texture = SubResource("DPITexture_fak40")
 
 [node name="Lock" type="TextureRect" parent="." unique_id=1016306006]
 unique_name_in_owner = true
@@ -72,14 +70,6 @@ layout_mode = 2
 mouse_filter = 2
 texture = SubResource("Texture2D_5erce")
 stretch_mode = 3
-
-[node name="Stage" type="Node" parent="." unique_id=291221747]
-script = ExtResource("5_jsaed")
-size = Vector2i(8, 8)
-monsters = 8
-min_power = 1
-max_power = 2
-metadata/_custom_type_script = "uid://cqn3av0xtweww"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

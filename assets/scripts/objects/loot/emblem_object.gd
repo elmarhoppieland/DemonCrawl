@@ -58,10 +58,6 @@ func _collect() -> bool:
 	return true
 
 
-func _can_interact() -> bool:
-	return true
-
-
 func _get_annotation_title() -> String:
 	return tr(emblem.name)
 

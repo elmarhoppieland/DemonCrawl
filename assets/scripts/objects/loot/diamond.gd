@@ -41,9 +41,5 @@ func _is_charitable() -> bool:
 	return true
 
 
-func _can_interact() -> bool:
-	return true
-
-
 class DiamondEffects extends EventBus:
 	signal get_diamond_value(diamond: Diamond, value: int)

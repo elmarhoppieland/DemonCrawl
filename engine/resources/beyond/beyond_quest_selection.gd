@@ -7,6 +7,7 @@ const CURRENT_TOKENS_TEXT := "beyond.current-tokens"
 # ==============================================================================
 var _artifacts: Array[StageFile] = [null, null, null]
 var _emblem: EmblemData
+var _glint: GlintData
 # ==============================================================================
 @onready var _artifact_texture_rects: Array[TextureRect] = [
 	%ArtifactTextureRect1,
@@ -26,6 +27,7 @@ var _emblem: EmblemData
 	%ArtifactCountLabel3
 ]
 @onready var _emblem_texture_rect: TextureRect = %EmblemTextureRect
+@onready var _glint_texture_rect: TextureRect = %GlintTextureRect
 @onready var _fee_label: Label = %FeeLabel
 @onready var _current_tokens_label: Label = %CurrentTokensLabel
 # ==============================================================================
@@ -33,11 +35,15 @@ var _emblem: EmblemData
 signal artifact_slot_selected(slot_idx: int)
 ## Emitted when the emblem slot is selected.
 signal emblem_slot_selected()
+## Emitted when the glint slot is selected.
+signal glint_slot_selected()
 
 ## Emitted when an artifact slot is right-clicked, after the slot has been cleared.
 signal artifact_erased(stage: StageFile)
 ## Emitted when the emblem slot is right-clicked, after the slot has been cleared.
 signal emblem_erased(emblem: EmblemData)
+## Emitted when the glint slot is right-clicked, after the slot has been cleared.
+signal glint_erased(glint: EmblemData)
 # ==============================================================================
 
 func _ready() -> void:
@@ -109,6 +115,25 @@ func insert_emblem(emblem: EmblemData) -> void:
 	select_slot(QuestsManager.selected_quest_index + 1)
 
 
+## Inserts a [Glint] at the emblem slot.
+func insert_glint(glint: GlintData) -> void:
+	if _glint:
+		erase_glint()
+	
+	_glint = glint
+	_glint_texture_rect.texture = glint.icon
+	
+	var tooltip_grabber := _glint_texture_rect.get_child(0) as TooltipGrabber
+	tooltip_grabber.text = tr(glint.name).to_upper()
+	tooltip_grabber.text_color = GlintObject.TITLE_COLOR
+	tooltip_grabber.subtext = glint.get_description()
+	
+	for i in _artifacts.size():
+		_update_artifact_count(i)
+	
+	select_slot(0)
+
+
 ## Erases the artifact at the given [param index].
 func erase_artifact(index: int) -> void:
 	if index >= _artifacts.size():
@@ -157,6 +182,29 @@ func erase_emblem() -> void:
 	emblem_erased.emit(emblem)
 
 
+## Erases the currently inserted [Emblem].
+func erase_glint() -> void:
+	_glint_texture_rect.texture = null
+	
+	var tooltip_grabber := _glint_texture_rect.get_child(0) as TooltipGrabber
+	tooltip_grabber.text = "beyond.glint-slot-tooltip"
+	tooltip_grabber.subtext = ""
+	tooltip_grabber.text_color = Color.WHITE
+	
+	_fee_label.text = tr(FEE_TEXT).format({ "token_fee": 1 })
+	
+	var glint := _glint
+	if glint == null:
+		return
+	
+	_glint = null
+	
+	for i in _artifacts.size():
+		_update_artifact_count(i)
+	
+	glint_erased.emit(glint)
+
+
 func _update_artifact_count(slot_idx: int) -> void:
 	var count_label := _artifact_count_labels[slot_idx]
 	
@@ -185,16 +233,23 @@ func _update_artifact_count(slot_idx: int) -> void:
 		count_label.text = str(_emblem.artifact_cost / 1000) + "K"
 
 
-## Returns whether an [Artifact] slot is currently selected.
+## Returns whether the slot at the given [param slot_idx] is an [Artifact] slot.
 func is_artifact_slot(slot_idx: int) -> bool:
 	return slot_idx < _artifacts.size()
 
 
-## Returns whether the [Emblem] slot is currently selected.
+## Returns whether the slot at the given [param slot_idx] is an [Emblem] slot.
 func is_emblem_slot(slot_idx: int) -> bool:
 	if slot_idx >= _slots.size():
 		return false
 	return _slots[slot_idx].is_ancestor_of(_emblem_texture_rect)
+
+
+## Returns whether the slot at the given [param slot_idx] is a [Glint] slot.
+func is_glint_slot(slot_idx: int) -> bool:
+	if slot_idx >= _slots.size():
+		return false
+	return _slots[slot_idx].is_ancestor_of(_glint_texture_rect)
 
 
 ## Selects the slot at the given [param index].
@@ -218,6 +273,11 @@ func get_emblem() -> EmblemData:
 	return _emblem
 
 
+## Returns the currently selected [Glint].
+func get_glint() -> GlintData:
+	return _glint
+
+
 ## Returns [code]true[/code] if the selected quest can be generated, i.e. all
 ## artifact slots have been filled with valid artifacts.
 func can_generate_quest() -> bool:
@@ -231,6 +291,8 @@ func _on_slot_interacted(slot_idx: int) -> void:
 		artifact_slot_selected.emit(slot_idx)
 	elif is_emblem_slot(slot_idx):
 		emblem_slot_selected.emit()
+	elif is_glint_slot(slot_idx):
+		glint_slot_selected.emit()
 
 
 func _on_slot_second_interacted(slot_idx: int) -> void:
@@ -238,5 +300,5 @@ func _on_slot_second_interacted(slot_idx: int) -> void:
 		erase_artifact(slot_idx)
 	elif is_emblem_slot(slot_idx):
 		erase_emblem()
-	else:
-		Debug.log_error("Erasing a non-Artifact slot is not yet implemented.")
+	elif is_glint_slot(slot_idx):
+		erase_glint()
