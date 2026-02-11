@@ -8,5 +8,5 @@
 script = ExtResource("3_vimdl")
 name = "beyond.glint.special-glint"
 icon = ExtResource("2_k5sqj")
-effects = Array[String](["beyond.glint.special-glint.description.1"])
+effects = Array[String](["beyond.glint.special-glint.description.1", "generic.not-implemented"])
 glint_script = ExtResource("1_n3mhr")

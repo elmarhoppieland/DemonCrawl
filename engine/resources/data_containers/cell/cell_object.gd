@@ -20,7 +20,7 @@ var _theme: Theme = null :
 
 #region internals
 
-func _init(stage: Stage = null) -> void:
+func _init(stage: StageBase = null) -> void:
 	_origin_stage = stage
 
 
@@ -168,17 +168,39 @@ func get_name_id() -> String:
 @abstract func _get_name_id() -> String
 
 
-## Returns whether an object of this type can spawn in the given [param cell].
+## Returns [code]true[/code] if an object of this type can spawn in the given [param cell].
 ## If this returns [code]false[/code], a [Cell] that attempts to spawn this
 ## object should try again.
-static func can_spawn(object: Script, cell: CellData) -> bool:
-	return object._can_spawn(cell)
+static func can_spawn_in_cell(object: Script, cell: CellData) -> bool:
+	return can_spawn_in_quest(object, cell.get_quest()) and object._can_spawn_in_cell(cell)
 
 
 ## Virtual method. Should return [code]true[/code] if an object of this type can
 ## spawn in the given [param cell].
+## [br][br][b]Note:[/b] This method is called [i]after[/i] [method _can_spawn_in_quest],
+## if implemented.
+## [br][br][b]Note:[/b] This method is only called when the object is trying to
+## spawn in a cell. If the object is spawned outside of a cell (e.g. in a [Bubble]),
+## only [method _can_spawn_in_quest] is called.
 @warning_ignore("unused_parameter")
-static func _can_spawn(cell: CellData) -> bool:
+static func _can_spawn_in_cell(cell: CellData) -> bool:
+	return true
+
+
+## Returns [code]true[/code] if an object of the given type can spawn in the [param quest].
+## If this returns [code]false[/code], any effect that attempts to spawn this object
+## should try again.
+static func can_spawn_in_quest(object: Script, quest: Quest) -> bool:
+	return object._can_spawn_in_quest(quest)
+
+
+## Virtual method. Should return [code]true[/code] if an object of this type can
+## spawn in the given [param quest].
+## [br][br][b]Note:[/b] This method is called [i]before[/i] [method _can_spawn_in_cell],
+## if implemented. As a result, if this method returns [code]false[/code], [method _can_spawn_in_cell]
+## is not called.
+@warning_ignore("unused_parameter")
+static func _can_spawn_in_quest(quest: Quest) -> bool:
 	return true
 
 

@@ -179,8 +179,21 @@ func start_stage(stage: StageBase) -> StageInstanceBase:
 
 #region global utils
 
-func add_stage(stage: StageBase) -> void:
-	get_stages_parent().add_child(stage)
+## Adds a new stage to the [Quest]. The stage is placed at the given [param index].
+## If the [param index] is negative, reads from the end of the child list.
+## [br][br][b]Note:[/b] Due to a Godot limitation, if [param index] is [code]0[/code],
+## the stage is placed at the end of the list and is then moved to the start.
+func add_stage(stage: StageBase, index: int = -1) -> void:
+	if index < 0:
+		index += get_stages_parent().get_child_count() + 1
+	
+	assert(index >= 0 and index <= get_stages_parent().get_child_count(), "Given index is out of bounds.")
+	
+	if index > 0:
+		get_stages_parent().get_child(index - 1).add_sibling(stage)
+	else:
+		get_stages_parent().add_child(stage)
+		get_stages_parent().move_child(stage, 0)
 
 
 func get_stage(index: int) -> StageBase:

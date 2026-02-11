@@ -10,8 +10,8 @@ func _get_name_id() -> String:
 	return "object.elder"
 
 
-static func _can_spawn(cell: CellData) -> bool:
-	return cell.get_quest().get_mastery() != null
+static func _can_spawn_in_quest(quest: Quest) -> bool:
+	return quest.get_mastery() != null
 
 
 func _spawn() -> void:

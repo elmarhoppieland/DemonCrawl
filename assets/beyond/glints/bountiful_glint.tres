@@ -8,5 +8,5 @@
 script = ExtResource("3_idrhb")
 name = "beyond.glint.bountiful-glint"
 icon = ExtResource("2_wdkaq")
-effects = Array[String](["beyond.glint.bountiful-glint.description.1"])
+effects = Array[String](["beyond.glint.bountiful-glint.description.1", "generic.not-implemented"])
 glint_script = ExtResource("1_hcgon")

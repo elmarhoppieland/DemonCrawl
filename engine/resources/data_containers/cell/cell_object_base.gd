@@ -27,18 +27,26 @@ func _init(base_script: GDScript = null) -> void:
 	self.base_script = base_script
 
 
-func create(stage: Stage) -> CellObject:
+## Creates an instance of this [CellObject].
+func create(stage: StageBase = null) -> CellObject:
 	var instance := base_script.new(stage) as CellObject
 	for prop in _meta_props:
 		instance.set(prop, _meta_props[prop])
 	return instance
 
 
-## Returns [code]true[/code] if this object can spawn on the given [param cell].
-func can_spawn(cell: CellData) -> bool:
+## Returns [code]true[/code] if this object can spawn in the given [param cell].
+func can_spawn_in_cell(cell: CellData) -> bool:
 	if not base_script:
 		return false
-	return CellObject.can_spawn(base_script, cell)
+	return CellObject.can_spawn_in_cell(base_script, cell)
+
+
+## Returns [code]true[/code] if this object can spawn in the given [param quest].
+func can_spawn_in_quest(quest: Quest) -> bool:
+	if not base_script:
+		return false
+	return CellObject.can_spawn_in_quest(base_script, quest)
 
 
 func _get_property_list() -> Array[Dictionary]:

@@ -148,6 +148,7 @@ stats.overview.powerchording;Powerchording: {powerchording}%
 stats.overview.rare-loot-modifier;Rare loot modifier: {modifier}%
 stats.overview.chests-opened;Chests opened: {chests}
 stats.overview.monsters-killed;Monsters killed: {monsters}
+stats.overview.omens-destroyed;Omens Destroyed: {omens}
 stats.overview.research-subject;"You are an expert at finding ""{subject}"" items."
 
 popup.mastery-achieved.title;mastery achieved!

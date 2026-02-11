@@ -15,9 +15,6 @@ func _init(data: GlintData = null) -> void:
 func _enter_tree() -> void:
 	get_quest().started.connect(_quest_start)
 	
-	if Eternity.get_current_loader() != null:
-		return
-	
 	var base: Node = self
 	while base != null:
 		if not base.is_node_ready():

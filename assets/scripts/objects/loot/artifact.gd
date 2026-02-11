@@ -57,5 +57,5 @@ func _get_annotation_title_color() -> Color:
 	return TITLE_COLOR
 
 
-static func _can_spawn(cell: CellData) -> bool:
+static func _can_spawn_in_cell(cell: CellData) -> bool:
 	return cell.get_stage().file.artifact_texture != null

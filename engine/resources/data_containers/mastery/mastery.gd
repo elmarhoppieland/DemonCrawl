@@ -229,17 +229,28 @@ func get_condition_text() -> String:
 	#return -1
 
 
+## Returns the number of charges this [Mastery] currently has.
 func get_charges() -> int:
 	return instance_data.charges
 
 
+## Returns [code]true[/code] if this [Mastery] is fully charged.
 func is_charged() -> bool:
 	return get_charges() >= 0 and get_charges() >= get_data().ability_charges
 
 
+## If this [Mastery] can hold mastery charges and is not yet fully charged, adds
+## one mastery charge.
 func gain_charge() -> void:
 	if get_charges() >= 0 and get_charges() < get_data().ability_charges:
 		instance_data.charges += 1
+
+
+## If this [Mastery] can hold mastery charges and is not yet fully charged, sets
+## the charges to full.
+func charge() -> void:
+	if get_charges() >= 0 and get_charges() < get_data().ability_charges:
+		instance_data.charges = get_data().ability_charges
 
 
 func get_max_level() -> int:

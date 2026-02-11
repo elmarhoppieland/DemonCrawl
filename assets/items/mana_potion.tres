@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://ceude6nxr2svo"]
+
+[ext_resource type="Texture2D" uid="uid://ggbpqjhhvgkc" path="res://assets/items/mana_potion.png" id="1_2lgid"]
+[ext_resource type="Script" uid="uid://5sjem7evpxwl" path="res://assets/items/mana_potion.gd" id="2_ky2e7"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="3_il5f1"]
+
+[resource]
+script = ExtResource("3_il5f1")
+name = "item.mana-potion"
+description = "item.mana-potion.description"
+cost = 10
+icon = ExtResource("1_2lgid")
+item_script = ExtResource("2_ky2e7")

@@ -14,8 +14,8 @@ const MAX_LINE_LENGTH := 45
 		emit_changed()
 # ==============================================================================
 
-static func _can_spawn(cell: CellData) -> bool:
-	return cell.get_quest().source_file.emblem_level >= 1
+static func _can_spawn_in_quest(quest: Quest) -> bool:
+	return quest.source_file.emblem_level >= 1
 
 
 func _spawn() -> void:

@@ -17,6 +17,15 @@ func _get_items() -> Array[Control]:
 		frame.interacted.connect(item_selected.emit.bind(frame))
 		items.append(frame)
 	
+	items.sort_custom(func(frame_a: Frame, frame_b: Frame) -> bool:
+		var item_a: ItemData = frame_a.get_meta("item")
+		var item_b: ItemData = frame_b.get_meta("item")
+		
+		if item_a.cost == item_b.cost:
+			return tr(item_a.name) < tr(item_b.name)
+		return item_a.cost < item_b.cost
+	)
+	
 	return items
 
 

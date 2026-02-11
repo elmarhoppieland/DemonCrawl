@@ -63,6 +63,18 @@ func _get_name_id() -> String:
 	return file.name if file else "stage.invalid"
 
 
+## Increases the stage power (min power and max power) by the given [param amount].
+func increase_power(amount: int) -> void:
+	max_power += amount
+	min_power += amount
+
+
+## Decreases the stage power (min power and max power) by the given [param amount].
+func reduce_power(amount: int) -> void:
+	min_power = maxi(1, min_power - amount)
+	max_power = maxi(1, max_power - amount)
+
+
 ## Returns the total area of this [Stage], i.e. the number of [Cell]s.
 func area() -> int:
 	return size.x * size.y

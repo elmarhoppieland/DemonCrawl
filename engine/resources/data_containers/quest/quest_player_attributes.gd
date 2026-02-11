@@ -72,6 +72,13 @@ const RESEARCH_WEIGHT_MULT := 5.0
 		chain_length = value
 		emit_changed()
 
+@export var omens_destroyed := 0 :
+	set(value):
+		value = EffectManager.propagate_mutable(change_property, 1, &"omens_destroyed", value)
+		EffectManager.propagate(property_changed, &"omens_destroyed", value)
+		omens_destroyed = value
+		emit_changed()
+
 @export var research_subject := "" :
 	set(value):
 		research_subject = value
@@ -117,6 +124,9 @@ func get_overview_text() -> String:
 	
 	text += "• " + tr("stats.overview.chests-opened").format({"chests": chests_opened}) + "\n" \
 		+ "• " + tr("stats.overview.monsters-killed").format({"monsters": monsters_killed}) + "\n"
+	
+	if omens_destroyed > 0:
+		text += "• " + tr("stats.overview.omens-destroyed").format({"omens": omens_destroyed}) + "\n"
 	
 	if not research_subject.is_empty():
 		text += "\n" + tr("stats.overview.research-subject").format({"subject": tr("research." + research_subject.to_snake_case().to_lower().replace("_", "-")).to_upper()})
