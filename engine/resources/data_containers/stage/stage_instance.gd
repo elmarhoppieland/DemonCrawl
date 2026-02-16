@@ -240,7 +240,7 @@ func generate_cell_content(cell: CellData, rare_loot_modifier: float = 1.0) -> C
 	var quality := get_cell_content_quality(rare_loot_modifier)
 	var content: CellObjectBase = table.generate(quality)
 	var i := 0
-	while not content or not content.can_spawn(cell):
+	while not content or not content.can_spawn_in_cell(cell):
 		if i > 100:
 			Debug.log_error("LootTable '%s' could not generate a cell's content." % table.resource_path)
 			return null

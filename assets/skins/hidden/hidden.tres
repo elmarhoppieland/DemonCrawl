@@ -6,5 +6,7 @@
 [resource]
 script = ExtResource("1_lj43r")
 name = "stage.hidden"
+adjective = "stage.hidden.adjective"
+description = "stage.hidden.description"
 normal = false
 music = ExtResource("1_kl70m")

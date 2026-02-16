@@ -24,6 +24,8 @@ data = {
 [resource]
 script = ExtResource("1_iir0o")
 name = "stage.convoy"
+adjective = "stage.convoy.adjective"
+description = "stage.convoy.description"
 bg = ExtResource("3_3awup")
 monster_name_pool = SubResource("Resource_s3tdd")
 artifact_texture = ExtResource("3_qcyt8")

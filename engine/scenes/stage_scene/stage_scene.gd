@@ -20,11 +20,11 @@ static var ambience_volume: float = Eternal.create(1.0, "settings")
 		if not is_node_ready():
 			await ready
 		
-		_music_player.stream = value.get_stage().file.music
+		_music_player.stream = value.get_stage().file.get_music()
 		_music_player.play()
-		_ambience_a_player.stream = value.get_stage().file.ambience_a
+		_ambience_a_player.stream = value.get_stage().file.get_ambience_a()
 		_ambience_a_player.play()
-		_ambience_b_player.stream = value.get_stage().file.ambience_b
+		_ambience_b_player.stream = value.get_stage().file.get_ambience_b()
 		_ambience_b_player.play()
 		
 		theme = value.get_stage().get_theme()

@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://br0qdxnl43jqu" path="res://engine/resources/beyond/beyond_quest_file.gd" id="1_7i470"]
 [ext_resource type="Script" uid="uid://ydkmagetydc8" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_base.gd" id="1_lggfu"]
-[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template.gd" id="2_7i470"]
 [ext_resource type="Script" uid="uid://cfljp5ptsudds" path="res://engine/resources/data_containers/quest/generation/quest_generation_stage_sequence.gd" id="2_243yq"]
 [ext_resource type="Script" uid="uid://stdm83uqs3ji" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template_base.gd" id="2_j8ohe"]
 [ext_resource type="Resource" uid="uid://bkvdrhrm24htj" path="res://assets/quests/stage_sequence_item_shop.tres" id="3_vjofr"]
 [ext_resource type="Resource" uid="uid://csjsuy0orxi38" path="res://assets/quests/normal/stage_sequence_special.tres" id="4_ea8tw"]
 [ext_resource type="Script" uid="uid://cm3ocgxiu0dbf" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_array.gd" id="5_kwe6y"]
+[ext_resource type="Script" uid="uid://buuh7dptq0th0" path="res://engine/resources/data_containers/quest/generation/stage_template/beyond_stage_template.gd" id="8_vjofr"]
 
 [sub_resource type="Resource" id="Resource_243yq"]
 script = ExtResource("2_243yq")
@@ -35,8 +35,8 @@ script = ExtResource("5_kwe6y")
 generation_sequence = Array[ExtResource("1_lggfu")]([SubResource("Resource_243yq"), ExtResource("3_vjofr"), ExtResource("4_ea8tw"), SubResource("Resource_vjofr"), ExtResource("3_vjofr"), ExtResource("3_vjofr"), SubResource("Resource_ea8tw")])
 metadata/_custom_type_script = "uid://cm3ocgxiu0dbf"
 
-[sub_resource type="Resource" id="Resource_4ubjb"]
-script = ExtResource("2_7i470")
+[sub_resource type="Resource" id="Resource_m5jaq"]
+script = ExtResource("8_vjofr")
 min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 2
@@ -45,10 +45,11 @@ density_minimum = 0.16
 density_maximum = 0.16
 size_minimum = 14
 size_maximum = 14
-metadata/_custom_type_script = "uid://crks80grc6jj0"
+metadata/_custom_type_script = "uid://buuh7dptq0th0"
 
-[sub_resource type="Resource" id="Resource_saa4u"]
-script = ExtResource("2_7i470")
+[sub_resource type="Resource" id="Resource_j37ri"]
+script = ExtResource("8_vjofr")
+index_a = 1
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
@@ -57,10 +58,11 @@ density_minimum = 0.21
 density_maximum = 0.21
 size_minimum = 19
 size_maximum = 19
-metadata/_custom_type_script = "uid://crks80grc6jj0"
+metadata/_custom_type_script = "uid://buuh7dptq0th0"
 
-[sub_resource type="Resource" id="Resource_2koyg"]
-script = ExtResource("2_7i470")
+[sub_resource type="Resource" id="Resource_qslb1"]
+script = ExtResource("8_vjofr")
+index_a = 2
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 6
@@ -69,12 +71,12 @@ density_minimum = 0.26
 density_maximum = 0.26
 size_minimum = 24
 size_maximum = 24
-metadata/_custom_type_script = "uid://crks80grc6jj0"
+metadata/_custom_type_script = "uid://buuh7dptq0th0"
 
 [resource]
 script = ExtResource("1_7i470")
 name = "difficulty.beyond"
-stage_list = Array[ExtResource("2_j8ohe")]([SubResource("Resource_4ubjb"), SubResource("Resource_saa4u"), SubResource("Resource_2koyg")])
+stage_list = Array[ExtResource("2_j8ohe")]([SubResource("Resource_m5jaq"), SubResource("Resource_j37ri"), SubResource("Resource_qslb1")])
 generation_sequence = SubResource("Resource_kwe6y")
 emblem_level = 1
 metadata/_custom_type_script = "uid://7q8ir1fur7xb"

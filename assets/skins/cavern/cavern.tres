@@ -25,6 +25,8 @@ data = {
 [resource]
 script = ExtResource("1_xs4dc")
 name = "stage.cavern"
+adjective = "stage.cavern.adjective"
+description = "stage.cavern.description"
 bg = ExtResource("3_fyblv")
 monster_texture = ExtResource("12_2boas")
 monster_name_pool = SubResource("Resource_oomwx")

@@ -21,6 +21,8 @@ data = {
 [resource]
 script = ExtResource("1_6qt7a")
 name = "stage.hearth"
+adjective = "stage.hearth.adjective"
+description = "stage.hearth.description"
 bg = ExtResource("1_g35sq")
 monster_name_pool = SubResource("Resource_pak3v")
 artifact_texture = ExtResource("1_m0yes")

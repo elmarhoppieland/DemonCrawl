@@ -20,12 +20,14 @@ func _ready() -> void:
 	_summary_label.text = tr("quest-finished.summary").format(summary_values)
 	_score_label.text = tr("quest-finished.score").format({"score": quest.get_attributes().score})
 	
-	var stages: Array[StageBase] = quest.get_stages().filter(func (stage: StageBase) -> bool:
-		return not stage.is_special()
+	var stages: Array[StageBase] = quest.get_stages().filter(func(stage: StageBase) -> bool:
+		return stage is Stage
 	)
-	var random_base := stages[randi() % len(stages)]
-	_monster_sprite.texture = random_base.get_theme().get_icon("monster", "Cell").duplicate()
-	_monster_taunt.text = load("res://assets/string_tables/monster_taunts.tres").pick_random().format({"monster": random_base.generate_monster_name().to_upper()})
+	var random_stage := stages.pick_random() as Stage
+	var monster := Monster.new(random_stage)
+	_monster_sprite.add_child(monster)
+	monster.randomize()
+	_monster_taunt.text = load("res://assets/string_tables/monster_taunts.tres").pick_random().format({"monster": monster.monster_name})
 	_monster_taunt.visible_characters = 0
 	
 	_animation_player.play(&"quest_finished")

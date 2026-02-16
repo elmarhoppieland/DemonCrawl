@@ -24,6 +24,8 @@ data = {
 [resource]
 script = ExtResource("1_5mqe4")
 name = "stage.swamp"
+adjective = "stage.swamp.adjective"
+description = "stage.swamp.description"
 bg = ExtResource("3_s5g4m")
 monster_name_pool = SubResource("Resource_q5uyb")
 artifact_texture = ExtResource("3_c28g5")

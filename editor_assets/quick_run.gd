@@ -7,7 +7,7 @@ const LOCALIZATION_STAGES_EN := preload("uid://cilbh6dvprp5")
 
 
 func _run() -> void:
-	import_glints()
+	pass
 
 
 static func import_glints() -> void:

@@ -19,6 +19,8 @@ data = {
 [resource]
 script = ExtResource("1_1jrfn")
 name = "stage.metagate"
+adjective = "stage.metagate.adjective"
+description = "stage.metagate.description"
 bg = ExtResource("1_3ws4y")
 normal = false
 monster_name_pool = SubResource("Resource_kfd4q")

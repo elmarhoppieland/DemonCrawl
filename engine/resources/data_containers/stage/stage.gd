@@ -9,24 +9,23 @@ const BG_TEXTURE_PATH := "res://assets/skins/%s/bg.png"
 const MUSIC_PATH := "res://assets/skins/%s/music.ogg"
 const AMBIENCE_A_PATH := "res://assets/skins/%s/ambience_a.ogg"
 const AMBIENCE_B_PATH := "res://assets/skins/%s/ambience_b.ogg"
+
+const INVALID_STAGE_NAME := "stage.invalid"
 # ==============================================================================
 static var _theme_cache: Dictionary[String, Theme] = {}
 # ==============================================================================
-@export var file: StageFile :
+@export var file: StageFileBase : ## The file that determines this stage's name and theme.
 	set(value):
 		file = value
-		
 		queue_changed()
 
 @export var size := Vector2i.ZERO : ## The size of the stage.
 	set(value):
 		size = value
-		
 		queue_changed()
 @export var monsters := 0 : ## The number of monsters in the stage.
 	set(value):
 		monsters = maxi(1, value)
-		
 		queue_changed()
 @export var min_power := 0 : ## The stage's minimum power.
 	set(value):
@@ -34,7 +33,6 @@ static var _theme_cache: Dictionary[String, Theme] = {}
 			value = 1
 		
 		min_power = value
-		
 		queue_changed()
 @export var max_power := 0 : ## The stage's maximum power.
 	set(value):
@@ -42,25 +40,23 @@ static var _theme_cache: Dictionary[String, Theme] = {}
 			value = 1
 		
 		max_power = value
-		
 		queue_changed()
 
 @export var mods: Array[StageMod] = [] : ## The stage's mods.
 	set(value):
 		mods = value
-		
 		queue_changed()
 # ==============================================================================
 
 @warning_ignore("shadowed_variable")
-func _init(file: StageFile = null, size: Vector2i = Vector2i.ZERO, monsters: int = 0) -> void:
+func _init(file: StageFileBase = null, size: Vector2i = Vector2i.ZERO, monsters: int = 0) -> void:
 	self.file = file
 	self.size = size
 	self.monsters = monsters
 
 
 func _get_name_id() -> String:
-	return file.name if file else "stage.invalid"
+	return file.get_stage_name() if file else INVALID_STAGE_NAME
 
 
 ## Increases the stage power (min power and max power) by the given [param amount].
@@ -104,15 +100,14 @@ func _get_info() -> Array:
 	]
 
 
-## Virtual method to override the return value of [method get_description_id].
 func _get_description_id() -> String:
-	return get_name_id().to_snake_case().replace("_", "-") + ".description"
+	return get_primary_file().description
 
 
-## Returns a [Theme] instance for this [Stage], with all relevant properties set
-## to this [Stage]'s theme.
 func _get_theme() -> Theme:
-	return file.create_theme() if file else null
+	if not file:
+		return null
+	return file.create_theme()
 
 
 static func create_theme(stage_name: String) -> Theme:
@@ -147,7 +142,7 @@ static func create_theme(stage_name: String) -> Theme:
 
 
 func _get_bg() -> Texture2D:
-	return file.bg if file else null
+	return file.get_bg() if file else null
 
 
 ## Reimplements [method StageBase.get_instance] for easy typing.
@@ -200,8 +195,24 @@ func get_mods_difficulty() -> int:
 	return difficulty
 
 
-func _generate_monster_name() -> String:
-	return file.monster_name_pool.pick_random()
+## Returns the primary [StageFile] for this stage. If this stage is not a combined
+## stage, this is the same as [method get_secondary_file].
+func get_primary_file() -> StageFile:
+	if not file:
+		return null
+	if file is CombinedStageFile:
+		return file.primary_stage
+	return file as StageFile
+
+
+## Returns the secondary [StageFile] for this stage. If this stage is not a combined
+## stage, this is the same as [method get_primary_file].
+func get_secondary_file() -> StageFile:
+	if not file:
+		return null
+	if file is CombinedStageFile:
+		return file.secondary_stage
+	return file as StageFile
 
 
 ## Returns a property of this [Stage].

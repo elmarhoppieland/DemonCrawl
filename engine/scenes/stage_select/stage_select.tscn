@@ -83,7 +83,6 @@ offset_top = 10.0
 offset_right = -10.0
 grow_horizontal = 0
 size_flags_vertical = 1
-text = "quest.glory-days"
 label_settings = SubResource("LabelSettings_pehmt")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=966589810]

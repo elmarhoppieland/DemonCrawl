@@ -24,6 +24,8 @@ data = {
 [resource]
 script = ExtResource("1_fubhy")
 name = "stage.blight"
+adjective = "stage.blight.adjective"
+description = "stage.blight.description"
 bg = ExtResource("3_nudt4")
 monster_name_pool = SubResource("Resource_8h6xs")
 artifact_texture = ExtResource("3_ul0l8")

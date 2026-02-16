@@ -86,6 +86,7 @@ generic.object.fell-off-world;Oops, your {object} fell off the world!
 generic.armor.head;head
 generic.armor.body;body
 generic.armor.leg;leg
+generic.combined-stage;{secondary} {primary}
 
 generic.not-implemented;Not (fully) implemented
 

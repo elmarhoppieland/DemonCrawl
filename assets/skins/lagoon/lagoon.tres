@@ -23,6 +23,8 @@ data = {
 [resource]
 script = ExtResource("1_7f06s")
 name = "stage.lagoon"
+adjective = "stage.lagoon.adjective"
+description = "stage.lagoon.description"
 bg = ExtResource("3_x0asq")
 monster_name_pool = SubResource("Resource_f0kgh")
 artifact_texture = ExtResource("3_k084y")

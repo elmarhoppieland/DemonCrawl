@@ -195,16 +195,6 @@ func _get_mods() -> Array[StageMod]:
 	return []
 
 
-## Generates a monster name (in the current locale).
-func generate_monster_name() -> String:
-	return _generate_monster_name()
-
-
-## Virtual method. Should return a random monster name. If the stage is not allowed
-## to have monsters, this method may also print an error and return an empty [String].
-@abstract func _generate_monster_name() -> String
-
-
 func _shrink(image: Image, new_size: int) -> Image:
 	var large_axis := maxi(image.get_width(), image.get_height())
 	var small_axis := mini(image.get_width(), image.get_height())

@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://bkvdrhrm24htj" path="res://assets/quests/stage_sequence_item_shop.tres" id="3_qspku"]
 [ext_resource type="Resource" uid="uid://csjsuy0orxi38" path="res://assets/quests/normal/stage_sequence_special.tres" id="4_byuko"]
 [ext_resource type="Script" uid="uid://cm3ocgxiu0dbf" path="res://engine/resources/data_containers/quest/generation/quest_generation_sequence_array.gd" id="5_xoijf"]
-[ext_resource type="Script" uid="uid://crks80grc6jj0" path="res://engine/resources/data_containers/quest/generation/stage_template/stage_template.gd" id="8_cod2g"]
+[ext_resource type="Script" uid="uid://buuh7dptq0th0" path="res://engine/resources/data_containers/quest/generation/stage_template/beyond_stage_template.gd" id="8_cod2g"]
 
 [sub_resource type="Resource" id="Resource_243yq"]
 script = ExtResource("2_ea581")
@@ -30,9 +30,16 @@ length_distribution_0/length = 1
 length_distribution_0/weight = 1.0
 metadata/_custom_type_script = "uid://cfljp5ptsudds"
 
+[sub_resource type="Resource" id="Resource_ea581"]
+script = ExtResource("2_ea581")
+length_distribution_count = 1
+length_distribution_0/length = 1
+length_distribution_0/weight = 1.0
+metadata/_custom_type_script = "uid://cfljp5ptsudds"
+
 [sub_resource type="Resource" id="Resource_j46f7"]
 script = ExtResource("5_xoijf")
-generation_sequence = Array[ExtResource("1_ogdqr")]([SubResource("Resource_243yq"), ExtResource("3_qspku"), ExtResource("4_byuko"), SubResource("Resource_vjofr"), ExtResource("3_qspku"), ExtResource("3_qspku"), SubResource("Resource_ea8tw")])
+generation_sequence = Array[ExtResource("1_ogdqr")]([SubResource("Resource_243yq"), ExtResource("3_qspku"), ExtResource("3_qspku"), SubResource("Resource_vjofr"), ExtResource("4_byuko"), SubResource("Resource_ea8tw"), ExtResource("3_qspku"), ExtResource("3_qspku"), SubResource("Resource_ea581")])
 metadata/_custom_type_script = "uid://cm3ocgxiu0dbf"
 
 [sub_resource type="Resource" id="Resource_4ubjb"]
@@ -41,40 +48,55 @@ min_power_minimum = 1
 min_power_maximum = 1
 max_power_minimum = 2
 max_power_maximum = 2
-density_minimum = 0.16
-density_maximum = 0.16
-size_minimum = 14
-size_maximum = 14
-metadata/_custom_type_script = "uid://crks80grc6jj0"
+density_minimum = 0.17
+density_maximum = 0.17
+size_minimum = 15
+size_maximum = 15
+metadata/_custom_type_script = "uid://buuh7dptq0th0"
 
 [sub_resource type="Resource" id="Resource_saa4u"]
 script = ExtResource("8_cod2g")
+index_a = 1
 min_power_minimum = 2
 min_power_maximum = 2
 max_power_minimum = 4
 max_power_maximum = 4
-density_minimum = 0.21
-density_maximum = 0.21
+density_minimum = 0.217
+density_maximum = 0.217
 size_minimum = 19
 size_maximum = 19
-metadata/_custom_type_script = "uid://crks80grc6jj0"
+metadata/_custom_type_script = "uid://buuh7dptq0th0"
 
 [sub_resource type="Resource" id="Resource_2koyg"]
 script = ExtResource("8_cod2g")
+index_a = 2
 min_power_minimum = 3
 min_power_maximum = 3
 max_power_minimum = 6
 max_power_maximum = 6
-density_minimum = 0.26
-density_maximum = 0.26
+density_minimum = 0.267
+density_maximum = 0.267
 size_minimum = 24
 size_maximum = 24
-metadata/_custom_type_script = "uid://crks80grc6jj0"
+metadata/_custom_type_script = "uid://buuh7dptq0th0"
+
+[sub_resource type="Resource" id="Resource_ogdqr"]
+script = ExtResource("8_cod2g")
+index_b = 1
+min_power_minimum = 5
+min_power_maximum = 5
+max_power_minimum = 9
+max_power_maximum = 9
+density_minimum = 0.292
+density_maximum = 0.292
+size_minimum = 28
+size_maximum = 28
+metadata/_custom_type_script = "uid://buuh7dptq0th0"
 
 [resource]
 script = ExtResource("1_l4dce")
 name = "difficulty.beyond"
-stage_list = Array[ExtResource("2_qlyt7")]([SubResource("Resource_4ubjb"), SubResource("Resource_saa4u"), SubResource("Resource_2koyg")])
+stage_list = Array[ExtResource("2_qlyt7")]([SubResource("Resource_4ubjb"), SubResource("Resource_saa4u"), SubResource("Resource_2koyg"), SubResource("Resource_ogdqr")])
 generation_sequence = SubResource("Resource_j46f7")
 emblem_level = 2
 metadata/_custom_type_script = "uid://br0qdxnl43jqu"

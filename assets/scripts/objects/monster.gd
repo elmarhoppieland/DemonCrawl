@@ -6,6 +6,8 @@ class_name Monster
 
 # ==============================================================================
 @export var monster_name := ""
+
+@export var _primary := true
 # ==============================================================================
 
 func _get_name_id() -> String:
@@ -13,15 +15,32 @@ func _get_name_id() -> String:
 
 
 func _spawn() -> void:
-	monster_name = get_origin_stage().generate_monster_name()
+	self.randomize()
+
+
+## Randomizes the type and name of this [Monster], depending on its origin stage.
+func randomize() -> void:
+	if get_origin_stage().file is CombinedStageFile:
+		_primary = randi() % 2
+	
+	if _primary:
+		monster_name = get_origin_stage().get_primary_file().generate_monster_name()
+	else:
+		monster_name = get_origin_stage().get_secondary_file().generate_monster_name()
+	
+	clear_texture_cache()
+	emit_changed()
 
 
 func _get_texture() -> Texture2D:
-	return get_theme_icon("monster").duplicate()
-
-
-func _get_source() -> Texture2D:
-	return (get_theme_icon("monster") as TextureSequence).get_texture(0)
+	var texture := AnimatedTextureSequence.new()
+	
+	if _primary:
+		texture.atlas = get_origin_stage().get_primary_file().monster_texture
+	else:
+		texture.atlas = get_origin_stage().get_secondary_file().monster_texture
+	
+	return texture
 
 
 func _reveal_active() -> void:
@@ -40,3 +59,8 @@ func _aura_apply() -> void:
 
 func _contribute_value() -> int:
 	return 1
+
+
+func _validate_property(property: Dictionary) -> void:
+	if property.name == &"_primary" and get_origin_stage().file is not CombinedStageFile:
+		property.usage &= ~PROPERTY_USAGE_STORAGE

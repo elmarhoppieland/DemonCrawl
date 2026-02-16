@@ -1,5 +1,5 @@
 @tool
-extends Resource
+extends StageFileBase
 class_name StageFile
 
 # ==============================================================================
@@ -16,6 +16,8 @@ static var _monster_pools_reloaded := Signal() :
 @export_tool_button("Autofill") var _tool_button_autofill := _autofill
 
 @export var name := "" ## The name of the stage, as a translation [String].
+@export var adjective := "" ## The adjective for this stage. This is used when it is the secondary theme of a [CombinedStageFile].
+@export_multiline var description := "" ## The description for this stage. This is desplayed underneath the stage name on the overworld.
 
 @export var bg: Texture2D ## The background texture used for this stage. This texture will also be used for the stage icon.
 
@@ -30,6 +32,7 @@ static var _monster_pools_reloaded := Signal() :
 @export var artifact_name := "" ## The name of this stage's artifact.
 @export var artifact_name_plural := "" ## The pluralized name of this stage's artifact.
 
+@export_group("Sounds")
 @export var music: AudioStream ## The music played in this stage.
 @export var ambience_a: AudioStream ## The ambience A played in this stage.
 @export var ambience_b: AudioStream ## The ambience B played in this stage.
@@ -43,15 +46,8 @@ static var _monster_pools_reloaded := Signal() :
 @export var cell_coin_palette: Texture2D ## The palette used for coins in this stage. If set to [code]null[/code], will use the default palette.
 @export var cell_heart_palette: Texture2D ## The palette used for hearts in this stage. If set to [code]null[/code], will use the default palette.
 # ==============================================================================
-var _theme_cache: Theme
-# ==============================================================================
 
-## Creates and returns a new [Theme] resource, with all relevant properties set
-## to this [StageFile]'s theme. Caches the result, to be returned on future calls.
-func create_theme() -> Theme:
-	if _theme_cache:
-		return _theme_cache
-	
+func _create_theme() -> Theme:
 	var theme := Theme.new()
 	
 	theme.set_icon("bg", "Cell", cell_bg)
@@ -63,19 +59,40 @@ func create_theme() -> Theme:
 	theme.set_icon("flag", "Cell", cell_flag)
 	theme.set_icon("flag_bg", "Cell", cell_flag_bg)
 	theme.set_icon("hidden", "Cell", cell_hidden)
-	if monster_texture:
-		var animated := AnimatedTextureSequence.new()
-		animated.atlas = monster_texture
-		if Engine.is_editor_hint():
-			theme.set_icon("monster", "Cell", CustomTextureBase.new(animated))
-		else:
-			theme.set_icon("monster", "Cell", animated)
 	
 	theme.set_icon("bg", "StageScene", bg)
 	
-	_theme_cache = theme
-	
 	return theme
+
+
+func _get_name() -> String:
+	return name
+
+
+func _get_bg() -> Texture2D:
+	return bg
+
+
+func generate_monster_name() -> String:
+	return monster_name_pool.pick_random()
+
+
+func _get_music() -> AudioStream:
+	return music
+
+
+func _get_ambience_a() -> AudioStream:
+	return ambience_a
+
+
+func _get_ambience_b() -> AudioStream:
+	return ambience_b
+
+
+func _get_artifacts() -> Array[StageFile]:
+	if not artifact_texture:
+		return []
+	return [self]
 
 
 func _autofill(use_wiki: bool = true) -> void:

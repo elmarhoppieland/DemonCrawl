@@ -7,6 +7,11 @@ class_name StageSelect
 @onready var _quest_name_label: Label = %QuestNameLabel
 # ==============================================================================
 
+func _ready() -> void:
+	_on_quest_changed()
+	Quest.current_changed.connect(_on_quest_changed)
+
+
 func _on_quest_changed() -> void:
 	if not is_node_ready():
 		await ready
@@ -14,7 +19,7 @@ func _on_quest_changed() -> void:
 	if not get_quest():
 		_quest_name_label.text = ""
 		return
-	_quest_name_label.text = get_quest().name
+	_quest_name_label.text = get_quest().source_file.name
 
 
 func _on_stage_details_interacted() -> void:

@@ -221,6 +221,18 @@ static func get_type_string(value: Variant) -> String:
 			return UserClassDB.script_get_identifier(script)
 		return value.get_class()
 	
+	if value is Array and value.is_typed():
+		var type := value.get_typed_builtin() as Variant.Type
+		if type != TYPE_OBJECT:
+			return "Array[%s]" % type_string(type)
+		
+		var script := value.get_typed_script() as Script
+		if not script:
+			return "Array[%s]" % value.get_typed_class_name()
+		
+		var script_id := UserClassDB.script_get_identifier(script)
+		return "Array[%s]" % script_id
+	
 	return type_string(typeof(value))
 
 

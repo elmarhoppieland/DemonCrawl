@@ -1,15 +1,14 @@
 @tool
-extends StageTemplate
+extends StageTemplateDefaultBase
 class_name RandomStageTemplate
 
 # ==============================================================================
 
 func _generate() -> Stage:
-	var stage := super()
-	stage.file = DemonCrawl.get_full_registry().stages.pick_random()
-	return stage
-
-
-func _validate_property(property: Dictionary) -> void:
-	if property.name == &"file":
-		property.usage &= ~PROPERTY_USAGE_DEFAULT
+	var stage_pool: Array[StageFile] = []
+	stage_pool.assign(DemonCrawl.get_full_registry().stages.filter(func(stage: StageFile) -> bool:
+		return stage.normal
+	))
+	
+	var file := CombinedStageFile.new(stage_pool.pick_random(), stage_pool.pick_random())
+	return Stage.new(file)

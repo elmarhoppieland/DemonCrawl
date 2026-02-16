@@ -12,6 +12,8 @@
 [resource]
 script = ExtResource("1_48x7w")
 name = "stage.default"
+adjective = "stage.default.adjective"
+description = "stage.default.description"
 bg = ExtResource("1_0ai8y")
 music = ExtResource("7_sxfvm")
 cell_bg = ExtResource("2_hyr7r")

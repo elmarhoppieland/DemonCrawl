@@ -25,6 +25,8 @@ data = {
 [resource]
 script = ExtResource("1_387ei")
 name = "stage.wilds"
+adjective = "stage.wilds.adjective"
+description = "stage.wilds.description"
 bg = ExtResource("3_k0yy4")
 monster_texture = ExtResource("12_wnvuv")
 monster_name_pool = SubResource("Resource_xhrsj")

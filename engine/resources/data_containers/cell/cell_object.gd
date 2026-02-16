@@ -6,7 +6,7 @@ class_name CellObject
 ## A [Cell]'s object.
 
 # ==============================================================================
-var _origin_stage: StageBase = null : set = _set_origin_stage, get = get_origin_stage
+var _origin_stage: Stage = null : set = _set_origin_stage, get = get_origin_stage
 
 var _theme: Theme = null :
 	get:
@@ -20,7 +20,7 @@ var _theme: Theme = null :
 
 #region internals
 
-func _init(stage: StageBase = null) -> void:
+func _init(stage: Stage = null) -> void:
 	_origin_stage = stage
 
 
@@ -59,6 +59,8 @@ func _export_packed() -> Array:
 		#args.append(false)
 	
 	for prop in get_property_list():
+		_validate_property(prop)
+		
 		if prop.name == "CellObject.gd":
 			return args
 		if prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and prop.usage & PROPERTY_USAGE_STORAGE:
@@ -154,7 +156,7 @@ func get_stage_instance() -> StageInstance:
 	return base
 
 
-func get_origin_stage() -> StageBase:
+func get_origin_stage() -> Stage:
 	return _origin_stage
 
 #region virtuals
