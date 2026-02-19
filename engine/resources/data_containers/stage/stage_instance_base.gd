@@ -92,6 +92,11 @@ func _get_effects() -> Script:
 	return StageBaseEffects
 
 
+## Virtual method. Called when the player has lost for any reason.
+func _on_lost(_source: Object) -> void:
+	pass
+
+
 ## Returns this stage's [EventBusManager]. Creates one if it doesn't exist yet.
 func get_event_bus_manager() -> EventBusManager:
 	return get_component(EventBusManager, self, func() -> EventBusManager:

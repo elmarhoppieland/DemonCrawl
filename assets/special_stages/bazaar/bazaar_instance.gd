@@ -3,8 +3,14 @@ extends StageInstanceBase
 class_name BazaarInstance
 
 # ==============================================================================
+const MUSIC := preload("res://assets/special_stages/item_shop/item_shop.ogg")
+const AMBIENCE := preload("res://assets/special_stages/item_shop/item_shop_ambience.ogg")
+# ==============================================================================
 
 func _ready() -> void:
+	AudioBus.play_music(MUSIC)
+	AudioBus.play_ambience(AMBIENCE, AudioStream.new())
+	
 	if was_reloaded():
 		return
 	
@@ -19,6 +25,8 @@ func _ready() -> void:
 	var trade_offer := TradeItemOffer.new()
 	add_child(trade_offer)
 	trade_offer.refresh()
+	
+	get_quest().get_stats().get_effects().lost.connect(_on_lost)
 
 
 func get_buy_offer() -> BuyItemOffer:
@@ -46,6 +54,11 @@ func _create_scene() -> Node:
 	var scene: BazaarScene = load("res://assets/special_stages/bazaar/bazaar_scene.tscn").instantiate()
 	scene.instance = self
 	return scene
+
+
+func _on_lost(_source: Object) -> void:
+	_scene.deselect()
+	_scene.get_background().set_color(Color.RED)
 
 
 @abstract

@@ -205,6 +205,14 @@ func generate_monster_name() -> String:
 @abstract func _generate_monster_name() -> String
 
 
+func notify_damaged() -> void:
+	_damage_taken()
+
+
+## Virtual method. Allows the stage to react to damage.
+@abstract func _damage_taken() -> void
+
+
 func _shrink(image: Image, new_size: int) -> Image:
 	var large_axis := maxi(image.get_width(), image.get_height())
 	var small_axis := mini(image.get_width(), image.get_height())

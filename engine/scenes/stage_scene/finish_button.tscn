@@ -12,9 +12,68 @@ shader = ExtResource("2_1qjmn")
 shader_parameter/color = Vector3(0, 0, 0)
 shader_parameter/speed = 0.667
 
+[sub_resource type="Animation" id="Animation_xr2un"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.165, 0, 0.165, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.165, 0, 0.165, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qumbi"]
+resource_name = "grow_button"
+length = 0.33333334
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2),
+"points": PackedFloat32Array(1e-05, 0, 0, 0.15, 0.001252636, 1, -0.16333334, -0.026515186, 0.000556402, 9.032511e-05, 1, -0.16666667, -0.051767707, 0.16499731, 0.05124919),
+"times": PackedFloat32Array(0, 0.33, 0.33333334)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2),
+"points": PackedFloat32Array(1e-05, 0, 0, 0.15, 0.013878899, 1, -0.16333334, -0.039141417, 0.00055639906, 0.0001333362, 1, -0.16666667, -0.051767707, 0, 0),
+"times": PackedFloat32Array(0, 0.33, 0.33333334)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0xxtp"]
+_data = {
+&"RESET": SubResource("Animation_xr2un"),
+&"grow_button": SubResource("Animation_qumbi")
+}
+
 [node name="FinishButton" type="MarginContainer" unique_id=1063624514]
 offset_right = 56.0
 offset_bottom = 17.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("1_1ldt4")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2060434899]
@@ -29,5 +88,9 @@ texture_normal = ExtResource("3_toqru")
 texture_pressed = ExtResource("4_cbw2w")
 texture_hover = ExtResource("5_weqj1")
 stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1889787536]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_0xxtp")
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

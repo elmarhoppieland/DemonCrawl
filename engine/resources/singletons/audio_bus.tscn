@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://drsyd48x8m2kh"]
+
+[ext_resource type="Script" uid="uid://cwsqbwxtxoorl" path="res://engine/resources/singletons/audio_bus.gd" id="1_8p5h3"]
+
+[node name="AudioBus" type="Node" unique_id=230234438]
+script = ExtResource("1_8p5h3")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1934392622]
+unique_name_in_owner = true
+bus = &"Music"
+
+[node name="AmbienceAPlayer" type="AudioStreamPlayer" parent="." unique_id=1100429091]
+unique_name_in_owner = true
+bus = &"Ambience"
+
+[node name="AmbienceBPlayer" type="AudioStreamPlayer" parent="." unique_id=1527115367]
+unique_name_in_owner = true
+bus = &"Ambience"

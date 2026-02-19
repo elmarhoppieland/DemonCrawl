@@ -4,9 +4,13 @@ class_name ItemShopInstance
 
 # ==============================================================================
 const SCENE := preload("res://assets/special_stages/item_shop/item_shop.tscn")
+const AMBIENCE := preload("res://assets/special_stages/item_shop/item_shop_ambience.ogg")
 # ==============================================================================
 
 func _ready() -> void:
+	AudioBus.play_music(load("res://assets/special_stages/item_shop/item_shop.ogg"))
+	AudioBus.play_ambience(AMBIENCE, AudioStream.new())
+	
 	if was_reloaded():
 		return
 	
@@ -22,6 +26,8 @@ func _ready() -> void:
 		offer.add_child(item)
 		offer.cost = maxi(floori(item.get_cost() * randf_range(0.7, 1.3)), 1)
 		get_offers_parent().add_child(offer)
+	
+	get_quest().get_stats().get_effects().lost.connect(_on_lost)
 
 
 func _create_scene() -> Node:
@@ -57,6 +63,11 @@ func purchase(offer_idx: int) -> void:
 	var item := offer.get_item()
 	offer.remove_child(item)
 	get_quest().get_inventory().item_gain(item)
+
+
+func _on_lost(_source: Object) -> void:
+	_scene.deselect()
+	_scene.get_background().set_color(Color.RED)
 
 @warning_ignore_start("unused_signal")
 

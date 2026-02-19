@@ -64,6 +64,10 @@ static func move_to(node: CanvasItem, force_instant: bool = false, size: Vector2
 	#move_to(saved_focus, true)
 
 
+static func unfocus() -> void:
+	_focused_node = null
+
+
 static func get_instance() -> Focus:
 	return _instance
 

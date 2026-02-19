@@ -24,6 +24,7 @@ var _selected_offer: BazaarInstance.ItemOfferBase :
 @onready var _trade_display: CollectibleDisplay = %TradeDisplay
 @onready var _trade_cost_display: TextureNodeDisplay = %TradeCostDisplay
 @onready var _buy_button: DCButton = %BuyButton
+@onready var _background: StageBackground = %Background
 # ==============================================================================
 
 func _update(old_instance: BazaarInstance) -> void:
@@ -104,3 +105,11 @@ func _on_buy_button_pressed() -> void:
 
 func _on_leave_button_pressed() -> void:
 	instance.finish()
+
+
+func deselect() -> void:
+	Focus.unfocus()
+
+
+func get_background() -> StageBackground:
+	return _background

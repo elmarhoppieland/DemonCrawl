@@ -3,7 +3,7 @@ class_name DCPopup
 
 # ==============================================================================
 static var _instance: DCPopup
-
+# ==============================================================================
 var _popup_visible := false
 # ==============================================================================
 @onready var _contents_container: MarginContainer = %ContentsContainer

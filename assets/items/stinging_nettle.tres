@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://duutnhiow36m8"]
+
+[ext_resource type="Texture2D" uid="uid://bmk743qljbjy0" path="res://assets/items/stinging_nettle.png" id="1_uegf0"]
+[ext_resource type="Script" uid="uid://dpy8ksxke63v" path="res://assets/items/stinging_nettle.gd" id="2_efhvk"]
+[ext_resource type="Script" uid="uid://d3icmltrt12ld" path="res://engine/resources/data_containers/collectible/item_data.gd" id="3_fi5qm"]
+
+[resource]
+script = ExtResource("3_fi5qm")
+name = "item.stinging-nettle"
+description = "item.stinging-nettle.description"
+icon = ExtResource("1_uegf0")
+item_script = ExtResource("2_efhvk")

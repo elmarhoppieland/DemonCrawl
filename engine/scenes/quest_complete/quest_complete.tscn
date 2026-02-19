@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c2jmpjlrtuwcc"]
 
 [ext_resource type="Script" uid="uid://whrdbt0xwnet" path="res://engine/scenes/quest_complete/quest_complete.gd" id="1_rcn3b"]
-[ext_resource type="AudioStream" uid="uid://c23pal2bespi0" path="res://assets/music/quest_complete.ogg" id="2_5kbqk"]
 [ext_resource type="Texture2D" uid="uid://b2wvoykvb8fha" path="res://assets/backgrounds/quest_complete.png" id="2_vhutr"]
 [ext_resource type="Theme" uid="uid://xdwwohetfem2" path="res://engine/scenes/quest_complete/quest_complete_text.theme" id="3_3i8v7"]
 [ext_resource type="Theme" uid="uid://mxgusstu16t2" path="res://engine/scenes/quest_complete/quest_complete.theme" id="3_pcgx3"]
@@ -269,13 +268,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rcn3b")
 
-[node name="AudioPlayers" type="Node" parent="." unique_id=1480028393]
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="AudioPlayers" unique_id=1091331606]
-unique_name_in_owner = true
-stream = ExtResource("2_5kbqk")
-autoplay = true
-
 [node name="Background" type="TextureRect" parent="." unique_id=293143483]
 layout_mode = 1
 anchors_preset = 15
@@ -446,7 +438,7 @@ script = ExtResource("15_gq2by")
 
 [node name="ProfileLevelLabel" type="Label" parent="ProfileContainer/MarginContainer/VBoxContainer" unique_id=189026527]
 layout_mode = 2
-text = "generic.level.abbr.0"
+text = "generic.level.abbr.1"
 label_settings = SubResource("LabelSettings_nwnoq")
 script = ExtResource("16_vgfa3")
 

@@ -42,7 +42,7 @@ grow_vertical = 2
 scale = Vector2(4, 4)
 script = ExtResource("1_0kr35")
 
-[node name="Background" type="TextureRect" parent="." unique_id=2111481194]
+[node name="Background" type="TextureRect" parent="." unique_id=361544170]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

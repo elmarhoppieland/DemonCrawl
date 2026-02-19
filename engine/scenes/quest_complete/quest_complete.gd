@@ -3,6 +3,8 @@ extends Control
 class_name QuestComplete
 
 # ==============================================================================
+const QUEST_COMPLETE_JINGLE = preload("res://assets/music/quest_complete.ogg")
+# ==============================================================================
 @onready var _summary_label = %"SummaryLabel"
 @onready var _score_label = %"ScoreLabel"
 @onready var _monster_sprite = %"MonsterSprite"
@@ -29,6 +31,7 @@ func _ready() -> void:
 	_monster_taunt.visible_characters = 0
 	
 	_animation_player.play(&"quest_finished")
+	AudioBus.play_music(QUEST_COMPLETE_JINGLE)
 
 
 func animate_monster_taunt():

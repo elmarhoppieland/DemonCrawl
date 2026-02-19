@@ -7,6 +7,7 @@ enum Type {
 	GENERAL,
 	CONFIRM,
 	CANCEL,
+	SPECIAL,
 }
 # ==============================================================================
 @export var type := Type.GENERAL :
@@ -74,6 +75,8 @@ func reload_theme() -> void:
 			modulate = get_theme_color("confirm", "DCButton")
 		Type.CANCEL:
 			modulate = get_theme_color("cancel", "DCButton")
+		Type.SPECIAL:
+			modulate = get_theme_color("special", "DCButton")
 
 
 func _on_mouse_entered() -> void:

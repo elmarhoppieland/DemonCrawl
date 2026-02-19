@@ -1,4 +1,4 @@
-﻿key;en
+key;en
 
 scene-return.main;RETURN TO MAIN MENU
 scene-return.quests;RETURN TO QUESTS
@@ -133,6 +133,8 @@ stats.defense.hover.text;DEFENSE
 stats.defense.hover.subtext;Reduces incoming damage to a minimum of 1.
 stats.coins.hover.text;COINS
 stats.coins.hover.subtext;Spend money at shops.
+stats.revives.hover;You also have {revives} revives.
+stats.revives.remaining;You now have {revives} revives...
 stats.overview.header;YOUR OVERVIEW
 stats.overview.score;Score: {score} pts
 stats.overview.cells-opened-since-mistake;Cells opened since last mistake: {cells}
@@ -158,6 +160,10 @@ popup.legendary.text;You may now find this item in chests or shops:
 popup.new-quest.title;new quest discovered!
 popup.new-quest.unlocked;{quest_name} is now available to play.
 popup.new-quest.locked;{quest_name} is available for purchase from the Token Shop.
+
+game-over.view;VIEW BOARD
+game-over.restart;RESTART
+game-over.return;RETURN TO MENU
 
 stage.special.item-shop;Item Shop
 stage.special.item-shop.description;Spend coins to buy items. 

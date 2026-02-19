@@ -24,6 +24,7 @@ Toasts="res://engine/resources/singletons/toasts.tscn"
 DCPopup="res://engine/resources/scenes/dc_popup.tscn"
 GuiLayer="res://engine/resources/singletons/gui_layer.tscn"
 DebugToolsOverlay="res://engine/resources/singletons/debug/debug_tools_overlay.tscn"
+AudioBus="uid://drsyd48x8m2kh"
 
 [debug]
 

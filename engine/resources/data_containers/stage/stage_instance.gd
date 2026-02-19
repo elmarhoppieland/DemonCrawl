@@ -32,6 +32,7 @@ class_name StageInstance
 
 #@export var _projectile_manager: ProjectileManager = null : get = get_projectile_manager
 # ==============================================================================
+var input_frozen := false
 #var _immunity := Immunity.create_immunity_list() : get = get_immunity
 # ==============================================================================
 signal finish_pressed()
@@ -60,6 +61,7 @@ func _ready() -> void:
 		get_grid().add_child(data)
 	
 	get_quest().get_attributes().change_property.connect(_on_change_attribute)
+	get_quest().get_stats().get_effects().lost.connect(_on_lost)
 	
 	emit_changed()
 
@@ -449,6 +451,25 @@ func _on_change_attribute(attribute: StringName, value: Variant) -> Variant:
 	if attribute == &"cells_opened_since_mistake":
 		return count_first_opened_cell()
 	return value
+
+
+func _on_lost(_source: Object) -> void:
+	var cells := get_stage().get_board().get_cells()
+	
+	for cell in cells:
+		if cell.get_aura() == null:
+			cell.get_aura_modulator().modulate = Color.RED
+		
+		if cell.get_data().is_hidden() && cell.get_data().is_occupied() && cell.get_data().has_monster():
+			cell.show_monster_icon()
+	
+	for projectile in get_projectile_manager().get_projectiles():
+		projectile.clear()
+	
+	get_scene().get_background().set_color(Color.RED)
+	
+	get_timer().pause()
+	input_frozen = true
 
 
 func count_first_opened_cell() -> int:

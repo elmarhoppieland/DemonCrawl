@@ -5,6 +5,8 @@ class_name Quest
 ## A single quest with any amount of [Stage]s.
 
 # ==============================================================================
+const GAME_OVER_POPUP := preload("res://engine/scenes/stage_scene/game_over_popup.tscn")
+# ==============================================================================
 static var _current: Quest = Eternal.create(null) : set = _set_current, get = get_current
 
 static var current_changed := Signal() :
@@ -34,7 +36,7 @@ static var current_changed := Signal() :
 signal current_stage_changed()
 
 signal started()
-@warning_ignore("unused_signal") signal lost()
+signal lost()
 signal won()
 #signal loaded()
 #signal unloaded()
@@ -66,10 +68,12 @@ func _ready() -> void:
 	get_event_bus_manager()
 	
 	get_stage_effects().get_guaranteed_objects.connect(source_difficulty.get_guaranteed_objects)
+	get_stats().get_effects().lost.connect(_on_lost)
 
 
 func _exit_tree() -> void:
 	get_stage_effects().get_guaranteed_objects.disconnect(source_difficulty.get_guaranteed_objects)
+	get_stats().get_effects().lost.disconnect(_on_lost)
 
 #endregion
 
@@ -191,6 +195,26 @@ func start() -> void:
 	started.emit()
 
 
+## Returns true if the current quest can be restarted.
+func can_restart() -> bool:
+	return true
+
+
+## Start a new quest with the same difficulty and file as the current one.
+func restart() -> void:
+	var fresh_quest := source_file.generate()
+	fresh_quest.source_difficulty = source_difficulty
+	fresh_quest.set_as_current()
+	
+	source_difficulty.apply_starting_values(fresh_quest)
+	
+	GuiLayer.get_statbar().quest = fresh_quest
+	
+	fresh_quest.start()
+	
+	Eternity.save()
+
+
 ## Unlocks the next stage of the quest, starting at [param stage].
 func unlock_next_stage(skip_special_stages: bool = true, start_stage_index: int = selected_stage_idx) -> void:
 	if start_stage_index + 1 >= get_stages().size():
@@ -240,6 +264,19 @@ func finish() -> void:
 	#notify_unloaded()
 
 
+## Destroys this quest, exits to the main menu.
+func abandon() -> void:
+	lost.emit()
+	
+	if Quest.get_current() == self:
+		Quest.clear_current()
+	
+	Eternity.save()
+	
+	get_tree().change_scene_to_file("res://engine/scenes/main_menu/main_menu.tscn")
+	#notify_unloaded()
+
+
 func pass_turn() -> void:
 	if has_current_stage():
 		EffectManager.propagate(get_current_stage().get_effects().turn)
@@ -277,6 +314,23 @@ func _on_stage_finished(stage_instance: StageInstanceBase) -> void:
 	Eternity.save()
 	
 	get_tree().change_scene_to_file("res://engine/scenes/stage_select/stage_select.tscn")
+
+func _on_lost(source: Object) -> void:
+	var popup := GAME_OVER_POPUP.instantiate()
+	popup.quest = self
+	get_tree().root.add_child(popup)
+	get_tree().root.remove_child(self)
+	
+	if has_current_stage():
+		if get_current_stage_base().get_stage().is_special():
+			popup.view_button.queue_free()
+	
+	popup.cause = source.get_annotation_title() # TODO
+	popup.popup()
+	
+	Quest.clear_current()
+	
+	Eternity.save()
 
 #endregion
 

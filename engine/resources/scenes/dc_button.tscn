@@ -18,7 +18,6 @@ draw_center = false
 [sub_resource type="LabelSettings" id="LabelSettings_akeyq"]
 resource_local_to_scene = true
 font_size = 8
-font_color = Color(0.0627451, 0.87451, 0.501961, 1)
 
 [node name="DCButton" type="BaseButton" unique_id=676528459]
 unique_name_in_owner = false

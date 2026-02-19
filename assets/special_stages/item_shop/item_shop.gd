@@ -22,3 +22,11 @@ func _get_small_icon() -> Texture2D:
 
 func _create_instance() -> ItemShopInstance:
 	return ItemShopInstance.new()
+
+
+func _get_theme() -> Theme:
+	return preload("res://assets/special_stages/item_shop/item_shop.theme")
+
+
+func _damage_taken() -> void:
+	get_scene().get_background().flash_red()

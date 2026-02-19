@@ -204,6 +204,11 @@ func _generate_monster_name() -> String:
 	return file.monster_name_pool.pick_random()
 
 
+func _damage_taken() -> void:
+	get_scene().get_background().flash_red()
+	get_board().get_camera().shake()
+
+
 ## Returns a property of this [Stage].
 func get_property(section: String, key: String, default: Variant = null) -> Variant:
 	var cfg := ConfigFile.new()

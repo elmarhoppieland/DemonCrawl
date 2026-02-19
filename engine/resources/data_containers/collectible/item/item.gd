@@ -329,12 +329,6 @@ func transform(new_item: Item) -> void:
 	transform_item(self, new_item)
 
 
-## Virtual Method to Allow an [Item] to modify the set of Guaranteed [CellObject]s for a given stage.
-## Takes in an [Array][[CellObject]] and returns an [Array][[CellObject]].
-func _get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
-	return input
-
-
 ## Targets a [Cell]. Waits for the player to select a [Cell] and then return it.
 ## This returns an [Array][[CellData]] since the player may increase the range
 ## or add more cells to target. See also [method target_cells].
@@ -420,6 +414,15 @@ func life_restore(life: int, source: Object = self) -> void:
 
 func life_lose(life: int, source: Object = self) -> void:
 	get_stats().life_lose(life, source)
+
+#endregion
+
+#region reactions
+
+## Virtual Method to Allow an [Item] to modify the set of Guaranteed [CellObject]s for a given stage.
+## Takes in an [Array][[CellObject]] and returns an [Array][[CellObject]].
+func _get_guaranteed_objects(input: Array[CellObject]) -> Array[CellObject]:
+	return input
 
 #endregion
 
